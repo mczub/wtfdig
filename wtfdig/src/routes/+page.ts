@@ -11,12 +11,14 @@ export type Role = 'Tank' | 'Healer' | 'Melee' | 'Ranged';
 export type StartingArea = 'Tiles' | 'Platform';
 export type Alignment = 'original' | 'truenorth' | 'addrelative';
 export type Alliance = 'A' | 'B' | 'C';
+
 interface MechanicStrat {
     mechanic: string;
     description: string;
     imageUrl: string;
     mask?: string;
     transform?: string;
+    alignmentTransforms?: Record<Alignment, string>;
 }
 
 export interface PlayerStrats {
@@ -854,29 +856,50 @@ const codcarStrat: Strat = {
                     mechanic: 'pairs',
                     description: 'Inside North',
                     imageUrl: './strats/codcar/platform-pairs.png',
-                    mask: 'radial-gradient(circle at 49.8% 41.6%, black 13%, rgba(0, 0, 0, 0.4) 13%)'
+                    mask: 'radial-gradient(circle at 49.8% 41.6%, black 13%, rgba(0, 0, 0, 0.4) 13%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(270deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'spread',
                     description: 'North',
                     imageUrl: './strats/codcar/platform-spread.png',
-                    mask: 'radial-gradient(circle at 50% 17%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
+                    mask: 'radial-gradient(circle at 50% 17%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(270deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'towers',
                     description: 'North/CW',
                     imageUrl: './strats/codcar/platform-towers.png',
-                    mask: 'radial-gradient(circle at 66% 36%, black 29%, rgba(0, 0, 0, 0.2) 29%)'
+                    mask: 'radial-gradient(circle at 66% 36%, black 29%, rgba(0, 0, 0, 0.2) 29%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(270deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'bramble',
                     description: 'None, stay on boss',
                     imageUrl: './strats/codcar/platform-brambles.png',
-                    mask: 'radial-gradient(circle at 44% 60%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
+                    mask: 'radial-gradient(circle at 44% 60%, black 16%, rgba(0, 0, 0, 0.4) 16%)',
+                    transform: 'rotate(90deg)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': '',
+                        'addrelative': 'rotate(90deg)',
+                    }
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Platform Inside True South',
+                    description: 'Platform Inside\nRelative Left\nTrue South',
                     imageUrl: './strats/codcar/platform-west-aoe-spread.png',
                     mask: 'radial-gradient(circle at 66% 59%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
@@ -884,7 +907,12 @@ const codcarStrat: Strat = {
                     mechanic: 'swap',
                     description: 'Outside Middle',
                     imageUrl: './strats/codcar/platform-west-swap.png',
-                    mask: 'radial-gradient(circle at 28% 50%, black 19%, rgba(0, 0, 0, 0.4) 19%)'
+                    mask: 'radial-gradient(circle at 28% 50%, black 19%, rgba(0, 0, 0, 0.4) 19%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': '',
+                        'addrelative': 'rotate(90deg)',
+                    }
                 },
             ]
         },
@@ -899,30 +927,50 @@ const codcarStrat: Strat = {
                     mechanic: 'pairs',
                     description: 'Inside North',
                     imageUrl: './strats/codcar/platform-pairs.png',
-                    mask: 'radial-gradient(circle at 49.8% 41.6%, black 13%, rgba(0, 0, 0, 0.4) 13%)'
+                    mask: 'radial-gradient(circle at 49.8% 41.6%, black 13%, rgba(0, 0, 0, 0.4) 13%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(90deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'spread',
                     description: 'North',
                     imageUrl: './strats/codcar/platform-spread.png',
-                    mask: 'radial-gradient(circle at 50% 17%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
+                    mask: 'radial-gradient(circle at 50% 17%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(90deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'towers',
                     description: 'North/CW',
                     imageUrl: './strats/codcar/platform-towers.png',
-                    mask: 'radial-gradient(circle at 66% 36%, black 29%, rgba(0, 0, 0, 0.2) 29%)'
+                    mask: 'radial-gradient(circle at 66% 36%, black 29%, rgba(0, 0, 0, 0.2) 29%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(90deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'bramble',
                     description: 'None, stay on boss',
                     imageUrl: './strats/codcar/platform-brambles.png',
                     mask: 'radial-gradient(circle at 44% 60%, black 16%, rgba(0, 0, 0, 0.4) 16%)',
-                    transform: 'rotate(180deg)'
+                    transform: 'rotate(180deg)',
+                    alignmentTransforms: {
+                        'original': 'rotate(180deg)',
+                        'truenorth': 'rotate(180deg)',
+                        'addrelative': 'rotate(90deg)',
+                    }
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Platform Inside True South',
+                    description: 'Platform Inside\nRelative Right\nTrue South',
                     imageUrl: './strats/codcar/platform-east-aoe-spread.png',
                     mask: 'radial-gradient(circle at 35% 60%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
@@ -930,7 +978,12 @@ const codcarStrat: Strat = {
                     mechanic: 'swap',
                     description: 'Outside Middle',
                     imageUrl: './strats/codcar/platform-east-swap.png',
-                    mask: 'radial-gradient(circle at 72% 51%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
+                    mask: 'radial-gradient(circle at 72% 51%, black 16%, rgba(0, 0, 0, 0.4) 16%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': '',
+                        'addrelative': 'rotate(270deg)',
+                    }
                 },
             ]
         },
@@ -945,37 +998,62 @@ const codcarStrat: Strat = {
                     mechanic: 'pairs',
                     description: 'Outside North',
                     imageUrl: './strats/codcar/platform-pairs.png',
-                    mask: 'radial-gradient(circle at 50% 25%, black 13%, rgba(0, 0, 0, 0.4) 13%)'
+                    mask: 'radial-gradient(circle at 50% 25%, black 13%, rgba(0, 0, 0, 0.4) 13%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(270deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'spread',
                     description: 'Northeast',
                     imageUrl: './strats/codcar/platform-spread.png',
-                    mask: 'radial-gradient(circle at 75% 24%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
+                    mask: 'radial-gradient(circle at 75% 24%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(270deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'towers',
                     description: 'North/CW',
                     imageUrl: './strats/codcar/platform-towers.png',
-                    mask: 'radial-gradient(circle at 66% 36%, black 29%, rgba(0, 0, 0, 0.2) 29%)'
+                    mask: 'radial-gradient(circle at 66% 36%, black 29%, rgba(0, 0, 0, 0.2) 29%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(270deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'bramble',
-                    description: 'Outside True North',
+                    description: 'Outside\nRelative Right\nTrue North',
                     imageUrl: './strats/codcar/platform-brambles.png',
-                    mask: 'radial-gradient(circle at 22% 38%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
+                    mask: 'radial-gradient(circle at 22% 38%, black 16%, rgba(0, 0, 0, 0.4) 16%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': '',
+                        'addrelative': 'rotate(90deg)',
+                    }
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Platform Outside True South',
+                    description: 'Platform Outside\nRelative Left\nTrue South',
                     imageUrl: './strats/codcar/platform-west-aoe-spread.png',
                     mask: 'radial-gradient(circle at 15% 62%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
                 {
                     mechanic: 'swap',
-                    description: 'Outside True North',
+                    description: 'Outside\nRelative Right\nTrue North',
                     imageUrl: './strats/codcar/platform-west-swap.png',
-                    mask: 'radial-gradient(circle at 27% 24%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
+                    mask: 'radial-gradient(circle at 27% 24%, black 16%, rgba(0, 0, 0, 0.4) 16%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': '',
+                        'addrelative': 'rotate(90deg)',
+                    }
                 },
             ]
         },
@@ -990,38 +1068,63 @@ const codcarStrat: Strat = {
                     mechanic: 'pairs',
                     description: 'Outside North',
                     imageUrl: './strats/codcar/platform-pairs.png',
-                    mask: 'radial-gradient(circle at 50% 25%, black 13%, rgba(0, 0, 0, 0.4) 13%)'
+                    mask: 'radial-gradient(circle at 50% 25%, black 13%, rgba(0, 0, 0, 0.4) 13%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(90deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'spread',
                     description: 'Northeast',
                     imageUrl: './strats/codcar/platform-spread.png',
-                    mask: 'radial-gradient(circle at 75% 24%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
+                    mask: 'radial-gradient(circle at 75% 24%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(90deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'towers',
                     description: 'North/CW',
                     imageUrl: './strats/codcar/platform-towers.png',
-                    mask: 'radial-gradient(circle at 66% 36%, black 29%, rgba(0, 0, 0, 0.2) 29%)'
+                    mask: 'radial-gradient(circle at 66% 36%, black 29%, rgba(0, 0, 0, 0.2) 29%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(90deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'bramble',
-                    description: 'Outside True South',
+                    description: 'Outside\nRelative Right\nTrue South',
                     imageUrl: './strats/codcar/platform-brambles.png',
                     mask: 'radial-gradient(circle at 22% 38%, black 16%, rgba(0, 0, 0, 0.4) 16%)',
-                    transform: 'rotate(180deg)'
+                    transform: 'rotate(180deg)',
+                    alignmentTransforms: {
+                        'original': 'rotate(180deg)',
+                        'truenorth': 'rotate(180deg)',
+                        'addrelative': 'rotate(90deg)',
+                    }
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Platform Outside True North',
+                    description: 'Platform Outside\nRelative Left\nTrue North',
                     imageUrl: './strats/codcar/platform-east-aoe-spread.png',
                     mask: 'radial-gradient(circle at 81% 39%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
                 {
                     mechanic: 'swap',
-                    description: 'Outside True South',
+                    description: 'Outside\nRelative Right\nTrue South',
                     imageUrl: './strats/codcar/platform-east-swap.png',
-                    mask: 'radial-gradient(circle at 72% 72%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
+                    mask: 'radial-gradient(circle at 72% 72%, black 16%, rgba(0, 0, 0, 0.4) 16%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': '',
+                        'addrelative': 'rotate(270deg)',
+                    }
                 },
             ]
         }, 
@@ -1036,37 +1139,62 @@ const codcarStrat: Strat = {
                     mechanic: 'pairs',
                     description: 'Inside SW',
                     imageUrl: './strats/codcar/platform-pairs.png',
-                    mask: 'radial-gradient(circle at 40% 60%, black 13%, rgba(0, 0, 0, 0.4) 13%)'
+                    mask: 'radial-gradient(circle at 40% 60%, black 13%, rgba(0, 0, 0, 0.4) 13%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(270deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'spread',
                     description: 'Northwest',
                     imageUrl: './strats/codcar/platform-spread.png',
-                    mask: 'radial-gradient(circle at 26% 24%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
+                    mask: 'radial-gradient(circle at 26% 24%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(270deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'towers',
                     description: 'North/CW',
                     imageUrl: './strats/codcar/platform-towers.png',
-                    mask: 'radial-gradient(circle at 66% 36%, black 29%, rgba(0, 0, 0, 0.2) 29%)'
+                    mask: 'radial-gradient(circle at 66% 36%, black 29%, rgba(0, 0, 0, 0.2) 29%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(270deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'bramble',
                     description: 'None, stay on boss',
                     imageUrl: './strats/codcar/platform-brambles.png',
-                    mask: 'radial-gradient(circle at 52% 38%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
+                    mask: 'radial-gradient(circle at 52% 38%, black 16%, rgba(0, 0, 0, 0.4) 16%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': '',
+                        'addrelative': 'rotate(90deg)',
+                    }
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Platform Inside True North',
+                    description: 'Platform Inside\nRelative Right\nTrue North',
                     imageUrl: './strats/codcar/platform-west-aoe-spread.png',
                     mask: 'radial-gradient(circle at 73% 41%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
                 {
                     mechanic: 'swap',
-                    description: 'Outside True South',
+                    description: 'Outside\nRelative Left\nTrue South',
                     imageUrl: './strats/codcar/platform-west-swap.png',
-                    mask: 'radial-gradient(circle at 27% 76%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
+                    mask: 'radial-gradient(circle at 27% 76%, black 16%, rgba(0, 0, 0, 0.4) 16%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': '',
+                        'addrelative': 'rotate(90deg)',
+                    }
                 },
             ]
         },
@@ -1081,38 +1209,63 @@ const codcarStrat: Strat = {
                     mechanic: 'pairs',
                     description: 'Inside SW',
                     imageUrl: './strats/codcar/platform-pairs.png',
-                    mask: 'radial-gradient(circle at 40% 60%, black 13%, rgba(0, 0, 0, 0.4) 13%)'
+                    mask: 'radial-gradient(circle at 40% 60%, black 13%, rgba(0, 0, 0, 0.4) 13%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(90deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'spread',
                     description: 'Northwest',
                     imageUrl: './strats/codcar/platform-spread.png',
-                    mask: 'radial-gradient(circle at 26% 24%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
+                    mask: 'radial-gradient(circle at 26% 24%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(90deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'towers',
                     description: 'North/CW',
                     imageUrl: './strats/codcar/platform-towers.png',
-                    mask: 'radial-gradient(circle at 66% 36%, black 29%, rgba(0, 0, 0, 0.2) 29%)'
+                    mask: 'radial-gradient(circle at 66% 36%, black 29%, rgba(0, 0, 0, 0.2) 29%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(90deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'bramble',
                     description: 'None, stay on boss',
                     imageUrl: './strats/codcar/platform-brambles.png',
                     mask: 'radial-gradient(circle at 52% 38%, black 16%, rgba(0, 0, 0, 0.4) 16%)',
-                    transform: 'rotate(180deg)'
+                    transform: 'rotate(180deg)',
+                    alignmentTransforms: {
+                        'original': 'rotate(180deg)',
+                        'truenorth': 'rotate(180deg)',
+                        'addrelative': 'rotate(90deg)',
+                    }
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Platform Inside True South',
+                    description: 'Platform Inside\nRelative Left\nTrue South',
                     imageUrl: './strats/codcar/platform-east-aoe-spread.png',
                     mask: 'radial-gradient(circle at 32% 41%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
                 {
                     mechanic: 'swap',
-                    description: 'Outside True North',
+                    description: 'Outside\nRelative Left\nTrue North',
                     imageUrl: './strats/codcar/platform-east-swap.png',
-                    mask: 'radial-gradient(circle at 73% 26%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
+                    mask: 'radial-gradient(circle at 73% 26%, black 16%, rgba(0, 0, 0, 0.4) 16%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': '',
+                        'addrelative': 'rotate(270deg)',
+                    }
                 },
             ]
         },
@@ -1127,37 +1280,62 @@ const codcarStrat: Strat = {
                     mechanic: 'pairs',
                     description: 'Outside SW',
                     imageUrl: './strats/codcar/platform-pairs.png',
-                    mask: 'radial-gradient(circle at 31% 74%, black 13%, rgba(0, 0, 0, 0.4) 13%)'
+                    mask: 'radial-gradient(circle at 31% 74%, black 13%, rgba(0, 0, 0, 0.4) 13%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(270deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'spread',
                     description: 'West',
                     imageUrl: './strats/codcar/platform-spread.png',
-                    mask: 'radial-gradient(circle at 18% 50%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
+                    mask: 'radial-gradient(circle at 18% 50%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(270deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'towers',
                     description: 'South/CW',
                     imageUrl: './strats/codcar/platform-towers.png',
-                    mask: 'radial-gradient(circle at 36% 66%, black 29%, rgba(0, 0, 0, 0.2) 29%)'
+                    mask: 'radial-gradient(circle at 36% 66%, black 29%, rgba(0, 0, 0, 0.2) 29%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(270deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'bramble',
-                    description: 'Outside True South',
+                    description: 'Outside\nRelative Left\nTrue South',
                     imageUrl: './strats/codcar/platform-brambles.png',
-                    mask: 'radial-gradient(circle at 22% 65%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
+                    mask: 'radial-gradient(circle at 22% 65%, black 16%, rgba(0, 0, 0, 0.4) 16%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': '',
+                        'addrelative': 'rotate(90deg)',
+                    }
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Platform Outside True North',
+                    description: 'Platform Outside\nRelative Right\nTrue North',
                     imageUrl: './strats/codcar/platform-west-aoe-spread.png',
                     mask: 'radial-gradient(circle at 21% 38%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
                 {
                     mechanic: 'swap',
-                    description: 'Inside True South',
+                    description: 'Inside\nRelative Left\nTrue South',
                     imageUrl: './strats/codcar/platform-west-swap.png',
-                    mask: 'radial-gradient(circle at 68% 77%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
+                    mask: 'radial-gradient(circle at 68% 77%, black 16%, rgba(0, 0, 0, 0.4) 16%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': '',
+                        'addrelative': 'rotate(90deg)',
+                    }
                 },
             ]
         },
@@ -1172,38 +1350,63 @@ const codcarStrat: Strat = {
                     mechanic: 'pairs',
                     description: 'Outside SW',
                     imageUrl: './strats/codcar/platform-pairs.png',
-                    mask: 'radial-gradient(circle at 31% 74%, black 13%, rgba(0, 0, 0, 0.4) 13%)'
+                    mask: 'radial-gradient(circle at 31% 74%, black 13%, rgba(0, 0, 0, 0.4) 13%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(90deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'spread',
                     description: 'West',
                     imageUrl: './strats/codcar/platform-spread.png',
-                    mask: 'radial-gradient(circle at 18% 50%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
+                    mask: 'radial-gradient(circle at 18% 50%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(90deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'towers',
                     description: 'South/CW',
                     imageUrl: './strats/codcar/platform-towers.png',
-                    mask: 'radial-gradient(circle at 36% 66%, black 29%, rgba(0, 0, 0, 0.2) 29%)'
+                    mask: 'radial-gradient(circle at 36% 66%, black 29%, rgba(0, 0, 0, 0.2) 29%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(90deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'bramble',
-                    description: 'Outside True North',
+                    description: 'Outside\nRelative Left\nTrue North',
                     imageUrl: './strats/codcar/platform-brambles.png',
                     mask: 'radial-gradient(circle at 22% 65%, black 16%, rgba(0, 0, 0, 0.4) 16%)',
-                    transform: 'rotate(180deg)'
+                    transform: 'rotate(90deg)',
+                    alignmentTransforms: {
+                        'original': 'rotate(180deg)',
+                        'truenorth': 'rotate(180deg)',
+                        'addrelative': 'rotate(90deg)',
+                    }
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Platform Outside True South',
+                    description: 'Platform Outside\nRelative Right\nTrue South',
                     imageUrl: './strats/codcar/platform-east-aoe-spread.png',
                     mask: 'radial-gradient(circle at 87% 63%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
                 {
                     mechanic: 'swap',
-                    description: 'Inside True North',
+                    description: 'Inside\nRelative Left\nTrue North',
                     imageUrl: './strats/codcar/platform-east-swap.png',
-                    mask: 'radial-gradient(circle at 30% 22%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
+                    mask: 'radial-gradient(circle at 30% 22%, black 16%, rgba(0, 0, 0, 0.4) 16%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': '',
+                        'addrelative': 'rotate(270deg)',
+                    }
                 },
             ]
         },
@@ -1344,29 +1547,49 @@ const codcarStrat: Strat = {
                     mechanic: 'pairs',
                     description: 'Inside SE',
                     imageUrl: './strats/codcar/platform-pairs.png',
-                    mask: 'radial-gradient(circle at 61% 60%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
+                    mask: 'radial-gradient(circle at 61% 60%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(270deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'spread',
                     description: 'South',
                     imageUrl: './strats/codcar/platform-spread.png',
-                    mask: 'radial-gradient(circle at 50% 83%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
+                    mask: 'radial-gradient(circle at 50% 83%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(270deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'towers',
                     description: 'South/CW',
                     imageUrl: './strats/codcar/platform-towers.png',
-                    mask: 'radial-gradient(circle at 36% 66%, black 29%, rgba(0, 0, 0, 0.2) 29%)'
+                    mask: 'radial-gradient(circle at 36% 66%, black 29%, rgba(0, 0, 0, 0.2) 29%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(270deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'bramble',
-                    description: 'Inside True South',
+                    description: 'Inside\nRelative Left\nTrue South',
                     imageUrl: './strats/codcar/platform-brambles.png',
-                    mask: 'radial-gradient(circle at 72% 65%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
+                    mask: 'radial-gradient(circle at 72% 65%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': '',
+                        'addrelative': 'rotate(90deg)',
+                    }
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Ring Outside True North',
+                    description: 'Ring Outside\nRelative Right\nTrue North',
                     imageUrl: './strats/codcar/platform-west-aoe-spread.png',
                     mask: 'radial-gradient(circle at 30% 14%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
                 },
@@ -1374,7 +1597,12 @@ const codcarStrat: Strat = {
                     mechanic: 'swap',
                     description: 'Inside Middle',
                     imageUrl: './strats/codcar/platform-west-swap.png',
-                    mask: 'radial-gradient(circle at 68% 50%, black 18%, rgba(0, 0, 0, 0.4) 18%)'
+                    mask: 'radial-gradient(circle at 68% 50%, black 18%, rgba(0, 0, 0, 0.4) 18%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': '',
+                        'addrelative': 'rotate(90deg)',
+                    }
                 },
             ]
         },
@@ -1389,37 +1617,62 @@ const codcarStrat: Strat = {
                     mechanic: 'pairs',
                     description: 'Outside SE',
                     imageUrl: './strats/codcar/platform-pairs.png',
-                    mask: 'radial-gradient(circle at 71% 74%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
+                    mask: 'radial-gradient(circle at 71% 74%, black 10%, rgba(0, 0, 0, 0.4) 10%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(270deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'spread',
                     description: 'East',
                     imageUrl: './strats/codcar/platform-spread.png',
-                    mask: 'radial-gradient(circle at 82% 50%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
+                    mask: 'radial-gradient(circle at 82% 50%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(270deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'towers',
                     description: 'South/CW',
                     imageUrl: './strats/codcar/platform-towers.png',
-                    mask: 'radial-gradient(circle at 36% 66%, black 29%, rgba(0, 0, 0, 0.2) 29%)'
+                    mask: 'radial-gradient(circle at 36% 66%, black 29%, rgba(0, 0, 0, 0.2) 29%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(270deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'bramble',
-                    description: 'Inside True North',
+                    description: 'Inside\nRelative Right\nTrue North',
                     imageUrl: './strats/codcar/platform-brambles.png',
-                    mask: 'radial-gradient(circle at 75% 37%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
+                    mask: 'radial-gradient(circle at 75% 37%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': '',
+                        'addrelative': 'rotate(90deg)',
+                    }
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Ring Outside True South',
+                    description: 'Ring Outside\nRelative Left\nTrue South',
                     imageUrl: './strats/codcar/platform-west-aoe-spread.png',
                     mask: 'radial-gradient(circle at 32% 84%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
                 },
                 {
                     mechanic: 'swap',
-                    description: 'Inside True North',
+                    description: 'Inside\nRelative Right\nTrue North',
                     imageUrl: './strats/codcar/platform-west-swap.png',
-                    mask: 'radial-gradient(circle at 69% 22%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
+                    mask: 'radial-gradient(circle at 69% 22%, black 16%, rgba(0, 0, 0, 0.4) 16%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': '',
+                        'addrelative': 'rotate(90deg)',
+                    }
                 },
             ]
         },
@@ -1560,30 +1813,50 @@ const codcarStrat: Strat = {
                     mechanic: 'pairs',
                     description: 'Inside SE',
                     imageUrl: './strats/codcar/platform-pairs.png',
-                    mask: 'radial-gradient(circle at 61% 60%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
+                    mask: 'radial-gradient(circle at 61% 60%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(90deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'spread',
                     description: 'South',
                     imageUrl: './strats/codcar/platform-spread.png',
-                    mask: 'radial-gradient(circle at 50% 83%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
+                    mask: 'radial-gradient(circle at 50% 83%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(90deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'towers',
                     description: 'South/CW',
                     imageUrl: './strats/codcar/platform-towers.png',
-                    mask: 'radial-gradient(circle at 36% 66%, black 29%, rgba(0, 0, 0, 0.2) 29%)'
+                    mask: 'radial-gradient(circle at 36% 66%, black 29%, rgba(0, 0, 0, 0.2) 29%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(90deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'bramble',
-                    description: 'Inside True North',
+                    description: 'Inside\nRelative Left\nTrue North',
                     imageUrl: './strats/codcar/platform-brambles.png',
                     mask: 'radial-gradient(circle at 72% 65%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
-                    transform: 'rotate(180deg)'
+                    transform: 'rotate(180deg)',
+                    alignmentTransforms: {
+                        'original': 'rotate(180deg)',
+                        'truenorth': 'rotate(180deg)',
+                        'addrelative': 'rotate(90deg)',
+                    }
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Ring Outside True South',
+                    description: 'Ring Outside\nRelative Right\nTrue South',
                     imageUrl: './strats/codcar/platform-east-aoe-spread.png',
                     mask: 'radial-gradient(circle at 73% 85%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
                 },
@@ -1591,7 +1864,12 @@ const codcarStrat: Strat = {
                     mechanic: 'swap',
                     description: 'Inside Middle',
                     imageUrl: './strats/codcar/platform-east-swap.png',
-                    mask: 'radial-gradient(circle at 30% 48%, black 18%, rgba(0, 0, 0, 0.4) 18%)'
+                    mask: 'radial-gradient(circle at 30% 48%, black 18%, rgba(0, 0, 0, 0.4) 18%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': '',
+                        'addrelative': 'rotate(270deg)',
+                    }
                 },
             ]
         },
@@ -1606,38 +1884,63 @@ const codcarStrat: Strat = {
                     mechanic: 'pairs',
                     description: 'Outside SE',
                     imageUrl: './strats/codcar/platform-pairs.png',
-                    mask: 'radial-gradient(circle at 71% 74%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
+                    mask: 'radial-gradient(circle at 71% 74%, black 10%, rgba(0, 0, 0, 0.4) 10%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(90deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'spread',
                     description: 'East',
                     imageUrl: './strats/codcar/platform-spread.png',
-                    mask: 'radial-gradient(circle at 82% 50%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
+                    mask: 'radial-gradient(circle at 82% 50%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(90deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'towers',
                     description: 'South/CW',
                     imageUrl: './strats/codcar/platform-towers.png',
-                    mask: 'radial-gradient(circle at 36% 66%, black 29%, rgba(0, 0, 0, 0.2) 29%)'
+                    mask: 'radial-gradient(circle at 36% 66%, black 29%, rgba(0, 0, 0, 0.2) 29%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': 'rotate(90deg)',
+                        'addrelative': '',
+                    }
                 },
                 {
                     mechanic: 'bramble',
-                    description: 'Inside True South',
+                    description: 'Inside\nRelative Right\nTrue South',
                     imageUrl: './strats/codcar/platform-brambles.png',
                     mask: 'radial-gradient(circle at 75% 37%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
-                    transform: 'rotate(180deg)'
+                    transform: 'rotate(180deg)',
+                    alignmentTransforms: {
+                        'original': 'rotate(180deg)',
+                        'truenorth': 'rotate(180deg)',
+                        'addrelative': 'rotate(90deg)',
+                    }
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Ring Outside True North',
+                    description: 'Ring Outside\nRelative Left\nTrue North',
                     imageUrl: './strats/codcar/platform-east-aoe-spread.png',
                     mask: 'radial-gradient(circle at 72% 13%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
                 },
                 {
                     mechanic: 'swap',
-                    description: 'Inside True South',
+                    description: 'Inside\nRelative Right\nTrue South',
                     imageUrl: './strats/codcar/platform-east-swap.png',
-                    mask: 'radial-gradient(circle at 30% 73%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
+                    mask: 'radial-gradient(circle at 30% 73%, black 16%, rgba(0, 0, 0, 0.4) 16%)',
+                    alignmentTransforms: {
+                        'original': '',
+                        'truenorth': '',
+                        'addrelative': 'rotate(270deg)',
+                    }
                 },
             ]
         },

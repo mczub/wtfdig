@@ -27,7 +27,7 @@
 
 <div class="container h-full mx-auto my-12 flex">
 	<div class="space-y-5">
-		<h1>where the f do i go???? (Chaotic)</h1>
+		<div class="text-2xl">where the f do i go???? (Chaotic)</div>
 			<div>
 				<h2>Which strat are you using?</h2>
 				<RadioGroup>
@@ -66,7 +66,7 @@
 			{:else if typeof strat === 'undefined'}
 				<div></div>
 			{:else}
-				<div class="flex flex-wrap content-center gap-4">
+				<div class="flex flex-wrap items-center gap-4">
 					<div class="content-center">
 						{#if stratPackage?.stratUrl}
 							<a class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href={stratPackage.stratUrl}>{stratPackage.description}
@@ -81,13 +81,25 @@
 						<SlideToggle name="spotlight-toggle" bind:checked={spotlight}>Highlight my spots</SlideToggle>
 					</div>
 				</div>
-				<div class="text-xl">{strat.notes}</div>
+				<div class="flex items-center justify-between">
+					<div class="text-xl">{strat.notes}</div>
+					{#if strat.strats.some(strat => strat.alignmentTransforms)}
+						<div class="content-center">
+							<RadioGroup>
+								<RadioItem bind:group={alignment} name="alignment" value={"original"}>Original</RadioItem>
+								<RadioItem bind:group={alignment} name="alignment" value={"truenorth"}>True North</RadioItem>
+								<RadioItem bind:group={alignment} name="alignment" value={"addrelative"}>Add Relative</RadioItem>
+							</RadioGroup>
+						</div>
+					{/if}
+				</div>
+				
 				<div class="grid grid-cols-6 gap-4">
 					{#each strat.strats as step}
-						<div class="space-y-4 text-xl">
-							<div class="uppercase">{step.mechanic}</div> 
-							<div>{step.description}</div>
-							<img src={step.imageUrl} style:mask-image={spotlight ? step.mask : ''} style:transform={step.transform} />
+						<div class="space-y-4">
+							<div class="uppercase text-xl">{step.mechanic}</div> 
+							<div class="whitespace-pre text-l">{step.description}</div>
+							<img src={step.imageUrl} style:mask-image={spotlight ? step.mask : ''} style:transform={step.alignmentTransforms ? step.alignmentTransforms[alignment] : step.transform} />
 						</div>
 						
 					{/each}
