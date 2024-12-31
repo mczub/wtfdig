@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "svelte-preprocess-import-assets": "^1.1.0"
+  }
+}
