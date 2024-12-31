@@ -14,9 +14,9 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          cache-dependency-path: wtfdig/package-lock.json
+          cache-dependency-path: ./wtfdig/package-lock.json
           node-version: 22
-          cache: npm
+          cache: 'npm'
 
       - name: Install bun
         uses: oven-sh/setup-bun@v2
