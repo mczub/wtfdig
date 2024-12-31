@@ -2,7 +2,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import type { Alliance, Role, PlayerStrats } from './+page';
-	import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
+	import { RadioGroup, RadioItem, SlideToggle } from '@skeletonlabs/skeleton';
 
 	export let data;
 	let stratName: string;
@@ -10,6 +10,7 @@
 	let role: Role;
 	let party: number;
 	let strat: PlayerStrats | string;
+	let spotlight: boolean = true;
 
 	$: strat = getStrat(stratName, alliance, role, party)
 
@@ -22,7 +23,7 @@
 	}
 </script>
 
-<div class="container h-full mx-auto flex ">
+<div class="container h-full mx-auto my-12 flex">
 	<div class="space-y-5">
 		<h1>where the f do i go???? (Chaotic)</h1>
 			<div>
@@ -63,14 +64,24 @@
 			{:else if typeof strat === 'undefined'}
 				<div></div>
 			{:else}
-				<div>STRAT: {stratName}</div>
-				<div>ALLIANCE: {alliance}</div>
-				<div>ROLE: {role}</div>
-				<div>PARTY: {party}</div>
-				<h2>you will start on {strat.startingArea}</h2>
-				{#each strat.strats as step}
-					<div>{step.mechanic}: {step.description}</div>
-				{/each}
+				<div class="flex">
+					<div>STRAT: {stratName}, Alliance {alliance} {role} {party}</div>
+					<div class="grow"></div>
+					<div>
+						<SlideToggle name="spotlight-toggle" bind:checked={spotlight}>Highlight my spots</SlideToggle>
+					</div>
+				</div>
+				<h1>{strat.notes}</h1>
+				<div class="grid grid-cols-6 gap-4">
+					{#each strat.strats as step}
+						<div>
+							<div>{step.mechanic}</div> 
+							<div>{step.description}</div>
+							<img src={step.imageUrl} style:mask-image={spotlight ? step.mask : ''} style:transform={step.transform} />
+						</div>
+						
+					{/each}
+				</div>
 			{/if}
 	</div>
 </div>
