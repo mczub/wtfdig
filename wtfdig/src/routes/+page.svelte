@@ -1,7 +1,7 @@
 <!-- YOU CAN DELETE EVERYTHING IN THIS PAGE -->
 <script lang="ts">
 	import type { PageData } from './$types';
-	import type { Alliance, Role, PlayerStrats } from './+page';
+	import type { Alliance, Role, PlayerStrats, Alignment } from './+page';
 	import { RadioGroup, RadioItem, SlideToggle } from '@skeletonlabs/skeleton';
 
 	export let data;
@@ -11,8 +11,10 @@
 	let party: number;
 	let strat: PlayerStrats | string;
 	let spotlight: boolean = true;
+	let alignment: Alignment = 'original';
 
 	$: strat = getStrat(stratName, alliance, role, party)
+	$: stratPackage = data.strats.find(strat => strat.stratName === stratName);
 
 	function getStrat(stratName: string, alliance: Alliance, role: Role, party: number) {
 		if (!stratName || !alliance || !role || !party) return '';
@@ -64,18 +66,26 @@
 			{:else if typeof strat === 'undefined'}
 				<div></div>
 			{:else}
-				<div class="flex">
-					<div>STRAT: {stratName}, Alliance {alliance} {role} {party}</div>
+				<div class="flex flex-wrap content-center gap-4">
+					<div class="content-center">
+						{#if stratPackage?.stratUrl}
+							<a class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href={stratPackage.stratUrl}>{stratPackage.description}
+								<svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+									<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+								</svg>
+							</a>
+						{/if}
+					</div>
 					<div class="grow"></div>
-					<div>
+					<div class="content-center">
 						<SlideToggle name="spotlight-toggle" bind:checked={spotlight}>Highlight my spots</SlideToggle>
 					</div>
 				</div>
-				<h1>{strat.notes}</h1>
+				<div class="text-xl">{strat.notes}</div>
 				<div class="grid grid-cols-6 gap-4">
 					{#each strat.strats as step}
-						<div>
-							<div>{step.mechanic}</div> 
+						<div class="space-y-4 text-xl">
+							<div class="uppercase">{step.mechanic}</div> 
 							<div>{step.description}</div>
 							<img src={step.imageUrl} style:mask-image={spotlight ? step.mask : ''} style:transform={step.transform} />
 						</div>
