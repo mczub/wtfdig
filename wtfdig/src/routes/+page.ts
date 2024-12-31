@@ -1389,13 +1389,13 @@ const codcarStrat: Strat = {
                     mechanic: 'pairs',
                     description: 'Outside SE',
                     imageUrl: './strats/codcar/platform-pairs.png',
-                    mask: 'radial-gradient(circle at 61% 60%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
+                    mask: 'radial-gradient(circle at 71% 74%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
                 {
                     mechanic: 'spread',
                     description: 'East',
                     imageUrl: './strats/codcar/platform-spread.png',
-                    mask: 'radial-gradient(circle at 50% 83%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
+                    mask: 'radial-gradient(circle at 82% 50%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
                 {
                     mechanic: 'towers',
@@ -1606,13 +1606,13 @@ const codcarStrat: Strat = {
                     mechanic: 'pairs',
                     description: 'Outside SE',
                     imageUrl: './strats/codcar/platform-pairs.png',
-                    mask: 'radial-gradient(circle at 61% 60%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
+                    mask: 'radial-gradient(circle at 71% 74%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
                 {
                     mechanic: 'spread',
                     description: 'East',
                     imageUrl: './strats/codcar/platform-spread.png',
-                    mask: 'radial-gradient(circle at 50% 83%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
+                    mask: 'radial-gradient(circle at 82% 50%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
                 {
                     mechanic: 'towers',
