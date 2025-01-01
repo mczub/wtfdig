@@ -101,7 +101,7 @@
 					<SlideToggle name="spotlight-toggle" bind:checked={spotlight}>Highlight my spots</SlideToggle>
 				</div>
 			</div>
-			<div class="flex items-center justify-between my-4">
+			<div class="flex flex-wrap items-center justify-between my-4">
 				<div class="text-xl">{strat.notes}</div>
 				{#if strat.strats.some(strat => strat.alignmentTransforms)}
 					<div class="content-center">
