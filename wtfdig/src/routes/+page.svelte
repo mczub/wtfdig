@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Alliance, Role, PlayerStrats, Alignment } from './+page';
+	import type { Alliance, Role, PlayerStrats, Alignment, MechanicStrat } from './+page';
 	import { RadioGroup, RadioItem, SlideToggle } from '@skeletonlabs/skeleton';
 
 	export let data;
@@ -21,41 +21,64 @@
 		if (!allianceRolePartyStrat) return `Couldn't find ${stratName} strat for Alliance ${alliance} ${role} ${party}`;
 		return allianceRolePartyStrat;
 	}
+
+	function getMask(step: MechanicStrat): string {
+		if (spotlight) {
+			if (step.alignmentMasks && step.alignmentMasks[alignment]) {
+				return step.alignmentMasks[alignment];
+			}
+			return step.mask || '';
+		}
+		return '';
+	}
 </script>
 
 <div class="container h-full min-h-screen px-4 mx-auto my-12 flex">
-	<div class="space-y-5 v-full">
-		<div>
-			<h2>Which strat are you using?</h2>
-			<RadioGroup>
-				<RadioItem bind:group={stratName} name="stratName" value={'raidplan'}>Raidplan</RadioItem>
-				<RadioItem bind:group={stratName} name="stratName" value={'codcar'}>CODCAR</RadioItem>
-			</RadioGroup>
+	<div class="container">
+		<div class="flex flex-wrap min-w-full justify-between mb-8">
+			<div class="space-y-5 v-full">
+				<div>
+					<h2>Which strat are you using?</h2>
+					<RadioGroup>
+						<RadioItem bind:group={stratName} name="stratName" value={'raidplan'}>Raidplan (Aurelia)</RadioItem>
+						<RadioItem bind:group={stratName} name="stratName" value={'codcar'}>CODCAR</RadioItem>
+					</RadioGroup>
+				</div>
+				<div>
+					<h2>Which alliance are you in?</h2>
+					<RadioGroup>
+						<RadioItem bind:group={alliance} name="alliance" value={'A'}>A</RadioItem>
+						<RadioItem bind:group={alliance} name="alliance" value={'B'}>B</RadioItem>
+						<RadioItem bind:group={alliance} name="alliance" value={'C'}>C</RadioItem>
+					</RadioGroup>
+				</div>
+				<div>
+					<h2>Which role are you?</h2>
+					<RadioGroup>
+						<RadioItem bind:group={role} name="role" value={'Tank'}>Tank</RadioItem>
+						<RadioItem bind:group={role} name="role" value={'Healer'}>Healer</RadioItem>
+						<RadioItem bind:group={role} name="role" value={'Melee'}>Melee</RadioItem>
+						<RadioItem bind:group={role} name="role" value={'Ranged'}>Ranged</RadioItem>
+					</RadioGroup>
+				</div>
+				<div>
+					<h2>Which party are you?</h2>
+					<RadioGroup>
+						<RadioItem bind:group={party} name="party" value={1}>1</RadioItem>
+						<RadioItem bind:group={party} name="party" value={2}>2</RadioItem>
+					</RadioGroup>
+				</div>
+			</div>
+			<div class="grow"></div>
+			<div class="my-4 xl:my-0">
+				{#if stratPackage?.stratName === 'raidplan'}
+					<img style:max-height={'400px'} src={'./strats/raidplan/overall.png'} />
+				{:else if stratPackage?.stratName === 'codcar'}
+					<img style:max-height={'400px'} src={'./strats/codcar/overall.png'} />
+				{/if}
+			</div>
 		</div>
-		<div>
-			<h2>Which alliance are you in?</h2>
-			<RadioGroup>
-				<RadioItem bind:group={alliance} name="alliance" value={'A'}>A</RadioItem>
-				<RadioItem bind:group={alliance} name="alliance" value={'B'}>B</RadioItem>
-				<RadioItem bind:group={alliance} name="alliance" value={'C'}>C</RadioItem>
-			</RadioGroup>
-		</div>
-		<div>
-			<h2>Which role are you?</h2>
-			<RadioGroup>
-				<RadioItem bind:group={role} name="role" value={'Tank'}>Tank</RadioItem>
-				<RadioItem bind:group={role} name="role" value={'Healer'}>Healer</RadioItem>
-				<RadioItem bind:group={role} name="role" value={'Melee'}>Melee</RadioItem>
-				<RadioItem bind:group={role} name="role" value={'Ranged'}>Ranged</RadioItem>
-			</RadioGroup>
-		</div>
-		<div>
-			<h2>Which party are you?</h2>
-			<RadioGroup>
-				<RadioItem bind:group={party} name="party" value={1}>1</RadioItem>
-				<RadioItem bind:group={party} name="party" value={2}>2</RadioItem>
-			</RadioGroup>
-		</div>
+		
 		{#if typeof strat === 'string'}
 			<slot>
 				{strat}
@@ -78,7 +101,7 @@
 					<SlideToggle name="spotlight-toggle" bind:checked={spotlight}>Highlight my spots</SlideToggle>
 				</div>
 			</div>
-			<div class="flex items-center justify-between">
+			<div class="flex items-center justify-between my-4">
 				<div class="text-xl">{strat.notes}</div>
 				{#if strat.strats.some(strat => strat.alignmentTransforms)}
 					<div class="content-center">
@@ -91,14 +114,15 @@
 				{/if}
 			</div>
 			
-			<div class="grid xl:grid-cols-6 md:grid-cols-3 grid-cols-2 gap-2">
+			<div class="grid xl:grid-cols-7 md:grid-cols-4 grid-cols-2 gap-2">
 				{#each strat.strats as step}
-					<div class="space-y-4">
+					{#key alignment}
+					<div class="space-y-4" class:col-span-2={step.alignmentImages && step.alignmentImages[alignment]}>
 						<div class="uppercase text-xl">{step.mechanic}</div> 
 						<div class="whitespace-pre text-l">{step.description}</div>
-						<img src={step.imageUrl} style:mask-image={spotlight ? step.mask : ''} style:transform={step.alignmentTransforms ? step.alignmentTransforms[alignment] : step.transform} />
+						<img src={(step.alignmentImages && step.alignmentImages[alignment]) ? step.alignmentImages[alignment] : step.imageUrl} style:mask-image={getMask(step)} style:transform={step.alignmentTransforms ? step.alignmentTransforms[alignment] : step.transform} />
 					</div>
-					
+					{/key}
 				{/each}
 			</div>
 		{/if}
