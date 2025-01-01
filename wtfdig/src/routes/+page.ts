@@ -1424,6 +1424,12 @@ const codcarStrat: Strat = {
                     mask: 'radial-gradient(circle at 81% 50%, black 22%, rgba(0, 0, 0, 0.4) 22%)'
                 },
                 {
+                    mechanic: 'wild charge',
+                    description: 'NW East inner tile',
+                    imageUrl: './strats/codcar/tiles-northwest-wc.png',
+                    mask: 'radial-gradient(circle at 71% 51%, black 18%, rgba(0, 0, 0, 0.4) 18%)'
+                },
+                {
                     mechanic: 'swap',
                     description: 'NW East inner tile',
                     imageUrl: './strats/codcar/tiles-northwest-swap.png',
@@ -1443,6 +1449,12 @@ const codcarStrat: Strat = {
                     description: 'SW inner tile',
                     imageUrl: './strats/codcar/tiles-southwest-idle.png',
                     mask: 'radial-gradient(circle at 82% 51%, black 22%, rgba(0, 0, 0, 0.4) 22%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: 'SW East inner tile',
+                    imageUrl: './strats/codcar/tiles-southwest-wc.png',
+                    mask: 'radial-gradient(circle at 76% 38%, black 18%, rgba(0, 0, 0, 0.4) 18%)'
                 },
                 {
                     mechanic: 'swap',
@@ -1466,6 +1478,12 @@ const codcarStrat: Strat = {
                     mask: 'radial-gradient(circle at 17% 50%, black 22%, rgba(0, 0, 0, 0.4) 22%)'
                 },
                 {
+                    mechanic: 'wild charge',
+                    description: 'NW central tile',
+                    imageUrl: './strats/codcar/tiles-northwest-wc.png',
+                    mask: 'radial-gradient(circle at 56% 39%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
+                },
+                {
                     mechanic: 'swap',
                     description: 'NW South inner tile',
                     imageUrl: './strats/codcar/tiles-northwest-swap.png',
@@ -1485,6 +1503,12 @@ const codcarStrat: Strat = {
                     description: 'SW West cubby',
                     imageUrl: './strats/codcar/tiles-southwest-idle.png',
                     mask: 'radial-gradient(circle at 17% 50%, black 22%, rgba(0, 0, 0, 0.4) 22%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: 'SW central tile',
+                    imageUrl: './strats/codcar/tiles-southwest-wc.png',
+                    mask: 'radial-gradient(circle at 59% 50%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
                 },
                 {
                     mechanic: 'swap',
@@ -1508,6 +1532,12 @@ const codcarStrat: Strat = {
                     mask: 'radial-gradient(circle at 49% 19%, black 22%, rgba(0, 0, 0, 0.4) 22%)'
                 },
                 {
+                    mechanic: 'wild charge',
+                    description: 'NW North cubby',
+                    imageUrl: './strats/codcar/tiles-northwest-wc.png',
+                    mask: 'radial-gradient(circle at 45% 27%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
+                },
+                {
                     mechanic: 'swap',
                     description: 'NW central tile',
                     imageUrl: './strats/codcar/tiles-northwest-swap.png',
@@ -1527,6 +1557,12 @@ const codcarStrat: Strat = {
                     description: 'SW South cubby',
                     imageUrl: './strats/codcar/tiles-southwest-idle.png',
                     mask: 'radial-gradient(circle at 49% 82%, black 22%, rgba(0, 0, 0, 0.4) 22%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: 'SW South cubby',
+                    imageUrl: './strats/codcar/tiles-southwest-wc.png',
+                    mask: 'radial-gradient(circle at 49% 67%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
                 },
                 {
                     mechanic: 'swap',
@@ -1690,6 +1726,12 @@ const codcarStrat: Strat = {
                     mask: 'radial-gradient(circle at 21% 50%, black 22%, rgba(0, 0, 0, 0.4) 22%)'
                 },
                 {
+                    mechanic: 'wild charge',
+                    description: 'NE West inner tile',
+                    imageUrl: './strats/codcar/tiles-northeast-wc.png',
+                    mask: 'radial-gradient(circle at 31% 52%, black 18%, rgba(0, 0, 0, 0.4) 18%)'
+                },
+                {
                     mechanic: 'swap',
                     description: 'NE West inner tile',
                     imageUrl: './strats/codcar/tiles-northeast-swap.png',
@@ -1709,6 +1751,12 @@ const codcarStrat: Strat = {
                     description: 'SE inner tile',
                     imageUrl: './strats/codcar/tiles-southeast-idle.png',
                     mask: 'radial-gradient(circle at 20% 51%, black 22%, rgba(0, 0, 0, 0.4) 22%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: 'SE West inner tile',
+                    imageUrl: './strats/codcar/tiles-southeast-wc.png',
+                    mask: 'radial-gradient(circle at 26% 39%, black 18%, rgba(0, 0, 0, 0.4) 18%)'
                 },
                 {
                     mechanic: 'swap',
@@ -1732,6 +1780,12 @@ const codcarStrat: Strat = {
                     mask: 'radial-gradient(circle at 83% 50%, black 22%, rgba(0, 0, 0, 0.4) 22%)'
                 },
                 {
+                    mechanic: 'wild charge',
+                    description: 'NE central tile',
+                    imageUrl: './strats/codcar/tiles-northeast-wc.png',
+                    mask: 'radial-gradient(circle at 45% 41%, black 18%, rgba(0, 0, 0, 0.4) 18%)'
+                },
+                {
                     mechanic: 'swap',
                     description: 'NE South inner tile',
                     imageUrl: './strats/codcar/tiles-northeast-swap.png',
@@ -1751,6 +1805,12 @@ const codcarStrat: Strat = {
                     description: 'SE East cubby',
                     imageUrl: './strats/codcar/tiles-southeast-idle.png',
                     mask: 'radial-gradient(circle at 82% 50%, black 22%, rgba(0, 0, 0, 0.4) 22%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: 'SE central tile',
+                    imageUrl: './strats/codcar/tiles-southeast-wc.png',
+                    mask: 'radial-gradient(circle at 44% 51%, black 18%, rgba(0, 0, 0, 0.4) 18%)'
                 },
                 {
                     mechanic: 'swap',
@@ -1774,6 +1834,12 @@ const codcarStrat: Strat = {
                     mask: 'radial-gradient(circle at 49% 19%, black 22%, rgba(0, 0, 0, 0.4) 22%)'
                 },
                 {
+                    mechanic: 'wild charge',
+                    description: 'NE North cubby',
+                    imageUrl: './strats/codcar/tiles-northeast-wc.png',
+                    mask: 'radial-gradient(circle at 56% 27%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
+                },
+                {
                     mechanic: 'swap',
                     description: 'NE central tile',
                     imageUrl: './strats/codcar/tiles-northeast-swap.png',
@@ -1793,6 +1859,12 @@ const codcarStrat: Strat = {
                     description: 'SE South cubby',
                     imageUrl: './strats/codcar/tiles-southeast-idle.png',
                     mask: 'radial-gradient(circle at 49% 82%, black 22%, rgba(0, 0, 0, 0.4) 22%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: 'SE South cubby',
+                    imageUrl: './strats/codcar/tiles-southeast-wc.png',
+                    mask: 'radial-gradient(circle at 55% 68%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
                 },
                 {
                     mechanic: 'swap',
