@@ -116,7 +116,7 @@
 			
 			<div class="grid xl:grid-cols-7 md:grid-cols-4 grid-cols-2 gap-2">
 				{#each strat.strats as step}
-					{#key alignment}
+					{#key [spotlight, alignment]}
 					<div class="space-y-4" class:col-span-2={step.alignmentImages && step.alignmentImages[alignment]}>
 						<div class="uppercase text-xl">{step.mechanic}</div> 
 						<div class="whitespace-pre text-l">{step.description}</div>
