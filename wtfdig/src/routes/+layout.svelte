@@ -16,7 +16,7 @@
         type: 'alert',
         title: 'Changelog',
         body: 
-`1/1/2024: Added big overview image, rotated AOE spreads correctly for CODCAR
+`1/1/2024: Added big overview image, rotated AOE spreads correctly for CODCAR, added post-swap locations for everyone starting on tiles
 12/31/2024: Added Alignment buttons (Original, True North, Add Relative) for CODCAR, added Wild Charges to CODCAR tile players, some improvements to responsive sizing
 12/30/2024: Initial Release`,
         buttonTextCancel: 'Close',

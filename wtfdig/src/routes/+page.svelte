@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Alliance, Role, PlayerStrats, Alignment, MechanicStrat } from './+page';
-	import { RadioGroup, RadioItem, SlideToggle } from '@skeletonlabs/skeleton';
+	import { Accordion, AccordionItem, RadioGroup, RadioItem, SlideToggle } from '@skeletonlabs/skeleton';
 
 	export let data;
 	let stratName: string;
@@ -114,7 +114,7 @@
 				{/if}
 			</div>
 			
-			<div class="grid xl:grid-cols-7 md:grid-cols-4 grid-cols-2 gap-2">
+			<div class="grid xl:grid-cols-7 grid-cols-3 gap-2">
 				{#each strat.strats as step}
 					{#key [spotlight, alignment]}
 					<div class="space-y-4" class:col-span-2={step.alignmentImages && step.alignmentImages[alignment]}>
@@ -124,6 +124,36 @@
 					</div>
 					{/key}
 				{/each}
+				{#if strat?.swapNote && strat?.swapStrats}
+					<div class="col-span-3">
+						<Accordion class="card">
+							<AccordionItem open>
+								<svelte:fragment slot="lead"><img width="24px" src={"./swap-icon.png"} /></svelte:fragment>
+								<svelte:fragment slot="summary"><span class="text-xl">{strat.swapNote}</span></svelte:fragment>
+								<svelte:fragment slot="content">
+									{#if strat?.swapWarning}
+										<aside class="alert variant-filled-surface">
+											<div class="alert-message">
+												<p>{strat.swapWarning}</p>
+											</div>
+										</aside>
+									{/if}
+									<div class="grid grid-cols-3 gap-2">
+										{#each strat.swapStrats as step}
+											{#key [spotlight, alignment]}
+											<div class="space-y-4" class:col-span-2={step.alignmentImages && step.alignmentImages[alignment]}>
+												<div class="uppercase text-xl">{step.mechanic}</div> 
+												<div class="whitespace-pre text-l">{step.description}</div>
+												<img src={(step.alignmentImages && step.alignmentImages[alignment]) ? step.alignmentImages[alignment] : step.imageUrl} style:mask-image={getMask(step)} style:transform={step.alignmentTransforms ? step.alignmentTransforms[alignment] : step.transform} />
+											</div>
+											{/key}
+										{/each}
+									</div>
+								</svelte:fragment>
+							</AccordionItem>
+						</Accordion>
+					</div>
+				{/if}
 			</div>
 		{/if}
 	</div>
