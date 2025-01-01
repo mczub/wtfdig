@@ -1252,7 +1252,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Platform Inside\nRelative Left\nTrue South',
+                    description: 'Platform Inside\nRelative Left\nTrue North',
                     imageUrl: './strats/codcar/platform-east-aoe-spread.png',
                     mask: 'radial-gradient(circle at 32% 41%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
