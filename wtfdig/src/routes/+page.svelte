@@ -126,13 +126,13 @@
 				{/each}
 				{#if strat?.swapNote && strat?.swapStrats}
 					<div class="col-span-3">
-						<Accordion class="card">
-							<AccordionItem open>
+						<Accordion class="card variant-ghost-secondary" >
+							<AccordionItem open padding="py-4 px-4">
 								<svelte:fragment slot="lead"><img width="24px" src={"./swap-icon.png"} /></svelte:fragment>
 								<svelte:fragment slot="summary"><span class="text-xl">{strat.swapNote}</span></svelte:fragment>
 								<svelte:fragment slot="content">
 									{#if strat?.swapWarning}
-										<aside class="alert variant-filled-surface">
+										<aside class="alert variant-ghost-error">
 											<div class="alert-message">
 												<p>{strat.swapWarning}</p>
 											</div>
