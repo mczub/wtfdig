@@ -16,7 +16,7 @@
         type: 'alert',
         title: 'Changelog',
         body: 
-`1/2/2024: Updated some styling to make the swap assignments more obvious (yes melees will sometimes need to take a ranged spot)
+`1/2/2024: Updated some styling to make the swap assignments more obvious (yes melees will sometimes need to take a ranged spot), added some info to footer
 1/1/2024: Added big overview image, rotated AOE spreads correctly for CODCAR, added post-swap locations for everyone starting on tiles
 12/31/2024: Added Alignment buttons (Original, True North, Add Relative) for CODCAR, added Wild Charges to CODCAR tile players, some improvements to responsive sizing
 12/30/2024: Initial Release`,
@@ -42,7 +42,13 @@
 
 <footer class="sticky bottom-0 left-0 z-20 w-full p-4 bg-white border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
     <div class="flex w-full max-w-screen-xl mx-auto justify-between">
-		<span class="text-sm text-gray-500 dark:text-gray-400">Comments? Questions? Something incorrect? <a target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-500 hover:underline" href="https://docs.google.com/forms/d/e/1FAIpQLScJEJ43FKjSRJ2MyLuGXznce-P_SQNyPLWga_Xme_CJKPiQIQ/viewform?usp=header">Let me know.</a></span>
-        <span class="text-sm text-gray-500 dark:text-gray-400 text-end">Made by Mara Kaminagi @ Adamantoise</span>
+		<div class="text-sm text-gray-500 dark:text-gray-400">
+            <div>Comments? Questions? Something incorrect? <a target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-500 hover:underline" href="https://docs.google.com/forms/d/e/1FAIpQLScJEJ43FKjSRJ2MyLuGXznce-P_SQNyPLWga_Xme_CJKPiQIQ/viewform?usp=header">Let me know.</a></div>
+            <div>FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd. FINAL FANTASY XIV © SQUARE ENIX</div>
+        </div>
+        <div class="text-sm text-gray-500 dark:text-gray-400 text-end">
+            <div>Made by Mara Kaminagi @ Adamantoise</div>
+            <div>You can find me on <a target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-500 hover:underline" href="https://bsky.app/profile/shittyidiot.com">Bluesky</a> or <a target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-500 hover:underline" href="https://x.com/mczub">Twitter</a></div>
+        </div>
     </div>
 </footer>
