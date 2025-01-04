@@ -40,7 +40,7 @@
 				<div>
 					<h2>Which strat are you using?</h2>
 					<RadioGroup>
-						<RadioItem bind:group={stratName} name="stratName" value={'raidplan'}>Raidplan (Aurelia)</RadioItem>
+						<RadioItem bind:group={stratName} name="stratName" value={'raidplan'}>Raidplan (Aurelia/wfJ/o1Z)</RadioItem>
 						<RadioItem bind:group={stratName} name="stratName" value={'codcar'}>CODCAR</RadioItem>
 					</RadioGroup>
 				</div>

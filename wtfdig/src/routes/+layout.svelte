@@ -16,7 +16,8 @@
         type: 'alert',
         title: 'Changelog',
         body: 
-`1/2/2024: Updated some styling to make the swap assignments more obvious (yes melees will sometimes need to take a ranged spot), added some info to footer
+`1/3/2024: added wfJ/o1Z to the raidplan selector
+1/2/2024: Updated some styling to make the swap assignments more obvious (yes melees will sometimes need to take a ranged spot), added some info to footer
 1/1/2024: Added big overview image, rotated AOE spreads correctly for CODCAR, added post-swap locations for everyone starting on tiles
 12/31/2024: Added Alignment buttons (Original, True North, Add Relative) for CODCAR, added Wild Charges to CODCAR tile players, some improvements to responsive sizing
 12/30/2024: Initial Release`,
