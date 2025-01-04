@@ -22,12 +22,12 @@
 12/31/2024: Added Alignment buttons (Original, True North, Add Relative) for CODCAR, added Wild Charges to CODCAR tile players, some improvements to responsive sizing
 12/30/2024: Initial Release`,
         buttonTextCancel: 'Close',
-        modalClasses: 'whitespace-pre-wrap'
+        modalClasses: 'whitespace-pre-wrap',
     }
     const modalStore = getModalStore();
 </script>
 
-<Modal />
+<Modal regionBody="max-h-[600px] overflow-auto"/>
 <header class="container h-full mx-auto px-4 mx-auto md:my-12 my-4">
     <div class="flex flex-wrap justify-between items-center">
         <div class="text-2xl font-semibold">where the f do i go???? (Chaotic)</div>
