@@ -108,7 +108,7 @@
 						<RadioGroup>
 							<RadioItem bind:group={alignment} name="alignment" value={"original"}>Original</RadioItem>
 							<RadioItem bind:group={alignment} name="alignment" value={"truenorth"}>True North</RadioItem>
-							<RadioItem bind:group={alignment} name="alignment" value={"addrelative"}>Add Relative</RadioItem>
+							<RadioItem bind:group={alignment} name="alignment" value={"addrelative"}>Wall Relative</RadioItem>
 						</RadioGroup>
 					</div>
 				{/if}
