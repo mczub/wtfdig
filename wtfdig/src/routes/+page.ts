@@ -59,7 +59,7 @@ const raidplanStrat: Strat = {
             strats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside North',
+                    description: 'Inner\nNorth\nw/ Melee 1',
                     imageUrl: './strats/raidplan/platform-west-pairs.png',
                     mask: 'radial-gradient(circle at 57.8% 31.6%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
@@ -119,7 +119,7 @@ const raidplanStrat: Strat = {
             swapStrats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside North',
+                    description: 'Inner\nNorth\nw/ Melee 1 from A',
                     imageUrl: './strats/raidplan/platform-east-pairs.png',
                     mask: 'radial-gradient(circle at 47% 34.4%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
@@ -146,7 +146,7 @@ const raidplanStrat: Strat = {
             strats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside South',
+                    description: 'Inner\nSouth\nw/ Melee 2',
                     imageUrl: './strats/raidplan/platform-west-pairs.png',
                     mask: 'radial-gradient(circle at 56% 68%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
@@ -206,7 +206,7 @@ const raidplanStrat: Strat = {
             swapStrats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside South',
+                    description: 'Inner\nSouth\nw/ Melee 2 from A',
                     imageUrl: './strats/raidplan/platform-east-pairs.png',
                     mask: 'radial-gradient(circle at 46% 69%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
@@ -233,7 +233,7 @@ const raidplanStrat: Strat = {
             strats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Outside North',
+                    description: 'Outer\nNorth\nw/ Tank',
                     imageUrl: './strats/raidplan/platform-west-pairs.png',
                     mask: 'radial-gradient(circle at 57.8% 18.6%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
@@ -257,9 +257,9 @@ const raidplanStrat: Strat = {
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Platform Outside North',
+                    description: 'Platform Outside South',
                     imageUrl: './strats/raidplan/platform-west-aoe-spread.png',
-                    mask: 'radial-gradient(circle at 38% 36%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
+                    mask: 'radial-gradient(circle at 39% 61%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
                 {
                     mechanic: 'swap',
@@ -278,7 +278,7 @@ const raidplanStrat: Strat = {
             strats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Outside South',
+                    description: 'Outer\nSouth\nw/ Healer',
                     imageUrl: './strats/raidplan/platform-west-pairs.png',
                     mask: 'radial-gradient(circle at 57% 80%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
@@ -302,9 +302,9 @@ const raidplanStrat: Strat = {
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Platform Outside South',
+                    description: 'Platform Outside North',
                     imageUrl: './strats/raidplan/platform-west-aoe-spread.png',
-                    mask: 'radial-gradient(circle at 39% 61%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
+                    mask: 'radial-gradient(circle at 38% 36%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
                 {
                     mechanic: 'swap',
@@ -323,7 +323,7 @@ const raidplanStrat: Strat = {
             strats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside West',
+                    description: 'Inner\nWest\nw/ Ranged',
                     imageUrl: './strats/raidplan/platform-west-pairs.png',
                     mask: 'radial-gradient(circle at 41% 50%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
@@ -347,9 +347,9 @@ const raidplanStrat: Strat = {
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Ring Outside North',
+                    description: 'Ring Outside South',
                     imageUrl: './strats/raidplan/platform-west-aoe-spread.png',
-                    mask: 'radial-gradient(circle at 34% 15%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
+                    mask: 'radial-gradient(circle at 33% 83%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
                 },
                 {
                     mechanic: 'swap',
@@ -368,7 +368,7 @@ const raidplanStrat: Strat = {
             strats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Outside West',
+                    description: 'Outer\nWest\nw/ Ranged',
                     imageUrl: './strats/raidplan/platform-west-pairs.png',
                     mask: 'radial-gradient(circle at 28% 50%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
@@ -392,9 +392,9 @@ const raidplanStrat: Strat = {
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Ring Outside South',
+                    description: 'Ring Outside North',
                     imageUrl: './strats/raidplan/platform-west-aoe-spread.png',
-                    mask: 'radial-gradient(circle at 33% 83%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
+                    mask: 'radial-gradient(circle at 34% 15%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
                 },
                 {
                     mechanic: 'swap',
@@ -428,7 +428,7 @@ const raidplanStrat: Strat = {
             swapStrats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside North',
+                    description: 'Inner\nNorth\nw/ Melee 1 from A',
                     imageUrl: './strats/raidplan/platform-east-pairs.png',
                     mask: 'radial-gradient(circle at 47% 34.4%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
@@ -470,7 +470,7 @@ const raidplanStrat: Strat = {
             swapStrats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside North',
+                    description: 'Inner\nNorth\nw/ Melee 1 from C',
                     imageUrl: './strats/raidplan/platform-west-pairs.png',
                     mask: 'radial-gradient(circle at 57.8% 31.6%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
@@ -512,7 +512,7 @@ const raidplanStrat: Strat = {
             swapStrats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside South',
+                    description: 'Inner\nSouth\nw/ Melee 2 from A',
                     imageUrl: './strats/raidplan/platform-east-pairs.png',
                     mask: 'radial-gradient(circle at 46% 69%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
@@ -554,7 +554,7 @@ const raidplanStrat: Strat = {
             swapStrats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside South',
+                    description: 'Inner\nSouth\nw/ Melee 2 from C',
                     imageUrl: './strats/raidplan/platform-west-pairs.png',
                     mask: 'radial-gradient(circle at 56% 68%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
@@ -597,7 +597,7 @@ const raidplanStrat: Strat = {
             swapStrats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside East',
+                    description: 'Inner\nEast\nw/ Ranged from A',
                     imageUrl: './strats/raidplan/platform-east-pairs.png',
                     mask: 'radial-gradient(circle at 60% 53%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
@@ -640,7 +640,7 @@ const raidplanStrat: Strat = {
             swapStrats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside West',
+                    description: 'Inner\nWest\nw/ Ranged from C',
                     imageUrl: './strats/raidplan/platform-west-pairs.png',
                     mask: 'radial-gradient(circle at 41% 50%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
@@ -683,7 +683,7 @@ const raidplanStrat: Strat = {
             swapStrats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside East',
+                    description: 'Inner\nEast\nw/ Ranged from A',
                     imageUrl: './strats/raidplan/platform-east-pairs.png',
                     mask: 'radial-gradient(circle at 60% 53%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
@@ -726,7 +726,7 @@ const raidplanStrat: Strat = {
             swapStrats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside West',
+                    description: 'Inner\nWest\nw/ Ranged from C',
                     imageUrl: './strats/raidplan/platform-west-pairs.png',
                     mask: 'radial-gradient(circle at 41% 50%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
@@ -753,7 +753,7 @@ const raidplanStrat: Strat = {
             strats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside North',
+                    description: 'Inner\nNorth\nw/ Melee 1',
                     imageUrl: './strats/raidplan/platform-east-pairs.png',
                     mask: 'radial-gradient(circle at 47% 34.4%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
@@ -813,7 +813,7 @@ const raidplanStrat: Strat = {
             swapStrats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside North',
+                    description: 'Inner\nNorth\nw/ Melee 1 from C',
                     imageUrl: './strats/raidplan/platform-west-pairs.png',
                     mask: 'radial-gradient(circle at 57.8% 31.6%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
@@ -840,7 +840,7 @@ const raidplanStrat: Strat = {
             strats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside South',
+                    description: 'Inner\nSouth\nw/ Melee 2',
                     imageUrl: './strats/raidplan/platform-east-pairs.png',
                     mask: 'radial-gradient(circle at 46% 69%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
@@ -900,7 +900,7 @@ const raidplanStrat: Strat = {
             swapStrats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside South',
+                    description: 'Inner\nSouth\nw/ Melee 2 from C',
                     imageUrl: './strats/raidplan/platform-west-pairs.png',
                     mask: 'radial-gradient(circle at 56% 68%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
@@ -927,7 +927,7 @@ const raidplanStrat: Strat = {
             strats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Outside North',
+                    description: 'Outer\nNorth\nw/ Tank',
                     imageUrl: './strats/raidplan/platform-east-pairs.png',
                     mask: 'radial-gradient(circle at 47% 22.4%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
@@ -951,9 +951,9 @@ const raidplanStrat: Strat = {
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Platform Outside North',
+                    description: 'Platform Outside South',
                     imageUrl: './strats/raidplan/platform-east-aoe-spread.png',
-                    mask: 'radial-gradient(circle at 57% 34%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
+                    mask: 'radial-gradient(circle at 60% 59%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
                 {
                     mechanic: 'swap',
@@ -972,7 +972,7 @@ const raidplanStrat: Strat = {
             strats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Outside South',
+                    description: 'Outer\nSouth\nw/ Healer',
                     imageUrl: './strats/raidplan/platform-east-pairs.png',
                     mask: 'radial-gradient(circle at 46% 81%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
@@ -996,9 +996,9 @@ const raidplanStrat: Strat = {
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Platform Outside South',
+                    description: 'Platform Outside North',
                     imageUrl: './strats/raidplan/platform-east-aoe-spread.png',
-                    mask: 'radial-gradient(circle at 60% 59%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
+                    mask: 'radial-gradient(circle at 57% 34%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
                 {
                     mechanic: 'swap',
@@ -1017,7 +1017,7 @@ const raidplanStrat: Strat = {
             strats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside East',
+                    description: 'Inner\nEast\nw/ Ranged',
                     imageUrl: './strats/raidplan/platform-east-pairs.png',
                     mask: 'radial-gradient(circle at 60% 53%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
@@ -1041,9 +1041,9 @@ const raidplanStrat: Strat = {
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Ring Outside North',
+                    description: 'Ring Outside South',
                     imageUrl: './strats/raidplan/platform-east-aoe-spread.png',
-                    mask: 'radial-gradient(circle at 69% 15%, black 7%, rgba(0, 0, 0, 0.4) 7%)'
+                    mask: 'radial-gradient(circle at 65% 85%, black 7%, rgba(0, 0, 0, 0.4) 7%)'
                 },
                 {
                     mechanic: 'swap',
@@ -1062,7 +1062,7 @@ const raidplanStrat: Strat = {
             strats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Outside East',
+                    description: 'Outer\nEast\nw/ Ranged',
                     imageUrl: './strats/raidplan/platform-east-pairs.png',
                     mask: 'radial-gradient(circle at 70% 53%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
@@ -1086,9 +1086,9 @@ const raidplanStrat: Strat = {
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Ring Outside South',
+                    description: 'Ring Outside North',
                     imageUrl: './strats/raidplan/platform-east-aoe-spread.png',
-                    mask: 'radial-gradient(circle at 65% 85%, black 7%, rgba(0, 0, 0, 0.4) 7%)'
+                    mask: 'radial-gradient(circle at 69% 15%, black 7%, rgba(0, 0, 0, 0.4) 7%)'
                 },
                 {
                     mechanic: 'swap',
@@ -1116,7 +1116,7 @@ const codcarStrat: Strat = {
             strats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside North',
+                    description: "Inner\nRelative North\nw/ Healer from A",
                     imageUrl: './strats/codcar/platform-pairs.png',
                     mask: 'radial-gradient(circle at 49.8% 41.6%, black 13%, rgba(0, 0, 0, 0.4) 13%)',
                     alignmentTransforms: {
@@ -1127,7 +1127,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'spread',
-                    description: 'North',
+                    description: 'Relative North',
                     imageUrl: './strats/codcar/platform-spread.png',
                     mask: 'radial-gradient(circle at 50% 17%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
                     alignmentTransforms: {
@@ -1138,7 +1138,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'towers',
-                    description: 'North/CW',
+                    description: 'Relative North/CW',
                     imageUrl: './strats/codcar/platform-towers.png',
                     mask: 'radial-gradient(circle at 66% 36%, black 29%, rgba(0, 0, 0, 0.2) 29%)',
                     alignmentTransforms: {
@@ -1197,7 +1197,7 @@ const codcarStrat: Strat = {
             strats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside North',
+                    description: 'Inner\nRelative North\nw/ Healer from A',
                     imageUrl: './strats/codcar/platform-pairs.png',
                     mask: 'radial-gradient(circle at 49.8% 41.6%, black 13%, rgba(0, 0, 0, 0.4) 13%)',
                     alignmentTransforms: {
@@ -1208,7 +1208,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'spread',
-                    description: 'North',
+                    description: 'Relative North',
                     imageUrl: './strats/codcar/platform-spread.png',
                     mask: 'radial-gradient(circle at 50% 17%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
                     alignmentTransforms: {
@@ -1219,7 +1219,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'towers',
-                    description: 'North/CW',
+                    description: 'Relative North/CW',
                     imageUrl: './strats/codcar/platform-towers.png',
                     mask: 'radial-gradient(circle at 66% 36%, black 29%, rgba(0, 0, 0, 0.2) 29%)',
                     alignmentTransforms: {
@@ -1278,7 +1278,7 @@ const codcarStrat: Strat = {
             strats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Outside North',
+                    description: 'Outer\nRelative North\nw/ Tank from A',
                     imageUrl: './strats/codcar/platform-pairs.png',
                     mask: 'radial-gradient(circle at 50% 25%, black 13%, rgba(0, 0, 0, 0.4) 13%)',
                     alignmentTransforms: {
@@ -1289,7 +1289,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'spread',
-                    description: 'Northeast',
+                    description: 'Relative Northeast',
                     imageUrl: './strats/codcar/platform-spread.png',
                     mask: 'radial-gradient(circle at 75% 24%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
                     alignmentTransforms: {
@@ -1300,7 +1300,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'towers',
-                    description: 'North/CW',
+                    description: 'Relative North/CW',
                     imageUrl: './strats/codcar/platform-towers.png',
                     mask: 'radial-gradient(circle at 66% 36%, black 29%, rgba(0, 0, 0, 0.2) 29%)',
                     alignmentTransforms: {
@@ -1358,7 +1358,7 @@ const codcarStrat: Strat = {
             strats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Outside North',
+                    description: 'Outer\nRelative North\nw/ Tank from A',
                     imageUrl: './strats/codcar/platform-pairs.png',
                     mask: 'radial-gradient(circle at 50% 25%, black 13%, rgba(0, 0, 0, 0.4) 13%)',
                     alignmentTransforms: {
@@ -1369,7 +1369,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'spread',
-                    description: 'Northeast',
+                    description: 'Relative Northeast',
                     imageUrl: './strats/codcar/platform-spread.png',
                     mask: 'radial-gradient(circle at 75% 24%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
                     alignmentTransforms: {
@@ -1380,7 +1380,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'towers',
-                    description: 'North/CW',
+                    description: 'Relative North/CW',
                     imageUrl: './strats/codcar/platform-towers.png',
                     mask: 'radial-gradient(circle at 66% 36%, black 29%, rgba(0, 0, 0, 0.2) 29%)',
                     alignmentTransforms: {
@@ -1439,7 +1439,7 @@ const codcarStrat: Strat = {
             strats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside SW',
+                    description: 'Inner\nRelative Southwest\nw/ Ranged from A',
                     imageUrl: './strats/codcar/platform-pairs.png',
                     mask: 'radial-gradient(circle at 40% 60%, black 13%, rgba(0, 0, 0, 0.4) 13%)',
                     alignmentTransforms: {
@@ -1450,7 +1450,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'spread',
-                    description: 'Northwest',
+                    description: 'Relative Northwest',
                     imageUrl: './strats/codcar/platform-spread.png',
                     mask: 'radial-gradient(circle at 26% 24%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
                     alignmentTransforms: {
@@ -1461,7 +1461,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'towers',
-                    description: 'North/CW',
+                    description: 'Relative North/CW',
                     imageUrl: './strats/codcar/platform-towers.png',
                     mask: 'radial-gradient(circle at 66% 36%, black 29%, rgba(0, 0, 0, 0.2) 29%)',
                     alignmentTransforms: {
@@ -1519,7 +1519,7 @@ const codcarStrat: Strat = {
             strats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside SW',
+                    description: 'Inner\nRelative Southwest\nw/ Ranged from A',
                     imageUrl: './strats/codcar/platform-pairs.png',
                     mask: 'radial-gradient(circle at 40% 60%, black 13%, rgba(0, 0, 0, 0.4) 13%)',
                     alignmentTransforms: {
@@ -1530,7 +1530,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'spread',
-                    description: 'Northwest',
+                    description: 'Relative Northwest',
                     imageUrl: './strats/codcar/platform-spread.png',
                     mask: 'radial-gradient(circle at 26% 24%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
                     alignmentTransforms: {
@@ -1541,7 +1541,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'towers',
-                    description: 'North/CW',
+                    description: 'Relative North/CW',
                     imageUrl: './strats/codcar/platform-towers.png',
                     mask: 'radial-gradient(circle at 66% 36%, black 29%, rgba(0, 0, 0, 0.2) 29%)',
                     alignmentTransforms: {
@@ -1600,7 +1600,7 @@ const codcarStrat: Strat = {
             strats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Outside SW',
+                    description: 'Outer\nRelative Southwest\nw/ Melee from A',
                     imageUrl: './strats/codcar/platform-pairs.png',
                     mask: 'radial-gradient(circle at 31% 74%, black 13%, rgba(0, 0, 0, 0.4) 13%)',
                     alignmentTransforms: {
@@ -1611,7 +1611,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'spread',
-                    description: 'West',
+                    description: 'Relative West',
                     imageUrl: './strats/codcar/platform-spread.png',
                     mask: 'radial-gradient(circle at 18% 50%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
                     alignmentTransforms: {
@@ -1622,7 +1622,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'towers',
-                    description: 'South/CW',
+                    description: 'Relative South/CW',
                     imageUrl: './strats/codcar/platform-towers.png',
                     mask: 'radial-gradient(circle at 36% 66%, black 29%, rgba(0, 0, 0, 0.2) 29%)',
                     alignmentTransforms: {
@@ -1680,7 +1680,7 @@ const codcarStrat: Strat = {
             strats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Outside SW',
+                    description: 'Outer\nRelative Southwest\nw/ Melee from A',
                     imageUrl: './strats/codcar/platform-pairs.png',
                     mask: 'radial-gradient(circle at 31% 74%, black 13%, rgba(0, 0, 0, 0.4) 13%)',
                     alignmentTransforms: {
@@ -1691,7 +1691,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'spread',
-                    description: 'West',
+                    description: 'Relative West',
                     imageUrl: './strats/codcar/platform-spread.png',
                     mask: 'radial-gradient(circle at 18% 50%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
                     alignmentTransforms: {
@@ -1702,7 +1702,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'towers',
-                    description: 'South/CW',
+                    description: 'Relative South/CW',
                     imageUrl: './strats/codcar/platform-towers.png',
                     mask: 'radial-gradient(circle at 36% 66%, black 29%, rgba(0, 0, 0, 0.2) 29%)',
                     alignmentTransforms: {
@@ -1782,19 +1782,19 @@ const codcarStrat: Strat = {
             swapStrats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside North',
+                    description: 'Inner\nRelative North\nw/ Healer from B',
                     imageUrl: './strats/codcar/postswap-platform-pairs.png',
                     mask: 'radial-gradient(circle at 49% 39%, black 14%, rgba(0, 0, 0, 0.4) 14%)'
                 },
                 {
                     mechanic: 'spread',
-                    description: 'North',
+                    description: 'Relative North',
                     imageUrl: './strats/codcar/postswap-platform-spread.png',
                     mask: 'radial-gradient(circle at 50% 17%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
                 {
                     mechanic: 'towers',
-                    description: 'North/CW',
+                    description: 'Relative North/CW',
                     imageUrl: './strats/codcar/postswap-platform-towers.png',
                     mask: 'radial-gradient(circle at 65% 39%, black 30%, rgba(0, 0, 0, 0.4) 30%)'
                 },
@@ -1830,19 +1830,19 @@ const codcarStrat: Strat = {
             swapStrats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside North',
+                    description: 'Inner\nRelative North\nw/ Healer from B',
                     imageUrl: './strats/codcar/postswap-platform-pairs.png',
                     mask: 'radial-gradient(circle at 49% 39%, black 14%, rgba(0, 0, 0, 0.4) 14%)'
                 },
                 {
                     mechanic: 'spread',
-                    description: 'North',
+                    description: 'Relative North',
                     imageUrl: './strats/codcar/postswap-platform-spread.png',
                     mask: 'radial-gradient(circle at 50% 17%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
                 {
                     mechanic: 'towers',
-                    description: 'North/CW',
+                    description: 'Relative North/CW',
                     imageUrl: './strats/codcar/postswap-platform-towers.png',
                     mask: 'radial-gradient(circle at 65% 39%, black 30%, rgba(0, 0, 0, 0.4) 30%)'
                 },
@@ -1878,19 +1878,19 @@ const codcarStrat: Strat = {
             swapStrats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Outside North',
+                    description: 'Outer\nRelative North\nw/ Tank from B',
                     imageUrl: './strats/codcar/postswap-platform-pairs.png',
                     mask: 'radial-gradient(circle at 49% 20%, black 13%, rgba(0, 0, 0, 0.4) 13%)'
                 },
                 {
                     mechanic: 'spread',
-                    description: 'Northeast',
+                    description: 'Relative Northeast',
                     imageUrl: './strats/codcar/postswap-platform-spread.png',
                     mask: 'radial-gradient(circle at 74% 25%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
                 {
                     mechanic: 'towers',
-                    description: 'North/CW',
+                    description: 'Relative North/CW',
                     imageUrl: './strats/codcar/postswap-platform-towers.png',
                     mask: 'radial-gradient(circle at 65% 39%, black 30%, rgba(0, 0, 0, 0.4) 30%)'
                 },
@@ -1926,19 +1926,19 @@ const codcarStrat: Strat = {
             swapStrats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Outside North',
+                    description: 'Outer\nRelative North\nw/ Tank from B',
                     imageUrl: './strats/codcar/postswap-platform-pairs.png',
                     mask: 'radial-gradient(circle at 49% 20%, black 13%, rgba(0, 0, 0, 0.4) 13%)'
                 },
                 {
                     mechanic: 'spread',
-                    description: 'Northeast',
+                    description: 'Relative Northeast',
                     imageUrl: './strats/codcar/postswap-platform-spread.png',
                     mask: 'radial-gradient(circle at 74% 25%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
                 {
                     mechanic: 'towers',
-                    description: 'North/CW',
+                    description: 'Relative North/CW',
                     imageUrl: './strats/codcar/postswap-platform-towers.png',
                     mask: 'radial-gradient(circle at 65% 39%, black 30%, rgba(0, 0, 0, 0.4) 30%)'
                 },
@@ -1974,19 +1974,19 @@ const codcarStrat: Strat = {
             swapStrats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside SW',
+                    description: 'Inner\nRelative Southwest\nw/ Ranged from A',
                     imageUrl: './strats/codcar/postswap-platform-pairs.png',
                     mask: 'radial-gradient(circle at 38% 60%, black 13%, rgba(0, 0, 0, 0.4) 13%)'
                 },
                 {
                     mechanic: 'spread',
-                    description: 'Northwest',
+                    description: 'Relative Northwest',
                     imageUrl: './strats/codcar/postswap-platform-spread.png',
                     mask: 'radial-gradient(circle at 26% 25%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
                 {
                     mechanic: 'towers',
-                    description: 'North/CW',
+                    description: 'Relative North/CW',
                     imageUrl: './strats/codcar/postswap-platform-towers.png',
                     mask: 'radial-gradient(circle at 65% 39%, black 30%, rgba(0, 0, 0, 0.4) 30%)'
                 },
@@ -2022,19 +2022,19 @@ const codcarStrat: Strat = {
             swapStrats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside SW',
+                    description: 'Inner\nRelative Southwest\nw/ Ranged from A',
                     imageUrl: './strats/codcar/postswap-platform-pairs.png',
                     mask: 'radial-gradient(circle at 38% 60%, black 13%, rgba(0, 0, 0, 0.4) 13%)'
                 },
                 {
                     mechanic: 'spread',
-                    description: 'Northwest',
+                    description: 'Relative Northwest',
                     imageUrl: './strats/codcar/postswap-platform-spread.png',
                     mask: 'radial-gradient(circle at 26% 25%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
                 {
                     mechanic: 'towers',
-                    description: 'North/CW',
+                    description: 'Relative North/CW',
                     imageUrl: './strats/codcar/postswap-platform-towers.png',
                     mask: 'radial-gradient(circle at 65% 39%, black 30%, rgba(0, 0, 0, 0.4) 30%)'
                 },
@@ -2049,7 +2049,7 @@ const codcarStrat: Strat = {
             strats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside SE',
+                    description: 'Inner\nRelative Southeast\nw/ Ranged from B',
                     imageUrl: './strats/codcar/platform-pairs.png',
                     mask: 'radial-gradient(circle at 61% 60%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
                     alignmentTransforms: {
@@ -2060,7 +2060,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'spread',
-                    description: 'South',
+                    description: 'Relative South',
                     imageUrl: './strats/codcar/platform-spread.png',
                     mask: 'radial-gradient(circle at 50% 83%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
                     alignmentTransforms: {
@@ -2071,7 +2071,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'towers',
-                    description: 'South/CW',
+                    description: 'Relative South/CW',
                     imageUrl: './strats/codcar/platform-towers.png',
                     mask: 'radial-gradient(circle at 36% 66%, black 29%, rgba(0, 0, 0, 0.2) 29%)',
                     alignmentTransforms: {
@@ -2129,7 +2129,7 @@ const codcarStrat: Strat = {
             strats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Outside SE',
+                    description: 'Outer\nRelative Southeast\nw/ Ranged from B',
                     imageUrl: './strats/codcar/platform-pairs.png',
                     mask: 'radial-gradient(circle at 71% 74%, black 10%, rgba(0, 0, 0, 0.4) 10%)',
                     alignmentTransforms: {
@@ -2140,7 +2140,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'spread',
-                    description: 'East',
+                    description: 'Relative East',
                     imageUrl: './strats/codcar/platform-spread.png',
                     mask: 'radial-gradient(circle at 82% 50%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
                     alignmentTransforms: {
@@ -2151,7 +2151,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'towers',
-                    description: 'South/CW',
+                    description: 'Relative South/CW',
                     imageUrl: './strats/codcar/platform-towers.png',
                     mask: 'radial-gradient(circle at 36% 66%, black 29%, rgba(0, 0, 0, 0.2) 29%)',
                     alignmentTransforms: {
@@ -2230,19 +2230,19 @@ const codcarStrat: Strat = {
             swapStrats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside North',
+                    description: 'Inner\nRelative North\nw/ Healer from C',
                     imageUrl: './strats/codcar/postswap-platform-pairs.png',
                     mask: 'radial-gradient(circle at 49% 39%, black 14%, rgba(0, 0, 0, 0.4) 14%)'
                 },
                 {
                     mechanic: 'spread',
-                    description: 'North',
+                    description: 'Relative North',
                     imageUrl: './strats/codcar/postswap-platform-spread.png',
                     mask: 'radial-gradient(circle at 50% 17%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
                 {
                     mechanic: 'towers',
-                    description: 'North/CW',
+                    description: 'Relative North/CW',
                     imageUrl: './strats/codcar/postswap-platform-towers.png',
                     mask: 'radial-gradient(circle at 65% 39%, black 30%, rgba(0, 0, 0, 0.4) 30%)'
                 },
@@ -2278,19 +2278,19 @@ const codcarStrat: Strat = {
             swapStrats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside North',
+                    description: 'Inner\nRelative North\nw/ Healer from C',
                     imageUrl: './strats/codcar/postswap-platform-pairs.png',
                     mask: 'radial-gradient(circle at 49% 39%, black 14%, rgba(0, 0, 0, 0.4) 14%)'
                 },
                 {
                     mechanic: 'spread',
-                    description: 'North',
+                    description: 'Relative North',
                     imageUrl: './strats/codcar/postswap-platform-spread.png',
                     mask: 'radial-gradient(circle at 50% 17%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
                 {
                     mechanic: 'towers',
-                    description: 'North/CW',
+                    description: 'Relative North/CW',
                     imageUrl: './strats/codcar/postswap-platform-towers.png',
                     mask: 'radial-gradient(circle at 65% 39%, black 30%, rgba(0, 0, 0, 0.4) 30%)'
                 },
@@ -2326,19 +2326,19 @@ const codcarStrat: Strat = {
             swapStrats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Outside North',
+                    description: 'Outer\nRelative North\nw/ Tank from C',
                     imageUrl: './strats/codcar/postswap-platform-pairs.png',
                     mask: 'radial-gradient(circle at 49% 20%, black 13%, rgba(0, 0, 0, 0.4) 13%)'
                 },
                 {
                     mechanic: 'spread',
-                    description: 'Northeast',
+                    description: 'Relative Northeast',
                     imageUrl: './strats/codcar/postswap-platform-spread.png',
                     mask: 'radial-gradient(circle at 74% 25%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
                 {
                     mechanic: 'towers',
-                    description: 'North/CW',
+                    description: 'Relative North/CW',
                     imageUrl: './strats/codcar/postswap-platform-towers.png',
                     mask: 'radial-gradient(circle at 65% 39%, black 30%, rgba(0, 0, 0, 0.4) 30%)'
                 },
@@ -2374,19 +2374,19 @@ const codcarStrat: Strat = {
             swapStrats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Outside North',
+                    description: 'Outer\nRelative North\nw/ Tank from C',
                     imageUrl: './strats/codcar/postswap-platform-pairs.png',
                     mask: 'radial-gradient(circle at 49% 20%, black 13%, rgba(0, 0, 0, 0.4) 13%)'
                 },
                 {
                     mechanic: 'spread',
-                    description: 'Northeast',
+                    description: 'Relative Northeast',
                     imageUrl: './strats/codcar/postswap-platform-spread.png',
                     mask: 'radial-gradient(circle at 74% 25%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
                 {
                     mechanic: 'towers',
-                    description: 'North/CW',
+                    description: 'Relative North/CW',
                     imageUrl: './strats/codcar/postswap-platform-towers.png',
                     mask: 'radial-gradient(circle at 65% 39%, black 30%, rgba(0, 0, 0, 0.4) 30%)'
                 },
@@ -2422,19 +2422,19 @@ const codcarStrat: Strat = {
             swapStrats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside SW',
+                    description: 'Inner\nRelative Southwest\nw/ Ranged from A',
                     imageUrl: './strats/codcar/postswap-platform-pairs.png',
                     mask: 'radial-gradient(circle at 38% 60%, black 13%, rgba(0, 0, 0, 0.4) 13%)'
                 },
                 {
                     mechanic: 'spread',
-                    description: 'Northwest',
+                    description: 'Relative Northwest',
                     imageUrl: './strats/codcar/postswap-platform-spread.png',
                     mask: 'radial-gradient(circle at 26% 25%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
                 {
                     mechanic: 'towers',
-                    description: 'North/CW',
+                    description: 'Relative North/CW',
                     imageUrl: './strats/codcar/postswap-platform-towers.png',
                     mask: 'radial-gradient(circle at 65% 39%, black 30%, rgba(0, 0, 0, 0.4) 30%)'
                 },
@@ -2470,19 +2470,19 @@ const codcarStrat: Strat = {
             swapStrats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside SW',
+                    description: 'Inner\nRelative Southwest\nw/ Ranged from A',
                     imageUrl: './strats/codcar/postswap-platform-pairs.png',
                     mask: 'radial-gradient(circle at 38% 60%, black 13%, rgba(0, 0, 0, 0.4) 13%)'
                 },
                 {
                     mechanic: 'spread',
-                    description: 'Northwest',
+                    description: 'Relative Northwest',
                     imageUrl: './strats/codcar/postswap-platform-spread.png',
                     mask: 'radial-gradient(circle at 26% 25%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
                 {
                     mechanic: 'towers',
-                    description: 'North/CW',
+                    description: 'Relative North/CW',
                     imageUrl: './strats/codcar/postswap-platform-towers.png',
                     mask: 'radial-gradient(circle at 65% 39%, black 30%, rgba(0, 0, 0, 0.4) 30%)'
                 },
@@ -2497,7 +2497,7 @@ const codcarStrat: Strat = {
             strats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Inside SE',
+                    description: 'Inner\nRelative Southeast\nw/ Ranged from C',
                     imageUrl: './strats/codcar/platform-pairs.png',
                     mask: 'radial-gradient(circle at 61% 60%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
                     alignmentTransforms: {
@@ -2508,7 +2508,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'spread',
-                    description: 'South',
+                    description: 'Relative South',
                     imageUrl: './strats/codcar/platform-spread.png',
                     mask: 'radial-gradient(circle at 50% 83%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
                     alignmentTransforms: {
@@ -2519,7 +2519,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'towers',
-                    description: 'South/CW',
+                    description: 'Relative South/CW',
                     imageUrl: './strats/codcar/platform-towers.png',
                     mask: 'radial-gradient(circle at 36% 66%, black 29%, rgba(0, 0, 0, 0.2) 29%)',
                     alignmentTransforms: {
@@ -2578,7 +2578,7 @@ const codcarStrat: Strat = {
             strats: [
                 {
                     mechanic: 'pairs',
-                    description: 'Outside SE',
+                    description: 'Outer\nRelative Southeast\nw/ Ranged from C',
                     imageUrl: './strats/codcar/platform-pairs.png',
                     mask: 'radial-gradient(circle at 71% 74%, black 10%, rgba(0, 0, 0, 0.4) 10%)',
                     alignmentTransforms: {
@@ -2589,7 +2589,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'spread',
-                    description: 'East',
+                    description: 'Relative East',
                     imageUrl: './strats/codcar/platform-spread.png',
                     mask: 'radial-gradient(circle at 82% 50%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
                     alignmentTransforms: {
@@ -2600,7 +2600,7 @@ const codcarStrat: Strat = {
                 },
                 {
                     mechanic: 'towers',
-                    description: 'South/CW',
+                    description: 'Relative South/CW',
                     imageUrl: './strats/codcar/platform-towers.png',
                     mask: 'radial-gradient(circle at 36% 66%, black 29%, rgba(0, 0, 0, 0.2) 29%)',
                     alignmentTransforms: {
