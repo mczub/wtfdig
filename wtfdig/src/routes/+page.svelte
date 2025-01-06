@@ -62,7 +62,7 @@
 					</RadioGroup>
 				</div>
 				<div>
-					<h2>Which party are you?</h2>
+					<h2>Which light party are you in?</h2>
 					<RadioGroup>
 						<RadioItem bind:group={party} name="party" value={1}>1</RadioItem>
 						<RadioItem bind:group={party} name="party" value={2}>2</RadioItem>
