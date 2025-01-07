@@ -42,6 +42,7 @@
 					<RadioGroup>
 						<RadioItem bind:group={stratName} name="stratName" value={'raidplan'}>Raidplan (Aurelia/wfJ/o1Z)</RadioItem>
 						<RadioItem bind:group={stratName} name="stratName" value={'codcar'}>CODCAR</RadioItem>
+						<RadioItem bind:group={stratName} name="stratName" value={'healerout'}>HealerOut</RadioItem>
 					</RadioGroup>
 				</div>
 				<div>
@@ -75,6 +76,8 @@
 					<img style:max-height={'400px'} src={'./strats/raidplan/overall.png'} />
 				{:else if stratPackage?.stratName === 'codcar'}
 					<img style:max-height={'400px'} src={'./strats/codcar/overall.png'} />
+				{:else if stratPackage?.stratName === 'healerout'}
+					<img style:max-height={'400px'} src={'./strats/healerout/overall.png'} />
 				{/if}
 			</div>
 		</div>
