@@ -16,7 +16,8 @@
         type: 'alert',
         title: 'Changelog',
         body: 
-`1/5/2024: fixed raidplan spread spots to match where people end up after tether breaks, added pair partners + cleaned up phrasing
+`1/7/2024: added HealerOut to the strat selector
+1/5/2024: fixed raidplan spread spots to match where people end up after tether breaks, added pair partners + cleaned up phrasing
 1/3/2024: added wfJ/o1Z to the raidplan selector, changed Add Relative to Wall Relative for CODCAR
 1/2/2024: Updated some styling to make the swap assignments more obvious (yes melees will sometimes need to take a ranged spot), added some info to footer
 1/1/2024: Added big overview image, rotated AOE spreads correctly for CODCAR, added post-swap locations for everyone starting on tiles
