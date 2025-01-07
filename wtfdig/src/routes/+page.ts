@@ -3144,7 +3144,7 @@ const healerOutStrat: Strat = {
                 },
                 {
                     mechanic: 'spread',
-                    description: 'Inside',
+                    description: 'North',
                     imageUrl: './strats/healerout/platform-east-spread.png',
                     mask: 'radial-gradient(circle at 39% 17%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
@@ -3434,7 +3434,7 @@ const healerOutStrat: Strat = {
                 },
                 {
                     mechanic: 'spread',
-                    description: 'Inside',
+                    description: 'Outside',
                     imageUrl: './strats/healerout/platform-east-spread.png',
                     mask: 'radial-gradient(circle at 75.5% 48.4%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
