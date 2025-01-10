@@ -257,9 +257,9 @@ const raidplanStrat: Strat = {
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Platform Outside South',
+                    description: 'Platform Outside North',
                     imageUrl: './strats/raidplan/platform-west-aoe-spread.png',
-                    mask: 'radial-gradient(circle at 39% 61%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
+                    mask: 'radial-gradient(circle at 38% 36%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
                 {
                     mechanic: 'swap',
@@ -302,9 +302,9 @@ const raidplanStrat: Strat = {
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Platform Outside North',
+                    description: 'Platform Outside South',
                     imageUrl: './strats/raidplan/platform-west-aoe-spread.png',
-                    mask: 'radial-gradient(circle at 38% 36%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
+                    mask: 'radial-gradient(circle at 39% 61%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
                 {
                     mechanic: 'swap',
@@ -951,9 +951,9 @@ const raidplanStrat: Strat = {
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Platform Outside South',
+                    description: 'Platform Outside North',
                     imageUrl: './strats/raidplan/platform-east-aoe-spread.png',
-                    mask: 'radial-gradient(circle at 60% 59%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
+                    mask: 'radial-gradient(circle at 57% 34%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
                 {
                     mechanic: 'swap',
@@ -996,9 +996,9 @@ const raidplanStrat: Strat = {
                 },
                 {
                     mechanic: 'aoes',
-                    description: 'Platform Outside North',
+                    description: 'Platform Outside South',
                     imageUrl: './strats/raidplan/platform-east-aoe-spread.png',
-                    mask: 'radial-gradient(circle at 57% 34%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
+                    mask: 'radial-gradient(circle at 60% 59%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
                 {
                     mechanic: 'swap',

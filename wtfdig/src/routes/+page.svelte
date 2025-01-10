@@ -122,7 +122,7 @@
 					{#key [spotlight, alignment]}
 					<div class="space-y-4" class:col-span-2={step.alignmentImages && step.alignmentImages[alignment]}>
 						<div class="uppercase text-xl">{step.mechanic}</div> 
-						<div class="whitespace-pre text-l">{step.description}</div>
+						<div class="whitespace-pre-wrap text-l">{step.description}</div>
 						<img src={(step.alignmentImages && step.alignmentImages[alignment]) ? step.alignmentImages[alignment] : step.imageUrl} style:mask-image={getMask(step)} style:transform={step.alignmentTransforms ? step.alignmentTransforms[alignment] : step.transform} />
 					</div>
 					{/key}
@@ -146,7 +146,7 @@
 											{#key [spotlight, alignment]}
 											<div class="space-y-4" class:col-span-2={step.alignmentImages && step.alignmentImages[alignment]}>
 												<div class="uppercase text-xl">{step.mechanic}</div> 
-												<div class="whitespace-pre text-l">{step.description}</div>
+												<div class="whitespace-pre-wrap text-l">{step.description}</div>
 												<img src={(step.alignmentImages && step.alignmentImages[alignment]) ? step.alignmentImages[alignment] : step.imageUrl} style:mask-image={getMask(step)} style:transform={step.alignmentTransforms ? step.alignmentTransforms[alignment] : step.transform} />
 											</div>
 											{/key}
