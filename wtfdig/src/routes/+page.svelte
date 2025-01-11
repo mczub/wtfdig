@@ -117,7 +117,7 @@
 				{/if}
 			</div>
 			
-			<div class="grid xl:grid-cols-7 grid-cols-3 gap-2">
+			<div class="grid xl:grid-cols-6 grid-cols-3 gap-2">
 				{#each strat.strats as step}
 					{#key [spotlight, alignment]}
 					<div class="space-y-4" class:col-span-2={step.alignmentImages && step.alignmentImages[alignment]}>

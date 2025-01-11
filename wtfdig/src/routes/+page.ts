@@ -93,7 +93,28 @@ const raidplanStrat: Strat = {
                     imageUrl: './strats/raidplan/platform-west-swap.png',
                     mask: 'radial-gradient(circle at 24% 26%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
                 },
-            ]
+            ],
+            swapNote: "I got a clean swap to the NE or SE tiles! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'idle',
+                    description: 'NE/SE west of corner tile',
+                    imageUrl: './strats/raidplan/tiles-east-idle.png',
+                    mask: 'radial-gradient(circle at 30.8% 20.6%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 32% 79.5%, black 9%, rgba(0, 0, 0, 0.2) 9%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: 'NE/SE corner tile',
+                    imageUrl: './strats/raidplan/tiles-east-wc.png',
+                    mask: 'radial-gradient(circle at 48.8% 21.6%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 48% 80%, black 9%, rgba(0, 0, 0, 0.2) 9%)'
+                },
+                {
+                    mechanic: 'chaser',
+                    description: 'CCW of corner tile',
+                    imageUrl: './strats/raidplan/tiles-east-chasers.png',
+                    mask: 'radial-gradient(circle at 28% 21%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 52% 67%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
         },
         {
             alliance: 'A',
@@ -118,22 +139,22 @@ const raidplanStrat: Strat = {
             swapNote: "I got a clean swap to the East platform! Now what?",
             swapStrats: [
                 {
+                    mechanic: 'towers',
+                    description: 'North/East',
+                    imageUrl: './strats/raidplan/platform-east-towers.png',
+                    mask: 'radial-gradient(circle at 44.8% 19.6%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 65% 79.5%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
                     mechanic: 'pairs',
                     description: 'Inner\nNorth\nw/ Melee 1 from A',
                     imageUrl: './strats/raidplan/platform-east-pairs.png',
                     mask: 'radial-gradient(circle at 47% 34.4%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
                 {
-                    mechanic: 'spread',
-                    description: 'North',
-                    imageUrl: './strats/raidplan/platform-east-spread.png',
-                    mask: 'radial-gradient(circle at 36% 19%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
-                },
-                {
-                    mechanic: 'towers',
-                    description: 'North/East',
-                    imageUrl: './strats/raidplan/platform-east-towers.png',
-                    mask: 'radial-gradient(circle at 44.8% 19.6%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 65% 79.5%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                    mechanic: 'aoes',
+                    description: 'Platform Inside North',
+                    imageUrl: './strats/raidplan/platform-east-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 19% 34%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
             ],
         },
@@ -180,7 +201,28 @@ const raidplanStrat: Strat = {
                     imageUrl: './strats/raidplan/platform-west-swap.png',
                     mask: 'radial-gradient(circle at 23% 50%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
                 },
-            ]
+            ],
+            swapNote: "I got a clean swap to the NE or SE tiles! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'idle',
+                    description: 'NE/SE East cubby',
+                    imageUrl: './strats/raidplan/tiles-east-idle.png',
+                    mask: 'radial-gradient(circle at 78% 20.6%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 78% 78.5%, black 9%, rgba(0, 0, 0, 0.2) 9%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: 'NE/SE East cubby\nTuck in!',
+                    imageUrl: './strats/raidplan/tiles-east-wc.png',
+                    mask: 'radial-gradient(circle at 67% 17.6%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 67% 82%, black 9%, rgba(0, 0, 0, 0.2) 9%)'
+                },
+                {
+                    mechanic: 'chaser',
+                    description: 'NE/SE East cubby',
+                    imageUrl: './strats/raidplan/tiles-east-chasers.png',
+                    mask: 'radial-gradient(circle at 75% 20.6%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 75% 78.5%, black 9%, rgba(0, 0, 0, 0.2) 9%)'
+                },
+            ],
         },
         {
             alliance: 'A',
@@ -205,22 +247,22 @@ const raidplanStrat: Strat = {
             swapNote: "I got a clean swap to the East platform! Now what?",
             swapStrats: [
                 {
+                    mechanic: 'towers',
+                    description: 'South/West',
+                    imageUrl: './strats/raidplan/platform-east-towers.png',
+                    mask: 'radial-gradient(circle at 43.7% 36.2%, black 13%, rgba(0, 0, 0, 0.2) 13%), radial-gradient(circle at 33% 79.7%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
                     mechanic: 'pairs',
                     description: 'Inner\nSouth\nw/ Melee 2 from A',
                     imageUrl: './strats/raidplan/platform-east-pairs.png',
                     mask: 'radial-gradient(circle at 46% 69%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
                 {
-                    mechanic: 'spread',
-                    description: 'South',
-                    imageUrl: './strats/raidplan/platform-east-spread.png',
-                    mask: 'radial-gradient(circle at 37% 81%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
-                },
-                {
-                    mechanic: 'towers',
-                    description: 'South/West',
-                    imageUrl: './strats/raidplan/platform-east-towers.png',
-                    mask: 'radial-gradient(circle at 43.7% 36.2%, black 13%, rgba(0, 0, 0, 0.2) 13%), radial-gradient(circle at 33% 79.7%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                    mechanic: 'aoes',
+                    description: 'Platform Inside South',
+                    imageUrl: './strats/raidplan/platform-east-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 19% 57%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
             ],
         }, 
@@ -267,7 +309,28 @@ const raidplanStrat: Strat = {
                     imageUrl: './strats/raidplan/platform-west-swap.png',
                     mask: 'radial-gradient(circle at 68% 24%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
                 },
-            ]
+            ],
+            swapNote: "I got a clean swap to the East platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'towers',
+                    description: 'North/East',
+                    imageUrl: './strats/raidplan/platform-east-towers.png',
+                    mask: 'radial-gradient(circle at 44.8% 19.6%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 65% 79.5%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'pairs',
+                    description: 'Outer\nNorth\nw/ Tank',
+                    imageUrl: './strats/raidplan/platform-east-pairs.png',
+                    mask: 'radial-gradient(circle at 47% 22.4%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
+                },
+                {
+                    mechanic: 'aoes',
+                    description: 'Platform Outside North',
+                    imageUrl: './strats/raidplan/platform-east-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 57% 34%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
+                },
+            ],
         },
         {
             alliance: 'A',
@@ -312,7 +375,28 @@ const raidplanStrat: Strat = {
                     imageUrl: './strats/raidplan/platform-west-swap.png',
                     mask: 'radial-gradient(circle at 68% 76%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
                 },
-            ]
+            ],
+            swapNote: "I got a clean swap to the East platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'towers',
+                    description: 'South/West',
+                    imageUrl: './strats/raidplan/platform-east-towers.png',
+                    mask: 'radial-gradient(circle at 43.7% 36.2%, black 13%, rgba(0, 0, 0, 0.2) 13%), radial-gradient(circle at 33% 79.7%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'pairs',
+                    description: 'Outer\nSouth\nw/ Healer',
+                    imageUrl: './strats/raidplan/platform-east-pairs.png',
+                    mask: 'radial-gradient(circle at 46% 81%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
+                },
+                {
+                    mechanic: 'aoes',
+                    description: 'Platform Outside South',
+                    imageUrl: './strats/raidplan/platform-east-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 60% 59%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
+                },
+            ],
         },
         {
             alliance: 'A',
@@ -357,7 +441,28 @@ const raidplanStrat: Strat = {
                     imageUrl: './strats/raidplan/platform-west-swap.png',
                     mask: 'radial-gradient(circle at 22% 76%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
                 },
-            ]
+            ],
+            swapNote: "I got a clean swap to the NE or SE tiles! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'idle',
+                    description: 'NE North cubby\nSE South cubby',
+                    imageUrl: './strats/raidplan/tiles-east-idle.png',
+                    mask: 'radial-gradient(circle at 54% 9%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 55% 91%, black 9%, rgba(0, 0, 0, 0.2) 9%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: 'NE North cubby\nSE South cubby\nTuck in!',
+                    imageUrl: './strats/raidplan/tiles-east-wc.png',
+                    mask: 'radial-gradient(circle at 57% 12%, black 8%, rgba(0, 0, 0, 0.2) 8%), radial-gradient(circle at 54% 87%, black 8%, rgba(0, 0, 0, 0.2) 8%)'
+                },
+                {
+                    mechanic: 'chaser',
+                    description: 'NE North cubby\nSE South cubby',
+                    imageUrl: './strats/raidplan/tiles-east-chasers.png',
+                    mask: 'radial-gradient(circle at 51% 9.6%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 51% 90.5%, black 9%, rgba(0, 0, 0, 0.2) 9%)'
+                },
+            ],
         },
         {
             alliance: 'A',
@@ -402,7 +507,28 @@ const raidplanStrat: Strat = {
                     imageUrl: './strats/raidplan/platform-west-swap.png',
                     mask: 'radial-gradient(circle at 67% 51%, black 18%, rgba(0, 0, 0, 0.4) 18%)'
                 },
-            ]
+            ],
+            swapNote: "I got a clean swap to the East platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'towers',
+                    description: 'South/West',
+                    imageUrl: './strats/raidplan/platform-east-towers.png',
+                    mask: 'radial-gradient(circle at 43.7% 36.2%, black 13%, rgba(0, 0, 0, 0.2) 13%), radial-gradient(circle at 33% 79.7%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'pairs',
+                    description: 'Outer\nEast\nw/ Ranged',
+                    imageUrl: './strats/raidplan/platform-east-pairs.png',
+                    mask: 'radial-gradient(circle at 70% 53%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
+                },
+                {
+                    mechanic: 'aoes',
+                    description: 'Ring Outside North',
+                    imageUrl: './strats/raidplan/platform-east-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 69% 15%, black 7%, rgba(0, 0, 0, 0.4) 7%)'
+                },
+            ],
         },
         {
             alliance: 'B',
@@ -433,16 +559,16 @@ const raidplanStrat: Strat = {
                     mask: 'radial-gradient(circle at 47% 34.4%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
                 {
-                    mechanic: 'spread',
-                    description: 'North',
-                    imageUrl: './strats/raidplan/platform-east-spread.png',
-                    mask: 'radial-gradient(circle at 36% 19%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
-                },
-                {
                     mechanic: 'towers',
                     description: 'North/East',
                     imageUrl: './strats/raidplan/platform-east-towers.png',
                     mask: 'radial-gradient(circle at 44.8% 19.6%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 65% 79.5%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'aoes',
+                    description: 'Platform Inside North',
+                    imageUrl: './strats/raidplan/platform-east-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 19% 34%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
             ],
         },
@@ -469,22 +595,22 @@ const raidplanStrat: Strat = {
             swapNote: "I got a clean swap to the West platform! Now what?",
             swapStrats: [
                 {
+                    mechanic: 'towers',
+                    description: 'North/East',
+                    imageUrl: './strats/raidplan/platform-west-towers.png',
+                    mask: 'radial-gradient(circle at 55.4% 18%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 67% 78.7%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
                     mechanic: 'pairs',
                     description: 'Inner\nNorth\nw/ Melee 1 from C',
                     imageUrl: './strats/raidplan/platform-west-pairs.png',
                     mask: 'radial-gradient(circle at 57.8% 31.6%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
                 {
-                    mechanic: 'spread',
-                    description: 'North',
-                    imageUrl: './strats/raidplan/platform-west-spread.png',
-                    mask: 'radial-gradient(circle at 57.8% 19.6%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
-                },
-                {
-                    mechanic: 'towers',
-                    description: 'North/East',
-                    imageUrl: './strats/raidplan/platform-west-towers.png',
-                    mask: 'radial-gradient(circle at 55.4% 18%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 67% 78.7%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                    mechanic: 'aoes',
+                    description: 'Platform Inside North',
+                    imageUrl: './strats/raidplan/platform-west-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 78% 36%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
             ],
         },
@@ -511,22 +637,22 @@ const raidplanStrat: Strat = {
             swapNote: "I got a clean swap to the East platform! Now what?",
             swapStrats: [
                 {
+                    mechanic: 'towers',
+                    description: 'South/West',
+                    imageUrl: './strats/raidplan/platform-east-towers.png',
+                    mask: 'radial-gradient(circle at 43.7% 36.2%, black 13%, rgba(0, 0, 0, 0.2) 13%), radial-gradient(circle at 33% 79.7%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
                     mechanic: 'pairs',
                     description: 'Inner\nSouth\nw/ Melee 2 from A',
                     imageUrl: './strats/raidplan/platform-east-pairs.png',
                     mask: 'radial-gradient(circle at 46% 69%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
                 {
-                    mechanic: 'spread',
-                    description: 'South',
-                    imageUrl: './strats/raidplan/platform-east-spread.png',
-                    mask: 'radial-gradient(circle at 37% 81%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
-                },
-                {
-                    mechanic: 'towers',
-                    description: 'South/West',
-                    imageUrl: './strats/raidplan/platform-east-towers.png',
-                    mask: 'radial-gradient(circle at 43.7% 36.2%, black 13%, rgba(0, 0, 0, 0.2) 13%), radial-gradient(circle at 33% 79.7%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                    mechanic: 'aoes',
+                    description: 'Platform Inside South',
+                    imageUrl: './strats/raidplan/platform-east-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 19% 57%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
             ],
         },
@@ -553,22 +679,22 @@ const raidplanStrat: Strat = {
             swapNote: "I got a clean swap to the West platform! Now what?",
             swapStrats: [
                 {
+                    mechanic: 'towers',
+                    description: 'South/West',
+                    imageUrl: './strats/raidplan/platform-west-towers.png',
+                    mask: 'radial-gradient(circle at 54.3% 33.8%, black 12%, rgba(0, 0, 0, 0.2) 12%), radial-gradient(circle at 35% 78.7%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
                     mechanic: 'pairs',
                     description: 'Inner\nSouth\nw/ Melee 2 from C',
                     imageUrl: './strats/raidplan/platform-west-pairs.png',
                     mask: 'radial-gradient(circle at 56% 68%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
                 {
-                    mechanic: 'spread',
-                    description: 'South',
-                    imageUrl: './strats/raidplan/platform-west-spread.png',
-                    mask: 'radial-gradient(circle at 58% 82%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
-                },
-                {
-                    mechanic: 'towers',
-                    description: 'South/West',
-                    imageUrl: './strats/raidplan/platform-west-towers.png',
-                    mask: 'radial-gradient(circle at 54.3% 33.8%, black 12%, rgba(0, 0, 0, 0.2) 12%), radial-gradient(circle at 35% 78.7%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                    mechanic: 'aoes',
+                    description: 'Platform Inside South',
+                    imageUrl: './strats/raidplan/platform-west-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 79% 59%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
             ],
         }, 
@@ -596,22 +722,22 @@ const raidplanStrat: Strat = {
             swapWarning: "You will need to take the R1 spot",
             swapStrats: [
                 {
+                    mechanic: 'towers',
+                    description: 'North/East',
+                    imageUrl: './strats/raidplan/platform-east-towers.png',
+                    mask: 'radial-gradient(circle at 44.8% 19.6%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 65% 79.5%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
                     mechanic: 'pairs',
                     description: 'Inner\nEast\nw/ Ranged from A',
                     imageUrl: './strats/raidplan/platform-east-pairs.png',
                     mask: 'radial-gradient(circle at 60% 53%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
                 {
-                    mechanic: 'spread',
-                    description: 'ENE',
-                    imageUrl: './strats/raidplan/platform-east-spread.png',
-                    mask: 'radial-gradient(circle at 64% 40%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
-                },
-                {
-                    mechanic: 'towers',
-                    description: 'North/East',
-                    imageUrl: './strats/raidplan/platform-east-towers.png',
-                    mask: 'radial-gradient(circle at 44.8% 19.6%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 65% 79.5%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                    mechanic: 'aoes',
+                    description: 'Ring Outside South',
+                    imageUrl: './strats/raidplan/platform-east-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 65% 85%, black 7%, rgba(0, 0, 0, 0.4) 7%)'
                 },
             ],
         },
@@ -639,22 +765,22 @@ const raidplanStrat: Strat = {
             swapWarning: "You will need to take the R1 spot",
             swapStrats: [
                 {
+                    mechanic: 'towers',
+                    description: 'North/East',
+                    imageUrl: './strats/raidplan/platform-west-towers.png',
+                    mask: 'radial-gradient(circle at 55.4% 18%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 67% 78.7%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
                     mechanic: 'pairs',
                     description: 'Inner\nWest\nw/ Ranged from C',
                     imageUrl: './strats/raidplan/platform-west-pairs.png',
                     mask: 'radial-gradient(circle at 41% 50%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
                 {
-                    mechanic: 'spread',
-                    description: 'WNW',
-                    imageUrl: './strats/raidplan/platform-west-spread.png',
-                    mask: 'radial-gradient(circle at 30% 43%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
-                },
-                {
-                    mechanic: 'towers',
-                    description: 'North/East',
-                    imageUrl: './strats/raidplan/platform-west-towers.png',
-                    mask: 'radial-gradient(circle at 55.4% 18%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 67% 78.7%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                    mechanic: 'aoes',
+                    description: 'Ring Outside South',
+                    imageUrl: './strats/raidplan/platform-west-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 33% 83%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
                 },
             ],
         },
@@ -682,22 +808,22 @@ const raidplanStrat: Strat = {
             swapWarning: "You will need to take the R1 spot",
             swapStrats: [
                 {
+                    mechanic: 'towers',
+                    description: 'North/East',
+                    imageUrl: './strats/raidplan/platform-east-towers.png',
+                    mask: 'radial-gradient(circle at 44.8% 19.6%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 65% 79.5%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
                     mechanic: 'pairs',
                     description: 'Inner\nEast\nw/ Ranged from A',
                     imageUrl: './strats/raidplan/platform-east-pairs.png',
                     mask: 'radial-gradient(circle at 60% 53%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
                 {
-                    mechanic: 'spread',
-                    description: 'ENE',
-                    imageUrl: './strats/raidplan/platform-east-spread.png',
-                    mask: 'radial-gradient(circle at 64% 40%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
-                },
-                {
-                    mechanic: 'towers',
-                    description: 'North/East',
-                    imageUrl: './strats/raidplan/platform-east-towers.png',
-                    mask: 'radial-gradient(circle at 44.8% 19.6%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 65% 79.5%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                    mechanic: 'aoes',
+                    description: 'Ring Outside South',
+                    imageUrl: './strats/raidplan/platform-east-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 65% 85%, black 7%, rgba(0, 0, 0, 0.4) 7%)'
                 },
             ],
         },
@@ -725,22 +851,22 @@ const raidplanStrat: Strat = {
             swapWarning: "You will need to take the R1 spot",
             swapStrats: [
                 {
+                    mechanic: 'towers',
+                    description: 'North/East',
+                    imageUrl: './strats/raidplan/platform-west-towers.png',
+                    mask: 'radial-gradient(circle at 55.4% 18%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 67% 78.7%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
                     mechanic: 'pairs',
                     description: 'Inner\nWest\nw/ Ranged from C',
                     imageUrl: './strats/raidplan/platform-west-pairs.png',
                     mask: 'radial-gradient(circle at 41% 50%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
                 },
                 {
-                    mechanic: 'spread',
-                    description: 'WNW',
-                    imageUrl: './strats/raidplan/platform-west-spread.png',
-                    mask: 'radial-gradient(circle at 30% 43%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
-                },
-                {
-                    mechanic: 'towers',
-                    description: 'North/East',
-                    imageUrl: './strats/raidplan/platform-west-towers.png',
-                    mask: 'radial-gradient(circle at 55.4% 18%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 67% 78.7%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                    mechanic: 'aoes',
+                    description: 'Ring Outside South',
+                    imageUrl: './strats/raidplan/platform-west-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 33% 83%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
                 },
             ],
         },
@@ -787,7 +913,28 @@ const raidplanStrat: Strat = {
                     imageUrl: './strats/raidplan/platform-east-swap.png',
                     mask: 'radial-gradient(circle at 78% 32%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
                 },
-            ]
+            ],
+            swapNote: "I got a clean swap to the NW or SW tiles! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'idle',
+                    description: 'NW/SW east of corner tile',
+                    imageUrl: './strats/raidplan/tiles-west-idle.png',
+                    mask: 'radial-gradient(circle at 75% 21%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 77% 80%, black 9%, rgba(0, 0, 0, 0.2) 9%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: 'NW/SW corner tile',
+                    imageUrl: './strats/raidplan/tiles-west-wc.png',
+                    mask: 'radial-gradient(circle at 60% 24%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 60% 76%, black 9%, rgba(0, 0, 0, 0.2) 9%)'
+                },
+                {
+                    mechanic: 'chaser',
+                    description: 'CCW of corner tile',
+                    imageUrl: './strats/raidplan/tiles-west-chasers.png',
+                    mask: 'radial-gradient(circle at 52% 33%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 77% 80%, black 9%, rgba(0, 0, 0, 0.2) 9%)'
+                },
+            ],
         },
         {
             alliance: 'C',
@@ -812,22 +959,22 @@ const raidplanStrat: Strat = {
             swapNote: "I got a clean swap to the West platform! Now what?",
             swapStrats: [
                 {
+                    mechanic: 'towers',
+                    description: 'North/East',
+                    imageUrl: './strats/raidplan/platform-west-towers.png',
+                    mask: 'radial-gradient(circle at 55.4% 18%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 67% 78.7%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
                     mechanic: 'pairs',
                     description: 'Inner\nNorth\nw/ Melee 1 from C',
                     imageUrl: './strats/raidplan/platform-west-pairs.png',
                     mask: 'radial-gradient(circle at 57.8% 31.6%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
                 {
-                    mechanic: 'spread',
-                    description: 'North',
-                    imageUrl: './strats/raidplan/platform-west-spread.png',
-                    mask: 'radial-gradient(circle at 57.8% 19.6%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
-                },
-                {
-                    mechanic: 'towers',
-                    description: 'North/East',
-                    imageUrl: './strats/raidplan/platform-west-towers.png',
-                    mask: 'radial-gradient(circle at 55.4% 18%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 67% 78.7%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                    mechanic: 'aoes',
+                    description: 'Platform Inside North',
+                    imageUrl: './strats/raidplan/platform-west-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 78% 36%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
             ],
         },
@@ -874,7 +1021,28 @@ const raidplanStrat: Strat = {
                     imageUrl: './strats/raidplan/platform-east-swap.png',
                     mask: 'radial-gradient(circle at 78% 55%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
                 },
-            ]
+            ],
+            swapNote: "I got a clean swap to the NW or SW tiles! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'idle',
+                    description: 'NW/SW West cubby',
+                    imageUrl: './strats/raidplan/tiles-west-idle.png',
+                    mask: 'radial-gradient(circle at 28% 21%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 29% 80%, black 9%, rgba(0, 0, 0, 0.2) 9%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: 'NW/SW West cubby\nTuck in!',
+                    imageUrl: './strats/raidplan/tiles-west-wc.png',
+                    mask: 'radial-gradient(circle at 36% 19%, black 8%, rgba(0, 0, 0, 0.2) 8%), radial-gradient(circle at 38% 82%, black 8%, rgba(0, 0, 0, 0.2) 8%)'
+                },
+                {
+                    mechanic: 'chaser',
+                    description: 'NW/SW West cubby',
+                    imageUrl: './strats/raidplan/tiles-west-chasers.png',
+                    mask: 'radial-gradient(circle at 29% 20.6%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 29% 79%, black 9%, rgba(0, 0, 0, 0.2) 9%)'
+                },
+            ],
         },
         {
             alliance: 'C',
@@ -899,22 +1067,22 @@ const raidplanStrat: Strat = {
             swapNote: "I got a clean swap to the West platform! Now what?",
             swapStrats: [
                 {
+                    mechanic: 'towers',
+                    description: 'South/West',
+                    imageUrl: './strats/raidplan/platform-west-towers.png',
+                    mask: 'radial-gradient(circle at 54.3% 33.8%, black 12%, rgba(0, 0, 0, 0.2) 12%), radial-gradient(circle at 35% 78.7%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
                     mechanic: 'pairs',
                     description: 'Inner\nSouth\nw/ Melee 2 from C',
                     imageUrl: './strats/raidplan/platform-west-pairs.png',
                     mask: 'radial-gradient(circle at 56% 68%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
                 {
-                    mechanic: 'spread',
-                    description: 'South',
-                    imageUrl: './strats/raidplan/platform-west-spread.png',
-                    mask: 'radial-gradient(circle at 58% 82%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
-                },
-                {
-                    mechanic: 'towers',
-                    description: 'South/West',
-                    imageUrl: './strats/raidplan/platform-west-towers.png',
-                    mask: 'radial-gradient(circle at 54.3% 33.8%, black 12%, rgba(0, 0, 0, 0.2) 12%), radial-gradient(circle at 35% 78.7%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                    mechanic: 'aoes',
+                    description: 'Platform Inside South',
+                    imageUrl: './strats/raidplan/platform-west-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 79% 59%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
                 },
             ],
         }, 
@@ -961,7 +1129,28 @@ const raidplanStrat: Strat = {
                     imageUrl: './strats/raidplan/platform-east-swap.png',
                     mask: 'radial-gradient(circle at 36% 28%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
                 },
-            ]
+            ],
+            swapNote: "I got a clean swap to the West platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'towers',
+                    description: 'North/East',
+                    imageUrl: './strats/raidplan/platform-west-towers.png',
+                    mask: 'radial-gradient(circle at 55.4% 18%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 67% 78.7%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'pairs',
+                    description: 'Outer\nNorth\nw/ Tank',
+                    imageUrl: './strats/raidplan/platform-west-pairs.png',
+                    mask: 'radial-gradient(circle at 57.8% 18.6%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
+                },
+                {
+                    mechanic: 'aoes',
+                    description: 'Platform Outside North',
+                    imageUrl: './strats/raidplan/platform-west-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 38% 36%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
+                },
+            ],
         },
         {
             alliance: 'C',
@@ -1006,7 +1195,28 @@ const raidplanStrat: Strat = {
                     imageUrl: './strats/raidplan/platform-east-swap.png',
                     mask: 'radial-gradient(circle at 36% 79%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
                 },
-            ]
+            ],
+            swapNote: "I got a clean swap to the West platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'towers',
+                    description: 'South/West',
+                    imageUrl: './strats/raidplan/platform-west-towers.png',
+                    mask: 'radial-gradient(circle at 54.3% 33.8%, black 12%, rgba(0, 0, 0, 0.2) 12%), radial-gradient(circle at 35% 78.7%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'pairs',
+                    description: 'Outer\nSouth\nw/ Healer',
+                    imageUrl: './strats/raidplan/platform-west-pairs.png',
+                    mask: 'radial-gradient(circle at 57% 80%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
+                },
+                {
+                    mechanic: 'aoes',
+                    description: 'Platform Outside South',
+                    imageUrl: './strats/raidplan/platform-west-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 39% 61%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
+                },
+            ],
         },
         {
             alliance: 'C',
@@ -1051,7 +1261,28 @@ const raidplanStrat: Strat = {
                     imageUrl: './strats/raidplan/platform-east-swap.png',
                     mask: 'radial-gradient(circle at 77% 79%, black 13%, rgba(0, 0, 0, 0.4) 13%)'
                 },
-            ]
+            ],
+            swapNote: "I got a clean swap to the NW or SW tiles! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'idle',
+                    description: 'NW North cubby\nSW South cubby',
+                    imageUrl: './strats/raidplan/tiles-west-idle.png',
+                    mask: 'radial-gradient(circle at 52% 9%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 52% 92%, black 9%, rgba(0, 0, 0, 0.2) 9%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: 'NW North cubby\nSW South cubby\nTuck in!',
+                    imageUrl: './strats/raidplan/tiles-west-wc.png',
+                    mask: 'radial-gradient(circle at 49% 14%, black 8%, rgba(0, 0, 0, 0.2) 8%), radial-gradient(circle at 49% 87%, black 8%, rgba(0, 0, 0, 0.2) 8%)'
+                },
+                {
+                    mechanic: 'chaser',
+                    description: 'NW North cubby\nSW South cubby',
+                    imageUrl: './strats/raidplan/tiles-west-chasers.png',
+                    mask: 'radial-gradient(circle at 52% 9%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 52% 92%, black 9%, rgba(0, 0, 0, 0.2) 9%)'
+                },
+            ],
         },
         {
             alliance: 'C',
@@ -1096,7 +1327,28 @@ const raidplanStrat: Strat = {
                     imageUrl: './strats/raidplan/platform-east-swap.png',
                     mask: 'radial-gradient(circle at 36% 52%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
                 },
-            ]
+            ],
+            swapNote: "I got a clean swap to the West platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'towers',
+                    description: 'South/West',
+                    imageUrl: './strats/raidplan/platform-west-towers.png',
+                    mask: 'radial-gradient(circle at 54.3% 33.8%, black 12%, rgba(0, 0, 0, 0.2) 12%), radial-gradient(circle at 35% 78.7%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'pairs',
+                    description: 'Outer\nWest\nw/ Ranged',
+                    imageUrl: './strats/raidplan/platform-west-pairs.png',
+                    mask: 'radial-gradient(circle at 28% 50%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
+                },
+                {
+                    mechanic: 'aoes',
+                    description: 'Ring Outside North',
+                    imageUrl: './strats/raidplan/platform-west-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 34% 15%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
+                },
+            ],
         },
     ]
 }
