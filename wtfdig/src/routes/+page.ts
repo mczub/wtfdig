@@ -3,7 +3,7 @@ import type { PageLoad } from "./$types";
 
 export const load: PageLoad = ({params}) => {
     return {
-        strats: [raidplanStrat, codcarStrat, healerOutStrat],
+        strats: [raidplanStrat, codcarStrat, healerOutStrat, idyllStrat],
     }
 }
 
@@ -38,7 +38,7 @@ export interface PlayerStrats {
 
 interface Strat {
     stratName: string;
-    stratUrl: string;
+    stratUrl: string | Record<string, string>;
     description: string;
     notes: string;
     strats: PlayerStrats[];
@@ -3933,3 +3933,1686 @@ const healerOutStrat: Strat = {
         },
     ]
 }
+
+const idyllStrat: Strat = {
+    stratName: 'idyll',
+    stratUrl: {
+        kanatan: 'http://kanatan.info/archives/38822195.html',
+        raidplan: 'https://raidplan.io/plan/BBhK6qoMdxoGX_0C',
+    },
+    description: 'Taken from the post by @idyllshireinfo',
+    notes: 'All platform add-related mechanics are wall relative; THD is not applicable for seed placement on tiles',
+    strats: [
+        {
+            alliance: 'A',
+            role: 'Tank',
+            party: 1,
+            notes: 'Left/West platform, Face boss Outside/Relative North | MT',
+            startingArea: 'Platform',
+            strats: [
+                {
+                    mechanic: 'pairs',
+                    description: 'Inner\nRelative North\nw/ H2',
+                    imageUrl: './strats/idyll/pair-stack-pre-swap.png',
+                    mask: 'radial-gradient(circle at 48% 48%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'spread',
+                    description: 'Relative NNW',
+                    imageUrl: './strats/idyll/spread.png',
+                    mask: 'radial-gradient(circle at 33% 53.6%, black 12%, rgba(0, 0, 0, 0.2) 12%)'
+                },
+                {
+                    mechanic: 'towers',
+                    description: 'Relative North/West',
+                    imageUrl: './strats/idyll/towers-pre-swap-w.png',
+                    mask: 'radial-gradient(circle at 30.2% 50%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 53% 70.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'bramble',
+                    description: 'None, stay on boss',
+                    imageUrl: './strats/idyll/brambles-w.png',
+                    mask: 'radial-gradient(circle at 23% 35%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Platform Inside\nRelative SE',
+                    imageUrl: './strats/idyll/begone-with-you-w.png',
+                    mask: 'radial-gradient(circle at 56% 40%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+                {
+                    mechanic: 'swap',
+                    description: 'Relative North',
+                    imageUrl: './strats/idyll/looming-chaos-w.png',
+                    mask: 'radial-gradient(circle at 27% 48%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
+            swapNote: "I got a clean swap to the NE or SE tiles! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'idle',
+                    description: 'Both 2 tiles west to NE/SE corner tile',
+                    imageUrl: './strats/idyll/overall.png',
+                    mask: 'radial-gradient(circle at 61% 22%, black 8%, rgba(0, 0, 0, 0.2) 8%), radial-gradient(circle at 62% 77%, black 8%, rgba(0, 0, 0, 0.2) 8%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: '1 tile west to NE/SE corner tile',
+                    imageUrl: './strats/idyll/wild-charge-tiles.png',
+                    mask: 'radial-gradient(circle at 73.8% 21.6%, black 7%, rgba(0, 0, 0, 0.2) 7%), radial-gradient(circle at 73% 80%, black 7%, rgba(0, 0, 0, 0.2) 7%)'
+                },
+                {
+                    mechanic: 'chaser',
+                    description: 'CCW of corner tile',
+                    imageUrl: './strats/idyll/chaser.png',
+                    mask: 'radial-gradient(circle at 67% 21%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 79% 67%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Center of Idle Tiles',
+                    imageUrl: './strats/idyll/begone-with-you.png',
+                    mask: 'radial-gradient(circle at 53.8% 19.6%, black 7%, rgba(0, 0, 0, 0.2) 7%), radial-gradient(circle at 54% 78%, black 7%, rgba(0, 0, 0, 0.2) 7%)',
+                },
+            ]
+        },
+        {
+            alliance: 'A',
+            role: 'Tank',
+            party: 2,
+            notes: 'East of NW corner tile | ST',
+            startingArea: 'Platform',
+            strats: [
+                {
+                    mechanic: 'idle',
+                    description: 'East of NW corner tile',
+                    imageUrl: './strats/idyll/overall.png',
+                    mask: 'radial-gradient(circle at 41% 22%, black 8%, rgba(0, 0, 0, 0.2) 8%)'
+                },
+                {
+                    mechanic: 'seed placement',
+                    description: 'H > D > T',
+                    imageUrl: './strats/idyll/brambles-w.png',
+                    transform: 'scale(1,-1)',
+                    mask: 'radial-gradient(circle at 69% 18%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 69% 51%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: '1 tile east to NW corner tile',
+                    imageUrl: './strats/idyll/wild-charge-nw.png',
+                    mask: 'radial-gradient(circle at 77.8% 55.6%, black 20%, rgba(0, 0, 0, 0.2) 20%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Center of Idle Tiles',
+                    imageUrl: './strats/idyll/begone-with-you-nw.png',
+                    mask: 'radial-gradient(circle at 67% 32%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+                {
+                    mechanic: 'spinny',
+                    description: 'Lead the Corner Team if chased\nor go into horizontal end',
+                    imageUrl: './strats/idyll/spinny.png',
+                    mask: 'radial-gradient(circle at 78% 10%, black 7%, rgba(0, 0, 0, 0.2) 7%), radial-gradient(circle at 9% 60.7%, black 7%, rgba(0, 0, 0, 0.2) 7%)'
+                },
+                {
+                    mechanic: 'swap',
+                    description: 'East of NW corner tile',
+                    imageUrl: './strats/idyll/looming-chaos-tilew.png',
+                    mask: 'radial-gradient(circle at 65% 19%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
+            swapNote: "I got a clean swap to the east platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'towers',
+                    description: 'Relative North/West',
+                    imageUrl: './strats/idyll/towers-post-swap-e.png',
+                    mask: 'radial-gradient(circle at 42.2% 31%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 66% 50.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'pairs',
+                    description: 'Inner\nRelative North\nw/ D3(R1)\nDOUBLE CHECK MACROS IF USED',
+                    imageUrl: './strats/idyll/pair-stack-post-swap.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 48% 54%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Platform Inside\nRelative SE',
+                    imageUrl: './strats/idyll/begone-with-you-e.png',
+                    mask: 'radial-gradient(circle at 43% 61%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+            ]
+        },
+        {
+            alliance: 'A',
+            role: 'Healer',
+            party: 1,
+            notes: 'North of NW corner tile',
+            startingArea: 'Platform',
+            strats: [
+                {
+                    mechanic: 'idle',
+                    description: 'North of NW corner tile',
+                    imageUrl: './strats/idyll/overall.png',
+                    mask: 'radial-gradient(circle at 30% 13%, black 8%, rgba(0, 0, 0, 0.2) 8%)'
+                },
+                {
+                    mechanic: 'seed placement',
+                    description: 'H > D > T',
+                    imageUrl: './strats/idyll/brambles-w.png',
+                    transform: 'scale(1,-1)',
+                    mask: 'radial-gradient(circle at 69% 18%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 69% 51%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: 'North tile from NW corner',
+                    imageUrl: './strats/idyll/wild-charge-nw.png',
+                    mask: 'radial-gradient(circle at 50.8% 24.6%, black 20%, rgba(0, 0, 0, 0.2) 20%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Idle tile',
+                    imageUrl: './strats/idyll/begone-with-you-nw.png',
+                    mask: 'radial-gradient(circle at 41% 11%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+                {
+                    mechanic: 'spinny',
+                    description: 'Follow the tank of the Corner Team if chased\nor go into vertical end',
+                    imageUrl: './strats/idyll/spinny.png',
+                    mask: 'radial-gradient(circle at 67% 10%, black 7%, rgba(0, 0, 0, 0.2) 7%), radial-gradient(circle at 21% 54.7%, black 7%, rgba(0, 0, 0, 0.2) 7%)'
+                },
+                {
+                    mechanic: 'swap',
+                    description: 'NW corner tile',
+                    imageUrl: './strats/idyll/looming-chaos-tilew.png',
+                    mask: 'radial-gradient(circle at 40% 19%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
+            swapNote: "I got a clean swap to the east platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'towers',
+                    description: 'Relative North/West',
+                    imageUrl: './strats/idyll/towers-post-swap-e.png',
+                    mask: 'radial-gradient(circle at 42.2% 31%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 66% 50.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'pairs',
+                    description: 'Inner\nRelative West\nw/ D2(M2) from B\nDOUBLE CHECK MACROS IF USED',
+                    imageUrl: './strats/idyll/pair-stack-post-swap.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 56% 62%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Platform Inside\nRelative SW',
+                    imageUrl: './strats/idyll/begone-with-you-e.png',
+                    mask: 'radial-gradient(circle at 43% 41%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+            ]
+        },
+        {
+            alliance: 'A',
+            role: 'Healer',
+            party: 2,
+            notes: 'Left/West platform',
+            startingArea: 'Platform',
+            strats: [
+                {
+                    mechanic: 'pairs',
+                    description: 'Outer\nRelative North\nw/ MT',
+                    imageUrl: './strats/idyll/pair-stack-pre-swap.png',
+                    mask: 'radial-gradient(circle at 32% 48%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'spread',
+                    description: 'Relative NNE',
+                    imageUrl: './strats/idyll/spread.png',
+                    mask: 'radial-gradient(circle at 33% 35.6%, black 12%, rgba(0, 0, 0, 0.2) 12%)'
+                },
+                {
+                    mechanic: 'towers',
+                    description: 'Relative South/East',
+                    imageUrl: './strats/idyll/towers-pre-swap-w.png',
+                    mask: 'radial-gradient(circle at 74.2% 50%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 53% 28.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'bramble',
+                    description: 'Relative NE',
+                    imageUrl: './strats/idyll/brambles-w.png',
+                    mask: 'radial-gradient(circle at 23% 18%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Platform Inside\nRelative SW',
+                    imageUrl: './strats/idyll/begone-with-you-w.png',
+                    mask: 'radial-gradient(circle at 58% 59%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+                {
+                    mechanic: 'swap',
+                    description: 'Relative North',
+                    imageUrl: './strats/idyll/looming-chaos-w.png',
+                    mask: 'radial-gradient(circle at 27% 55%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
+            swapNote: "I got a clean swap to the NE or SE tiles! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'idle',
+                    description: 'North from NE/SE corner tile',
+                    imageUrl: './strats/idyll/overall.png',
+                    mask: 'radial-gradient(circle at 68% 17%, black 8%, rgba(0, 0, 0, 0.2) 8%), radial-gradient(circle at 68% 60%, black 8%, rgba(0, 0, 0, 0.2) 8%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: 'See image',
+                    imageUrl: './strats/idyll/wild-charge-tiles.png',
+                    mask: 'radial-gradient(circle at 82.8% 11.6%, black 7%, rgba(0, 0, 0, 0.2) 7%), radial-gradient(circle at 82% 82%, black 7%, rgba(0, 0, 0, 0.2) 7%)'
+                },
+                {
+                    mechanic: 'chaser',
+                    description: 'See image\nStick to left side of the tile facing boss',
+                    imageUrl: './strats/idyll/chaser.png',
+                    mask: 'radial-gradient(circle at 79% 11%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 89% 78%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'See image',
+                    imageUrl: './strats/idyll/begone-with-you.png',
+                    mask: 'radial-gradient(circle at 64.8% 9.6%, black 7%, rgba(0, 0, 0, 0.2) 7%), radial-gradient(circle at 64% 61%, black 7%, rgba(0, 0, 0, 0.2) 7%)',
+                },
+            ]
+        },
+        {
+            alliance: 'A',
+            role: 'Melee',
+            party: 1,
+            notes: 'Left/West platform | D1',
+            startingArea: 'Platform',
+            strats: [
+                {
+                    mechanic: 'pairs',
+                    description: 'Inner\nRelative West\nw/ D3(R1)',
+                    imageUrl: './strats/idyll/pair-stack-pre-swap.png',
+                    mask: 'radial-gradient(circle at 60% 55%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'spread',
+                    description: 'Relative West',
+                    imageUrl: './strats/idyll/spread.png',
+                    mask: 'radial-gradient(circle at 61% 69.6%, black 12%, rgba(0, 0, 0, 0.2) 12%)'
+                },
+                {
+                    mechanic: 'towers',
+                    description: 'Relative North/West',
+                    imageUrl: './strats/idyll/towers-pre-swap-w.png',
+                    mask: 'radial-gradient(circle at 30.2% 50%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 53% 70.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'bramble',
+                    description: 'None, stay on boss',
+                    imageUrl: './strats/idyll/brambles-w.png',
+                    mask: 'radial-gradient(circle at 23% 35%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Platform\nRelative NE',
+                    imageUrl: './strats/idyll/begone-with-you-w.png',
+                    mask: 'radial-gradient(circle at 20% 39%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+                {
+                    mechanic: 'swap',
+                    description: 'Relative North',
+                    imageUrl: './strats/idyll/looming-chaos-w.png',
+                    mask: 'radial-gradient(circle at 27% 41%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
+            swapNote: "I got a clean swap to the NE or SE tiles! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'idle',
+                    description: 'South from NE/SE corner tile',
+                    imageUrl: './strats/idyll/overall.png',
+                    mask: 'radial-gradient(circle at 68% 38%, black 8%, rgba(0, 0, 0, 0.2) 8%), radial-gradient(circle at 68% 82%, black 8%, rgba(0, 0, 0, 0.2) 8%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: 'See image',
+                    imageUrl: './strats/idyll/wild-charge-tiles.png',
+                    mask: 'radial-gradient(circle at 82.8% 19.6%, black 7%, rgba(0, 0, 0, 0.2) 7%), radial-gradient(circle at 82% 92%, black 7%, rgba(0, 0, 0, 0.2) 7%)'
+                },
+                {
+                    mechanic: 'chaser',
+                    description: 'See image\nStick to left side of the tile facing boss',
+                    imageUrl: './strats/idyll/chaser.png',
+                    mask: 'radial-gradient(circle at 89% 21%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 79% 89%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'See image',
+                    imageUrl: './strats/idyll/begone-with-you.png',
+                    mask: 'radial-gradient(circle at 64.8% 34.6%, black 7%, rgba(0, 0, 0, 0.2) 7%), radial-gradient(circle at 64% 87%, black 7%, rgba(0, 0, 0, 0.2) 7%)',
+                },
+            ]
+        },
+        {
+            alliance: 'A',
+            role: 'Melee',
+            party: 2,
+            notes: 'Left/West platform | D2',
+            startingArea: 'Platform',
+            strats: [
+                {
+                    mechanic: 'pairs',
+                    description: 'Inner\nRelative East\nw/ D4(R2)',
+                    imageUrl: './strats/idyll/pair-stack-pre-swap.png',
+                    mask: 'radial-gradient(circle at 60% 35%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'spread',
+                    description: 'Relative East',
+                    imageUrl: './strats/idyll/spread.png',
+                    mask: 'radial-gradient(circle at 56% 19.6%, black 12%, rgba(0, 0, 0, 0.2) 12%)'
+                },
+                {
+                    mechanic: 'towers',
+                    description: 'Relative South/East',
+                    imageUrl: './strats/idyll/towers-pre-swap-w.png',
+                    mask: 'radial-gradient(circle at 76.2% 50%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 53% 28.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'bramble',
+                    description: 'Relative SE',
+                    imageUrl: './strats/idyll/brambles-w.png',
+                    mask: 'radial-gradient(circle at 58% 28%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Platform\nRelative NW',
+                    imageUrl: './strats/idyll/begone-with-you-w.png',
+                    mask: 'radial-gradient(circle at 20% 60%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+                {
+                    mechanic: 'swap',
+                    description: 'Relative South',
+                    imageUrl: './strats/idyll/looming-chaos-w.png',
+                    mask: 'radial-gradient(circle at 65% 41%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
+            swapNote: "I got a clean swap to the east platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'towers',
+                    description: 'Relative South/East',
+                    imageUrl: './strats/idyll/towers-post-swap-e.png',
+                    mask: 'radial-gradient(circle at 43.2% 72%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 23% 50.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'pairs',
+                    description: 'Outer\nRelative West\nw/ Healer from tiles\nDOUBLE CHECK MACROS IF USED',
+                    imageUrl: './strats/idyll/pair-stack-post-swap.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 56% 71%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Platform\nRelative SE',
+                    imageUrl: './strats/idyll/begone-with-you-e.png',
+                    mask: 'radial-gradient(circle at 74% 41%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+            ]
+        },
+        {
+            alliance: 'A',
+            role: 'Ranged',
+            party: 1,
+            notes: 'Left/West platform | D3',
+            startingArea: 'Platform',
+            strats: [
+                {
+                    mechanic: 'pairs',
+                    description: 'Outer\nRelative West\nw/ D1(M1)',
+                    imageUrl: './strats/idyll/pair-stack-pre-swap.png',
+                    mask: 'radial-gradient(circle at 60% 68%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'spread',
+                    description: 'Relative NWW',
+                    imageUrl: './strats/idyll/spread.png',
+                    mask: 'radial-gradient(circle at 41% 63.6%, black 12%, rgba(0, 0, 0, 0.2) 12%)'
+                },
+                {
+                    mechanic: 'towers',
+                    description: 'Relative North/West',
+                    imageUrl: './strats/idyll/towers-pre-swap-w.png',
+                    mask: 'radial-gradient(circle at 30.2% 50%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 53% 70.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'bramble',
+                    description: 'Relative SW',
+                    imageUrl: './strats/idyll/brambles-w.png',
+                    mask: 'radial-gradient(circle at 58% 42%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Ring\nRelative East',
+                    imageUrl: './strats/idyll/begone-with-you-w.png',
+                    mask: 'radial-gradient(circle at 33% 20%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+                {
+                    mechanic: 'swap',
+                    description: 'Relative South',
+                    imageUrl: './strats/idyll/looming-chaos-w.png',
+                    mask: 'radial-gradient(circle at 65% 46%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
+            swapNote: "I got a clean swap to the east platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'towers',
+                    description: 'Relative South/East',
+                    imageUrl: './strats/idyll/towers-post-swap-e.png',
+                    mask: 'radial-gradient(circle at 43.2% 72%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 23% 50.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'pairs',
+                    description: 'Outer\nRelative North\nw/ Tank from tiles\nDOUBLE CHECK MACROS IF USED',
+                    imageUrl: './strats/idyll/pair-stack-post-swap.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 40% 55%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Ring\nRelative East',
+                    imageUrl: './strats/idyll/begone-with-you-e.png',
+                    mask: 'radial-gradient(circle at 60% 81%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+            ]
+        },
+        {
+            alliance: 'A',
+            role: 'Ranged',
+            party: 2,
+            notes: 'Left/West platform | D4',
+            startingArea: 'Platform',
+            strats: [
+                {
+                    mechanic: 'pairs',
+                    description: 'Outer\nRelative East\nw/ D2(M2)',
+                    imageUrl: './strats/idyll/pair-stack-pre-swap.png',
+                    mask: 'radial-gradient(circle at 62% 22%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'spread',
+                    description: 'Relative NEE',
+                    imageUrl: './strats/idyll/spread.png',
+                    mask: 'radial-gradient(circle at 41% 23.6%, black 12%, rgba(0, 0, 0, 0.2) 12%)'
+                },
+                {
+                    mechanic: 'towers',
+                    description: 'Relative South/East',
+                    imageUrl: './strats/idyll/towers-pre-swap-w.png',
+                    mask: 'radial-gradient(circle at 76.2% 50%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 53% 28.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'bramble',
+                    description: 'Relative North',
+                    imageUrl: './strats/idyll/brambles-w.png',
+                    mask: 'radial-gradient(circle at 24% 53%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Ring\nRelative West',
+                    imageUrl: './strats/idyll/begone-with-you-w.png',
+                    mask: 'radial-gradient(circle at 33% 80%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+                {
+                    mechanic: 'swap',
+                    description: 'Relative South',
+                    imageUrl: './strats/idyll/looming-chaos-w.png',
+                    mask: 'radial-gradient(circle at 65% 53%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
+            swapNote: "I got a clean swap to the east platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'towers',
+                    description: 'Relative South/East',
+                    imageUrl: './strats/idyll/towers-post-swap-e.png',
+                    mask: 'radial-gradient(circle at 43.2% 72%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 23% 50.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'pairs',
+                    description: 'Outer\nRelative East\nw/ DPS from tiles\nDOUBLE CHECK MACROS IF USED',
+                    imageUrl: './strats/idyll/pair-stack-post-swap.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 57% 36%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Ring\nRelative West',
+                    imageUrl: './strats/idyll/begone-with-you-e.png',
+                    mask: 'radial-gradient(circle at 63% 22%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+            ]
+        },
+        {
+            alliance: 'B',
+            role: 'Tank',
+            party: 1,
+            notes: 'East of SW corner tile | MT',
+            startingArea: 'Platform',
+            strats: [
+                {
+                    mechanic: 'idle',
+                    description: 'East of SW corner tile',
+                    imageUrl: './strats/idyll/overall.png',
+                    mask: 'radial-gradient(circle at 41% 77%, black 8%, rgba(0, 0, 0, 0.2) 8%)'
+                },
+                {
+                    mechanic: 'seed placement',
+                    description: 'H > D > T',
+                    imageUrl: './strats/idyll/brambles-w.png',
+                    mask: 'radial-gradient(circle at 69% 18%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 69% 51%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: '1 tile east to SW corner tile',
+                    imageUrl: './strats/idyll/wild-charge-sw.png',
+                    mask: 'radial-gradient(circle at 60.8% 33.6%, black 12%, rgba(0, 0, 0, 0.2) 12%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Center of Idle Tiles',
+                    imageUrl: './strats/idyll/begone-with-you-sw.png',
+                    mask: 'radial-gradient(circle at 67% 61%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+                {
+                    mechanic: 'spinny',
+                    description: 'Lead the Corner Team if chased\nor go into horizontal end',
+                    imageUrl: './strats/idyll/spinny.png',
+                    mask: 'radial-gradient(circle at 11% 39%, black 7%, rgba(0, 0, 0, 0.2) 7%), radial-gradient(circle at 79% 89.7%, black 7%, rgba(0, 0, 0, 0.2) 7%)'
+                },
+                {
+                    mechanic: 'swap',
+                    description: 'East of SW corner tile',
+                    imageUrl: './strats/idyll/looming-chaos-tilew.png',
+                    mask: 'radial-gradient(circle at 65% 19%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
+            swapNote: "I got a clean swap to the east platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'towers',
+                    description: 'Relative North/West',
+                    imageUrl: './strats/idyll/towers-post-swap-e.png',
+                    mask: 'radial-gradient(circle at 42.2% 31%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 66% 50.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'pairs',
+                    description: 'Inner\nRelative North\nw/ D3(R1)\nDOUBLE CHECK MACROS IF USED',
+                    imageUrl: './strats/idyll/pair-stack-post-swap.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 48% 54%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Platform Inside\nRelative SE',
+                    imageUrl: './strats/idyll/begone-with-you-e.png',
+                    mask: 'radial-gradient(circle at 43% 61%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+            ]
+        },
+        {
+            alliance: 'B',
+            role: 'Tank',
+            party: 2,
+            notes: 'East of SE corner tile | ST',
+            startingArea: 'Platform',
+            strats: [
+                {
+                    mechanic: 'idle',
+                    description: 'East of SE corner tile',
+                    imageUrl: './strats/idyll/overall.png',
+                    mask: 'radial-gradient(circle at 57% 77%, black 8%, rgba(0, 0, 0, 0.2) 8%)'
+                },
+                {
+                    mechanic: 'seed placement',
+                    description: 'H > D > T',
+                    imageUrl: './strats/idyll/brambles-w.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 69% 18%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 69% 51%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: '1 tile east to SE corner tile',
+                    imageUrl: './strats/idyll/wild-charge-sw.png',
+                    transform: 'scale(-1,1)',
+                    mask: 'radial-gradient(circle at 60.8% 33.6%, black 12%, rgba(0, 0, 0, 0.2) 12%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Center of Idle Tiles',
+                    imageUrl: './strats/idyll/begone-with-you-se.png',
+                    mask: 'radial-gradient(circle at 31% 61%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+                {
+                    mechanic: 'spinny',
+                    description: 'Lead the Corner Team if chased\nor go into horizontal end',
+                    imageUrl: './strats/idyll/spinny.png',
+                    mask: 'radial-gradient(circle at 22% 39%, black 7%, rgba(0, 0, 0, 0.2) 7%), radial-gradient(circle at 92% 89.7%, black 7%, rgba(0, 0, 0, 0.2) 7%)'
+                },
+                {
+                    mechanic: 'swap',
+                    description: 'West of SW corner tile',
+                    imageUrl: './strats/idyll/looming-chaos-tilee.png',
+                    mask: 'radial-gradient(circle at 38% 81%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
+            swapNote: "I got a clean swap to the west platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'towers',
+                    description: 'Relative North/West',
+                    imageUrl: './strats/idyll/towers-post-swap-w.png',
+                    mask: 'radial-gradient(circle at 47.2% 46%, black 20%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 67% 71.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'pairs',
+                    description: 'Inner\nRelative North\nw/ D3(R1)\nDOUBLE CHECK MACROS IF USED',
+                    imageUrl: './strats/idyll/pair-stack-post-swap.png',
+                    mask: 'radial-gradient(circle at 48% 54%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Platform Inside\nRelative SE',
+                    imageUrl: './strats/idyll/begone-with-you-w.png',
+                    mask: 'radial-gradient(circle at 55% 41%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+            ]
+        },
+        {
+            alliance: 'B',
+            role: 'Healer',
+            party: 1,
+            notes: 'North of SW corner tile',
+            startingArea: 'Platform',
+            strats: [
+                {
+                    mechanic: 'idle',
+                    description: 'North of SW corner tile',
+                    imageUrl: './strats/idyll/overall.png',
+                    mask: 'radial-gradient(circle at 29% 61%, black 8%, rgba(0, 0, 0, 0.2) 8%)'
+                },
+                {
+                    mechanic: 'seed placement',
+                    description: 'H > D > T',
+                    imageUrl: './strats/idyll/brambles-w.png',
+                    mask: 'radial-gradient(circle at 69% 18%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 69% 51%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: 'SW corner tile',
+                    imageUrl: './strats/idyll/wild-charge-sw.png',
+                    mask: 'radial-gradient(circle at 50.8% 40.6%, black 12%, rgba(0, 0, 0, 0.2) 12%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Idle tile',
+                    imageUrl: './strats/idyll/begone-with-you-sw.png',
+                    mask: 'radial-gradient(circle at 42% 33%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+                {
+                    mechanic: 'spinny',
+                    description: 'Follow the tank of the Corner Team if chased\nLead if not',
+                    imageUrl: './strats/idyll/spinny.png',
+                    mask: 'radial-gradient(circle at 20% 34%, black 7%, rgba(0, 0, 0, 0.2) 7%), radial-gradient(circle at 69% 89.7%, black 5%, rgba(0, 0, 0, 0.2) 5%)'
+                },
+                {
+                    mechanic: 'swap',
+                    description: 'North tile of NW corner',
+                    imageUrl: './strats/idyll/looming-chaos-tilew.png',
+                    mask: 'radial-gradient(circle at 40% 68%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
+            swapNote: "I got a clean swap to the east platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'towers',
+                    description: 'Relative North/West',
+                    imageUrl: './strats/idyll/towers-post-swap-e.png',
+                    mask: 'radial-gradient(circle at 42.2% 31%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 66% 50.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'pairs',
+                    description: 'Inner\nRelative West\nw/ D2(M2) from B\nDOUBLE CHECK MACROS IF USED',
+                    imageUrl: './strats/idyll/pair-stack-post-swap.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 56% 62%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Platform Inside\nRelative SW',
+                    imageUrl: './strats/idyll/begone-with-you-e.png',
+                    mask: 'radial-gradient(circle at 43% 41%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+            ]
+        },
+        {
+            alliance: 'B',
+            role: 'Healer',
+            party: 2,
+            notes: 'North of SE corner tile',
+            startingArea: 'Platform',
+            strats: [
+                {
+                    mechanic: 'idle',
+                    description: 'North of SE corner tile',
+                    imageUrl: './strats/idyll/overall.png',
+                    mask: 'radial-gradient(circle at 68% 61%, black 8%, rgba(0, 0, 0, 0.2) 8%)'
+                },
+                {
+                    mechanic: 'seed placement',
+                    description: 'H > D > T',
+                    imageUrl: './strats/idyll/brambles-w.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 69% 18%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 69% 51%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: 'SE corner tile',
+                    imageUrl: './strats/idyll/wild-charge-sw.png',
+                    transform: 'scale(-1,1)',
+                    mask: 'radial-gradient(circle at 50.8% 40.6%, black 12%, rgba(0, 0, 0, 0.2) 12%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Idle tile',
+                    imageUrl: './strats/idyll/begone-with-you-se.png',
+                    mask: 'radial-gradient(circle at 54% 34%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+                {
+                    mechanic: 'spinny',
+                    description: 'Follow the tank of the Corner Team if chased\nLead if not',
+                    imageUrl: './strats/idyll/spinny.png',
+                    mask: 'radial-gradient(circle at 32% 39%, black 7%, rgba(0, 0, 0, 0.2) 7%), radial-gradient(circle at 79% 84.7%, black 5%, rgba(0, 0, 0, 0.2) 5%)'
+                },
+                {
+                    mechanic: 'swap',
+                    description: 'North tile of NW corner',
+                    imageUrl: './strats/idyll/looming-chaos-tilee.png',
+                    mask: 'radial-gradient(circle at 59% 68%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
+            swapNote: "I got a clean swap to the west platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'towers',
+                    description: 'Relative North/West',
+                    imageUrl: './strats/idyll/towers-post-swap-w.png',
+                    mask: 'radial-gradient(circle at 47.2% 46%, black 20%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 67% 71.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'pairs',
+                    description: 'Inner\nRelative West\nw/ D2(M2) from B\nDOUBLE CHECK MACROS IF USED',
+                    imageUrl: './strats/idyll/pair-stack-post-swap.png',
+                    mask: 'radial-gradient(circle at 56% 62%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Platform Inside\nRelative SW',
+                    imageUrl: './strats/idyll/begone-with-you-w.png',
+                    mask: 'radial-gradient(circle at 57% 60%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+            ]
+        },
+        {
+            alliance: 'B',
+            role: 'Melee',
+            party: 1,
+            notes: 'South of NW corner tile | D1',
+            startingArea: 'Platform',
+            strats: [
+                {
+                    mechanic: 'idle',
+                    description: 'South of NW corner tile',
+                    imageUrl: './strats/idyll/overall.png',
+                    mask: 'radial-gradient(circle at 30% 37%, black 8%, rgba(0, 0, 0, 0.2) 8%)'
+                },
+                {
+                    mechanic: 'seed placement',
+                    description: 'H > D > T',
+                    imageUrl: './strats/idyll/brambles-w.png',
+                    transform: 'scale(1,-1)',
+                    mask: 'radial-gradient(circle at 69% 18%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 69% 51%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: 'NW corner tile',
+                    imageUrl: './strats/idyll/wild-charge-nw.png',
+                    mask: 'radial-gradient(circle at 50.8% 50.6%, black 20%, rgba(0, 0, 0, 0.2) 20%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Idle tile',
+                    imageUrl: './strats/idyll/begone-with-you-nw.png',
+                    mask: 'radial-gradient(circle at 43% 61%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+                {
+                    mechanic: 'spinny',
+                    description: 'First or last person to follow the train',
+                    imageUrl: './strats/idyll/spinny.png',
+                    mask: 'radial-gradient(circle at 55% 10%, black 5%, rgba(0, 0, 0, 0.2) 5%), radial-gradient(circle at 22% 65.7%, black 6%, rgba(0, 0, 0, 0.2) 6%)'
+                },
+                {
+                    mechanic: 'swap',
+                    description: 'South tile from NW corner',
+                    imageUrl: './strats/idyll/looming-chaos-tilew.png',
+                    mask: 'radial-gradient(circle at 40% 31%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
+            swapNote: "I got a clean swap to the east platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'towers',
+                    description: 'Relative North/West',
+                    imageUrl: './strats/idyll/towers-post-swap-e.png',
+                    mask: 'radial-gradient(circle at 42.2% 31%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 66% 50.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'pairs',
+                    description: 'Inner\nRelative East\nw/ D4(R2) from A\nDOUBLE CHECK MACROS IF USED',
+                    imageUrl: './strats/idyll/pair-stack-post-swap.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 56% 44%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Platform\nRelative NE',
+                    imageUrl: './strats/idyll/begone-with-you-e.png',
+                    mask: 'radial-gradient(circle at 75% 62%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+            ]
+        },
+        {
+            alliance: 'B',
+            role: 'Melee',
+            party: 2,
+            notes: 'South of NE corner tile | D2',
+            startingArea: 'Platform',
+            strats: [
+                {
+                    mechanic: 'idle',
+                    description: 'South of NE corner tile',
+                    imageUrl: './strats/idyll/overall.png',
+                    mask: 'radial-gradient(circle at 68% 37%, black 8%, rgba(0, 0, 0, 0.2) 8%)'
+                },
+                {
+                    mechanic: 'seed placement',
+                    description: 'H > D > T',
+                    imageUrl: './strats/idyll/brambles-w.png',
+                    transform: 'scale(-1,1)',
+                    mask: 'radial-gradient(circle at 69% 18%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 69% 51%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: 'NE corner tile',
+                    imageUrl: './strats/idyll/wild-charge-nw.png',
+                    transform: 'scale(-1,1)',
+                    mask: 'radial-gradient(circle at 50.8% 50.6%, black 20%, rgba(0, 0, 0, 0.2) 20%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Idle tile',
+                    imageUrl: './strats/idyll/begone-with-you-ne.png',
+                    mask: 'radial-gradient(circle at 63% 60%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+                {
+                    mechanic: 'spinny',
+                    description: 'First or last person to follow the train',
+                    imageUrl: './strats/idyll/spinny.png',
+                    mask: 'radial-gradient(circle at 78% 13%, black 5%, rgba(0, 0, 0, 0.2) 5%), radial-gradient(circle at 46% 60.7%, black 6%, rgba(0, 0, 0, 0.2) 6%)'
+                },
+                {
+                    mechanic: 'swap',
+                    description: 'South tile from NE corner',
+                    imageUrl: './strats/idyll/looming-chaos-tilee.png',
+                    mask: 'radial-gradient(circle at 59% 31%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
+            swapNote: "I got a clean swap to the west platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'towers',
+                    description: 'Relative North/West',
+                    imageUrl: './strats/idyll/towers-post-swap-w.png',
+                    mask: 'radial-gradient(circle at 47.2% 46%, black 20%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 67% 71.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'pairs',
+                    description: 'Inner\nRelative East\nw/ D4(R2) from A\nDOUBLE CHECK MACROS IF USED',
+                    imageUrl: './strats/idyll/pair-stack-post-swap.png',
+                    mask: 'radial-gradient(circle at 57% 45%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Platform\nRelative NE',
+                    imageUrl: './strats/idyll/begone-with-you-w.png',
+                    mask: 'radial-gradient(circle at 18% 39%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+            ]
+        },
+        {
+            alliance: 'B',
+            role: 'Ranged',
+            party: 1,
+            notes: 'South of SW corner tile | D3',
+            startingArea: 'Platform',
+            strats: [
+                {
+                    mechanic: 'idle',
+                    description: 'South of SW corner tile',
+                    imageUrl: './strats/idyll/overall.png',
+                    mask: 'radial-gradient(circle at 30% 85%, black 8%, rgba(0, 0, 0, 0.2) 8%)'
+                },
+                {
+                    mechanic: 'seed placement',
+                    description: 'H > D > T',
+                    imageUrl: './strats/idyll/brambles-w.png',
+                    mask: 'radial-gradient(circle at 69% 18%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 69% 51%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: 'SW corner tile',
+                    imageUrl: './strats/idyll/wild-charge-sw.png',
+                    mask: 'radial-gradient(circle at 38.8% 59.6%, black 11%, rgba(0, 0, 0, 0.2) 11%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Idle tile',
+                    imageUrl: './strats/idyll/begone-with-you-sw.png',
+                    mask: 'radial-gradient(circle at 43% 84%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+                {
+                    mechanic: 'spinny',
+                    description: 'Last of the train if chased; otherwise vertical dead end',
+                    imageUrl: './strats/idyll/spinny.png',
+                    mask: 'radial-gradient(circle at 20% 47%, black 7%, rgba(0, 0, 0, 0.2) 7%), radial-gradient(circle at 57% 89.7%, black 5%, rgba(0, 0, 0, 0.2) 5%)'
+                },
+                {
+                    mechanic: 'swap',
+                    description: 'SW corner',
+                    imageUrl: './strats/idyll/looming-chaos-tilew.png',
+                    mask: 'radial-gradient(circle at 40% 81%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
+            swapNote: "I got a clean swap to the east platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'towers',
+                    description: 'Relative North/West',
+                    imageUrl: './strats/idyll/towers-post-swap-e.png',
+                    mask: 'radial-gradient(circle at 42.2% 31%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 66% 50.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'pairs',
+                    description: 'Inner\nRelative East\nw/ D4(R2) from A\nDOUBLE CHECK MACROS IF USED',
+                    imageUrl: './strats/idyll/pair-stack-post-swap.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 56% 44%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Platform\nRelative NE',
+                    imageUrl: './strats/idyll/begone-with-you-e.png',
+                    mask: 'radial-gradient(circle at 75% 62%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+            ]
+        },
+        {
+            alliance: 'B',
+            role: 'Ranged',
+            party: 2,
+            notes: 'South of SE corner tile | D4',
+            startingArea: 'Platform',
+            strats: [
+                {
+                    mechanic: 'idle',
+                    description: 'South of SE corner tile',
+                    imageUrl: './strats/idyll/overall.png',
+                    mask: 'radial-gradient(circle at 68% 88%, black 8%, rgba(0, 0, 0, 0.2) 8%)'
+                },
+                {
+                    mechanic: 'seed placement',
+                    description: 'H > D > T',
+                    imageUrl: './strats/idyll/brambles-w.png',
+                    transform: 'scale(-1,1)',
+                    mask: 'radial-gradient(circle at 69% 18%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 69% 51%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: 'SE corner tile',
+                    transform: 'scale(-1,1)',
+                    imageUrl: './strats/idyll/wild-charge-sw.png',
+                    mask: 'radial-gradient(circle at 38.8% 59.6%, black 11%, rgba(0, 0, 0, 0.2) 11%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Idle tile',
+                    imageUrl: './strats/idyll/begone-with-you-se.png',
+                    mask: 'radial-gradient(circle at 57% 82%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+                {
+                    mechanic: 'spinny',
+                    description: 'Last of the train if chased; otherwise vertical dead end',
+                    imageUrl: './strats/idyll/spinny.png',
+                    mask: 'radial-gradient(circle at 45% 39%, black 7%, rgba(0, 0, 0, 0.2) 7%), radial-gradient(circle at 78% 95.7%, black 4%, rgba(0, 0, 0, 0.2) 4%)'
+                },
+                {
+                    mechanic: 'swap',
+                    description: 'SE corner',
+                    imageUrl: './strats/idyll/looming-chaos-tilee.png',
+                    mask: 'radial-gradient(circle at 60% 81%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
+            swapNote: "I got a clean swap to the west platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'towers',
+                    description: 'Relative North/West',
+                    imageUrl: './strats/idyll/towers-post-swap-w.png',
+                    mask: 'radial-gradient(circle at 47.2% 46%, black 20%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 67% 71.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'pairs',
+                    description: 'Inner\nRelative East\nw/ D4(R2) from A\nDOUBLE CHECK MACROS IF USED',
+                    imageUrl: './strats/idyll/pair-stack-post-swap.png',
+                    mask: 'radial-gradient(circle at 57% 45%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Platform\nRelative NE',
+                    imageUrl: './strats/idyll/begone-with-you-w.png',
+                    mask: 'radial-gradient(circle at 18% 39%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+            ]
+        },
+        {
+            alliance: 'C',
+            role: 'Tank',
+            party: 1,
+            notes: 'Right/East platform, Face boss Outside/Relative North | MT',
+            startingArea: 'Platform',
+            strats: [
+                {
+                    mechanic: 'pairs',
+                    description: 'Inner\nRelative North\nw/ H2',
+                    imageUrl: './strats/idyll/pair-stack-pre-swap.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 48% 48%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'spread',
+                    description: 'Relative NNW',
+                    imageUrl: './strats/idyll/spread.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 33% 53.6%, black 12%, rgba(0, 0, 0, 0.2) 12%)'
+                },
+                {
+                    mechanic: 'towers',
+                    description: 'Relative North/West',
+                    imageUrl: './strats/idyll/towers-pre-swap-w.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 30.2% 50%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 53% 70.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'bramble',
+                    description: 'None, stay on boss',
+                    imageUrl: './strats/idyll/brambles-w.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 23% 35%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Platform Inside\nRelative SE',
+                    imageUrl: './strats/idyll/begone-with-you-e.png',
+                    mask: 'radial-gradient(circle at 43% 62%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+                {
+                    mechanic: 'swap',
+                    description: 'Relative North',
+                    imageUrl: './strats/idyll/looming-chaos-e.png',
+                    mask: 'radial-gradient(circle at 72% 48%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
+            swapNote: "I got a clean swap to the NW or SW tiles! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'idle',
+                    description: 'Both 2 tiles east to NW/SW corner tile',
+                    imageUrl: './strats/idyll/overall.png',
+                    mask: 'radial-gradient(circle at 40% 22%, black 8%, rgba(0, 0, 0, 0.2) 8%), radial-gradient(circle at 40% 77%, black 8%, rgba(0, 0, 0, 0.2) 8%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: '1 tile east to NW/SW corner tile',
+                    imageUrl: './strats/idyll/wild-charge-tiles.png',
+                    mask: 'radial-gradient(circle at 27.8% 21.6%, black 7%, rgba(0, 0, 0, 0.2) 7%), radial-gradient(circle at 29% 82%, black 7%, rgba(0, 0, 0, 0.2) 7%)'
+                },
+                {
+                    mechanic: 'chaser',
+                    description: 'CCW of corner tile',
+                    imageUrl: './strats/idyll/chaser.png',
+                    mask: 'radial-gradient(circle at 21% 33%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 33% 79%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Center of Idle Tiles',
+                    imageUrl: './strats/idyll/begone-with-you.png',
+                    mask: 'radial-gradient(circle at 39.8% 19.6%, black 7%, rgba(0, 0, 0, 0.2) 7%), radial-gradient(circle at 40% 78%, black 7%, rgba(0, 0, 0, 0.2) 7%)',
+                },
+            ]
+        },
+        {
+            alliance: 'C',
+            role: 'Tank',
+            party: 2,
+            notes: 'East of NE corner tile | ST',
+            startingArea: 'Platform',
+            strats: [
+                {
+                    mechanic: 'idle',
+                    description: 'East of NE corner tile',
+                    imageUrl: './strats/idyll/overall.png',
+                    mask: 'radial-gradient(circle at 58% 22%, black 8%, rgba(0, 0, 0, 0.2) 8%)'
+                },
+                {
+                    mechanic: 'seed placement',
+                    description: 'H > D > T',
+                    imageUrl: './strats/idyll/brambles-w.png',
+                    transform: 'scale(-1,-1)',
+                    mask: 'radial-gradient(circle at 69% 18%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 69% 51%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: '1 tile east to NE corner tile',
+                    imageUrl: './strats/idyll/wild-charge-nw.png',
+                    transform: 'scale(-1,1)',
+                    mask: 'radial-gradient(circle at 77.8% 55.6%, black 20%, rgba(0, 0, 0, 0.2) 20%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Center of Idle Tiles',
+                    imageUrl: './strats/idyll/begone-with-you-ne.png',
+                    mask: 'radial-gradient(circle at 37% 32%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+                {
+                    mechanic: 'spinny',
+                    description: 'Lead the Corner Team if chased\nor go into horizontal end',
+                    imageUrl: './strats/idyll/spinny.png',
+                    mask: 'radial-gradient(circle at 89% 10%, black 5%, rgba(0, 0, 0, 0.2) 5%), radial-gradient(circle at 22% 60.7%, black 7%, rgba(0, 0, 0, 0.2) 7%)'
+                },
+                {
+                    mechanic: 'swap',
+                    description: 'West of NE corner tile',
+                    imageUrl: './strats/idyll/looming-chaos-tilee.png',
+                    mask: 'radial-gradient(circle at 38% 19%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
+            swapNote: "I got a clean swap to the east platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'towers',
+                    description: 'Relative North/West',
+                    imageUrl: './strats/idyll/towers-post-swap-w.png',
+                    mask: 'radial-gradient(circle at 47.2% 46%, black 20%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 67% 71.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'pairs',
+                    description: 'Inner\nRelative North\nw/ D3(R1)\nDOUBLE CHECK MACROS IF USED',
+                    imageUrl: './strats/idyll/pair-stack-post-swap.png',
+                    mask: 'radial-gradient(circle at 48% 54%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Platform Inside\nRelative SE',
+                    imageUrl: './strats/idyll/begone-with-you-w.png',
+                    mask: 'radial-gradient(circle at 57% 41%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+            ]
+        },
+        {
+            alliance: 'C',
+            role: 'Healer',
+            party: 1,
+            notes: 'North of NE corner tile',
+            startingArea: 'Platform',
+            strats: [
+                {
+                    mechanic: 'idle',
+                    description: 'North of NE corner tile',
+                    imageUrl: './strats/idyll/overall.png',
+                    mask: 'radial-gradient(circle at 68% 13%, black 8%, rgba(0, 0, 0, 0.2) 8%)'
+                },
+                {
+                    mechanic: 'seed placement',
+                    description: 'H > D > T',
+                    imageUrl: './strats/idyll/brambles-w.png',
+                    transform: 'scale(-1,1)',
+                    mask: 'radial-gradient(circle at 69% 18%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 69% 51%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: 'North tile from NE corner',
+                    imageUrl: './strats/idyll/wild-charge-nw.png',
+                    transform: 'scale(-1,1)',
+                    mask: 'radial-gradient(circle at 50.8% 24.6%, black 20%, rgba(0, 0, 0, 0.2) 20%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Idle tile',
+                    imageUrl: './strats/idyll/begone-with-you-ne.png',
+                    mask: 'radial-gradient(circle at 63% 11%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+                {
+                    mechanic: 'spinny',
+                    description: 'Follow the tank of the Corner Team if chased\nor go into vertical end',
+                    imageUrl: './strats/idyll/spinny.png',
+                    mask: 'radial-gradient(circle at 77% 4%, black 5%, rgba(0, 0, 0, 0.2) 5%), radial-gradient(circle at 33% 60.7%, black 7%, rgba(0, 0, 0, 0.2) 7%)'
+                },
+                {
+                    mechanic: 'swap',
+                    description: 'NE corner tile',
+                    imageUrl: './strats/idyll/looming-chaos-tilee.png',
+                    mask: 'radial-gradient(circle at 60% 19%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
+            swapNote: "I got a clean swap to the west platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'towers',
+                    description: 'Relative North/West',
+                    imageUrl: './strats/idyll/towers-post-swap-w.png',
+                    mask: 'radial-gradient(circle at 42.2% 31%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 66% 50.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'pairs',
+                    description: 'Inner\nRelative West\nw/ D2(M2) from B\nDOUBLE CHECK MACROS IF USED',
+                    imageUrl: './strats/idyll/pair-stack-post-swap.png',
+                    mask: 'radial-gradient(circle at 56% 62%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Platform Inside\nRelative SW',
+                    imageUrl: './strats/idyll/begone-with-you-w.png',
+                    mask: 'radial-gradient(circle at 58% 60%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+            ]
+        },
+        {
+            alliance: 'C',
+            role: 'Healer',
+            party: 2,
+            notes: 'Right/East platform',
+            startingArea: 'Platform',
+            strats: [
+                {
+                    mechanic: 'pairs',
+                    description: 'Outer\nRelative North\nw/ MT',
+                    imageUrl: './strats/idyll/pair-stack-pre-swap.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 32% 48%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'spread',
+                    description: 'Relative NNE',
+                    imageUrl: './strats/idyll/spread.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 33% 35.6%, black 12%, rgba(0, 0, 0, 0.2) 12%)'
+                },
+                {
+                    mechanic: 'towers',
+                    description: 'Relative South/East',
+                    imageUrl: './strats/idyll/towers-pre-swap-w.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 74.2% 50%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 53% 28.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'bramble',
+                    description: 'Relative NE',
+                    imageUrl: './strats/idyll/brambles-w.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 23% 18%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Platform Inside\nRelative SW',
+                    imageUrl: './strats/idyll/begone-with-you-e.png',
+                    mask: 'radial-gradient(circle at 43% 40%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+                {
+                    mechanic: 'swap',
+                    description: 'Relative North',
+                    imageUrl: './strats/idyll/looming-chaos-e.png',
+                    mask: 'radial-gradient(circle at 73% 51%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
+            swapNote: "I got a clean swap to the NW or SW tiles! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'idle',
+                    description: 'North from NW/SW corner tile',
+                    imageUrl: './strats/idyll/overall.png',
+                    mask: 'radial-gradient(circle at 29% 17%, black 8%, rgba(0, 0, 0, 0.2) 8%), radial-gradient(circle at 29% 60%, black 8%, rgba(0, 0, 0, 0.2) 8%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: 'See image',
+                    imageUrl: './strats/idyll/wild-charge-tiles.png',
+                    mask: 'radial-gradient(circle at 18.8% 10.6%, black 7%, rgba(0, 0, 0, 0.2) 7%), radial-gradient(circle at 19% 83%, black 7%, rgba(0, 0, 0, 0.2) 7%)'
+                },
+                {
+                    mechanic: 'chaser',
+                    description: 'See image\nStick to left side of the tile facing boss',
+                    imageUrl: './strats/idyll/chaser.png',
+                    mask: 'radial-gradient(circle at 22% 11%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 9% 78%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'See image',
+                    imageUrl: './strats/idyll/begone-with-you.png',
+                    mask: 'radial-gradient(circle at 29.8% 9.6%, black 7%, rgba(0, 0, 0, 0.2) 7%), radial-gradient(circle at 30% 61%, black 7%, rgba(0, 0, 0, 0.2) 7%)',
+                },
+            ]
+        },
+        {
+            alliance: 'C',
+            role: 'Melee',
+            party: 1,
+            notes: 'Right/East platform | D1',
+            startingArea: 'Platform',
+            strats: [
+                {
+                    mechanic: 'pairs',
+                    description: 'Inner\nRelative West\nw/ D3(R1)',
+                    imageUrl: './strats/idyll/pair-stack-pre-swap.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 60% 55%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'spread',
+                    description: 'Relative West',
+                    imageUrl: './strats/idyll/spread.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 61% 69.6%, black 12%, rgba(0, 0, 0, 0.2) 12%)'
+                },
+                {
+                    mechanic: 'towers',
+                    description: 'Relative North/West',
+                    imageUrl: './strats/idyll/towers-pre-swap-w.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 30.2% 50%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 53% 70.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'bramble',
+                    description: 'None, stay on boss',
+                    imageUrl: './strats/idyll/brambles-w.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 23% 35%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Platform\nRelative NE',
+                    imageUrl: './strats/idyll/begone-with-you-e.png',
+                    mask: 'radial-gradient(circle at 74% 61%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+                {
+                    mechanic: 'swap',
+                    description: 'Relative North',
+                    imageUrl: './strats/idyll/looming-chaos-e.png',
+                    mask: 'radial-gradient(circle at 71% 50%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+            ],
+            swapNote: "I got a clean swap to the NW or SW tiles! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'idle',
+                    description: 'South from NW/SW corner tile',
+                    imageUrl: './strats/idyll/overall.png',
+                    mask: 'radial-gradient(circle at 28% 38%, black 8%, rgba(0, 0, 0, 0.2) 8%), radial-gradient(circle at 28% 82%, black 8%, rgba(0, 0, 0, 0.2) 8%)'
+                },
+                {
+                    mechanic: 'wild charge',
+                    description: 'See image',
+                    imageUrl: './strats/idyll/wild-charge-tiles.png',
+                    mask: 'radial-gradient(circle at 18% 19.6%, black 7%, rgba(0, 0, 0, 0.2) 7%), radial-gradient(circle at 18% 92%, black 7%, rgba(0, 0, 0, 0.2) 7%)'
+                },
+                {
+                    mechanic: 'chaser',
+                    description: 'See image\nStick to left side of the tile facing boss',
+                    imageUrl: './strats/idyll/chaser.png',
+                    mask: 'radial-gradient(circle at 11% 21%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 21% 89%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'See image',
+                    imageUrl: './strats/idyll/begone-with-you.png',
+                    mask: 'radial-gradient(circle at 29.8% 34.6%, black 7%, rgba(0, 0, 0, 0.2) 7%), radial-gradient(circle at 30% 87%, black 7%, rgba(0, 0, 0, 0.2) 7%)',
+                },
+            ]
+        },
+        {
+            alliance: 'C',
+            role: 'Melee',
+            party: 2,
+            notes: 'Right/East platform | D2',
+            startingArea: 'Platform',
+            strats: [
+                {
+                    mechanic: 'pairs',
+                    description: 'Inner\nRelative East\nw/ D4(R2)',
+                    imageUrl: './strats/idyll/pair-stack-pre-swap.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 60% 35%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'spread',
+                    description: 'Relative East',
+                    imageUrl: './strats/idyll/spread.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 56% 19.6%, black 12%, rgba(0, 0, 0, 0.2) 12%)'
+                },
+                {
+                    mechanic: 'towers',
+                    description: 'Relative South/East',
+                    imageUrl: './strats/idyll/towers-pre-swap-w.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 76.2% 50%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 53% 28.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'bramble',
+                    description: 'Relative SE',
+                    imageUrl: './strats/idyll/brambles-w.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 58% 28%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Platform\nRelative NW',
+                    imageUrl: './strats/idyll/begone-with-you-e.png',
+                    mask: 'radial-gradient(circle at 75% 40%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+                {
+                    mechanic: 'swap',
+                    description: 'Relative South',
+                    imageUrl: './strats/idyll/looming-chaos-e.png',
+                    mask: 'radial-gradient(circle at 36% 50%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+            ],
+            swapNote: "I got a clean swap to the west platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'towers',
+                    description: 'Relative South/East',
+                    imageUrl: './strats/idyll/towers-post-swap-w.png',
+                    mask: 'radial-gradient(circle at 79.2% 49%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 62% 29.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'pairs',
+                    description: 'Outer\nRelative West\nw/ Healer from tiles\nDOUBLE CHECK MACROS IF USED',
+                    imageUrl: './strats/idyll/pair-stack-post-swap.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 56% 71%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Platform\nRelative SE',
+                    imageUrl: './strats/idyll/begone-with-you-w.png',
+                    mask: 'radial-gradient(circle at 20% 60%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+            ]
+        },
+        {
+            alliance: 'C',
+            role: 'Ranged',
+            party: 1,
+            notes: 'Right/East platform | D3',
+            startingArea: 'Platform',
+            strats: [
+                {
+                    mechanic: 'pairs',
+                    description: 'Outer\nRelative West\nw/ D1(M1)',
+                    imageUrl: './strats/idyll/pair-stack-pre-swap.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 60% 68%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'spread',
+                    description: 'Relative NWW',
+                    imageUrl: './strats/idyll/spread.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 41% 63.6%, black 12%, rgba(0, 0, 0, 0.2) 12%)'
+                },
+                {
+                    mechanic: 'towers',
+                    description: 'Relative North/West',
+                    imageUrl: './strats/idyll/towers-pre-swap-w.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 30.2% 50%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 53% 70.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'bramble',
+                    description: 'Relative SW',
+                    imageUrl: './strats/idyll/brambles-w.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 58% 42%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Ring\nRelative East',
+                    imageUrl: './strats/idyll/begone-with-you-e.png',
+                    mask: 'radial-gradient(circle at 62% 82%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+                {
+                    mechanic: 'swap',
+                    description: 'Relative South',
+                    imageUrl: './strats/idyll/looming-chaos-e.png',
+                    mask: 'radial-gradient(circle at 36% 49%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+            ],
+            swapNote: "I got a clean swap to the west platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'towers',
+                    description: 'Relative South/East',
+                    imageUrl: './strats/idyll/towers-post-swap-w.png',
+                    mask: 'radial-gradient(circle at 79.2% 49%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 62% 29.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'pairs',
+                    description: 'Outer\nRelative West\nw/ Tank from tiles\nDOUBLE CHECK MACROS IF USED',
+                    imageUrl: './strats/idyll/pair-stack-post-swap.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 40% 55%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Ring\nRelative East',
+                    imageUrl: './strats/idyll/begone-with-you-w.png',
+                    mask: 'radial-gradient(circle at 33% 20%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+            ]
+        },
+        {
+            alliance: 'C',
+            role: 'Ranged',
+            party: 2,
+            notes: 'Right/East platform | D4',
+            startingArea: 'Platform',
+            strats: [
+                {
+                    mechanic: 'pairs',
+                    description: 'Outer\nRelative East\nw/ D2(M2)',
+                    imageUrl: './strats/idyll/pair-stack-pre-swap.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 62% 22%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'spread',
+                    description: 'Relative NEE',
+                    imageUrl: './strats/idyll/spread.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 41% 23.6%, black 12%, rgba(0, 0, 0, 0.2) 12%)'
+                },
+                {
+                    mechanic: 'towers',
+                    description: 'Relative South/East',
+                    imageUrl: './strats/idyll/towers-pre-swap-w.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 76.2% 50%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 53% 28.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'bramble',
+                    description: 'Relative North',
+                    imageUrl: './strats/idyll/brambles-w.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 24% 53%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Ring\nRelative West',
+                    imageUrl: './strats/idyll/begone-with-you-e.png',
+                    mask: 'radial-gradient(circle at 64% 21%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+                {
+                    mechanic: 'swap',
+                    description: 'Relative South',
+                    imageUrl: './strats/idyll/looming-chaos-e.png',
+                    mask: 'radial-gradient(circle at 36% 49%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+            ],
+            swapNote: "I got a clean swap to the west platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'towers',
+                    description: 'Relative South/East',
+                    imageUrl: './strats/idyll/towers-post-swap-w.png',
+                    mask: 'radial-gradient(circle at 79.2% 49%, black 15%, rgba(0, 0, 0, 0.2) 15%), radial-gradient(circle at 62% 29.7%, black 15%, rgba(0, 0, 0, 0.2) 15%)'
+                },
+                {
+                    mechanic: 'pairs',
+                    description: 'Outer\nRelative East\nw/ DPS from tiles\nDOUBLE CHECK MACROS IF USED',
+                    imageUrl: './strats/idyll/pair-stack-post-swap.png',
+                    transform: 'rotate(180deg)',
+                    mask: 'radial-gradient(circle at 57% 36%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'begone with you',
+                    description: 'Ring\nRelative West',
+                    imageUrl: './strats/idyll/begone-with-you-w.png',
+                    mask: 'radial-gradient(circle at 32% 80%, black 10%, rgba(0, 0, 0, 0.2) 10%)',
+                },
+            ]
+        },
+    ]
+};
