@@ -2954,7 +2954,26 @@ const healerOutStrat: Strat = {
                     imageUrl: './strats/healerout/platform-west-swap.png',
                     mask: 'radial-gradient(ellipse 100% 250% at 23% 50%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
                 },
-            ]
+            ],
+            swapNote: "I got a clean swap to the NE or SE tiles! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'start',
+                    description: 'NE/SE west of corner tile',
+                    imageUrl: './strats/healerout/postswap-a-tiles-east.png',
+                    mask: 'radial-gradient(circle at 36.5% 21.3%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 34.5% 77.7%, black 9%, rgba(0, 0, 0, 0.2) 9%)'
+                },
+                {
+                    mechanic: 'priority: t>m>r',
+                    description: "You're priority 1!\nMove first on mechanics!",
+                },
+                {
+                    mechanic: 'chaser',
+                    description: 'CCW of corner tile',
+                    imageUrl: './strats/healerout/tiles-east-chasers.png',
+                    mask: 'radial-gradient(circle at 36.4% 21.1%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 60.3% 68.7%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
         },
         {
             alliance: 'A',
@@ -3039,7 +3058,28 @@ const healerOutStrat: Strat = {
                     imageUrl: './strats/healerout/platform-west-swap.png',
                     mask: 'radial-gradient(ellipse 100% 250% at 83.3% 49.8%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
                 },
-            ]
+            ],
+            swapNote: "I got a clean swap to the East platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'pairs',
+                    description: 'Far from boss\nNorth Outside\nw/ Ranged',
+                    imageUrl: './strats/healerout/postswap-h-platform-east-pairs.png',
+                    mask: 'radial-gradient(circle at 84.7% 20.4%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
+                },
+                {
+                    mechanic: 'spread',
+                    description: 'Outside',
+                    imageUrl: './strats/healerout/postswap-h-platform-east-spread.png',
+                    mask: 'radial-gradient(circle at 74.7% 45.7%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
+                },
+                {
+                    mechanic: 'towers',
+                    description: 'South/Inside',
+                    imageUrl: './strats/healerout/postswap-h-platform-east-towers.png',
+                    mask: 'radial-gradient(circle at 48.8% 34.3%, black 12%, rgba(0, 0, 0, 0.2) 12%), radial-gradient(circle at 31% 78.5%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
         },
         {
             alliance: 'A',
@@ -3084,7 +3124,28 @@ const healerOutStrat: Strat = {
                     imageUrl: './strats/healerout/platform-west-swap.png',
                     mask: 'radial-gradient(ellipse 100% 250% at 83.3% 49.8%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
                 },
-            ]
+            ],
+            swapNote: "I got a clean swap to the East platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'pairs',
+                    description: 'Far from boss\nSouth Outside\nw/ Melee',
+                    imageUrl: './strats/healerout/postswap-h-platform-east-pairs.png',
+                    mask: 'radial-gradient(circle at 81% 74.5%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
+                },
+                {
+                    mechanic: 'spread',
+                    description: 'South',
+                    imageUrl: './strats/healerout/postswap-h-platform-east-spread.png',
+                    mask: 'radial-gradient(circle at 39.1% 82.2%, black 12%, rgba(0, 0, 0, 0.4) 12%)'
+                },
+                {
+                    mechanic: 'towers',
+                    description: 'South/Inside',
+                    imageUrl: './strats/healerout/postswap-h-platform-east-towers.png',
+                    mask: 'radial-gradient(circle at 48.8% 34.3%, black 12%, rgba(0, 0, 0, 0.2) 12%), radial-gradient(circle at 31% 78.5%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
         },
         {
             alliance: 'A',
@@ -3129,7 +3190,26 @@ const healerOutStrat: Strat = {
                     imageUrl: './strats/healerout/platform-west-swap.png',
                     mask: 'radial-gradient(ellipse 100% 250% at 23% 50%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
                 },
-            ]
+            ],
+            swapNote: "I got a clean swap to the NE or SE tiles! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'start',
+                    description: 'NE/SE North/South cubby\nIf the swap puts you in East cubby, that\'s fine too.',
+                    imageUrl: './strats/healerout/postswap-a-tiles-east.png',
+                    mask: 'radial-gradient(circle at 58.9% 9.7%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 58.9% 90.4%, black 9%, rgba(0, 0, 0, 0.2) 9%)'
+                },
+                {
+                    mechanic: 'priority: t>m>r',
+                    description: "You're priority 2!\nMove second on mechanics!\nLet the Tank move first.",
+                },
+                {
+                    mechanic: 'chaser',
+                    description: 'NE/SE North/South cubby',
+                    imageUrl: './strats/healerout/tiles-east-chasers.png',
+                    mask: 'radial-gradient(circle at 59.8% 6.3%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 59.8% 93.8%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
         },
         {
             alliance: 'A',
@@ -3214,7 +3294,26 @@ const healerOutStrat: Strat = {
                     imageUrl: './strats/healerout/platform-west-swap.png',
                     mask: 'radial-gradient(ellipse 100% 250% at 23% 50%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
                 },
-            ]
+            ],
+            swapNote: "I got a clean swap to the NE or SE tiles! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'start',
+                    description: 'NE/SE East cubby\nIf the swap puts you in North/South cubby, that\'s fine too.',
+                    imageUrl: './strats/healerout/postswap-a-tiles-east.png',
+                    mask: 'radial-gradient(circle at 81.5% 20.5%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 82.7% 78.2%, black 9%, rgba(0, 0, 0, 0.2) 9%)'
+                },
+                {
+                    mechanic: 'priority: t>m>r',
+                    description: "You're priority 3!\nMove last on mechanics!\nLet the Tank and Melee\nmove first.",
+                },
+                {
+                    mechanic: 'chaser',
+                    description: 'NE/SE East cubby',
+                    imageUrl: './strats/healerout/tiles-east-chasers.png',
+                    mask: 'radial-gradient(circle at 80.6% 23.8%, black 9%, rgba(0, 0, 0, 0.2) 9%), radial-gradient(circle at 88.5% 79.2%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
         },
         {
             alliance: 'A',
@@ -3379,7 +3478,28 @@ const healerOutStrat: Strat = {
                     imageUrl: './strats/healerout/platform-west-swap.png',
                     mask: 'radial-gradient(ellipse 100% 250% at 83.3% 49.8%, black 16%, rgba(0, 0, 0, 0.4) 16%)'
                 },
-            ]
+            ],
+            swapNote: "I got a clean swap to the East platform! Now what?",
+            swapStrats: [
+                {
+                    mechanic: 'pairs',
+                    description: 'Far from boss\nInside\nw/ Tank',
+                    imageUrl: './strats/healerout/postswap-h-platform-east-pairs.png',
+                    mask: 'radial-gradient(circle at 13.7% 50%, black 11%, rgba(0, 0, 0, 0.4) 11%)'
+                },
+                {
+                    mechanic: 'spread',
+                    description: 'North',
+                    imageUrl: './strats/healerout/postswap-h-platform-east-spread.png',
+                    mask: 'radial-gradient(circle at 40% 13.2%, black 10%, rgba(0, 0, 0, 0.4) 10%)'
+                },
+                {
+                    mechanic: 'towers',
+                    description: 'South/Inside',
+                    imageUrl: './strats/healerout/postswap-h-platform-east-towers.png',
+                    mask: 'radial-gradient(circle at 48.8% 34.3%, black 12%, rgba(0, 0, 0, 0.2) 12%), radial-gradient(circle at 31% 78.5%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+            ],
         },
         {
             alliance: 'B',
