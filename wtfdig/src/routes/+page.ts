@@ -4456,7 +4456,7 @@ const idyllStrat: Strat = {
                 },
                 {
                     mechanic: 'bramble',
-                    description: 'Relative North',
+                    description: 'Relative NW',
                     imageUrl: './strats/idyll/brambles-w.png',
                     mask: 'radial-gradient(circle at 24% 53%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
                 },
@@ -4537,7 +4537,7 @@ const idyllStrat: Strat = {
                     mechanic: 'swap',
                     description: 'East of SW corner tile',
                     imageUrl: './strats/idyll/looming-chaos-tilew.png',
-                    mask: 'radial-gradient(circle at 65% 19%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                    mask: 'radial-gradient(circle at 65% 81%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
                 },
             ],
             swapNote: "I got a clean swap to the east platform! Now what?",
