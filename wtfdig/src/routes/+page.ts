@@ -4377,7 +4377,7 @@ const idyllStrat: Strat = {
                 },
                 {
                     mechanic: 'spread',
-                    description: 'Relative NWW',
+                    description: 'Relative WNW',
                     imageUrl: './strats/idyll/spread.png',
                     mask: 'radial-gradient(circle at 41% 63.6%, black 12%, rgba(0, 0, 0, 0.2) 12%)'
                 },
@@ -4444,7 +4444,7 @@ const idyllStrat: Strat = {
                 },
                 {
                     mechanic: 'spread',
-                    description: 'Relative NEE',
+                    description: 'Relative ENE',
                     imageUrl: './strats/idyll/spread.png',
                     mask: 'radial-gradient(circle at 41% 23.6%, black 12%, rgba(0, 0, 0, 0.2) 12%)'
                 },
@@ -4572,7 +4572,7 @@ const idyllStrat: Strat = {
             strats: [
                 {
                     mechanic: 'idle',
-                    description: 'East of SE corner tile',
+                    description: 'West of SE corner tile',
                     imageUrl: './strats/idyll/overall.png',
                     mask: 'radial-gradient(circle at 57% 77%, black 8%, rgba(0, 0, 0, 0.2) 8%)'
                 },
@@ -4604,7 +4604,7 @@ const idyllStrat: Strat = {
                 },
                 {
                     mechanic: 'swap',
-                    description: 'West of SW corner tile',
+                    description: 'West of SE corner tile',
                     imageUrl: './strats/idyll/looming-chaos-tilee.png',
                     mask: 'radial-gradient(circle at 38% 81%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
                 },
@@ -4670,7 +4670,7 @@ const idyllStrat: Strat = {
                 },
                 {
                     mechanic: 'swap',
-                    description: 'North tile of NW corner',
+                    description: 'North tile of SW corner',
                     imageUrl: './strats/idyll/looming-chaos-tilew.png',
                     mask: 'radial-gradient(circle at 40% 68%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
                 },
@@ -4739,7 +4739,7 @@ const idyllStrat: Strat = {
                 },
                 {
                     mechanic: 'swap',
-                    description: 'North tile of NW corner',
+                    description: 'North tile of SE corner',
                     imageUrl: './strats/idyll/looming-chaos-tilee.png',
                     mask: 'radial-gradient(circle at 59% 68%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
                 },
@@ -5122,7 +5122,7 @@ const idyllStrat: Strat = {
             strats: [
                 {
                     mechanic: 'idle',
-                    description: 'East of NE corner tile',
+                    description: 'West of NE corner tile',
                     imageUrl: './strats/idyll/overall.png',
                     mask: 'radial-gradient(circle at 58% 22%, black 8%, rgba(0, 0, 0, 0.2) 8%)'
                 },
@@ -5135,7 +5135,7 @@ const idyllStrat: Strat = {
                 },
                 {
                     mechanic: 'wild charge',
-                    description: '1 tile east to NE corner tile',
+                    description: '1 tile west to NE corner tile',
                     imageUrl: './strats/idyll/wild-charge-nw.png',
                     transform: 'scale(-1,1)',
                     mask: 'radial-gradient(circle at 77.8% 55.6%, black 20%, rgba(0, 0, 0, 0.2) 20%)'
@@ -5488,7 +5488,7 @@ const idyllStrat: Strat = {
                 },
                 {
                     mechanic: 'spread',
-                    description: 'Relative NWW',
+                    description: 'Relative WNW',
                     imageUrl: './strats/idyll/spread.png',
                     transform: 'rotate(180deg)',
                     mask: 'radial-gradient(circle at 41% 63.6%, black 12%, rgba(0, 0, 0, 0.2) 12%)'
@@ -5559,7 +5559,7 @@ const idyllStrat: Strat = {
                 },
                 {
                     mechanic: 'spread',
-                    description: 'Relative NEE',
+                    description: 'Relative ENE',
                     imageUrl: './strats/idyll/spread.png',
                     transform: 'rotate(180deg)',
                     mask: 'radial-gradient(circle at 41% 23.6%, black 12%, rgba(0, 0, 0, 0.2) 12%)'
