@@ -3013,6 +3013,12 @@ const healerOutStrat: Strat = {
                     imageUrl: './strats/healerout/postswap-a-platform-east-towers.png',
                     mask: 'radial-gradient(circle at 49.5% 18%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 68% 78%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
                 },
+                {
+                    mechanic: 'aoes',
+                    description: 'Platform Inside North',
+                    imageUrl: './strats/healerout/postswap-platform-east-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 20.5% 37.9%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
+                },
             ],
         },
         {
@@ -3079,6 +3085,12 @@ const healerOutStrat: Strat = {
                     imageUrl: './strats/healerout/postswap-h-platform-east-towers.png',
                     mask: 'radial-gradient(circle at 48.8% 34.3%, black 12%, rgba(0, 0, 0, 0.2) 12%), radial-gradient(circle at 31% 78.5%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
                 },
+                {
+                    mechanic: 'aoes',
+                    description: 'Platform Outside South',
+                    imageUrl: './strats/healerout/postswap-platform-east-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 61.9% 62.3%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
+                },
             ],
         },
         {
@@ -3144,6 +3156,12 @@ const healerOutStrat: Strat = {
                     description: 'South/Inside',
                     imageUrl: './strats/healerout/postswap-h-platform-east-towers.png',
                     mask: 'radial-gradient(circle at 48.8% 34.3%, black 12%, rgba(0, 0, 0, 0.2) 12%), radial-gradient(circle at 31% 78.5%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'aoes',
+                    description: 'Ring Outside South',
+                    imageUrl: './strats/healerout/postswap-platform-east-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 67.9% 86.6%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
                 },
             ],
         },
@@ -3249,6 +3267,12 @@ const healerOutStrat: Strat = {
                     imageUrl: './strats/healerout/postswap-a-platform-east-towers.png',
                     mask: 'radial-gradient(circle at 49.5% 18%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 68% 78%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
                 },
+                {
+                    mechanic: 'aoes',
+                    description: 'Platform Inside South',
+                    imageUrl: './strats/healerout/postswap-platform-east-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 22% 59.8%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
+                },
             ],
         },
         {
@@ -3353,6 +3377,12 @@ const healerOutStrat: Strat = {
                     imageUrl: './strats/healerout/postswap-a-platform-east-towers.png',
                     mask: 'radial-gradient(circle at 49.5% 18%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 68% 78%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
                 },
+                {
+                    mechanic: 'aoes',
+                    description: 'Platform Outside North',
+                    imageUrl: './strats/healerout/postswap-platform-east-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 59.6% 36.4%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
+                },
             ],
         },
         {
@@ -3392,6 +3422,12 @@ const healerOutStrat: Strat = {
                     description: 'North/Outside',
                     imageUrl: './strats/healerout/postswap-b-platform-east-towers.png',
                     mask: 'radial-gradient(circle at 49.5% 18%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 68% 78%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'aoes',
+                    description: 'Platform Inside North',
+                    imageUrl: './strats/healerout/postswap-platform-east-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 20.5% 37.9%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
                 },
             ],
         },
@@ -3499,6 +3535,12 @@ const healerOutStrat: Strat = {
                     imageUrl: './strats/healerout/postswap-h-platform-east-towers.png',
                     mask: 'radial-gradient(circle at 48.8% 34.3%, black 12%, rgba(0, 0, 0, 0.2) 12%), radial-gradient(circle at 31% 78.5%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
                 },
+                {
+                    mechanic: 'aoes',
+                    description: 'Ring Outside North',
+                    imageUrl: './strats/healerout/postswap-platform-east-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 70% 18.7%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
+                },
             ],
         },
         {
@@ -3565,6 +3607,12 @@ const healerOutStrat: Strat = {
                     imageUrl: './strats/healerout/postswap-h-platform-west-towers.png',
                     mask: 'radial-gradient(circle at 50% 34.5%, black 12%, rgba(0, 0, 0, 0.2) 12%), radial-gradient(circle at 70% 78.3%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
                 },
+                {
+                    mechanic: 'aoes',
+                    description: 'Ring Outside North',
+                    imageUrl: './strats/healerout/postswap-platform-west-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 33% 15.5%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
+                },
             ],
         },
         {
@@ -3604,6 +3652,12 @@ const healerOutStrat: Strat = {
                     description: 'North/Outside',
                     imageUrl: './strats/healerout/postswap-b-platform-east-towers.png',
                     mask: 'radial-gradient(circle at 50% 19%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 69% 78%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'aoes',
+                    description: 'Platform Inside South',
+                    imageUrl: './strats/healerout/postswap-platform-east-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 22% 59.8%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
                 },
             ],
         },
@@ -3645,6 +3699,12 @@ const healerOutStrat: Strat = {
                     imageUrl: './strats/healerout/postswap-b-platform-west-towers.png',
                     mask: 'radial-gradient(circle at 49.5% 18%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 31% 78%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
                 },
+                {
+                    mechanic: 'aoes',
+                    description: 'Platform Inside South',
+                    imageUrl: './strats/healerout/postswap-platform-west-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 78% 60.9%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
+                },
             ],
         },
         {
@@ -3685,6 +3745,12 @@ const healerOutStrat: Strat = {
                     imageUrl: './strats/healerout/postswap-b-platform-east-towers.png',
                     mask: 'radial-gradient(circle at 50% 19%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 69% 78%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
                 },
+                {
+                    mechanic: 'aoes',
+                    description: 'Platform Outside North',
+                    imageUrl: './strats/healerout/postswap-platform-east-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 59.6% 36.4%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
+                },
             ],
         },
         {
@@ -3724,6 +3790,12 @@ const healerOutStrat: Strat = {
                     description: 'North/Outside',
                     imageUrl: './strats/healerout/postswap-b-platform-west-towers.png',
                     mask: 'radial-gradient(circle at 49.5% 18%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 31% 78%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'aoes',
+                    description: 'Platform Outside North',
+                    imageUrl: './strats/healerout/postswap-platform-west-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 36% 36.4%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
                 },
             ],
         },
@@ -3829,6 +3901,12 @@ const healerOutStrat: Strat = {
                     imageUrl: './strats/healerout/postswap-c-platform-west-towers.png',
                     mask: 'radial-gradient(circle at 50.5% 18.5%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 31.5% 78.5%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
                 },
+                {
+                    mechanic: 'aoes',
+                    description: 'Platform Inside North',
+                    imageUrl: './strats/healerout/postswap-platform-west-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 76% 37%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
+                },
             ],
         },
         {
@@ -3895,6 +3973,12 @@ const healerOutStrat: Strat = {
                     imageUrl: './strats/healerout/postswap-h-platform-west-towers.png',
                     mask: 'radial-gradient(circle at 50% 34.5%, black 12%, rgba(0, 0, 0, 0.2) 12%), radial-gradient(circle at 70% 78.3%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
                 },
+                {
+                    mechanic: 'aoes',
+                    description: 'Platform Outside South',
+                    imageUrl: './strats/healerout/postswap-platform-west-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 38% 63.5%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
+                },
             ],
         },
         {
@@ -3960,6 +4044,12 @@ const healerOutStrat: Strat = {
                     description: 'South/Inside',
                     imageUrl: './strats/healerout/postswap-h-platform-west-towers.png',
                     mask: 'radial-gradient(circle at 50% 34.5%, black 12%, rgba(0, 0, 0, 0.2) 12%), radial-gradient(circle at 70% 78.3%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'aoes',
+                    description: 'Ring Outside South',
+                    imageUrl: './strats/healerout/postswap-platform-west-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 30% 87.0%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
                 },
             ],
         },
@@ -4065,6 +4155,12 @@ const healerOutStrat: Strat = {
                     imageUrl: './strats/healerout/postswap-c-platform-west-towers.png',
                     mask: 'radial-gradient(circle at 50.4% 18.5%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 31% 78.4%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
                 },
+                {
+                    mechanic: 'aoes',
+                    description: 'Platform Inside South',
+                    imageUrl: './strats/healerout/postswap-platform-west-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 78% 60.9%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
+                },
             ],
         },
         {
@@ -4168,6 +4264,12 @@ const healerOutStrat: Strat = {
                     description: 'North/Outside',
                     imageUrl: './strats/healerout/postswap-c-platform-west-towers.png',
                     mask: 'radial-gradient(circle at 50.4% 18.5%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 31% 78.4%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
+                },
+                {
+                    mechanic: 'aoes',
+                    description: 'Platform Outside North',
+                    imageUrl: './strats/healerout/postswap-platform-west-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 36% 36.4%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
                 },
             ],
         },
