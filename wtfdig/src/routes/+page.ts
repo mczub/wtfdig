@@ -4567,7 +4567,7 @@ const idyllStrat: Strat = {
             alliance: 'B',
             role: 'Tank',
             party: 2,
-            notes: 'East of SE corner tile | ST',
+            notes: 'West of SE corner tile | ST',
             startingArea: 'Platform',
             strats: [
                 {
