@@ -5461,7 +5461,6 @@ const idyllStrat: Strat = {
                     mechanic: 'pairs',
                     description: 'Outer\nRelative West\nw/ Healer from tiles\nDOUBLE CHECK MACROS IF USED',
                     imageUrl: './strats/idyll/pair-stack-post-swap.png',
-                    transform: 'rotate(180deg)',
                     mask: 'radial-gradient(circle at 56% 71%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
                 },
                 {
@@ -5532,7 +5531,6 @@ const idyllStrat: Strat = {
                     mechanic: 'pairs',
                     description: 'Outer\nRelative West\nw/ Tank from tiles\nDOUBLE CHECK MACROS IF USED',
                     imageUrl: './strats/idyll/pair-stack-post-swap.png',
-                    transform: 'rotate(180deg)',
                     mask: 'radial-gradient(circle at 40% 55%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
                 },
                 {
@@ -5603,7 +5601,6 @@ const idyllStrat: Strat = {
                     mechanic: 'pairs',
                     description: 'Outer\nRelative East\nw/ DPS from tiles\nDOUBLE CHECK MACROS IF USED',
                     imageUrl: './strats/idyll/pair-stack-post-swap.png',
-                    transform: 'rotate(180deg)',
                     mask: 'radial-gradient(circle at 57% 36%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
                 },
                 {
