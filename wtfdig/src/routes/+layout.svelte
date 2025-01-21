@@ -16,7 +16,8 @@
         type: 'alert',
         title: 'Changelog',
         body: 
-`1/20/2025: added more comprehensive post-swap spots to HealerOut
+`1/21/2025: added warning for core-lateral and lateral-core swap in 7.16
+1/20/2025: added more comprehensive post-swap spots to HealerOut
 1/20/2025: fix idyll C postswap image rotation
 1/19/2025: added idyll/game8 strat - added by kizer
 1/10/2025: added more comprehensive post-swap spots to raidplan

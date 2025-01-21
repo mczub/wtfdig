@@ -37,6 +37,13 @@
 	<div class="container">
 		<div class="flex flex-wrap min-w-full justify-between mb-8">
 			<div class="space-y-5 v-full">
+				<aside class="alert variant-ghost-error">
+					<div class="alert-message">
+						<p>As of Patch 7.16, "Lateral-core Phaser" and "Core-lateral Phaser" have been swapped</p>
+						<p>Lateral-core Phaser = Front is safe, then sides are safe</p>
+						<p>Core-lateral Phaser = Sides are safe, then front is safe</p>
+					</div>
+				</aside>
 				<div>
 					<h2>Which strat are you using?</h2>
 					<RadioGroup>
