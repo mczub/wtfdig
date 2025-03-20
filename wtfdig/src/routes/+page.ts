@@ -3469,6 +3469,12 @@ const healerOutStrat: Strat = {
                     imageUrl: './strats/healerout/postswap-b-platform-west-towers.png',
                     mask: 'radial-gradient(circle at 49.5% 18%, black 10%, rgba(0, 0, 0, 0.2) 10%), radial-gradient(circle at 31% 78%, black 10%, rgba(0, 0, 0, 0.2) 10%)'
                 },
+                {
+                    mechanic: 'aoes',
+                    description: 'Platform Inside North',
+                    imageUrl: './strats/healerout/postswap-platform-west-aoe-spread.png',
+                    mask: 'radial-gradient(circle at 76% 37%, black 8%, rgba(0, 0, 0, 0.4) 8%)'
+                }
             ],
         },
         {
