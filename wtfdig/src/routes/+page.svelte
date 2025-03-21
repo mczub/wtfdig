@@ -2,17 +2,20 @@
 	import type { Alliance, Role, PlayerStrats, Alignment, MechanicStrat } from './+page';
 	import { Accordion, AccordionItem, RadioGroup, RadioItem, SlideToggle } from '@skeletonlabs/skeleton';
 
-	export let data;
-	let stratName: string;
-	let alliance: Alliance;
-	let role: Role;
-	let party: number;
-	let strat: PlayerStrats | string;
-	let spotlight: boolean = true;
-	let alignment: Alignment = 'original';
+	interface Props {
+		data: any;
+		children?: import('svelte').Snippet;
+	}
 
-	$: strat = getStrat(stratName, alliance, role, party)
-	$: stratPackage = data.strats.find(strat => strat.stratName === stratName);
+	let { data, children }: Props = $props();
+	let stratName: string = $state();
+	let alliance: Alliance = $derived(getStrat(stratName, alliance, role, party));
+	let role: Role = $derived();
+	let party: number = $derived();
+	let strat: PlayerStrats | string = $derived();
+	let spotlight: boolean = $state(true);
+	let alignment: Alignment = $state('original');
+
 
 	function getStrat(stratName: string, alliance: Alliance, role: Role, party: number) {
 		if (!stratName || !alliance || !role || !party) return '';
@@ -31,6 +34,8 @@
 		}
 		return '';
 	}
+	
+	let stratPackage = $derived(data.strats.find(strat => strat.stratName === stratName));
 </script>
 
 <div class="container h-full min-h-screen px-4 mx-auto my-12 flex">
@@ -93,9 +98,9 @@
 		</div>
 		
 		{#if typeof strat === 'string'}
-			<slot>
+			{#if children}{@render children()}{:else}
 				{strat}
-			</slot>
+			{/if}
 		{:else if typeof strat === 'undefined'}
 			<div></div>
 		{:else}
@@ -151,28 +156,34 @@
 					<div class="col-span-3">
 						<Accordion class="card variant-ghost-secondary" >
 							<AccordionItem open padding="py-4 px-4">
-								<svelte:fragment slot="lead"><img width="24px" src={"./swap-icon.png"} /></svelte:fragment>
-								<svelte:fragment slot="summary"><span class="text-xl">{strat.swapNote}</span></svelte:fragment>
-								<svelte:fragment slot="content">
-									{#if strat?.swapWarning}
-										<aside class="alert variant-ghost-error">
-											<div class="alert-message">
-												<p>{strat.swapWarning}</p>
-											</div>
-										</aside>
-									{/if}
-									<div class="grid grid-cols-3 gap-2">
-										{#each strat.swapStrats as step}
-											{#key [spotlight, alignment]}
-											<div class="space-y-4" class:col-span-2={step.alignmentImages && step.alignmentImages[alignment]}>
-												<div class="uppercase text-xl">{step.mechanic}</div> 
-												<div class="whitespace-pre-wrap text-l">{step.description}</div>
-												<img src={(step.alignmentImages && step.alignmentImages[alignment]) ? step.alignmentImages[alignment] : step.imageUrl} style:mask-image={getMask(step)} style:transform={step.alignmentTransforms ? step.alignmentTransforms[alignment] : step.transform} />
-											</div>
-											{/key}
-										{/each}
-									</div>
-								</svelte:fragment>
+								{#snippet lead()}
+																		<img width="24px" src={"./swap-icon.png"} />
+																	{/snippet}
+								{#snippet summary()}
+																		<span class="text-xl">{strat.swapNote}</span>
+																	{/snippet}
+								{#snippet content()}
+																	
+										{#if strat?.swapWarning}
+											<aside class="alert variant-ghost-error">
+												<div class="alert-message">
+													<p>{strat.swapWarning}</p>
+												</div>
+											</aside>
+										{/if}
+										<div class="grid grid-cols-3 gap-2">
+											{#each strat.swapStrats as step}
+												{#key [spotlight, alignment]}
+												<div class="space-y-4" class:col-span-2={step.alignmentImages && step.alignmentImages[alignment]}>
+													<div class="uppercase text-xl">{step.mechanic}</div> 
+													<div class="whitespace-pre-wrap text-l">{step.description}</div>
+													<img src={(step.alignmentImages && step.alignmentImages[alignment]) ? step.alignmentImages[alignment] : step.imageUrl} style:mask-image={getMask(step)} style:transform={step.alignmentTransforms ? step.alignmentTransforms[alignment] : step.transform} />
+												</div>
+												{/key}
+											{/each}
+										</div>
+									
+																	{/snippet}
 							</AccordionItem>
 						</Accordion>
 					</div>

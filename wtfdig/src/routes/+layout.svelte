@@ -1,6 +1,11 @@
 <script lang="ts">
 	import '../app.postcss';
     import { initializeStores, Modal, type ModalSettings, getModalStore } from '@skeletonlabs/skeleton';
+    interface Props {
+        children?: import('svelte').Snippet;
+    }
+
+    let { children }: Props = $props();
 
     initializeStores();
 
@@ -40,14 +45,14 @@
     <div class="flex flex-wrap justify-between items-center">
         <div class="text-2xl font-semibold">where the f do i go???? (Chaotic)</div>
         <div class="my-4 md:my-0">
-            <button type="button" on:click="{() => modalStore.trigger(changelogModal)}"class="btn variant-ghost">Changelog</button>
+            <button type="button" onclick={() => modalStore.trigger(changelogModal)}class="btn variant-ghost">Changelog</button>
         </div>
     </div>
     
 </header>
 
 
-<slot />
+{@render children?.()}
 
 <footer class="md:sticky bottom-0 left-0 z-20 w-full p-4 bg-white border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
     <div class="flex w-full max-w-screen-xl mx-auto justify-between">
