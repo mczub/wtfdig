@@ -45,7 +45,7 @@
     <div class="flex flex-wrap justify-between items-center">
         <div class="text-2xl font-semibold">where the f do i go???? (Chaotic)</div>
         <div class="my-4 md:my-0">
-            <button type="button" onclick={() => modalStore.trigger(changelogModal)}class="btn variant-ghost">Changelog</button>
+            <button type="button" onclick={() => modalStore.trigger(changelogModal)} class="btn variant-ghost">Changelog</button>
         </div>
     </div>
     

@@ -9,10 +9,11 @@
 
 	let { data, children }: Props = $props();
 	let stratName: string = $state();
-	let alliance: Alliance = $derived(getStrat(stratName, alliance, role, party));
-	let role: Role = $derived();
-	let party: number = $derived();
-	let strat: PlayerStrats | string = $derived();
+	let alliance: Alliance = $state();
+	let role: Role = $state();
+	let party: number = $state();
+	let strat: PlayerStrats | string = $derived(getStrat(stratName, alliance, role, party));
+	let stratPackage = $derived(data.strats.find(strat => strat.stratName === stratName));
 	let spotlight: boolean = $state(true);
 	let alignment: Alignment = $state('original');
 
@@ -35,7 +36,7 @@
 		return '';
 	}
 	
-	let stratPackage = $derived(data.strats.find(strat => strat.stratName === stratName));
+	
 </script>
 
 <div class="container h-full min-h-screen px-4 mx-auto my-12 flex">
