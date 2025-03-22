@@ -8,17 +8,17 @@
 	}
 
 	let { data, children }: Props = $props();
-	let stratName: string = $state();
-	let alliance: Alliance = $state();
-	let role: Role = $state();
-	let party: number = $state();
+	let stratName: string | undefined = $state();
+	let alliance: Alliance | undefined = $state();
+	let role: Role | undefined = $state();
+	let party: number | undefined = $state();
 	let strat: PlayerStrats | string = $derived(getStrat(stratName, alliance, role, party));
 	let stratPackage = $derived(data.strats.find(strat => strat.stratName === stratName));
 	let spotlight: boolean = $state(true);
 	let alignment: Alignment = $state('original');
 
 
-	function getStrat(stratName: string, alliance: Alliance, role: Role, party: number) {
+	function getStrat(stratName?: string, alliance?: Alliance, role?: Role, party?: number) {
 		if (!stratName || !alliance || !role || !party) return '';
 		const stratPackage = data.strats.find(strat => strat.stratName === stratName);
 		const allianceRolePartyStrat = stratPackage?.strats.find(strat => strat.alliance === alliance && strat.role === role && strat.party === party);
@@ -158,33 +158,31 @@
 						<Accordion class="card variant-ghost-secondary" >
 							<AccordionItem open padding="py-4 px-4">
 								{#snippet lead()}
-																		<img width="24px" src={"./swap-icon.png"} />
-																	{/snippet}
+									<img width="24px" src={"./swap-icon.png"} />
+								{/snippet}
 								{#snippet summary()}
-																		<span class="text-xl">{strat.swapNote}</span>
-																	{/snippet}
-								{#snippet content()}
-																	
-										{#if strat?.swapWarning}
-											<aside class="alert variant-ghost-error">
-												<div class="alert-message">
-													<p>{strat.swapWarning}</p>
-												</div>
-											</aside>
-										{/if}
-										<div class="grid grid-cols-3 gap-2">
-											{#each strat.swapStrats as step}
-												{#key [spotlight, alignment]}
-												<div class="space-y-4" class:col-span-2={step.alignmentImages && step.alignmentImages[alignment]}>
-													<div class="uppercase text-xl">{step.mechanic}</div> 
-													<div class="whitespace-pre-wrap text-l">{step.description}</div>
-													<img src={(step.alignmentImages && step.alignmentImages[alignment]) ? step.alignmentImages[alignment] : step.imageUrl} style:mask-image={getMask(step)} style:transform={step.alignmentTransforms ? step.alignmentTransforms[alignment] : step.transform} />
-												</div>
-												{/key}
-											{/each}
-										</div>
-									
-																	{/snippet}
+									<span class="text-xl">{strat.swapNote}</span>
+								{/snippet}
+								{#snippet content()}						
+                                    {#if strat?.swapWarning}
+                                        <aside class="alert variant-ghost-error">
+                                            <div class="alert-message">
+                                                <p>{strat.swapWarning}</p>
+                                            </div>
+                                        </aside>
+                                    {/if}
+                                    <div class="grid grid-cols-3 gap-2">
+                                        {#each strat.swapStrats as step}
+                                            {#key [spotlight, alignment]}
+                                            <div class="space-y-4" class:col-span-2={step.alignmentImages && step.alignmentImages[alignment]}>
+                                                <div class="uppercase text-xl">{step.mechanic}</div> 
+                                                <div class="whitespace-pre-wrap text-l">{step.description}</div>
+                                                <img src={(step.alignmentImages && step.alignmentImages[alignment]) ? step.alignmentImages[alignment] : step.imageUrl} style:mask-image={getMask(step)} style:transform={step.alignmentTransforms ? step.alignmentTransforms[alignment] : step.transform} />
+                                            </div>
+                                            {/key}
+                                        {/each}
+                                    </div>
+								{/snippet}
 							</AccordionItem>
 						</Accordion>
 					</div>
