@@ -28,3 +28,102 @@
 
 @layer utilities {
 }
+
+/* Headings */
+.preset-typo-display-4,
+.preset-typo-display-3,
+.preset-typo-display-2,
+.preset-typo-display-1,
+.preset-typo-headline,
+.preset-typo-title,
+.preset-typo-subtitle,
+.preset-typo-caption,
+.preset-typo-menu,
+.preset-typo-button {
+  color: var(--heading-font-color);
+  font-family: var(--heading-font-family);
+  font-weight: var(--heading-font-weight);
+  @variant dark {
+    color: var(--heading-font-color-dark);
+  }
+}
+
+/* Body */
+.preset-typo-body-1,
+.preset-typo-body-2,
+.preset-typo-caption,
+.preset-typo-menu,
+.preset-typo-button {
+  color: var(--heading-font-color);
+  @variant dark {
+    color: var(--heading-font-color-dark);
+  }
+}
+
+/* Unique Properties */
+.preset-typo-display-4 {
+  font-size: var(--text-7xl);
+  @variant lg {
+    font-size: var(--text-9xl);
+  }
+}
+.preset-typo-display-3 {
+  font-size: var(--text-6xl);
+  @variant lg {
+    font-size: var(--text-8xl);
+  }
+}
+.preset-typo-display-2 {
+  font-size: var(--text-5xl);
+  @variant lg {
+    font-size: var(--text-7xl);
+  }
+}
+.preset-typo-display-1 {
+  font-size: var(--text-4xl);
+  @variant lg {
+    font-size: var(--text-6xl);
+  }
+}
+.preset-typo-headline {
+  font-size: var(--text-2xl);
+  @variant lg {
+    font-size: var(--text-4xl);
+  }
+}
+.preset-typo-title {
+  font-size: var(--text-xl);
+  @variant lg {
+    font-size: var(--text-3xl);
+  }
+}
+.preset-typo-subtitle {
+  font-size: var(--text-base);
+  font-family: var(--heading-font-family);
+  color: var(--color-surface-700-300);
+  @variant lg {
+    font-size: var(--text-xl);
+  }
+}
+.preset-typo-body-1 {
+  font-size: var(--text-xl);
+  @variant lg {
+    font-size: var(--text-3xl);
+  }
+}
+.preset-typo-body-2 {
+  font-size: var(--text-lg);
+  @variant lg {
+    font-size: var(--text-xl);
+  }
+}
+.preset-typo-caption {
+  font-size: var(--text-sm);
+  color: var(--color-surface-700-300);
+}
+.preset-typo-menu {
+  font-weight: bold;
+}
+.preset-typo-button {
+  font-weight: bold;
+}

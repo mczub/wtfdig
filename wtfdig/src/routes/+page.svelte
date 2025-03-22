@@ -40,8 +40,13 @@
 	
 </script>
 
-<div class="container h-full min-h-screen px-4 mx-auto my-12 flex">
+<div class="container grow px-4 mx-auto mb-6">
 	<div class="container">
+        <div class="mb-6">
+            <div class="preset-typo-display-1 -mb-5">The Cloud of Darkness (Chaotic)</div>
+            <div class="text-3xl text-surface-400">Patch 7.1</div>
+        </div>
+        
 		<div class="flex flex-wrap min-w-full justify-between mb-8">
 			<div class="space-y-5 v-full dark">
                 <div class="card preset-outlined-warning-500 gap-4 p-4 lg:grid-cols-[auto_1fr_auto]">
@@ -50,7 +55,7 @@
                     <p>Core-lateral Phaser = Sides are safe, then front is safe</p>
                 </div>
 				<div>
-					<h2>Which strat are you using?</h2>
+					<div class="text-xl mb-2">Which strat are you using?</div>
 					<Segment name="stratName" value={stratName} onValueChange={(e) => (stratName = e.value)}>
 						<Segment.Item value="raidplan">Raidplan (Aurelia/wfJ/o1Z)</Segment.Item>
 						<Segment.Item value="codcar">CODCAR</Segment.Item>
@@ -59,7 +64,7 @@
 					</Segment>
 				</div>
 				<div>
-					<h2>Which alliance are you in?</h2>
+                    <div class="text-xl mb-2">Which alliance are you in?</div>
 					<Segment name="alliance" value={alliance} onValueChange={(e) => (alliance = e.value)}>
 						<Segment.Item value="A">A</Segment.Item>
 						<Segment.Item value="B">B</Segment.Item>
@@ -67,7 +72,7 @@
 					</Segment>
 				</div>
 				<div>
-					<h2>Which role are you?</h2>
+					<div class="text-xl mb-2">Which role are you?</div>
 					<Segment name="role" value={role} onValueChange={(e) => (role = e.value)}>
 						<Segment.Item value="Tank">Tank</Segment.Item>
 						<Segment.Item value="Healer">Healer</Segment.Item>
@@ -76,7 +81,7 @@
 					</Segment>
 				</div>
 				<div>
-					<h2>Which light party are you in?</h2>
+					<div class="text-xl mb-2">Which light party are you in?</div>
 					<Segment name="role" value={party?.toString()} onValueChange={(e) => (party = parseInt(e.value))}>
 						<Segment.Item value="1">1</Segment.Item>
 						<Segment.Item value="2">2</Segment.Item>
@@ -162,7 +167,7 @@
 								{/snippet}
 								{#snippet panel()}						
                                     {#if strat?.swapWarning}
-                                        <aside class="alert preset-tonal-error border border-error-500">
+                                        <aside class="card preset-tonal-error preset-outlined-error-500 gap-4 p-4 mb-2">
                                             <div class="alert-message">
                                                 <p>{strat.swapWarning}</p>
                                             </div>
