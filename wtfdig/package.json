@@ -19,7 +19,6 @@
     "@sveltejs/kit": "^2.5.27",
     "@sveltejs/vite-plugin-svelte": "^4.0.0",
     "@tailwindcss/forms": "0.5.9",
-    "@tailwindcss/postcss": "^4.0.15",
     "@tailwindcss/typography": "0.5.15",
     "@types/eslint": "^9.6.0",
     "@types/node": "22.10.2",
@@ -27,7 +26,6 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-svelte": "^2.45.1",
     "globals": "^15.0.0",
-    "postcss": "8.4.49",
     "prettier": "^3.1.1",
     "prettier-plugin-svelte": "^3.2.6",
     "svelte": "^5.0.0",
@@ -39,5 +37,8 @@
     "vite": "^5.4.4",
     "vite-plugin-tailwind-purgecss": "0.3.5"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@tailwindcss/vite": "^4.0.15"
+  }
 }
