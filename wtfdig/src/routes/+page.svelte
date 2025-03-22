@@ -43,20 +43,20 @@
 <div class="container grow px-4 mx-auto mb-6">
 	<div class="container">
         <div class="mb-6">
-            <div class="preset-typo-display-1 -mb-5">The Cloud of Darkness (Chaotic)</div>
-            <div class="text-3xl text-surface-400">Patch 7.1</div>
+            <div class="preset-typo-display-1 mt-2 lg:mt-0 lg:-mb-5">The Cloud of Darkness (Chaotic)</div>
+            <div class="text-xl lg:text-3xl text-surface-400">Patch 7.1</div>
         </div>
         
 		<div class="flex flex-wrap min-w-full justify-between mb-8">
 			<div class="space-y-5 v-full dark">
-                <div class="card preset-outlined-warning-500 gap-4 p-4 lg:grid-cols-[auto_1fr_auto]">
+                <div class="card preset-outlined-warning-500 gap-4 p-4">
                     <p>As of Patch 7.16, "Lateral-core Phaser" and "Core-lateral Phaser" have been swapped</p>
                     <p>Lateral-core Phaser = Front is safe, then sides are safe</p>
                     <p>Core-lateral Phaser = Sides are safe, then front is safe</p>
                 </div>
 				<div>
 					<div class="text-xl mb-2">Which strat are you using?</div>
-					<Segment name="stratName" value={stratName} onValueChange={(e) => (stratName = e.value)}>
+					<Segment classes="flex-wrap" name="stratName" value={stratName} onValueChange={(e) => (stratName = e.value)}>
 						<Segment.Item value="raidplan">Raidplan (Aurelia/wfJ/o1Z)</Segment.Item>
 						<Segment.Item value="codcar">CODCAR</Segment.Item>
 						<Segment.Item value="healerout">HealerOut</Segment.Item>

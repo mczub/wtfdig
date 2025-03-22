@@ -17,8 +17,10 @@
 
 <Modal 
     open={changelogOpenState}
-    contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl overflow-auto preset-outlined-surface-200-800 bg-surface-1000"
+    classes=""
+    contentBase="card bg-surface-100-900 max-h-8/10 p-4 space-y-4 shadow-xl overflow-auto preset-outlined-surface-200-800 bg-surface-1000"
     backdropClasses="backdrop-blur-sm"
+    onPointerDownOutside={() => changelogClose()}
 >
     {#snippet content()}
         <header class="flex justify-between">
@@ -50,8 +52,8 @@
 
 <header class="w-full mx-auto px-6 py-6 border-b border-gray-600 flex-none">
     <div class="flex flex-wrap justify-between items-center">
-        <div class="text-2xl font-semibold">WTFDIG</div>
-        <div class="card preset-outlined-secondary-500 gap-4 p-4 lg:grid-cols-[auto_1fr_auto]">WTFDIG can now also be found at <a target="_blank" rel="noopener noreferrer" class="anchor" href="https://wtfdig.info">WTFDIG.info</a></div>
+        <div class="text-2xl font-semibold my-4 sm:my-0">WTFDIG</div>
+        <div class="card preset-outlined-secondary-500 gap-4 p-4 lg:grid-cols-[auto_1fr_auto]">WTFDIG can now be found at <a target="_blank" rel="noopener noreferrer" class="anchor" href="https://wtfdig.info">WTFDIG.info</a></div>
         <div class="my-4 md:my-0">
             <button type="button" class="btn preset-tonal-secondary border border-secondary-500">Chaotic</button>
             <button type="button" onclick={() => changelogOpen()} class="btn ml-2 preset-tonal border border-surface-500">Changelog</button>
