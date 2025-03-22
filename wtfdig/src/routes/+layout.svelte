@@ -1,5 +1,5 @@
 <script lang="ts">
-	import '../app.postcss';
+	import '../app.css';
     import { initializeStores, Modal, type ModalSettings, getModalStore } from '@skeletonlabs/skeleton';
     interface Props {
         children?: import('svelte').Snippet;
@@ -54,8 +54,8 @@
 
 {@render children?.()}
 
-<footer class="md:sticky bottom-0 left-0 z-20 w-full p-4 bg-white border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
-    <div class="flex w-full max-w-screen-xl mx-auto justify-between">
+<footer class="md:sticky bottom-0 left-0 z-20 w-full p-4 bg-white border-t border-gray-200 shadow-sm md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
+    <div class="flex w-full max-w-(--breakpoint-xl) mx-auto justify-between">
 		<div class="text-sm text-gray-500 dark:text-gray-400">
             <div>Comments? Questions? Something incorrect? <a target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-500 hover:underline" href="https://docs.google.com/forms/d/e/1FAIpQLScJEJ43FKjSRJ2MyLuGXznce-P_SQNyPLWga_Xme_CJKPiQIQ/viewform?usp=header">Let me know.</a></div>
             <div>FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd. FINAL FANTASY XIV © SQUARE ENIX</div>
