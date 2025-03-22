@@ -12,8 +12,8 @@
     "format": "prettier --write ."
   },
   "devDependencies": {
-    "@skeletonlabs/skeleton": "2.10.4",
-    "@skeletonlabs/tw-plugin": "0.4.0",
+    "@skeletonlabs/skeleton": "^3.1.0",
+    "@skeletonlabs/skeleton-svelte": "^1.0.0",
     "@sveltejs/adapter-auto": "^3.0.0",
     "@sveltejs/adapter-static": "^3.0.8",
     "@sveltejs/kit": "^2.5.27",

@@ -1,60 +1,67 @@
 <script lang="ts">
 	import '../app.css';
-    import { initializeStores, Modal, type ModalSettings, getModalStore } from '@skeletonlabs/skeleton';
+    import { Modal } from '@skeletonlabs/skeleton-svelte';
     interface Props {
         children?: import('svelte').Snippet;
     }
+    let changelogOpenState = $state(false);
+    function changelogOpen() {
+        changelogOpenState = true;
+    }
+    function changelogClose() {
+        changelogOpenState = false;
+    }
 
     let { children }: Props = $props();
-
-    initializeStores();
-
-    const faqModal: ModalSettings = {
-        type: 'alert',
-        title: 'FAQ',
-        body: 'FAQ goes here',
-        buttonTextCancel: 'Close',
-        modalClasses: 'whitespace-pre'
-    }
-
-    const changelogModal: ModalSettings = {
-        type: 'alert',
-        title: 'Changelog',
-        body: 
-`1/21/2025: added warning for core-lateral and lateral-core swap in 7.16
-1/20/2025: added more comprehensive post-swap spots to HealerOut
-1/20/2025: fix idyll C postswap image rotation
-1/19/2025: added idyll/game8 strat - added by kizer
-1/10/2025: added more comprehensive post-swap spots to raidplan
-1/9/2025: switched melee spread spots for raidplan A+C, fixed text wrapping at high zoom
-1/7/2025: added HealerOut to the strat selector - added by Jake Hale @ Louisoux
-1/5/2025: fixed raidplan spread spots to match where people end up after tether breaks, added pair partners + cleaned up phrasing
-1/3/2025: added wfJ/o1Z to the raidplan selector, changed Add Relative to Wall Relative for CODCAR
-1/2/2025: Updated some styling to make the swap assignments more obvious (yes melees will sometimes need to take a ranged spot), added some info to footer
-1/1/2025: Added big overview image, rotated AOE spreads correctly for CODCAR, added post-swap locations for everyone starting on tiles
-12/31/2024: Added Alignment buttons (Original, True North, Add Relative) for CODCAR, added Wild Charges to CODCAR tile players, some improvements to responsive sizing
-12/30/2024: Initial Release`,
-        buttonTextCancel: 'Close',
-        modalClasses: 'whitespace-pre-wrap',
-    }
-    const modalStore = getModalStore();
 </script>
 
-<Modal regionBody="max-h-[600px] overflow-auto"/>
-<header class="container h-full mx-auto px-4 mx-auto md:my-12 my-4">
+<Modal 
+    open={changelogOpenState}
+    contentBase="card p-4 space-y-4 shadow-xl max-w-screen-sm overflow-auto preset-outlined-surface-200-800"
+>
+    {#snippet content()}
+        <header class="flex justify-between">
+            <h2 class="h2">Changelog</h2>
+        </header>
+        <article>
+            <div>
+                <p>1/21/2025: added warning for core-lateral and lateral-core swap in 7.16</p>
+                <p>1/20/2025: added more comprehensive post-swap spots to HealerOut</p>
+                <p>1/20/2025: fix idyll C postswap image rotation</p>
+                <p>1/19/2025: added idyll/game8 strat - added by kizer</p>
+                <p>1/10/2025: added more comprehensive post-swap spots to raidplan</p>
+                <p>1/9/2025: switched melee spread spots for raidplan A+C, fixed text wrapping at high zoom</p>
+                <p>1/7/2025: added HealerOut to the strat selector - added by Jake Hale @ Louisoux</p>
+                <p>1/5/2025: fixed raidplan spread spots to match where people end up after tether breaks, added pair partners + cleaned up phrasing</p>
+                <p>1/3/2025: added wfJ/o1Z to the raidplan selector, changed Add Relative to Wall Relative for CODCAR</p>
+                <p>1/2/2025: Updated some styling to make the swap assignments more obvious (yes melees will sometimes need to take a ranged spot), added some info to footer</p>
+                <p>1/1/2025: Added big overview image, rotated AOE spreads correctly for CODCAR, added post-swap locations for everyone starting on tiles</p>
+                <p>12/31/2024: Added Alignment buttons (Original, True North, Add Relative) for CODCAR, added Wild Charges to CODCAR tile players, some improvements to responsive sizing</p>
+                <p>12/30/2024: Initial Release</p>
+            </div>
+        </article>
+        <footer class="flex justify-end gap-4">
+            <button type="button" class="btn preset-tonal" onclick={changelogClose}>Close</button>
+        </footer>
+    {/snippet}
+
+</Modal>
+
+<header class="w-full mx-auto px-6 py-6 border-b border-gray-600">
     <div class="flex flex-wrap justify-between items-center">
-        <div class="text-2xl font-semibold">where the f do i go???? (Chaotic)</div>
+        <div class="text-2xl font-semibold">WTFDIG</div>
+        <div class="card preset-outlined-secondary-500 gap-4 p-4 lg:grid-cols-[auto_1fr_auto]">WTFDIG can now also be found at WTFDIG.info</div>
         <div class="my-4 md:my-0">
-            <button type="button" onclick={() => modalStore.trigger(changelogModal)} class="btn variant-ghost">Changelog</button>
+            <button type="button" class="btn preset-tonal-secondary border border-secondary-500">Chaotic</button>
+            <button type="button" onclick={() => changelogOpen()} class="btn ml-2 preset-tonal border border-surface-500">Changelog</button>
         </div>
     </div>
-    
 </header>
 
 
 {@render children?.()}
 
-<footer class="md:sticky bottom-0 left-0 z-20 w-full p-4 bg-white border-t border-gray-200 shadow-sm md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
+<footer class="md:sticky bottom-0 left-0 z-20 w-full p-4 border-t shadow-sm md:flex md:items-center md:justify-between md:p-6 dark:bg-surface-900 dark:border-gray-600">
     <div class="flex w-full max-w-(--breakpoint-xl) mx-auto justify-between">
 		<div class="text-sm text-gray-500 dark:text-gray-400">
             <div>Comments? Questions? Something incorrect? <a target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-500 hover:underline" href="https://docs.google.com/forms/d/e/1FAIpQLScJEJ43FKjSRJ2MyLuGXznce-P_SQNyPLWga_Xme_CJKPiQIQ/viewform?usp=header">Let me know.</a></div>

@@ -1,6 +1,11 @@
 @import 'tailwindcss';
+@import "@skeletonlabs/skeleton";
+@import "@skeletonlabs/skeleton/optional/presets";
+@import "@skeletonlabs/skeleton/themes/cerberus";
+@source "../node_modules/@skeletonlabs/skeleton-svelte/dist";
 
 @config '../tailwind.config.ts';
+@custom-variant dark (&:where(.dark, .dark *));
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
@@ -18,6 +23,7 @@
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
   }
+
 }
 
 @layer utilities {
