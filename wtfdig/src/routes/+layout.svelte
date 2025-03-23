@@ -93,25 +93,25 @@
                 <article>
                     <div class="opacity-60 preset-outlined-surface-200-800 grid grid-rows-4 p-0 w-full divide-y divide-surface-800 rounded-md bg-surface-950">
                         <div class="px-4 py-2 cursor-not-allowed">
-                            <a href="/" class="flex flex-col w-full items-start cursor-not-allowed">
+                            <a href="#" class="flex flex-col w-full items-start cursor-not-allowed">
                                 <div class="text-lg -mb-2">AAC Cruiserweight M1</div>
                                 <div class="text-sm">Savage</div>
                             </a>
                         </div>
                         <div class="px-4 py-2 cursor-not-allowed">
-                            <a href="/" class="flex flex-col w-full items-start cursor-not-allowed">
+                            <a href="#" class="flex flex-col w-full items-start cursor-not-allowed">
                                 <div class="text-lg -mb-2">AAC Cruiserweight M2</div>
                                 <div class="text-sm">Savage</div>
                             </a>
                         </div>
                         <div class="px-4 py-2 cursor-not-allowed">
-                            <a href="/" class="flex flex-col w-full items-start cursor-not-allowed">
+                            <a href="#" class="flex flex-col w-full items-start cursor-not-allowed">
                                 <div class="text-lg -mb-2">AAC Cruiserweight M3</div>
                                 <div class="text-sm">Savage</div>
                             </a>
                         </div>
                         <div class="px-4 py-2 cursor-not-allowed">
-                            <a href="/" class="flex flex-col w-full items-start cursor-not-allowed">
+                            <a href="#" class="flex flex-col w-full items-start cursor-not-allowed">
                                 <div class="text-lg -mb-2">AAC Cruiserweight M4</div>
                                 <div class="text-sm">Savage</div>
                             </a>
