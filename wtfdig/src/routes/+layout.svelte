@@ -2,6 +2,7 @@
 	import '../app.css';
     import { Modal, Popover } from '@skeletonlabs/skeleton-svelte';
     import ChevronDown from '@lucide/svelte/icons/chevron-down';
+    import { base } from '$app/paths';
     interface Props {
         children?: import('svelte').Snippet;
     }
@@ -57,7 +58,7 @@
 
 <header class="w-full mx-auto px-6 py-6 border-b border-gray-600 flex-none">
     <div class="grid grid-cols-1 md:grid-cols-3 justify-items-stretch items-center">
-        <a href="/" class="text-2xl font-semibold my-4 md:my-0 md:justify-self-start">WTFDIG</a>
+        <a href="{base}/" class="text-2xl font-semibold my-4 md:my-0 md:justify-self-start">WTFDIG</a>
         <div class="card preset-outlined-secondary-500 gap-4 p-4 lg:grid-cols-[auto_1fr_auto] md:justify-self-center">WTFDIG can now be found at <a target="_blank" rel="noopener noreferrer" class="anchor" href="https://wtfdig.info">WTFDIG.info</a></div>
         <div class="my-4 md:my-0 md:justify-self-end">
             <Popover
@@ -93,28 +94,28 @@
                 <article>
                     <div class="opacity-60 preset-outlined-surface-200-800 grid grid-rows-4 p-0 w-full divide-y divide-surface-800 rounded-md bg-surface-950">
                         <div class="px-4 py-2 cursor-not-allowed">
-                            <a href="#" class="flex flex-col w-full items-start cursor-not-allowed">
+                            <div class="flex flex-col w-full items-start cursor-not-allowed">
                                 <div class="text-lg -mb-2">AAC Cruiserweight M1</div>
                                 <div class="text-sm">Savage</div>
-                            </a>
+                            </div>
                         </div>
                         <div class="px-4 py-2 cursor-not-allowed">
-                            <a href="#" class="flex flex-col w-full items-start cursor-not-allowed">
+                            <div class="flex flex-col w-full items-start cursor-not-allowed">
                                 <div class="text-lg -mb-2">AAC Cruiserweight M2</div>
                                 <div class="text-sm">Savage</div>
-                            </a>
+                            </div>
                         </div>
                         <div class="px-4 py-2 cursor-not-allowed">
-                            <a href="#" class="flex flex-col w-full items-start cursor-not-allowed">
+                            <div class="flex flex-col w-full items-start cursor-not-allowed">
                                 <div class="text-lg -mb-2">AAC Cruiserweight M3</div>
                                 <div class="text-sm">Savage</div>
-                            </a>
+                            </div>
                         </div>
                         <div class="px-4 py-2 cursor-not-allowed">
-                            <a href="#" class="flex flex-col w-full items-start cursor-not-allowed">
+                            <div class="flex flex-col w-full items-start cursor-not-allowed">
                                 <div class="text-lg -mb-2">AAC Cruiserweight M4</div>
                                 <div class="text-sm">Savage</div>
-                            </a>
+                            </div>
                         </div>
                     </div>
                 </article>
