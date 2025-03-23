@@ -73,7 +73,7 @@
                 <article>
                     <div class="opacity-60 preset-outlined-surface-200-800 grid p-0 w-full divide-y divide-surface-800 rounded-md hover:bg-surface-900 bg-surface-950">
                         <div class="px-4 py-2">
-                            <a href="/71/chaotic" class="flex flex-col w-full items-start">
+                            <a href="{base}/71/chaotic" class="flex flex-col w-full items-start">
                                 <div class="text-lg -mb-2">Cloud of Darkness</div>
                                 <div class="text-sm">Chaotic</div>
                             </a>
