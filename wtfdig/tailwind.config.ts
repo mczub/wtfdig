@@ -1,6 +1,5 @@
 import { join } from 'path';
 import type { Config } from 'tailwindcss';
-import typography from '@tailwindcss/typography';
 
 export default {
 	darkMode: 'class',
@@ -10,6 +9,6 @@ export default {
 	},
 	plugins: [
 		require('@tailwindcss/forms'),
-		typography,
+		require('@tailwindcss/typography'),
 	],
 } satisfies Config;
