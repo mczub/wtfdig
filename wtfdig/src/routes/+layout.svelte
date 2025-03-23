@@ -1,7 +1,6 @@
 <script lang="ts">
 	import '../app.css';
-    import { Modal, Popover } from '@skeletonlabs/skeleton-svelte';
-    import ChevronDown from '@lucide/svelte/icons/chevron-down';
+    import { Modal } from '@skeletonlabs/skeleton-svelte';
     interface Props {
         children?: import('svelte').Snippet;
     }
@@ -12,9 +11,6 @@
     function changelogClose() {
         changelogOpenState = false;
     }
-    let popover71OpenState = $state(false);
-    let popover72OpenState = $state(false);
-
 
     let { children }: Props = $props();
 </script>
@@ -56,71 +52,11 @@
 </Modal>
 
 <header class="w-full mx-auto px-6 py-6 border-b border-gray-600 flex-none">
-    <div class="grid grid-cols-1 md:grid-cols-3 justify-items-stretch items-center">
-        <a href="/" class="text-2xl font-semibold my-4 md:my-0 md:justify-self-start">WTFDIG</a>
-        <div class="card preset-outlined-secondary-500 gap-4 p-4 lg:grid-cols-[auto_1fr_auto] md:justify-self-center">WTFDIG can now be found at <a target="_blank" rel="noopener noreferrer" class="anchor" href="https://wtfdig.info">WTFDIG.info</a></div>
-        <div class="my-4 md:my-0 md:justify-self-end">
-            <Popover
-                open={popover71OpenState}
-                onOpenChange={(e) => (popover71OpenState = e.open)}
-                positioning={{ placement: 'bottom-end' }}
-                triggerBase="btn preset-tonal-secondary border border-secondary-500"
-                contentBase="card bg-surface-200-800 space-y-4 min-w-[240px]"
-            >
-                {#snippet trigger()}Patch 7.1 <ChevronDown size={16}/>{/snippet}
-                {#snippet content()}
-                <article>
-                    <div class="opacity-60 preset-outlined-surface-200-800 grid p-0 w-full divide-y divide-surface-800 rounded-md hover:bg-surface-900 bg-surface-950">
-                        <div class="px-4 py-2">
-                            <a href="/71/chaotic" class="flex flex-col w-full items-start">
-                                <div class="text-lg -mb-2">Cloud of Darkness</div>
-                                <div class="text-sm">Chaotic</div>
-                            </a>
-                        </div>
-                    </div>
-                </article>
-                {/snippet}
-            </Popover>
-            <Popover
-                open={popover72OpenState}
-                onOpenChange={(e) => (popover72OpenState = e.open)}
-                positioning={{ placement: 'bottom-end' }}
-                triggerBase="btn preset-tonal-secondary border border-secondary-500"
-                contentBase="card bg-surface-200-800 min-w-[240px]"
-            >
-                {#snippet trigger()}Patch 7.2 <ChevronDown size={16}/>{/snippet}
-                {#snippet content()}
-                <article>
-                    <div class="opacity-60 preset-outlined-surface-200-800 grid grid-rows-4 p-0 w-full divide-y divide-surface-800 rounded-md bg-surface-950">
-                        <div class="px-4 py-2 cursor-not-allowed">
-                            <a href="/" class="flex flex-col w-full items-start cursor-not-allowed">
-                                <div class="text-lg -mb-2">AAC Cruiserweight M1</div>
-                                <div class="text-sm">Savage</div>
-                            </a>
-                        </div>
-                        <div class="px-4 py-2 cursor-not-allowed">
-                            <a href="/" class="flex flex-col w-full items-start cursor-not-allowed">
-                                <div class="text-lg -mb-2">AAC Cruiserweight M2</div>
-                                <div class="text-sm">Savage</div>
-                            </a>
-                        </div>
-                        <div class="px-4 py-2 cursor-not-allowed">
-                            <a href="/" class="flex flex-col w-full items-start cursor-not-allowed">
-                                <div class="text-lg -mb-2">AAC Cruiserweight M3</div>
-                                <div class="text-sm">Savage</div>
-                            </a>
-                        </div>
-                        <div class="px-4 py-2 cursor-not-allowed">
-                            <a href="/" class="flex flex-col w-full items-start cursor-not-allowed">
-                                <div class="text-lg -mb-2">AAC Cruiserweight M4</div>
-                                <div class="text-sm">Savage</div>
-                            </a>
-                        </div>
-                    </div>
-                </article>
-                {/snippet}
-            </Popover>
-            
+    <div class="flex flex-wrap justify-between items-center">
+        <div class="text-2xl font-semibold my-4 sm:my-0">WTFDIG</div>
+        <div class="card preset-outlined-secondary-500 gap-4 p-4 lg:grid-cols-[auto_1fr_auto]">WTFDIG can now be found at <a target="_blank" rel="noopener noreferrer" class="anchor" href="https://wtfdig.info">WTFDIG.info</a></div>
+        <div class="my-4 md:my-0">
+            <button type="button" class="btn preset-tonal-secondary border border-secondary-500">Chaotic</button>
             <button type="button" onclick={() => changelogOpen()} class="btn ml-2 preset-tonal border border-surface-500">Changelog</button>
         </div>
     </div>
