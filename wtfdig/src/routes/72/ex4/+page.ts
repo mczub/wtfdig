@@ -3,7 +3,7 @@ import type { PageLoad } from "./$types";
 
 export const load: PageLoad = ({params}) => {
     return {
-        strats: [raidplanStrat, hectorStrat, happyStrat],
+        strats: [raidplanStrat, hectorStrat, happyStrat, yukizuriStrat],
     }
 }
 

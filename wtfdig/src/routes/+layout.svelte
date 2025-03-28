@@ -33,6 +33,7 @@
         </header>
         <article>
             <div>
+                <p>3/27/2025: ex4 support</p>
                 <p>3/21/2025: updated to svelte v5 in preparation for 7.2</p>
                 <p>1/21/2025: added warning for core-lateral and lateral-core swap in 7.16</p>
                 <p>1/20/2025: added more comprehensive post-swap spots to HealerOut</p>
