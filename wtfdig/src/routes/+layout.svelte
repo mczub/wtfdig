@@ -33,6 +33,7 @@
         </header>
         <article>
             <div>
+                <p>3/27/2025: ex4 support</p>
                 <p>3/21/2025: updated to svelte v5 in preparation for 7.2</p>
                 <p>1/21/2025: added warning for core-lateral and lateral-core swap in 7.16</p>
                 <p>1/20/2025: added more comprehensive post-swap spots to HealerOut</p>
@@ -93,6 +94,12 @@
                 {#snippet content()}
                 <article>
                     <div class="opacity-60 preset-outlined-surface-200-800 grid grid-rows-4 p-0 w-full divide-y divide-surface-800 rounded-md bg-surface-950">
+                        <div class="px-4 py-2">
+                            <a href="{base}/72/ex4" class="flex flex-col w-full items-start">
+                                <div class="text-lg -mb-2">Recollection</div>
+                                <div class="text-sm">Extreme</div>
+                            </a>
+                        </div>
                         <div class="px-4 py-2 cursor-not-allowed">
                             <div class="flex flex-col w-full items-start cursor-not-allowed">
                                 <div class="text-lg -mb-2">AAC Cruiserweight M1</div>
