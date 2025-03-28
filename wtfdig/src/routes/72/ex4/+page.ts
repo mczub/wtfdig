@@ -948,24 +948,24 @@ const hectorStrat: Strat = {
                             role: 'Melee',
                             party: 2,
                             description: {
-                                supports: 'Follow symbol on 1 & 3',
-                                dps: 'Follow symbol on 2 & 4',
+                                supports: 'Follow symbol on 2 & 4',
+                                dps: 'Follow symbol on 1 & 3',
                             }
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: {
-                                supports: 'Follow symbol on 1 & 3',
-                                dps: 'Follow symbol on 2 & 4',
+                                supports: 'Follow symbol on 2 & 4',
+                                dps: 'Follow symbol on 1 & 3',
                             }
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: {
-                                supports: 'Follow symbol on 1 & 3',
-                                dps: 'Follow symbol on 2 & 4',
+                                supports: 'Follow symbol on 2 & 4',
+                                dps: 'Follow symbol on 1 & 3',
                             }
                         },
                     ]
@@ -1734,24 +1734,24 @@ const happyStrat: Strat = {
                             role: 'Melee',
                             party: 2,
                             description: {
-                                supports: 'Follow symbol on 1 & 3',
-                                dps: 'Follow symbol on 2 & 4',
+                                supports: 'Follow symbol on 2 & 4',
+                                dps: 'Follow symbol on 1 & 3',
                             }
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: {
-                                supports: 'Follow symbol on 1 & 3',
-                                dps: 'Follow symbol on 2 & 4',
+                                supports: 'Follow symbol on 2 & 4',
+                                dps: 'Follow symbol on 1 & 3',
                             }
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: {
-                                supports: 'Follow symbol on 1 & 3',
-                                dps: 'Follow symbol on 2 & 4',
+                                supports: 'Follow symbol on 2 & 4',
+                                dps: 'Follow symbol on 1 & 3',
                             }
                         },
                     ]
@@ -2520,24 +2520,24 @@ const yukizuriStrat: Strat = {
                             role: 'Melee',
                             party: 2,
                             description: {
-                                supports: 'Follow symbol on 1 & 3',
-                                dps: 'Follow symbol on 2 & 4',
+                                supports: 'Follow symbol on 2 & 4',
+                                dps: 'Follow symbol on 1 & 3',
                             }
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: {
-                                supports: 'Follow symbol on 1 & 3',
-                                dps: 'Follow symbol on 2 & 4',
+                                supports: 'Follow symbol on 2 & 4',
+                                dps: 'Follow symbol on 1 & 3',
                             }
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: {
-                                supports: 'Follow symbol on 1 & 3',
-                                dps: 'Follow symbol on 2 & 4',
+                                supports: 'Follow symbol on 2 & 4',
+                                dps: 'Follow symbol on 1 & 3',
                             }
                         },
                     ]
