@@ -109,8 +109,9 @@ const raidplanStrat: Strat = {
             phaseName: `Escelons' Fall 1 (Witch Hunt)`,
             tag: 'ef1',
             description: {
-                supports: 'Supports first',
-                dps: 'DPS first'
+                supports: 'Supports bait first',
+                dps: 'DPS bait first',
+                dpsin: 'DPS in first'
             },
             mechs: [
                 {
@@ -124,6 +125,7 @@ const raidplanStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 1 & 3',
                                 dps: 'Follow symbol on 2 & 4',
+                                dpsin: 'Always start out\nDodge either once or twice'
                             }
                         },
                         {
@@ -132,6 +134,7 @@ const raidplanStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 1 & 3',
                                 dps: 'Follow symbol on 2 & 4',
+                                dpsin: 'Always start out\nDodge either once or twice'
                             }
                         },
                         {
@@ -140,6 +143,7 @@ const raidplanStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 1 & 3',
                                 dps: 'Follow symbol on 2 & 4',
+                                dpsin: 'Always start out\nDodge either once or twice'
                             }
                         },
                         {
@@ -148,6 +152,7 @@ const raidplanStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 1 & 3',
                                 dps: 'Follow symbol on 2 & 4',
+                                dpsin: 'Always start out\nDodge either once or twice'
                             }
                         },
                         {
@@ -156,6 +161,7 @@ const raidplanStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 2 & 4',
                                 dps: 'Follow symbol on 1 & 3',
+                                dpsin: 'Always start in\nDodge either once or twice'
                             }
                         },
                         {
@@ -164,6 +170,7 @@ const raidplanStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 2 & 4',
                                 dps: 'Follow symbol on 1 & 3',
+                                dpsin: 'Always start in\nDodge either once or twice'
                             }
                         },
                         {
@@ -172,6 +179,7 @@ const raidplanStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 2 & 4',
                                 dps: 'Follow symbol on 1 & 3',
+                                dpsin: 'Always start in\nDodge either once or twice'
                             }
                         },
                         {
@@ -180,6 +188,7 @@ const raidplanStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 2 & 4',
                                 dps: 'Follow symbol on 1 & 3',
+                                dpsin: 'Always start in\nDodge either once or twice'
                             }
                         },
                     ]
@@ -895,8 +904,9 @@ const hectorStrat: Strat = {
             phaseName: `Escelons' Fall 1 (Witch Hunt)`,
             tag: 'ef1',
             description: {
-                supports: 'Supports first',
-                dps: 'DPS first'
+                supports: 'Supports bait first',
+                dps: 'DPS bait first',
+                dpsin: 'DPS in first',
             },
             mechs: [
                 {
@@ -910,6 +920,7 @@ const hectorStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 1 & 3',
                                 dps: 'Follow symbol on 2 & 4',
+                                dpsin: 'Always start out\nDodge either once or twice'
                             }
                         },
                         {
@@ -918,6 +929,7 @@ const hectorStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 1 & 3',
                                 dps: 'Follow symbol on 2 & 4',
+                                dpsin: 'Always start out\nDodge either once or twice'
                             }
                         },
                         {
@@ -926,6 +938,7 @@ const hectorStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 1 & 3',
                                 dps: 'Follow symbol on 2 & 4',
+                                dpsin: 'Always start out\nDodge either once or twice'
                             }
                         },
                         {
@@ -934,6 +947,7 @@ const hectorStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 1 & 3',
                                 dps: 'Follow symbol on 2 & 4',
+                                dpsin: 'Always start out\nDodge either once or twice'
                             }
                         },
                         {
@@ -942,6 +956,7 @@ const hectorStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 2 & 4',
                                 dps: 'Follow symbol on 1 & 3',
+                                dpsin: 'Always start in\nDodge either once or twice'
                             }
                         },
                         {
@@ -950,6 +965,7 @@ const hectorStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 2 & 4',
                                 dps: 'Follow symbol on 1 & 3',
+                                dpsin: 'Always start in\nDodge either once or twice'
                             }
                         },
                         {
@@ -958,6 +974,7 @@ const hectorStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 2 & 4',
                                 dps: 'Follow symbol on 1 & 3',
+                                dpsin: 'Always start in\nDodge either once or twice'
                             }
                         },
                         {
@@ -966,6 +983,7 @@ const hectorStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 2 & 4',
                                 dps: 'Follow symbol on 1 & 3',
+                                dpsin: 'Always start in\nDodge either once or twice'
                             }
                         },
                     ]
@@ -1681,8 +1699,9 @@ const happyStrat: Strat = {
             phaseName: `Escelons' Fall 1 (Witch Hunt)`,
             tag: 'ef1',
             description: {
-                supports: 'Supports first',
-                dps: 'DPS first'
+                supports: 'Supports bait first',
+                dps: 'DPS bait first',
+                dpsin: 'DPS in first'
             },
             mechs: [
                 {
@@ -1696,6 +1715,8 @@ const happyStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 1 & 3',
                                 dps: 'Follow symbol on 2 & 4',
+                                dpsin: 'Always start out\nDodge either once or twice'
+                                
                             }
                         },
                         {
@@ -1704,6 +1725,7 @@ const happyStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 1 & 3',
                                 dps: 'Follow symbol on 2 & 4',
+                                dpsin: 'Always start out\nDodge either once or twice'
                             }
                         },
                         {
@@ -1712,6 +1734,7 @@ const happyStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 1 & 3',
                                 dps: 'Follow symbol on 2 & 4',
+                                dpsin: 'Always start out\nDodge either once or twice'
                             }
                         },
                         {
@@ -1720,6 +1743,7 @@ const happyStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 1 & 3',
                                 dps: 'Follow symbol on 2 & 4',
+                                dpsin: 'Always start out\nDodge either once or twice'
                             }
                         },
                         {
@@ -1728,6 +1752,7 @@ const happyStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 2 & 4',
                                 dps: 'Follow symbol on 1 & 3',
+                                dpsin: 'Always start in\nDodge either once or twice'
                             }
                         },
                         {
@@ -1736,6 +1761,7 @@ const happyStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 2 & 4',
                                 dps: 'Follow symbol on 1 & 3',
+                                dpsin: 'Always start in\nDodge either once or twice'
                             }
                         },
                         {
@@ -1744,6 +1770,7 @@ const happyStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 2 & 4',
                                 dps: 'Follow symbol on 1 & 3',
+                                dpsin: 'Always start in\nDodge either once or twice'
                             }
                         },
                         {
@@ -1752,6 +1779,7 @@ const happyStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 2 & 4',
                                 dps: 'Follow symbol on 1 & 3',
+                                dpsin: 'Always start in\nDodge either once or twice'
                             }
                         },
                     ]
@@ -2467,8 +2495,9 @@ const yukizuriStrat: Strat = {
             phaseName: `Escelons' Fall 1 (Witch Hunt)`,
             tag: 'ef1',
             description: {
-                supports: 'Supports first',
-                dps: 'DPS first'
+                supports: 'Supports bait first',
+                dps: 'DPS bait first',
+                dpsin: 'DPS in first'
             },
             mechs: [
                 {
@@ -2482,6 +2511,7 @@ const yukizuriStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 1 & 3',
                                 dps: 'Follow symbol on 2 & 4',
+                                dpsin: 'Always start out\nDodge either once or twice'
                             }
                         },
                         {
@@ -2490,6 +2520,7 @@ const yukizuriStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 1 & 3',
                                 dps: 'Follow symbol on 2 & 4',
+                                dpsin: 'Always start out\nDodge either once or twice'
                             }
                         },
                         {
@@ -2498,6 +2529,7 @@ const yukizuriStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 1 & 3',
                                 dps: 'Follow symbol on 2 & 4',
+                                dpsin: 'Always start out\nDodge either once or twice'
                             }
                         },
                         {
@@ -2506,6 +2538,7 @@ const yukizuriStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 1 & 3',
                                 dps: 'Follow symbol on 2 & 4',
+                                dpsin: 'Always start out\nDodge either once or twice'
                             }
                         },
                         {
@@ -2514,6 +2547,7 @@ const yukizuriStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 2 & 4',
                                 dps: 'Follow symbol on 1 & 3',
+                                dpsin: 'Always start in\nDodge either once or twice'
                             }
                         },
                         {
@@ -2522,6 +2556,7 @@ const yukizuriStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 2 & 4',
                                 dps: 'Follow symbol on 1 & 3',
+                                dpsin: 'Always start in\nDodge either once or twice'
                             }
                         },
                         {
@@ -2530,6 +2565,7 @@ const yukizuriStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 2 & 4',
                                 dps: 'Follow symbol on 1 & 3',
+                                dpsin: 'Always start in\nDodge either once or twice'
                             }
                         },
                         {
@@ -2538,6 +2574,7 @@ const yukizuriStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 2 & 4',
                                 dps: 'Follow symbol on 1 & 3',
+                                dpsin: 'Always start in\nDodge either once or twice'
                             }
                         },
                     ]

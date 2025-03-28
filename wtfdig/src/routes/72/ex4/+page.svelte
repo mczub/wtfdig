@@ -83,7 +83,7 @@
 				bloom6: "lb3",
 			},
 			'hector': {
-				ef1: "dps",
+				ef1: "dpsin",
 				bloom3: "relative",
 				ef2: "we",
 				bloom4: "tn",
@@ -138,6 +138,9 @@
 			}
 			if (stratState.ef1 === 'supports') {
 				stratDiffs.push(`Supports first`);
+			}
+			if (stratState.ef1 === 'dpsin') {
+				stratDiffs.push(`DPS in first`);
 			}
 		}
 		if (stratState.bloom3 !== getStratMechs(stratName)['bloom3']) {
@@ -220,8 +223,9 @@
 								{/if}
 							</div>
 							<Segment classes="flex-wrap" name="ef1" value={stratState.ef1} onValueChange={(e) => (stratState.ef1 = e.value)}>
-								<Segment.Item value="supports">Supports first</Segment.Item>
-								<Segment.Item value="dps">DPS first</Segment.Item>
+								<Segment.Item value="supports">Supports bait first</Segment.Item>
+								<Segment.Item value="dps">DPS bait first</Segment.Item>
+								<Segment.Item value="dpsin">DPS in first</Segment.Item>
 							</Segment>
 						</div>
 						<div class="flex flex-col">
