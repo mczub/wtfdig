@@ -189,7 +189,7 @@
 					<Segment classes="flex-wrap" name="stratName" value={stratName} onValueChange={onSelectStrat}>
 						<Segment.Item value="raidplan">Raidplan (-Wj9 & k9Vc)</Segment.Item>
 						<Segment.Item value="hector">Hector</Segment.Item>
-						<Segment.Item value="happy">MrHappy</Segment.Item>
+						<Segment.Item value="happy">Mrhappy</Segment.Item>
 						<Segment.Item value="yukizuri">Yukizuri</Segment.Item>
 					</Segment>
 					{#if stratName}
@@ -341,7 +341,7 @@
 								<div class="capitalize font-semibold text-xl mb-0">{mech.mechanic}</div> 
 								{#if mech?.description}<div class="whitespace-pre-wrap text-lg mb-0">{mech.description}</div>{/if}
 								{#if mech?.notes}
-									<div class="card preset-outlined-primary-500 p-2 flex flex-row space-x-2">
+									<div class="card preset-outlined-primary-500 p-2 flex flex-row space-x-2 my-2">
 										<CircleAlert size={32} />
 										<div class="whitespace-pre-wrap text-lg mb-0">{mech.notes}</div>
 									</div>
