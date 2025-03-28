@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Alignment, PlayerMechStrat, PhaseStrats, Role, MechanicStrat, Strat } from './+page';
-	import { Accordion, Segment, Switch } from '@skeletonlabs/skeleton-svelte';
+	import { Accordion, Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
 
@@ -27,7 +27,7 @@
 	let individualStrat = $derived(getIndividualStrat(stratName, role, party));
 	let spotlight: boolean = $state(true);
 	let alignment: Alignment = $state('original');
-    let accordion = $state(['swaps']);
+    let tooltipOpen = $state(false);
 	let optionsString = $derived(getOptionsString(stratName, role, party));
 
 	function onSelectStrat(e) {
@@ -186,6 +186,9 @@
         
 		<div class="flex flex-wrap min-w-full justify-between mb-8 card preset-filled-surface-50-950 border-[1px] border-surface-200-800 p-4">
 			<div class="space-y-5 v-full dark">
+				<div class="card preset-outlined-warning-500 gap-4 p-4">
+                    <p>This guide is still under construction, thank you for your patience while we continue to work on it.</p>
+                </div>
 				<div>
 					<div class="text-xl mb-2">Which strat are you using?</div>
 					<Segment classes="flex-wrap" name="stratName" value={stratName} onValueChange={onSelectStrat}>
@@ -196,12 +199,24 @@
 					</Segment>
 					{#if stratName}
 					<div class="text-lg my-2">Mechanics</div>
-					<div class="flex flex-row space-x-4 flex-wrap">
+					<div class="flex flex-row space-x-4 space-y-2 flex-wrap">
 						<div class="flex flex-col">
 							<div class="flex flex-row">
 								<div class="text-md mb-2">EF1/3</div>
 								{#if stratName && stratState.ef1 !== getStratMechs(stratName)['ef1']}
-									<span class="ml-2 text-warning-500"><TriangleAlert /></span>
+									<Tooltip
+										positioning={{ placement: 'top' }}
+										triggerBase="underline"
+										contentBase="card bg-surface-800 p-4"
+										classes="ml-2"
+										openDelay={200}
+										arrow
+										arrowBackground="!bg-surface-800"
+
+									>
+										{#snippet trigger()}<div class="text-warning-500"><TriangleAlert /></div>{/snippet}
+										{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
+									</Tooltip>
 								{/if}
 							</div>
 							<Segment classes="flex-wrap" name="ef1" value={stratState.ef1} onValueChange={(e) => (stratState.ef1 = e.value)}>
@@ -213,7 +228,19 @@
 							<div class="flex flex-row">
 								<div class="text-md mb-2">Bloom 3</div>
 								{#if stratName && stratState.bloom3 !== getStratMechs(stratName)['bloom3']}
-									<span class="ml-2 text-warning-500"><TriangleAlert /></span>
+									<Tooltip
+										positioning={{ placement: 'top' }}
+										triggerBase="underline"
+										contentBase="card bg-surface-800 p-4"
+										classes="ml-2"
+										openDelay={200}
+										arrow
+										arrowBackground="!bg-surface-800"
+
+									>
+										{#snippet trigger()}<div class="text-warning-500"><TriangleAlert /></div>{/snippet}
+										{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
+									</Tooltip>
 								{/if}
 							</div>
 							<Segment classes="flex-wrap" name="bloom3" value={stratState.bloom3} onValueChange={(e) => (stratState.bloom3 = e.value)}>
@@ -225,7 +252,19 @@
 							<div class="flex flex-row">
 								<div class="text-md mb-2">EF2</div>
 								{#if stratName && stratState.ef2 !== getStratMechs(stratName)['ef2']}
-									<span class="ml-2 text-warning-500"><TriangleAlert /></span>
+									<Tooltip
+										positioning={{ placement: 'top' }}
+										triggerBase="underline"
+										contentBase="card bg-surface-800 p-4"
+										classes="ml-2"
+										openDelay={200}
+										arrow
+										arrowBackground="!bg-surface-800"
+
+									>
+										{#snippet trigger()}<div class="text-warning-500"><TriangleAlert /></div>{/snippet}
+										{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
+									</Tooltip>
 								{/if}
 							</div>
 							<Segment classes="flex-wrap" name="ef2" value={stratState.ef2} onValueChange={(e) => (stratState.ef2 = e.value)}>
@@ -238,7 +277,19 @@
 							<div class="flex flex-row">
 								<div class="text-md mb-2">Bloom 4</div>
 								{#if stratName && stratState.bloom4 !== getStratMechs(stratName)['bloom4']}
-									<span class="ml-2 text-warning-500"><TriangleAlert /></span>
+									<Tooltip
+										positioning={{ placement: 'top' }}
+										triggerBase="underline"
+										contentBase="card bg-surface-800 p-4"
+										classes="ml-2"
+										openDelay={200}
+										arrow
+										arrowBackground="!bg-surface-800"
+
+									>
+										{#snippet trigger()}<div class="text-warning-500"><TriangleAlert /></div>{/snippet}
+										{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
+									</Tooltip>
 								{/if}
 							</div>
 							<Segment classes="flex-wrap" name="bloom4" value={stratState.bloom4} onValueChange={(e) => (stratState.bloom4 = e.value)}>
@@ -250,7 +301,19 @@
 							<div class="flex flex-row">
 								<div class="text-md mb-2">Bloom 6</div>
 								{#if stratName && stratState.bloom6 !== getStratMechs(stratName)['bloom6']}
-									<span class="ml-2 text-warning-500"><TriangleAlert /></span>
+									<Tooltip
+										positioning={{ placement: 'top' }}
+										triggerBase="underline"
+										contentBase="card bg-surface-800 p-4"
+										classes="ml-2"
+										openDelay={200}
+										arrow
+										arrowBackground="!bg-surface-800"
+
+									>
+										{#snippet trigger()}<div class="text-warning-500"><TriangleAlert /></div>{/snippet}
+										{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
+									</Tooltip>
 								{/if}
 							</div>
 							<Segment classes="flex-wrap" name="bloom6" value={stratState.bloom6} onValueChange={(e) => (stratState.bloom6 = e.value)}>
@@ -331,7 +394,19 @@
 					<div class="flex flex-row">
 						<div class="capitalize font-semibold text-xl mb-0">{phase.phaseName}</div>
 						{#if phase?.tag && (stratState[phase.tag] !== getStratMechs(stratName)[phase.tag])}
-							<span class="ml-2 text-warning-500"><TriangleAlert size={32}/></span>
+							<Tooltip
+								positioning={{ placement: 'top' }}
+								triggerBase="underline"
+								contentBase="card bg-surface-800 p-4"
+								classes="ml-2"
+								openDelay={200}
+								arrow
+								arrowBackground="!bg-surface-800"
+
+							>
+								{#snippet trigger()}<div class="text-warning-500"><TriangleAlert size={32}/></div>{/snippet}
+								{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
+							</Tooltip>
 						{/if}
 					</div>
 					
