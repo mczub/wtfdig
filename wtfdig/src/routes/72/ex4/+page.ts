@@ -106,7 +106,7 @@ const raidplanStrat: Strat = {
             ]
         },
         {
-            phaseName: `Escelons' Fall 1`,
+            phaseName: `Escelons' Fall 1 (Witch Hunt)`,
             tag: 'ef1',
             description: {
                 supports: 'Supports first',
@@ -892,7 +892,7 @@ const hectorStrat: Strat = {
             ]
         },
         {
-            phaseName: `Escelons' Fall 1`,
+            phaseName: `Escelons' Fall 1 (Witch Hunt)`,
             tag: 'ef1',
             description: {
                 supports: 'Supports first',
@@ -1678,7 +1678,7 @@ const happyStrat: Strat = {
             ]
         },
         {
-            phaseName: `Escelons' Fall 1`,
+            phaseName: `Escelons' Fall 1 (Witch Hunt)`,
             tag: 'ef1',
             description: {
                 supports: 'Supports first',
@@ -2464,7 +2464,7 @@ const yukizuriStrat: Strat = {
             ]
         },
         {
-            phaseName: `Escelons' Fall 1`,
+            phaseName: `Escelons' Fall 1 (Witch Hunt)`,
             tag: 'ef1',
             description: {
                 supports: 'Supports first',

@@ -390,9 +390,9 @@
 				</div>
 
 				{#each individualStrat as phase}
-				<div class="mb-12">
+				<div class="card border border-surface-800 mb-8 p-4">
 					<div class="flex flex-row">
-						<div class="capitalize font-semibold text-xl mb-0">{phase.phaseName}</div>
+						<div class="capitalize font-bold text-2xl mb-0">{phase.phaseName}</div>
 						{#if phase?.tag && (stratState[phase.tag] !== getStratMechs(stratName)[phase.tag])}
 							<Tooltip
 								positioning={{ placement: 'top' }}
@@ -409,26 +409,28 @@
 							</Tooltip>
 						{/if}
 					</div>
-					
 					{#if phase?.description}<div class="text-lg">{phase.description}</div>{/if}
-					<div class="grid xl:grid-cols-2 grid-cols-2 gap-2">
-						{#each phase.mechs as mech}
-							{#key [spotlight, alignment]}
-							<div class="space-y-4" class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}>
-								<div class="capitalize font-semibold text-xl mb-0">{mech.mechanic}</div> 
-								{#if mech?.description}<div class="whitespace-pre-wrap text-lg mb-0">{mech.description}</div>{/if}
-								{#if mech?.notes}
-									<div class="card preset-outlined-primary-500 p-2 flex flex-row space-x-2 my-2">
-										<CircleAlert size={32} />
-										<div class="whitespace-pre-wrap text-lg mb-0">{mech.notes}</div>
-									</div>
-								{/if}
-								<div class="whitespace-pre-wrap text-lg mb-0">{mech.strats[0].description}</div>
-								<img src={(mech.alignmentImages && mech.alignmentImages[alignment]) ? mech.alignmentImages[alignment] : mech.imageUrl} style:mask-image={getMask(mech)} style:transform={mech.alignmentTransforms ? mech.alignmentTransforms[alignment] : mech.transform} />
-							</div>
-							{/key}
-						{/each}
-					</div>
+					{#if phase?.mechs}
+						<div class="grid xl:grid-cols-2 grid-cols-2 gap-2 mt-4">
+							{#each phase.mechs as mech}
+								{#key [spotlight, alignment]}
+								<div class="space-y-4" class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}>
+									<div class="capitalize font-semibold text-xl mb-0">{mech.mechanic}</div> 
+									{#if mech?.notes}
+										<div class="card preset-outlined-primary-500 p-2 flex flex-row space-x-2 my-2">
+											<CircleAlert size={32} />
+											<div class="whitespace-pre-wrap text-lg mb-0">{mech.notes}</div>
+										</div>
+									{/if}
+									{#if mech?.description}<div class="whitespace-pre-wrap text-lg mb-0">{mech.description}</div>{/if}
+									
+									<div class="whitespace-pre-wrap text-lg mb-0">{mech.strats[0].description}</div>
+									<img src={(mech.alignmentImages && mech.alignmentImages[alignment]) ? mech.alignmentImages[alignment] : mech.imageUrl} style:mask-image={getMask(mech)} style:transform={mech.alignmentTransforms ? mech.alignmentTransforms[alignment] : mech.transform} />
+								</div>
+								{/key}
+							{/each}
+						</div>
+					{/if}
 				</div>
 				{/each}
 				
