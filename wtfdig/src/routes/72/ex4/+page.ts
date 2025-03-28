@@ -10,9 +10,10 @@ export const load: PageLoad = ({params}) => {
 export type Role = 'Tank' | 'Healer' | 'Melee' | 'Ranged'; 
 export type Alignment = 'original' | 'truenorth' | 'relative';
 
-export interface MechanicStrat {
-    strat: string;
-    description: string;
+export interface PlayerMechStrat {
+    role: Role;
+    party: number;
+    description: string | Record<string, string>;
     imageUrl?: string;
     imageRotated?: string;
     mask?: string;
@@ -22,22 +23,30 @@ export interface MechanicStrat {
     alignmentMasks?: Record<Alignment, string>;
 }
 
-export interface PlayerStrats {
-    role: Role;
-    party: number;
-    notes: string;
-    strats: MechanicStrat[];
+export interface MechanicStrat {
+    mechanic: string;
+    description?: string;
+    notes?: string;
+    strats: PlayerMechStrat[];
 }
 
-interface Strat {
+
+export interface PhaseStrats {
+    phaseName: string;
+    tag?: string;
+    description?: string | Record<string, string>;
+    mechs?: MechanicStrat[];
+}
+
+export interface Strat {
     stratName: string;
     stratUrl: string | Record<string, string>;
     description: string;
     notes: string;
-    strats: PlayerStrats[];
+    strats: PhaseStrats[];
 }
 
-const raidplanStrat = {
+const raidplanStrat: Strat = {
     stratName: 'raidplan',
     description: 'Source: Raidplan by (Rai) Kira Milana',
     notes: '',
@@ -826,7 +835,7 @@ const raidplanStrat = {
     ]
 }
 
-const hectorStrat = {
+const hectorStrat: Strat = {
     stratName: 'hector',
     description: 'Source: Video by Hector Hectorson',
     notes: '',
@@ -1612,7 +1621,7 @@ const hectorStrat = {
     ]
 }
 
-const happyStrat = {
+const happyStrat: Strat = {
     stratName: 'happy',
     description: 'Source: Video by Mrhappy1227',
     notes: '',
@@ -2398,7 +2407,7 @@ const happyStrat = {
     ]
 }
 
-const yukizuriStrat = {
+const yukizuriStrat: Strat = {
     stratName: 'yukizuri',
     description: 'Source: Video by Yukizuri',
     notes: '',

@@ -1,11 +1,13 @@
 <script lang="ts">
-	import type { Alliance, Role, PlayerStrats, Alignment, MechanicStrat } from './+page';
+	import type { Alignment, PlayerMechStrat, PhaseStrats, Role, MechanicStrat, Strat } from './+page';
 	import { Accordion, Segment, Switch } from '@skeletonlabs/skeleton-svelte';
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
 
 	interface Props {
-		data: any;
+		data: {
+			strats: Strat[];
+		};
 		children?: import('svelte').Snippet;
 	}
 
@@ -19,7 +21,6 @@
 		bloom6: null,
 	});
 
-	let alliance: Alliance | undefined = $state();
 	let role: Role | undefined = $state();
 	let party: number | undefined = $state();
 	let strat = $derived(getStrat(stratName));
@@ -34,7 +35,7 @@
 		stratState = getStratMechs(e.value);
 	}
 
-	function getStrat(stratName?: string) {
+	function getStrat(stratName?: string): Strat | string | undefined {
 		if (!stratName || !role || !party) return `Couldn't find ${stratName} strat`;
 		return data.strats.find(strat => strat.stratName === stratName);
 	}
@@ -42,7 +43,8 @@
 	function getIndividualStrat(stratName?: string, role?: Role, party?: number) {
 		if (!stratName || !role || !party) return '';
 		const stratPackage = getStrat(stratName);
-		const individualPackages = stratPackage.strats?.map(
+		if (typeof stratPackage === 'string') return `Couldn't find ${stratName} strat for ${role} ${party}`;;
+		const individualPackages = stratPackage?.strats?.map(
 			phaseStrat => {
 				return {
 					...phaseStrat,
@@ -105,7 +107,7 @@
 		return stratMechs[stratName];
 	}
 
-	function getMask(step: MechanicStrat): string {
+	function getMask(step: PlayerMechStrat): string {
 		if (spotlight) {
 			if (step.alignmentMasks && step.alignmentMasks[alignment]) {
 				return step.alignmentMasks[alignment];
