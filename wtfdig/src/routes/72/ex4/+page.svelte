@@ -43,8 +43,6 @@
 	function getStratItem(item: string | Record<string, string>, tag?: string) {
 		if (!item) return item;
 		if (tag && stratState[tag] && typeof item !== 'string') { 
-			console.log(stratState[tag]);
-			console.log(item);
 			return item[stratState[tag]];
 		} else {
 			return item;
@@ -83,7 +81,6 @@
 			}
 		)
 		if (!individualPackages) return `Couldn't find ${stratName} strat for ${role} ${party}`;
-		console.log(individualPackages);
 		return individualPackages;
 	}
 
