@@ -40,6 +40,18 @@
 		return data.strats.find(strat => strat.stratName === stratName);
 	}
 
+	function getStratItem(item: string | Record<string, string>, tag?: string) {
+		if (!item) return item;
+		if (tag && stratState[tag] && typeof item !== 'string') { 
+			console.log(stratState[tag]);
+			console.log(item);
+			return item[stratState[tag]];
+		} else {
+			return item;
+		}
+	}
+
+
 	function getIndividualStrat(stratName?: string, role?: Role, party?: number) {
 		if (!stratName || !role || !party) return '';
 		const stratPackage = getStrat(stratName);
@@ -48,7 +60,8 @@
 			phaseStrat => {
 				return {
 					...phaseStrat,
-					description: phaseStrat.tag ? phaseStrat.description[stratState[phaseStrat.tag]] : phaseStrat.description,
+					description: getStratItem(phaseStrat.description, phaseStrat.tag),
+					imageUrl: getStratItem(phaseStrat.imageUrl, phaseStrat.tag),
 					mechs: phaseStrat.mechs?.map(
 						phaseStratMech => {
 							return {
@@ -57,7 +70,8 @@
 									iStrat => {
 										return {
 											...iStrat,
-											description: phaseStrat.tag ? iStrat.description[stratState[phaseStrat.tag]] : iStrat.description,
+											description: getStratItem(iStrat.description, phaseStrat.tag),
+											imageUrl: getStratItem(iStrat.imageUrl, phaseStrat.tag)
 										}
 									}
 								),
@@ -414,6 +428,7 @@
 						{/if}
 					</div>
 					{#if phase?.description}<div class="text-lg">{phase.description}</div>{/if}
+					{#if phase?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" src={phase.imageUrl} />{/if}
 					{#if phase?.mechs}
 						<div class="grid xl:grid-cols-2 grid-cols-2 gap-2 mt-4">
 							{#each phase.mechs as mech}
@@ -429,7 +444,7 @@
 									{#if mech?.description}<div class="whitespace-pre-wrap text-lg mb-0">{mech.description}</div>{/if}
 									
 									<div class="whitespace-pre-wrap text-lg mb-0">{mech.strats[0].description}</div>
-									<img src={(mech.alignmentImages && mech.alignmentImages[alignment]) ? mech.alignmentImages[alignment] : mech.imageUrl} style:mask-image={getMask(mech)} style:transform={mech.alignmentTransforms ? mech.alignmentTransforms[alignment] : mech.transform} />
+									{#if mech.strats[0]?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" src={mech.strats[0].imageUrl} />{/if}
 								</div>
 								{/key}
 							{/each}

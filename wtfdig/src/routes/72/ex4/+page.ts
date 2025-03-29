@@ -14,7 +14,7 @@ export interface PlayerMechStrat {
     role: Role;
     party: number;
     description: string | Record<string, string>;
-    imageUrl?: string;
+    imageUrl?: string | Record<string, string>;
     imageRotated?: string;
     mask?: string;
     transform?: string;
@@ -35,6 +35,7 @@ export interface PhaseStrats {
     phaseName: string;
     tag?: string;
     description?: string | Record<string, string>;
+    imageUrl?: string | Record<string, string>;
     mechs?: MechanicStrat[];
 }
 
@@ -115,7 +116,7 @@ const raidplanStrat: Strat = {
             },
             mechs: [
                 {
-                    mechanic: 'EF1',
+                    mechanic: 'Witch Hunt',
                     description: 'Start on clock spot',
                     notes: '',
                     strats: [
@@ -125,8 +126,9 @@ const raidplanStrat: Strat = {
                             description: {
                                 supports: 'Follow symbol on 1 & 3',
                                 dps: 'Follow symbol on 2 & 4',
-                                dpsin: 'Always start out\nDodge either once or twice'
-                            }
+                                dpsin: 'Always start out\nDodge either once or twice',
+                            },
+                            imageUrl: './ex4/raidplan/ef1.png'
                         },
                         {
                             role: 'Tank',
@@ -135,7 +137,8 @@ const raidplanStrat: Strat = {
                                 supports: 'Follow symbol on 1 & 3',
                                 dps: 'Follow symbol on 2 & 4',
                                 dpsin: 'Always start out\nDodge either once or twice'
-                            }
+                            },
+                            imageUrl: './ex4/raidplan/ef1.png'
                         },
                         {
                             role: 'Healer',
@@ -144,7 +147,8 @@ const raidplanStrat: Strat = {
                                 supports: 'Follow symbol on 1 & 3',
                                 dps: 'Follow symbol on 2 & 4',
                                 dpsin: 'Always start out\nDodge either once or twice'
-                            }
+                            },
+                            imageUrl: './ex4/raidplan/ef1.png'
                         },
                         {
                             role: 'Healer',
@@ -153,7 +157,8 @@ const raidplanStrat: Strat = {
                                 supports: 'Follow symbol on 1 & 3',
                                 dps: 'Follow symbol on 2 & 4',
                                 dpsin: 'Always start out\nDodge either once or twice'
-                            }
+                            },
+                            imageUrl: './ex4/raidplan/ef1.png'
                         },
                         {
                             role: 'Melee',
@@ -162,7 +167,8 @@ const raidplanStrat: Strat = {
                                 supports: 'Follow symbol on 2 & 4',
                                 dps: 'Follow symbol on 1 & 3',
                                 dpsin: 'Always start in\nDodge either once or twice'
-                            }
+                            },
+                            imageUrl: './ex4/raidplan/ef1.png'
                         },
                         {
                             role: 'Melee',
@@ -171,7 +177,8 @@ const raidplanStrat: Strat = {
                                 supports: 'Follow symbol on 2 & 4',
                                 dps: 'Follow symbol on 1 & 3',
                                 dpsin: 'Always start in\nDodge either once or twice'
-                            }
+                            },
+                            imageUrl: './ex4/raidplan/ef1.png'
                         },
                         {
                             role: 'Ranged',
@@ -180,7 +187,8 @@ const raidplanStrat: Strat = {
                                 supports: 'Follow symbol on 2 & 4',
                                 dps: 'Follow symbol on 1 & 3',
                                 dpsin: 'Always start in\nDodge either once or twice'
-                            }
+                            }, 
+                            imageUrl: './ex4/raidplan/ef1.png'
                         },
                         {
                             role: 'Ranged',
@@ -189,7 +197,8 @@ const raidplanStrat: Strat = {
                                 supports: 'Follow symbol on 2 & 4',
                                 dps: 'Follow symbol on 1 & 3',
                                 dpsin: 'Always start in\nDodge either once or twice'
-                            }
+                            },
+                            imageUrl: './ex4/raidplan/ef1.png'
                         },
                     ]
                 }
@@ -198,6 +207,7 @@ const raidplanStrat: Strat = {
         {
             phaseName: `Adds`,
             description: 'Supports W, DPS E',
+            imageUrl: './ex4/raidplan/adds.png',
         },
         {
             phaseName: `Bloom 3`,
@@ -205,6 +215,10 @@ const raidplanStrat: Strat = {
             description: {
                 relative: 'Relative (single inner slice is new North)',
                 color: 'True North (Colors)'
+            },
+            imageUrl: {
+                relative: './ex4/raidplan/bloom3-relative.png',
+                color: '',
             },
             mechs: [
                 {
@@ -218,7 +232,8 @@ const raidplanStrat: Strat = {
                             description: {
                                 relative: 'Inner slice North',
                                 color: 'Inner slice near North'
-                            }
+                            },
+                            imageUrl: './ex4/raidplan/bloom3-arena.png'
                         },
                         {
                             role: 'Tank',
@@ -226,7 +241,8 @@ const raidplanStrat: Strat = {
                             description: {
                                 relative: 'Inner slice South',
                                 color: 'Inner slice near South'
-                            }
+                            },
+                            imageUrl: './ex4/raidplan/bloom3-arena.png'
                         },
                         {
                             role: 'Healer',
@@ -234,7 +250,8 @@ const raidplanStrat: Strat = {
                             description: {
                                 relative: 'Inner slice Southwest',
                                 color: 'Inner slice near West'
-                            }
+                            },
+                            imageUrl: './ex4/raidplan/bloom3-arena.png'
                         },
                         {
                             role: 'Healer',
@@ -242,7 +259,8 @@ const raidplanStrat: Strat = {
                             description: {
                                 relative: 'Inner slice Southeast',
                                 color: 'Inner slice near East'
-                            }
+                            },
+                            imageUrl: './ex4/raidplan/bloom3-arena.png'
                         },
                         {
                             role: 'Melee',
@@ -250,7 +268,8 @@ const raidplanStrat: Strat = {
                             description: {
                                 relative: 'Inner slice South',
                                 color: 'Inner slice near Southwest'
-                            }
+                            },
+                            imageUrl: './ex4/raidplan/bloom3-arena.png'
                         },
                         {
                             role: 'Melee',
@@ -258,7 +277,8 @@ const raidplanStrat: Strat = {
                             description: {
                                 relative: 'Inner slice Southeast',
                                 color: 'Inner slice near Southeast'
-                            }
+                            },
+                            imageUrl: './ex4/raidplan/bloom3-arena.png'
                         },
                         {
                             role: 'Ranged',
@@ -266,7 +286,8 @@ const raidplanStrat: Strat = {
                             description: {
                                 relative: 'Inner slice Southwest',
                                 color: 'Inner slice near Northwest'
-                            }
+                            },
+                            imageUrl: './ex4/raidplan/bloom3-arena.png'
                         },
                         {
                             role: 'Ranged',
@@ -274,7 +295,8 @@ const raidplanStrat: Strat = {
                             description: {
                                 relative: 'Inner slice North',
                                 color: 'Inner slice near Northeast'
-                            }
+                            },
+                            imageUrl: './ex4/raidplan/bloom3-arena.png'
                         },
                     ]
                 },
@@ -289,7 +311,8 @@ const raidplanStrat: Strat = {
                             description: {
                                 relative: 'Outer slice North',
                                 color: 'Outer slice touching North'
-                            }
+                            },
+                            imageUrl: './ex4/raidplan/bloom3-arena.png'
                         },
                         {
                             role: 'Tank',
@@ -297,7 +320,8 @@ const raidplanStrat: Strat = {
                             description: {
                                 relative: 'Outer slice South',
                                 color: 'Outer slice touching South'
-                            }
+                            },
+                            imageUrl: './ex4/raidplan/bloom3-arena.png'
                         },
                         {
                             role: 'Healer',
@@ -305,7 +329,8 @@ const raidplanStrat: Strat = {
                             description: {
                                 relative: 'Outer slice West',
                                 color: 'Outer slice touching West'
-                            }
+                            },
+                            imageUrl: './ex4/raidplan/bloom3-arena.png'
                         },
                         {
                             role: 'Healer',
@@ -313,7 +338,8 @@ const raidplanStrat: Strat = {
                             description: {
                                 relative: 'Outer slice East',
                                 color: 'Outer slice touching East'
-                            }
+                            },
+                            imageUrl: './ex4/raidplan/bloom3-arena.png'
                         },
                         {
                             role: 'Melee',
@@ -321,7 +347,8 @@ const raidplanStrat: Strat = {
                             description: {
                                 relative: 'Outer slice West',
                                 color: 'Outer slice touching West'
-                            }
+                            },
+                            imageUrl: './ex4/raidplan/bloom3-arena.png'
                         },
                         {
                             role: 'Melee',
@@ -329,7 +356,8 @@ const raidplanStrat: Strat = {
                             description: {
                                 relative: 'Outer slice South',
                                 color: 'Outer slice touching South'
-                            }
+                            },
+                            imageUrl: './ex4/raidplan/bloom3-arena.png'
                         },
                         {
                             role: 'Ranged',
@@ -337,7 +365,8 @@ const raidplanStrat: Strat = {
                             description: {
                                 relative: 'Outer slice North',
                                 color: 'Outer slice touching North'
-                            }
+                            },
+                            imageUrl: './ex4/raidplan/bloom3-arena.png'
                         },
                         {
                             role: 'Ranged',
@@ -345,7 +374,8 @@ const raidplanStrat: Strat = {
                             description: {
                                 relative: 'Outer slice East',
                                 color: 'Outer slice touching East'
-                            }
+                            },
+                            imageUrl: './ex4/raidplan/bloom3-arena.png'
                         },
                     ]
                 }
@@ -373,6 +403,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Stack North on hitbox',
                                 we: 'Stack West on hitbox'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: './ex4/raidplan/ef2-ns-stacks.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Tank',
@@ -382,6 +417,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Stack North on hitbox',
                                 we: 'Stack West on hitbox'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: './ex4/raidplan/ef2-ns-stacks.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Healer',
@@ -391,6 +431,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Stack North on hitbox',
                                 we: 'Stack West on hitbox'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: './ex4/raidplan/ef2-ns-stacks.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Healer',
@@ -400,6 +445,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Stack North on hitbox',
                                 we: 'Stack West on hitbox'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: './ex4/raidplan/ef2-ns-stacks.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Melee',
@@ -409,6 +459,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Stack South on hitbox',
                                 we: 'Stack East on hitbox'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: './ex4/raidplan/ef2-ns-stacks.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Melee',
@@ -418,6 +473,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Stack South on hitbox',
                                 we: 'Stack East on hitbox'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: './ex4/raidplan/ef2-ns-stacks.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Ranged',
@@ -427,6 +487,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Stack South on hitbox',
                                 we: 'Stack East on hitbox'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: './ex4/raidplan/ef2-ns-stacks.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Ranged',
@@ -436,6 +501,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Stack South on hitbox',
                                 we: 'Stack East on hitbox'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: './ex4/raidplan/ef2-ns-stacks.png',
+                                we: '',
+                            }
                         },
                     ]
                 },
@@ -452,6 +522,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Fan out NNW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out WNW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: './ex4/raidplan/ef2-ns-witchhunt.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Tank',
@@ -461,6 +536,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Fan out NNE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out WSW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: './ex4/raidplan/ef2-ns-witchhunt.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Healer',
@@ -470,6 +550,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Fan out WNW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out NNW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: './ex4/raidplan/ef2-ns-witchhunt.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Healer',
@@ -479,6 +564,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Fan out ENE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out SSW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: './ex4/raidplan/ef2-ns-witchhunt.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Melee',
@@ -488,6 +578,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Fan out SSW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out ENE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: './ex4/raidplan/ef2-ns-witchhunt.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Melee',
@@ -497,6 +592,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Fan out SSE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out ESE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: './ex4/raidplan/ef2-ns-witchhunt.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Ranged',
@@ -506,6 +606,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Fan out WSW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out NNE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: './ex4/raidplan/ef2-ns-witchhunt.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Ranged',
@@ -515,6 +620,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Fan out ESE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out SSE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: './ex4/raidplan/ef2-ns-witchhunt.png',
+                                we: '',
+                            }
                         },
                     ]
                 }
@@ -540,6 +650,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Drop rose on inner left tile',
                                 tn: 'Drop rose on inner East tile'
                             },
+                            imageUrl: './ex4/raidplan/bloom4-roses.png'
                         },
                         {
                             role: 'Tank',
@@ -548,6 +659,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Drop rose on inner right tile',
                                 tn: 'Drop rose on inner West tile'
                             },
+                            imageUrl: './ex4/raidplan/bloom4-roses.png'
                         },
                         {
                             role: 'Healer',
@@ -556,6 +668,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Drop rose on outer left tile',
                                 tn: 'Drop rose on outer East tile'
                             },
+                            imageUrl: './ex4/raidplan/bloom4-roses.png'
                         },
                         {
                             role: 'Healer',
@@ -564,6 +677,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Drop rose on outer right tile',
                                 tn: 'Drop rose on outer West tile'
                             },
+                            imageUrl: './ex4/raidplan/bloom4-roses.png'
                         },
                         {
                             role: 'Melee',
@@ -572,6 +686,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Drop rose on inner left tile',
                                 tn: 'Drop rose on inner East tile'
                             },
+                            imageUrl: './ex4/raidplan/bloom4-roses.png'
                         },
                         {
                             role: 'Melee',
@@ -580,6 +695,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Drop rose on inner right tile',
                                 tn: 'Drop rose on inner West tile'
                             },
+                            imageUrl: './ex4/raidplan/bloom4-roses.png'
                         },
                         {
                             role: 'Ranged',
@@ -588,6 +704,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Drop rose on outer left tile',
                                 tn: 'Drop rose on outer East tile'
                             },
+                            imageUrl: './ex4/raidplan/bloom4-roses.png'
                         },
                         {
                             role: 'Ranged',
@@ -596,6 +713,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Drop rose on outer right tile',
                                 tn: 'Drop rose on outer West tile'
                             },
+                            imageUrl: './ex4/raidplan/bloom4-roses.png'
                         },
                     ]
                 },
@@ -611,6 +729,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Facing boss\nGo left to stretch tethers',
                                 tn: 'Go West to stretch tethers'
                             },
+                            imageUrl: './ex4/raidplan/bloom4-thorns.png'
                         },
                         {
                             role: 'Tank',
@@ -619,6 +738,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Facing boss\nGo left to stretch tethers',
                                 tn: 'Go West to stretch tethers'
                             },
+                            imageUrl: './ex4/raidplan/bloom4-thorns.png'
                         },
                         {
                             role: 'Healer',
@@ -627,6 +747,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Facing boss\nGo left to stretch tethers',
                                 tn: 'Go West to stretch tethers'
                             },
+                            imageUrl: './ex4/raidplan/bloom4-thorns.png'
                         },
                         {
                             role: 'Healer',
@@ -635,6 +756,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Facing boss\nGo left to stretch tethers',
                                 tn: 'Go West to stretch tethers'
                             },
+                            imageUrl: './ex4/raidplan/bloom4-thorns.png'
                         },
                         {
                             role: 'Melee',
@@ -643,6 +765,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Facing boss\nGo right to stretch tethers',
                                 tn: 'Go East to stretch tethers'
                             },
+                            imageUrl: './ex4/raidplan/bloom4-thorns.png'
                         },
                         {
                             role: 'Melee',
@@ -651,6 +774,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Facing boss\nGo right to stretch tethers',
                                 tn: 'Go East to stretch tethers'
                             },
+                            imageUrl: './ex4/raidplan/bloom4-thorns.png'
                         },
                         {
                             role: 'Ranged',
@@ -659,6 +783,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Facing boss\nGo right to stretch tethers',
                                 tn: 'Go East to stretch tethers'
                             },
+                            imageUrl: './ex4/raidplan/bloom4-thorns.png'
                         },
                         {
                             role: 'Ranged',
@@ -667,6 +792,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Facing boss\nGo right to stretch tethers',
                                 tn: 'Go East to stretch tethers'
                             },
+                            imageUrl: './ex4/raidplan/bloom4-thorns.png'
                         },
                     ]
                 }
@@ -694,6 +820,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Drop rose on inner or outer SSW tile\nLink to the tower not being hit by 1st cleave',
                                 we: 'Drop rose on inner or outer SSW tile\nLink to the tower not being hit by 1st cleave',
                             },
+                            imageUrl: {
+                                lb3: './ex4/raidplan/bloom6-lb3.png',
+                                ns: './ex4/raidplan/bloom6-ns.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Tank',
@@ -703,6 +834,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Drop rose on inner or outer NNE tile\nLink to the tower not being hit by 1st cleave',
                                 we: 'Drop rose on inner or outer SSE tile\nLink to the tower not being hit by 1st cleave',
                             },
+                            imageUrl: {
+                                lb3: './ex4/raidplan/bloom6-lb3.png',
+                                ns: './ex4/raidplan/bloom6-ns.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Healer',
@@ -712,6 +848,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Drop rose on inner or outer NNW tile\nLink to the tower not being hit by 1st cleave',
                                 we: 'Drop rose on inner or outer NNW tile\nLink to the tower not being hit by 1st cleave',
                             },
+                            imageUrl: {
+                                lb3: './ex4/raidplan/bloom6-lb3.png',
+                                ns: './ex4/raidplan/bloom6-ns.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Healer',
@@ -721,6 +862,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Drop rose on inner or outer SSE tile\nLink to the tower not being hit by 1st cleave',
                                 we: 'Drop rose on inner or outer NNE tile\nLink to the tower not being hit by 1st cleave',
                             },
+                            imageUrl: {
+                                lb3: './ex4/raidplan/bloom6-lb3.png',
+                                ns: './ex4/raidplan/bloom6-ns.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Melee',
@@ -730,6 +876,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Drop rose on inner or outer SSW tile\nLink to the tower not being hit by 1st cleave',
                                 we: 'Drop rose on inner or outer SSW tile\nLink to the tower not being hit by 1st cleave',
                             },
+                            imageUrl: {
+                                lb3: './ex4/raidplan/bloom6-lb3.png',
+                                ns: './ex4/raidplan/bloom6-ns.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Melee',
@@ -739,6 +890,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Drop rose on inner or outer NNE tile\nLink to the tower not being hit by 1st cleave',
                                 we: 'Drop rose on inner or outer SSE tile\nLink to the tower not being hit by 1st cleave',
                             },
+                            imageUrl: {
+                                lb3: './ex4/raidplan/bloom6-lb3.png',
+                                ns: './ex4/raidplan/bloom6-ns.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Ranged',
@@ -748,6 +904,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Drop rose on inner or outer NNW tile\nLink to the tower not being hit by 1st cleave',
                                 we: 'Drop rose on inner or outer NNW tile\nLink to the tower not being hit by 1st cleave',
                             },
+                            imageUrl: {
+                                lb3: './ex4/raidplan/bloom6-lb3.png',
+                                ns: './ex4/raidplan/bloom6-ns.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Ranged',
@@ -757,6 +918,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Drop rose on inner or outer SSE tile\nLink to the tower not being hit by 1st cleave',
                                 we: 'Drop rose on inner or outer NNE tile\nLink to the tower not being hit by 1st cleave',
                             },
+                            imageUrl: {
+                                lb3: './ex4/raidplan/bloom6-lb3.png',
+                                ns: './ex4/raidplan/bloom6-ns.png',
+                                we: '',
+                            }
                         },
                     ]
                 },
@@ -773,6 +939,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Take inner North tower',
                                 we: 'Take inner West tower',
                             },
+                            imageUrl: {
+                                lb3: './ex4/raidplan/bloom6-lb3.png',
+                                ns: './ex4/raidplan/bloom6-ns.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Tank',
@@ -782,6 +953,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Take inner South tower',
                                 we: 'Take inner East tower',
                             },
+                            imageUrl: {
+                                lb3: './ex4/raidplan/bloom6-lb3.png',
+                                ns: './ex4/raidplan/bloom6-ns.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Healer',
@@ -791,6 +967,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Take outer North tower',
                                 we: 'Take outer West tower',
                             },
+                            imageUrl: {
+                                lb3: './ex4/raidplan/bloom6-lb3.png',
+                                ns: './ex4/raidplan/bloom6-ns.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Healer',
@@ -800,6 +981,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Take outer South tower',
                                 we: 'Take outer East tower',
                             },
+                            imageUrl: {
+                                lb3: './ex4/raidplan/bloom6-lb3.png',
+                                ns: './ex4/raidplan/bloom6-ns.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Melee',
@@ -809,6 +995,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Take inner North tower',
                                 we: 'Take inner West tower',
                             },
+                            imageUrl: {
+                                lb3: './ex4/raidplan/bloom6-lb3.png',
+                                ns: './ex4/raidplan/bloom6-ns.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Melee',
@@ -818,6 +1009,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Take inner South tower',
                                 we: 'Take inner East tower',
                             },
+                            imageUrl: {
+                                lb3: './ex4/raidplan/bloom6-lb3.png',
+                                ns: './ex4/raidplan/bloom6-ns.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Ranged',
@@ -827,6 +1023,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Take outer North tower',
                                 we: 'Take outer West tower',
                             },
+                            imageUrl: {
+                                lb3: './ex4/raidplan/bloom6-lb3.png',
+                                ns: './ex4/raidplan/bloom6-ns.png',
+                                we: '',
+                            }
                         },
                         {
                             role: 'Ranged',
@@ -836,6 +1037,11 @@ const raidplanStrat: Strat = {
                                 ns: 'Take outer South tower',
                                 we: 'Take outer East tower',
                             },
+                            imageUrl: {
+                                lb3: './ex4/raidplan/bloom6-lb3.png',
+                                ns: './ex4/raidplan/bloom6-ns.png',
+                                we: '',
+                            }
                         },
                     ]
                 }
@@ -910,7 +1116,7 @@ const hectorStrat: Strat = {
             },
             mechs: [
                 {
-                    mechanic: 'EF1',
+                    mechanic: 'Witch Hunt',
                     description: 'Start on clock spot',
                     notes: '',
                     strats: [
@@ -921,7 +1127,8 @@ const hectorStrat: Strat = {
                                 supports: 'Follow symbol on 1 & 3',
                                 dps: 'Follow symbol on 2 & 4',
                                 dpsin: 'Always start out\nDodge either once or twice'
-                            }
+                            },
+                            imageUrl: './ex4/hector/ef1.png',
                         },
                         {
                             role: 'Tank',
@@ -930,7 +1137,8 @@ const hectorStrat: Strat = {
                                 supports: 'Follow symbol on 1 & 3',
                                 dps: 'Follow symbol on 2 & 4',
                                 dpsin: 'Always start out\nDodge either once or twice'
-                            }
+                            },
+                            imageUrl: './ex4/hector/ef1.png',
                         },
                         {
                             role: 'Healer',
@@ -939,7 +1147,8 @@ const hectorStrat: Strat = {
                                 supports: 'Follow symbol on 1 & 3',
                                 dps: 'Follow symbol on 2 & 4',
                                 dpsin: 'Always start out\nDodge either once or twice'
-                            }
+                            },
+                            imageUrl: './ex4/hector/ef1.png',
                         },
                         {
                             role: 'Healer',
@@ -948,7 +1157,8 @@ const hectorStrat: Strat = {
                                 supports: 'Follow symbol on 1 & 3',
                                 dps: 'Follow symbol on 2 & 4',
                                 dpsin: 'Always start out\nDodge either once or twice'
-                            }
+                            },
+                            imageUrl: './ex4/hector/ef1.png',
                         },
                         {
                             role: 'Melee',
@@ -957,7 +1167,8 @@ const hectorStrat: Strat = {
                                 supports: 'Follow symbol on 2 & 4',
                                 dps: 'Follow symbol on 1 & 3',
                                 dpsin: 'Always start in\nDodge either once or twice'
-                            }
+                            },
+                            imageUrl: './ex4/hector/ef1.png',
                         },
                         {
                             role: 'Melee',
@@ -966,7 +1177,8 @@ const hectorStrat: Strat = {
                                 supports: 'Follow symbol on 2 & 4',
                                 dps: 'Follow symbol on 1 & 3',
                                 dpsin: 'Always start in\nDodge either once or twice'
-                            }
+                            },
+                            imageUrl: './ex4/hector/ef1.png',
                         },
                         {
                             role: 'Ranged',
@@ -975,7 +1187,8 @@ const hectorStrat: Strat = {
                                 supports: 'Follow symbol on 2 & 4',
                                 dps: 'Follow symbol on 1 & 3',
                                 dpsin: 'Always start in\nDodge either once or twice'
-                            }
+                            },
+                            imageUrl: './ex4/hector/ef1.png',
                         },
                         {
                             role: 'Ranged',
@@ -984,7 +1197,8 @@ const hectorStrat: Strat = {
                                 supports: 'Follow symbol on 2 & 4',
                                 dps: 'Follow symbol on 1 & 3',
                                 dpsin: 'Always start in\nDodge either once or twice'
-                            }
+                            },
+                            imageUrl: './ex4/hector/ef1.png',
                         },
                     ]
                 }
@@ -993,6 +1207,7 @@ const hectorStrat: Strat = {
         {
             phaseName: `Adds`,
             description: 'Supports W, DPS E',
+            imageUrl: './ex4/hector/adds.png',
         },
         {
             phaseName: `Bloom 3`,
@@ -1013,7 +1228,8 @@ const hectorStrat: Strat = {
                             description: {
                                 relative: 'Inner slice North',
                                 color: 'Inner slice near North'
-                            }
+                            },
+                            imageUrl: './ex4/hector/bloom3-relative.png'
                         },
                         {
                             role: 'Tank',
@@ -1021,7 +1237,8 @@ const hectorStrat: Strat = {
                             description: {
                                 relative: 'Inner slice South',
                                 color: 'Inner slice near South'
-                            }
+                            },
+                            imageUrl: './ex4/hector/bloom3-relative.png'
                         },
                         {
                             role: 'Healer',
@@ -1029,7 +1246,8 @@ const hectorStrat: Strat = {
                             description: {
                                 relative: 'Inner slice Southwest',
                                 color: 'Inner slice near West'
-                            }
+                            },
+                            imageUrl: './ex4/hector/bloom3-relative.png'
                         },
                         {
                             role: 'Healer',
@@ -1037,7 +1255,8 @@ const hectorStrat: Strat = {
                             description: {
                                 relative: 'Inner slice Southeast',
                                 color: 'Inner slice near East'
-                            }
+                            },
+                            imageUrl: './ex4/hector/bloom3-relative.png'
                         },
                         {
                             role: 'Melee',
@@ -1045,7 +1264,8 @@ const hectorStrat: Strat = {
                             description: {
                                 relative: 'Inner slice Southwest',
                                 color: 'Inner slice near Southwest'
-                            }
+                            },
+                            imageUrl: './ex4/hector/bloom3-relative.png'
                         },
                         {
                             role: 'Melee',
@@ -1053,7 +1273,8 @@ const hectorStrat: Strat = {
                             description: {
                                 relative: 'Inner slice South',
                                 color: 'Inner slice near Southeast'
-                            }
+                            },
+                            imageUrl: './ex4/hector/bloom3-relative.png'
                         },
                         {
                             role: 'Ranged',
@@ -1061,7 +1282,8 @@ const hectorStrat: Strat = {
                             description: {
                                 relative: 'Inner slice North',
                                 color: 'Inner slice near Northwest'
-                            }
+                            },
+                            imageUrl: './ex4/hector/bloom3-relative.png'
                         },
                         {
                             role: 'Ranged',
@@ -1069,7 +1291,8 @@ const hectorStrat: Strat = {
                             description: {
                                 relative: 'Inner slice Southeast',
                                 color: 'Inner slice near Northeast'
-                            }
+                            },
+                            imageUrl: './ex4/hector/bloom3-relative.png'
                         },
                     ]
                 },
@@ -1084,7 +1307,8 @@ const hectorStrat: Strat = {
                             description: {
                                 relative: 'Outer slice North',
                                 color: 'Outer slice touching North'
-                            }
+                            },
+                            imageUrl: './ex4/hector/bloom3-relative.png'
                         },
                         {
                             role: 'Tank',
@@ -1092,7 +1316,8 @@ const hectorStrat: Strat = {
                             description: {
                                 relative: 'Outer slice South',
                                 color: 'Outer slice touching South'
-                            }
+                            },
+                            imageUrl: './ex4/hector/bloom3-relative.png'
                         },
                         {
                             role: 'Healer',
@@ -1100,7 +1325,8 @@ const hectorStrat: Strat = {
                             description: {
                                 relative: 'Outer slice West',
                                 color: 'Outer slice touching West'
-                            }
+                            },
+                            imageUrl: './ex4/hector/bloom3-relative.png'
                         },
                         {
                             role: 'Healer',
@@ -1108,7 +1334,8 @@ const hectorStrat: Strat = {
                             description: {
                                 relative: 'Outer slice East',
                                 color: 'Outer slice touching East'
-                            }
+                            },
+                            imageUrl: './ex4/hector/bloom3-relative.png'
                         },
                         {
                             role: 'Melee',
@@ -1116,7 +1343,8 @@ const hectorStrat: Strat = {
                             description: {
                                 relative: 'Outer slice West',
                                 color: 'Outer slice touching West'
-                            }
+                            },
+                            imageUrl: './ex4/hector/bloom3-relative.png'
                         },
                         {
                             role: 'Melee',
@@ -1124,7 +1352,8 @@ const hectorStrat: Strat = {
                             description: {
                                 relative: 'Outer slice South',
                                 color: 'Outer slice touching South'
-                            }
+                            },
+                            imageUrl: './ex4/hector/bloom3-relative.png'
                         },
                         {
                             role: 'Ranged',
@@ -1132,7 +1361,8 @@ const hectorStrat: Strat = {
                             description: {
                                 relative: 'Outer slice North',
                                 color: 'Outer slice touching North'
-                            }
+                            },
+                            imageUrl: './ex4/hector/bloom3-relative.png'
                         },
                         {
                             role: 'Ranged',
@@ -1140,7 +1370,8 @@ const hectorStrat: Strat = {
                             description: {
                                 relative: 'Outer slice East',
                                 color: 'Outer slice touching East'
-                            }
+                            },
+                            imageUrl: './ex4/hector/bloom3-relative.png'
                         },
                     ]
                 }
@@ -1168,6 +1399,11 @@ const hectorStrat: Strat = {
                                 ns: 'Stack North on hitbox',
                                 we: 'Stack West on hitbox'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: '',
+                                we: './ex4/hector/ef2-we-stacks.png'
+                            }
                         },
                         {
                             role: 'Tank',
@@ -1177,6 +1413,11 @@ const hectorStrat: Strat = {
                                 ns: 'Stack North on hitbox',
                                 we: 'Stack West on hitbox'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: '',
+                                we: './ex4/hector/ef2-we-stacks.png'
+                            }
                         },
                         {
                             role: 'Healer',
@@ -1186,6 +1427,11 @@ const hectorStrat: Strat = {
                                 ns: 'Stack North on hitbox',
                                 we: 'Stack West on hitbox'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: '',
+                                we: './ex4/hector/ef2-we-stacks.png'
+                            }
                         },
                         {
                             role: 'Healer',
@@ -1195,6 +1441,11 @@ const hectorStrat: Strat = {
                                 ns: 'Stack North on hitbox',
                                 we: 'Stack West on hitbox'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: '',
+                                we: './ex4/hector/ef2-we-stacks.png'
+                            }
                         },
                         {
                             role: 'Melee',
@@ -1204,6 +1455,11 @@ const hectorStrat: Strat = {
                                 ns: 'Stack South on hitbox',
                                 we: 'Stack East on hitbox'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: '',
+                                we: './ex4/hector/ef2-we-stacks.png'
+                            }
                         },
                         {
                             role: 'Melee',
@@ -1213,6 +1469,11 @@ const hectorStrat: Strat = {
                                 ns: 'Stack South on hitbox',
                                 we: 'Stack East on hitbox'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: '',
+                                we: './ex4/hector/ef2-we-stacks.png'
+                            }
                         },
                         {
                             role: 'Ranged',
@@ -1222,6 +1483,11 @@ const hectorStrat: Strat = {
                                 ns: 'Stack South on hitbox',
                                 we: 'Stack East on hitbox'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: '',
+                                we: './ex4/hector/ef2-we-stacks.png'
+                            }
                         },
                         {
                             role: 'Ranged',
@@ -1231,6 +1497,11 @@ const hectorStrat: Strat = {
                                 ns: 'Stack South on hitbox',
                                 we: 'Stack East on hitbox'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: '',
+                                we: './ex4/hector/ef2-we-stacks.png'
+                            }
                         },
                     ]
                 },
@@ -1244,72 +1515,112 @@ const hectorStrat: Strat = {
                             party: 1,
                             description: {
                                 braindead: 'Same as first Witch Hunt',
-                                ns: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
-                                we: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
+                                ns: 'Fan out for proteans on North half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
+                                we: 'Fan out for proteans on West half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: '',
+                                we: './ex4/hector/ef2-we-witchhunt.png'
+                            }
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: {
                                 braindead: 'Same as first Witch Hunt',
-                                ns: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
-                                we: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
+                                ns: 'Fan out for proteans on North half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
+                                we: 'Fan out for proteans on West half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: '',
+                                we: './ex4/hector/ef2-we-witchhunt.png'
+                            }
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: {
                                 braindead: 'Same as first Witch Hunt',
-                                ns: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
-                                we: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
+                                ns: 'Fan out for proteans on North half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
+                                we: 'Fan out for proteans on West half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: '',
+                                we: './ex4/hector/ef2-we-witchhunt.png'
+                            }
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: {
                                 braindead: 'Same as first Witch Hunt',
-                                ns: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
-                                we: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
+                                ns: 'Fan out for proteans on North half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
+                                we: 'Fan out for proteans on West half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: '',
+                                we: './ex4/hector/ef2-we-witchhunt.png'
+                            }
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: {
                                 braindead: 'Same as first Witch Hunt',
-                                ns: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
-                                we: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
+                                ns: 'Fan out for proteans on South half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
+                                we: 'Fan out for proteans on East half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: '',
+                                we: './ex4/hector/ef2-we-witchhunt.png'
+                            }
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: {
                                 braindead: 'Same as first Witch Hunt',
-                                ns: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
-                                we: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
+                                ns: 'Fan out for proteans on South half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
+                                we: 'Fan out for proteans on East half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: '',
+                                we: './ex4/hector/ef2-we-witchhunt.png'
+                            }
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: {
                                 braindead: 'Same as first Witch Hunt',
-                                ns: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
-                                we: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
+                                ns: 'Fan out for proteans on South half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
+                                we: 'Fan out for proteans on East half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: '',
+                                we: './ex4/hector/ef2-we-witchhunt.png'
+                            }
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: {
                                 braindead: 'Same as first Witch Hunt',
-                                ns: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
-                                we: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
+                                ns: 'Fan out for proteans on South half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
+                                we: 'Fan out for proteans on East half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
+                            imageUrl: {
+                                braindead: '',
+                                ns: '',
+                                we: './ex4/hector/ef2-we-witchhunt.png'
+                            }
                         },
                     ]
                 }
@@ -1333,64 +1644,72 @@ const hectorStrat: Strat = {
                             party: 1,
                             description: {
                                 relative: 'Drop rose on inner left tile',
-                                tn: 'Drop rose on inner East tile'
+                                tn: 'Drop rose on inner West tile'
                             },
+                            imageUrl: './ex4/hector/bloom4-roses.png'
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: {
                                 relative: 'Drop rose on inner right tile',
-                                tn: 'Drop rose on inner West tile'
+                                tn: 'Drop rose on inner East tile'
                             },
+                            imageUrl: './ex4/hector/bloom4-roses.png'
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: {
                                 relative: 'Drop rose on outer left tile',
-                                tn: 'Drop rose on outer East tile'
+                                tn: 'Drop rose on outer West tile'
                             },
+                            imageUrl: './ex4/hector/bloom4-roses.png'
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: {
                                 relative: 'Drop rose on outer right tile',
-                                tn: 'Drop rose on outer West tile'
+                                tn: 'Drop rose on outer East tile'
                             },
+                            imageUrl: './ex4/hector/bloom4-roses.png'
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: {
                                 relative: 'Drop rose on inner left tile',
-                                tn: 'Drop rose on inner East tile'
+                                tn: 'Drop rose on inner West tile'
                             },
+                            imageUrl: './ex4/hector/bloom4-roses.png'
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: {
                                 relative: 'Drop rose on inner right tile',
-                                tn: 'Drop rose on inner West tile'
+                                tn: 'Drop rose on inner East tile'
                             },
+                            imageUrl: './ex4/hector/bloom4-roses.png'
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: {
                                 relative: 'Drop rose on outer left tile',
-                                tn: 'Drop rose on outer East tile'
+                                tn: 'Drop rose on outer West tile'
                             },
+                            imageUrl: './ex4/hector/bloom4-roses.png'
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: {
                                 relative: 'Drop rose on outer right tile',
-                                tn: 'Drop rose on outer West tile'
+                                tn: 'Drop rose on outer East tile'
                             },
+                            imageUrl: './ex4/hector/bloom4-roses.png'
                         },
                     ]
                 },
@@ -1406,6 +1725,7 @@ const hectorStrat: Strat = {
                                 relative: 'Facing boss\nGo left to stretch tethers',
                                 tn: 'Go West to stretch tethers'
                             },
+                            imageUrl: './ex4/hector/bloom4-thorns.png'
                         },
                         {
                             role: 'Tank',
@@ -1414,6 +1734,7 @@ const hectorStrat: Strat = {
                                 relative: 'Facing boss\nGo left to stretch tethers',
                                 tn: 'Go West to stretch tethers'
                             },
+                            imageUrl: './ex4/hector/bloom4-thorns.png'
                         },
                         {
                             role: 'Healer',
@@ -1422,6 +1743,7 @@ const hectorStrat: Strat = {
                                 relative: 'Facing boss\nGo left to stretch tethers',
                                 tn: 'Go West to stretch tethers'
                             },
+                            imageUrl: './ex4/hector/bloom4-thorns.png'
                         },
                         {
                             role: 'Healer',
@@ -1430,6 +1752,7 @@ const hectorStrat: Strat = {
                                 relative: 'Facing boss\nGo left to stretch tethers',
                                 tn: 'Go West to stretch tethers'
                             },
+                            imageUrl: './ex4/hector/bloom4-thorns.png'
                         },
                         {
                             role: 'Melee',
@@ -1438,6 +1761,7 @@ const hectorStrat: Strat = {
                                 relative: 'Facing boss\nGo right to stretch tethers',
                                 tn: 'Go East to stretch tethers'
                             },
+                            imageUrl: './ex4/hector/bloom4-thorns.png'
                         },
                         {
                             role: 'Melee',
@@ -1446,6 +1770,7 @@ const hectorStrat: Strat = {
                                 relative: 'Facing boss\nGo right to stretch tethers',
                                 tn: 'Go East to stretch tethers'
                             },
+                            imageUrl: './ex4/hector/bloom4-thorns.png'
                         },
                         {
                             role: 'Ranged',
@@ -1454,6 +1779,7 @@ const hectorStrat: Strat = {
                                 relative: 'Facing boss\nGo right to stretch tethers',
                                 tn: 'Go East to stretch tethers'
                             },
+                            imageUrl: './ex4/hector/bloom4-thorns.png'
                         },
                         {
                             role: 'Ranged',
@@ -1462,6 +1788,7 @@ const hectorStrat: Strat = {
                                 relative: 'Facing boss\nGo right to stretch tethers',
                                 tn: 'Go East to stretch tethers'
                             },
+                            imageUrl: './ex4/hector/bloom4-thorns.png'
                         },
                     ]
                 }
@@ -1485,10 +1812,15 @@ const hectorStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: {
-                                lb3: 'Drop rose on inner SSW tile',
+                                lb3: 'Drop rose on inner NNW tile',
                                 ns: 'Drop rose on inner or outer SSW tile\nLink to the tower not being hit by 1st cleave',
                                 we: 'Drop rose on inner or outer SSW tile\nLink to the tower not being hit by 1st cleave',
                             },
+                            imageUrl: {
+                                lb3: './ex4/hector/bloom6-we-support-roses.png',
+                                ns: '',
+                                we: './ex4/hector/bloom6-we-support-roses.png',
+                            }
                         },
                         {
                             role: 'Tank',
@@ -1498,15 +1830,25 @@ const hectorStrat: Strat = {
                                 ns: 'Drop rose on inner or outer NNE tile\nLink to the tower not being hit by 1st cleave',
                                 we: 'Drop rose on inner or outer SSE tile\nLink to the tower not being hit by 1st cleave',
                             },
+                            imageUrl: {
+                                lb3: './ex4/hector/bloom6-we-support-roses.png',
+                                ns: '',
+                                we: './ex4/hector/bloom6-we-support-roses.png',
+                            }
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: {
-                                lb3: 'Drop rose on inner NNW tile',
+                                lb3: 'Drop rose on inner SSW tile',
                                 ns: 'Drop rose on inner or outer NNW tile\nLink to the tower not being hit by 1st cleave',
                                 we: 'Drop rose on inner or outer NNW tile\nLink to the tower not being hit by 1st cleave',
                             },
+                            imageUrl: {
+                                lb3: './ex4/hector/bloom6-we-support-roses.png',
+                                ns: '',
+                                we: './ex4/hector/bloom6-we-support-roses.png',
+                            }
                         },
                         {
                             role: 'Healer',
@@ -1516,6 +1858,11 @@ const hectorStrat: Strat = {
                                 ns: 'Drop rose on inner or outer SSE tile\nLink to the tower not being hit by 1st cleave',
                                 we: 'Drop rose on inner or outer NNE tile\nLink to the tower not being hit by 1st cleave',
                             },
+                            imageUrl: {
+                                lb3: './ex4/hector/bloom6-we-support-roses.png',
+                                ns: '',
+                                we: './ex4/hector/bloom6-we-support-roses.png',
+                            }
                         },
                         {
                             role: 'Melee',
@@ -1525,6 +1872,11 @@ const hectorStrat: Strat = {
                                 ns: 'Drop rose on inner or outer SSW tile\nLink to the tower not being hit by 1st cleave',
                                 we: 'Drop rose on inner or outer SSW tile\nLink to the tower not being hit by 1st cleave',
                             },
+                            imageUrl: {
+                                lb3: './ex4/hector/bloom6-we-dps-roses.png',
+                                ns: '',
+                                we: './ex4/hector/bloom6-we-dps-roses.png',
+                            }
                         },
                         {
                             role: 'Melee',
@@ -1534,6 +1886,11 @@ const hectorStrat: Strat = {
                                 ns: 'Drop rose on inner or outer NNE tile\nLink to the tower not being hit by 1st cleave',
                                 we: 'Drop rose on inner or outer SSE tile\nLink to the tower not being hit by 1st cleave',
                             },
+                            imageUrl: {
+                                lb3: './ex4/hector/bloom6-we-dps-roses.png',
+                                ns: '',
+                                we: './ex4/hector/bloom6-we-dps-roses.png',
+                            }
                         },
                         {
                             role: 'Ranged',
@@ -1543,6 +1900,11 @@ const hectorStrat: Strat = {
                                 ns: 'Drop rose on inner or outer NNW tile\nLink to the tower not being hit by 1st cleave',
                                 we: 'Drop rose on inner or outer NNW tile\nLink to the tower not being hit by 1st cleave',
                             },
+                            imageUrl: {
+                                lb3: './ex4/hector/bloom6-we-dps-roses.png',
+                                ns: '',
+                                we: './ex4/hector/bloom6-we-dps-roses.png',
+                            }
                         },
                         {
                             role: 'Ranged',
@@ -1552,6 +1914,11 @@ const hectorStrat: Strat = {
                                 ns: 'Drop rose on inner or outer SSE tile\nLink to the tower not being hit by 1st cleave',
                                 we: 'Drop rose on inner or outer NNE tile\nLink to the tower not being hit by 1st cleave',
                             },
+                            imageUrl: {
+                                lb3: './ex4/hector/bloom6-we-dps-roses.png',
+                                ns: '',
+                                we: './ex4/hector/bloom6-we-dps-roses.png',
+                            }
                         },
                     ]
                 },
@@ -1568,6 +1935,11 @@ const hectorStrat: Strat = {
                                 ns: 'Take inner North tower',
                                 we: 'Take inner West tower',
                             },
+                            imageUrl: {
+                                lb3: './ex4/hector/bloom6-we-dps-roses.png',
+                                ns: '',
+                                we: './ex4/hector/bloom6-we-dps-roses.png',
+                            }
                         },
                         {
                             role: 'Tank',
@@ -1577,6 +1949,11 @@ const hectorStrat: Strat = {
                                 ns: 'Take inner South tower',
                                 we: 'Take inner East tower',
                             },
+                            imageUrl: {
+                                lb3: './ex4/hector/bloom6-we-dps-roses.png',
+                                ns: '',
+                                we: './ex4/hector/bloom6-we-dps-roses.png',
+                            }
                         },
                         {
                             role: 'Healer',
@@ -1586,6 +1963,11 @@ const hectorStrat: Strat = {
                                 ns: 'Take outer North tower',
                                 we: 'Take outer West tower',
                             },
+                            imageUrl: {
+                                lb3: './ex4/hector/bloom6-we-dps-roses.png',
+                                ns: '',
+                                we: './ex4/hector/bloom6-we-dps-roses.png',
+                            }
                         },
                         {
                             role: 'Healer',
@@ -1595,6 +1977,11 @@ const hectorStrat: Strat = {
                                 ns: 'Take outer South tower',
                                 we: 'Take outer East tower',
                             },
+                            imageUrl: {
+                                lb3: './ex4/hector/bloom6-we-dps-roses.png',
+                                ns: '',
+                                we: './ex4/hector/bloom6-we-dps-roses.png',
+                            }
                         },
                         {
                             role: 'Melee',
@@ -1604,6 +1991,11 @@ const hectorStrat: Strat = {
                                 ns: 'Take inner North tower',
                                 we: 'Take inner West tower',
                             },
+                            imageUrl: {
+                                lb3: './ex4/hector/bloom6-we-support-roses.png',
+                                ns: '',
+                                we: './ex4/hector/bloom6-we-support-roses.png',
+                            }
                         },
                         {
                             role: 'Melee',
@@ -1613,6 +2005,11 @@ const hectorStrat: Strat = {
                                 ns: 'Take inner South tower',
                                 we: 'Take inner East tower',
                             },
+                            imageUrl: {
+                                lb3: './ex4/hector/bloom6-we-support-roses.png',
+                                ns: '',
+                                we: './ex4/hector/bloom6-we-support-roses.png',
+                            }
                         },
                         {
                             role: 'Ranged',
@@ -1622,6 +2019,11 @@ const hectorStrat: Strat = {
                                 ns: 'Take outer North tower',
                                 we: 'Take outer West tower',
                             },
+                            imageUrl: {
+                                lb3: './ex4/hector/bloom6-we-support-roses.png',
+                                ns: '',
+                                we: './ex4/hector/bloom6-we-support-roses.png',
+                            }
                         },
                         {
                             role: 'Ranged',
@@ -1631,6 +2033,11 @@ const hectorStrat: Strat = {
                                 ns: 'Take outer South tower',
                                 we: 'Take outer East tower',
                             },
+                            imageUrl: {
+                                lb3: './ex4/hector/bloom6-we-support-roses.png',
+                                ns: '',
+                                we: './ex4/hector/bloom6-we-support-roses.png',
+                            }
                         },
                     ]
                 }
@@ -1705,7 +2112,7 @@ const happyStrat: Strat = {
             },
             mechs: [
                 {
-                    mechanic: 'EF1',
+                    mechanic: 'Witch Hunt',
                     description: 'Start on clock spot',
                     notes: '',
                     strats: [
@@ -2501,7 +2908,7 @@ const yukizuriStrat: Strat = {
             },
             mechs: [
                 {
-                    mechanic: 'EF1',
+                    mechanic: 'Witch Hunt',
                     description: 'Start on clock spot',
                     notes: '',
                     strats: [
