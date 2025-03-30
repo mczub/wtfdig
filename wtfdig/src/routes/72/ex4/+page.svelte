@@ -191,7 +191,7 @@
 		} else {
 			roleAbbrev = role.charAt(0).toUpperCase() + party.toString();
 		}
-		let stratDiffs = [];
+		let stratDiffs = [stratNames[stratName]];
 		if (stratState.ef1 !== getStratMechs(stratName)['ef1']) {
 			if (stratState.ef1 === 'dps') {
 				stratDiffs.push(`DPS first`);
@@ -236,7 +236,7 @@
 				stratDiffs.push('W/E B6');
 			}
 		}
-		return `${stratNames[stratName]} ${stratDiffs.join(' | ')} - ${roleAbbrev}`;
+		return `${stratDiffs.join(' | ')} - ${roleAbbrev}`;
 	}
 </script>
 
