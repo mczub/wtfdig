@@ -405,7 +405,7 @@ const raidplanStrat: Strat = {
                                 we: 'Stack West on hitbox'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/raidplan/ef2-bd-stacks.png',
                                 ns: './ex4/raidplan/ef2-ns-stacks.png',
                                 we: '',
                             }
@@ -419,7 +419,7 @@ const raidplanStrat: Strat = {
                                 we: 'Stack West on hitbox'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/raidplan/ef2-bd-stacks.png',
                                 ns: './ex4/raidplan/ef2-ns-stacks.png',
                                 we: '',
                             }
@@ -433,7 +433,7 @@ const raidplanStrat: Strat = {
                                 we: 'Stack West on hitbox'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/raidplan/ef2-bd-stacks.png',
                                 ns: './ex4/raidplan/ef2-ns-stacks.png',
                                 we: '',
                             }
@@ -447,7 +447,7 @@ const raidplanStrat: Strat = {
                                 we: 'Stack West on hitbox'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/raidplan/ef2-bd-stacks.png',
                                 ns: './ex4/raidplan/ef2-ns-stacks.png',
                                 we: '',
                             }
@@ -461,7 +461,7 @@ const raidplanStrat: Strat = {
                                 we: 'Stack East on hitbox'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/raidplan/ef2-bd-stacks.png',
                                 ns: './ex4/raidplan/ef2-ns-stacks.png',
                                 we: '',
                             }
@@ -475,7 +475,7 @@ const raidplanStrat: Strat = {
                                 we: 'Stack East on hitbox'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/raidplan/ef2-bd-stacks.png',
                                 ns: './ex4/raidplan/ef2-ns-stacks.png',
                                 we: '',
                             }
@@ -489,7 +489,7 @@ const raidplanStrat: Strat = {
                                 we: 'Stack East on hitbox'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/raidplan/ef2-bd-stacks.png',
                                 ns: './ex4/raidplan/ef2-ns-stacks.png',
                                 we: '',
                             }
@@ -503,7 +503,7 @@ const raidplanStrat: Strat = {
                                 we: 'Stack East on hitbox'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/raidplan/ef2-bd-stacks.png',
                                 ns: './ex4/raidplan/ef2-ns-stacks.png',
                                 we: '',
                             }
@@ -524,7 +524,7 @@ const raidplanStrat: Strat = {
                                 we: 'Fan out WNW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/raidplan/ef2-bd-witchhunt.png',
                                 ns: './ex4/raidplan/ef2-ns-witchhunt.png',
                                 we: '',
                             }
@@ -538,7 +538,7 @@ const raidplanStrat: Strat = {
                                 we: 'Fan out WSW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/raidplan/ef2-bd-witchhunt.png',
                                 ns: './ex4/raidplan/ef2-ns-witchhunt.png',
                                 we: '',
                             }
@@ -552,7 +552,7 @@ const raidplanStrat: Strat = {
                                 we: 'Fan out NNW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/raidplan/ef2-bd-witchhunt.png',
                                 ns: './ex4/raidplan/ef2-ns-witchhunt.png',
                                 we: '',
                             }
@@ -566,7 +566,7 @@ const raidplanStrat: Strat = {
                                 we: 'Fan out SSW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/raidplan/ef2-bd-witchhunt.png',
                                 ns: './ex4/raidplan/ef2-ns-witchhunt.png',
                                 we: '',
                             }
@@ -580,7 +580,7 @@ const raidplanStrat: Strat = {
                                 we: 'Fan out ENE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/raidplan/ef2-bd-witchhunt.png',
                                 ns: './ex4/raidplan/ef2-ns-witchhunt.png',
                                 we: '',
                             }
@@ -594,7 +594,7 @@ const raidplanStrat: Strat = {
                                 we: 'Fan out ESE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/raidplan/ef2-bd-witchhunt.png',
                                 ns: './ex4/raidplan/ef2-ns-witchhunt.png',
                                 we: '',
                             }
@@ -608,7 +608,7 @@ const raidplanStrat: Strat = {
                                 we: 'Fan out NNE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/raidplan/ef2-bd-witchhunt.png',
                                 ns: './ex4/raidplan/ef2-ns-witchhunt.png',
                                 we: '',
                             }
@@ -622,7 +622,7 @@ const raidplanStrat: Strat = {
                                 we: 'Fan out SSE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/raidplan/ef2-bd-witchhunt.png',
                                 ns: './ex4/raidplan/ef2-ns-witchhunt.png',
                                 we: '',
                             }
@@ -1401,7 +1401,7 @@ const hectorStrat: Strat = {
                                 we: 'Stack West on hitbox'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/hector/ef2-bd-stacks.png',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-stacks.png'
                             }
@@ -1415,7 +1415,7 @@ const hectorStrat: Strat = {
                                 we: 'Stack West on hitbox'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/hector/ef2-bd-stacks.png',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-stacks.png'
                             }
@@ -1429,7 +1429,7 @@ const hectorStrat: Strat = {
                                 we: 'Stack West on hitbox'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/hector/ef2-bd-stacks.png',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-stacks.png'
                             }
@@ -1443,7 +1443,7 @@ const hectorStrat: Strat = {
                                 we: 'Stack West on hitbox'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/hector/ef2-bd-stacks.png',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-stacks.png'
                             }
@@ -1457,7 +1457,7 @@ const hectorStrat: Strat = {
                                 we: 'Stack East on hitbox'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/hector/ef2-bd-stacks.png',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-stacks.png'
                             }
@@ -1471,7 +1471,7 @@ const hectorStrat: Strat = {
                                 we: 'Stack East on hitbox'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/hector/ef2-bd-stacks.png',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-stacks.png'
                             }
@@ -1485,7 +1485,7 @@ const hectorStrat: Strat = {
                                 we: 'Stack East on hitbox'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/hector/ef2-bd-stacks.png',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-stacks.png'
                             }
@@ -1499,7 +1499,7 @@ const hectorStrat: Strat = {
                                 we: 'Stack East on hitbox'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/hector/ef2-bd-stacks.png',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-stacks.png'
                             }
@@ -1520,7 +1520,7 @@ const hectorStrat: Strat = {
                                 we: 'Fan out for proteans on West half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/hector/ef2-bd-witchhunt.png',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-witchhunt.png'
                             }
@@ -1534,7 +1534,7 @@ const hectorStrat: Strat = {
                                 we: 'Fan out for proteans on West half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/hector/ef2-bd-witchhunt.png',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-witchhunt.png'
                             }
@@ -1548,7 +1548,7 @@ const hectorStrat: Strat = {
                                 we: 'Fan out for proteans on West half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/hector/ef2-bd-witchhunt.png',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-witchhunt.png'
                             }
@@ -1562,7 +1562,7 @@ const hectorStrat: Strat = {
                                 we: 'Fan out for proteans on West half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/hector/ef2-bd-witchhunt.png',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-witchhunt.png'
                             }
@@ -1576,7 +1576,7 @@ const hectorStrat: Strat = {
                                 we: 'Fan out for proteans on East half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/hector/ef2-bd-witchhunt.png',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-witchhunt.png'
                             }
@@ -1590,7 +1590,7 @@ const hectorStrat: Strat = {
                                 we: 'Fan out for proteans on East half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/hector/ef2-bd-witchhunt.png',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-witchhunt.png'
                             }
@@ -1604,7 +1604,7 @@ const hectorStrat: Strat = {
                                 we: 'Fan out for proteans on East half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/hector/ef2-bd-witchhunt.png',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-witchhunt.png'
                             }
@@ -1618,7 +1618,7 @@ const hectorStrat: Strat = {
                                 we: 'Fan out for proteans on East half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: '',
+                                bd: './ex4/hector/ef2-bd-witchhunt.png',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-witchhunt.png'
                             }
