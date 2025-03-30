@@ -234,7 +234,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Inner slice North',
                                 color: 'Inner slice near North'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-arena.png'
+                            imageUrl: './ex4/raidplan/bloom3-support-roses.png'
                         },
                         {
                             role: 'Tank',
@@ -243,7 +243,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Inner slice South',
                                 color: 'Inner slice near South'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-arena.png'
+                            imageUrl: './ex4/raidplan/bloom3-support-roses.png'
                         },
                         {
                             role: 'Healer',
@@ -252,7 +252,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Inner slice Southwest',
                                 color: 'Inner slice near West'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-arena.png'
+                            imageUrl: './ex4/raidplan/bloom3-support-roses.png'
                         },
                         {
                             role: 'Healer',
@@ -261,7 +261,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Inner slice Southeast',
                                 color: 'Inner slice near East'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-arena.png'
+                            imageUrl: './ex4/raidplan/bloom3-support-roses.png'
                         },
                         {
                             role: 'Melee',
@@ -270,7 +270,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Inner slice South',
                                 color: 'Inner slice near Southwest'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-arena.png'
+                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png'
                         },
                         {
                             role: 'Melee',
@@ -279,7 +279,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Inner slice Southeast',
                                 color: 'Inner slice near Southeast'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-arena.png'
+                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png'
                         },
                         {
                             role: 'Ranged',
@@ -288,7 +288,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Inner slice Southwest',
                                 color: 'Inner slice near Northwest'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-arena.png'
+                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png'
                         },
                         {
                             role: 'Ranged',
@@ -297,7 +297,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Inner slice North',
                                 color: 'Inner slice near Northeast'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-arena.png'
+                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png'
                         },
                     ]
                 },
@@ -313,7 +313,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Outer slice North',
                                 color: 'Outer slice touching North'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-arena.png'
+                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png'
                         },
                         {
                             role: 'Tank',
@@ -322,7 +322,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Outer slice South',
                                 color: 'Outer slice touching South'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-arena.png'
+                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png'
                         },
                         {
                             role: 'Healer',
@@ -331,7 +331,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Outer slice West',
                                 color: 'Outer slice touching West'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-arena.png'
+                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png'
                         },
                         {
                             role: 'Healer',
@@ -340,7 +340,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Outer slice East',
                                 color: 'Outer slice touching East'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-arena.png'
+                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png'
                         },
                         {
                             role: 'Melee',
@@ -349,7 +349,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Outer slice West',
                                 color: 'Outer slice touching West'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-arena.png'
+                            imageUrl: './ex4/raidplan/bloom3-support-roses.png'
                         },
                         {
                             role: 'Melee',
@@ -358,7 +358,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Outer slice South',
                                 color: 'Outer slice touching South'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-arena.png'
+                            imageUrl: './ex4/raidplan/bloom3-support-roses.png'
                         },
                         {
                             role: 'Ranged',
@@ -367,7 +367,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Outer slice North',
                                 color: 'Outer slice touching North'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-arena.png'
+                            imageUrl: './ex4/raidplan/bloom3-support-roses.png'
                         },
                         {
                             role: 'Ranged',
@@ -376,7 +376,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Outer slice East',
                                 color: 'Outer slice touching East'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-arena.png'
+                            imageUrl: './ex4/raidplan/bloom3-support-roses.png'
                         },
                     ]
                 }
