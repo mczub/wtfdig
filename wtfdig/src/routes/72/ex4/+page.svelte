@@ -1,8 +1,12 @@
 <script lang="ts">
-	import type { Alignment, PlayerMechStrat, PhaseStrats, Role, MechanicStrat, Strat } from './+page';
+	import { page } from '$app/state';
+	import type { Alignment, PlayerMechStrat, PhaseStrats, Role, MechanicStrat, Strat } from '../+page';
 	import { Accordion, Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
+	import { getContext } from 'svelte';
+  	import { type ToastContext } from '@skeletonlabs/skeleton-svelte';
+	import { untrack } from 'svelte';
 
 	interface Props {
 		data: {
@@ -13,7 +17,7 @@
 
 	let { data, children }: Props = $props();
 	let stratName: string | undefined = $state();
-	let stratState = $state({
+	let stratState: Record<string, string | null> = $state({
 		ef1: null,
 		bloom3: null,
 		ef2: null,
@@ -21,20 +25,66 @@
 		bloom6: null,
 	});
 
+	
 	let role: Role | undefined = $state();
 	let party: number | undefined = $state();
 	let strat = $derived(getStrat(stratName));
 	let individualStrat = $derived(getIndividualStrat(stratName, role, party));
 	let spotlight: boolean = $state(true);
 	let alignment: Alignment = $state('original');
-    let tooltipOpen = $state(false);
 	let optionsString = $derived(getOptionsString(stratName, role, party));
+	export const toast: ToastContext = getContext('toast');
+
+	$effect(() => {
+		let stratCode = '';
+		untrack(() => stratCode = getStratCode(stratName, stratState))
+		const urlHash = page.url.hash.substring(1);
+		if (urlHash !== stratCode) {
+			untrack(() => setStratsFromUrlHash(urlHash));
+		}
+	});
+
+	function setStratsFromUrlHash(hash: string) {
+		const stratArray = hash.split(':');
+		if (stratArray[0]) {
+			stratName = stratArray[0];
+		}
+		stratState = {
+			ef1: stratArray[1],
+			bloom3: stratArray[2],
+			ef2: stratArray[3],
+			bloom4: stratArray[4],
+			bloom6: stratArray[5],
+		}
+	}
+
+	function setStratState(mech: string, value: string) {
+		stratState[mech] = value;
+		const stratCode = getStratCode(stratName, stratState);
+		history.replaceState(undefined, '', `#${stratCode}`);
+	}
+
+	function getStratCode(stratName: string | undefined, stratState: any) {
+		if (!stratName) return '';
+		return `${stratName}:${stratState.ef1}:${stratState.bloom3}:${stratState.ef2}:${stratState.bloom4}:${stratState.bloom6}`;
+	}
 
 	function onSelectStrat(e) {
 		stratName = e.value;
 		stratState = getStratMechs(e.value);
+		const stratCode = getStratCode(stratName, stratState);
+		history.replaceState(undefined, '', `#${stratCode}`);
 	}
 
+	function copyLinkToClipboard() {
+		navigator.clipboard.writeText(window.location.href);
+		toast.create({
+			description: 'Copied link to clipboard!',
+			type: 'success',
+		});
+	}
+
+	
 	function getStrat(stratName?: string): Strat | string | undefined {
 		if (!stratName || !role || !party) return `Couldn't find ${stratName} strat`;
 		return data.strats.find(strat => strat.stratName === stratName);
@@ -60,6 +110,7 @@
 					...phaseStrat,
 					description: getStratItem(phaseStrat.description, phaseStrat.tag),
 					imageUrl: getStratItem(phaseStrat.imageUrl, phaseStrat.tag),
+					mask: getStratItem(phaseStrat.mask, phaseStrat.tag),
 					mechs: phaseStrat.mechs?.map(
 						phaseStratMech => {
 							return {
@@ -69,7 +120,8 @@
 										return {
 											...iStrat,
 											description: getStratItem(iStrat.description, phaseStrat.tag),
-											imageUrl: getStratItem(iStrat.imageUrl, phaseStrat.tag)
+											imageUrl: getStratItem(iStrat.imageUrl, phaseStrat.tag),
+											mask: getStratItem(iStrat.mask, phaseStrat.tag)
 										}
 									}
 								),
@@ -118,12 +170,9 @@
 		return stratMechs[stratName];
 	}
 
-	function getMask(step: PlayerMechStrat): string {
+	function getMask(mask: string): string {
 		if (spotlight) {
-			if (step.alignmentMasks && step.alignmentMasks[alignment]) {
-				return step.alignmentMasks[alignment];
-			}
-			return step.mask || '';
+			return mask;
 		}
 		return '';
 	}
@@ -158,7 +207,7 @@
 			stratDiffs.push(`${stratState.bloom3} B3`);
 		}
 		if (stratState.ef2 !== getStratMechs(stratName)['ef2']) {
-			if (stratState.ef2 === 'braindead') {
+			if (stratState.ef2 === 'bd') {
 				stratDiffs.push(`Braindead EF2`);
 			}
 			if (stratState.ef2 === 'ns') {
@@ -233,7 +282,7 @@
 									</Tooltip>
 								{/if}
 							</div>
-							<Segment classes="flex-wrap" name="ef1" value={stratState.ef1} onValueChange={(e) => (stratState.ef1 = e.value)}>
+							<Segment classes="flex-wrap" name="ef1" value={stratState.ef1} onValueChange={(e) => (setStratState('ef1', e.value))}>
 								<Segment.Item value="supports">Supports bait first</Segment.Item>
 								<Segment.Item value="dps">DPS bait first</Segment.Item>
 								<Segment.Item value="dpsin">DPS in first</Segment.Item>
@@ -258,7 +307,7 @@
 									</Tooltip>
 								{/if}
 							</div>
-							<Segment classes="flex-wrap" name="bloom3" value={stratState.bloom3} onValueChange={(e) => (stratState.bloom3 = e.value)}>
+							<Segment classes="flex-wrap" name="bloom3" value={stratState.bloom3} onValueChange={(e) => (setStratState('bloom3', e.value))}>
 								<Segment.Item value="relative">Relative</Segment.Item>
 								<Segment.Item value="color">Colors (TN)</Segment.Item>
 							</Segment>
@@ -282,8 +331,8 @@
 									</Tooltip>
 								{/if}
 							</div>
-							<Segment classes="flex-wrap" name="ef2" value={stratState.ef2} onValueChange={(e) => (stratState.ef2 = e.value)}>
-								<Segment.Item value="braindead">Braindead (Clocks)</Segment.Item>
+							<Segment classes="flex-wrap" name="ef2" value={stratState.ef2} onValueChange={(e) => (setStratState('ef2', e.value))}>
+								<Segment.Item value="bd">Braindead (Clocks)</Segment.Item>
 								<Segment.Item value="ns">N/S</Segment.Item>
 								<Segment.Item value="we">W/E</Segment.Item>
 							</Segment>
@@ -307,7 +356,7 @@
 									</Tooltip>
 								{/if}
 							</div>
-							<Segment classes="flex-wrap" name="bloom4" value={stratState.bloom4} onValueChange={(e) => (stratState.bloom4 = e.value)}>
+							<Segment classes="flex-wrap" name="bloom4" value={stratState.bloom4} onValueChange={(e) => (setStratState('bloom4', e.value))}>
 								<Segment.Item value="relative">Relative</Segment.Item>
 								<Segment.Item value="tn">TN</Segment.Item>
 							</Segment>
@@ -331,7 +380,7 @@
 									</Tooltip>
 								{/if}
 							</div>
-							<Segment classes="flex-wrap" name="bloom6" value={stratState.bloom6} onValueChange={(e) => (stratState.bloom6 = e.value)}>
+							<Segment classes="flex-wrap" name="bloom6" value={stratState.bloom6} onValueChange={(e) => (setStratState('bloom6', e.value))}>
 								<Segment.Item value="lb3">LB3</Segment.Item>
 								<Segment.Item value="ns">LP N/S</Segment.Item>
 								<Segment.Item value="we">LP W/E</Segment.Item>
@@ -387,8 +436,9 @@
 						{/if}
 					</div>
 					<div class="grow"></div>
-					<div class="content-center">
-						<Switch name="spotlight-toggle" checked={spotlight} onCheckedChange={(e) => (spotlight = e.checked)}>Highlight my spots</Switch>
+					<div class="grid gap-x-8 content-center">
+						<button on:click={() => copyLinkToClipboard()} class="button btn preset-tonal-secondary border border-secondary-500">Copy link</button>
+						<!--Switch name="spotlight-toggle" checked={spotlight} onCheckedChange={(e) => (spotlight = e.checked)}>Highlight my spots</Switch-->
 					</div>
 				</div>
 				<div class="flex flex-wrap items-center justify-between my-4">
@@ -425,7 +475,7 @@
 						{/if}
 					</div>
 					{#if phase?.description}<div class="text-lg">{phase.description}</div>{/if}
-					{#if phase?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" src={phase.imageUrl} />{/if}
+					{#if phase?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />{/if}
 					{#if phase?.mechs}
 						<div class="grid xl:grid-cols-2 grid-cols-2 gap-2 mt-4">
 							{#each phase.mechs as mech}
@@ -441,7 +491,7 @@
 									{#if mech?.description}<div class="whitespace-pre-wrap text-lg mb-0">{mech.description}</div>{/if}
 									
 									<div class="whitespace-pre-wrap text-lg mb-0">{mech.strats[0].description}</div>
-									{#if mech.strats[0]?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" src={mech.strats[0].imageUrl} />{/if}
+									{#if mech.strats[0]?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />{/if}
 								</div>
 								{/key}
 							{/each}

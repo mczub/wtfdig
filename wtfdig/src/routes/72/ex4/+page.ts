@@ -16,7 +16,7 @@ export interface PlayerMechStrat {
     description: string | Record<string, string>;
     imageUrl?: string | Record<string, string>;
     imageRotated?: string;
-    mask?: string;
+    mask?: string | Record<string,string>;
     transform?: string;
     alignmentTransforms?: Record<Alignment, string>;
     alignmentImages?: Record<Alignment, string>;
@@ -36,6 +36,7 @@ export interface PhaseStrats {
     tag?: string;
     description?: string | Record<string, string>;
     imageUrl?: string | Record<string, string>;
+    mask?: string | Record<string,string>;
     mechs?: MechanicStrat[];
 }
 
@@ -128,7 +129,7 @@ const raidplanStrat: Strat = {
                                 dps: 'Follow symbol on 2 & 4',
                                 dpsin: 'Always start out\nDodge either once or twice',
                             },
-                            imageUrl: './ex4/raidplan/ef1.png'
+                            imageUrl: './ex4/raidplan/ef1.png',
                         },
                         {
                             role: 'Tank',
@@ -138,7 +139,7 @@ const raidplanStrat: Strat = {
                                 dps: 'Follow symbol on 2 & 4',
                                 dpsin: 'Always start out\nDodge either once or twice'
                             },
-                            imageUrl: './ex4/raidplan/ef1.png'
+                            imageUrl: './ex4/raidplan/ef1.png',
                         },
                         {
                             role: 'Healer',
@@ -148,7 +149,7 @@ const raidplanStrat: Strat = {
                                 dps: 'Follow symbol on 2 & 4',
                                 dpsin: 'Always start out\nDodge either once or twice'
                             },
-                            imageUrl: './ex4/raidplan/ef1.png'
+                            imageUrl: './ex4/raidplan/ef1.png',
                         },
                         {
                             role: 'Healer',
@@ -158,7 +159,7 @@ const raidplanStrat: Strat = {
                                 dps: 'Follow symbol on 2 & 4',
                                 dpsin: 'Always start out\nDodge either once or twice'
                             },
-                            imageUrl: './ex4/raidplan/ef1.png'
+                            imageUrl: './ex4/raidplan/ef1.png',
                         },
                         {
                             role: 'Melee',
@@ -168,7 +169,7 @@ const raidplanStrat: Strat = {
                                 dps: 'Follow symbol on 1 & 3',
                                 dpsin: 'Always start in\nDodge either once or twice'
                             },
-                            imageUrl: './ex4/raidplan/ef1.png'
+                            imageUrl: './ex4/raidplan/ef1.png',
                         },
                         {
                             role: 'Melee',
@@ -178,7 +179,7 @@ const raidplanStrat: Strat = {
                                 dps: 'Follow symbol on 1 & 3',
                                 dpsin: 'Always start in\nDodge either once or twice'
                             },
-                            imageUrl: './ex4/raidplan/ef1.png'
+                            imageUrl: './ex4/raidplan/ef1.png',
                         },
                         {
                             role: 'Ranged',
@@ -188,7 +189,7 @@ const raidplanStrat: Strat = {
                                 dps: 'Follow symbol on 1 & 3',
                                 dpsin: 'Always start in\nDodge either once or twice'
                             }, 
-                            imageUrl: './ex4/raidplan/ef1.png'
+                            imageUrl: './ex4/raidplan/ef1.png',
                         },
                         {
                             role: 'Ranged',
@@ -198,7 +199,7 @@ const raidplanStrat: Strat = {
                                 dps: 'Follow symbol on 1 & 3',
                                 dpsin: 'Always start in\nDodge either once or twice'
                             },
-                            imageUrl: './ex4/raidplan/ef1.png'
+                            imageUrl: './ex4/raidplan/ef1.png',
                         },
                     ]
                 }
@@ -385,7 +386,7 @@ const raidplanStrat: Strat = {
             phaseName: `Escelons' Fall 2`,
             tag: 'ef2',
             description: {
-                braindead: 'Braindead (Clocks)',
+                bd: 'Braindead (Clocks)',
                 ns: 'Supports N / DPS S',
                 we: 'Supports W / DPS E'
             },
@@ -399,12 +400,12 @@ const raidplanStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack North on hitbox',
                                 we: 'Stack West on hitbox'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: './ex4/raidplan/ef2-ns-stacks.png',
                                 we: '',
                             }
@@ -413,12 +414,12 @@ const raidplanStrat: Strat = {
                             role: 'Tank',
                             party: 2,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack North on hitbox',
                                 we: 'Stack West on hitbox'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: './ex4/raidplan/ef2-ns-stacks.png',
                                 we: '',
                             }
@@ -427,12 +428,12 @@ const raidplanStrat: Strat = {
                             role: 'Healer',
                             party: 1,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack North on hitbox',
                                 we: 'Stack West on hitbox'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: './ex4/raidplan/ef2-ns-stacks.png',
                                 we: '',
                             }
@@ -441,12 +442,12 @@ const raidplanStrat: Strat = {
                             role: 'Healer',
                             party: 2,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack North on hitbox',
                                 we: 'Stack West on hitbox'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: './ex4/raidplan/ef2-ns-stacks.png',
                                 we: '',
                             }
@@ -455,12 +456,12 @@ const raidplanStrat: Strat = {
                             role: 'Melee',
                             party: 1,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack South on hitbox',
                                 we: 'Stack East on hitbox'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: './ex4/raidplan/ef2-ns-stacks.png',
                                 we: '',
                             }
@@ -469,12 +470,12 @@ const raidplanStrat: Strat = {
                             role: 'Melee',
                             party: 2,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack South on hitbox',
                                 we: 'Stack East on hitbox'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: './ex4/raidplan/ef2-ns-stacks.png',
                                 we: '',
                             }
@@ -483,12 +484,12 @@ const raidplanStrat: Strat = {
                             role: 'Ranged',
                             party: 1,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack South on hitbox',
                                 we: 'Stack East on hitbox'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: './ex4/raidplan/ef2-ns-stacks.png',
                                 we: '',
                             }
@@ -497,12 +498,12 @@ const raidplanStrat: Strat = {
                             role: 'Ranged',
                             party: 2,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack South on hitbox',
                                 we: 'Stack East on hitbox'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: './ex4/raidplan/ef2-ns-stacks.png',
                                 we: '',
                             }
@@ -518,12 +519,12 @@ const raidplanStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out NNW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out WNW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: './ex4/raidplan/ef2-ns-witchhunt.png',
                                 we: '',
                             }
@@ -532,12 +533,12 @@ const raidplanStrat: Strat = {
                             role: 'Tank',
                             party: 2,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out NNE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out WSW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: './ex4/raidplan/ef2-ns-witchhunt.png',
                                 we: '',
                             }
@@ -546,12 +547,12 @@ const raidplanStrat: Strat = {
                             role: 'Healer',
                             party: 1,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out WNW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out NNW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: './ex4/raidplan/ef2-ns-witchhunt.png',
                                 we: '',
                             }
@@ -560,12 +561,12 @@ const raidplanStrat: Strat = {
                             role: 'Healer',
                             party: 2,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out ENE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out SSW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: './ex4/raidplan/ef2-ns-witchhunt.png',
                                 we: '',
                             }
@@ -574,12 +575,12 @@ const raidplanStrat: Strat = {
                             role: 'Melee',
                             party: 1,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out SSW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out ENE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: './ex4/raidplan/ef2-ns-witchhunt.png',
                                 we: '',
                             }
@@ -588,12 +589,12 @@ const raidplanStrat: Strat = {
                             role: 'Melee',
                             party: 2,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out SSE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out ESE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: './ex4/raidplan/ef2-ns-witchhunt.png',
                                 we: '',
                             }
@@ -602,12 +603,12 @@ const raidplanStrat: Strat = {
                             role: 'Ranged',
                             party: 1,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out WSW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out NNE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: './ex4/raidplan/ef2-ns-witchhunt.png',
                                 we: '',
                             }
@@ -616,12 +617,12 @@ const raidplanStrat: Strat = {
                             role: 'Ranged',
                             party: 2,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out ESE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out SSE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: './ex4/raidplan/ef2-ns-witchhunt.png',
                                 we: '',
                             }
@@ -1381,7 +1382,7 @@ const hectorStrat: Strat = {
             phaseName: `Escelons' Fall 2`,
             tag: 'ef2',
             description: {
-                braindead: 'Braindead (Clocks)',
+                bd: 'Braindead (Clocks)',
                 ns: 'Supports N / DPS S',
                 we: 'Supports W / DPS E'
             },
@@ -1395,12 +1396,12 @@ const hectorStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack North on hitbox',
                                 we: 'Stack West on hitbox'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-stacks.png'
                             }
@@ -1409,12 +1410,12 @@ const hectorStrat: Strat = {
                             role: 'Tank',
                             party: 2,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack North on hitbox',
                                 we: 'Stack West on hitbox'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-stacks.png'
                             }
@@ -1423,12 +1424,12 @@ const hectorStrat: Strat = {
                             role: 'Healer',
                             party: 1,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack North on hitbox',
                                 we: 'Stack West on hitbox'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-stacks.png'
                             }
@@ -1437,12 +1438,12 @@ const hectorStrat: Strat = {
                             role: 'Healer',
                             party: 2,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack North on hitbox',
                                 we: 'Stack West on hitbox'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-stacks.png'
                             }
@@ -1451,12 +1452,12 @@ const hectorStrat: Strat = {
                             role: 'Melee',
                             party: 1,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack South on hitbox',
                                 we: 'Stack East on hitbox'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-stacks.png'
                             }
@@ -1465,12 +1466,12 @@ const hectorStrat: Strat = {
                             role: 'Melee',
                             party: 2,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack South on hitbox',
                                 we: 'Stack East on hitbox'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-stacks.png'
                             }
@@ -1479,12 +1480,12 @@ const hectorStrat: Strat = {
                             role: 'Ranged',
                             party: 1,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack South on hitbox',
                                 we: 'Stack East on hitbox'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-stacks.png'
                             }
@@ -1493,12 +1494,12 @@ const hectorStrat: Strat = {
                             role: 'Ranged',
                             party: 2,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack South on hitbox',
                                 we: 'Stack East on hitbox'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-stacks.png'
                             }
@@ -1514,12 +1515,12 @@ const hectorStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out for proteans on North half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out for proteans on West half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-witchhunt.png'
                             }
@@ -1528,12 +1529,12 @@ const hectorStrat: Strat = {
                             role: 'Tank',
                             party: 2,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out for proteans on North half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out for proteans on West half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-witchhunt.png'
                             }
@@ -1542,12 +1543,12 @@ const hectorStrat: Strat = {
                             role: 'Healer',
                             party: 1,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out for proteans on North half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out for proteans on West half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-witchhunt.png'
                             }
@@ -1556,12 +1557,12 @@ const hectorStrat: Strat = {
                             role: 'Healer',
                             party: 2,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out for proteans on North half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out for proteans on West half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-witchhunt.png'
                             }
@@ -1570,12 +1571,12 @@ const hectorStrat: Strat = {
                             role: 'Melee',
                             party: 1,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out for proteans on South half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out for proteans on East half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-witchhunt.png'
                             }
@@ -1584,12 +1585,12 @@ const hectorStrat: Strat = {
                             role: 'Melee',
                             party: 2,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out for proteans on South half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out for proteans on East half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-witchhunt.png'
                             }
@@ -1598,12 +1599,12 @@ const hectorStrat: Strat = {
                             role: 'Ranged',
                             party: 1,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out for proteans on South half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out for proteans on East half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-witchhunt.png'
                             }
@@ -1612,12 +1613,12 @@ const hectorStrat: Strat = {
                             role: 'Ranged',
                             party: 2,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out for proteans on South half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out for proteans on East half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                braindead: '',
+                                bd: '',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-witchhunt.png'
                             }
@@ -2353,7 +2354,7 @@ const happyStrat: Strat = {
             phaseName: `Escelons' Fall 2`,
             tag: 'ef2',
             description: {
-                braindead: 'Braindead (Clocks)',
+                bd: 'Braindead (Clocks)',
                 ns: 'Supports N / DPS S',
                 we: 'Supports W / DPS E'
             },
@@ -2367,7 +2368,7 @@ const happyStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack North on hitbox',
                                 we: 'Stack West on hitbox'
                             },
@@ -2376,7 +2377,7 @@ const happyStrat: Strat = {
                             role: 'Tank',
                             party: 2,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack North on hitbox',
                                 we: 'Stack West on hitbox'
                             },
@@ -2385,7 +2386,7 @@ const happyStrat: Strat = {
                             role: 'Healer',
                             party: 1,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack North on hitbox',
                                 we: 'Stack West on hitbox'
                             },
@@ -2394,7 +2395,7 @@ const happyStrat: Strat = {
                             role: 'Healer',
                             party: 2,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack North on hitbox',
                                 we: 'Stack West on hitbox'
                             },
@@ -2403,7 +2404,7 @@ const happyStrat: Strat = {
                             role: 'Melee',
                             party: 1,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack South on hitbox',
                                 we: 'Stack East on hitbox'
                             },
@@ -2412,7 +2413,7 @@ const happyStrat: Strat = {
                             role: 'Melee',
                             party: 2,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack South on hitbox',
                                 we: 'Stack East on hitbox'
                             },
@@ -2421,7 +2422,7 @@ const happyStrat: Strat = {
                             role: 'Ranged',
                             party: 1,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack South on hitbox',
                                 we: 'Stack East on hitbox'
                             },
@@ -2430,7 +2431,7 @@ const happyStrat: Strat = {
                             role: 'Ranged',
                             party: 2,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack South on hitbox',
                                 we: 'Stack East on hitbox'
                             },
@@ -2446,7 +2447,7 @@ const happyStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
@@ -2455,7 +2456,7 @@ const happyStrat: Strat = {
                             role: 'Tank',
                             party: 2,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
@@ -2464,7 +2465,7 @@ const happyStrat: Strat = {
                             role: 'Healer',
                             party: 1,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
@@ -2473,7 +2474,7 @@ const happyStrat: Strat = {
                             role: 'Healer',
                             party: 2,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
@@ -2482,7 +2483,7 @@ const happyStrat: Strat = {
                             role: 'Melee',
                             party: 1,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
@@ -2491,7 +2492,7 @@ const happyStrat: Strat = {
                             role: 'Melee',
                             party: 2,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
@@ -2500,7 +2501,7 @@ const happyStrat: Strat = {
                             role: 'Ranged',
                             party: 1,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
@@ -2509,7 +2510,7 @@ const happyStrat: Strat = {
                             role: 'Ranged',
                             party: 2,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
@@ -3148,7 +3149,7 @@ const yukizuriStrat: Strat = {
             phaseName: `Escelons' Fall 2`,
             tag: 'ef2',
             description: {
-                braindead: 'Braindead (Clocks)',
+                bd: 'Braindead (Clocks)',
                 ns: 'Supports N / DPS S',
                 we: 'Supports W / DPS E'
             },
@@ -3162,7 +3163,7 @@ const yukizuriStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack North on hitbox',
                                 we: 'Stack West on hitbox'
                             },
@@ -3171,7 +3172,7 @@ const yukizuriStrat: Strat = {
                             role: 'Tank',
                             party: 2,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack North on hitbox',
                                 we: 'Stack West on hitbox'
                             },
@@ -3180,7 +3181,7 @@ const yukizuriStrat: Strat = {
                             role: 'Healer',
                             party: 1,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack North on hitbox',
                                 we: 'Stack West on hitbox'
                             },
@@ -3189,7 +3190,7 @@ const yukizuriStrat: Strat = {
                             role: 'Healer',
                             party: 2,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack North on hitbox',
                                 we: 'Stack West on hitbox'
                             },
@@ -3198,7 +3199,7 @@ const yukizuriStrat: Strat = {
                             role: 'Melee',
                             party: 1,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack South on hitbox',
                                 we: 'Stack East on hitbox'
                             },
@@ -3207,7 +3208,7 @@ const yukizuriStrat: Strat = {
                             role: 'Melee',
                             party: 2,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack South on hitbox',
                                 we: 'Stack East on hitbox'
                             },
@@ -3216,7 +3217,7 @@ const yukizuriStrat: Strat = {
                             role: 'Ranged',
                             party: 1,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack South on hitbox',
                                 we: 'Stack East on hitbox'
                             },
@@ -3225,7 +3226,7 @@ const yukizuriStrat: Strat = {
                             role: 'Ranged',
                             party: 2,
                             description: {
-                                braindead: 'Donuts out to clock spots\nEveryone else center',
+                                bd: 'Donuts out to clock spots\nEveryone else center',
                                 ns: 'Stack South on hitbox',
                                 we: 'Stack East on hitbox'
                             },
@@ -3241,7 +3242,7 @@ const yukizuriStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
@@ -3250,7 +3251,7 @@ const yukizuriStrat: Strat = {
                             role: 'Tank',
                             party: 2,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
@@ -3259,7 +3260,7 @@ const yukizuriStrat: Strat = {
                             role: 'Healer',
                             party: 1,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
@@ -3268,7 +3269,7 @@ const yukizuriStrat: Strat = {
                             role: 'Healer',
                             party: 2,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
@@ -3277,7 +3278,7 @@ const yukizuriStrat: Strat = {
                             role: 'Melee',
                             party: 1,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
@@ -3286,7 +3287,7 @@ const yukizuriStrat: Strat = {
                             role: 'Melee',
                             party: 2,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
@@ -3295,7 +3296,7 @@ const yukizuriStrat: Strat = {
                             role: 'Ranged',
                             party: 1,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
@@ -3304,7 +3305,7 @@ const yukizuriStrat: Strat = {
                             role: 'Ranged',
                             party: 2,
                             description: {
-                                braindead: 'Same as first Witch Hunt',
+                                bd: 'Same as first Witch Hunt',
                                 ns: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },

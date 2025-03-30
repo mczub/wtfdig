@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '../app.css';
-    import { Modal, Popover } from '@skeletonlabs/skeleton-svelte';
+    import { Modal, Popover, ToastProvider } from '@skeletonlabs/skeleton-svelte';
     import ChevronDown from '@lucide/svelte/icons/chevron-down';
     import { base } from '$app/paths';
     interface Props {
@@ -33,6 +33,8 @@
         </header>
         <article>
             <div>
+                <p>3/30/2025: added url support to share strats with PF!</p>
+                <p>3/28/2025: improved ex4 support and bugfixes</p>
                 <p>3/27/2025: ex4 support</p>
                 <p>3/21/2025: updated to svelte v5 in preparation for 7.2</p>
                 <p>1/21/2025: added warning for core-lateral and lateral-core swap in 7.16</p>
@@ -134,8 +136,10 @@
     </div>
 </header>
 
+<ToastProvider>
+    {@render children?.()}
+</ToastProvider>
 
-{@render children?.()}
 
 <footer class="bottom-0 left-0 z-40 w-full p-4 border-t shadow-sm md:flex md:items-center md:justify-between md:p-6 bg-surface-1000 border-gray-600">
     <div class="flex w-full max-w-(--breakpoint-xl) mx-auto justify-between">
