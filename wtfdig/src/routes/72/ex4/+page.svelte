@@ -436,9 +436,9 @@
 						{/if}
 					</div>
 					<div class="grow"></div>
-					<div class="grid gap-x-8 content-center">
+					<div class="grid gap-y-2 content-center">
 						<button on:click={() => copyLinkToClipboard()} class="button btn preset-tonal-secondary border border-secondary-500">Copy link</button>
-						<!--Switch name="spotlight-toggle" checked={spotlight} onCheckedChange={(e) => (spotlight = e.checked)}>Highlight my spots</Switch-->
+						<Switch name="spotlight-toggle" checked={spotlight} onCheckedChange={(e) => (spotlight = e.checked)}>Highlight my spots</Switch>
 					</div>
 				</div>
 				<div class="flex flex-wrap items-center justify-between my-4">

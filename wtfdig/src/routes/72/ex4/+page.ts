@@ -130,6 +130,7 @@ const raidplanStrat: Strat = {
                                 dpsin: 'Always start out\nDodge either once or twice',
                             },
                             imageUrl: './ex4/raidplan/ef1.png',
+                            mask: 'radial-gradient(circle at 50% 41%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Tank',
@@ -140,6 +141,7 @@ const raidplanStrat: Strat = {
                                 dpsin: 'Always start out\nDodge either once or twice'
                             },
                             imageUrl: './ex4/raidplan/ef1.png',
+                            mask: 'radial-gradient(circle at 50% 60%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Healer',
@@ -150,6 +152,7 @@ const raidplanStrat: Strat = {
                                 dpsin: 'Always start out\nDodge either once or twice'
                             },
                             imageUrl: './ex4/raidplan/ef1.png',
+                            mask: 'radial-gradient(circle at 39% 50%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Healer',
@@ -160,6 +163,7 @@ const raidplanStrat: Strat = {
                                 dpsin: 'Always start out\nDodge either once or twice'
                             },
                             imageUrl: './ex4/raidplan/ef1.png',
+                            mask: 'radial-gradient(circle at 61% 50%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Melee',
@@ -170,6 +174,7 @@ const raidplanStrat: Strat = {
                                 dpsin: 'Always start in\nDodge either once or twice'
                             },
                             imageUrl: './ex4/raidplan/ef1.png',
+                            mask: 'radial-gradient(circle at 31% 69%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
                         },
                         {
                             role: 'Melee',
@@ -180,6 +185,7 @@ const raidplanStrat: Strat = {
                                 dpsin: 'Always start in\nDodge either once or twice'
                             },
                             imageUrl: './ex4/raidplan/ef1.png',
+                            mask: 'radial-gradient(circle at 69% 69%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
                         },
                         {
                             role: 'Ranged',
@@ -190,6 +196,7 @@ const raidplanStrat: Strat = {
                                 dpsin: 'Always start in\nDodge either once or twice'
                             }, 
                             imageUrl: './ex4/raidplan/ef1.png',
+                            mask: 'radial-gradient(circle at 31% 31%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
                         },
                         {
                             role: 'Ranged',
@@ -200,6 +207,7 @@ const raidplanStrat: Strat = {
                                 dpsin: 'Always start in\nDodge either once or twice'
                             },
                             imageUrl: './ex4/raidplan/ef1.png',
+                            mask: 'radial-gradient(circle at 69% 31%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
                         },
                     ]
                 }
@@ -234,7 +242,8 @@ const raidplanStrat: Strat = {
                                 relative: 'Inner slice North',
                                 color: 'Inner slice near North'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-support-roses.png'
+                            imageUrl: './ex4/raidplan/bloom3-support-roses.png',
+                            mask: 'radial-gradient(circle at 57% 35%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
                             role: 'Tank',
@@ -243,7 +252,8 @@ const raidplanStrat: Strat = {
                                 relative: 'Inner slice South',
                                 color: 'Inner slice near South'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-support-roses.png'
+                            imageUrl: './ex4/raidplan/bloom3-support-roses.png',
+                            mask: 'radial-gradient(circle at 44% 65%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
                             role: 'Healer',
@@ -252,7 +262,8 @@ const raidplanStrat: Strat = {
                                 relative: 'Inner slice Southwest',
                                 color: 'Inner slice near West'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-support-roses.png'
+                            imageUrl: './ex4/raidplan/bloom3-support-roses.png',
+                            mask: 'radial-gradient(circle at 34% 56%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
                             role: 'Healer',
@@ -261,43 +272,48 @@ const raidplanStrat: Strat = {
                                 relative: 'Inner slice Southeast',
                                 color: 'Inner slice near East'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-support-roses.png'
+                            imageUrl: './ex4/raidplan/bloom3-support-roses.png',
+                            mask: 'radial-gradient(circle at 57% 66%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
                             role: 'Melee',
-                            party: 1,
-                            description: {
-                                relative: 'Inner slice South',
-                                color: 'Inner slice near Southwest'
-                            },
-                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png'
-                        },
-                        {
-                            role: 'Melee',
-                            party: 2,
-                            description: {
-                                relative: 'Inner slice Southeast',
-                                color: 'Inner slice near Southeast'
-                            },
-                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png'
-                        },
-                        {
-                            role: 'Ranged',
                             party: 1,
                             description: {
                                 relative: 'Inner slice Southwest',
+                                color: 'Inner slice near Southwest'
+                            },
+                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png',
+                            mask: 'radial-gradient(circle at 34% 57%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: {
+                                relative: 'Inner slice South',
+                                color: 'Inner slice near Southeast'
+                            },
+                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png',
+                            mask: 'radial-gradient(circle at 44% 66%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: {
+                                relative: 'Inner slice North',
                                 color: 'Inner slice near Northwest'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png'
+                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png',
+                            mask: 'radial-gradient(circle at 57% 34%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: {
-                                relative: 'Inner slice North',
+                                relative: 'Inner slice Southeast',
                                 color: 'Inner slice near Northeast'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png'
+                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png',
+                            mask: 'radial-gradient(circle at 57% 67%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                     ]
                 },
@@ -313,7 +329,8 @@ const raidplanStrat: Strat = {
                                 relative: 'Outer slice North',
                                 color: 'Outer slice touching North'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png'
+                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png',
+                            mask: 'radial-gradient(circle at 64% 15%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
                             role: 'Tank',
@@ -322,7 +339,8 @@ const raidplanStrat: Strat = {
                                 relative: 'Outer slice South',
                                 color: 'Outer slice touching South'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png'
+                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png',
+                            mask: 'radial-gradient(circle at 36% 84%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
                             role: 'Healer',
@@ -331,7 +349,8 @@ const raidplanStrat: Strat = {
                                 relative: 'Outer slice West',
                                 color: 'Outer slice touching West'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png'
+                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png',
+                            mask: 'radial-gradient(circle at 16% 36%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
                             role: 'Healer',
@@ -340,7 +359,8 @@ const raidplanStrat: Strat = {
                                 relative: 'Outer slice East',
                                 color: 'Outer slice touching East'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png'
+                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png',
+                            mask: 'radial-gradient(circle at 84% 64%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
                             role: 'Melee',
@@ -349,7 +369,8 @@ const raidplanStrat: Strat = {
                                 relative: 'Outer slice West',
                                 color: 'Outer slice touching West'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-support-roses.png'
+                            imageUrl: './ex4/raidplan/bloom3-support-roses.png',
+                            mask: 'radial-gradient(circle at 16% 36%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
                             role: 'Melee',
@@ -358,7 +379,8 @@ const raidplanStrat: Strat = {
                                 relative: 'Outer slice South',
                                 color: 'Outer slice touching South'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-support-roses.png'
+                            imageUrl: './ex4/raidplan/bloom3-support-roses.png',
+                            mask: 'radial-gradient(circle at 36% 84%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
                             role: 'Ranged',
@@ -367,7 +389,8 @@ const raidplanStrat: Strat = {
                                 relative: 'Outer slice North',
                                 color: 'Outer slice touching North'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-support-roses.png'
+                            imageUrl: './ex4/raidplan/bloom3-support-roses.png',
+                            mask: 'radial-gradient(circle at 64% 15%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
                             role: 'Ranged',
@@ -376,7 +399,8 @@ const raidplanStrat: Strat = {
                                 relative: 'Outer slice East',
                                 color: 'Outer slice touching East'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-support-roses.png'
+                            imageUrl: './ex4/raidplan/bloom3-support-roses.png',
+                            mask: 'radial-gradient(circle at 84% 64%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                     ]
                 }
