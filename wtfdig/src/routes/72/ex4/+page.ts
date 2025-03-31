@@ -432,6 +432,11 @@ const raidplanStrat: Strat = {
                                 bd: './ex4/raidplan/ef2-bd-stacks.png',
                                 ns: './ex4/raidplan/ef2-ns-stacks.png',
                                 we: '',
+                            },
+                            mask: {
+                                bd: '',
+                                ns: 'radial-gradient(circle at 50% 30%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
+                                we: '',
                             }
                         },
                         {
@@ -446,6 +451,11 @@ const raidplanStrat: Strat = {
                                 bd: './ex4/raidplan/ef2-bd-stacks.png',
                                 ns: './ex4/raidplan/ef2-ns-stacks.png',
                                 we: '',
+                            },
+                            mask: {
+                                bd: '',
+                                ns: 'radial-gradient(circle at 50% 30%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
+                                we: '',
                             }
                         },
                         {
@@ -460,6 +470,11 @@ const raidplanStrat: Strat = {
                                 bd: './ex4/raidplan/ef2-bd-stacks.png',
                                 ns: './ex4/raidplan/ef2-ns-stacks.png',
                                 we: '',
+                            },
+                            mask: {
+                                bd: '',
+                                ns: 'radial-gradient(circle at 50% 30%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
+                                we: '',
                             }
                         },
                         {
@@ -473,6 +488,11 @@ const raidplanStrat: Strat = {
                             imageUrl: {
                                 bd: './ex4/raidplan/ef2-bd-stacks.png',
                                 ns: './ex4/raidplan/ef2-ns-stacks.png',
+                                we: '',
+                            },
+                            mask: {
+                                bd: '',
+                                ns: 'radial-gradient(circle at 50% 30%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
                                 we: '',
                             }
                         },
@@ -488,6 +508,11 @@ const raidplanStrat: Strat = {
                                 bd: './ex4/raidplan/ef2-bd-stacks.png',
                                 ns: './ex4/raidplan/ef2-ns-stacks.png',
                                 we: '',
+                            },
+                            mask: {
+                                bd: '',
+                                ns: 'radial-gradient(circle at 50% 61%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
+                                we: '',
                             }
                         },
                         {
@@ -501,6 +526,11 @@ const raidplanStrat: Strat = {
                             imageUrl: {
                                 bd: './ex4/raidplan/ef2-bd-stacks.png',
                                 ns: './ex4/raidplan/ef2-ns-stacks.png',
+                                we: '',
+                            },
+                            mask: {
+                                bd: '',
+                                ns: 'radial-gradient(circle at 50% 61%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
                                 we: '',
                             }
                         },
@@ -516,6 +546,11 @@ const raidplanStrat: Strat = {
                                 bd: './ex4/raidplan/ef2-bd-stacks.png',
                                 ns: './ex4/raidplan/ef2-ns-stacks.png',
                                 we: '',
+                            },
+                            mask: {
+                                bd: '',
+                                ns: 'radial-gradient(circle at 50% 61%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
+                                we: '',
                             }
                         },
                         {
@@ -529,6 +564,11 @@ const raidplanStrat: Strat = {
                             imageUrl: {
                                 bd: './ex4/raidplan/ef2-bd-stacks.png',
                                 ns: './ex4/raidplan/ef2-ns-stacks.png',
+                                we: '',
+                            },
+                            mask: {
+                                bd: '',
+                                ns: 'radial-gradient(circle at 50% 61%, black 12%, rgba(0, 0, 0, 0.4) 12%)',
                                 we: '',
                             }
                         },
@@ -551,6 +591,11 @@ const raidplanStrat: Strat = {
                                 bd: './ex4/raidplan/ef2-bd-witchhunt.png',
                                 ns: './ex4/raidplan/ef2-ns-witchhunt.png',
                                 we: '',
+                            },
+                            mask: {
+                                bd: '',
+                                ns: 'radial-gradient(circle at 45% 32%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
+                                we: '',
                             }
                         },
                         {
@@ -564,6 +609,11 @@ const raidplanStrat: Strat = {
                             imageUrl: {
                                 bd: './ex4/raidplan/ef2-bd-witchhunt.png',
                                 ns: './ex4/raidplan/ef2-ns-witchhunt.png',
+                                we: '',
+                            },
+                            mask: {
+                                bd: '',
+                                ns: 'radial-gradient(circle at 55% 31%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
                                 we: '',
                             }
                         },
@@ -579,6 +629,11 @@ const raidplanStrat: Strat = {
                                 bd: './ex4/raidplan/ef2-bd-witchhunt.png',
                                 ns: './ex4/raidplan/ef2-ns-witchhunt.png',
                                 we: '',
+                            },
+                            mask: {
+                                bd: '',
+                                ns: 'radial-gradient(circle at 36% 37%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
+                                we: '',
                             }
                         },
                         {
@@ -592,6 +647,11 @@ const raidplanStrat: Strat = {
                             imageUrl: {
                                 bd: './ex4/raidplan/ef2-bd-witchhunt.png',
                                 ns: './ex4/raidplan/ef2-ns-witchhunt.png',
+                                we: '',
+                            },
+                            mask: {
+                                bd: '',
+                                ns: 'radial-gradient(circle at 63% 36%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
                                 we: '',
                             }
                         },
@@ -607,6 +667,11 @@ const raidplanStrat: Strat = {
                                 bd: './ex4/raidplan/ef2-bd-witchhunt.png',
                                 ns: './ex4/raidplan/ef2-ns-witchhunt.png',
                                 we: '',
+                            },
+                            mask: {
+                                bd: '',
+                                ns: 'radial-gradient(circle at 43% 72%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
+                                we: '',
                             }
                         },
                         {
@@ -620,6 +685,11 @@ const raidplanStrat: Strat = {
                             imageUrl: {
                                 bd: './ex4/raidplan/ef2-bd-witchhunt.png',
                                 ns: './ex4/raidplan/ef2-ns-witchhunt.png',
+                                we: '',
+                            },
+                            mask: {
+                                bd: '',
+                                ns: 'radial-gradient(circle at 57% 72%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
                                 we: '',
                             }
                         },
@@ -635,6 +705,11 @@ const raidplanStrat: Strat = {
                                 bd: './ex4/raidplan/ef2-bd-witchhunt.png',
                                 ns: './ex4/raidplan/ef2-ns-witchhunt.png',
                                 we: '',
+                            },
+                            mask: {
+                                bd: '',
+                                ns: 'radial-gradient(circle at 32% 67%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
+                                we: '',
                             }
                         },
                         {
@@ -649,6 +724,11 @@ const raidplanStrat: Strat = {
                                 bd: './ex4/raidplan/ef2-bd-witchhunt.png',
                                 ns: './ex4/raidplan/ef2-ns-witchhunt.png',
                                 we: '',
+                            },
+                            mask: {
+                                bd: '',
+                                ns: 'radial-gradient(circle at 68% 67%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
+                                we: '',
                             }
                         },
                     ]
@@ -659,8 +739,8 @@ const raidplanStrat: Strat = {
             phaseName: `Bloom 4`,
             tag: 'bloom4',
             description: {
-                relative: 'Relative (4 empty tiles are new South)',
-                tn: 'True North'
+                relative: 'Relative (4 empty tiles are new South)\nTether stretch Supports left/DPS right facing boss',
+                tn: 'True North\nTether stretch always Supports W/DPS E'
             },
             mechs: [
                 {
@@ -675,7 +755,8 @@ const raidplanStrat: Strat = {
                                 relative: 'Drop rose on inner left tile',
                                 tn: 'Drop rose on inner East tile'
                             },
-                            imageUrl: './ex4/raidplan/bloom4-roses.png'
+                            imageUrl: './ex4/raidplan/bloom4-support-roses.png',
+                            mask: 'radial-gradient(circle at 44% 66%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Tank',
@@ -684,7 +765,8 @@ const raidplanStrat: Strat = {
                                 relative: 'Drop rose on inner right tile',
                                 tn: 'Drop rose on inner West tile'
                             },
-                            imageUrl: './ex4/raidplan/bloom4-roses.png'
+                            imageUrl: './ex4/raidplan/bloom4-support-roses.png',
+                            mask: 'radial-gradient(circle at 56% 66%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Healer',
@@ -693,7 +775,8 @@ const raidplanStrat: Strat = {
                                 relative: 'Drop rose on outer left tile',
                                 tn: 'Drop rose on outer East tile'
                             },
-                            imageUrl: './ex4/raidplan/bloom4-roses.png'
+                            imageUrl: './ex4/raidplan/bloom4-support-roses.png',
+                            mask: 'radial-gradient(circle at 38% 81%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
                         },
                         {
                             role: 'Healer',
@@ -702,7 +785,8 @@ const raidplanStrat: Strat = {
                                 relative: 'Drop rose on outer right tile',
                                 tn: 'Drop rose on outer West tile'
                             },
-                            imageUrl: './ex4/raidplan/bloom4-roses.png'
+                            imageUrl: './ex4/raidplan/bloom4-support-roses.png',
+                            mask: 'radial-gradient(circle at 60% 81%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
                         },
                         {
                             role: 'Melee',
@@ -711,7 +795,8 @@ const raidplanStrat: Strat = {
                                 relative: 'Drop rose on inner left tile',
                                 tn: 'Drop rose on inner East tile'
                             },
-                            imageUrl: './ex4/raidplan/bloom4-roses.png'
+                            imageUrl: './ex4/raidplan/bloom4-dps-roses.png',
+                            mask: 'radial-gradient(circle at 44% 66%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Melee',
@@ -720,7 +805,8 @@ const raidplanStrat: Strat = {
                                 relative: 'Drop rose on inner right tile',
                                 tn: 'Drop rose on inner West tile'
                             },
-                            imageUrl: './ex4/raidplan/bloom4-roses.png'
+                            imageUrl: './ex4/raidplan/bloom4-dps-roses.png',
+                            mask: 'radial-gradient(circle at 56% 66%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Ranged',
@@ -729,7 +815,8 @@ const raidplanStrat: Strat = {
                                 relative: 'Drop rose on outer left tile',
                                 tn: 'Drop rose on outer East tile'
                             },
-                            imageUrl: './ex4/raidplan/bloom4-roses.png'
+                            imageUrl: './ex4/raidplan/bloom4-dps-roses.png',
+                            mask: 'radial-gradient(circle at 38% 81%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
                         },
                         {
                             role: 'Ranged',
@@ -738,7 +825,8 @@ const raidplanStrat: Strat = {
                                 relative: 'Drop rose on outer right tile',
                                 tn: 'Drop rose on outer West tile'
                             },
-                            imageUrl: './ex4/raidplan/bloom4-roses.png'
+                            imageUrl: './ex4/raidplan/bloom4-dps-roses.png',
+                            mask: 'radial-gradient(circle at 60% 81%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
                         },
                     ]
                 },
@@ -849,6 +937,11 @@ const raidplanStrat: Strat = {
                                 lb3: './ex4/raidplan/bloom6-lb3.png',
                                 ns: './ex4/raidplan/bloom6-ns.png',
                                 we: '',
+                            },
+                            mask: {
+                                lb3: 'radial-gradient(circle at 44% 65%, black 10%, rgba(0, 0, 0, 0.4) 10%)',
+                                ns: '',
+                                we: '',
                             }
                         },
                         {
@@ -862,6 +955,11 @@ const raidplanStrat: Strat = {
                             imageUrl: {
                                 lb3: './ex4/raidplan/bloom6-lb3.png',
                                 ns: './ex4/raidplan/bloom6-ns.png',
+                                we: '',
+                            },
+                            mask: {
+                                lb3: 'radial-gradient(circle at 56% 65%, black 10%, rgba(0, 0, 0, 0.4) 10%)',
+                                ns: '',
                                 we: '',
                             }
                         },
@@ -877,6 +975,11 @@ const raidplanStrat: Strat = {
                                 lb3: './ex4/raidplan/bloom6-lb3.png',
                                 ns: './ex4/raidplan/bloom6-ns.png',
                                 we: '',
+                            },
+                            mask: {
+                                lb3: 'radial-gradient(circle at 44% 34%, black 10%, rgba(0, 0, 0, 0.4) 10%)',
+                                ns: '',
+                                we: '',
                             }
                         },
                         {
@@ -890,6 +993,11 @@ const raidplanStrat: Strat = {
                             imageUrl: {
                                 lb3: './ex4/raidplan/bloom6-lb3.png',
                                 ns: './ex4/raidplan/bloom6-ns.png',
+                                we: '',
+                            },
+                            mask: {
+                                lb3: 'radial-gradient(circle at 55% 34%, black 10%, rgba(0, 0, 0, 0.4) 10%)',
+                                ns: '',
                                 we: '',
                             }
                         },
@@ -905,6 +1013,11 @@ const raidplanStrat: Strat = {
                                 lb3: './ex4/raidplan/bloom6-lb3.png',
                                 ns: './ex4/raidplan/bloom6-ns.png',
                                 we: '',
+                            },
+                            mask: {
+                                lb3: 'radial-gradient(circle at 44% 65%, black 10%, rgba(0, 0, 0, 0.4) 10%)',
+                                ns: '',
+                                we: '',
                             }
                         },
                         {
@@ -918,6 +1031,11 @@ const raidplanStrat: Strat = {
                             imageUrl: {
                                 lb3: './ex4/raidplan/bloom6-lb3.png',
                                 ns: './ex4/raidplan/bloom6-ns.png',
+                                we: '',
+                            },
+                            mask: {
+                                lb3: 'radial-gradient(circle at 56% 65%, black 10%, rgba(0, 0, 0, 0.4) 10%)',
+                                ns: '',
                                 we: '',
                             }
                         },
@@ -933,6 +1051,11 @@ const raidplanStrat: Strat = {
                                 lb3: './ex4/raidplan/bloom6-lb3.png',
                                 ns: './ex4/raidplan/bloom6-ns.png',
                                 we: '',
+                            },
+                            mask: {
+                                lb3: 'radial-gradient(circle at 44% 34%, black 10%, rgba(0, 0, 0, 0.4) 10%)',
+                                ns: '',
+                                we: '',
                             }
                         },
                         {
@@ -946,6 +1069,11 @@ const raidplanStrat: Strat = {
                             imageUrl: {
                                 lb3: './ex4/raidplan/bloom6-lb3.png',
                                 ns: './ex4/raidplan/bloom6-ns.png',
+                                we: '',
+                            },
+                            mask: {
+                                lb3: 'radial-gradient(circle at 55% 34%, black 10%, rgba(0, 0, 0, 0.4) 10%)',
+                                ns: '',
                                 we: '',
                             }
                         },
@@ -968,6 +1096,11 @@ const raidplanStrat: Strat = {
                                 lb3: './ex4/raidplan/bloom6-lb3.png',
                                 ns: './ex4/raidplan/bloom6-ns.png',
                                 we: '',
+                            },
+                            mask: {
+                                lb3: 'radial-gradient(circle at 36% 54%, black 10%, rgba(0, 0, 0, 0.4) 10%)',
+                                ns: '',
+                                we: '',
                             }
                         },
                         {
@@ -981,6 +1114,11 @@ const raidplanStrat: Strat = {
                             imageUrl: {
                                 lb3: './ex4/raidplan/bloom6-lb3.png',
                                 ns: './ex4/raidplan/bloom6-ns.png',
+                                we: '',
+                            },
+                            mask: {
+                                lb3: 'radial-gradient(circle at 64% 45%, black 10%, rgba(0, 0, 0, 0.4) 10%)',
+                                ns: '',
                                 we: '',
                             }
                         },
@@ -996,6 +1134,11 @@ const raidplanStrat: Strat = {
                                 lb3: './ex4/raidplan/bloom6-lb3.png',
                                 ns: './ex4/raidplan/bloom6-ns.png',
                                 we: '',
+                            },
+                            mask: {
+                                lb3: 'radial-gradient(circle at 16% 35%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
+                                ns: '',
+                                we: '',
                             }
                         },
                         {
@@ -1009,6 +1152,11 @@ const raidplanStrat: Strat = {
                             imageUrl: {
                                 lb3: './ex4/raidplan/bloom6-lb3.png',
                                 ns: './ex4/raidplan/bloom6-ns.png',
+                                we: '',
+                            },
+                            mask: {
+                                lb3: 'radial-gradient(circle at 84% 63%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
+                                ns: '',
                                 we: '',
                             }
                         },
@@ -1024,6 +1172,11 @@ const raidplanStrat: Strat = {
                                 lb3: './ex4/raidplan/bloom6-lb3.png',
                                 ns: './ex4/raidplan/bloom6-ns.png',
                                 we: '',
+                            },
+                            mask: {
+                                lb3: 'radial-gradient(circle at 36% 54%, black 10%, rgba(0, 0, 0, 0.4) 10%)',
+                                ns: '',
+                                we: '',
                             }
                         },
                         {
@@ -1037,6 +1190,11 @@ const raidplanStrat: Strat = {
                             imageUrl: {
                                 lb3: './ex4/raidplan/bloom6-lb3.png',
                                 ns: './ex4/raidplan/bloom6-ns.png',
+                                we: '',
+                            },
+                            mask: {
+                                lb3: 'radial-gradient(circle at 64% 45%, black 10%, rgba(0, 0, 0, 0.4) 10%)',
+                                ns: '',
                                 we: '',
                             }
                         },
@@ -1052,6 +1210,11 @@ const raidplanStrat: Strat = {
                                 lb3: './ex4/raidplan/bloom6-lb3.png',
                                 ns: './ex4/raidplan/bloom6-ns.png',
                                 we: '',
+                            },
+                            mask: {
+                                lb3: 'radial-gradient(circle at 16% 35%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
+                                ns: '',
+                                we: '',
                             }
                         },
                         {
@@ -1065,6 +1228,11 @@ const raidplanStrat: Strat = {
                             imageUrl: {
                                 lb3: './ex4/raidplan/bloom6-lb3.png',
                                 ns: './ex4/raidplan/bloom6-ns.png',
+                                we: '',
+                            },
+                            mask: {
+                                lb3: 'radial-gradient(circle at 84% 63%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
+                                ns: '',
                                 we: '',
                             }
                         },
@@ -1154,6 +1322,7 @@ const hectorStrat: Strat = {
                                 dpsin: 'Always start out\nDodge either once or twice'
                             },
                             imageUrl: './ex4/hector/ef1.png',
+                            mask: 'radial-gradient(circle at 50% 24%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Tank',
@@ -1164,6 +1333,7 @@ const hectorStrat: Strat = {
                                 dpsin: 'Always start out\nDodge either once or twice'
                             },
                             imageUrl: './ex4/hector/ef1.png',
+                            mask: 'radial-gradient(circle at 50% 71%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Healer',
@@ -1174,6 +1344,7 @@ const hectorStrat: Strat = {
                                 dpsin: 'Always start out\nDodge either once or twice'
                             },
                             imageUrl: './ex4/hector/ef1.png',
+                            mask: 'radial-gradient(circle at 24% 50%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Healer',
@@ -1184,6 +1355,7 @@ const hectorStrat: Strat = {
                                 dpsin: 'Always start out\nDodge either once or twice'
                             },
                             imageUrl: './ex4/hector/ef1.png',
+                            mask: 'radial-gradient(circle at 76% 50%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Melee',
@@ -1194,6 +1366,7 @@ const hectorStrat: Strat = {
                                 dpsin: 'Always start in\nDodge either once or twice'
                             },
                             imageUrl: './ex4/hector/ef1.png',
+                            mask: 'radial-gradient(circle at 35% 62%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Melee',
@@ -1204,6 +1377,7 @@ const hectorStrat: Strat = {
                                 dpsin: 'Always start in\nDodge either once or twice'
                             },
                             imageUrl: './ex4/hector/ef1.png',
+                            mask: 'radial-gradient(circle at 64% 62%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Ranged',
@@ -1214,6 +1388,7 @@ const hectorStrat: Strat = {
                                 dpsin: 'Always start in\nDodge either once or twice'
                             },
                             imageUrl: './ex4/hector/ef1.png',
+                            mask: 'radial-gradient(circle at 38% 36%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Ranged',
@@ -1224,6 +1399,7 @@ const hectorStrat: Strat = {
                                 dpsin: 'Always start in\nDodge either once or twice'
                             },
                             imageUrl: './ex4/hector/ef1.png',
+                            mask: 'radial-gradient(circle at 64% 36%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                     ]
                 }
@@ -1254,7 +1430,8 @@ const hectorStrat: Strat = {
                                 relative: 'Inner slice North',
                                 color: 'Inner slice near North'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png'
+                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            mask: 'radial-gradient(circle at 50% 31%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Tank',
@@ -1263,7 +1440,8 @@ const hectorStrat: Strat = {
                                 relative: 'Inner slice South',
                                 color: 'Inner slice near South'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png'
+                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            mask: 'radial-gradient(circle at 50% 70%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Healer',
@@ -1272,7 +1450,8 @@ const hectorStrat: Strat = {
                                 relative: 'Inner slice Southwest',
                                 color: 'Inner slice near West'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png'
+                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            mask: 'radial-gradient(circle at 34% 65%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Healer',
@@ -1281,7 +1460,8 @@ const hectorStrat: Strat = {
                                 relative: 'Inner slice Southeast',
                                 color: 'Inner slice near East'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png'
+                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            mask: 'radial-gradient(circle at 65% 64%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Melee',
@@ -1290,7 +1470,8 @@ const hectorStrat: Strat = {
                                 relative: 'Inner slice Southwest',
                                 color: 'Inner slice near Southwest'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png'
+                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            mask: 'radial-gradient(circle at 34% 65%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Melee',
@@ -1299,7 +1480,8 @@ const hectorStrat: Strat = {
                                 relative: 'Inner slice South',
                                 color: 'Inner slice near Southeast'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png'
+                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            mask: 'radial-gradient(circle at 50% 70%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Ranged',
@@ -1308,7 +1490,8 @@ const hectorStrat: Strat = {
                                 relative: 'Inner slice North',
                                 color: 'Inner slice near Northwest'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png'
+                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            mask: 'radial-gradient(circle at 50% 31%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Ranged',
@@ -1317,7 +1500,8 @@ const hectorStrat: Strat = {
                                 relative: 'Inner slice Southeast',
                                 color: 'Inner slice near Northeast'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png'
+                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            mask: 'radial-gradient(circle at 65% 64%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                     ]
                 },
@@ -1333,7 +1517,8 @@ const hectorStrat: Strat = {
                                 relative: 'Outer slice North',
                                 color: 'Outer slice touching North'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png'
+                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            mask: 'radial-gradient(circle at 50% 17%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Tank',
@@ -1342,7 +1527,8 @@ const hectorStrat: Strat = {
                                 relative: 'Outer slice South',
                                 color: 'Outer slice touching South'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png'
+                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            mask: 'radial-gradient(circle at 49% 82%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Healer',
@@ -1351,7 +1537,8 @@ const hectorStrat: Strat = {
                                 relative: 'Outer slice West',
                                 color: 'Outer slice touching West'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png'
+                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            mask: 'radial-gradient(circle at 17% 50%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Healer',
@@ -1360,7 +1547,8 @@ const hectorStrat: Strat = {
                                 relative: 'Outer slice East',
                                 color: 'Outer slice touching East'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png'
+                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            mask: 'radial-gradient(circle at 81% 51%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Melee',
@@ -1369,7 +1557,8 @@ const hectorStrat: Strat = {
                                 relative: 'Outer slice West',
                                 color: 'Outer slice touching West'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png'
+                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            mask: 'radial-gradient(circle at 17% 50%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Melee',
@@ -1378,7 +1567,8 @@ const hectorStrat: Strat = {
                                 relative: 'Outer slice South',
                                 color: 'Outer slice touching South'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png'
+                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            mask: 'radial-gradient(circle at 49% 82%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Ranged',
@@ -1387,7 +1577,8 @@ const hectorStrat: Strat = {
                                 relative: 'Outer slice North',
                                 color: 'Outer slice touching North'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png'
+                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            mask: 'radial-gradient(circle at 50% 17%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
                             role: 'Ranged',
@@ -1396,7 +1587,8 @@ const hectorStrat: Strat = {
                                 relative: 'Outer slice East',
                                 color: 'Outer slice touching East'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png'
+                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            mask: 'radial-gradient(circle at 81% 51%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                     ]
                 }
@@ -1428,6 +1620,11 @@ const hectorStrat: Strat = {
                                 bd: './ex4/hector/ef2-bd-stacks.png',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-stacks.png'
+                            },
+                            mask: {
+                                bd: '',
+                                ns: '',
+                                we: 'radial-gradient(circle at 29% 49%, black 13%, rgba(0, 0, 0, 0.4) 13%)',
                             }
                         },
                         {
@@ -1442,6 +1639,11 @@ const hectorStrat: Strat = {
                                 bd: './ex4/hector/ef2-bd-stacks.png',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-stacks.png'
+                            },
+                            mask: {
+                                bd: '',
+                                ns: '',
+                                we: 'radial-gradient(circle at 29% 49%, black 13%, rgba(0, 0, 0, 0.4) 13%)',
                             }
                         },
                         {
@@ -1456,6 +1658,11 @@ const hectorStrat: Strat = {
                                 bd: './ex4/hector/ef2-bd-stacks.png',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-stacks.png'
+                            },
+                            mask: {
+                                bd: '',
+                                ns: '',
+                                we: 'radial-gradient(circle at 29% 49%, black 13%, rgba(0, 0, 0, 0.4) 13%)',
                             }
                         },
                         {
@@ -1470,6 +1677,11 @@ const hectorStrat: Strat = {
                                 bd: './ex4/hector/ef2-bd-stacks.png',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-stacks.png'
+                            },
+                            mask: {
+                                bd: '',
+                                ns: '',
+                                we: 'radial-gradient(circle at 29% 49%, black 13%, rgba(0, 0, 0, 0.4) 13%)',
                             }
                         },
                         {
@@ -1484,6 +1696,11 @@ const hectorStrat: Strat = {
                                 bd: './ex4/hector/ef2-bd-stacks.png',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-stacks.png'
+                            },
+                            mask: {
+                                bd: '',
+                                ns: '',
+                                we: 'radial-gradient(circle at 71% 49%, black 13%, rgba(0, 0, 0, 0.4) 13%)',
                             }
                         },
                         {
@@ -1498,6 +1715,11 @@ const hectorStrat: Strat = {
                                 bd: './ex4/hector/ef2-bd-stacks.png',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-stacks.png'
+                            },
+                            mask: {
+                                bd: '',
+                                ns: '',
+                                we: 'radial-gradient(circle at 71% 49%, black 13%, rgba(0, 0, 0, 0.4) 13%)',
                             }
                         },
                         {
@@ -1512,6 +1734,11 @@ const hectorStrat: Strat = {
                                 bd: './ex4/hector/ef2-bd-stacks.png',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-stacks.png'
+                            },
+                            mask: {
+                                bd: '',
+                                ns: '',
+                                we: 'radial-gradient(circle at 71% 49%, black 13%, rgba(0, 0, 0, 0.4) 13%)',
                             }
                         },
                         {
@@ -1526,6 +1753,11 @@ const hectorStrat: Strat = {
                                 bd: './ex4/hector/ef2-bd-stacks.png',
                                 ns: '',
                                 we: './ex4/hector/ef2-we-stacks.png'
+                            },
+                            mask: {
+                                bd: '',
+                                ns: '',
+                                we: 'radial-gradient(circle at 71% 49%, black 13%, rgba(0, 0, 0, 0.4) 13%)',
                             }
                         },
                     ]

@@ -251,6 +251,7 @@
 			<div class="space-y-5 v-full dark">
 				<div class="card preset-outlined-warning-500 gap-4 p-4">
                     <p>This guide is still under construction, thank you for your patience while we continue to work on it.</p>
+					<p>Some combinations of strats may be missing images or highlights.</p>
                 </div>
 				<div>
 					<div class="text-xl mb-2">Which strat are you using?</div>
@@ -474,7 +475,7 @@
 							</Tooltip>
 						{/if}
 					</div>
-					{#if phase?.description}<div class="text-lg">{phase.description}</div>{/if}
+					{#if phase?.description}<div class="text-lg whitespace-pre-wrap">{phase.description}</div>{/if}
 					{#if phase?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />{/if}
 					{#if phase?.mechs}
 						<div class="grid xl:grid-cols-2 grid-cols-2 gap-2 mt-4">
