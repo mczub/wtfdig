@@ -584,7 +584,7 @@ const raidplanStrat: Strat = {
                             party: 1,
                             description: {
                                 bd: 'Same as first Witch Hunt',
-                                ns: 'Fan out NNW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
+                                ns: 'Fan out near left facing boss for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out WNW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
@@ -603,7 +603,7 @@ const raidplanStrat: Strat = {
                             party: 2,
                             description: {
                                 bd: 'Same as first Witch Hunt',
-                                ns: 'Fan out NNE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
+                                ns: 'Fan out near right facing boss for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out WSW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
@@ -622,27 +622,8 @@ const raidplanStrat: Strat = {
                             party: 1,
                             description: {
                                 bd: 'Same as first Witch Hunt',
-                                ns: 'Fan out WNW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
+                                ns: 'Fan out far left facing boss for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out NNW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
-                            },
-                            imageUrl: {
-                                bd: './ex4/raidplan/ef2-bd-witchhunt.png',
-                                ns: './ex4/raidplan/ef2-ns-witchhunt.png',
-                                we: '',
-                            },
-                            mask: {
-                                bd: '',
-                                ns: 'radial-gradient(circle at 36% 37%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
-                                we: '',
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 2,
-                            description: {
-                                bd: 'Same as first Witch Hunt',
-                                ns: 'Fan out ENE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
-                                we: 'Fan out SSW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
                                 bd: './ex4/raidplan/ef2-bd-witchhunt.png',
@@ -656,11 +637,30 @@ const raidplanStrat: Strat = {
                             }
                         },
                         {
+                            role: 'Healer',
+                            party: 2,
+                            description: {
+                                bd: 'Same as first Witch Hunt',
+                                ns: 'Fan out far right facing boss for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
+                                we: 'Fan out SSW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
+                            },
+                            imageUrl: {
+                                bd: './ex4/raidplan/ef2-bd-witchhunt.png',
+                                ns: './ex4/raidplan/ef2-ns-witchhunt.png',
+                                we: '',
+                            },
+                            mask: {
+                                bd: '',
+                                ns: 'radial-gradient(circle at 36% 37%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
+                                we: '',
+                            }
+                        },
+                        {
                             role: 'Melee',
                             party: 1,
                             description: {
                                 bd: 'Same as first Witch Hunt',
-                                ns: 'Fan out SSW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
+                                ns: 'Fan out near left facing boss for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out ENE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
@@ -679,7 +679,7 @@ const raidplanStrat: Strat = {
                             party: 2,
                             description: {
                                 bd: 'Same as first Witch Hunt',
-                                ns: 'Fan out SSE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
+                                ns: 'Fan out near right facing boss for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out ESE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
@@ -698,7 +698,7 @@ const raidplanStrat: Strat = {
                             party: 1,
                             description: {
                                 bd: 'Same as first Witch Hunt',
-                                ns: 'Fan out WSW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
+                                ns: 'Fan out far left facing boss for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out NNE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
@@ -717,7 +717,7 @@ const raidplanStrat: Strat = {
                             party: 2,
                             description: {
                                 bd: 'Same as first Witch Hunt',
-                                ns: 'Fan out ESE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
+                                ns: 'Fan out far right facing boss for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4',
                                 we: 'Fan out SSE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
