@@ -13,6 +13,7 @@
     function changelogClose() {
         changelogOpenState = false;
     }
+    let popoverUltiState = $state(false);
     let popover71OpenState = $state(false);
     let popover72OpenState = $state(false);
 
@@ -67,6 +68,27 @@
             <Popover
                 open={popover71OpenState}
                 onOpenChange={(e) => (popover71OpenState = e.open)}
+                positioning={{ placement: 'bottom-end' }}
+                triggerBase="btn preset-tonal-secondary border border-secondary-500"
+                contentBase="card bg-surface-200-800 space-y-4 min-w-[240px]"
+            >
+                {#snippet trigger()}Ultimates <ChevronDown size={16}/>{/snippet}
+                {#snippet content()}
+                <article>
+                    <div class="opacity-60 preset-outlined-surface-200-800 grid p-0 w-full divide-y divide-surface-800 rounded-md hover:bg-surface-900 bg-surface-950">
+                        <div class="px-4 py-2">
+                            <a href="https://ucobsales.com/"  target="_blank" rel="noopener noreferrer" class="flex flex-col w-full items-start">
+                                <div class="text-lg -mb-2">The Unending Coil of Bahamut</div>
+                                <div class="text-sm">Ultimate</div>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                {/snippet}
+            </Popover>
+            <Popover
+                open={popoverUltiState}
+                onOpenChange={(e) => (popoverUltiState = e.open)}
                 positioning={{ placement: 'bottom-end' }}
                 triggerBase="btn preset-tonal-secondary border border-secondary-500"
                 contentBase="card bg-surface-200-800 space-y-4 min-w-[240px]"
