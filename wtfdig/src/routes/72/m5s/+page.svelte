@@ -143,7 +143,8 @@
 			'latte': 'Latte (X-fxE5sxTx2JXd5m)',
 			'toxic': 'Toxic Friends (pztjVHnzfhEkg6pH)',
 			'sun': 'Sun Strat (h-WjosHQoM7oJR0n)',
-			'evansith': 'Evansith'
+			'evansith': 'Evansith',
+			'hector': 'Hector'
 		}
 		let roleAbbrev = '';
 		if (role === 'Tank') {
@@ -176,6 +177,7 @@
 						<Segment.Item value="toxic">Toxic Friends (pztjV)</Segment.Item>
 						<Segment.Item value="sun">Sun (h-Wjo)</Segment.Item>
 						<Segment.Item value="evansith">Evansith</Segment.Item>
+						<Segment.Item value="hector">Hector</Segment.Item>
 					</Segment>
 				</div>
 				<div>
@@ -242,7 +244,12 @@
 						</div>
 					{/if}
 				</div>
-
+				{#if strat?.notes}
+					<div class="card preset-outlined-primary-500 p-2 flex flex-row space-x-2 my-2">
+						<CircleAlert size={32} />
+						<div class="whitespace-pre-wrap text-lg mb-0">{strat.notes}</div>
+					</div>
+				{/if}
 				{#each individualStrat as phase}
 				<div class="card border border-surface-800 mb-8 p-4">
 					<div class="flex flex-row">
