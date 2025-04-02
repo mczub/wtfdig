@@ -13,7 +13,6 @@
     function changelogClose() {
         changelogOpenState = false;
     }
-    let popoverUltiState = $state(false);
     let popover71OpenState = $state(false);
     let popover72OpenState = $state(false);
 
@@ -34,6 +33,7 @@
         </header>
         <article>
             <div>
+                <p>4/2/2025: sadly ucob was too good to live, however we have m5s now</p>
                 <p>3/30/2025: added url support to share strats with PF!</p>
                 <p>3/28/2025: improved ex4 support and bugfixes</p>
                 <p>3/27/2025: ex4 support</p>
@@ -72,27 +72,6 @@
                 triggerBase="btn preset-tonal-secondary border border-secondary-500"
                 contentBase="card bg-surface-200-800 space-y-4 min-w-[240px]"
             >
-                {#snippet trigger()}Ultimates <ChevronDown size={16}/>{/snippet}
-                {#snippet content()}
-                <article>
-                    <div class="opacity-60 preset-outlined-surface-200-800 grid p-0 w-full divide-y divide-surface-800 rounded-md hover:bg-surface-900 bg-surface-950">
-                        <div class="px-4 py-2">
-                            <a href="https://ucobsales.com/"  target="_blank" rel="noopener noreferrer" class="flex flex-col w-full items-start">
-                                <div class="text-lg -mb-2">The Unending Coil of Bahamut</div>
-                                <div class="text-sm">Ultimate</div>
-                            </a>
-                        </div>
-                    </div>
-                </article>
-                {/snippet}
-            </Popover>
-            <Popover
-                open={popoverUltiState}
-                onOpenChange={(e) => (popoverUltiState = e.open)}
-                positioning={{ placement: 'bottom-end' }}
-                triggerBase="btn preset-tonal-secondary border border-secondary-500"
-                contentBase="card bg-surface-200-800 space-y-4 min-w-[240px]"
-            >
                 {#snippet trigger()}Patch 7.1 <ChevronDown size={16}/>{/snippet}
                 {#snippet content()}
                 <article>
@@ -125,10 +104,10 @@
                             </a>
                         </div>
                         <div class="px-4 py-2 cursor-not-allowed">
-                            <div class="flex flex-col w-full items-start cursor-not-allowed">
+                            <a href="{base}/72/m5s" class="flex flex-col w-full items-start">
                                 <div class="text-lg -mb-2">AAC Cruiserweight M1</div>
                                 <div class="text-sm">Savage</div>
-                            </div>
+                            </a>
                         </div>
                         <div class="px-4 py-2 cursor-not-allowed">
                             <div class="flex flex-col w-full items-start cursor-not-allowed">
