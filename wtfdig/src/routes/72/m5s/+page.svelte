@@ -142,6 +142,7 @@
 		const stratNames: Record<string, string> = {
 			'latte': 'Latte (X-fxE5sxTx2JXd5m)',
 			'toxic': 'Toxic Friends (pztjVHnzfhEkg6pH)',
+			'sun': 'Sun Strat (h-WjosHQoM7oJR0n)',
 			'evansith': 'Evansith'
 		}
 		let roleAbbrev = '';
@@ -173,6 +174,7 @@
 					<Segment classes="flex-wrap" name="stratName" value={stratName} onValueChange={onSelectStrat}>
 						<Segment.Item value="latte">Latte (X-fxE)</Segment.Item>
 						<Segment.Item value="toxic">Toxic Friends (pztjV)</Segment.Item>
+						<Segment.Item value="sun">Sun (h-Wjo)</Segment.Item>
 						<Segment.Item value="evansith">Evansith</Segment.Item>
 					</Segment>
 				</div>

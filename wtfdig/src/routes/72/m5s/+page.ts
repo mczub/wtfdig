@@ -2,7 +2,7 @@ import type { PageLoad } from "./$types";
 
 export const load: PageLoad = ({params}) => {
     return {
-        strats: [latteStrat, toxicStrat, evansithStrat],
+        strats: [latteStrat, toxicStrat, sunStrat, evansithStrat],
     }
 }
 
@@ -701,6 +701,18 @@ const toxicStrat: Strat = {
     description: 'Source: Raidplan by Cute Animal@Omega and Toxic Friends',
     notes: '',
     stratUrl: 'https://raidplan.io/plan/pztjVHnzfhEkg6pH',
+    strats: [
+        {
+            phaseName: 'Under Construction', 
+        }
+    ],
+}
+
+const sunStrat: Strat = {
+    stratName: 'sun',
+    description: 'Source: Sun Strat Raidplan',
+    notes: '',
+    stratUrl: 'https://raidplan.io/plan/h-WjosHQoM7oJR0n',
     strats: [
         {
             phaseName: 'Under Construction', 
