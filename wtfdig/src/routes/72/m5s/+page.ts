@@ -524,61 +524,8 @@ const latteStrat: Strat = {
         },
         {
             phaseName: 'More Amphibians', 
-            description: 'Color Partners\nShort debuffs take spotlights first',
+            description: 'Color Partners\nSupports bait first',
             mechs: [
-                {
-                    mechanic: 'Spotlights',
-                    strats: [
-                        {
-                            role: 'Tank',
-                            party: 1,
-                            description: 'Near Red markers (N or NW)',
-                            imageUrl: './m5s/latte/more-amphibians.png',
-                        },
-                        {
-                            role: 'Tank',
-                            party: 2,
-                            description: 'Near Blue markers (S or SE)',
-                            imageUrl: './m5s/latte/more-amphibians.png',
-                        },
-                        {
-                            role: 'Healer',
-                            party: 1,
-                            description: 'Near Purple markers (W or SW)',
-                            imageUrl: './m5s/latte/more-amphibians.png',
-                        },
-                        {
-                            role: 'Healer',
-                            party: 2,
-                            description: 'Near Yellow markers (E or NE)',
-                            imageUrl: './m5s/latte/more-amphibians.png',
-                        },
-                        {
-                            role: 'Melee',
-                            party: 1,
-                            description: 'Near Purple markers (W or SW)',
-                            imageUrl: './m5s/latte/more-amphibians.png',
-                        },
-                        {
-                            role: 'Melee',
-                            party: 2,
-                            description: 'Near Blue markers (S or SE)',
-                            imageUrl: './m5s/latte/more-amphibians.png',
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 1,
-                            description: 'Near Red markers (N or NW)',
-                            imageUrl: './m5s/latte/more-amphibians.png',
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 2,
-                            description: 'Near Yellow markers (E or NE)',
-                            imageUrl: './m5s/latte/more-amphibians.png',
-                        },
-                    ]
-                },
                 {
                     mechanic: 'Baits',
                     strats: [
@@ -1131,53 +1078,8 @@ const toxicStrat: Strat = {
         },
         {
             phaseName: 'More Amphibians', 
-            description: 'Color Partners\nShort debuffs take spotlights first',
+            description: 'Color Partners\nSupports bait first',
             mechs: [
-                {
-                    mechanic: 'Spotlights',
-                    strats: [
-                        {
-                            role: 'Tank',
-                            party: 1,
-                            description: 'Near Red markers (N or NW)',
-                        },
-                        {
-                            role: 'Tank',
-                            party: 2,
-                            description: 'Near Yellow markers (E or NE)',
-                        },
-                        {
-                            role: 'Healer',
-                            party: 1,
-                            description: 'Near Purple markers (W or SW)',
-                        },
-                        {
-                            role: 'Healer',
-                            party: 2,
-                            description: 'Near Blue markers (S or SE)',
-                        },
-                        {
-                            role: 'Melee',
-                            party: 1,
-                            description: 'Near Purple markers (W or SW)',
-                        },
-                        {
-                            role: 'Melee',
-                            party: 2,
-                            description: 'Near Blue markers (S or SE)',
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 1,
-                            description: 'Near Red markers (N or NW)',
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 2,
-                            description: 'Near Yellow markers (E or NE)',
-                        },
-                    ]
-                },
                 {
                     mechanic: 'Baits',
                     strats: [
@@ -1323,49 +1225,49 @@ const hectorStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'North',
-                            imageUrl: './m5s/latte/twist-aside.png',
+                            imageUrl: './m5s/hector/twist-aside.png',
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'North',
-                            imageUrl: './m5s/latte/twist-aside.png',
+                            imageUrl: './m5s/hector/twist-aside.png',
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'E/W',
-                            imageUrl: './m5s/latte/twist-aside.png',
+                            imageUrl: './m5s/hector/twist-aside.png',
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'E/W',
-                            imageUrl: './m5s/latte/twist-aside.png',
+                            imageUrl: './m5s/hector/twist-aside.png',
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'South',
-                            imageUrl: './m5s/latte/twist-aside.png',
+                            imageUrl: './m5s/hector/twist-aside.png',
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'South',
-                            imageUrl: './m5s/latte/twist-aside.png',
+                            imageUrl: './m5s/hector/twist-aside.png',
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'South',
-                            imageUrl: './m5s/latte/twist-aside.png',
+                            imageUrl: './m5s/hector/twist-aside.png',
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'South',
-                            imageUrl: './m5s/latte/twist-aside.png',
+                            imageUrl: './m5s/hector/twist-aside.png',
                         },
                     ]
                 },
@@ -1377,49 +1279,49 @@ const hectorStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'North',
-                            imageUrl: './m5s/latte/twist-bside.png',
+                            imageUrl: './m5s/hector/twist-bside.png',
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'South',
-                            imageUrl: './m5s/latte/twist-bside.png',
+                            imageUrl: './m5s/hector/twist-bside.png',
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'North',
-                            imageUrl: './m5s/latte/twist-bside.png',
+                            imageUrl: './m5s/hector/twist-bside.png',
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'South',
-                            imageUrl: './m5s/latte/twist-bside.png',
+                            imageUrl: './m5s/hector/twist-bside.png',
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'North',
-                            imageUrl: './m5s/latte/twist-bside.png',
+                            imageUrl: './m5s/hector/twist-bside.png',
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'South',
-                            imageUrl: './m5s/latte/twist-bside.png',
+                            imageUrl: './m5s/hector/twist-bside.png',
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'North',
-                            imageUrl: './m5s/latte/twist-bside.png',
+                            imageUrl: './m5s/hector/twist-bside.png',
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'South',
-                            imageUrl: './m5s/latte/twist-bside.png',
+                            imageUrl: './m5s/hector/twist-bside.png',
                         },
                     ]
                 }
@@ -1437,41 +1339,49 @@ const hectorStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'West half, close to boss',
+                            imageUrl: './m5s/hector/disco-infernal-1-supports.png',
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'East half, close to boss',
+                            imageUrl: './m5s/hector/disco-infernal-1-supports.png',
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'West half, far from boss',
+                            imageUrl: './m5s/hector/disco-infernal-1-supports.png',
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'East half, far from boss',
+                            imageUrl: './m5s/hector/disco-infernal-1-supports.png',
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'West half, close to boss',
+                            imageUrl: './m5s/hector/disco-infernal-1-dps.png',
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'East half, close to boss',
+                            imageUrl: './m5s/hector/disco-infernal-1-dps.png',
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'West half, far from boss',
+                            imageUrl: './m5s/hector/disco-infernal-1-dps.png',
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'East half, far from boss',
+                            imageUrl: './m5s/hector/disco-infernal-1-dps.png',
                         },
                     ]
                 },
@@ -1489,47 +1399,56 @@ const hectorStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'North-Northwest',
+                            imageUrl: './m5s/hector/arcady-proteans.png',
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'North-Northeast',
+                            imageUrl: './m5s/hector/arcady-proteans.png',
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'West-Northwest',
+                            imageUrl: './m5s/hector/arcady-proteans.png',
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'East-Northeast',
+                            imageUrl: './m5s/hector/arcady-proteans.png',
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'South-Southwest',
+                            imageUrl: './m5s/hector/arcady-proteans.png',
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'South-Southeast',
+                            imageUrl: './m5s/hector/arcady-proteans.png',
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'West-Southwest',
+                            imageUrl: './m5s/hector/arcady-proteans.png',
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'East-Southeast',
+                            imageUrl: './m5s/hector/arcady-proteans.png',
                         },
                     ]
                 },
                 {
                     mechanic: 'Debuffs',
                     description: 'Stack with your debuff timer partner\nShortest north, longest south\n10-15-20-25',
+                    imageUrl: './m5s/hector/arcady-debuffs.png',
                 },
             ]
         },
@@ -1544,49 +1463,49 @@ const hectorStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'West lane, north side, close to boss\nStack with R1',
-                            imageUrl: './m5s/latte/ride-the-wave.png',
+                            imageUrl: './m5s/hector/ride-the-wave.png',
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'East lane, north side, close to boss\nStack with R2',
-                            imageUrl: './m5s/latte/ride-the-wave.png',
+                            imageUrl: './m5s/hector/ride-the-wave.png',
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'West lane, south side, far from boss\nStack with M1',
-                            imageUrl: './m5s/latte/ride-the-wave.png',
+                            imageUrl: './m5s/hector/ride-the-wave.png',
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'East lane, north side, far from boss\nStack with M2',
-                            imageUrl: './m5s/latte/ride-the-wave.png',
+                            imageUrl: './m5s/hector/ride-the-wave.png',
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'West lane, south side, close to boss\nStack with H1',
-                            imageUrl: './m5s/latte/ride-the-wave.png',
+                            imageUrl: './m5s/hector/ride-the-wave.png',
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'East lane, north side, close to boss\nStack with H2',
-                            imageUrl: './m5s/latte/ride-the-wave.png',
+                            imageUrl: './m5s/hector/ride-the-wave.png',
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'West lane, north side, far from boss\nStack with MT',
-                            imageUrl: './m5s/latte/ride-the-wave.png',
+                            imageUrl: './m5s/hector/ride-the-wave.png',
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'East lane, north side, far from boss\nStack with OT',
-                            imageUrl: './m5s/latte/ride-the-wave.png',
+                            imageUrl: './m5s/hector/ride-the-wave.png',
                         },
                     ]
                 },
@@ -1594,7 +1513,7 @@ const hectorStrat: Strat = {
         },
         {
             phaseName: 'Frogtourage 1', 
-            description: 'G1 North/West G2 South/East\nSupports Left DPS Right',
+            description: 'G1 North/West G2 South/East\nSupports Left DPS Right facing boss',
             mechs: [
                 {
                     mechanic: 'Stacks/Spreads',
@@ -1603,41 +1522,49 @@ const hectorStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'North or West\nFront left facing boss\nStack with M1',
+                            imageUrl: './m5s/hector/frogtourage-1.png',
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'South or East\nFront left facing boss\nStack with M2',
+                            imageUrl: './m5s/hector/frogtourage-1.png',
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'North or West\nBack left facing boss\nStack with R1',
+                            imageUrl: './m5s/hector/frogtourage-1.png',
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'South or East\nBack left facing boss\nStack with R2',
+                            imageUrl: './m5s/hector/frogtourage-1.png',
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'North or West\nFront right facing boss\nStack with MT',
+                            imageUrl: './m5s/hector/frogtourage-1.png',
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'South or East\nFront right facing boss\nStack with OT',
+                            imageUrl: './m5s/hector/frogtourage-1.png',
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'North or West\nBack right facing boss\nStack with H1',
+                            imageUrl: './m5s/hector/frogtourage-1.png',
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'South or East\nBack right facing boss\nStack with H2',
+                            imageUrl: './m5s/hector/frogtourage-1.png',
                         },
                     ]
                 },
@@ -1654,41 +1581,49 @@ const hectorStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Near Red markers (N or NW)',
+                            imageUrl: './m5s/hector/disco-infernal-2-supports.png',
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Near Yellow markers (E or NE)',
+                            imageUrl: './m5s/hector/disco-infernal-2-supports.png',
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Near Purple markers (W or SW)',
+                            imageUrl: './m5s/hector/disco-infernal-2-supports.png',
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'Near Blue markers (S or SE)',
+                            imageUrl: './m5s/hector/disco-infernal-2-supports.png',
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Near Purple markers (W or SW)',
+                            imageUrl: './m5s/hector/disco-infernal-2-dps.png',
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Near Blue markers (S or SE)',
+                            imageUrl: './m5s/hector/disco-infernal-2-dps.png',
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Near Red markers (N or NW)',
+                            imageUrl: './m5s/hector/disco-infernal-2-dps.png',
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'Near Yellow markers (E or NE)',
+                            imageUrl: './m5s/hector/disco-infernal-2-dps.png',
                         },
                     ]
                 },
@@ -1699,41 +1634,49 @@ const hectorStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Near Red markers (N or NW)',
+                            imageUrl: './m5s/hector/disco-infernal-2-dps.png',
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Near Yellow markers (E or NE)',
+                            imageUrl: './m5s/hector/disco-infernal-2-dps.png',
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Near Purple markers (W or SW)',
+                            imageUrl: './m5s/hector/disco-infernal-2-dps.png',
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'Near Blue markers (S or SE)',
+                            imageUrl: './m5s/hector/disco-infernal-2-dps.png',
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Near Purple markers (W or SW)',
+                            imageUrl: './m5s/hector/disco-infernal-2-supports.png',
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Near Blue markers (S or SE)',
+                            imageUrl: './m5s/hector/disco-infernal-2-supports.png',
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Near Red markers (N or NW)',
+                            imageUrl: './m5s/hector/disco-infernal-2-supports.png',
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'Near Yellow markers (E or NE)',
+                            imageUrl: './m5s/hector/disco-infernal-2-supports.png',
                         },
                     ]
                 },
@@ -1741,53 +1684,8 @@ const hectorStrat: Strat = {
         },
         {
             phaseName: 'More Amphibians', 
-            description: 'Color Partners\nShort debuffs take spotlights first',
+            description: 'Color Partners\nSupports bait first',
             mechs: [
-                {
-                    mechanic: 'Spotlights',
-                    strats: [
-                        {
-                            role: 'Tank',
-                            party: 1,
-                            description: 'Near Red markers (N or NW)',
-                        },
-                        {
-                            role: 'Tank',
-                            party: 2,
-                            description: 'Near Yellow markers (E or NE)',
-                        },
-                        {
-                            role: 'Healer',
-                            party: 1,
-                            description: 'Near Purple markers (W or SW)',
-                        },
-                        {
-                            role: 'Healer',
-                            party: 2,
-                            description: 'Near Blue markers (S or SE)',
-                        },
-                        {
-                            role: 'Melee',
-                            party: 1,
-                            description: 'Near Purple markers (W or SW)',
-                        },
-                        {
-                            role: 'Melee',
-                            party: 2,
-                            description: 'Near Blue markers (S or SE)',
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 1,
-                            description: 'Near Red markers (N or NW)',
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 2,
-                            description: 'Near Yellow markers (E or NE)',
-                        },
-                    ]
-                },
                 {
                     mechanic: 'Baits',
                     strats: [
@@ -1795,41 +1693,49 @@ const hectorStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Near Red markers (N or NW)',
+                            imageUrl: './m5s/hector/more-amphibians-supports.png',
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Near Yellow markers (E or NE)',
+                            imageUrl: './m5s/hector/more-amphibians-supports.png',
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Near Purple markers (W or SW)',
+                            imageUrl: './m5s/hector/more-amphibians-supports.png',
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'Near Blue markers (S or SE)',
+                            imageUrl: './m5s/hector/more-amphibians-supports.png',
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Near Purple markers (W or SW)',
+                            imageUrl: './m5s/hector/more-amphibians-dps.png',
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Near Blue markers (S or SE)',
+                            imageUrl: './m5s/hector/more-amphibians-dps.png',
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Near Red markers (N or NW)',
+                            imageUrl: './m5s/hector/more-amphibians-dps.png',
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'Near Yellow markers (E or NE)',
+                            imageUrl: './m5s/hector/more-amphibians-dps.png',
                         },
                     ]
                 },
@@ -1846,41 +1752,49 @@ const hectorStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Stack with R1',
+                            imageUrl: './m5s/hector/funky-floor-2.png',
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Stack with R2',
+                            imageUrl: './m5s/hector/funky-floor-2.png',
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Stack with M1',
+                            imageUrl: './m5s/hector/funky-floor-2.png',
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'Stack with M2',
+                            imageUrl: './m5s/hector/funky-floor-2.png',
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Stack with H1',
+                            imageUrl: './m5s/hector/funky-floor-2.png',
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Stack with H2',
+                            imageUrl: './m5s/hector/funky-floor-2.png',
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Stack with MT',
+                            imageUrl: './m5s/hector/funky-floor-2.png',
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'Stack with OT',
+                            imageUrl: './m5s/hector/funky-floor-2.png',
                         },
                     ]
                 },

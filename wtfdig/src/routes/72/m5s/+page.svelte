@@ -173,11 +173,11 @@
 				<div>
 					<div class="text-xl mb-2">Which strat are you using?</div>
 					<Segment classes="flex-wrap" name="stratName" value={stratName} onValueChange={onSelectStrat}>
-						<Segment.Item value="latte">Latte (X-fxE)</Segment.Item>
-						<Segment.Item value="toxic">Toxic Friends (pztjV)</Segment.Item>
-						<Segment.Item value="sun">Sun (h-Wjo)</Segment.Item>
-						<Segment.Item value="evansith">Evansith</Segment.Item>
+						<Segment.Item value="latte">Latte (X-fx⋯Xd5m)</Segment.Item>
+						<Segment.Item value="toxic">Toxic Friends (pztj⋯g6pH)</Segment.Item>
 						<Segment.Item value="hector">Hector</Segment.Item>
+						<Segment.Item value="sun">Sun (h-Wj⋯JR0n)</Segment.Item>
+						<Segment.Item value="evansith">Evansith</Segment.Item>
 					</Segment>
 				</div>
 				<div>
