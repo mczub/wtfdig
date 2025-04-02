@@ -1309,7 +1309,7 @@ const evansithStrat: Strat = {
 const hectorStrat: Strat = {
     stratName: 'hector',
     description: 'Source: Video by Hector Hectorson',
-    notes: 'This strat uses non-standard "Color Partners" that place OT on Yellow and H2 on Blue',
+    notes: 'This strat uses non-standard "Color Partners" that place OT on Yellow (East) and H2 on Blue (South)',
     stratUrl: 'https://www.youtube.com/watch?v=6ibKI011KjA',
     strats: [
         {
