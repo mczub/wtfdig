@@ -2,7 +2,7 @@ import type { PageLoad } from "./$types";
 
 export const load: PageLoad = ({params}) => {
     return {
-        strats: [latteStrat, toxicStrat, sunStrat, evansithStrat, hectorStrat],
+        strats: [latteStrat, toxicStrat, sunStrat, evansithStrat, hectorStrat, game8Strat],
     }
 }
 
@@ -229,7 +229,7 @@ const latteStrat: Strat = {
         },
         {
             phaseName: 'Arcady Night Fever 1/2', 
-            description: 'HTTH North, RMMR South',
+            description: 'HTTH North, RMMR South\nRotten Debuffs',
             mechs: [
                 {
                     mechanic: 'Proteans',
@@ -824,7 +824,7 @@ const toxicStrat: Strat = {
         },
         {
             phaseName: 'Arcady Night Fever 1/2', 
-            description: 'THHT West, RRMM East',
+            description: 'THHT West, RRMM East\nConga Debuffs',
             mechs: [
                 {
                     mechanic: 'Proteans',
@@ -1446,7 +1446,7 @@ const hectorStrat: Strat = {
         },
         {
             phaseName: 'Arcady Night Fever 1/2', 
-            description: 'HTTH North, RMMR South',
+            description: 'HTTH North, RMMR South\nConga Debuffs',
             mechs: [
                 {
                     mechanic: 'Proteans',
@@ -1852,6 +1852,605 @@ const hectorStrat: Strat = {
                             party: 2,
                             description: 'Stack with OT',
                             imageUrl: './m5s/hector/funky-floor-2.png',
+                        },
+                    ]
+                },
+            ]
+        }
+    ]
+}
+
+const game8Strat: Strat = {
+    stratName: 'game8',
+    description: 'Source: Game8/Nukemaru',
+    notes: '',
+    stratUrl: {
+        'Game8': 'https://game8.jp/ff14/680424',
+        'Nukemaru': 'https://www.youtube.com/watch?v=s5CACs9ey9o'
+    },
+    strats: [
+        {
+            phaseName: '#-snap Twist', 
+            description: 'Static stacks',
+            mechs: [
+                {
+                    mechanic: 'A-Side',
+                    description: 'Role stacks\nStatic positions',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Northwest',
+                            imageUrl: './m5s/game8/twist-aside.png',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Southwest',
+                            imageUrl: './m5s/game8/twist-aside.png',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'North',
+                            imageUrl: './m5s/game8/twist-aside.png',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'South',
+                            imageUrl: './m5s/game8/twist-aside.png',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Southeast',
+                            imageUrl: './m5s/game8/twist-aside.png',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Southeast',
+                            imageUrl: './m5s/game8/twist-aside.png',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Northeast',
+                            imageUrl: './m5s/game8/twist-aside.png',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Northeast',
+                            imageUrl: './m5s/game8/twist-aside.png',
+                        },
+                    ]
+                },
+                {
+                    mechanic: 'B-Side',
+                    description: 'Light party stacks\nStatic positions',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Northwest',
+                            imageUrl: './m5s/game8/twist-bside.png',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Southwest',
+                            imageUrl: './m5s/game8/twist-bside.png',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'North',
+                            imageUrl: './m5s/game8/twist-bside.png',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'South',
+                            imageUrl: './m5s/game8/twist-bside.png',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Southeast',
+                            imageUrl: './m5s/game8/twist-bside.png',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Southeast',
+                            imageUrl: './m5s/game8/twist-bside.png',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Northeast',
+                            imageUrl: './m5s/game8/twist-bside.png',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Northeast',
+                            imageUrl: './m5s/game8/twist-bside.png',
+                        },
+                    ]
+                }
+            ]
+        },
+        {
+            phaseName: 'Disco Infernal 1', 
+            description: 'Safe spotlight starts on an unsafe tile',
+            mechs: [
+                {
+                    mechanic: 'Spotlights',
+                    description: 'G1 West, G2 East',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'West half, close to boss',
+                            imageUrl: './m5s/game8/disco-infernal-1.png',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'East half, close to boss',
+                            imageUrl: './m5s/game8/disco-infernal-1.png',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'West half, far from boss',
+                            imageUrl: './m5s/game8/disco-infernal-1.png',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'East half, far from boss',
+                            imageUrl: './m5s/game8/disco-infernal-1.png',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'West half, close to boss',
+                            imageUrl: './m5s/game8/disco-infernal-1.png',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'East half, close to boss',
+                            imageUrl: './m5s/game8/disco-infernal-1.png',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'West half, far from boss',
+                            imageUrl: './m5s/game8/disco-infernal-1.png',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'East half, far from boss',
+                            imageUrl: './m5s/game8/disco-infernal-1.png',
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            phaseName: 'Arcady Night Fever 1/2', 
+            description: 'HTTH North, RMMR South\nConga Debuffs',
+            mechs: [
+                {
+                    mechanic: 'Proteans',
+                    description: 'Dodge out of protean after getting hit',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'North-Northwest',
+                            imageUrl: './m5s/latte/arcady-proteans.png',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'North-Northeast',
+                            imageUrl: './m5s/latte/arcady-proteans.png',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'West-Northwest',
+                            imageUrl: './m5s/latte/arcady-proteans.png',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'East-Northeast',
+                            imageUrl: './m5s/latte/arcady-proteans.png',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'South-Southwest',
+                            imageUrl: './m5s/latte/arcady-proteans.png',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'South-Southeast',
+                            imageUrl: './m5s/latte/arcady-proteans.png',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'West-Southwest',
+                            imageUrl: './m5s/latte/arcady-proteans.png',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'East-Southeast',
+                            imageUrl: './m5s/latte/arcady-proteans.png',
+                        },
+                    ]
+                },
+                {
+                    mechanic: 'Debuffs',
+                    description: 'Stack with your debuff timer partner\nShortest north, longest south\n8-13-18-23',
+                    imageUrl: './m5s/game8/arcady-debuffs.png',
+                },
+            ]
+        },
+        {
+            phaseName: 'Ride the Waves', 
+            description: 'G1 West G2 East\nMelees North Ranged South',
+            mechs: [
+                {
+                    mechanic: 'Stacks/Spreads',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'West lane, far North\nStack with D1',
+                            imageUrl: './m5s/game8/ride-the-wave.png',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'East lane, far North\nStack with D2',
+                            imageUrl: './m5s/game8/ride-the-wave.png',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'West lane, middle South\nStack with D3',
+                            imageUrl: './m5s/game8/ride-the-wave.png',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'East lane, middle South\nStack with D4',
+                            imageUrl: './m5s/game8/ride-the-wave.png',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'West lane, middle North\nStack with MT',
+                            imageUrl: './m5s/game8/ride-the-wave.png',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'East lane, middle North\nStack with ST',
+                            imageUrl: './m5s/game8/ride-the-wave.png',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'West lane, far South\nStack with H1',
+                            imageUrl: './m5s/game8/ride-the-wave.png',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'East lane, far South\nStack with H2',
+                            imageUrl: './m5s/game8/ride-the-wave.png',
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            phaseName: 'Frogtourage 1', 
+            description: 'G1 North/West G2 South/East\nSupports Left DPS Right facing boss',
+            mechs: [
+                {
+                    mechanic: 'Stacks/Spreads',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'North or West\nFront left facing boss\nStack with D1',
+                            imageUrl: './m5s/game8/frogtourage-1.png',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'South or East\nFront left facing boss\nStack with D2',
+                            imageUrl: './m5s/game8/frogtourage-1.png',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'North or West\nBack left facing boss\nStack with D3',
+                            imageUrl: './m5s/game8/frogtourage-1.png',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'South or East\nBack left facing boss\nStack with D4',
+                            imageUrl: './m5s/game8/frogtourage-1.png',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'North or West\nFront right facing boss\nStack with MT',
+                            imageUrl: './m5s/game8/frogtourage-1.png',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'South or East\nFront right facing boss\nStack with ST',
+                            imageUrl: './m5s/game8/frogtourage-1.png',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'North or West\nBack right facing boss\nStack with H1',
+                            imageUrl: './m5s/game8/frogtourage-1.png',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'South or East\nBack right facing boss\nStack with H2',
+                            imageUrl: './m5s/game8/frogtourage-1.png',
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            phaseName: 'Disco Infernal 2', 
+            description: 'MTD3/H2D4/H1D1/STD2 Partners\nShort debuffs take spotlights first',
+            mechs: [
+                {
+                    mechanic: 'Spotlights',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Near N or NW (with D3)',
+                            imageUrl: './m5s/game8/disco-infernal-2-supports.png',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Near S or SE (with D2)',
+                            imageUrl: './m5s/game8/disco-infernal-2-supports.png',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Near W or SW (with D1)',
+                            imageUrl: './m5s/game8/disco-infernal-2-supports.png',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Near E or NE (with D4)',
+                            imageUrl: './m5s/game8/disco-infernal-2-supports.png',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Near W or SW (with H1)',
+                            imageUrl: './m5s/game8/disco-infernal-2-dps.png',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Near S or SE (with ST)',
+                            imageUrl: './m5s/game8/disco-infernal-2-dps.png',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Near N or NW (with MT)',
+                            imageUrl: './m5s/game8/disco-infernal-2-dps.png',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Near E or NE (with H2)',
+                            imageUrl: './m5s/game8/disco-infernal-2-dps.png',
+                        },
+                    ]
+                },
+                {
+                    mechanic: 'Baits',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Near N or NW (with D3)',
+                            imageUrl: './m5s/game8/disco-infernal-2-dps.png',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Near S or SE (with D2)',
+                            imageUrl: './m5s/game8/disco-infernal-2-dps.png',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Near W or SW (with D1)',
+                            imageUrl: './m5s/game8/disco-infernal-2-dps.png',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Near E or NE (with D4)',
+                            imageUrl: './m5s/game8/disco-infernal-2-dps.png',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Near W or SW (with H1)',
+                            imageUrl: './m5s/game8/disco-infernal-2-supports.png',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Near S or SE (with ST)',
+                            imageUrl: './m5s/game8/disco-infernal-2-supports.png',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Near N or NW (with MT)',
+                            imageUrl: './m5s/game8/disco-infernal-2-supports.png',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Near E or NE (with H2)',
+                            imageUrl: './m5s/game8/disco-infernal-2-supports.png',
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            phaseName: 'More Amphibians', 
+            description: 'G1 East G2 West\nT/R North H/M South\nSupports bait first',
+            mechs: [
+                {
+                    mechanic: 'Baits',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Northwest',
+                            imageUrl: './m5s/game8/more-amphibians-supports.png',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Northeast',
+                            imageUrl: './m5s/game8/more-amphibians-supports.png',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Southwest',
+                            imageUrl: './m5s/game8/more-amphibians-supports.png',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Southeast',
+                            imageUrl: './m5s/game8/more-amphibians-supports.png',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Southwest',
+                            imageUrl: './m5s/game8/more-amphibians-dps.png',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Southeast',
+                            imageUrl: './m5s/game8/more-amphibians-dps.png',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Northwest',
+                            imageUrl: './m5s/game8/more-amphibians-dps.png',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Northeast',
+                            imageUrl: './m5s/game8/more-amphibians-dps.png',
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            phaseName: 'Funky Floor 2', 
+            description: 'Melee close, Ranged far\nMTD3/H2D4/H1D1/STD2 Partners for stacks',
+            mechs: [
+                {
+                    mechanic: 'Stack/Spread',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Stack with D3',
+                            imageUrl: './m5s/game8/funky-floor-2.png',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Stack with D2',
+                            imageUrl: './m5s/game8/funky-floor-2.png',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Stack with D1',
+                            imageUrl: './m5s/game8/funky-floor-2.png',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Stack with D4',
+                            imageUrl: './m5s/game8/funky-floor-2.png',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Stack with H1',
+                            imageUrl: './m5s/game8/funky-floor-2.png',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Stack with ST',
+                            imageUrl: './m5s/game8/funky-floor-2.png',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Stack with MT',
+                            imageUrl: './m5s/game8/funky-floor-2.png',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Stack with H2',
+                            imageUrl: './m5s/game8/funky-floor-2.png',
                         },
                     ]
                 },

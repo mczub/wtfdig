@@ -144,13 +144,27 @@
 			'toxic': 'Toxic Friends (pztjVHnzfhEkg6pH)',
 			'sun': 'Sun Strat (h-WjosHQoM7oJR0n)',
 			'evansith': 'Evansith',
-			'hector': 'Hector'
+			'hector': 'Hector',
+			'game8': 'Game8/Nukemaru'
+		}
+		const jpRoleAbbrev: Record<string, string> = {
+			'MT': 'MT',
+			'OT': 'ST',
+			'H1': 'H1',
+			'H2': 'H2',
+			'M1': 'D1',
+			'M2': 'D2',
+			'R1': 'D3',
+			'R2': 'D4',
 		}
 		let roleAbbrev = '';
 		if (role === 'Tank') {
 			roleAbbrev = party === 1 ? 'MT' : 'OT';
 		} else {
 			roleAbbrev = role.charAt(0).toUpperCase() + party.toString();
+		}
+		if (stratName === 'game8' && roleAbbrev !== jpRoleAbbrev[roleAbbrev]) {
+			return `${stratNames[stratName]} - ${roleAbbrev}/${jpRoleAbbrev[roleAbbrev]}`;
 		}
 
 		return `${stratNames[stratName]} - ${roleAbbrev}`;
@@ -176,6 +190,7 @@
 						<Segment.Item value="latte">Latte (X-fx⋯Xd5m)</Segment.Item>
 						<Segment.Item value="toxic">Toxic Friends (pztj⋯g6pH)</Segment.Item>
 						<Segment.Item value="hector">Hector</Segment.Item>
+						<Segment.Item value="game8">Game8/Nukemaru</Segment.Item>
 						<Segment.Item value="sun">Sun (h-Wj⋯JR0n)</Segment.Item>
 						<Segment.Item value="evansith">Evansith</Segment.Item>
 					</Segment>
