@@ -1245,9 +1245,511 @@ const sunStrat: Strat = {
     stratUrl: 'https://raidplan.io/plan/h-WjosHQoM7oJR0n',
     strats: [
         {
-            phaseName: 'Under Construction', 
+            phaseName: '#-snap Twist', 
+            mechs: [
+                {
+                    mechanic: 'A-Side',
+                    description: 'Role stacks',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'North',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'North',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'E/W',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'E/W',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'South',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'South',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'South',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'South',
+                        },
+                    ]
+                },
+                {
+                    mechanic: 'B-Side',
+                    description: 'Light party stacks\nG1 North, G2 South',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'North',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'South',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'North',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'South',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'North',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'South',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'North',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'South',
+                        },
+                    ]
+                }
+            ]
+        },
+        {
+            phaseName: 'Disco Infernal 1', 
+            description: 'Safe spotlight starts on an unsafe tile',
+            mechs: [
+                {
+                    mechanic: 'Spotlights',
+                    description: 'G1 West, G2 East',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'West half, close to boss',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'East half, close to boss',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'West half, far from boss',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'East half, far from boss',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'West half, close to boss',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'East half, close to boss',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'West half, far from boss',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'East half, far from boss',
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            phaseName: 'Arcady Night Fever 1/2', 
+            description: 'HTTH North, RMMR South\nConga Debuffs',
+            mechs: [
+                {
+                    mechanic: 'Proteans',
+                    description: 'Dodge out of protean after getting hit',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'North-Northwest',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'North-Northeast',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'West-Northwest',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'East-Northeast',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'South-Southwest',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'South-Southeast',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'West-Southwest',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'East-Southeast',
+                        },
+                    ]
+                },
+                {
+                    mechanic: 'Debuffs',
+                    description: 'Stack with your debuff timer partner\nShortest north, longest south\n10-15-20-25',
+                },
+            ]
+        },
+        {
+            phaseName: 'Ride the Waves', 
+            description: 'Melee close, Ranged far',
+            mechs: [
+                {
+                    mechanic: 'Stacks/Spreads',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Close lane, north side, close to boss\nStack with M1',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Close lane, south side, close to boss\nStack with M2',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Far lane, north side, close from boss\nStack with R1',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Far lane, south side, close from boss\nStack with R2',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Close lane, north side, far from boss\nStack with MT',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Close lane, south side, far from boss\nStack with OT',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Far lane, north side, close to boss\nStack with H1',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Far lane, south side, close from boss\nStack with H2',
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            phaseName: 'Frogtourage 1', 
+            description: 'G1 North/West G2 South/East\nSupports Left DPS Right facing boss',
+            mechs: [
+                {
+                    mechanic: 'Stacks/Spreads',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'North or West\nFront left facing boss\nStack with M1',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'South or East\nFront left facing boss\nStack with M2',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'North or West\nBack left facing boss\nStack with R1',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'South or East\nBack left facing boss\nStack with R2',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'North or West\nFront right facing boss\nStack with MT',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'South or East\nFront right facing boss\nStack with OT',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'North or West\nBack right facing boss\nStack with H1',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'South or East\nBack right facing boss\nStack with H2',
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            phaseName: 'Disco Infernal 2', 
+            description: 'Color Partners\nShort debuffs take spotlights first',
+            mechs: [
+                {
+                    mechanic: 'Spotlights',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Near Red markers (N or NW)',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Near Yellow markers (E or NE)',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Near Purple markers (W or SW)',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Near Blue markers (S or SE)',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Near Purple markers (W or SW)',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Near Blue markers (S or SE)',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Near Red markers (N or NW)',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Near Yellow markers (E or NE)',
+                        },
+                    ]
+                },
+                {
+                    mechanic: 'Baits',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Near Red markers (N or NW)',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Near Yellow markers (E or NE)',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Near Purple markers (W or SW)',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Near Blue markers (S or SE)',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Near Purple markers (W or SW)',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Near Blue markers (S or SE)',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Near Red markers (N or NW)',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Near Yellow markers (E or NE)',
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            phaseName: 'More Amphibians', 
+            description: 'Color Partners\nSupports bait first',
+            mechs: [
+                {
+                    mechanic: 'Baits',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Near Red markers (N or NW)',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Near Yellow markers (E or NE)',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Near Purple markers (W or SW)',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Near Blue markers (S or SE)',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Near Purple markers (W or SW)',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Near Blue markers (S or SE)',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Near Red markers (N or NW)',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Near Yellow markers (E or NE)',
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            phaseName: 'Funky Floor 2', 
+            description: 'Melee close, Ranged far\nColor partners for stacks',
+            mechs: [
+                {
+                    mechanic: 'Stack/Spread',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Stack with R1',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Stack with R2',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Stack with M1',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Stack with M2',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Stack with H1',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Stack with H2',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Stack with MT',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Stack with OT',
+                        },
+                    ]
+                },
+            ]
         }
-    ],
+    ]
 }
 
 const evansithStrat: Strat = {
