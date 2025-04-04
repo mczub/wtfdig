@@ -270,12 +270,12 @@ const latteStrat: Strat = {
                         {
                             role: 'Ranged',
                             party: 1,
-                            description: 'West far from boss',
+                            description: '1. Focus the cat.\n2. Once cat is dead, focus the ram.\n3. Then, join the MT and AoE the squirrels.',
                         },
                         {
                             role: 'Ranged',
                             party: 2,
-                            description: 'East far from boss',
+                            description: '1. Focus the cat.\n2. Once cat is dead, focus the ram.\n3. Then, join the MT and AoE the squirrels.',
                         },
                     ]
                 },
@@ -315,12 +315,12 @@ const latteStrat: Strat = {
                         {
                             role: 'Ranged',
                             party: 1,
-                            description: 'West far from boss',
+                            description: '1. Target Northwest ray.\n2. Bait puddles from north to south on the arena sides while attacking rays.\n3. If your targeted ray is ead, focus the other.\n4. Join MT and AoE squirrels until third spawn.',
                         },
                         {
                             role: 'Ranged',
                             party: 2,
-                            description: 'East far from boss',
+                            description: '1. Target Northeast ray.\n2. Bait puddles from north to south on the arena sides while attacking rays.\n3. If your targeted ray is ead, focus the other.\n4. Join MT and AoE squirrels until third spawn.',
                         },
                     ]
                 },
@@ -360,12 +360,12 @@ const latteStrat: Strat = {
                         {
                             role: 'Ranged',
                             party: 1,
-                            description: 'West far from boss',
+                            description: `1. Jabber becomes targetable, ST focus.\n2. Make sure ram is dead so it doesn't buff your adds.\n3. Kill squirrels before enrage.\n4. Kill cat before fourth spawn.`,
                         },
                         {
                             role: 'Ranged',
                             party: 2,
-                            description: 'East far from boss',
+                            description: `1. Jabber becomes targetable, ST focus.\n2. Make sure ram is dead so it doesn't buff your adds.\n3. Kill squirrels before enrage.\n4. Kill cat before fourth spawn.`,
                         },
                     ]
                 },
@@ -405,12 +405,12 @@ const latteStrat: Strat = {
                         {
                             role: 'Ranged',
                             party: 1,
-                            description: 'West far from boss',
+                            description: '1. Ignore cat.\n2. New rays spawn, take Southwest ray.\n3. Continue baiting the puddles.\n4. When jabber is targetable, ST focus it.\n5. After jabber is dead, focus Southeast ray.\n6. Kill Southwest ray or cat.\n7. Dodge lines, AoE rams.',
                         },
                         {
                             role: 'Ranged',
                             party: 2,
-                            description: 'East far from boss',
+                            description: '1. Ignore cat.\n2. New rays spawn, take Southeast ray.\n3. Continue baiting the puddles.\n4. When jabber is targetable, ST focus it.\n5. After jabber is dead, focus Southeast ray.\n6. Kill Southwest ray or cat.\n7. Dodge lines, AoE rams.',
                         },
                     ]
                 },
