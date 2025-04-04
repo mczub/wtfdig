@@ -167,7 +167,7 @@ const latteStrat: Strat = {
                 },
                 {
                     mechanic: 'Short Defamations',
-                    description: 'Tanks North-ish, DPS South-ish',
+                    description: 'Tanks NW-ish, DPS NE-ish',
                 },
             ]
         },
@@ -224,7 +224,7 @@ const latteStrat: Strat = {
         },
         {
             phaseName: 'Quicksand + Bombs', 
-            description: 'True North RMMR\nBlue tether goes in quicksand',
+            description: 'Relative North Facing Quicksand RMMR\nBlue tether goes in quicksand',
             mechs: [
                 {
                     mechanic: 'Bombs',
@@ -232,42 +232,42 @@ const latteStrat: Strat = {
                         {
                             role: 'Tank',
                             party: 1,
-                            description: 'West close to boss',
+                            description: 'Left close to boss',
                         },
                         {
                             role: 'Tank',
                             party: 2,
-                            description: 'East close to boss',
+                            description: 'Right close to boss',
                         },
                         {
                             role: 'Healer',
                             party: 1,
-                            description: 'West far from boss',
+                            description: 'Left far from boss',
                         },
                         {
                             role: 'Healer',
                             party: 2,
-                            description: 'East far from boss',
+                            description: 'Right far from boss',
                         },
                         {
                             role: 'Melee',
                             party: 1,
-                            description: 'West close to boss',
+                            description: 'Left close to boss',
                         },
                         {
                             role: 'Melee',
                             party: 2,
-                            description: 'East close to boss',
+                            description: 'EaRightst close to boss',
                         },
                         {
                             role: 'Ranged',
                             party: 1,
-                            description: 'West far from boss',
+                            description: 'Left far from boss',
                         },
                         {
                             role: 'Ranged',
                             party: 2,
-                            description: 'East far from boss',
+                            description: 'EaRightst far from boss',
                         },
                     ]
                 },
@@ -418,7 +418,7 @@ const latteStrat: Strat = {
                         {
                             role: 'Tank',
                             party: 1,
-                            description: `1. Pull boss and 2 new squirrels to the new jabber NORTH.\n2. Mitigate and AoE.\n3. Focus the jabber.\n4. Same stun priority.\n5. After jabber, kill east ray.\n6. Then kill west ray or cat.\n7. Dodge lines then focus rams.`,
+                            description: `1. Pull boss and 2 new squirrels to the new jabber NORTH.\n2. Mitigate and AoE.\n3. Focus the jabber.\n4. Same stun priority.\n5. After jabber, kill east ray.\n6. Kill cat then Southwest ray.\n7. Dodge lines then focus rams.`,
                         },
                         {
                             role: 'Tank',
@@ -428,32 +428,32 @@ const latteStrat: Strat = {
                         {
                             role: 'Healer',
                             party: 1,
-                            description: `1. Another jabber will spawn, ignore cat.\n2. If targeted by jabber,  camp southeast again.\n3. ST jabber and/or AoE anyone you can within range.\n4. Targeted healer leaves corner when jabber is dead.\n5. After jabber, focus east ray, then west ray or cat.\n6. Mitigate/heal raidwide, dodge lines, then AoE rams.`,
+                            description: `1. Another jabber will spawn, ignore cat.\n2. If targeted by jabber,  camp southeast again.\n3. ST jabber and/or AoE anyone you can within range.\n4. Targeted healer leaves corner when jabber is dead.\n5. After jabber, focus east ray, then cat, then west ray.\n6. Mitigate/heal raidwide, dodge lines, then AoE rams.`,
                         },
                         {
                             role: 'Healer',
                             party: 2,
-                            description: `1. Another jabber will spawn, ignore cat.\n2. If targeted by jabber,  camp southeast again.\n3. ST jabber and/or AoE anyone you can within range.\n4. Targeted healer leaves corner when jabber is dead.\n5. After jabber, focus east ray, then west ray or cat.\n6. Mitigate/heal raidwide, dodge lines, then AoE rams.`,
+                            description: `1. Another jabber will spawn, ignore cat.\n2. If targeted by jabber,  camp southeast again.\n3. ST jabber and/or AoE anyone you can within range.\n4. Targeted healer leaves corner when jabber is dead.\n5. After jabber, focus east ray, then cat, then west ray.\n6. Mitigate/heal raidwide, dodge lines, then AoE rams.`,
                         },
                         {
                             role: 'Melee',
                             party: 1,
-                            description: `1. Assist MT in killing new squirrels.\n2. ST focus the jabber once targetable.\n3. Same stun priority.\n4. After jabber, kill east ray.\n5. Then kill west ray or cat.\n6. Dodge lines then focus rams.`,
+                            description: `1. Assist MT in killing new squirrels.\n2. ST focus the jabber once targetable.\n3. Same stun priority.\n4. After jabber, kill east ray.\n5. Kill cat then Southwest ray.\n6. Dodge lines then focus rams.`,
                         },
                         {
                             role: 'Melee',
                             party: 2,
-                            description: `1. Assist MT in killing new squirrels.\n2. ST focus the jabber once targetable.\n3. Same stun priority.\n4. After jabber, kill east ray.\n5. Then kill west ray or cat.\n6. Dodge lines then focus rams.`,
+                            description: `1. Assist MT in killing new squirrels.\n2. ST focus the jabber once targetable.\n3. Same stun priority.\n4. After jabber, kill east ray.\n5. Kill cat then Southwest ray.\n6. Dodge lines then focus rams.`,
                         },
                         {
                             role: 'Ranged',
                             party: 1,
-                            description: '1. Ignore cat.\n2. New rays spawn, take Southwest ray.\n3. Continue baiting the puddles.\n4. When jabber is targetable, ST focus it.\n5. After jabber is dead, focus Southeast ray.\n6. Kill Southwest ray or cat.\n7. Dodge lines, AoE rams.',
+                            description: '1. Ignore cat.\n2. New rays spawn, take Southwest ray.\n3. Continue baiting the puddles.\n4. When jabber is targetable, ST focus it.\n5. After jabber is dead, focus Southeast ray.\n6. Kill cat then Southwest ray.\n7. Dodge lines, AoE rams.',
                         },
                         {
                             role: 'Ranged',
                             party: 2,
-                            description: '1. Ignore cat.\n2. New rays spawn, take Southeast ray.\n3. Continue baiting the puddles.\n4. When jabber is targetable, ST focus it.\n5. After jabber is dead, focus Southeast ray.\n6. Kill Southwest ray or cat.\n7. Dodge lines, AoE rams.',
+                            description: '1. Ignore cat.\n2. New rays spawn, take Southeast ray.\n3. Continue baiting the puddles.\n4. When jabber is targetable, ST focus it.\n5. After jabber is dead, focus Southeast ray.\n6. Kill cat then Southwest ray.\n7. Dodge lines, AoE rams.',
                         },
                     ]
                 },
@@ -563,7 +563,7 @@ const latteStrat: Strat = {
         },
         {
             phaseName: 'Pudding Party', 
-            description: 'Facing boss G1 Left, G2 Right',
+            description: 'True North\nG1 West G2 East',
             mechs: [
                 {
                     mechanic: 'Towers',
@@ -582,12 +582,12 @@ const latteStrat: Strat = {
                         {
                             role: 'Healer',
                             party: 1,
-                            description: 'Left platform\nTake the tower closest to the final puddle drop',
+                            description: 'West platform\nTake the tower closest to the final puddle drop',
                         },
                         {
                             role: 'Healer',
                             party: 2,
-                            description: 'Right platform\nTake the tower closest to the final puddle drop',
+                            description: 'East platform\nTake the tower closest to the final puddle drop',
                         },
                         {
                             role: 'Melee',
@@ -602,12 +602,12 @@ const latteStrat: Strat = {
                         {
                             role: 'Ranged',
                             party: 1,
-                            description: 'Left platform\nTake the tower furthest from the final puddle drop',
+                            description: 'West platform\nTake the tower furthest from the final puddle drop',
                         },
                         {
                             role: 'Ranged',
                             party: 2,
-                            description: 'Right platform\nTake the tower furthest from the final puddle drop',
+                            description: 'East platform\nTake the tower furthest from the final puddle drop',
                         },
                     ]
                 },
@@ -615,11 +615,11 @@ const latteStrat: Strat = {
         },
         {
             phaseName: 'Wingmark + Towers', 
-            description: 'Melees + Tanks in the 4 tower platform',
+            description: 'Melees + Tanks in the 4 tower platform\nEveryone rotate the same direction',
             mechs: [
                 {
                     mechanic: '4-2-2',
-                    description: 'Healers + Melees closest to river\nFacing boss G1 Left, G2 Right',
+                    description: 'Healers + Melees closest to river',
                     strats: [
                         {
                             role: 'Tank',
