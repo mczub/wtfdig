@@ -110,10 +110,10 @@
                             </a>
                         </div>
                         <div class="px-4 py-2 cursor-not-allowed">
-                            <div class="flex flex-col w-full items-start cursor-not-allowed">
+                            <a href="{base}/72/m6s" class="flex flex-col w-full items-start">
                                 <div class="text-lg -mb-2">AAC Cruiserweight M2</div>
                                 <div class="text-sm">Savage</div>
-                            </div>
+                            </a>
                         </div>
                         <div class="px-4 py-2 cursor-not-allowed">
                             <div class="flex flex-col w-full items-start cursor-not-allowed">

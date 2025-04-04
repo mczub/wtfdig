@@ -43,30 +43,23 @@
 		if (stratArray[0]) {
 			stratName = stratArray[0];
 		}
-		stratState = {
-			ef1: stratArray[1],
-			bloom3: stratArray[2],
-			ef2: stratArray[3],
-			bloom4: stratArray[4],
-			bloom6: stratArray[5],
-		}
 	}
 
 	function setStratState(mech: string, value: string) {
 		stratState[mech] = value;
-		const stratCode = getStratCode(stratName, stratState);
+		const stratCode = getStratCode(stratName);
 		history.replaceState(undefined, '', `#${stratCode}`);
 	}
 
-	function getStratCode(stratName: string | undefined, stratState: any) {
+	function getStratCode(stratName: string | undefined) {
 		if (!stratName) return '';
-		return `${stratName}:${stratState.ef1}:${stratState.bloom3}:${stratState.ef2}:${stratState.bloom4}:${stratState.bloom6}`;
+		return `${stratName}`;
 	}
 
 	function onSelectStrat(e) {
 		stratName = e.value;
 		stratState = getStratMechs(e.value);
-		const stratCode = getStratCode(stratName, stratState);
+		const stratCode = getStratCode(stratName);
 		history.replaceState(undefined, '', `#${stratCode}`);
 	}
 
@@ -109,7 +102,8 @@
 						phaseStratMech => {
 							return {
 								...phaseStratMech,
-								strats: phaseStratMech.strats.filter(strat => (strat.role === role && strat.party === party)).map(
+								imageUrl: getStratItem(phaseStratMech.imageUrl, phaseStrat.tag),
+								strats: phaseStratMech.strats && phaseStratMech.strats.filter(strat => (strat.role === role && strat.party === party)).map(
 									iStrat => {
 										return {
 											...iStrat,
@@ -133,7 +127,7 @@
 	function getStratMechs(stratName: string){
 		const stratMechs: Record<string, any> = {}
 		//return stratMechs[stratName];
-		return '';
+		''
 	}
 
 	function getMask(mask: string): string {
@@ -146,7 +140,19 @@
 	function getOptionsString(stratName?: string, role?: Role, party?: number): string {
 		if (!stratName || !role || !party) return '';
 		const stratNames: Record<string, string> = {
-			
+			'latte': 'Latte (0066fd3CVp1_G36R)',
+			'toxic': 'Toxic Friends (Pgj53K49w8LAZpI6)',
+			'yukizuri': 'Yukizuri'
+		}
+		const jpRoleAbbrev: Record<string, string> = {
+			'MT': 'MT',
+			'OT': 'ST',
+			'H1': 'H1',
+			'H2': 'H2',
+			'M1': 'D1',
+			'M2': 'D2',
+			'R1': 'D3',
+			'R2': 'D4',
 		}
 		let roleAbbrev = '';
 		if (role === 'Tank') {
@@ -154,8 +160,11 @@
 		} else {
 			roleAbbrev = role.charAt(0).toUpperCase() + party.toString();
 		}
+		if (stratName === 'game8' && roleAbbrev !== jpRoleAbbrev[roleAbbrev]) {
+			return `${stratNames[stratName]} - ${roleAbbrev}/${jpRoleAbbrev[roleAbbrev]}`;
+		}
 
-		return `${roleAbbrev}`;
+		return `${stratNames[stratName]} - ${roleAbbrev}`;
 	}
 </script>
 
@@ -170,29 +179,16 @@
 			<div class="space-y-5 v-full dark">
 				<div class="card preset-outlined-warning-500 gap-4 p-4">
                     <p>This guide is still under construction, thank you for your patience while we continue to work on it.</p>
-					<p>Some combinations of strats may be missing images or highlights.</p>
+					<p>Some strats may be missing images or highlights.</p>
                 </div>
-				<!--div>
+				<div>
 					<div class="text-xl mb-2">Which strat are you using?</div>
 					<Segment classes="flex-wrap" name="stratName" value={stratName} onValueChange={onSelectStrat}>
-						<Segment.Item value="hector">Hector</Segment.Item>
+						<Segment.Item value="latte">Latte (0066⋯G36R)</Segment.Item>
+						<Segment.Item value="toxic">Toxic Friends (Pgj5⋯ZpI6)</Segment.Item>
+						<Segment.Item value="yukizuri">Yukizuri</Segment.Item>
 					</Segment>
-					{#if stratName}
-					<div class="text-lg my-2">Mechanics</div>
-					<div class="flex flex-row space-x-4 space-y-2 flex-wrap">
-						<div class="flex flex-col">
-							<div class="flex flex-row">
-								<div class="text-md mb-2">Mech</div>
-							</div>
-							<Segment classes="flex-wrap" name="mech" value={stratState.ef1} onValueChange={(e) => (setStratState('mech', e.value))}>
-								<Segment.Item value="supports">Supports bait first</Segment.Item>
-								<Segment.Item value="dps">DPS bait first</Segment.Item>
-								<Segment.Item value="dpsin">DPS in first</Segment.Item>
-							</Segment>
-						</div>
-					</div>
-					{/if}
-				</div-->
+				</div>
 				<div>
 					<div class="text-xl mb-2">Which role are you?</div>
 					<Segment name="role" value={role} onValueChange={(e) => (role = e.value)}>
@@ -257,7 +253,12 @@
 						</div>
 					{/if}
 				</div>
-
+				{#if strat?.notes}
+					<div class="card preset-outlined-primary-500 p-2 flex flex-row space-x-2 my-2">
+						<CircleAlert size={32} />
+						<div class="whitespace-pre-wrap text-lg mb-0">{strat.notes}</div>
+					</div>
+				{/if}
 				{#each individualStrat as phase}
 				<div class="card border border-surface-800 mb-8 p-4">
 					<div class="flex flex-row">
@@ -293,9 +294,9 @@
 										</div>
 									{/if}
 									{#if mech?.description}<div class="whitespace-pre-wrap text-lg mb-0">{mech.description}</div>{/if}
-									
-									<div class="whitespace-pre-wrap text-lg mb-0">{mech.strats[0].description}</div>
-									{#if mech.strats[0]?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />{/if}
+									{#if mech?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" src={mech.imageUrl} />{/if}
+									<div class="whitespace-pre-wrap text-lg mb-0">{mech?.strats && mech.strats[0].description}</div>
+									{#if mech?.strats && mech.strats[0]?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />{/if}
 								</div>
 								{/key}
 							{/each}

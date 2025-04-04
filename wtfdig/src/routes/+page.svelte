@@ -8,7 +8,7 @@
             <div>Patch 7.2</div>
             <a href="{base}/72/ex4" class="btn preset-tonal-secondary border border-secondary-500">Recollection (Extreme)</a>
             <a href="{base}/72/m5s" class="btn preset-tonal-secondary border border-secondary-500">AAC Cruiserweight M1 (Savage)</a>
-            <button class="btn preset-tonal-secondary border border-secondary-500 disabled cursor-not-allowed">AAC Cruiserweight M2 (Savage)</button>
+            <a href="{base}/72/m6s" class="btn preset-tonal-secondary border border-secondary-500">AAC Cruiserweight M2 (Savage)</a>
             <button class="btn preset-tonal-secondary border border-secondary-500 disabled cursor-not-allowed">AAC Cruiserweight M3 (Savage)</button>
             <button class="btn preset-tonal-secondary border border-secondary-500 disabled cursor-not-allowed">AAC Cruiserweight M4 (Savage)</button>
         </div>
