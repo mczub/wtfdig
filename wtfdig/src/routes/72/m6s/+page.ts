@@ -58,48 +58,92 @@ const latteStrat: Strat = {
             phaseName: 'Wingmark/Double Style', 
             mechs: [
                 {
-                    mechanic: 'Stack/Spread',
+                    mechanic: 'Light Parties',
                     description: 'G1 Left, G2 Right Facing Boss',
                     strats: [
                         {
                             role: 'Tank',
                             party: 1,
-                            description: 'LPs Left\nPartners Front with M1',
+                            description: 'Left',
                         },
                         {
                             role: 'Tank',
                             party: 2,
-                            description: 'LPs Right\nPartners Back with M2',
+                            description: 'Right',
                         },
                         {
                             role: 'Healer',
                             party: 1,
-                            description: 'LPs Left\nPartners Left with R1',
+                            description: 'Left',
                         },
                         {
                             role: 'Healer',
                             party: 2,
-                            description: 'LPs Right\nPartners Right with R2',
+                            description: 'Right',
                         },
                         {
                             role: 'Melee',
                             party: 1,
-                            description: 'LPs Left\nPartners Front with MT',
+                            description: 'Left',
                         },
                         {
                             role: 'Melee',
                             party: 2,
-                            description: 'LPs Right\nPartners Back with OT',
+                            description: 'Right',
                         },
                         {
                             role: 'Ranged',
                             party: 1,
-                            description: 'LPs Left\nPartners Left with H1',
+                            description: 'Left',
                         },
                         {
                             role: 'Ranged',
                             party: 2,
-                            description: 'LPs Right\nPartners Right with H2',
+                            description: 'Right',
+                        },
+                    ]
+                },{
+                    mechanic: 'Partners',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Front with M1',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Back with M2',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Left with R1',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Right with R2',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: ' Front with MT',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Back with OT',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Left with H1',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Right with H2',
                         },
                     ]
                 },
@@ -129,11 +173,10 @@ const latteStrat: Strat = {
         },
         {
             phaseName: 'Quicksand + Healer Defamations', 
-            description: 'True North',
+            description: 'True North, H1 West, H2 East',
             mechs: [
                 {
                     mechanic: 'Party + Healer Defamations',
-                    description: 'Party across from unsafe corner\nH1 West, H2 East',
                     strats: [
                         {
                             role: 'Tank',
