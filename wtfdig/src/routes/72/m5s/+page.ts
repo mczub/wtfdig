@@ -1021,7 +1021,7 @@ const toxicStrat: Strat = {
                         {
                             role: 'Tank',
                             party: 2,
-                            description: 'Near Yellow markers (E or NE)',
+                            description: 'Near Blue markers (S or SE)',
                             imageUrl: './m5s/toxic/disco-infernal-2-supports.png',
                         },
                         {
@@ -1033,7 +1033,7 @@ const toxicStrat: Strat = {
                         {
                             role: 'Healer',
                             party: 2,
-                            description: 'Near Blue markers (S or SE)',
+                            description: 'Near Yellow markers (E or NE)',
                             imageUrl: './m5s/toxic/disco-infernal-2-supports.png',
                         },
                         {
