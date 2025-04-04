@@ -33,6 +33,7 @@
         </header>
         <article>
             <div>
+                <p>4/3/2025: basic m6s support</p>
                 <p>4/2/2025: sadly ucob was too good to live, however we have m5s now</p>
                 <p>3/30/2025: added url support to share strats with PF!</p>
                 <p>3/28/2025: improved ex4 support and bugfixes</p>
