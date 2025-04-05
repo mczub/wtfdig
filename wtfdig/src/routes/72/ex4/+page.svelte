@@ -489,9 +489,16 @@
 											<div class="whitespace-pre-wrap text-lg mb-0">{mech.notes}</div>
 										</div>
 									{/if}
+
 									{#if mech?.description}<div class="whitespace-pre-wrap text-lg mb-0">{mech.description}</div>{/if}
-									
 									<div class="whitespace-pre-wrap text-lg mb-0">{mech.strats[0].description}</div>
+									{#if mech?.strats[0]?.notes}
+										<div class="card preset-outlined-primary-500 p-2 flex flex-row space-x-2 my-2">
+											<CircleAlert size={32} />
+											<div class="whitespace-pre-wrap text-lg mb-0">{mech.strats[0].notes}</div>
+										</div>
+									{/if}
+
 									{#if mech.strats[0]?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />{/if}
 								</div>
 								{/key}

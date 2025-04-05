@@ -14,6 +14,7 @@ export interface PlayerMechStrat {
     role: Role;
     party: number;
     description: string | Record<string, string>;
+    notes?: string;
     imageUrl?: string | Record<string, string>;
     imageRotated?: string;
     mask?: string | Record<string,string>;
@@ -1973,7 +1974,6 @@ const hectorStrat: Strat = {
                 {
                     mechanic: 'Thorns',
                     description: 'Meet up near center on 2 empty slices',
-                    notes: 'Make sure you end up on the red slices after stretching tethers',
                     strats: [
                         {
                             role: 'Tank',
@@ -2018,6 +2018,7 @@ const hectorStrat: Strat = {
                                 relative: 'Facing boss\nGo right to stretch tethers',
                                 tn: 'Go East to stretch tethers'
                             },
+                            notes: 'Make sure you end up on the red slices after stretching tethers',
                             imageUrl: './ex4/hector/bloom4-thorns.png'
                         },
                         {
@@ -2027,6 +2028,7 @@ const hectorStrat: Strat = {
                                 relative: 'Facing boss\nGo right to stretch tethers',
                                 tn: 'Go East to stretch tethers'
                             },
+                            notes: 'Make sure you end up on the red slices after stretching tethers',
                             imageUrl: './ex4/hector/bloom4-thorns.png'
                         },
                         {
@@ -2036,6 +2038,7 @@ const hectorStrat: Strat = {
                                 relative: 'Facing boss\nGo right to stretch tethers',
                                 tn: 'Go East to stretch tethers'
                             },
+                            notes: 'Make sure you end up on the red slices after stretching tethers',
                             imageUrl: './ex4/hector/bloom4-thorns.png'
                         },
                         {
@@ -2045,6 +2048,7 @@ const hectorStrat: Strat = {
                                 relative: 'Facing boss\nGo right to stretch tethers',
                                 tn: 'Go East to stretch tethers'
                             },
+                            notes: 'Make sure you end up on the red slices after stretching tethers',
                             imageUrl: './ex4/hector/bloom4-thorns.png'
                         },
                     ]
