@@ -843,41 +843,49 @@ const latteStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Left',
+                            imageUrl: './m6s/toxic/double-lps.png'
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Right',
+                            imageUrl: './m6s/toxic/double-lps.png'
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Left',
+                            imageUrl: './m6s/toxic/double-lps.png'
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'Right',
+                            imageUrl: './m6s/toxic/double-lps.png'
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Left',
+                            imageUrl: './m6s/toxic/double-lps.png'
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Right',
+                            imageUrl: './m6s/toxic/double-lps.png'
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Left',
+                            imageUrl: './m6s/toxic/double-lps.png'
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'Right',
+                            imageUrl: './m6s/toxic/double-lps.png'
                         },
                     ]
                 },{
@@ -887,52 +895,62 @@ const latteStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Front with M1',
+                            imageUrl: './m6s/latte/double-partners.png'
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Back with M2',
+                            imageUrl: './m6s/latte/double-partners.png'
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Left with R1',
+                            imageUrl: './m6s/latte/double-partners.png'
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'Right with R2',
+                            imageUrl: './m6s/latte/double-partners.png'
                         },
                         {
                             role: 'Melee',
                             party: 1,
-                            description: ' Front with MT',
+                            description: 'Front with MT',
+                            imageUrl: './m6s/latte/double-partners.png'
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Back with OT',
+                            imageUrl: './m6s/latte/double-partners.png'
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Left with H1',
+                            imageUrl: './m6s/latte/double-partners.png'
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'Right with H2',
+                            imageUrl: './m6s/latte/double-partners.png'
                         },
                     ]
                 },
             ]
         },
         {
-            phaseName: 'Sticky Mousse', 
+            phaseName: 'Sticky Mousse',
+            description: 'Modified clocks, Tanks stack center',
             mechs: [
                 {
                     mechanic: 'Stacks',
-                    description: 'LPs -> Distance CW',
+                    description: 'Distance prio, use eyes',
+                    imageUrl: './m6s/latte/sticky.png'
                 },
             ]
         },
@@ -942,10 +960,12 @@ const latteStrat: Strat = {
                 {
                     mechanic: 'Dodges',
                     description: 'North-ish, then stack Center',
+                    imageUrl: './m6s/latte/desert-dodges.png'
                 },
                 {
                     mechanic: 'Short Defamations',
                     description: 'Tanks NW-ish, DPS NE-ish',
+                    imageUrl: './m6s/latte/desert-dodges.png'
                 },
             ]
         },
@@ -960,41 +980,49 @@ const latteStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Across from unsafe corner',
+                            imageUrl: './m6s/latte/desert-healers.png'
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Across from unsafe corner',
+                            imageUrl: './m6s/latte/desert-healers.png'
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'West corner next to cactus',
+                            imageUrl: './m6s/latte/desert-healers.png'
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'East corner next to cactus',
+                            imageUrl: './m6s/latte/desert-healers.png'
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Across from unsafe corner',
+                            imageUrl: './m6s/latte/desert-healers.png'
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Across from unsafe corner',
+                            imageUrl: './m6s/latte/desert-healers.png'
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Across from unsafe corner',
+                            imageUrl: './m6s/latte/desert-healers.png'
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'Across from unsafe corner',
+                            imageUrl: './m6s/latte/desert-healers.png'
                         },
                     ]
                 },
@@ -1011,41 +1039,49 @@ const latteStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'West close to boss',
+                            imageUrl: './m6s/latte/desert-bombs.png'
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'East close to boss',
+                            imageUrl: './m6s/latte/desert-bombs.png'
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'West far from boss',
+                            imageUrl: './m6s/latte/desert-bombs.png'
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'East far from boss',
+                            imageUrl: './m6s/latte/desert-bombs.png'
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'West close to boss',
+                            imageUrl: './m6s/latte/desert-bombs.png'
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'East close to boss',
+                            imageUrl: './m6s/latte/desert-bombs.png'
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'West far from boss',
+                            imageUrl: './m6s/latte/desert-bombs.png'
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'East far from boss',
+                            imageUrl: './m6s/latte/desert-bombs.png'
                         },
                     ]
                 },
@@ -1602,41 +1638,49 @@ const latteStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'West close to boss',
+                            imageUrl: './m6s/latte/river-lightning.png'
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'East close to boss',
+                            imageUrl: './m6s/latte/river-lightning.png'
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'West far from boss',
+                            imageUrl: './m6s/latte/river-lightning.png'
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'East far from boss',
+                            imageUrl: './m6s/latte/river-lightning.png'
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'West close to boss',
+                            imageUrl: './m6s/latte/river-lightning.png'
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'East close to boss',
+                            imageUrl: './m6s/latte/river-lightning.png'
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'West far from boss',
+                            imageUrl: './m6s/latte/river-lightning.png'
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'East far from boss',
+                            imageUrl: './m6s/latte/river-lightning.png'
                         },
                     ]
                 },
@@ -1648,41 +1692,49 @@ const latteStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Middle',
+                            imageUrl: './m6s/latte/river-fire.png'
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Far',
+                            imageUrl: './m6s/latte/river-fire.png'
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Middle',
+                            imageUrl: './m6s/latte/river-fire.png'
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'Far',
+                            imageUrl: './m6s/latte/river-fire.png'
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Middle',
+                            imageUrl: './m6s/latte/river-fire.png'
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Middle',
+                            imageUrl: './m6s/latte/river-fire.png'
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Far',
+                            imageUrl: './m6s/latte/river-fire.png'
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'Far',
+                            imageUrl: './m6s/latte/river-fire.png'
                         },
                     ]
                 },
@@ -1691,6 +1743,7 @@ const latteStrat: Strat = {
         {
             phaseName: 'Lightning Storm', 
             description: 'Party stays on bridge\nFacing cloud, Supports Left, DPS Right',
+            imageUrl: './m6s/latte/storm.png'
         },
         {
             phaseName: 'Pudding Party', 
@@ -1704,41 +1757,49 @@ const latteStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Take Left tower closest to wall',
+                            imageUrl: './m6s/latte/pudding-towers.png'
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Take Right tower closest to wall',
+                            imageUrl: './m6s/latte/pudding-towers.png'
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'West platform\nTake the tower closest to the final puddle drop',
+                            imageUrl: './m6s/latte/pudding-towers.png'
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'East platform\nTake the tower closest to the final puddle drop',
+                            imageUrl: './m6s/latte/pudding-towers.png'
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Take Left tower near marker',
+                            imageUrl: './m6s/latte/pudding-towers.png'
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Take Right tower near marker',
+                            imageUrl: './m6s/latte/pudding-towers.png'
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'West platform\nTake the tower furthest from the final puddle drop',
+                            imageUrl: './m6s/latte/pudding-towers.png'
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'East platform\nTake the tower furthest from the final puddle drop',
+                            imageUrl: './m6s/latte/pudding-towers.png'
                         },
                     ]
                 },
@@ -1756,41 +1817,49 @@ const latteStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Take Left tower furthest from river',
+                            imageUrl: './m6s/latte/pudding-422.png'
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Take Right tower furthest from river',
+                            imageUrl: './m6s/latte/pudding-422.png'
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Left platform\nTake the tower closest to river',
+                            imageUrl: './m6s/latte/pudding-422.png'
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'Right platform\nTake the tower closest to river',
+                            imageUrl: './m6s/latte/pudding-422.png'
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Take Left tower closest to river',
+                            imageUrl: './m6s/latte/pudding-422.png'
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Take Right tower closest to river',
+                            imageUrl: './m6s/latte/pudding-422.png'
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Left platform\nTake the tower furthest from river',
+                            imageUrl: './m6s/latte/pudding-422.png'
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'Right platform\nTake the tower furthest from river',
+                            imageUrl: './m6s/latte/pudding-422.png'
                         },
                     ]
                 },
@@ -1802,41 +1871,49 @@ const latteStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Center North',
+                            imageUrl: './m6s/latte/pudding-800.png'
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Center South',
+                            imageUrl: './m6s/latte/pudding-800.png'
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Close South West',
+                            imageUrl: './m6s/latte/pudding-800.png'
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'Close South East',
+                            imageUrl: './m6s/latte/pudding-800.png'
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'West',
+                            imageUrl: './m6s/latte/pudding-800.png'
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'East',
+                            imageUrl: './m6s/latte/pudding-800.png'
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Far South West',
+                            imageUrl: './m6s/latte/pudding-800.png'
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'Far South East',
+                            imageUrl: './m6s/latte/pudding-800.png'
                         },
                     ]
                 },
@@ -2417,41 +2494,49 @@ const toxicStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Left',
+                            imageUrl: './m6s/toxic/double-lps.png'
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Right',
+                            imageUrl: './m6s/toxic/double-lps.png'
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Left',
+                            imageUrl: './m6s/toxic/double-lps.png'
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'Right',
+                            imageUrl: './m6s/toxic/double-lps.png'
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Left',
+                            imageUrl: './m6s/toxic/double-lps.png'
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Right',
+                            imageUrl: './m6s/toxic/double-lps.png'
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Left',
+                            imageUrl: './m6s/toxic/double-lps.png'
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'Right',
+                            imageUrl: './m6s/toxic/double-lps.png'
                         },
                     ]
                 },{
@@ -2461,41 +2546,49 @@ const toxicStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Front with M1',
+                            imageUrl: './m6s/toxic/double-partners.png'
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Back with M2',
+                            imageUrl: './m6s/toxic/double-partners.png'
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Left with R1',
+                            imageUrl: './m6s/toxic/double-partners.png'
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'Right with R2',
+                            imageUrl: './m6s/toxic/double-partners.png'
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Front with MT',
+                            imageUrl: './m6s/toxic/double-partners.png'
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Back with OT',
+                            imageUrl: './m6s/toxic/double-partners.png'
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Left with H1',
+                            imageUrl: './m6s/toxic/double-partners.png'
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'Right with H2',
+                            imageUrl: './m6s/toxic/double-partners.png'
                         },
                     ]
                 },
@@ -2507,6 +2600,7 @@ const toxicStrat: Strat = {
                 {
                     mechanic: 'Stacks',
                     description: 'LP prio, use eyes',
+                    imageUrl: './m6s/toxic/sticky.png'
                 },
             ]
         },
@@ -2515,11 +2609,13 @@ const toxicStrat: Strat = {
             mechs: [
                 {
                     mechanic: 'Dodges',
-                    description: 'West-ish',
+                    description: 'North-ish',
+                    imageUrl: './m6s/toxic/desert-dodges.png'
                 },
                 {
                     mechanic: 'Short Defamations',
-                    description: 'Tanks NW-ish, DPS SW-ish',
+                    description: 'Tanks SW-ish, DPS SE-ish',
+                    imageUrl: './m6s/toxic/desert-dodges.png'
                 },
             ]
         },
@@ -2534,41 +2630,49 @@ const toxicStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Across from unsafe corner',
+                            imageUrl: './m6s/toxic/desert-healers.png'
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Across from unsafe corner',
+                            imageUrl: './m6s/toxic/desert-healers.png'
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Clockwise from cactus corner',
+                            imageUrl: './m6s/toxic/desert-healers.png'
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'Counter-Clockwise from cactus corner',
+                            imageUrl: './m6s/toxic/desert-healers.png'
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Across from unsafe corner',
+                            imageUrl: './m6s/toxic/desert-healers.png'
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Across from unsafe corner',
+                            imageUrl: './m6s/toxic/desert-healers.png'
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Across from unsafe corner',
+                            imageUrl: './m6s/toxic/desert-healers.png'
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'Across from unsafe corner',
+                            imageUrl: './m6s/toxic/desert-healers.png'
                         },
                     ]
                 },
@@ -2585,41 +2689,49 @@ const toxicStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'West close to boss',
+                            imageUrl: './m6s/toxic/desert-bombs.png'
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'East close to boss',
+                            imageUrl: './m6s/toxic/desert-bombs.png'
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'West far from boss',
+                            imageUrl: './m6s/toxic/desert-bombs.png'
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'East far from boss',
+                            imageUrl: './m6s/toxic/desert-bombs.png'
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'West close to boss',
+                            imageUrl: './m6s/toxic/desert-bombs.png'
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'East close to boss',
+                            imageUrl: './m6s/toxic/desert-bombs.png'
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'West far from boss',
+                            imageUrl: './m6s/toxic/desert-bombs.png'
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'East far from boss',
+                            imageUrl: './m6s/toxic/desert-bombs.png'
                         },
                     ]
                 },
@@ -3176,41 +3288,49 @@ const toxicStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Northwest',
+                            imageUrl: './m6s/toxic/river-lightning.png'
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Northwest',
+                            imageUrl: './m6s/toxic/river-lightning.png'
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Northeast',
+                            imageUrl: './m6s/toxic/river-lightning.png'
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'South',
+                            imageUrl: './m6s/toxic/river-lightning.png'
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Northwest',
+                            imageUrl: './m6s/toxic/river-lightning.png'
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Northwest',
+                            imageUrl: './m6s/toxic/river-lightning.png'
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Northeast',
+                            imageUrl: './m6s/toxic/river-lightning.png'
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'South',
+                            imageUrl: './m6s/toxic/river-lightning.png'
                         },
                     ]
                 },
@@ -3222,41 +3342,49 @@ const toxicStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Middle',
+                            imageUrl: './m6s/toxic/river-fire.png'
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Far behind safe bridge',
+                            imageUrl: './m6s/toxic/river-fire.png'
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Middle',
+                            imageUrl: './m6s/toxic/river-fire.png'
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'Far behind safe bridge',
+                            imageUrl: './m6s/toxic/river-fire.png'
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Middle',
+                            imageUrl: './m6s/toxic/river-fire.png'
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Middle',
+                            imageUrl: './m6s/toxic/river-fire.png'
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Far behind safe bridge',
+                            imageUrl: './m6s/toxic/river-fire.png'
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'Far behind safe bridge',
+                            imageUrl: './m6s/toxic/river-fire.png'
                         },
                     ]
                 },
@@ -3265,6 +3393,7 @@ const toxicStrat: Strat = {
         {
             phaseName: 'Lightning Storm', 
             description: 'Party stays on bridge\nDPS CCW, Support CW',
+            imageUrl: './m6s/toxic/storm.png'
         },
         {
             phaseName: 'Pudding Party', 
@@ -3278,41 +3407,49 @@ const toxicStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Bait proteans\nTake West tower closest to wall',
+                            imageUrl: './m6s/toxic/pudding-towers.png'
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Bait proteans\nTake East tower closest to wall',
+                            imageUrl: './m6s/toxic/pudding-towers.png'
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'West platform\nTake the tower closer to the middle',
+                            imageUrl: './m6s/toxic/pudding-towers.png'
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'East platform\nTake the tower closer to the middle',
+                            imageUrl: './m6s/toxic/pudding-towers.png'
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Bait proteans\nTake West tower near marker',
+                            imageUrl: './m6s/toxic/pudding-towers.png'
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Bait proteans\nTake East tower near marker',
+                            imageUrl: './m6s/toxic/pudding-towers.png'
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'West platform\nTake the tower further from the middle',
+                            imageUrl: './m6s/toxic/pudding-towers.png'
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'East platform\nTake the tower further from the middle',
+                            imageUrl: './m6s/toxic/pudding-towers.png'
                         },
                     ]
                 },
@@ -3330,41 +3467,49 @@ const toxicStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Take Left tower furthest from river',
+                            imageUrl: './m6s/toxic/pudding-422.png'
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Take Right tower furthest from river',
+                            imageUrl: './m6s/toxic/pudding-422.png'
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Left platform\nTake the tower closest to river',
+                            imageUrl: './m6s/toxic/pudding-422.png'
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'Right platform\nTake the tower closest to river',
+                            imageUrl: './m6s/toxic/pudding-422.png'
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Take Left tower closest to river',
+                            imageUrl: './m6s/toxic/pudding-422.png'
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Take Right tower closest to river',
+                            imageUrl: './m6s/toxic/pudding-422.png'
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Left platform\nTake the tower furthest from river',
+                            imageUrl: './m6s/toxic/pudding-422.png'
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'Right platform\nTake the tower furthest from river',
+                            imageUrl: './m6s/toxic/pudding-422.png'
                         },
                     ]
                 },
@@ -3376,41 +3521,49 @@ const toxicStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Far West',
+                            imageUrl: './m6s/toxic/pudding-800.png'
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Center South',
+                            imageUrl: './m6s/toxic/pudding-800.png'
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Close Southeast',
+                            imageUrl: './m6s/toxic/pudding-800.png'
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'Center North',
+                            imageUrl: './m6s/toxic/pudding-800.png'
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Close Southwest',
+                            imageUrl: './m6s/toxic/pudding-800.png'
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Close Northwest (near 4 marker)',
+                            imageUrl: './m6s/toxic/pudding-800.png'
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Far East',
+                            imageUrl: './m6s/toxic/pudding-800.png'
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'Close Northeast (near 3 marker)',
+                            imageUrl: './m6s/toxic/pudding-800.png'
                         },
                     ]
                 },
