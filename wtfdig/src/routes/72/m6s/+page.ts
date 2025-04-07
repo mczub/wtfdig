@@ -1637,49 +1637,49 @@ const latteStrat: Strat = {
                         {
                             role: 'Tank',
                             party: 1,
-                            description: 'West close to boss',
+                            description: 'Center',
                             imageUrl: './m6s/latte/river-lightning.png'
                         },
                         {
                             role: 'Tank',
                             party: 2,
-                            description: 'East close to boss',
+                            description: 'North (near A marker)',
                             imageUrl: './m6s/latte/river-lightning.png'
                         },
                         {
                             role: 'Healer',
                             party: 1,
-                            description: 'West far from boss',
+                            description: 'Southwest (near 4 marker)',
                             imageUrl: './m6s/latte/river-lightning.png'
                         },
                         {
                             role: 'Healer',
                             party: 2,
-                            description: 'East far from boss',
+                            description: 'Southeast (near 3 marker)',
                             imageUrl: './m6s/latte/river-lightning.png'
                         },
                         {
                             role: 'Melee',
                             party: 1,
-                            description: 'West close to boss',
+                            description: 'West (near D marker)',
                             imageUrl: './m6s/latte/river-lightning.png'
                         },
                         {
                             role: 'Melee',
                             party: 2,
-                            description: 'East close to boss',
+                            description: 'East (near B marker)',
                             imageUrl: './m6s/latte/river-lightning.png'
                         },
                         {
                             role: 'Ranged',
                             party: 1,
-                            description: 'West far from boss',
+                            description: 'Northwest (near 1 marker)',
                             imageUrl: './m6s/latte/river-lightning.png'
                         },
                         {
                             role: 'Ranged',
                             party: 2,
-                            description: 'East far from boss',
+                            description: 'Northeast (near 2 marker)',
                             imageUrl: './m6s/latte/river-lightning.png'
                         },
                     ]
