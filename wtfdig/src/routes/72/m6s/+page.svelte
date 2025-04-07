@@ -343,7 +343,7 @@
 					{#if phase?.description}<div class="text-lg whitespace-pre-wrap">{phase.description}</div>{/if}
 					{#if phase?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />{/if}
 					{#if phase?.mechs}
-						<div class="grid xl:grid-cols-2 grid-cols-2 gap-2 mt-4">
+						<div class="grid lg:grid-cols-2 grid-cols-1 gap-2 mt-4">
 							{#each phase.mechs as mech}
 								{#key [spotlight, alignment]}
 								<div class="space-y-4" class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}>
