@@ -209,7 +209,7 @@ const toxicAdds: Record<string,Record<string, PlayerMechStrat>> = {
         'OT': {
                 role: 'Tank',
                 party: 2,
-                description: 'Take Yans to 4 marker\nOnce Jabber dies, take Yans deep into SW corner\nAfter Squirrels die, take Yans to boss and kill',
+                description: 'Take Yans to 4 marker\nOnce Jabber dies, take Yans deep into SW corner\nAfter Squirrels die, take Yans to boss and kill\nCURRENT OBJECTIVE: SURVIVE',
                 imageUrl: './m6s/adds/toxic-wave4.png',
         },
         'H1': {
@@ -410,7 +410,7 @@ const latteAdds: Record<string,Record<string, PlayerMechStrat>> = {
         'OT': {
                 role: 'Tank',
                 party: 2,
-                description: '1. Another ram will spawn.\n2. Pull both rams SW to avoid buffs on other adds.\n3. Wait till every other add is dead (squirrels last to die), then bring rams to boss.',
+                description: '1. Another ram will spawn.\n2. Pull both rams SW to avoid buffs on other adds.\n3. Wait till every other add is dead (squirrels last to die), then bring rams to boss.\nCURRENT OBJECTIVE: SURVIVE',
                 imageUrl: './m6s/adds/latte-ot.png',
             },
         'H1': {
@@ -941,7 +941,7 @@ const latteStrat: Strat = {
             mechs: [
                 {
                     mechanic: 'Dodges',
-                    description: 'North-ish',
+                    description: 'North-ish, then stack Center',
                 },
                 {
                     mechanic: 'Short Defamations',
@@ -1002,7 +1002,7 @@ const latteStrat: Strat = {
         },
         {
             phaseName: 'Quicksand + Bombs', 
-            description: 'Relative North Facing Quicksand RMMR\nBlue tether goes in quicksand',
+            description: 'True North RMMR\nBlue tether goes in quicksand',
             mechs: [
                 {
                     mechanic: 'Bombs',
@@ -1010,42 +1010,42 @@ const latteStrat: Strat = {
                         {
                             role: 'Tank',
                             party: 1,
-                            description: 'Left close to boss',
+                            description: 'West close to boss',
                         },
                         {
                             role: 'Tank',
                             party: 2,
-                            description: 'Right close to boss',
+                            description: 'East close to boss',
                         },
                         {
                             role: 'Healer',
                             party: 1,
-                            description: 'Left far from boss',
+                            description: 'West far from boss',
                         },
                         {
                             role: 'Healer',
                             party: 2,
-                            description: 'Right far from boss',
+                            description: 'East far from boss',
                         },
                         {
                             role: 'Melee',
                             party: 1,
-                            description: 'Left close to boss',
+                            description: 'West close to boss',
                         },
                         {
                             role: 'Melee',
                             party: 2,
-                            description: 'EaRightst close to boss',
+                            description: 'East close to boss',
                         },
                         {
                             role: 'Ranged',
                             party: 1,
-                            description: 'Left far from boss',
+                            description: 'West far from boss',
                         },
                         {
                             role: 'Ranged',
                             party: 2,
-                            description: 'EaRightst far from boss',
+                            description: 'East far from boss',
                         },
                     ]
                 },
@@ -1641,48 +1641,48 @@ const latteStrat: Strat = {
                     ]
                 },
                 {
-                    mechanic: 'Fire (Spreads)',
-                    description: 'G1 N/W G2 S/E',
+                    mechanic: 'Fire (Stacks)',
+                    description: 'MT H1 Melee Center, OT H2 Ranged Far',
                     strats: [
                         {
                             role: 'Tank',
                             party: 1,
-                            description: 'North/West',
+                            description: 'Middle',
                         },
                         {
                             role: 'Tank',
                             party: 2,
-                            description: 'South/East',
+                            description: 'Far',
                         },
                         {
                             role: 'Healer',
                             party: 1,
-                            description: 'North/West',
+                            description: 'Middle',
                         },
                         {
                             role: 'Healer',
                             party: 2,
-                            description: 'South/East',
+                            description: 'Far',
                         },
                         {
                             role: 'Melee',
                             party: 1,
-                            description: 'North/West',
+                            description: 'Middle',
                         },
                         {
                             role: 'Melee',
                             party: 2,
-                            description: 'South/East',
+                            description: 'Middle',
                         },
                         {
                             role: 'Ranged',
                             party: 1,
-                            description: 'North/West',
+                            description: 'Far',
                         },
                         {
                             role: 'Ranged',
                             party: 2,
-                            description: 'South/East',
+                            description: 'Far',
                         },
                     ]
                 },
