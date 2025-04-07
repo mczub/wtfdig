@@ -17,7 +17,9 @@
 
 	let { data, children }: Props = $props();
 	let stratName: string | undefined = $state();
-	let stratState: Record<string, string | null> = $state({});
+	let stratState: Record<string, string | null> = $state({
+		adds: null,
+	});
 
 	
 	let role: Role | undefined = $state();
@@ -43,23 +45,26 @@
 		if (stratArray[0]) {
 			stratName = stratArray[0];
 		}
+		stratState = {
+			adds: stratArray[1],
+		}
 	}
 
 	function setStratState(mech: string, value: string) {
 		stratState[mech] = value;
-		const stratCode = getStratCode(stratName);
+		const stratCode = getStratCode(stratName, stratState);
 		history.replaceState(undefined, '', `#${stratCode}`);
 	}
 
-	function getStratCode(stratName: string | undefined) {
+	function getStratCode(stratName: string | undefined, stratState: any) {
 		if (!stratName) return '';
-		return `${stratName}`;
+		return `${stratName}:${stratState.adds}`;
 	}
 
 	function onSelectStrat(e) {
 		stratName = e.value;
 		stratState = getStratMechs(e.value);
-		const stratCode = getStratCode(stratName);
+		const stratCode = getStratCode(stratName, stratState);
 		history.replaceState(undefined, '', `#${stratCode}`);
 	}
 
@@ -124,10 +129,20 @@
 		return individualPackages;
 	}
 
+
 	function getStratMechs(stratName: string){
-		const stratMechs: Record<string, any> = {}
-		//return stratMechs[stratName];
-		''
+		const stratMechs: Record<string, any> = {
+			'latte': {
+				adds: 'latte',
+			},
+			'toxic': {
+				adds: 'toxic',
+			},
+			'yukizuri': {
+				adds: 'yukizuri',
+			},
+		}
+		return stratMechs[stratName];
 	}
 
 	function getMask(mask: string): string {
@@ -160,11 +175,26 @@
 		} else {
 			roleAbbrev = role.charAt(0).toUpperCase() + party.toString();
 		}
+		let stratDiffs = [stratNames[stratName]];
+		if (stratState.adds !== getStratMechs(stratName)['adds']) {
+			if (stratState.adds === 'latte') {
+				stratDiffs.push(`Latte adds`);
+			}
+			if (stratState.adds === 'toxic') {
+				stratDiffs.push(`Toxic Friends adds`);
+			}
+			if (stratState.adds === 'yukizuri') {
+				stratDiffs.push(`Yukizuri adds`);
+			}
+			if (stratState.adds === 'cleave') {
+				stratDiffs.push(`Cleavemaxxing adds`);
+			}
+		}
 		if (stratName === 'game8' && roleAbbrev !== jpRoleAbbrev[roleAbbrev]) {
 			return `${stratNames[stratName]} - ${roleAbbrev}/${jpRoleAbbrev[roleAbbrev]}`;
 		}
 
-		return `${stratNames[stratName]} - ${roleAbbrev}`;
+		return `${stratDiffs.join(' | ')} - ${roleAbbrev}`;
 	}
 </script>
 
@@ -189,6 +219,37 @@
 						<Segment.Item value="yukizuri">Yukizuri</Segment.Item>
 					</Segment>
 				</div>
+				{#if stratName}
+				<div class="text-lg my-2">Mechanics</div>
+				<div class="flex flex-row space-x-4 space-y-2 flex-wrap">
+					<div class="flex flex-col">
+						<div class="flex flex-row">
+							<div class="text-md mb-2">Adds</div>
+							{#if stratName && stratState.adds !== getStratMechs(stratName)['adds']}
+								<Tooltip
+									positioning={{ placement: 'top' }}
+									triggerBase="underline"
+									contentBase="card bg-surface-800 p-4"
+									classes="ml-2"
+									openDelay={200}
+									arrow
+									arrowBackground="!bg-surface-800"
+
+								>
+									{#snippet trigger()}<div class="text-warning-500"><TriangleAlert /></div>{/snippet}
+									{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
+								</Tooltip>
+							{/if}
+						</div>
+						<Segment classes="flex-wrap" name="adds" value={stratState.adds} onValueChange={(e) => (setStratState('adds', e.value))}>
+							<Segment.Item value="latte">Latte</Segment.Item>
+							<Segment.Item value="toxic">Toxic Friends</Segment.Item>
+							<Segment.Item value="yukizuri">Yukizuri</Segment.Item>
+							<Segment.Item value="cleave">Cleavemaxxing</Segment.Item>
+						</Segment>
+					</div>
+				</div>
+				{/if}
 				<div>
 					<div class="text-xl mb-2">Which role are you?</div>
 					<Segment name="role" value={role} onValueChange={(e) => (role = e.value)}>
