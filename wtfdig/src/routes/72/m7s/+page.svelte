@@ -17,7 +17,10 @@
 
 	let { data, children }: Props = $props();
 	let stratName: string | undefined = $state();
-	let stratState: Record<string, string | null> = $state({});
+	let stratState: Record<string, string | null> = $state({
+		p2: null,
+		p3: null,
+	});
 
 	
 	let role: Role | undefined = $state();
@@ -28,6 +31,13 @@
 	let alignment: Alignment = $state('original');
 	let optionsString = $derived(getOptionsString(stratName, role, party));
 	export const toast: ToastContext = getContext('toast');
+
+	const p2Urls: Record<string, any> = {
+		'toxic': {name: 'Toxic P2', url: 'https://raidplan.io/plan/gIcsj6_cyedVQON7'},
+		'bili': {name: 'Bilibili P2', url: 'https://raidplan.io/plan/s_q_kuYAhHcOLcxb'},
+		'alpha': {name: 'Alpha P2', url: 'https://raidplan.io/plan/jtQenPvoJy7hsV-x'},
+		'zenith': {name: 'Zenith P2', url: 'https://raidplan.io/plan/2Y1HT42osFhYD6Pe'},
+	}
 
 	$effect(() => {
 		let stratCode = '';
@@ -44,11 +54,8 @@
 			stratName = stratArray[0];
 		}
 		stratState = {
-			ef1: stratArray[1],
-			bloom3: stratArray[2],
-			ef2: stratArray[3],
-			bloom4: stratArray[4],
-			bloom6: stratArray[5],
+			p2: stratArray[1],
+			p3: stratArray[2],
 		}
 	}
 
@@ -60,7 +67,7 @@
 
 	function getStratCode(stratName: string | undefined, stratState: any) {
 		if (!stratName) return '';
-		return `${stratName}:${stratState.ef1}:${stratState.bloom3}:${stratState.ef2}:${stratState.bloom4}:${stratState.bloom6}`;
+		return `${stratName}:${stratState.p2}:${stratState.p3}`;
 	}
 
 	function onSelectStrat(e) {
@@ -109,7 +116,8 @@
 						phaseStratMech => {
 							return {
 								...phaseStratMech,
-								strats: phaseStratMech.strats.filter(strat => (strat.role === role && strat.party === party)).map(
+								imageUrl: getStratItem(phaseStratMech.imageUrl, phaseStrat.tag),
+								strats: phaseStratMech.strats && phaseStratMech.strats.filter(strat => (strat.role === role && strat.party === party)).map(
 									iStrat => {
 										return {
 											...iStrat,
@@ -130,10 +138,19 @@
 		return individualPackages;
 	}
 
+
 	function getStratMechs(stratName: string){
-		const stratMechs: Record<string, any> = {}
-		//return stratMechs[stratName];
-		''
+		const stratMechs: Record<string, any> = {
+			'toxic': {
+				p2: 'toxic',
+				p3: 'toxic',
+			},
+			'uptime': {
+				p2: 'alpha',
+				p3: 'toxic',
+			},
+		}
+		return stratMechs[stratName];
 	}
 
 	function getMask(mask: string): string {
@@ -146,7 +163,18 @@
 	function getOptionsString(stratName?: string, role?: Role, party?: number): string {
 		if (!stratName || !role || !party) return '';
 		const stratNames: Record<string, string> = {
-			
+			'toxic': 'Toxic Friends (Pgj53K49w8LAZpI6)',
+			'uptime': 'Uptime/Kindred'
+		}
+		const jpRoleAbbrev: Record<string, string> = {
+			'MT': 'MT',
+			'OT': 'ST',
+			'H1': 'H1',
+			'H2': 'H2',
+			'M1': 'D1',
+			'M2': 'D2',
+			'R1': 'D3',
+			'R2': 'D4',
 		}
 		let roleAbbrev = '';
 		if (role === 'Tank') {
@@ -154,8 +182,31 @@
 		} else {
 			roleAbbrev = role.charAt(0).toUpperCase() + party.toString();
 		}
+		let stratDiffs = [stratNames[stratName]];
+		if (stratState.p2 !== getStratMechs(stratName)['p2']) {
+			if (stratState.p2 === 'toxic') {
+				stratDiffs.push(`Toxic P2`);
+			}
+			if (stratState.p2 === 'bili') {
+				stratDiffs.push(`Bilibili P2`);
+			}
+			if (stratState.p2 === 'alpha') {
+				stratDiffs.push(`Alpha P2`);
+			}
+			if (stratState.p2 === 'zenith') {
+				stratDiffs.push(`Zenith P2`);
+			}
+		}
+		if (stratState.p3 !== getStratMechs(stratName)['p3']) {
+			if (stratState.p3 === 'toxic') {
+				stratDiffs.push(`Toxic P3`);
+			}
+		}
+		if (stratName === 'game8' && roleAbbrev !== jpRoleAbbrev[roleAbbrev]) {
+			return `${stratNames[stratName]} - ${roleAbbrev}/${jpRoleAbbrev[roleAbbrev]}`;
+		}
 
-		return `${roleAbbrev}`;
+		return `${stratDiffs.join(' | ')} - ${roleAbbrev}`;
 	}
 </script>
 
@@ -170,29 +221,70 @@
 			<div class="space-y-5 v-full dark">
 				<div class="card preset-outlined-warning-500 gap-4 p-4">
                     <p>This guide is still under construction, thank you for your patience while we continue to work on it.</p>
-					<p>Some combinations of strats may be missing images or highlights.</p>
+					<p>Some strats may be missing images or highlights.</p>
                 </div>
-				<!--div>
-					<div class="text-xl mb-2">Which strat are you using?</div>
+				<div>
+					<div class="text-xl mb-2">Which P1 strat are you using?</div>
 					<Segment classes="flex-wrap" name="stratName" value={stratName} onValueChange={onSelectStrat}>
-						<Segment.Item value="hector">Hector</Segment.Item>
+						<Segment.Item value="toxic">Toxic Friends (PWFg⋯unO2)</Segment.Item>
+						<Segment.Item value="uptime">Uptime (-OMZ⋯JdIu)</Segment.Item>
 					</Segment>
-					{#if stratName}
-					<div class="text-lg my-2">Mechanics</div>
-					<div class="flex flex-row space-x-4 space-y-2 flex-wrap">
-						<div class="flex flex-col">
-							<div class="flex flex-row">
-								<div class="text-md mb-2">Mech</div>
-							</div>
-							<Segment classes="flex-wrap" name="mech" value={stratState.ef1} onValueChange={(e) => (setStratState('mech', e.value))}>
-								<Segment.Item value="supports">Supports bait first</Segment.Item>
-								<Segment.Item value="dps">DPS bait first</Segment.Item>
-								<Segment.Item value="dpsin">DPS in first</Segment.Item>
+				</div>
+				{#if stratName}
+				<div class="flex flex-row space-x-4 space-y-2 flex-wrap">
+					<div class="flex flex-col">
+						<div class="flex flex-row">
+							<div class="text-xl mb-2">Which P2 strat are you using?</div>
+							{#if stratName && stratState.p2 !== getStratMechs(stratName)['p2']}
+								<Tooltip
+									positioning={{ placement: 'top' }}
+									triggerBase="underline"
+									contentBase="card bg-surface-800 p-4"
+									classes="ml-2"
+									openDelay={200}
+									arrow
+									arrowBackground="!bg-surface-800"
+
+								>
+									{#snippet trigger()}<div class="text-warning-500"><TriangleAlert /></div>{/snippet}
+									{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
+								</Tooltip>
+							{/if}
+						</div>
+						<Segment classes="flex-wrap" name="p2" value={stratState.p2} onValueChange={(e) => (setStratState('p2', e.value))}>
+							<Segment.Item value="toxic">Toxic Friends</Segment.Item>
+							<Segment.Item value="bili">Bilibili</Segment.Item>
+							<Segment.Item value="alpha">Alpha</Segment.Item>
+							<Segment.Item value="zenith">Zenith</Segment.Item>
+						</Segment>
+					</div>
+					<div class="flex flex-col">
+						<div class="flex flex-row">
+							<div class="text-xl mb-2">Which P3 strat are you using?</div>
+							{#if stratName && stratState.p3 !== getStratMechs(stratName)['p3']}
+								<Tooltip
+									positioning={{ placement: 'top' }}
+									triggerBase="underline"
+									contentBase="card bg-surface-800 p-4"
+									classes="ml-2"
+									openDelay={200}
+									arrow
+									arrowBackground="!bg-surface-800"
+
+								>
+									{#snippet trigger()}<div class="text-warning-500"><TriangleAlert /></div>{/snippet}
+									{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
+								</Tooltip>
+							{/if}
+						</div>
+						<div>
+							<Segment classes="flex-wrap shrink" name="p3" value={stratState.p3} onValueChange={(e) => (setStratState('p3', e.value))}>
+								<Segment.Item value="toxic">Toxic Friends</Segment.Item>
 							</Segment>
 						</div>
 					</div>
-					{/if}
-				</div-->
+				</div>
+				{/if}
 				<div>
 					<div class="text-xl mb-2">Which role are you?</div>
 					<Segment name="role" value={role} onValueChange={(e) => (role = e.value)}>
@@ -238,6 +330,15 @@
 								</a>
 							{/each}
 						{/if}
+						{#if (stratState.p2 && p2Urls[stratState.p2])}
+							<div>
+								<a class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href={p2Urls[stratState.p2].url}>{p2Urls[stratState.p2].name}
+									<svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+										<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+									</svg>
+								</a>
+							</div>
+						{/if}
 					</div>
 					<div class="grow"></div>
 					<div class="grid gap-y-2 content-center">
@@ -257,7 +358,12 @@
 						</div>
 					{/if}
 				</div>
-
+				{#if strat?.notes}
+					<div class="card preset-outlined-primary-500 p-2 flex flex-row space-x-2 my-2">
+						<CircleAlert size={32} />
+						<div class="whitespace-pre-wrap text-lg mb-0">{strat.notes}</div>
+					</div>
+				{/if}
 				{#each individualStrat as phase}
 				<div class="card border border-surface-800 mb-8 p-4">
 					<div class="flex flex-row">
@@ -281,7 +387,7 @@
 					{#if phase?.description}<div class="text-lg whitespace-pre-wrap">{phase.description}</div>{/if}
 					{#if phase?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />{/if}
 					{#if phase?.mechs}
-						<div class="grid xl:grid-cols-2 grid-cols-2 gap-2 mt-4">
+						<div class="grid lg:grid-cols-2 grid-cols-1 gap-2 mt-4">
 							{#each phase.mechs as mech}
 								{#key [spotlight, alignment]}
 								<div class="space-y-4" class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}>
@@ -293,9 +399,9 @@
 										</div>
 									{/if}
 									{#if mech?.description}<div class="whitespace-pre-wrap text-lg mb-0">{mech.description}</div>{/if}
-									
-									<div class="whitespace-pre-wrap text-lg mb-0">{mech.strats[0].description}</div>
-									{#if mech.strats[0]?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />{/if}
+									{#if mech?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" src={mech.imageUrl} />{/if}
+									<div class="whitespace-pre-wrap text-lg mb-0">{mech?.strats && mech.strats[0].description}</div>
+									{#if mech?.strats && mech.strats[0]?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />{/if}
 								</div>
 								{/key}
 							{/each}
