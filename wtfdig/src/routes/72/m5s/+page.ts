@@ -889,7 +889,7 @@ const toxicStrat: Strat = {
         },
         {
             phaseName: 'Ride the Waves', 
-            description: 'Melee Close Ranged Far Lanes\nG1 N G2 S',
+            description: 'G1 West, G2 East\nRanged Far, Melee Close\nTR HM Stacks',
             mechs: [
                 {
                     mechanic: 'Stacks/Spreads',
@@ -897,49 +897,49 @@ const toxicStrat: Strat = {
                         {
                             role: 'Tank',
                             party: 1,
-                            description: 'Close lane, north side\nStack with M1',
+                            description: 'West lane, North side, Close\nStack with R1',
                             imageUrl: './m5s/toxic/ride-the-wave.png',
                         },
                         {
                             role: 'Tank',
                             party: 2,
-                            description: 'Close lane, south side\nStack with M2',
+                            description: 'East lane, North side, Close\nStack with R2',
                             imageUrl: './m5s/toxic/ride-the-wave.png',
                         },
                         {
                             role: 'Healer',
                             party: 1,
-                            description: 'Far lane, north side\nStack with R1',
+                            description: 'West lane, South side, Far\nStack with M1',
                             imageUrl: './m5s/toxic/ride-the-wave.png',
                         },
                         {
                             role: 'Healer',
                             party: 2,
-                            description: 'Far lane, south side\nStack with R2',
+                            description: 'East lane, South side, Far\nStack with M2',
                             imageUrl: './m5s/toxic/ride-the-wave.png',
                         },
                         {
                             role: 'Melee',
                             party: 1,
-                            description: 'Close lane, north side\nStack with MT',
+                            description: 'West lane, South side, Close\nStack with H1',
                             imageUrl: './m5s/toxic/ride-the-wave.png',
                         },
                         {
                             role: 'Melee',
                             party: 2,
-                            description: 'Close lane, south side\nStack with OT',
+                            description: 'East lane, South side, Close\nStack with H2',
                             imageUrl: './m5s/toxic/ride-the-wave.png',
                         },
                         {
                             role: 'Ranged',
                             party: 1,
-                            description: 'Far lane, north side\nStack with H1',
+                            description: 'West lane, North side, Far\nStack with MT',
                             imageUrl: './m5s/toxic/ride-the-wave.png',
                         },
                         {
                             role: 'Ranged',
                             party: 2,
-                            description: 'Far lane, south side\nStack with H2',
+                            description: 'East lane, North side, Far\nStack with OT',
                             imageUrl: './m5s/toxic/ride-the-wave.png',
                         },
                     ]
