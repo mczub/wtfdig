@@ -1589,6 +1589,418 @@ const alphaP2: Record<string, string | Record<string, string | PlayerMechStrat>>
     },
 }
 
+const alpha2P2: Record<string, string | Record<string, string | PlayerMechStrat>> = {
+    'url': 'https://raidplan.io/plan/jtQenPvoJy7hsV-x',
+    'swing1spreads': {
+        'description': 'MT M1 R1 Edge, OT M2 R2 Middle, Healers Middle',
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: 'Small safe area (edge), deep in corner',
+                imageUrl: './m7s/p2/alpha2-swing1-spreads.webp',
+        },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: `Large safe area (middle), close to boss on wall`,
+                imageUrl: './m7s/p2/alpha2-swing1-spreads.webp',
+        },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: 'Large safe area, far from boss, close to danger zone',
+                imageUrl: './m7s/p2/alpha2-swing1-spreads.webp',
+        },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: 'Large safe area, far from boss and danger zone',
+                imageUrl: './m7s/p2/alpha2-swing1-spreads.webp',
+        },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: 'Small safe area (edge), between tank and ranged',
+                imageUrl: './m7s/p2/alpha2-swing1-spreads.webp',
+        },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: 'Large safe area (middle), close to boss, close to cleave',
+                imageUrl: './m7s/p2/alpha2-swing1-spreads.webp',
+        },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: 'Small safe area (edge), far from boss',
+                imageUrl: './m7s/p2/alpha2-swing1-spreads.webp',
+        },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: 'Large safe area (middle), between tank and healers, far from cleave',
+                imageUrl: './m7s/p2/alpha2-swing1-spreads.webp',
+        },
+    },
+    'flares': {
+        'description': 'Flare in corner near boss, group away\nSwap if tank tether gets flare',
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: 'In corner near boss if you get flare\nProvoke and go to opposite side of boss hitbox if no flare',
+                imageUrl: './m7s/p2/alpha2-flares.webp',
+        },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: `In corner near boss if you get flare\nProvoke and go to opposite side of boss hitbox if no flare`,
+                imageUrl: './m7s/p2/alpha2-flares.webp',
+        },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: 'Away from boss',
+                imageUrl: './m7s/p2/alpha2-flares.webp',
+        },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: 'Away from boss',
+                imageUrl: './m7s/p2/alpha2-flares.webp',
+        },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: 'Away from boss',
+                imageUrl: './m7s/p2/alpha2-flares.webp',
+        },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: 'Away from boss',
+                imageUrl: './m7s/p2/alpha2-flares.webp',
+        },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: 'Away from boss',
+                imageUrl: './m7s/p2/alpha2-flares.webp',
+        },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: 'Away from boss',
+                imageUrl: './m7s/p2/alpha2-flares.webp',
+        },
+    },
+    'swing2spreads': {
+        'description': 'MT M1 R1 Edge, OT M2 R2 Middle, Healers Middle',
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: 'Small safe area (edge), deep in corner',
+                imageUrl: './m7s/p2/alpha2-swing2-spreads.webp',
+        },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: `Large safe area (middle), close to boss on wall`,
+                imageUrl: './m7s/p2/alpha2-swing2-spreads.webp',
+        },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: 'Large safe area, far from boss, close to danger zone',
+                imageUrl: './m7s/p2/alpha2-swing2-spreads.webp',
+        },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: 'Large safe area, far from boss and danger zone',
+                imageUrl: './m7s/p2/alpha2-swing2-spreads.webp',
+        },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: 'Small safe area (edge), between tank and ranged',
+                imageUrl: './m7s/p2/alpha2-swing2-spreads.webp',
+        },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: 'Large safe area (middle), close to boss, close to cleave',
+                imageUrl: './m7s/p2/alpha2-swing2-spreads.webp',
+        },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: 'Small safe area (edge), far from boss',
+                imageUrl: './m7s/p2/alpha2-swing2-spreads.webp',
+        },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: 'Large safe area (middle), between tank and healers, far from cleave',
+                imageUrl: './m7s/p2/alpha2-swing2-spreads.webp',
+        },
+    },
+    'strangeseedsbossnorth': {
+        'description': 'Alternate seed drops between green and red spots\nBlue spots are safe\nBoth Healers take tethers',
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-boss-north.webp',
+        },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: ``,
+                imageUrl: './m7s/p2/alpha2-seeds-boss-north.webp',
+        },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-boss-north.webp',
+        },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-boss-north.webp',
+        },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-boss-north.webp',
+        },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-boss-north.webp',
+        },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-boss-north.webp',
+        },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-boss-north.webp',
+        },
+    },
+    'strangeseedsnorthstacks': {
+        'description': 'Take stacks on green spots\nDodge to any red spot',
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-stacks.webp',
+        },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: ``,
+                imageUrl: './m7s/p2/alpha2-seeds-stacks.webp',
+        },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-stacks.webp',
+        },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-stacks.webp',
+        },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-stacks.webp',
+        },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-stacks.webp',
+        },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-stacks.webp',
+        },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-stacks.webp',
+        },
+    },
+    'strangeseedsbosssouth': {
+        'description': 'Alternate seed drops between green and red spots\nBlue spots are safe\nHealer take far tether, Tank take close tether',
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-setup.webp',
+        },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: ``,
+                imageUrl: './m7s/p2/alpha2-seeds-setup.webp',
+        },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-setup.webp',
+        },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-setup.webp',
+        },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-setup.webp',
+        },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-setup.webp',
+        },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-setup.webp',
+        },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-setup.webp',
+        },
+    },
+    'strangeseedssouthstacks': {
+        'description': 'Take stacks on green spots\nDodge to any red spot',
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-stacks.webp',
+        },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: ``,
+                imageUrl: './m7s/p2/alpha2-seeds-stacks.webp',
+        },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-stacks.webp',
+        },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-stacks.webp',
+        },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-stacks.webp',
+        },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-stacks.webp',
+        },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-stacks.webp',
+        },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-seeds-stacks.webp',
+        },
+    },
+    'swing3spreads': {
+        'description': 'MT M1 R1 Edge, OT M2 R2 Middle, Healers Middle',
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-swing3-spreads.webp',
+        },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: ``,
+                imageUrl: './m7s/p2/alpha2-swing3-spreads.webp',
+        },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-swing3-spreads.webp',
+        },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-swing3-spreads.webp',
+        },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-swing3-spreads.webp',
+        },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-swing3-spreads.webp',
+        },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-swing3-spreads.webp',
+        },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/alpha2-swing3-spreads.webp',
+        },
+    },
+}
+
 const zenithP2: Record<string, string | Record<string, string | PlayerMechStrat>> = {
     'url': 'https://raidplan.io/plan/2Y1HT42osFhYD6Pe',
     'swing1spreads': {
@@ -2103,520 +2515,6 @@ const zenithP2: Record<string, string | Record<string, string | PlayerMechStrat>
     },
 }
 
-const uptimeP2: Record<string, string | Record<string, string | PlayerMechStrat>> = {
-    'url': 'https://raidplan.io/plan/q_qH0crFmPZqrY4L',
-    'swing1spreads': {
-        'description': 'MT M1 R1 Edge, OT M2 R2 Middle, Healers Middle',
-        'MT': {
-                role: 'Tank',
-                party: 1,
-                description: 'Small safe area (edge), deep in corner',
-                imageUrl: './m7s/p2/toxic-swing1-spreads.webp',
-        },
-        'OT': {
-                role: 'Tank',
-                party: 2,
-                description: `Large safe area (middle), close to boss on wall`,
-                imageUrl: './m7s/p2/toxic-swing1-spreads.webp',
-        },
-        'H1': {
-                role: 'Healer',
-                party: 1,
-                description: 'Large safe area, far from boss, close to danger zone',
-                imageUrl: './m7s/p2/toxic-swing1-spreads.webp',
-        },
-        'H2': {
-                role: 'Healer',
-                party: 2,
-                description: 'Large safe area, far from boss and danger zone',
-                imageUrl: './m7s/p2/toxic-swing1-spreads.webp',
-        },
-        'M1': {
-                role: 'Melee',
-                party: 1,
-                description: 'Small safe area (edge), between tank and ranged',
-                imageUrl: './m7s/p2/toxic-swing1-spreads.webp',
-        },
-        'M2': {
-                role: 'Melee',
-                party: 2,
-                description: 'Large safe area (middle), close to boss, close to cleave',
-                imageUrl: './m7s/p2/toxic-swing1-spreads.webp',
-        },
-        'R1': {
-                role: 'Ranged',
-                party: 1,
-                description: 'Small safe area (edge), far from boss',
-                imageUrl: './m7s/p2/toxic-swing1-spreads.webp',
-        },
-        'R2': {
-                role: 'Ranged',
-                party: 2,
-                description: 'Large safe area (middle), between tank and healers, far from cleave',
-                imageUrl: './m7s/p2/toxic-swing1-spreads.webp',
-        },
-    },
-    'flares': {
-        'description': 'Group in corner near boss, tether away\nSwap if tank tether gets flare',
-        'MT': {
-                role: 'Tank',
-                party: 1,
-                description: 'Away from boss if you get flare\nProvoke and stay on boss if no flare',
-                imageUrl: './m7s/p2/toxic-flares.webp',
-        },
-        'OT': {
-                role: 'Tank',
-                party: 2,
-                description: `Away from boss if you get flare\nProvoke and stay on boss if no flare`,
-                imageUrl: './m7s/p2/toxic-flares.webp',
-        },
-        'H1': {
-                role: 'Healer',
-                party: 1,
-                description: 'Stack in corner near boss',
-                imageUrl: './m7s/p2/toxic-flares.webp',
-        },
-        'H2': {
-                role: 'Healer',
-                party: 2,
-                description: 'Stack in corner near boss',
-                imageUrl: './m7s/p2/toxic-flares.webp',
-        },
-        'M1': {
-                role: 'Melee',
-                party: 1,
-                description: 'Stack in corner near boss',
-                imageUrl: './m7s/p2/toxic-flares.webp',
-        },
-        'M2': {
-                role: 'Melee',
-                party: 2,
-                description: 'Stack in corner near boss',
-                imageUrl: './m7s/p2/toxic-flares.webp',
-        },
-        'R1': {
-                role: 'Ranged',
-                party: 1,
-                description: 'Stack in corner near boss',
-                imageUrl: './m7s/p2/toxic-flares.webp',
-        },
-        'R2': {
-                role: 'Ranged',
-                party: 2,
-                description: 'Stack in corner near boss',
-                imageUrl: './m7s/p2/toxic-flares.webp',
-        },
-    },
-    'swing2spreads': {
-        'description': 'MT M1 R1 Edge, OT M2 R2 Middle, Healers Middle',
-        'MT': {
-                role: 'Tank',
-                party: 1,
-                description: 'Small safe area (edge), deep in corner',
-                imageUrl: './m7s/p2/toxic-swing2-spreads.webp',
-        },
-        'OT': {
-                role: 'Tank',
-                party: 2,
-                description: `Large safe area (middle), close to boss on wall`,
-                imageUrl: './m7s/p2/toxic-swing2-spreads.webp',
-        },
-        'H1': {
-                role: 'Healer',
-                party: 1,
-                description: 'Large safe area, far from boss, close to danger zone',
-                imageUrl: './m7s/p2/toxic-swing2-spreads.webp',
-        },
-        'H2': {
-                role: 'Healer',
-                party: 2,
-                description: 'Large safe area, far from boss and danger zone',
-                imageUrl: './m7s/p2/toxic-swing2-spreads.webp',
-        },
-        'M1': {
-                role: 'Melee',
-                party: 1,
-                description: 'Small safe area (edge), between tank and ranged',
-                imageUrl: './m7s/p2/toxic-swing2-spreads.webp',
-        },
-        'M2': {
-                role: 'Melee',
-                party: 2,
-                description: 'Large safe area (middle), close to boss, close to cleave',
-                imageUrl: './m7s/p2/toxic-swing2-spreads.webp',
-        },
-        'R1': {
-                role: 'Ranged',
-                party: 1,
-                description: 'Small safe area (edge), far from boss',
-                imageUrl: './m7s/p2/toxic-swing2-spreads.webp',
-        },
-        'R2': {
-                role: 'Ranged',
-                party: 2,
-                description: 'Large safe area (middle), between tank and healers, far from cleave',
-                imageUrl: './m7s/p2/toxic-swing2-spreads.webp',
-        },
-    },
-    'strangeseedsbossnorth': {
-        'description': 'Alternate seed drops on Corner and next to/on inner rivets',
-        'MT': {
-                role: 'Tank',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-bossnorth.webp',
-        },
-        'OT': {
-                role: 'Tank',
-                party: 2,
-                description: ``,
-                imageUrl: './m7s/p2/toxic-seeds-bossnorth.webp',
-        },
-        'H1': {
-                role: 'Healer',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-bossnorth.webp',
-        },
-        'H2': {
-                role: 'Healer',
-                party: 2,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-bossnorth.webp',
-        },
-        'M1': {
-                role: 'Melee',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-bossnorth.webp',
-        },
-        'M2': {
-                role: 'Melee',
-                party: 2,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-bossnorth.webp',
-        },
-        'R1': {
-                role: 'Ranged',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-bossnorth.webp',
-        },
-        'R2': {
-                role: 'Ranged',
-                party: 2,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-bossnorth.webp',
-        },
-    },
-    'strangeseedsnorthtethers': {
-        'description': 'Caster short wall tether, Ranged long wall tether',
-        'MT': {
-                role: 'Tank',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-tethers-bossnorth.webp',
-        },
-        'OT': {
-                role: 'Tank',
-                party: 2,
-                description: ``,
-                imageUrl: './m7s/p2/toxic-seeds-tethers-bossnorth.webp',
-        },
-        'H1': {
-                role: 'Healer',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-tethers-bossnorth.webp',
-        },
-        'H2': {
-                role: 'Healer',
-                party: 2,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-tethers-bossnorth.webp',
-        },
-        'M1': {
-                role: 'Melee',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-tethers-bossnorth.webp',
-        },
-        'M2': {
-                role: 'Melee',
-                party: 2,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-tethers-bossnorth.webp',
-        },
-        'R1': {
-                role: 'Ranged',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-tethers-bossnorth.webp',
-        },
-        'R2': {
-                role: 'Ranged',
-                party: 2,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-tethers-bossnorth.webp',
-        },
-    },
-    'strangeseedsnorthstacks': {
-        'description': 'MT M1 left of boss, OT M2 right of boss, Healers + Ranged away from boss',
-        'MT': {
-                role: 'Tank',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-stacks-bossnorth.webp',
-        },
-        'OT': {
-                role: 'Tank',
-                party: 2,
-                description: ``,
-                imageUrl: './m7s/p2/toxic-seeds-stacks-bossnorth.webp',
-        },
-        'H1': {
-                role: 'Healer',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-stacks-bossnorth.webp',
-        },
-        'H2': {
-                role: 'Healer',
-                party: 2,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-stacks-bossnorth.webp',
-        },
-        'M1': {
-                role: 'Melee',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-stacks-bossnorth.webp',
-        },
-        'M2': {
-                role: 'Melee',
-                party: 2,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-stacks-bossnorth.webp',
-        },
-        'R1': {
-                role: 'Ranged',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-stacks-bossnorth.webp',
-        },
-        'R2': {
-                role: 'Ranged',
-                party: 2,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-stacks-bossnorth.webp',
-        },
-    },
-    'strangeseedsbosssouth': {
-        'description': 'Alternate seed drops on Corner and next to/on inner rivets',
-        'MT': {
-                role: 'Tank',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-bosssouth.webp',
-        },
-        'OT': {
-                role: 'Tank',
-                party: 2,
-                description: ``,
-                imageUrl: './m7s/p2/toxic-seeds-bosssouth.webp',
-        },
-        'H1': {
-                role: 'Healer',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-bosssouth.webp',
-        },
-        'H2': {
-                role: 'Healer',
-                party: 2,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-bosssouth.webp',
-        },
-        'M1': {
-                role: 'Melee',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-bosssouth.webp',
-        },
-        'M2': {
-                role: 'Melee',
-                party: 2,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-bosssouth.webp',
-        },
-        'R1': {
-                role: 'Ranged',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-bosssouth.webp',
-        },
-        'R2': {
-                role: 'Ranged',
-                party: 2,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-bosssouth.webp',
-        },
-    },
-    'strangeseedssouthtethers': {
-        'description': 'Caster short wall tether, Ranged long wall tether',
-        'MT': {
-                role: 'Tank',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-tethers-bosssouth.webp',
-        },
-        'OT': {
-                role: 'Tank',
-                party: 2,
-                description: ``,
-                imageUrl: './m7s/p2/toxic-seeds-tethers-bosssouth.webp',
-        },
-        'H1': {
-                role: 'Healer',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-tethers-bosssouth.webp',
-        },
-        'H2': {
-                role: 'Healer',
-                party: 2,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-tethers-bosssouth.webp',
-        },
-        'M1': {
-                role: 'Melee',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-tethers-bosssouth.webp',
-        },
-        'M2': {
-                role: 'Melee',
-                party: 2,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-tethers-bosssouth.webp',
-        },
-        'R1': {
-                role: 'Ranged',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-tethers-bosssouth.webp',
-        },
-        'R2': {
-                role: 'Ranged',
-                party: 2,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-tethers-bosssouth.webp',
-        },
-    },
-    'strangeseedssouthstacks': {
-        'description': 'MT M1 left of boss, OT M2 right of boss, Healers + Ranged away from boss',
-        'MT': {
-                role: 'Tank',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-stacks-bosssouth.webp',
-        },
-        'OT': {
-                role: 'Tank',
-                party: 2,
-                description: ``,
-                imageUrl: './m7s/p2/toxic-seeds-stacks-bosssouth.webp',
-        },
-        'H1': {
-                role: 'Healer',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-stacks-bosssouth.webp',
-        },
-        'H2': {
-                role: 'Healer',
-                party: 2,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-stacks-bosssouth.webp',
-        },
-        'M1': {
-                role: 'Melee',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-stacks-bosssouth.webp',
-        },
-        'M2': {
-                role: 'Melee',
-                party: 2,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-stacks-bosssouth.webp',
-        },
-        'R1': {
-                role: 'Ranged',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-stacks-bosssouth.webp',
-        },
-        'R2': {
-                role: 'Ranged',
-                party: 2,
-                description: '',
-                imageUrl: './m7s/p2/toxic-seeds-stacks-bosssouth.webp',
-        },
-    },
-    'swing3spreads': {
-        'description': 'MT M1 R1 Edge, OT M2 R2 Middle, Healers Middle',
-        'MT': {
-                role: 'Tank',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-swing3.webp',
-        },
-        'OT': {
-                role: 'Tank',
-                party: 2,
-                description: ``,
-                imageUrl: './m7s/p2/toxic-swing3.webp',
-        },
-        'H1': {
-                role: 'Healer',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-swing3.webp',
-        },
-        'H2': {
-                role: 'Healer',
-                party: 2,
-                description: '',
-                imageUrl: './m7s/p2/toxic-swing3.webp',
-        },
-        'M1': {
-                role: 'Melee',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-swing3.webp',
-        },
-        'M2': {
-                role: 'Melee',
-                party: 2,
-                description: '',
-                imageUrl: './m7s/p2/toxic-swing3.webp',
-        },
-        'R1': {
-                role: 'Ranged',
-                party: 1,
-                description: '',
-                imageUrl: './m7s/p2/toxic-swing3.webp',
-        },
-        'R2': {
-                role: 'Ranged',
-                party: 2,
-                description: '',
-                imageUrl: './m7s/p2/toxic-swing3.webp',
-        },
-    },
-}
-
 const allP2: PhaseStrats[] = [
     {
         phaseName: 'Brutish Swing 1',
@@ -2626,7 +2524,7 @@ const allP2: PhaseStrats[] = [
             bili: biliP2['swing1spreads']['description'] as string,
             alpha: alphaP2['swing1spreads']['description'] as string,
             zenith: zenithP2['swing1spreads']['description'] as string,
-            uptime: uptimeP2['swing1spreads']['description'] as string,
+            alpha2: alpha2P2['swing1spreads']['description'] as string,
         },
         mechs: [
             {
@@ -2640,14 +2538,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['swing1spreads']['MT']['description'] as string,
                             alpha: alphaP2['swing1spreads']['MT']['description'] as string,
                             zenith: zenithP2['swing1spreads']['MT']['description'] as string,
-                            uptime: uptimeP2['swing1spreads']['MT']['description'] as string,
+                            alpha2: alpha2P2['swing1spreads']['MT']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['swing1spreads']['MT']['imageUrl'] as string,
                             bili: biliP2['swing1spreads']['MT']['imageUrl'] as string,
                             alpha: alphaP2['swing1spreads']['MT']['imageUrl'] as string,
                             zenith: zenithP2['swing1spreads']['MT']['imageUrl'] as string,
-                            uptime: uptimeP2['swing1spreads']['MT']['imageUrl'] as string,
+                            alpha2: alpha2P2['swing1spreads']['MT']['imageUrl'] as string,
                         }
                     },
                     {
@@ -2658,14 +2556,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['swing1spreads']['OT']['description'] as string,
                             alpha: alphaP2['swing1spreads']['OT']['description'] as string,
                             zenith: zenithP2['swing1spreads']['OT']['description'] as string,
-                            uptime: uptimeP2['swing1spreads']['OT']['description'] as string,
+                            alpha2: alpha2P2['swing1spreads']['OT']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['swing1spreads']['OT']['imageUrl'] as string,
                             bili: biliP2['swing1spreads']['OT']['imageUrl'] as string,
                             alpha: alphaP2['swing1spreads']['OT']['imageUrl'] as string,
                             zenith: zenithP2['swing1spreads']['OT']['imageUrl'] as string,
-                            uptime: uptimeP2['swing1spreads']['OT']['imageUrl'] as string,
+                            alpha2: alpha2P2['swing1spreads']['OT']['imageUrl'] as string,
                         }
                     },
                     {
@@ -2676,14 +2574,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['swing1spreads']['H1']['description'] as string,
                             alpha: alphaP2['swing1spreads']['H1']['description'] as string,
                             zenith: zenithP2['swing1spreads']['H1']['description'] as string,
-                            uptime: uptimeP2['swing1spreads']['H1']['description'] as string,
+                            alpha2: alpha2P2['swing1spreads']['H1']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['swing1spreads']['H1']['imageUrl'] as string,
                             bili: biliP2['swing1spreads']['H1']['imageUrl'] as string,
                             alpha: alphaP2['swing1spreads']['H1']['imageUrl'] as string,
                             zenith: zenithP2['swing1spreads']['H1']['imageUrl'] as string,
-                            uptime: uptimeP2['swing1spreads']['H1']['imageUrl'] as string,
+                            alpha2: alpha2P2['swing1spreads']['H1']['imageUrl'] as string,
                         }
                     },
                     {
@@ -2694,14 +2592,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['swing1spreads']['H2']['description'] as string,
                             alpha: alphaP2['swing1spreads']['H2']['description'] as string,
                             zenith: zenithP2['swing1spreads']['H2']['description'] as string,
-                            uptime: uptimeP2['swing1spreads']['H2']['description'] as string,
+                            alpha2: alpha2P2['swing1spreads']['H2']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['swing1spreads']['H2']['imageUrl'] as string,
                             bili: biliP2['swing1spreads']['H2']['imageUrl'] as string,
                             alpha: alphaP2['swing1spreads']['H2']['imageUrl'] as string,
                             zenith: zenithP2['swing1spreads']['H2']['imageUrl'] as string,
-                            uptime: uptimeP2['swing1spreads']['H2']['imageUrl'] as string,
+                            alpha2: alpha2P2['swing1spreads']['H2']['imageUrl'] as string,
                         }
                     },
                     {
@@ -2712,14 +2610,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['swing1spreads']['M1']['description'] as string,
                             alpha: alphaP2['swing1spreads']['M1']['description'] as string,
                             zenith: zenithP2['swing1spreads']['M1']['description'] as string,
-                            uptime: uptimeP2['swing1spreads']['M1']['description'] as string,
+                            alpha2: alpha2P2['swing1spreads']['M1']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['swing1spreads']['M1']['imageUrl'] as string,
                             bili: biliP2['swing1spreads']['M1']['imageUrl'] as string,
                             alpha: alphaP2['swing1spreads']['M1']['imageUrl'] as string,
                             zenith: zenithP2['swing1spreads']['M1']['imageUrl'] as string,
-                            uptime: uptimeP2['swing1spreads']['M1']['imageUrl'] as string,
+                            alpha2: alpha2P2['swing1spreads']['M1']['imageUrl'] as string,
                         }
                     },
                     {
@@ -2730,14 +2628,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['swing1spreads']['M2']['description'] as string,
                             alpha: alphaP2['swing1spreads']['M2']['description'] as string,
                             zenith: zenithP2['swing1spreads']['M2']['description'] as string,
-                            uptime: uptimeP2['swing1spreads']['M2']['description'] as string,
+                            alpha2: alpha2P2['swing1spreads']['M2']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['swing1spreads']['M2']['imageUrl'] as string,
                             bili: biliP2['swing1spreads']['M2']['imageUrl'] as string,
                             alpha: alphaP2['swing1spreads']['M2']['imageUrl'] as string,
                             zenith: zenithP2['swing1spreads']['M2']['imageUrl'] as string,
-                            uptime: uptimeP2['swing1spreads']['M2']['imageUrl'] as string,
+                            alpha2: alpha2P2['swing1spreads']['M2']['imageUrl'] as string,
                         }
                     },
                     {
@@ -2748,14 +2646,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['swing1spreads']['R1']['description'] as string,
                             alpha: alphaP2['swing1spreads']['R1']['description'] as string,
                             zenith: zenithP2['swing1spreads']['R1']['description'] as string,
-                            uptime: uptimeP2['swing1spreads']['R1']['description'] as string,
+                            alpha2: alpha2P2['swing1spreads']['R1']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['swing1spreads']['R1']['imageUrl'] as string,
                             bili: biliP2['swing1spreads']['R1']['imageUrl'] as string,
                             alpha: alphaP2['swing1spreads']['R1']['imageUrl'] as string,
                             zenith: zenithP2['swing1spreads']['R1']['imageUrl'] as string,
-                            uptime: uptimeP2['swing1spreads']['R1']['imageUrl'] as string,
+                            alpha2: alpha2P2['swing1spreads']['R1']['imageUrl'] as string,
                         }
                     },
                     {
@@ -2766,14 +2664,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['swing1spreads']['R2']['description'] as string,
                             alpha: alphaP2['swing1spreads']['R2']['description'] as string,
                             zenith: zenithP2['swing1spreads']['R2']['description'] as string,
-                            uptime: uptimeP2['swing1spreads']['R2']['description'] as string,
+                            alpha2: alpha2P2['swing1spreads']['R2']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['swing1spreads']['R2']['imageUrl'] as string,
                             bili: biliP2['swing1spreads']['R2']['imageUrl'] as string,
                             alpha: alphaP2['swing1spreads']['R2']['imageUrl'] as string,
                             zenith: zenithP2['swing1spreads']['R2']['imageUrl'] as string,
-                            uptime: uptimeP2['swing1spreads']['R2']['imageUrl'] as string,
+                            alpha2: alpha2P2['swing1spreads']['R2']['imageUrl'] as string,
                         }
                     },
                 ]
@@ -2788,7 +2686,7 @@ const allP2: PhaseStrats[] = [
             bili: biliP2['flares']['description'] as string,
             alpha: alphaP2['flares']['description'] as string,
             zenith: zenithP2['flares']['description'] as string,
-            uptime: uptimeP2['flares']['description'] as string,
+            alpha2: alpha2P2['flares']['description'] as string,
         },
         mechs: [
             {
@@ -2802,14 +2700,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['flares']['MT']['description'] as string,
                             alpha: alphaP2['flares']['MT']['description'] as string,
                             zenith: zenithP2['flares']['MT']['description'] as string,
-                            uptime: uptimeP2['flares']['MT']['description'] as string,
+                            alpha2: alpha2P2['flares']['MT']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['flares']['MT']['imageUrl'] as string,
                             bili: biliP2['flares']['MT']['imageUrl'] as string,
                             alpha: alphaP2['flares']['MT']['imageUrl'] as string,
                             zenith: zenithP2['flares']['MT']['imageUrl'] as string,
-                            uptime: uptimeP2['flares']['MT']['imageUrl'] as string,
+                            alpha2: alpha2P2['flares']['MT']['imageUrl'] as string,
                         }
                     },
                     {
@@ -2820,14 +2718,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['flares']['OT']['description'] as string,
                             alpha: alphaP2['flares']['OT']['description'] as string,
                             zenith: zenithP2['flares']['OT']['description'] as string,
-                            uptime: uptimeP2['flares']['OT']['description'] as string,
+                            alpha2: alpha2P2['flares']['OT']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['flares']['OT']['imageUrl'] as string,
                             bili: biliP2['flares']['OT']['imageUrl'] as string,
                             alpha: alphaP2['flares']['OT']['imageUrl'] as string,
                             zenith: zenithP2['flares']['OT']['imageUrl'] as string,
-                            uptime: uptimeP2['flares']['OT']['imageUrl'] as string,
+                            alpha2: alpha2P2['flares']['OT']['imageUrl'] as string,
                         }
                     },
                     {
@@ -2838,14 +2736,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['flares']['H1']['description'] as string,
                             alpha: alphaP2['flares']['H1']['description'] as string,
                             zenith: zenithP2['flares']['H1']['description'] as string,
-                            uptime: uptimeP2['flares']['H1']['description'] as string,
+                            alpha2: alpha2P2['flares']['H1']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['flares']['H1']['imageUrl'] as string,
                             bili: biliP2['flares']['H1']['imageUrl'] as string,
                             alpha: alphaP2['flares']['H1']['imageUrl'] as string,
                             zenith: zenithP2['flares']['H1']['imageUrl'] as string,
-                            uptime: uptimeP2['flares']['H1']['imageUrl'] as string,
+                            alpha2: alpha2P2['flares']['H1']['imageUrl'] as string,
                         }
                     },
                     {
@@ -2856,14 +2754,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['flares']['H2']['description'] as string,
                             alpha: alphaP2['flares']['H2']['description'] as string,
                             zenith: zenithP2['flares']['H2']['description'] as string,
-                            uptime: uptimeP2['flares']['H2']['description'] as string,
+                            alpha2: alpha2P2['flares']['H2']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['flares']['H2']['imageUrl'] as string,
                             bili: biliP2['flares']['H2']['imageUrl'] as string,
                             alpha: alphaP2['flares']['H2']['imageUrl'] as string,
                             zenith: zenithP2['flares']['H2']['imageUrl'] as string,
-                            uptime: uptimeP2['flares']['H2']['imageUrl'] as string,
+                            alpha2: alpha2P2['flares']['H2']['imageUrl'] as string,
                         }
                     },
                     {
@@ -2874,14 +2772,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['flares']['M1']['description'] as string,
                             alpha: alphaP2['flares']['M1']['description'] as string,
                             zenith: zenithP2['flares']['M1']['description'] as string,
-                            uptime: uptimeP2['flares']['M1']['description'] as string,
+                            alpha2: alpha2P2['flares']['M1']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['flares']['M1']['imageUrl'] as string,
                             bili: biliP2['flares']['M1']['imageUrl'] as string,
                             alpha: alphaP2['flares']['M1']['imageUrl'] as string,
                             zenith: zenithP2['flares']['M1']['imageUrl'] as string,
-                            uptime: uptimeP2['flares']['M1']['imageUrl'] as string,
+                            alpha2: alpha2P2['flares']['M1']['imageUrl'] as string,
                         }
                     },
                     {
@@ -2892,14 +2790,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['flares']['M2']['description'] as string,
                             alpha: alphaP2['flares']['M2']['description'] as string,
                             zenith: zenithP2['flares']['M2']['description'] as string,
-                            uptime: uptimeP2['flares']['M2']['description'] as string,
+                            alpha2: alpha2P2['flares']['M2']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['flares']['M2']['imageUrl'] as string,
                             bili: biliP2['flares']['M2']['imageUrl'] as string,
                             alpha: alphaP2['flares']['M2']['imageUrl'] as string,
                             zenith: zenithP2['flares']['M2']['imageUrl'] as string,
-                            uptime: uptimeP2['flares']['M2']['imageUrl'] as string,
+                            alpha2: alpha2P2['flares']['M2']['imageUrl'] as string,
                         }
                     },
                     {
@@ -2910,14 +2808,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['flares']['R1']['description'] as string,
                             alpha: alphaP2['flares']['R1']['description'] as string,
                             zenith: zenithP2['flares']['R1']['description'] as string,
-                            uptime: uptimeP2['flares']['R1']['description'] as string,
+                            alpha2: alpha2P2['flares']['R1']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['flares']['R1']['imageUrl'] as string,
                             bili: biliP2['flares']['R1']['imageUrl'] as string,
                             alpha: alphaP2['flares']['R1']['imageUrl'] as string,
                             zenith: zenithP2['flares']['R1']['imageUrl'] as string,
-                            uptime: uptimeP2['flares']['R1']['imageUrl'] as string,
+                            alpha2: alpha2P2['flares']['R1']['imageUrl'] as string,
                         }
                     },
                     {
@@ -2928,14 +2826,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['flares']['R2']['description'] as string,
                             alpha: alphaP2['flares']['R2']['description'] as string,
                             zenith: zenithP2['flares']['R2']['description'] as string,
-                            uptime: uptimeP2['flares']['R2']['description'] as string,
+                            alpha2: alpha2P2['flares']['R2']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['flares']['R2']['imageUrl'] as string,
                             bili: biliP2['flares']['R2']['imageUrl'] as string,
                             alpha: alphaP2['flares']['R2']['imageUrl'] as string,
                             zenith: zenithP2['flares']['R2']['imageUrl'] as string,
-                            uptime: uptimeP2['flares']['R2']['imageUrl'] as string,
+                            alpha2: alpha2P2['flares']['R2']['imageUrl'] as string,
                         }
                     },
                 ]
@@ -2950,7 +2848,7 @@ const allP2: PhaseStrats[] = [
             bili: biliP2['swing2spreads']['description'] as string,
             alpha: alphaP2['swing2spreads']['description'] as string,
             zenith: zenithP2['swing2spreads']['description'] as string,
-            uptime: uptimeP2['swing2spreads']['description'] as string,
+            alpha2: alpha2P2['swing2spreads']['description'] as string,
         },
         mechs: [
             {
@@ -2964,14 +2862,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['swing2spreads']['MT']['description'] as string,
                             alpha: alphaP2['swing2spreads']['MT']['description'] as string,
                             zenith: zenithP2['swing2spreads']['MT']['description'] as string,
-                            uptime: uptimeP2['swing2spreads']['MT']['description'] as string,
+                            alpha2: alpha2P2['swing2spreads']['MT']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['swing2spreads']['MT']['imageUrl'] as string,
                             bili: biliP2['swing2spreads']['MT']['imageUrl'] as string,
                             alpha: alphaP2['swing2spreads']['MT']['imageUrl'] as string,
                             zenith: zenithP2['swing2spreads']['MT']['imageUrl'] as string,
-                            uptime: uptimeP2['swing2spreads']['MT']['imageUrl'] as string,
+                            alpha2: alpha2P2['swing2spreads']['MT']['imageUrl'] as string,
                         }
                     },
                     {
@@ -2982,14 +2880,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['swing2spreads']['OT']['description'] as string,
                             alpha: alphaP2['swing2spreads']['OT']['description'] as string,
                             zenith: zenithP2['swing2spreads']['OT']['description'] as string,
-                            uptime: uptimeP2['swing2spreads']['OT']['description'] as string,
+                            alpha2: alpha2P2['swing2spreads']['OT']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['swing2spreads']['OT']['imageUrl'] as string,
                             bili: biliP2['swing2spreads']['OT']['imageUrl'] as string,
                             alpha: alphaP2['swing2spreads']['OT']['imageUrl'] as string,
                             zenith: zenithP2['swing2spreads']['OT']['imageUrl'] as string,
-                            uptime: uptimeP2['swing2spreads']['OT']['imageUrl'] as string,
+                            alpha2: alpha2P2['swing2spreads']['OT']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3000,14 +2898,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['swing2spreads']['H1']['description'] as string,
                             alpha: alphaP2['swing2spreads']['H1']['description'] as string,
                             zenith: zenithP2['swing2spreads']['H1']['description'] as string,
-                            uptime: uptimeP2['swing2spreads']['H1']['description'] as string,
+                            alpha2: alpha2P2['swing2spreads']['H1']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['swing2spreads']['H1']['imageUrl'] as string,
                             bili: biliP2['swing2spreads']['H1']['imageUrl'] as string,
                             alpha: alphaP2['swing2spreads']['H1']['imageUrl'] as string,
                             zenith: zenithP2['swing2spreads']['H1']['imageUrl'] as string,
-                            uptime: uptimeP2['swing2spreads']['H1']['imageUrl'] as string,
+                            alpha2: alpha2P2['swing2spreads']['H1']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3018,14 +2916,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['swing2spreads']['H2']['description'] as string,
                             alpha: alphaP2['swing2spreads']['H2']['description'] as string,
                             zenith: zenithP2['swing2spreads']['H2']['description'] as string,
-                            uptime: uptimeP2['swing2spreads']['H2']['description'] as string,
+                            alpha2: alpha2P2['swing2spreads']['H2']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['swing2spreads']['H2']['imageUrl'] as string,
                             bili: biliP2['swing2spreads']['H2']['imageUrl'] as string,
                             alpha: alphaP2['swing2spreads']['H2']['imageUrl'] as string,
                             zenith: zenithP2['swing2spreads']['H2']['imageUrl'] as string,
-                            uptime: uptimeP2['swing2spreads']['H2']['imageUrl'] as string,
+                            alpha2: alpha2P2['swing2spreads']['H2']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3036,14 +2934,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['swing2spreads']['M1']['description'] as string,
                             alpha: alphaP2['swing2spreads']['M1']['description'] as string,
                             zenith: zenithP2['swing2spreads']['M1']['description'] as string,
-                            uptime: uptimeP2['swing2spreads']['M1']['description'] as string,
+                            alpha2: alpha2P2['swing2spreads']['M1']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['swing2spreads']['M1']['imageUrl'] as string,
                             bili: biliP2['swing2spreads']['M1']['imageUrl'] as string,
                             alpha: alphaP2['swing2spreads']['M1']['imageUrl'] as string,
                             zenith: zenithP2['swing2spreads']['M1']['imageUrl'] as string,
-                            uptime: uptimeP2['swing2spreads']['M1']['imageUrl'] as string,
+                            alpha2: alpha2P2['swing2spreads']['M1']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3054,14 +2952,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['swing2spreads']['M2']['description'] as string,
                             alpha: alphaP2['swing2spreads']['M2']['description'] as string,
                             zenith: zenithP2['swing2spreads']['M2']['description'] as string,
-                            uptime: uptimeP2['swing2spreads']['M2']['description'] as string,
+                            alpha2: alpha2P2['swing2spreads']['M2']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['swing2spreads']['M2']['imageUrl'] as string,
                             bili: biliP2['swing2spreads']['M2']['imageUrl'] as string,
                             alpha: alphaP2['swing2spreads']['M2']['imageUrl'] as string,
                             zenith: zenithP2['swing2spreads']['M2']['imageUrl'] as string,
-                            uptime: uptimeP2['swing2spreads']['M2']['imageUrl'] as string,
+                            alpha2: alpha2P2['swing2spreads']['M2']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3072,14 +2970,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['swing2spreads']['R1']['description'] as string,
                             alpha: alphaP2['swing2spreads']['R1']['description'] as string,
                             zenith: zenithP2['swing2spreads']['R1']['description'] as string,
-                            uptime: uptimeP2['swing2spreads']['R1']['description'] as string,
+                            alpha2: alpha2P2['swing2spreads']['R1']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['swing2spreads']['R1']['imageUrl'] as string,
                             bili: biliP2['swing2spreads']['R1']['imageUrl'] as string,
                             alpha: alphaP2['swing2spreads']['R1']['imageUrl'] as string,
                             zenith: zenithP2['swing2spreads']['R1']['imageUrl'] as string,
-                            uptime: uptimeP2['swing2spreads']['R1']['imageUrl'] as string,
+                            alpha2: alpha2P2['swing2spreads']['R1']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3090,14 +2988,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['swing2spreads']['R2']['description'] as string,
                             alpha: alphaP2['swing2spreads']['R2']['description'] as string,
                             zenith: zenithP2['swing2spreads']['R2']['description'] as string,
-                            uptime: uptimeP2['swing2spreads']['R2']['description'] as string,
+                            alpha2: alpha2P2['swing2spreads']['R2']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['swing2spreads']['R2']['imageUrl'] as string,
                             bili: biliP2['swing2spreads']['R2']['imageUrl'] as string,
                             alpha: alphaP2['swing2spreads']['R2']['imageUrl'] as string,
                             zenith: zenithP2['swing2spreads']['R2']['imageUrl'] as string,
-                            uptime: uptimeP2['swing2spreads']['R2']['imageUrl'] as string,
+                            alpha2: alpha2P2['swing2spreads']['R2']['imageUrl'] as string,
                         }
                     },
                 ]
@@ -3112,11 +3010,11 @@ const allP2: PhaseStrats[] = [
             bili: biliP2['strangeseedsbosssouth']['description'] as string,
             alpha: alphaP2['strangeseedsbosssouth']['description'] as string,
             zenith: zenithP2['strangeseedsbosssouth']['description'] as string,
-            uptime: uptimeP2['strangeseedsbosssouth']['description'] as string,
+            alpha2: alpha2P2['strangeseedsbosssouth']['description'] as string,
         },
         mechs: [
             {
-                mechanic: 'Seeds',
+                mechanic: 'Seeds + Tethers',
                 strats: [
                     {
                         role: 'Tank',
@@ -3126,14 +3024,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedsbosssouth']['MT']['description'] as string,
                             alpha: alphaP2['strangeseedsbosssouth']['MT']['description'] as string,
                             zenith: zenithP2['strangeseedsbosssouth']['MT']['description'] as string,
-                            uptime: uptimeP2['strangeseedsbosssouth']['MT']['description'] as string,
+                            alpha2: alpha2P2['strangeseedsbosssouth']['MT']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedsbosssouth']['MT']['imageUrl'] as string,
                             bili: biliP2['strangeseedsbosssouth']['MT']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedsbosssouth']['MT']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedsbosssouth']['MT']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsbosssouth']['MT']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedsbosssouth']['MT']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3144,14 +3042,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedsbosssouth']['OT']['description'] as string,
                             alpha: alphaP2['strangeseedsbosssouth']['OT']['description'] as string,
                             zenith: zenithP2['strangeseedsbosssouth']['OT']['description'] as string,
-                            uptime: uptimeP2['strangeseedsbosssouth']['OT']['description'] as string,
+                            alpha2: alpha2P2['strangeseedsbosssouth']['OT']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedsbosssouth']['OT']['imageUrl'] as string,
                             bili: biliP2['strangeseedsbosssouth']['OT']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedsbosssouth']['OT']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedsbosssouth']['OT']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsbosssouth']['OT']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedsbosssouth']['OT']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3162,14 +3060,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedsbosssouth']['H1']['description'] as string,
                             alpha: alphaP2['strangeseedsbosssouth']['H1']['description'] as string,
                             zenith: zenithP2['strangeseedsbosssouth']['H1']['description'] as string,
-                            uptime: uptimeP2['strangeseedsbosssouth']['H1']['description'] as string,
+                            alpha2: alpha2P2['strangeseedsbosssouth']['H1']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedsbosssouth']['H1']['imageUrl'] as string,
                             bili: biliP2['strangeseedsbosssouth']['H1']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedsbosssouth']['H1']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedsbosssouth']['H1']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsbosssouth']['H1']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedsbosssouth']['H1']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3180,14 +3078,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedsbosssouth']['H2']['description'] as string,
                             alpha: alphaP2['strangeseedsbosssouth']['H2']['description'] as string,
                             zenith: zenithP2['strangeseedsbosssouth']['H2']['description'] as string,
-                            uptime: uptimeP2['strangeseedsbosssouth']['H2']['description'] as string,
+                            alpha2: alpha2P2['strangeseedsbosssouth']['H2']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedsbosssouth']['H2']['imageUrl'] as string,
                             bili: biliP2['strangeseedsbosssouth']['H2']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedsbosssouth']['H2']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedsbosssouth']['H2']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsbosssouth']['H2']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedsbosssouth']['H2']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3198,14 +3096,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedsbosssouth']['M1']['description'] as string,
                             alpha: alphaP2['strangeseedsbosssouth']['M1']['description'] as string,
                             zenith: zenithP2['strangeseedsbosssouth']['M1']['description'] as string,
-                            uptime: uptimeP2['strangeseedsbosssouth']['M1']['description'] as string,
+                            alpha2: alpha2P2['strangeseedsbosssouth']['M1']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedsbosssouth']['M1']['imageUrl'] as string,
                             bili: biliP2['strangeseedsbosssouth']['M1']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedsbosssouth']['M1']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedsbosssouth']['M1']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsbosssouth']['M1']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedsbosssouth']['M1']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3216,14 +3114,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedsbosssouth']['M2']['description'] as string,
                             alpha: alphaP2['strangeseedsbosssouth']['M2']['description'] as string,
                             zenith: zenithP2['strangeseedsbosssouth']['M2']['description'] as string,
-                            uptime: uptimeP2['strangeseedsbosssouth']['M2']['description'] as string,
+                            alpha2: alpha2P2['strangeseedsbosssouth']['M2']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedsbosssouth']['M2']['imageUrl'] as string,
                             bili: biliP2['strangeseedsbosssouth']['M2']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedsbosssouth']['M2']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedsbosssouth']['M2']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsbosssouth']['M2']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedsbosssouth']['M2']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3234,14 +3132,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedsbosssouth']['R1']['description'] as string,
                             alpha: alphaP2['strangeseedsbosssouth']['R1']['description'] as string,
                             zenith: zenithP2['strangeseedsbosssouth']['R1']['description'] as string,
-                            uptime: uptimeP2['strangeseedsbosssouth']['R1']['description'] as string,
+                            alpha2: alpha2P2['strangeseedsbosssouth']['R1']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedsbosssouth']['R1']['imageUrl'] as string,
                             bili: biliP2['strangeseedsbosssouth']['R1']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedsbosssouth']['R1']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedsbosssouth']['R1']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsbosssouth']['R1']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedsbosssouth']['R1']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3252,163 +3150,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedsbosssouth']['R2']['description'] as string,
                             alpha: alphaP2['strangeseedsbosssouth']['R2']['description'] as string,
                             zenith: zenithP2['strangeseedsbosssouth']['R2']['description'] as string,
-                            uptime: uptimeP2['strangeseedsbosssouth']['R2']['description'] as string,
+                            alpha2: alpha2P2['strangeseedsbosssouth']['R2']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedsbosssouth']['R2']['imageUrl'] as string,
                             bili: biliP2['strangeseedsbosssouth']['R2']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedsbosssouth']['R2']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedsbosssouth']['R2']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsbosssouth']['R2']['imageUrl'] as string,
-                        }
-                    },
-                ]
-            },
-            {
-                mechanic: 'Tethers',
-                strats: [
-                    {
-                        role: 'Tank',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['strangeseedssouthtethers']['MT']['description'] as string,
-                            bili: biliP2['strangeseedssouthtethers']['MT']['description'] as string,
-                            alpha: alphaP2['strangeseedssouthtethers']['MT']['description'] as string,
-                            zenith: zenithP2['strangeseedssouthtethers']['MT']['description'] as string,
-                            uptime: uptimeP2['strangeseedssouthtethers']['MT']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedssouthtethers']['MT']['imageUrl'] as string,
-                            bili: biliP2['strangeseedssouthtethers']['MT']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedssouthtethers']['MT']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedssouthtethers']['MT']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedssouthtethers']['MT']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Tank',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['strangeseedssouthtethers']['OT']['description'] as string,
-                            bili: biliP2['strangeseedssouthtethers']['OT']['description'] as string,
-                            alpha: alphaP2['strangeseedssouthtethers']['OT']['description'] as string,
-                            zenith: zenithP2['strangeseedssouthtethers']['OT']['description'] as string,
-                            uptime: uptimeP2['strangeseedssouthtethers']['OT']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedssouthtethers']['OT']['imageUrl'] as string,
-                            bili: biliP2['strangeseedssouthtethers']['OT']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedssouthtethers']['OT']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedssouthtethers']['OT']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedssouthtethers']['OT']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Healer',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['strangeseedssouthtethers']['H1']['description'] as string,
-                            bili: biliP2['strangeseedssouthtethers']['H1']['description'] as string,
-                            alpha: alphaP2['strangeseedssouthtethers']['H1']['description'] as string,
-                            zenith: zenithP2['strangeseedssouthtethers']['H1']['description'] as string,
-                            uptime: uptimeP2['strangeseedssouthtethers']['H1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedssouthtethers']['H1']['imageUrl'] as string,
-                            bili: biliP2['strangeseedssouthtethers']['H1']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedssouthtethers']['H1']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedssouthtethers']['H1']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedssouthtethers']['H1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Healer',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['strangeseedssouthtethers']['H2']['description'] as string,
-                            bili: biliP2['strangeseedssouthtethers']['H2']['description'] as string,
-                            alpha: alphaP2['strangeseedssouthtethers']['H2']['description'] as string,
-                            zenith: zenithP2['strangeseedssouthtethers']['H2']['description'] as string,
-                            uptime: uptimeP2['strangeseedssouthtethers']['H2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedssouthtethers']['H2']['imageUrl'] as string,
-                            bili: biliP2['strangeseedssouthtethers']['H2']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedssouthtethers']['H2']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedssouthtethers']['H2']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedssouthtethers']['H2']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Melee',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['strangeseedssouthtethers']['M1']['description'] as string,
-                            bili: biliP2['strangeseedssouthtethers']['M1']['description'] as string,
-                            alpha: alphaP2['strangeseedssouthtethers']['M1']['description'] as string,
-                            zenith: zenithP2['strangeseedssouthtethers']['M1']['description'] as string,
-                            uptime: uptimeP2['strangeseedssouthtethers']['M1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedssouthtethers']['M1']['imageUrl'] as string,
-                            bili: biliP2['strangeseedssouthtethers']['M1']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedssouthtethers']['M1']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedssouthtethers']['M1']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedssouthtethers']['M1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Melee',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['strangeseedssouthtethers']['M2']['description'] as string,
-                            bili: biliP2['strangeseedssouthtethers']['M2']['description'] as string,
-                            alpha: alphaP2['strangeseedssouthtethers']['M2']['description'] as string,
-                            zenith: zenithP2['strangeseedssouthtethers']['M2']['description'] as string,
-                            uptime: uptimeP2['strangeseedssouthtethers']['M2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedssouthtethers']['M2']['imageUrl'] as string,
-                            bili: biliP2['strangeseedssouthtethers']['M2']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedssouthtethers']['M2']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedssouthtethers']['M2']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedssouthtethers']['M2']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['strangeseedssouthtethers']['R1']['description'] as string,
-                            bili: biliP2['strangeseedssouthtethers']['R1']['description'] as string,
-                            alpha: alphaP2['strangeseedssouthtethers']['R1']['description'] as string,
-                            zenith: zenithP2['strangeseedssouthtethers']['R1']['description'] as string,
-                            uptime: uptimeP2['strangeseedssouthtethers']['R1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedssouthtethers']['R1']['imageUrl'] as string,
-                            bili: biliP2['strangeseedssouthtethers']['R1']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedssouthtethers']['R1']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedssouthtethers']['R1']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedssouthtethers']['R1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['strangeseedssouthtethers']['R2']['description'] as string,
-                            bili: biliP2['strangeseedssouthtethers']['R2']['description'] as string,
-                            alpha: alphaP2['strangeseedssouthtethers']['R2']['description'] as string,
-                            zenith: zenithP2['strangeseedssouthtethers']['R2']['description'] as string,
-                            uptime: uptimeP2['strangeseedssouthtethers']['R2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedssouthtethers']['R2']['imageUrl'] as string,
-                            bili: biliP2['strangeseedssouthtethers']['R2']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedssouthtethers']['R2']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedssouthtethers']['R2']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedssouthtethers']['R2']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedsbosssouth']['R2']['imageUrl'] as string,
                         }
                     },
                 ]
@@ -3424,14 +3173,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedssouthstacks']['MT']['description'] as string,
                             alpha: alphaP2['strangeseedssouthstacks']['MT']['description'] as string,
                             zenith: zenithP2['strangeseedssouthstacks']['MT']['description'] as string,
-                            uptime: uptimeP2['strangeseedssouthstacks']['MT']['description'] as string,
+                            alpha2: alpha2P2['strangeseedssouthstacks']['MT']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedssouthstacks']['MT']['imageUrl'] as string,
                             bili: biliP2['strangeseedssouthstacks']['MT']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedssouthstacks']['MT']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedssouthstacks']['MT']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedssouthstacks']['MT']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedssouthstacks']['MT']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3442,14 +3191,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedssouthstacks']['OT']['description'] as string,
                             alpha: alphaP2['strangeseedssouthstacks']['OT']['description'] as string,
                             zenith: zenithP2['strangeseedssouthstacks']['OT']['description'] as string,
-                            uptime: uptimeP2['strangeseedssouthstacks']['OT']['description'] as string,
+                            alpha2: alpha2P2['strangeseedssouthstacks']['OT']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedssouthstacks']['OT']['imageUrl'] as string,
                             bili: biliP2['strangeseedssouthstacks']['OT']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedssouthstacks']['OT']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedssouthstacks']['OT']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedssouthstacks']['OT']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedssouthstacks']['OT']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3460,14 +3209,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedssouthstacks']['H1']['description'] as string,
                             alpha: alphaP2['strangeseedssouthstacks']['H1']['description'] as string,
                             zenith: zenithP2['strangeseedssouthstacks']['H1']['description'] as string,
-                            uptime: uptimeP2['strangeseedssouthstacks']['H1']['description'] as string,
+                            alpha2: alpha2P2['strangeseedssouthstacks']['H1']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedssouthstacks']['H1']['imageUrl'] as string,
                             bili: biliP2['strangeseedssouthstacks']['H1']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedssouthstacks']['H1']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedssouthstacks']['H1']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedssouthstacks']['H1']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedssouthstacks']['H1']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3478,14 +3227,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedssouthstacks']['H2']['description'] as string,
                             alpha: alphaP2['strangeseedssouthstacks']['H2']['description'] as string,
                             zenith: zenithP2['strangeseedssouthstacks']['H2']['description'] as string,
-                            uptime: uptimeP2['strangeseedssouthstacks']['H2']['description'] as string,
+                            alpha2: alpha2P2['strangeseedssouthstacks']['H2']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedssouthstacks']['H2']['imageUrl'] as string,
                             bili: biliP2['strangeseedssouthstacks']['H2']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedssouthstacks']['H2']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedssouthstacks']['H2']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedssouthstacks']['H2']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedssouthstacks']['H2']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3496,14 +3245,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedssouthstacks']['M1']['description'] as string,
                             alpha: alphaP2['strangeseedssouthstacks']['M1']['description'] as string,
                             zenith: zenithP2['strangeseedssouthstacks']['M1']['description'] as string,
-                            uptime: uptimeP2['strangeseedssouthstacks']['M1']['description'] as string,
+                            alpha2: alpha2P2['strangeseedssouthstacks']['M1']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedssouthstacks']['M1']['imageUrl'] as string,
                             bili: biliP2['strangeseedssouthstacks']['M1']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedssouthstacks']['M1']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedssouthstacks']['M1']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedssouthstacks']['M1']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedssouthstacks']['M1']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3514,14 +3263,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedssouthstacks']['M2']['description'] as string,
                             alpha: alphaP2['strangeseedssouthstacks']['M2']['description'] as string,
                             zenith: zenithP2['strangeseedssouthstacks']['M2']['description'] as string,
-                            uptime: uptimeP2['strangeseedssouthstacks']['M2']['description'] as string,
+                            alpha2: alpha2P2['strangeseedssouthstacks']['M2']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedssouthstacks']['M2']['imageUrl'] as string,
                             bili: biliP2['strangeseedssouthstacks']['M2']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedssouthstacks']['M2']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedssouthstacks']['M2']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedssouthstacks']['M2']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedssouthstacks']['M2']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3532,14 +3281,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedssouthstacks']['R1']['description'] as string,
                             alpha: alphaP2['strangeseedssouthstacks']['R1']['description'] as string,
                             zenith: zenithP2['strangeseedssouthstacks']['R1']['description'] as string,
-                            uptime: uptimeP2['strangeseedssouthstacks']['R1']['description'] as string,
+                            alpha2: alpha2P2['strangeseedssouthstacks']['R1']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedssouthstacks']['R1']['imageUrl'] as string,
                             bili: biliP2['strangeseedssouthstacks']['R1']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedssouthstacks']['R1']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedssouthstacks']['R1']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedssouthstacks']['R1']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedssouthstacks']['R1']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3550,14 +3299,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedssouthstacks']['R2']['description'] as string,
                             alpha: alphaP2['strangeseedssouthstacks']['R2']['description'] as string,
                             zenith: zenithP2['strangeseedssouthstacks']['R2']['description'] as string,
-                            uptime: uptimeP2['strangeseedssouthstacks']['R2']['description'] as string,
+                            alpha2: alpha2P2['strangeseedssouthstacks']['R2']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedssouthstacks']['R2']['imageUrl'] as string,
                             bili: biliP2['strangeseedssouthstacks']['R2']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedssouthstacks']['R2']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedssouthstacks']['R2']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedssouthstacks']['R2']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedssouthstacks']['R2']['imageUrl'] as string,
                         }
                     },
                 ]
@@ -3572,11 +3321,11 @@ const allP2: PhaseStrats[] = [
             bili: biliP2['strangeseedsbossnorth']['description'] as string,
             alpha: alphaP2['strangeseedsbossnorth']['description'] as string,
             zenith: zenithP2['strangeseedsbossnorth']['description'] as string,
-            uptime: uptimeP2['strangeseedsbossnorth']['description'] as string,
+            alpha2: alpha2P2['strangeseedsbossnorth']['description'] as string,
         },
         mechs: [
             {
-                mechanic: 'Seeds',
+                mechanic: 'Seeds + Tethers',
                 strats: [
                     {
                         role: 'Tank',
@@ -3586,14 +3335,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedsbossnorth']['MT']['description'] as string,
                             alpha: alphaP2['strangeseedsbossnorth']['MT']['description'] as string,
                             zenith: zenithP2['strangeseedsbossnorth']['MT']['description'] as string,
-                            uptime: uptimeP2['strangeseedsbossnorth']['MT']['description'] as string,
+                            alpha2: alpha2P2['strangeseedsbossnorth']['MT']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedsbossnorth']['MT']['imageUrl'] as string,
                             bili: biliP2['strangeseedsbossnorth']['MT']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedsbossnorth']['MT']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedsbossnorth']['MT']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsbossnorth']['MT']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedsbossnorth']['MT']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3604,14 +3353,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedsbossnorth']['OT']['description'] as string,
                             alpha: alphaP2['strangeseedsbossnorth']['OT']['description'] as string,
                             zenith: zenithP2['strangeseedsbossnorth']['OT']['description'] as string,
-                            uptime: uptimeP2['strangeseedsbossnorth']['OT']['description'] as string,
+                            alpha2: alpha2P2['strangeseedsbossnorth']['OT']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedsbossnorth']['OT']['imageUrl'] as string,
                             bili: biliP2['strangeseedsbossnorth']['OT']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedsbossnorth']['OT']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedsbossnorth']['OT']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsbossnorth']['OT']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedsbossnorth']['OT']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3622,14 +3371,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedsbossnorth']['H1']['description'] as string,
                             alpha: alphaP2['strangeseedsbossnorth']['H1']['description'] as string,
                             zenith: zenithP2['strangeseedsbossnorth']['H1']['description'] as string,
-                            uptime: uptimeP2['strangeseedsbossnorth']['H1']['description'] as string,
+                            alpha2: alpha2P2['strangeseedsbossnorth']['H1']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedsbossnorth']['H1']['imageUrl'] as string,
                             bili: biliP2['strangeseedsbossnorth']['H1']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedsbossnorth']['H1']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedsbossnorth']['H1']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsbossnorth']['H1']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedsbossnorth']['H1']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3640,14 +3389,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedsbossnorth']['H2']['description'] as string,
                             alpha: alphaP2['strangeseedsbossnorth']['H2']['description'] as string,
                             zenith: zenithP2['strangeseedsbossnorth']['H2']['description'] as string,
-                            uptime: uptimeP2['strangeseedsbossnorth']['H2']['description'] as string,
+                            alpha2: alpha2P2['strangeseedsbossnorth']['H2']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedsbossnorth']['H2']['imageUrl'] as string,
                             bili: biliP2['strangeseedsbossnorth']['H2']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedsbossnorth']['H2']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedsbossnorth']['H2']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsbossnorth']['H2']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedsbossnorth']['H2']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3658,14 +3407,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedsbossnorth']['M1']['description'] as string,
                             alpha: alphaP2['strangeseedsbossnorth']['M1']['description'] as string,
                             zenith: zenithP2['strangeseedsbossnorth']['M1']['description'] as string,
-                            uptime: uptimeP2['strangeseedsbossnorth']['M1']['description'] as string,
+                            alpha2: alpha2P2['strangeseedsbossnorth']['M1']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedsbossnorth']['M1']['imageUrl'] as string,
                             bili: biliP2['strangeseedsbossnorth']['M1']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedsbossnorth']['M1']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedsbossnorth']['M1']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsbossnorth']['M1']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedsbossnorth']['M1']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3676,14 +3425,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedsbossnorth']['M2']['description'] as string,
                             alpha: alphaP2['strangeseedsbossnorth']['M2']['description'] as string,
                             zenith: zenithP2['strangeseedsbossnorth']['M2']['description'] as string,
-                            uptime: uptimeP2['strangeseedsbossnorth']['M2']['description'] as string,
+                            alpha2: alpha2P2['strangeseedsbossnorth']['M2']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedsbossnorth']['M2']['imageUrl'] as string,
                             bili: biliP2['strangeseedsbossnorth']['M2']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedsbossnorth']['M2']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedsbossnorth']['M2']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsbossnorth']['M2']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedsbossnorth']['M2']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3694,14 +3443,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedsbossnorth']['R1']['description'] as string,
                             alpha: alphaP2['strangeseedsbossnorth']['R1']['description'] as string,
                             zenith: zenithP2['strangeseedsbossnorth']['R1']['description'] as string,
-                            uptime: uptimeP2['strangeseedsbossnorth']['R1']['description'] as string,
+                            alpha2: alpha2P2['strangeseedsbossnorth']['R1']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedsbossnorth']['R1']['imageUrl'] as string,
                             bili: biliP2['strangeseedsbossnorth']['R1']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedsbossnorth']['R1']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedsbossnorth']['R1']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsbossnorth']['R1']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedsbossnorth']['R1']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3712,163 +3461,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedsbossnorth']['R2']['description'] as string,
                             alpha: alphaP2['strangeseedsbossnorth']['R2']['description'] as string,
                             zenith: zenithP2['strangeseedsbossnorth']['R2']['description'] as string,
-                            uptime: uptimeP2['strangeseedsbossnorth']['R2']['description'] as string,
+                            alpha2: alpha2P2['strangeseedsbossnorth']['R2']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedsbossnorth']['R2']['imageUrl'] as string,
                             bili: biliP2['strangeseedsbossnorth']['R2']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedsbossnorth']['R2']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedsbossnorth']['R2']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsbossnorth']['R2']['imageUrl'] as string,
-                        }
-                    },
-                ]
-            },
-            {
-                mechanic: 'Tethers',
-                strats: [
-                    {
-                        role: 'Tank',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['strangeseedsnorthtethers']['MT']['description'] as string,
-                            bili: biliP2['strangeseedsnorthtethers']['MT']['description'] as string,
-                            alpha: alphaP2['strangeseedsnorthtethers']['MT']['description'] as string,
-                            zenith: zenithP2['strangeseedsnorthtethers']['MT']['description'] as string,
-                            uptime: uptimeP2['strangeseedsnorthtethers']['MT']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsnorthtethers']['MT']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsnorthtethers']['MT']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsnorthtethers']['MT']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsnorthtethers']['MT']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsnorthtethers']['MT']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Tank',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['strangeseedsnorthtethers']['OT']['description'] as string,
-                            bili: biliP2['strangeseedsnorthtethers']['OT']['description'] as string,
-                            alpha: alphaP2['strangeseedsnorthtethers']['OT']['description'] as string,
-                            zenith: zenithP2['strangeseedsnorthtethers']['OT']['description'] as string,
-                            uptime: uptimeP2['strangeseedsnorthtethers']['OT']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsnorthtethers']['OT']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsnorthtethers']['OT']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsnorthtethers']['OT']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsnorthtethers']['OT']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsnorthtethers']['OT']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Healer',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['strangeseedsnorthtethers']['H1']['description'] as string,
-                            bili: biliP2['strangeseedsnorthtethers']['H1']['description'] as string,
-                            alpha: alphaP2['strangeseedsnorthtethers']['H1']['description'] as string,
-                            zenith: zenithP2['strangeseedsnorthtethers']['H1']['description'] as string,
-                            uptime: uptimeP2['strangeseedsnorthtethers']['H1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsnorthtethers']['H1']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsnorthtethers']['H1']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsnorthtethers']['H1']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsnorthtethers']['H1']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsnorthtethers']['H1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Healer',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['strangeseedsnorthtethers']['H2']['description'] as string,
-                            bili: biliP2['strangeseedsnorthtethers']['H2']['description'] as string,
-                            alpha: alphaP2['strangeseedsnorthtethers']['H2']['description'] as string,
-                            zenith: zenithP2['strangeseedsnorthtethers']['H2']['description'] as string,
-                            uptime: uptimeP2['strangeseedsnorthtethers']['H2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsnorthtethers']['H2']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsnorthtethers']['H2']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsnorthtethers']['H2']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsnorthtethers']['H2']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsnorthtethers']['H2']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Melee',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['strangeseedsnorthtethers']['M1']['description'] as string,
-                            bili: biliP2['strangeseedsnorthtethers']['M1']['description'] as string,
-                            alpha: alphaP2['strangeseedsnorthtethers']['M1']['description'] as string,
-                            zenith: zenithP2['strangeseedsnorthtethers']['M1']['description'] as string,
-                            uptime: uptimeP2['strangeseedsnorthtethers']['M1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsnorthtethers']['M1']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsnorthtethers']['M1']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsnorthtethers']['M1']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsnorthtethers']['M1']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsnorthtethers']['M1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Melee',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['strangeseedsnorthtethers']['M2']['description'] as string,
-                            bili: biliP2['strangeseedsnorthtethers']['M2']['description'] as string,
-                            alpha: alphaP2['strangeseedsnorthtethers']['M2']['description'] as string,
-                            zenith: zenithP2['strangeseedsnorthtethers']['M2']['description'] as string,
-                            uptime: uptimeP2['strangeseedsnorthtethers']['M2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsnorthtethers']['M2']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsnorthtethers']['M2']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsnorthtethers']['M2']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsnorthtethers']['M2']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsnorthtethers']['M2']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['strangeseedsnorthtethers']['R1']['description'] as string,
-                            bili: biliP2['strangeseedsnorthtethers']['R1']['description'] as string,
-                            alpha: alphaP2['strangeseedsnorthtethers']['R1']['description'] as string,
-                            zenith: zenithP2['strangeseedsnorthtethers']['R1']['description'] as string,
-                            uptime: uptimeP2['strangeseedsnorthtethers']['R1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsnorthtethers']['R1']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsnorthtethers']['R1']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsnorthtethers']['R1']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsnorthtethers']['R1']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsnorthtethers']['R1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['strangeseedsnorthtethers']['R2']['description'] as string,
-                            bili: biliP2['strangeseedsnorthtethers']['R2']['description'] as string,
-                            alpha: alphaP2['strangeseedsnorthtethers']['R2']['description'] as string,
-                            zenith: zenithP2['strangeseedsnorthtethers']['R2']['description'] as string,
-                            uptime: uptimeP2['strangeseedsnorthtethers']['R2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsnorthtethers']['R2']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsnorthtethers']['R2']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsnorthtethers']['R2']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsnorthtethers']['R2']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsnorthtethers']['R2']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedsbossnorth']['R2']['imageUrl'] as string,
                         }
                     },
                 ]
@@ -3884,14 +3484,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedsnorthstacks']['MT']['description'] as string,
                             alpha: alphaP2['strangeseedsnorthstacks']['MT']['description'] as string,
                             zenith: zenithP2['strangeseedsnorthstacks']['MT']['description'] as string,
-                            uptime: uptimeP2['strangeseedsnorthstacks']['MT']['description'] as string,
+                            alpha2: alpha2P2['strangeseedsnorthstacks']['MT']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedsnorthstacks']['MT']['imageUrl'] as string,
                             bili: biliP2['strangeseedsnorthstacks']['MT']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedsnorthstacks']['MT']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedsnorthstacks']['MT']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsnorthstacks']['MT']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedsnorthstacks']['MT']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3902,14 +3502,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedsnorthstacks']['OT']['description'] as string,
                             alpha: alphaP2['strangeseedsnorthstacks']['OT']['description'] as string,
                             zenith: zenithP2['strangeseedsnorthstacks']['OT']['description'] as string,
-                            uptime: uptimeP2['strangeseedsnorthstacks']['OT']['description'] as string,
+                            alpha2: alpha2P2['strangeseedsnorthstacks']['OT']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedsnorthstacks']['OT']['imageUrl'] as string,
                             bili: biliP2['strangeseedsnorthstacks']['OT']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedsnorthstacks']['OT']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedsnorthstacks']['OT']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsnorthstacks']['OT']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedsnorthstacks']['OT']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3920,14 +3520,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedsnorthstacks']['H1']['description'] as string,
                             alpha: alphaP2['strangeseedsnorthstacks']['H1']['description'] as string,
                             zenith: zenithP2['strangeseedsnorthstacks']['H1']['description'] as string,
-                            uptime: uptimeP2['strangeseedsnorthstacks']['H1']['description'] as string,
+                            alpha2: alpha2P2['strangeseedsnorthstacks']['H1']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedsnorthstacks']['H1']['imageUrl'] as string,
                             bili: biliP2['strangeseedsnorthstacks']['H1']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedsnorthstacks']['H1']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedsnorthstacks']['H1']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsnorthstacks']['H1']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedsnorthstacks']['H1']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3938,14 +3538,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedsnorthstacks']['H2']['description'] as string,
                             alpha: alphaP2['strangeseedsnorthstacks']['H2']['description'] as string,
                             zenith: zenithP2['strangeseedsnorthstacks']['H2']['description'] as string,
-                            uptime: uptimeP2['strangeseedsnorthstacks']['H2']['description'] as string,
+                            alpha2: alpha2P2['strangeseedsnorthstacks']['H2']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedsnorthstacks']['H2']['imageUrl'] as string,
                             bili: biliP2['strangeseedsnorthstacks']['H2']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedsnorthstacks']['H2']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedsnorthstacks']['H2']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsnorthstacks']['H2']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedsnorthstacks']['H2']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3956,14 +3556,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedsnorthstacks']['M1']['description'] as string,
                             alpha: alphaP2['strangeseedsnorthstacks']['M1']['description'] as string,
                             zenith: zenithP2['strangeseedsnorthstacks']['M1']['description'] as string,
-                            uptime: uptimeP2['strangeseedsnorthstacks']['M1']['description'] as string,
+                            alpha2: alpha2P2['strangeseedsnorthstacks']['M1']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedsnorthstacks']['M1']['imageUrl'] as string,
                             bili: biliP2['strangeseedsnorthstacks']['M1']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedsnorthstacks']['M1']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedsnorthstacks']['M1']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsnorthstacks']['M1']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedsnorthstacks']['M1']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3974,14 +3574,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedsnorthstacks']['M2']['description'] as string,
                             alpha: alphaP2['strangeseedsnorthstacks']['M2']['description'] as string,
                             zenith: zenithP2['strangeseedsnorthstacks']['M2']['description'] as string,
-                            uptime: uptimeP2['strangeseedsnorthstacks']['M2']['description'] as string,
+                            alpha2: alpha2P2['strangeseedsnorthstacks']['M2']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedsnorthstacks']['M2']['imageUrl'] as string,
                             bili: biliP2['strangeseedsnorthstacks']['M2']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedsnorthstacks']['M2']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedsnorthstacks']['M2']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsnorthstacks']['M2']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedsnorthstacks']['M2']['imageUrl'] as string,
                         }
                     },
                     {
@@ -3992,14 +3592,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedsnorthstacks']['R1']['description'] as string,
                             alpha: alphaP2['strangeseedsnorthstacks']['R1']['description'] as string,
                             zenith: zenithP2['strangeseedsnorthstacks']['R1']['description'] as string,
-                            uptime: uptimeP2['strangeseedsnorthstacks']['R1']['description'] as string,
+                            alpha2: alpha2P2['strangeseedsnorthstacks']['R1']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedsnorthstacks']['R1']['imageUrl'] as string,
                             bili: biliP2['strangeseedsnorthstacks']['R1']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedsnorthstacks']['R1']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedsnorthstacks']['R1']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsnorthstacks']['R1']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedsnorthstacks']['R1']['imageUrl'] as string,
                         }
                     },
                     {
@@ -4010,14 +3610,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['strangeseedsnorthstacks']['R2']['description'] as string,
                             alpha: alphaP2['strangeseedsnorthstacks']['R2']['description'] as string,
                             zenith: zenithP2['strangeseedsnorthstacks']['R2']['description'] as string,
-                            uptime: uptimeP2['strangeseedsnorthstacks']['R2']['description'] as string,
+                            alpha2: alpha2P2['strangeseedsnorthstacks']['R2']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['strangeseedsnorthstacks']['R2']['imageUrl'] as string,
                             bili: biliP2['strangeseedsnorthstacks']['R2']['imageUrl'] as string,
                             alpha: alphaP2['strangeseedsnorthstacks']['R2']['imageUrl'] as string,
                             zenith: zenithP2['strangeseedsnorthstacks']['R2']['imageUrl'] as string,
-                            uptime: uptimeP2['strangeseedsnorthstacks']['R2']['imageUrl'] as string,
+                            alpha2: alpha2P2['strangeseedsnorthstacks']['R2']['imageUrl'] as string,
                         }
                     },
                 ]
@@ -4032,7 +3632,7 @@ const allP2: PhaseStrats[] = [
             bili: biliP2['swing3spreads']['description'] as string,
             alpha: alphaP2['swing3spreads']['description'] as string,
             zenith: zenithP2['swing3spreads']['description'] as string,
-            uptime: uptimeP2['swing3spreads']['description'] as string,
+            alpha2: alpha2P2['swing3spreads']['description'] as string,
         },
         mechs: [
             {
@@ -4046,14 +3646,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['swing3spreads']['MT']['description'] as string,
                             alpha: alphaP2['swing3spreads']['MT']['description'] as string,
                             zenith: zenithP2['swing3spreads']['MT']['description'] as string,
-                            uptime: uptimeP2['swing3spreads']['MT']['description'] as string,
+                            alpha2: alpha2P2['swing3spreads']['MT']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['swing3spreads']['MT']['imageUrl'] as string,
                             bili: biliP2['swing3spreads']['MT']['imageUrl'] as string,
                             alpha: alphaP2['swing3spreads']['MT']['imageUrl'] as string,
                             zenith: zenithP2['swing3spreads']['MT']['imageUrl'] as string,
-                            uptime: uptimeP2['swing3spreads']['MT']['imageUrl'] as string,
+                            alpha2: alpha2P2['swing3spreads']['MT']['imageUrl'] as string,
                         }
                     },
                     {
@@ -4064,14 +3664,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['swing3spreads']['OT']['description'] as string,
                             alpha: alphaP2['swing3spreads']['OT']['description'] as string,
                             zenith: zenithP2['swing3spreads']['OT']['description'] as string,
-                            uptime: uptimeP2['swing3spreads']['OT']['description'] as string,
+                            alpha2: alpha2P2['swing3spreads']['OT']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['swing3spreads']['OT']['imageUrl'] as string,
                             bili: biliP2['swing3spreads']['OT']['imageUrl'] as string,
                             alpha: alphaP2['swing3spreads']['OT']['imageUrl'] as string,
                             zenith: zenithP2['swing3spreads']['OT']['imageUrl'] as string,
-                            uptime: uptimeP2['swing3spreads']['OT']['imageUrl'] as string,
+                            alpha2: alpha2P2['swing3spreads']['OT']['imageUrl'] as string,
                         }
                     },
                     {
@@ -4082,14 +3682,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['swing3spreads']['H1']['description'] as string,
                             alpha: alphaP2['swing3spreads']['H1']['description'] as string,
                             zenith: zenithP2['swing3spreads']['H1']['description'] as string,
-                            uptime: uptimeP2['swing3spreads']['H1']['description'] as string,
+                            alpha2: alpha2P2['swing3spreads']['H1']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['swing3spreads']['H1']['imageUrl'] as string,
                             bili: biliP2['swing3spreads']['H1']['imageUrl'] as string,
                             alpha: alphaP2['swing3spreads']['H1']['imageUrl'] as string,
                             zenith: zenithP2['swing3spreads']['H1']['imageUrl'] as string,
-                            uptime: uptimeP2['swing3spreads']['H1']['imageUrl'] as string,
+                            alpha2: alpha2P2['swing3spreads']['H1']['imageUrl'] as string,
                         }
                     },
                     {
@@ -4100,14 +3700,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['swing3spreads']['H2']['description'] as string,
                             alpha: alphaP2['swing3spreads']['H2']['description'] as string,
                             zenith: zenithP2['swing3spreads']['H2']['description'] as string,
-                            uptime: uptimeP2['swing3spreads']['H2']['description'] as string,
+                            alpha2: alpha2P2['swing3spreads']['H2']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['swing3spreads']['H2']['imageUrl'] as string,
                             bili: biliP2['swing3spreads']['H2']['imageUrl'] as string,
                             alpha: alphaP2['swing3spreads']['H2']['imageUrl'] as string,
                             zenith: zenithP2['swing3spreads']['H2']['imageUrl'] as string,
-                            uptime: uptimeP2['swing3spreads']['H2']['imageUrl'] as string,
+                            alpha2: alpha2P2['swing3spreads']['H2']['imageUrl'] as string,
                         }
                     },
                     {
@@ -4118,14 +3718,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['swing3spreads']['M1']['description'] as string,
                             alpha: alphaP2['swing3spreads']['M1']['description'] as string,
                             zenith: zenithP2['swing3spreads']['M1']['description'] as string,
-                            uptime: uptimeP2['swing3spreads']['M1']['description'] as string,
+                            alpha2: alpha2P2['swing3spreads']['M1']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['swing3spreads']['M1']['imageUrl'] as string,
                             bili: biliP2['swing3spreads']['M1']['imageUrl'] as string,
                             alpha: alphaP2['swing3spreads']['M1']['imageUrl'] as string,
                             zenith: zenithP2['swing3spreads']['M1']['imageUrl'] as string,
-                            uptime: uptimeP2['swing3spreads']['M1']['imageUrl'] as string,
+                            alpha2: alpha2P2['swing3spreads']['M1']['imageUrl'] as string,
                         }
                     },
                     {
@@ -4136,14 +3736,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['swing3spreads']['M2']['description'] as string,
                             alpha: alphaP2['swing3spreads']['M2']['description'] as string,
                             zenith: zenithP2['swing3spreads']['M2']['description'] as string,
-                            uptime: uptimeP2['swing3spreads']['M2']['description'] as string,
+                            alpha2: alpha2P2['swing3spreads']['M2']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['swing3spreads']['M2']['imageUrl'] as string,
                             bili: biliP2['swing3spreads']['M2']['imageUrl'] as string,
                             alpha: alphaP2['swing3spreads']['M2']['imageUrl'] as string,
                             zenith: zenithP2['swing3spreads']['M2']['imageUrl'] as string,
-                            uptime: uptimeP2['swing3spreads']['M2']['imageUrl'] as string,
+                            alpha2: alpha2P2['swing3spreads']['M2']['imageUrl'] as string,
                         }
                     },
                     {
@@ -4154,14 +3754,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['swing3spreads']['R1']['description'] as string,
                             alpha: alphaP2['swing3spreads']['R1']['description'] as string,
                             zenith: zenithP2['swing3spreads']['R1']['description'] as string,
-                            uptime: uptimeP2['swing3spreads']['R1']['description'] as string,
+                            alpha2: alpha2P2['swing3spreads']['R1']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['swing3spreads']['R1']['imageUrl'] as string,
                             bili: biliP2['swing3spreads']['R1']['imageUrl'] as string,
                             alpha: alphaP2['swing3spreads']['R1']['imageUrl'] as string,
                             zenith: zenithP2['swing3spreads']['R1']['imageUrl'] as string,
-                            uptime: uptimeP2['swing3spreads']['R1']['imageUrl'] as string,
+                            alpha2: alpha2P2['swing3spreads']['R1']['imageUrl'] as string,
                         }
                     },
                     {
@@ -4172,14 +3772,14 @@ const allP2: PhaseStrats[] = [
                             bili: biliP2['swing3spreads']['R2']['description'] as string,
                             alpha: alphaP2['swing3spreads']['R2']['description'] as string,
                             zenith: zenithP2['swing3spreads']['R2']['description'] as string,
-                            uptime: uptimeP2['swing3spreads']['R2']['description'] as string,
+                            alpha2: alpha2P2['swing3spreads']['R2']['description'] as string,
                         },
                         imageUrl: {
                             toxic: toxicP2['swing3spreads']['R2']['imageUrl'] as string,
                             bili: biliP2['swing3spreads']['R2']['imageUrl'] as string,
                             alpha: alphaP2['swing3spreads']['R2']['imageUrl'] as string,
                             zenith: zenithP2['swing3spreads']['R2']['imageUrl'] as string,
-                            uptime: uptimeP2['swing3spreads']['R2']['imageUrl'] as string,
+                            alpha2: alpha2P2['swing3spreads']['R2']['imageUrl'] as string,
                         }
                     },
                 ]

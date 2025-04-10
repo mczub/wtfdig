@@ -35,8 +35,13 @@
 	const p2Urls: Record<string, any> = {
 		'toxic': {name: 'Toxic P2', url: 'https://raidplan.io/plan/gIcsj6_cyedVQON7'},
 		'bili': {name: 'Bilibili P2', url: 'https://raidplan.io/plan/s_q_kuYAhHcOLcxb'},
-		'alpha': {name: 'Alpha P2', url: 'https://raidplan.io/plan/jtQenPvoJy7hsV-x'},
+		'alpha': {name: 'Alpha 1.0 P2', url: 'https://raidplan.io/plan/jtQenPvoJy7hsV-x'},
+		'alpha2': {name: 'Alpha 2.0 P2', url: 'https://raidplan.io/plan/zjpDmFrJ6VvUcDhV'},
 		'zenith': {name: 'Zenith P2', url: 'https://raidplan.io/plan/2Y1HT42osFhYD6Pe'},
+	}
+
+	const p3Urls: Record<string, any> = {
+		'toxic': {name: 'Toxic P3', url: 'https://raidplan.io/plan/DEijc3hhq_CNGaRg'}
 	}
 
 	$effect(() => {
@@ -191,7 +196,10 @@
 				stratDiffs.push(`Bilibili P2`);
 			}
 			if (stratState.p2 === 'alpha') {
-				stratDiffs.push(`Alpha P2`);
+				stratDiffs.push(`Alpha 1.0 P2`);
+			}
+			if (stratState.p2 === 'alpha2') {
+				stratDiffs.push(`Alpha 2.0 P2`);
 			}
 			if (stratState.p2 === 'zenith') {
 				stratDiffs.push(`Zenith P2`);
@@ -239,8 +247,8 @@
 								<Tooltip
 									positioning={{ placement: 'top' }}
 									triggerBase="underline"
-									contentBase="card bg-surface-800 p-4"
-									classes="ml-2"
+									contentBase="card bg-surface-800 p-4 "
+									classes="ml-2 z-9999"
 									openDelay={200}
 									arrow
 									arrowBackground="!bg-surface-800"
@@ -254,7 +262,8 @@
 						<Segment classes="flex-wrap" name="p2" value={stratState.p2} onValueChange={(e) => (setStratState('p2', e.value))}>
 							<Segment.Item value="toxic">Toxic Friends</Segment.Item>
 							<Segment.Item value="bili">Bilibili</Segment.Item>
-							<Segment.Item value="alpha">Alpha</Segment.Item>
+							<Segment.Item value="alpha">Alpha 1.0</Segment.Item>
+							<Segment.Item value="alpha2">Alpha 2.0</Segment.Item>
 							<Segment.Item value="zenith">Zenith</Segment.Item>
 						</Segment>
 					</div>
@@ -265,8 +274,8 @@
 								<Tooltip
 									positioning={{ placement: 'top' }}
 									triggerBase="underline"
-									contentBase="card bg-surface-800 p-4"
-									classes="ml-2"
+									contentBase="card bg-surface-800 p-4 z-50"
+									classes="ml-2 z-9999"
 									openDelay={200}
 									arrow
 									arrowBackground="!bg-surface-800"
@@ -339,6 +348,15 @@
 								</a>
 							</div>
 						{/if}
+						{#if (stratState.p3 && p2Urls[stratState.p3])}
+							<div>
+								<a class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href={p3Urls[stratState.p3].url}>{p3Urls[stratState.p3].name}
+									<svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+										<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+									</svg>
+								</a>
+							</div>
+						{/if}
 					</div>
 					<div class="grow"></div>
 					<div class="grid gap-y-2 content-center">
@@ -373,7 +391,7 @@
 								positioning={{ placement: 'top' }}
 								triggerBase="underline"
 								contentBase="card bg-surface-800 p-4"
-								classes="ml-2"
+								classes="ml-2 z-9999"
 								openDelay={200}
 								arrow
 								arrowBackground="!bg-surface-800"
