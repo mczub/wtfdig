@@ -168,7 +168,7 @@
 	function getOptionsString(stratName?: string, role?: Role, party?: number): string {
 		if (!stratName || !role || !party) return '';
 		const stratNames: Record<string, string> = {
-			'toxic': 'Toxic Friends (Pgj53K49w8LAZpI6)',
+			'toxic': 'Toxic Friends',
 			'uptime': 'Uptime/Kindred'
 		}
 		const jpRoleAbbrev: Record<string, string> = {
