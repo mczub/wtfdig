@@ -33,6 +33,7 @@
         </header>
         <article>
             <div>
+                <p>4/8/2025: m7s</p>
                 <p>4/6/2025: add some m6s adds variations</p>
                 <p>4/3/2025: basic m6s support</p>
                 <p>4/2/2025: sadly ucob was too good to live, however we have m5s now</p>
@@ -105,23 +106,23 @@
                                 <div class="text-sm">Extreme</div>
                             </a>
                         </div>
-                        <div class="px-4 py-2 cursor-not-allowed">
+                        <div class="px-4 py-2">
                             <a href="{base}/72/m5s" class="flex flex-col w-full items-start">
                                 <div class="text-lg -mb-2">AAC Cruiserweight M1</div>
                                 <div class="text-sm">Savage</div>
                             </a>
                         </div>
-                        <div class="px-4 py-2 cursor-not-allowed">
+                        <div class="px-4 py-2">
                             <a href="{base}/72/m6s" class="flex flex-col w-full items-start">
                                 <div class="text-lg -mb-2">AAC Cruiserweight M2</div>
                                 <div class="text-sm">Savage</div>
                             </a>
                         </div>
-                        <div class="px-4 py-2 cursor-not-allowed">
-                            <div class="flex flex-col w-full items-start cursor-not-allowed">
+                        <div class="px-4 py-2">
+                            <a href="{base}/72/m7s" class="flex flex-col w-full items-start">
                                 <div class="text-lg -mb-2">AAC Cruiserweight M3</div>
                                 <div class="text-sm">Savage</div>
-                            </div>
+                            </a>
                         </div>
                         <div class="px-4 py-2 cursor-not-allowed">
                             <div class="flex flex-col w-full items-start cursor-not-allowed">
