@@ -2071,7 +2071,7 @@ const hectorStrat: Strat = {
                             description: {
                                 lb3: 'Drop rose on inner NNW tile',
                                 ns: 'Drop rose on inner or outer SSW tile\nLink to the tower not being hit by 1st cleave',
-                                we: 'Drop rose on inner or outer SSW tile\nLink to the tower not being hit by 1st cleave',
+                                we: 'Drop rose on inner or outer NNW tile\nLink to the tower not being hit by 1st cleave',
                             },
                             imageUrl: {
                                 lb3: './ex4/hector/bloom6-we-support-roses.png',
@@ -2099,7 +2099,7 @@ const hectorStrat: Strat = {
                             description: {
                                 lb3: 'Drop rose on inner SSW tile',
                                 ns: 'Drop rose on inner or outer NNW tile\nLink to the tower not being hit by 1st cleave',
-                                we: 'Drop rose on inner or outer NNW tile\nLink to the tower not being hit by 1st cleave',
+                                we: 'Drop rose on inner or outer SSW tile\nLink to the tower not being hit by 1st cleave',
                             },
                             imageUrl: {
                                 lb3: './ex4/hector/bloom6-we-support-roses.png',
