@@ -8,6 +8,7 @@ export const load: PageLoad = ({params}) => {
 
 export type Role = 'Tank' | 'Healer' | 'Melee' | 'Ranged'; 
 export type Alignment = 'original' | 'truenorth' | 'relative';
+export type StratRecord = Record<string, string | Record<string, string | PlayerMechStrat>>;
 
 export interface PlayerMechStrat {
     role: Role;
@@ -43,15 +44,81 @@ export interface PhaseStrats {
 export interface Strat {
     stratName: string;
     stratUrl: string | Record<string, string>;
-    description: string;
+    description: string | Record<string, string>;
     notes: string;
     strats: PhaseStrats[];
+}
+
+function getStringObject(stratRecord: Record<string, StratRecord>, mechanic: string, property: string, role?: string): Record<string, string> {
+    let stringObject = {};
+    for (const [key, strat] of Object.entries(stratRecord)) {
+        if (role) {
+            stringObject[key] = strat[mechanic][role][property] as string || '';
+        } else {
+            stringObject[key] = strat[mechanic][property] as string || '';
+        }
+        
+    };
+    return stringObject;
+}
+
+function getStratArray(stratRecord: Record<string, StratRecord>, mechanic: string): PlayerMechStrat[] {
+    return [
+        {
+            role: 'Tank',
+            party: 1,
+            description: getStringObject(stratRecord, mechanic, 'description', 'MT'),
+            imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'MT'),
+        },
+        {
+            role: 'Tank',
+            party: 2,
+            description: getStringObject(stratRecord, mechanic, 'description', 'OT'),
+            imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'OT'),
+        },
+        {
+            role: 'Healer',
+            party: 1,
+            description: getStringObject(stratRecord, mechanic, 'description', 'H1'),
+            imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'H1'),
+        },
+        {
+            role: 'Healer',
+            party: 2,
+            description: getStringObject(stratRecord, mechanic, 'description', 'H2'),
+            imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'H2'),
+        },
+        {
+            role: 'Melee',
+            party: 1,
+            description: getStringObject(stratRecord, mechanic, 'description', 'M1'),
+            imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'M1'),
+        },
+        {
+            role: 'Melee',
+            party: 2,
+            description: getStringObject(stratRecord, mechanic, 'description', 'M2'),
+            imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'M2'),
+        },
+        {
+            role: 'Ranged',
+            party: 1,
+            description: getStringObject(stratRecord, mechanic, 'description', 'R1'),
+            imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'R1'),
+        },
+        {
+            role: 'Ranged',
+            party: 2,
+            description: getStringObject(stratRecord, mechanic, 'description', 'R2'),
+            imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'R2'),
+        },
+    ]
 }
 
 const toxicP2: Record<string, string | Record<string, string | PlayerMechStrat>> = {
     'url': 'https://raidplan.io/plan/gIcsj6_cyedVQON7',
     'swing1spreads': {
-        'description': 'MT M1 R1 Edge, OT M2 R2 Middle, Healers Middle',
+        'description': 'MT M1 R1 edge of arena\nOT M2 R2 middle of arena\nHealers middle of arena',
         'MT': {
                 role: 'Tank',
                 party: 1,
@@ -153,7 +220,7 @@ const toxicP2: Record<string, string | Record<string, string | PlayerMechStrat>>
         },
     },
     'swing2spreads': {
-        'description': 'MT M1 R1 Edge, OT M2 R2 Middle, Healers Middle',
+        'description': 'MT M1 R1 edge of arena\nOT M2 R2 middle of arena\nHealers middle of arena',
         'MT': {
                 role: 'Tank',
                 party: 1,
@@ -510,7 +577,7 @@ const toxicP2: Record<string, string | Record<string, string | PlayerMechStrat>>
         },
     },
     'swing3spreads': {
-        'description': 'MT M1 R1 Edge, OT M2 R2 Middle, Healers Middle',
+        'description': 'MT M1 R1 edge of arena\nOT M2 R2 middle of arena\nHealers middle of arena',
         'MT': {
                 role: 'Tank',
                 party: 1,
@@ -2515,1274 +2582,80 @@ const zenithP2: Record<string, string | Record<string, string | PlayerMechStrat>
     },
 }
 
+const p2Strats = {toxic: toxicP2, bili: biliP2, alpha: alphaP2, zenith: zenithP2, alpha2: alpha2P2}
+
 const allP2: PhaseStrats[] = [
     {
         phaseName: 'Brutish Swing 1',
         tag: 'p2',
-        description: {
-            toxic: 'MT M1 R1 edge of arena\nOT M2 R2 middle of arena\nHealers middle of arena',
-            bili: biliP2['swing1spreads']['description'] as string,
-            alpha: alphaP2['swing1spreads']['description'] as string,
-            zenith: zenithP2['swing1spreads']['description'] as string,
-            alpha2: alpha2P2['swing1spreads']['description'] as string,
-        },
+        description: getStringObject(p2Strats, 'swing1spreads', 'description'),
         mechs: [
             {
                 mechanic: 'Spreads',
-                strats: [
-                    {
-                        role: 'Tank',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['swing1spreads']['MT']['description'] as string,
-                            bili: biliP2['swing1spreads']['MT']['description'] as string,
-                            alpha: alphaP2['swing1spreads']['MT']['description'] as string,
-                            zenith: zenithP2['swing1spreads']['MT']['description'] as string,
-                            alpha2: alpha2P2['swing1spreads']['MT']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['swing1spreads']['MT']['imageUrl'] as string,
-                            bili: biliP2['swing1spreads']['MT']['imageUrl'] as string,
-                            alpha: alphaP2['swing1spreads']['MT']['imageUrl'] as string,
-                            zenith: zenithP2['swing1spreads']['MT']['imageUrl'] as string,
-                            alpha2: alpha2P2['swing1spreads']['MT']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Tank',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['swing1spreads']['OT']['description'] as string,
-                            bili: biliP2['swing1spreads']['OT']['description'] as string,
-                            alpha: alphaP2['swing1spreads']['OT']['description'] as string,
-                            zenith: zenithP2['swing1spreads']['OT']['description'] as string,
-                            alpha2: alpha2P2['swing1spreads']['OT']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['swing1spreads']['OT']['imageUrl'] as string,
-                            bili: biliP2['swing1spreads']['OT']['imageUrl'] as string,
-                            alpha: alphaP2['swing1spreads']['OT']['imageUrl'] as string,
-                            zenith: zenithP2['swing1spreads']['OT']['imageUrl'] as string,
-                            alpha2: alpha2P2['swing1spreads']['OT']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Healer',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['swing1spreads']['H1']['description'] as string,
-                            bili: biliP2['swing1spreads']['H1']['description'] as string,
-                            alpha: alphaP2['swing1spreads']['H1']['description'] as string,
-                            zenith: zenithP2['swing1spreads']['H1']['description'] as string,
-                            alpha2: alpha2P2['swing1spreads']['H1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['swing1spreads']['H1']['imageUrl'] as string,
-                            bili: biliP2['swing1spreads']['H1']['imageUrl'] as string,
-                            alpha: alphaP2['swing1spreads']['H1']['imageUrl'] as string,
-                            zenith: zenithP2['swing1spreads']['H1']['imageUrl'] as string,
-                            alpha2: alpha2P2['swing1spreads']['H1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Healer',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['swing1spreads']['H2']['description'] as string,
-                            bili: biliP2['swing1spreads']['H2']['description'] as string,
-                            alpha: alphaP2['swing1spreads']['H2']['description'] as string,
-                            zenith: zenithP2['swing1spreads']['H2']['description'] as string,
-                            alpha2: alpha2P2['swing1spreads']['H2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['swing1spreads']['H2']['imageUrl'] as string,
-                            bili: biliP2['swing1spreads']['H2']['imageUrl'] as string,
-                            alpha: alphaP2['swing1spreads']['H2']['imageUrl'] as string,
-                            zenith: zenithP2['swing1spreads']['H2']['imageUrl'] as string,
-                            alpha2: alpha2P2['swing1spreads']['H2']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Melee',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['swing1spreads']['M1']['description'] as string,
-                            bili: biliP2['swing1spreads']['M1']['description'] as string,
-                            alpha: alphaP2['swing1spreads']['M1']['description'] as string,
-                            zenith: zenithP2['swing1spreads']['M1']['description'] as string,
-                            alpha2: alpha2P2['swing1spreads']['M1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['swing1spreads']['M1']['imageUrl'] as string,
-                            bili: biliP2['swing1spreads']['M1']['imageUrl'] as string,
-                            alpha: alphaP2['swing1spreads']['M1']['imageUrl'] as string,
-                            zenith: zenithP2['swing1spreads']['M1']['imageUrl'] as string,
-                            alpha2: alpha2P2['swing1spreads']['M1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Melee',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['swing1spreads']['M2']['description'] as string,
-                            bili: biliP2['swing1spreads']['M2']['description'] as string,
-                            alpha: alphaP2['swing1spreads']['M2']['description'] as string,
-                            zenith: zenithP2['swing1spreads']['M2']['description'] as string,
-                            alpha2: alpha2P2['swing1spreads']['M2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['swing1spreads']['M2']['imageUrl'] as string,
-                            bili: biliP2['swing1spreads']['M2']['imageUrl'] as string,
-                            alpha: alphaP2['swing1spreads']['M2']['imageUrl'] as string,
-                            zenith: zenithP2['swing1spreads']['M2']['imageUrl'] as string,
-                            alpha2: alpha2P2['swing1spreads']['M2']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['swing1spreads']['R1']['description'] as string,
-                            bili: biliP2['swing1spreads']['R1']['description'] as string,
-                            alpha: alphaP2['swing1spreads']['R1']['description'] as string,
-                            zenith: zenithP2['swing1spreads']['R1']['description'] as string,
-                            alpha2: alpha2P2['swing1spreads']['R1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['swing1spreads']['R1']['imageUrl'] as string,
-                            bili: biliP2['swing1spreads']['R1']['imageUrl'] as string,
-                            alpha: alphaP2['swing1spreads']['R1']['imageUrl'] as string,
-                            zenith: zenithP2['swing1spreads']['R1']['imageUrl'] as string,
-                            alpha2: alpha2P2['swing1spreads']['R1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['swing1spreads']['R2']['description'] as string,
-                            bili: biliP2['swing1spreads']['R2']['description'] as string,
-                            alpha: alphaP2['swing1spreads']['R2']['description'] as string,
-                            zenith: zenithP2['swing1spreads']['R2']['description'] as string,
-                            alpha2: alpha2P2['swing1spreads']['R2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['swing1spreads']['R2']['imageUrl'] as string,
-                            bili: biliP2['swing1spreads']['R2']['imageUrl'] as string,
-                            alpha: alphaP2['swing1spreads']['R2']['imageUrl'] as string,
-                            zenith: zenithP2['swing1spreads']['R2']['imageUrl'] as string,
-                            alpha2: alpha2P2['swing1spreads']['R2']['imageUrl'] as string,
-                        }
-                    },
-                ]
+                strats: getStratArray(p2Strats, 'swing1spreads'),
             },
         ]
     },
     {
         phaseName: 'Abominable Blink',
         tag: 'p2',
-        description: {
-            toxic: 'MT M1 R1 edge of arena\nOT M2 R2 middle of arena\nHealers middle of arena',
-            bili: biliP2['flares']['description'] as string,
-            alpha: alphaP2['flares']['description'] as string,
-            zenith: zenithP2['flares']['description'] as string,
-            alpha2: alpha2P2['flares']['description'] as string,
-        },
+        description: getStringObject(p2Strats, 'flares', 'description'),
         mechs: [
             {
                 mechanic: 'Flare',
-                strats: [
-                    {
-                        role: 'Tank',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['flares']['MT']['description'] as string,
-                            bili: biliP2['flares']['MT']['description'] as string,
-                            alpha: alphaP2['flares']['MT']['description'] as string,
-                            zenith: zenithP2['flares']['MT']['description'] as string,
-                            alpha2: alpha2P2['flares']['MT']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['flares']['MT']['imageUrl'] as string,
-                            bili: biliP2['flares']['MT']['imageUrl'] as string,
-                            alpha: alphaP2['flares']['MT']['imageUrl'] as string,
-                            zenith: zenithP2['flares']['MT']['imageUrl'] as string,
-                            alpha2: alpha2P2['flares']['MT']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Tank',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['flares']['OT']['description'] as string,
-                            bili: biliP2['flares']['OT']['description'] as string,
-                            alpha: alphaP2['flares']['OT']['description'] as string,
-                            zenith: zenithP2['flares']['OT']['description'] as string,
-                            alpha2: alpha2P2['flares']['OT']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['flares']['OT']['imageUrl'] as string,
-                            bili: biliP2['flares']['OT']['imageUrl'] as string,
-                            alpha: alphaP2['flares']['OT']['imageUrl'] as string,
-                            zenith: zenithP2['flares']['OT']['imageUrl'] as string,
-                            alpha2: alpha2P2['flares']['OT']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Healer',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['flares']['H1']['description'] as string,
-                            bili: biliP2['flares']['H1']['description'] as string,
-                            alpha: alphaP2['flares']['H1']['description'] as string,
-                            zenith: zenithP2['flares']['H1']['description'] as string,
-                            alpha2: alpha2P2['flares']['H1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['flares']['H1']['imageUrl'] as string,
-                            bili: biliP2['flares']['H1']['imageUrl'] as string,
-                            alpha: alphaP2['flares']['H1']['imageUrl'] as string,
-                            zenith: zenithP2['flares']['H1']['imageUrl'] as string,
-                            alpha2: alpha2P2['flares']['H1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Healer',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['flares']['H2']['description'] as string,
-                            bili: biliP2['flares']['H2']['description'] as string,
-                            alpha: alphaP2['flares']['H2']['description'] as string,
-                            zenith: zenithP2['flares']['H2']['description'] as string,
-                            alpha2: alpha2P2['flares']['H2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['flares']['H2']['imageUrl'] as string,
-                            bili: biliP2['flares']['H2']['imageUrl'] as string,
-                            alpha: alphaP2['flares']['H2']['imageUrl'] as string,
-                            zenith: zenithP2['flares']['H2']['imageUrl'] as string,
-                            alpha2: alpha2P2['flares']['H2']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Melee',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['flares']['M1']['description'] as string,
-                            bili: biliP2['flares']['M1']['description'] as string,
-                            alpha: alphaP2['flares']['M1']['description'] as string,
-                            zenith: zenithP2['flares']['M1']['description'] as string,
-                            alpha2: alpha2P2['flares']['M1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['flares']['M1']['imageUrl'] as string,
-                            bili: biliP2['flares']['M1']['imageUrl'] as string,
-                            alpha: alphaP2['flares']['M1']['imageUrl'] as string,
-                            zenith: zenithP2['flares']['M1']['imageUrl'] as string,
-                            alpha2: alpha2P2['flares']['M1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Melee',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['flares']['M2']['description'] as string,
-                            bili: biliP2['flares']['M2']['description'] as string,
-                            alpha: alphaP2['flares']['M2']['description'] as string,
-                            zenith: zenithP2['flares']['M2']['description'] as string,
-                            alpha2: alpha2P2['flares']['M2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['flares']['M2']['imageUrl'] as string,
-                            bili: biliP2['flares']['M2']['imageUrl'] as string,
-                            alpha: alphaP2['flares']['M2']['imageUrl'] as string,
-                            zenith: zenithP2['flares']['M2']['imageUrl'] as string,
-                            alpha2: alpha2P2['flares']['M2']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['flares']['R1']['description'] as string,
-                            bili: biliP2['flares']['R1']['description'] as string,
-                            alpha: alphaP2['flares']['R1']['description'] as string,
-                            zenith: zenithP2['flares']['R1']['description'] as string,
-                            alpha2: alpha2P2['flares']['R1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['flares']['R1']['imageUrl'] as string,
-                            bili: biliP2['flares']['R1']['imageUrl'] as string,
-                            alpha: alphaP2['flares']['R1']['imageUrl'] as string,
-                            zenith: zenithP2['flares']['R1']['imageUrl'] as string,
-                            alpha2: alpha2P2['flares']['R1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['flares']['R2']['description'] as string,
-                            bili: biliP2['flares']['R2']['description'] as string,
-                            alpha: alphaP2['flares']['R2']['description'] as string,
-                            zenith: zenithP2['flares']['R2']['description'] as string,
-                            alpha2: alpha2P2['flares']['R2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['flares']['R2']['imageUrl'] as string,
-                            bili: biliP2['flares']['R2']['imageUrl'] as string,
-                            alpha: alphaP2['flares']['R2']['imageUrl'] as string,
-                            zenith: zenithP2['flares']['R2']['imageUrl'] as string,
-                            alpha2: alpha2P2['flares']['R2']['imageUrl'] as string,
-                        }
-                    },
-                ]
+                strats: getStratArray(p2Strats, 'flares'),
             },
         ]
     },
     {
         phaseName: 'Brutish Swing 2',
         tag: 'p2',
-        description: {
-            toxic: 'MT M1 R1 edge of arena\nOT M2 R2 middle of arena\nHealers middle of arena',
-            bili: biliP2['swing2spreads']['description'] as string,
-            alpha: alphaP2['swing2spreads']['description'] as string,
-            zenith: zenithP2['swing2spreads']['description'] as string,
-            alpha2: alpha2P2['swing2spreads']['description'] as string,
-        },
+        description: getStringObject(p2Strats, 'swing2spreads', 'description'),
         mechs: [
             {
                 mechanic: 'Spreads',
-                strats: [
-                    {
-                        role: 'Tank',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['swing2spreads']['MT']['description'] as string,
-                            bili: biliP2['swing2spreads']['MT']['description'] as string,
-                            alpha: alphaP2['swing2spreads']['MT']['description'] as string,
-                            zenith: zenithP2['swing2spreads']['MT']['description'] as string,
-                            alpha2: alpha2P2['swing2spreads']['MT']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['swing2spreads']['MT']['imageUrl'] as string,
-                            bili: biliP2['swing2spreads']['MT']['imageUrl'] as string,
-                            alpha: alphaP2['swing2spreads']['MT']['imageUrl'] as string,
-                            zenith: zenithP2['swing2spreads']['MT']['imageUrl'] as string,
-                            alpha2: alpha2P2['swing2spreads']['MT']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Tank',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['swing2spreads']['OT']['description'] as string,
-                            bili: biliP2['swing2spreads']['OT']['description'] as string,
-                            alpha: alphaP2['swing2spreads']['OT']['description'] as string,
-                            zenith: zenithP2['swing2spreads']['OT']['description'] as string,
-                            alpha2: alpha2P2['swing2spreads']['OT']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['swing2spreads']['OT']['imageUrl'] as string,
-                            bili: biliP2['swing2spreads']['OT']['imageUrl'] as string,
-                            alpha: alphaP2['swing2spreads']['OT']['imageUrl'] as string,
-                            zenith: zenithP2['swing2spreads']['OT']['imageUrl'] as string,
-                            alpha2: alpha2P2['swing2spreads']['OT']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Healer',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['swing2spreads']['H1']['description'] as string,
-                            bili: biliP2['swing2spreads']['H1']['description'] as string,
-                            alpha: alphaP2['swing2spreads']['H1']['description'] as string,
-                            zenith: zenithP2['swing2spreads']['H1']['description'] as string,
-                            alpha2: alpha2P2['swing2spreads']['H1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['swing2spreads']['H1']['imageUrl'] as string,
-                            bili: biliP2['swing2spreads']['H1']['imageUrl'] as string,
-                            alpha: alphaP2['swing2spreads']['H1']['imageUrl'] as string,
-                            zenith: zenithP2['swing2spreads']['H1']['imageUrl'] as string,
-                            alpha2: alpha2P2['swing2spreads']['H1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Healer',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['swing2spreads']['H2']['description'] as string,
-                            bili: biliP2['swing2spreads']['H2']['description'] as string,
-                            alpha: alphaP2['swing2spreads']['H2']['description'] as string,
-                            zenith: zenithP2['swing2spreads']['H2']['description'] as string,
-                            alpha2: alpha2P2['swing2spreads']['H2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['swing2spreads']['H2']['imageUrl'] as string,
-                            bili: biliP2['swing2spreads']['H2']['imageUrl'] as string,
-                            alpha: alphaP2['swing2spreads']['H2']['imageUrl'] as string,
-                            zenith: zenithP2['swing2spreads']['H2']['imageUrl'] as string,
-                            alpha2: alpha2P2['swing2spreads']['H2']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Melee',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['swing2spreads']['M1']['description'] as string,
-                            bili: biliP2['swing2spreads']['M1']['description'] as string,
-                            alpha: alphaP2['swing2spreads']['M1']['description'] as string,
-                            zenith: zenithP2['swing2spreads']['M1']['description'] as string,
-                            alpha2: alpha2P2['swing2spreads']['M1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['swing2spreads']['M1']['imageUrl'] as string,
-                            bili: biliP2['swing2spreads']['M1']['imageUrl'] as string,
-                            alpha: alphaP2['swing2spreads']['M1']['imageUrl'] as string,
-                            zenith: zenithP2['swing2spreads']['M1']['imageUrl'] as string,
-                            alpha2: alpha2P2['swing2spreads']['M1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Melee',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['swing2spreads']['M2']['description'] as string,
-                            bili: biliP2['swing2spreads']['M2']['description'] as string,
-                            alpha: alphaP2['swing2spreads']['M2']['description'] as string,
-                            zenith: zenithP2['swing2spreads']['M2']['description'] as string,
-                            alpha2: alpha2P2['swing2spreads']['M2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['swing2spreads']['M2']['imageUrl'] as string,
-                            bili: biliP2['swing2spreads']['M2']['imageUrl'] as string,
-                            alpha: alphaP2['swing2spreads']['M2']['imageUrl'] as string,
-                            zenith: zenithP2['swing2spreads']['M2']['imageUrl'] as string,
-                            alpha2: alpha2P2['swing2spreads']['M2']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['swing2spreads']['R1']['description'] as string,
-                            bili: biliP2['swing2spreads']['R1']['description'] as string,
-                            alpha: alphaP2['swing2spreads']['R1']['description'] as string,
-                            zenith: zenithP2['swing2spreads']['R1']['description'] as string,
-                            alpha2: alpha2P2['swing2spreads']['R1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['swing2spreads']['R1']['imageUrl'] as string,
-                            bili: biliP2['swing2spreads']['R1']['imageUrl'] as string,
-                            alpha: alphaP2['swing2spreads']['R1']['imageUrl'] as string,
-                            zenith: zenithP2['swing2spreads']['R1']['imageUrl'] as string,
-                            alpha2: alpha2P2['swing2spreads']['R1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['swing2spreads']['R2']['description'] as string,
-                            bili: biliP2['swing2spreads']['R2']['description'] as string,
-                            alpha: alphaP2['swing2spreads']['R2']['description'] as string,
-                            zenith: zenithP2['swing2spreads']['R2']['description'] as string,
-                            alpha2: alpha2P2['swing2spreads']['R2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['swing2spreads']['R2']['imageUrl'] as string,
-                            bili: biliP2['swing2spreads']['R2']['imageUrl'] as string,
-                            alpha: alphaP2['swing2spreads']['R2']['imageUrl'] as string,
-                            zenith: zenithP2['swing2spreads']['R2']['imageUrl'] as string,
-                            alpha2: alpha2P2['swing2spreads']['R2']['imageUrl'] as string,
-                        }
-                    },
-                ]
+                strats: getStratArray(p2Strats, 'swing2spreads'),
             },
         ]
     },
     {
         phaseName: 'Strange Seeds (Boss South)',
         tag: 'p2',
-        description: {
-            toxic: toxicP2['strangeseedsbosssouth']['description'] as string,
-            bili: biliP2['strangeseedsbosssouth']['description'] as string,
-            alpha: alphaP2['strangeseedsbosssouth']['description'] as string,
-            zenith: zenithP2['strangeseedsbosssouth']['description'] as string,
-            alpha2: alpha2P2['strangeseedsbosssouth']['description'] as string,
-        },
+        description: getStringObject(p2Strats, 'strangeseedsbosssouth', 'description'),
         mechs: [
             {
                 mechanic: 'Seeds + Tethers',
-                strats: [
-                    {
-                        role: 'Tank',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['strangeseedsbosssouth']['MT']['description'] as string,
-                            bili: biliP2['strangeseedsbosssouth']['MT']['description'] as string,
-                            alpha: alphaP2['strangeseedsbosssouth']['MT']['description'] as string,
-                            zenith: zenithP2['strangeseedsbosssouth']['MT']['description'] as string,
-                            alpha2: alpha2P2['strangeseedsbosssouth']['MT']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsbosssouth']['MT']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsbosssouth']['MT']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsbosssouth']['MT']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsbosssouth']['MT']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedsbosssouth']['MT']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Tank',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['strangeseedsbosssouth']['OT']['description'] as string,
-                            bili: biliP2['strangeseedsbosssouth']['OT']['description'] as string,
-                            alpha: alphaP2['strangeseedsbosssouth']['OT']['description'] as string,
-                            zenith: zenithP2['strangeseedsbosssouth']['OT']['description'] as string,
-                            alpha2: alpha2P2['strangeseedsbosssouth']['OT']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsbosssouth']['OT']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsbosssouth']['OT']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsbosssouth']['OT']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsbosssouth']['OT']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedsbosssouth']['OT']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Healer',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['strangeseedsbosssouth']['H1']['description'] as string,
-                            bili: biliP2['strangeseedsbosssouth']['H1']['description'] as string,
-                            alpha: alphaP2['strangeseedsbosssouth']['H1']['description'] as string,
-                            zenith: zenithP2['strangeseedsbosssouth']['H1']['description'] as string,
-                            alpha2: alpha2P2['strangeseedsbosssouth']['H1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsbosssouth']['H1']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsbosssouth']['H1']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsbosssouth']['H1']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsbosssouth']['H1']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedsbosssouth']['H1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Healer',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['strangeseedsbosssouth']['H2']['description'] as string,
-                            bili: biliP2['strangeseedsbosssouth']['H2']['description'] as string,
-                            alpha: alphaP2['strangeseedsbosssouth']['H2']['description'] as string,
-                            zenith: zenithP2['strangeseedsbosssouth']['H2']['description'] as string,
-                            alpha2: alpha2P2['strangeseedsbosssouth']['H2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsbosssouth']['H2']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsbosssouth']['H2']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsbosssouth']['H2']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsbosssouth']['H2']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedsbosssouth']['H2']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Melee',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['strangeseedsbosssouth']['M1']['description'] as string,
-                            bili: biliP2['strangeseedsbosssouth']['M1']['description'] as string,
-                            alpha: alphaP2['strangeseedsbosssouth']['M1']['description'] as string,
-                            zenith: zenithP2['strangeseedsbosssouth']['M1']['description'] as string,
-                            alpha2: alpha2P2['strangeseedsbosssouth']['M1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsbosssouth']['M1']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsbosssouth']['M1']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsbosssouth']['M1']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsbosssouth']['M1']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedsbosssouth']['M1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Melee',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['strangeseedsbosssouth']['M2']['description'] as string,
-                            bili: biliP2['strangeseedsbosssouth']['M2']['description'] as string,
-                            alpha: alphaP2['strangeseedsbosssouth']['M2']['description'] as string,
-                            zenith: zenithP2['strangeseedsbosssouth']['M2']['description'] as string,
-                            alpha2: alpha2P2['strangeseedsbosssouth']['M2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsbosssouth']['M2']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsbosssouth']['M2']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsbosssouth']['M2']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsbosssouth']['M2']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedsbosssouth']['M2']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['strangeseedsbosssouth']['R1']['description'] as string,
-                            bili: biliP2['strangeseedsbosssouth']['R1']['description'] as string,
-                            alpha: alphaP2['strangeseedsbosssouth']['R1']['description'] as string,
-                            zenith: zenithP2['strangeseedsbosssouth']['R1']['description'] as string,
-                            alpha2: alpha2P2['strangeseedsbosssouth']['R1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsbosssouth']['R1']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsbosssouth']['R1']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsbosssouth']['R1']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsbosssouth']['R1']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedsbosssouth']['R1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['strangeseedsbosssouth']['R2']['description'] as string,
-                            bili: biliP2['strangeseedsbosssouth']['R2']['description'] as string,
-                            alpha: alphaP2['strangeseedsbosssouth']['R2']['description'] as string,
-                            zenith: zenithP2['strangeseedsbosssouth']['R2']['description'] as string,
-                            alpha2: alpha2P2['strangeseedsbosssouth']['R2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsbosssouth']['R2']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsbosssouth']['R2']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsbosssouth']['R2']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsbosssouth']['R2']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedsbosssouth']['R2']['imageUrl'] as string,
-                        }
-                    },
-                ]
+                strats: getStratArray(p2Strats, 'strangeseedsbosssouth'),
             },
             {
                 mechanic: 'Stacks',
-                strats: [
-                    {
-                        role: 'Tank',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['strangeseedssouthstacks']['MT']['description'] as string,
-                            bili: biliP2['strangeseedssouthstacks']['MT']['description'] as string,
-                            alpha: alphaP2['strangeseedssouthstacks']['MT']['description'] as string,
-                            zenith: zenithP2['strangeseedssouthstacks']['MT']['description'] as string,
-                            alpha2: alpha2P2['strangeseedssouthstacks']['MT']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedssouthstacks']['MT']['imageUrl'] as string,
-                            bili: biliP2['strangeseedssouthstacks']['MT']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedssouthstacks']['MT']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedssouthstacks']['MT']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedssouthstacks']['MT']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Tank',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['strangeseedssouthstacks']['OT']['description'] as string,
-                            bili: biliP2['strangeseedssouthstacks']['OT']['description'] as string,
-                            alpha: alphaP2['strangeseedssouthstacks']['OT']['description'] as string,
-                            zenith: zenithP2['strangeseedssouthstacks']['OT']['description'] as string,
-                            alpha2: alpha2P2['strangeseedssouthstacks']['OT']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedssouthstacks']['OT']['imageUrl'] as string,
-                            bili: biliP2['strangeseedssouthstacks']['OT']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedssouthstacks']['OT']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedssouthstacks']['OT']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedssouthstacks']['OT']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Healer',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['strangeseedssouthstacks']['H1']['description'] as string,
-                            bili: biliP2['strangeseedssouthstacks']['H1']['description'] as string,
-                            alpha: alphaP2['strangeseedssouthstacks']['H1']['description'] as string,
-                            zenith: zenithP2['strangeseedssouthstacks']['H1']['description'] as string,
-                            alpha2: alpha2P2['strangeseedssouthstacks']['H1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedssouthstacks']['H1']['imageUrl'] as string,
-                            bili: biliP2['strangeseedssouthstacks']['H1']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedssouthstacks']['H1']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedssouthstacks']['H1']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedssouthstacks']['H1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Healer',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['strangeseedssouthstacks']['H2']['description'] as string,
-                            bili: biliP2['strangeseedssouthstacks']['H2']['description'] as string,
-                            alpha: alphaP2['strangeseedssouthstacks']['H2']['description'] as string,
-                            zenith: zenithP2['strangeseedssouthstacks']['H2']['description'] as string,
-                            alpha2: alpha2P2['strangeseedssouthstacks']['H2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedssouthstacks']['H2']['imageUrl'] as string,
-                            bili: biliP2['strangeseedssouthstacks']['H2']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedssouthstacks']['H2']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedssouthstacks']['H2']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedssouthstacks']['H2']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Melee',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['strangeseedssouthstacks']['M1']['description'] as string,
-                            bili: biliP2['strangeseedssouthstacks']['M1']['description'] as string,
-                            alpha: alphaP2['strangeseedssouthstacks']['M1']['description'] as string,
-                            zenith: zenithP2['strangeseedssouthstacks']['M1']['description'] as string,
-                            alpha2: alpha2P2['strangeseedssouthstacks']['M1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedssouthstacks']['M1']['imageUrl'] as string,
-                            bili: biliP2['strangeseedssouthstacks']['M1']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedssouthstacks']['M1']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedssouthstacks']['M1']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedssouthstacks']['M1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Melee',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['strangeseedssouthstacks']['M2']['description'] as string,
-                            bili: biliP2['strangeseedssouthstacks']['M2']['description'] as string,
-                            alpha: alphaP2['strangeseedssouthstacks']['M2']['description'] as string,
-                            zenith: zenithP2['strangeseedssouthstacks']['M2']['description'] as string,
-                            alpha2: alpha2P2['strangeseedssouthstacks']['M2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedssouthstacks']['M2']['imageUrl'] as string,
-                            bili: biliP2['strangeseedssouthstacks']['M2']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedssouthstacks']['M2']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedssouthstacks']['M2']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedssouthstacks']['M2']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['strangeseedssouthstacks']['R1']['description'] as string,
-                            bili: biliP2['strangeseedssouthstacks']['R1']['description'] as string,
-                            alpha: alphaP2['strangeseedssouthstacks']['R1']['description'] as string,
-                            zenith: zenithP2['strangeseedssouthstacks']['R1']['description'] as string,
-                            alpha2: alpha2P2['strangeseedssouthstacks']['R1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedssouthstacks']['R1']['imageUrl'] as string,
-                            bili: biliP2['strangeseedssouthstacks']['R1']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedssouthstacks']['R1']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedssouthstacks']['R1']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedssouthstacks']['R1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['strangeseedssouthstacks']['R2']['description'] as string,
-                            bili: biliP2['strangeseedssouthstacks']['R2']['description'] as string,
-                            alpha: alphaP2['strangeseedssouthstacks']['R2']['description'] as string,
-                            zenith: zenithP2['strangeseedssouthstacks']['R2']['description'] as string,
-                            alpha2: alpha2P2['strangeseedssouthstacks']['R2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedssouthstacks']['R2']['imageUrl'] as string,
-                            bili: biliP2['strangeseedssouthstacks']['R2']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedssouthstacks']['R2']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedssouthstacks']['R2']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedssouthstacks']['R2']['imageUrl'] as string,
-                        }
-                    },
-                ]
+                strats: getStratArray(p2Strats, 'strangeseedssouthstacks'),
             },
         ]
     },
     {
         phaseName: 'Strange Seeds (Boss North)',
         tag: 'p2',
-        description: {
-            toxic: toxicP2['strangeseedsbossnorth']['description'] as string,
-            bili: biliP2['strangeseedsbossnorth']['description'] as string,
-            alpha: alphaP2['strangeseedsbossnorth']['description'] as string,
-            zenith: zenithP2['strangeseedsbossnorth']['description'] as string,
-            alpha2: alpha2P2['strangeseedsbossnorth']['description'] as string,
-        },
+        description: getStringObject(p2Strats, 'strangeseedsbossnorth', 'description'),
         mechs: [
             {
                 mechanic: 'Seeds + Tethers',
-                strats: [
-                    {
-                        role: 'Tank',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['strangeseedsbossnorth']['MT']['description'] as string,
-                            bili: biliP2['strangeseedsbossnorth']['MT']['description'] as string,
-                            alpha: alphaP2['strangeseedsbossnorth']['MT']['description'] as string,
-                            zenith: zenithP2['strangeseedsbossnorth']['MT']['description'] as string,
-                            alpha2: alpha2P2['strangeseedsbossnorth']['MT']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsbossnorth']['MT']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsbossnorth']['MT']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsbossnorth']['MT']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsbossnorth']['MT']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedsbossnorth']['MT']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Tank',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['strangeseedsbossnorth']['OT']['description'] as string,
-                            bili: biliP2['strangeseedsbossnorth']['OT']['description'] as string,
-                            alpha: alphaP2['strangeseedsbossnorth']['OT']['description'] as string,
-                            zenith: zenithP2['strangeseedsbossnorth']['OT']['description'] as string,
-                            alpha2: alpha2P2['strangeseedsbossnorth']['OT']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsbossnorth']['OT']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsbossnorth']['OT']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsbossnorth']['OT']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsbossnorth']['OT']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedsbossnorth']['OT']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Healer',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['strangeseedsbossnorth']['H1']['description'] as string,
-                            bili: biliP2['strangeseedsbossnorth']['H1']['description'] as string,
-                            alpha: alphaP2['strangeseedsbossnorth']['H1']['description'] as string,
-                            zenith: zenithP2['strangeseedsbossnorth']['H1']['description'] as string,
-                            alpha2: alpha2P2['strangeseedsbossnorth']['H1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsbossnorth']['H1']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsbossnorth']['H1']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsbossnorth']['H1']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsbossnorth']['H1']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedsbossnorth']['H1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Healer',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['strangeseedsbossnorth']['H2']['description'] as string,
-                            bili: biliP2['strangeseedsbossnorth']['H2']['description'] as string,
-                            alpha: alphaP2['strangeseedsbossnorth']['H2']['description'] as string,
-                            zenith: zenithP2['strangeseedsbossnorth']['H2']['description'] as string,
-                            alpha2: alpha2P2['strangeseedsbossnorth']['H2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsbossnorth']['H2']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsbossnorth']['H2']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsbossnorth']['H2']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsbossnorth']['H2']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedsbossnorth']['H2']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Melee',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['strangeseedsbossnorth']['M1']['description'] as string,
-                            bili: biliP2['strangeseedsbossnorth']['M1']['description'] as string,
-                            alpha: alphaP2['strangeseedsbossnorth']['M1']['description'] as string,
-                            zenith: zenithP2['strangeseedsbossnorth']['M1']['description'] as string,
-                            alpha2: alpha2P2['strangeseedsbossnorth']['M1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsbossnorth']['M1']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsbossnorth']['M1']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsbossnorth']['M1']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsbossnorth']['M1']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedsbossnorth']['M1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Melee',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['strangeseedsbossnorth']['M2']['description'] as string,
-                            bili: biliP2['strangeseedsbossnorth']['M2']['description'] as string,
-                            alpha: alphaP2['strangeseedsbossnorth']['M2']['description'] as string,
-                            zenith: zenithP2['strangeseedsbossnorth']['M2']['description'] as string,
-                            alpha2: alpha2P2['strangeseedsbossnorth']['M2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsbossnorth']['M2']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsbossnorth']['M2']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsbossnorth']['M2']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsbossnorth']['M2']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedsbossnorth']['M2']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['strangeseedsbossnorth']['R1']['description'] as string,
-                            bili: biliP2['strangeseedsbossnorth']['R1']['description'] as string,
-                            alpha: alphaP2['strangeseedsbossnorth']['R1']['description'] as string,
-                            zenith: zenithP2['strangeseedsbossnorth']['R1']['description'] as string,
-                            alpha2: alpha2P2['strangeseedsbossnorth']['R1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsbossnorth']['R1']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsbossnorth']['R1']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsbossnorth']['R1']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsbossnorth']['R1']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedsbossnorth']['R1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['strangeseedsbossnorth']['R2']['description'] as string,
-                            bili: biliP2['strangeseedsbossnorth']['R2']['description'] as string,
-                            alpha: alphaP2['strangeseedsbossnorth']['R2']['description'] as string,
-                            zenith: zenithP2['strangeseedsbossnorth']['R2']['description'] as string,
-                            alpha2: alpha2P2['strangeseedsbossnorth']['R2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsbossnorth']['R2']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsbossnorth']['R2']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsbossnorth']['R2']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsbossnorth']['R2']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedsbossnorth']['R2']['imageUrl'] as string,
-                        }
-                    },
-                ]
+                strats: getStratArray(p2Strats, 'strangeseedsbossnorth'),
             },
             {
                 mechanic: 'Stacks',
-                strats: [
-                    {
-                        role: 'Tank',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['strangeseedsnorthstacks']['MT']['description'] as string,
-                            bili: biliP2['strangeseedsnorthstacks']['MT']['description'] as string,
-                            alpha: alphaP2['strangeseedsnorthstacks']['MT']['description'] as string,
-                            zenith: zenithP2['strangeseedsnorthstacks']['MT']['description'] as string,
-                            alpha2: alpha2P2['strangeseedsnorthstacks']['MT']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsnorthstacks']['MT']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsnorthstacks']['MT']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsnorthstacks']['MT']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsnorthstacks']['MT']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedsnorthstacks']['MT']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Tank',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['strangeseedsnorthstacks']['OT']['description'] as string,
-                            bili: biliP2['strangeseedsnorthstacks']['OT']['description'] as string,
-                            alpha: alphaP2['strangeseedsnorthstacks']['OT']['description'] as string,
-                            zenith: zenithP2['strangeseedsnorthstacks']['OT']['description'] as string,
-                            alpha2: alpha2P2['strangeseedsnorthstacks']['OT']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsnorthstacks']['OT']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsnorthstacks']['OT']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsnorthstacks']['OT']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsnorthstacks']['OT']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedsnorthstacks']['OT']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Healer',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['strangeseedsnorthstacks']['H1']['description'] as string,
-                            bili: biliP2['strangeseedsnorthstacks']['H1']['description'] as string,
-                            alpha: alphaP2['strangeseedsnorthstacks']['H1']['description'] as string,
-                            zenith: zenithP2['strangeseedsnorthstacks']['H1']['description'] as string,
-                            alpha2: alpha2P2['strangeseedsnorthstacks']['H1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsnorthstacks']['H1']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsnorthstacks']['H1']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsnorthstacks']['H1']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsnorthstacks']['H1']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedsnorthstacks']['H1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Healer',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['strangeseedsnorthstacks']['H2']['description'] as string,
-                            bili: biliP2['strangeseedsnorthstacks']['H2']['description'] as string,
-                            alpha: alphaP2['strangeseedsnorthstacks']['H2']['description'] as string,
-                            zenith: zenithP2['strangeseedsnorthstacks']['H2']['description'] as string,
-                            alpha2: alpha2P2['strangeseedsnorthstacks']['H2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsnorthstacks']['H2']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsnorthstacks']['H2']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsnorthstacks']['H2']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsnorthstacks']['H2']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedsnorthstacks']['H2']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Melee',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['strangeseedsnorthstacks']['M1']['description'] as string,
-                            bili: biliP2['strangeseedsnorthstacks']['M1']['description'] as string,
-                            alpha: alphaP2['strangeseedsnorthstacks']['M1']['description'] as string,
-                            zenith: zenithP2['strangeseedsnorthstacks']['M1']['description'] as string,
-                            alpha2: alpha2P2['strangeseedsnorthstacks']['M1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsnorthstacks']['M1']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsnorthstacks']['M1']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsnorthstacks']['M1']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsnorthstacks']['M1']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedsnorthstacks']['M1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Melee',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['strangeseedsnorthstacks']['M2']['description'] as string,
-                            bili: biliP2['strangeseedsnorthstacks']['M2']['description'] as string,
-                            alpha: alphaP2['strangeseedsnorthstacks']['M2']['description'] as string,
-                            zenith: zenithP2['strangeseedsnorthstacks']['M2']['description'] as string,
-                            alpha2: alpha2P2['strangeseedsnorthstacks']['M2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsnorthstacks']['M2']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsnorthstacks']['M2']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsnorthstacks']['M2']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsnorthstacks']['M2']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedsnorthstacks']['M2']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['strangeseedsnorthstacks']['R1']['description'] as string,
-                            bili: biliP2['strangeseedsnorthstacks']['R1']['description'] as string,
-                            alpha: alphaP2['strangeseedsnorthstacks']['R1']['description'] as string,
-                            zenith: zenithP2['strangeseedsnorthstacks']['R1']['description'] as string,
-                            alpha2: alpha2P2['strangeseedsnorthstacks']['R1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsnorthstacks']['R1']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsnorthstacks']['R1']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsnorthstacks']['R1']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsnorthstacks']['R1']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedsnorthstacks']['R1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['strangeseedsnorthstacks']['R2']['description'] as string,
-                            bili: biliP2['strangeseedsnorthstacks']['R2']['description'] as string,
-                            alpha: alphaP2['strangeseedsnorthstacks']['R2']['description'] as string,
-                            zenith: zenithP2['strangeseedsnorthstacks']['R2']['description'] as string,
-                            alpha2: alpha2P2['strangeseedsnorthstacks']['R2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['strangeseedsnorthstacks']['R2']['imageUrl'] as string,
-                            bili: biliP2['strangeseedsnorthstacks']['R2']['imageUrl'] as string,
-                            alpha: alphaP2['strangeseedsnorthstacks']['R2']['imageUrl'] as string,
-                            zenith: zenithP2['strangeseedsnorthstacks']['R2']['imageUrl'] as string,
-                            alpha2: alpha2P2['strangeseedsnorthstacks']['R2']['imageUrl'] as string,
-                        }
-                    },
-                ]
+                strats: getStratArray(p2Strats, 'strangeseedsnorthstacks'),
             },
         ]
     },
     {
         phaseName: 'Brutish Swing 3',
         tag: 'p2',
-        description: {
-            toxic: 'MT M1 R1 edge of arena\nOT M2 R2 middle of arena\nHealers middle of arena',
-            bili: biliP2['swing3spreads']['description'] as string,
-            alpha: alphaP2['swing3spreads']['description'] as string,
-            zenith: zenithP2['swing3spreads']['description'] as string,
-            alpha2: alpha2P2['swing3spreads']['description'] as string,
-        },
+        description: getStringObject(p2Strats, 'swing3spreads', 'description'),
         mechs: [
             {
                 mechanic: 'Spreads',
-                strats: [
-                    {
-                        role: 'Tank',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['swing3spreads']['MT']['description'] as string,
-                            bili: biliP2['swing3spreads']['MT']['description'] as string,
-                            alpha: alphaP2['swing3spreads']['MT']['description'] as string,
-                            zenith: zenithP2['swing3spreads']['MT']['description'] as string,
-                            alpha2: alpha2P2['swing3spreads']['MT']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['swing3spreads']['MT']['imageUrl'] as string,
-                            bili: biliP2['swing3spreads']['MT']['imageUrl'] as string,
-                            alpha: alphaP2['swing3spreads']['MT']['imageUrl'] as string,
-                            zenith: zenithP2['swing3spreads']['MT']['imageUrl'] as string,
-                            alpha2: alpha2P2['swing3spreads']['MT']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Tank',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['swing3spreads']['OT']['description'] as string,
-                            bili: biliP2['swing3spreads']['OT']['description'] as string,
-                            alpha: alphaP2['swing3spreads']['OT']['description'] as string,
-                            zenith: zenithP2['swing3spreads']['OT']['description'] as string,
-                            alpha2: alpha2P2['swing3spreads']['OT']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['swing3spreads']['OT']['imageUrl'] as string,
-                            bili: biliP2['swing3spreads']['OT']['imageUrl'] as string,
-                            alpha: alphaP2['swing3spreads']['OT']['imageUrl'] as string,
-                            zenith: zenithP2['swing3spreads']['OT']['imageUrl'] as string,
-                            alpha2: alpha2P2['swing3spreads']['OT']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Healer',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['swing3spreads']['H1']['description'] as string,
-                            bili: biliP2['swing3spreads']['H1']['description'] as string,
-                            alpha: alphaP2['swing3spreads']['H1']['description'] as string,
-                            zenith: zenithP2['swing3spreads']['H1']['description'] as string,
-                            alpha2: alpha2P2['swing3spreads']['H1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['swing3spreads']['H1']['imageUrl'] as string,
-                            bili: biliP2['swing3spreads']['H1']['imageUrl'] as string,
-                            alpha: alphaP2['swing3spreads']['H1']['imageUrl'] as string,
-                            zenith: zenithP2['swing3spreads']['H1']['imageUrl'] as string,
-                            alpha2: alpha2P2['swing3spreads']['H1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Healer',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['swing3spreads']['H2']['description'] as string,
-                            bili: biliP2['swing3spreads']['H2']['description'] as string,
-                            alpha: alphaP2['swing3spreads']['H2']['description'] as string,
-                            zenith: zenithP2['swing3spreads']['H2']['description'] as string,
-                            alpha2: alpha2P2['swing3spreads']['H2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['swing3spreads']['H2']['imageUrl'] as string,
-                            bili: biliP2['swing3spreads']['H2']['imageUrl'] as string,
-                            alpha: alphaP2['swing3spreads']['H2']['imageUrl'] as string,
-                            zenith: zenithP2['swing3spreads']['H2']['imageUrl'] as string,
-                            alpha2: alpha2P2['swing3spreads']['H2']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Melee',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['swing3spreads']['M1']['description'] as string,
-                            bili: biliP2['swing3spreads']['M1']['description'] as string,
-                            alpha: alphaP2['swing3spreads']['M1']['description'] as string,
-                            zenith: zenithP2['swing3spreads']['M1']['description'] as string,
-                            alpha2: alpha2P2['swing3spreads']['M1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['swing3spreads']['M1']['imageUrl'] as string,
-                            bili: biliP2['swing3spreads']['M1']['imageUrl'] as string,
-                            alpha: alphaP2['swing3spreads']['M1']['imageUrl'] as string,
-                            zenith: zenithP2['swing3spreads']['M1']['imageUrl'] as string,
-                            alpha2: alpha2P2['swing3spreads']['M1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Melee',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['swing3spreads']['M2']['description'] as string,
-                            bili: biliP2['swing3spreads']['M2']['description'] as string,
-                            alpha: alphaP2['swing3spreads']['M2']['description'] as string,
-                            zenith: zenithP2['swing3spreads']['M2']['description'] as string,
-                            alpha2: alpha2P2['swing3spreads']['M2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['swing3spreads']['M2']['imageUrl'] as string,
-                            bili: biliP2['swing3spreads']['M2']['imageUrl'] as string,
-                            alpha: alphaP2['swing3spreads']['M2']['imageUrl'] as string,
-                            zenith: zenithP2['swing3spreads']['M2']['imageUrl'] as string,
-                            alpha2: alpha2P2['swing3spreads']['M2']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 1,
-                        description: {
-                            toxic: toxicP2['swing3spreads']['R1']['description'] as string,
-                            bili: biliP2['swing3spreads']['R1']['description'] as string,
-                            alpha: alphaP2['swing3spreads']['R1']['description'] as string,
-                            zenith: zenithP2['swing3spreads']['R1']['description'] as string,
-                            alpha2: alpha2P2['swing3spreads']['R1']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['swing3spreads']['R1']['imageUrl'] as string,
-                            bili: biliP2['swing3spreads']['R1']['imageUrl'] as string,
-                            alpha: alphaP2['swing3spreads']['R1']['imageUrl'] as string,
-                            zenith: zenithP2['swing3spreads']['R1']['imageUrl'] as string,
-                            alpha2: alpha2P2['swing3spreads']['R1']['imageUrl'] as string,
-                        }
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 2,
-                        description: {
-                            toxic: toxicP2['swing3spreads']['R2']['description'] as string,
-                            bili: biliP2['swing3spreads']['R2']['description'] as string,
-                            alpha: alphaP2['swing3spreads']['R2']['description'] as string,
-                            zenith: zenithP2['swing3spreads']['R2']['description'] as string,
-                            alpha2: alpha2P2['swing3spreads']['R2']['description'] as string,
-                        },
-                        imageUrl: {
-                            toxic: toxicP2['swing3spreads']['R2']['imageUrl'] as string,
-                            bili: biliP2['swing3spreads']['R2']['imageUrl'] as string,
-                            alpha: alphaP2['swing3spreads']['R2']['imageUrl'] as string,
-                            zenith: zenithP2['swing3spreads']['R2']['imageUrl'] as string,
-                            alpha2: alpha2P2['swing3spreads']['R2']['imageUrl'] as string,
-                        }
-                    },
-                ]
+                strats: getStratArray(p2Strats, 'swing3spreads'),
             },
         ]
     },
