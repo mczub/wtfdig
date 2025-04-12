@@ -33,6 +33,7 @@
         </header>
         <article>
             <div>
+                <p>4/12/2025: m8s + renamed m6s toxic to hector/toxic</p>
                 <p>4/9/2025: m7s improvements + fixed m5s toxic ride the wave</p>
                 <p>4/8/2025: m7s</p>
                 <p>4/6/2025: add some m6s adds variations</p>
