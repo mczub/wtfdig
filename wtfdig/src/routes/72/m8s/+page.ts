@@ -117,7 +117,7 @@ function getStratArray(stratRecord: Record<string, StratRecord>, mechanic: strin
 
 const feringDecay: StratRecord = {
     'start': {
-        'description': 'Healers/Melee West, Tanks/Ranged East\nG1 N, G2 S',
+        'description': 'Healers/Melee West, Tanks/Ranged East\nG1 N, G2 S\nStay in start positions and rotate with heads',
         'MT': {
                 role: 'Tank',
                 party: 1,
@@ -273,7 +273,7 @@ const feringDecay: StratRecord = {
 
 const toxicDecay: StratRecord = {
     'start': {
-        'description': 'G1 West (Red + Purple), G2 East (Yellow + Blue)',
+        'description': `If AOE first, get KB'd to color intercard\nIf non-AOE first, stay E/W`,
         'MT': {
                 role: 'Tank',
                 party: 1,
@@ -324,7 +324,7 @@ const toxicDecay: StratRecord = {
         },
     },
     'spreads': {
-        'description': 'G1 West (Red + Purple), G2 East (Yellow + Blue)',
+        'description': 'If second AOE, go to intercard marker on wall\nTanks/Melee go further',
         'MT': {
                 role: 'Tank',
                 party: 1,
@@ -375,53 +375,53 @@ const toxicDecay: StratRecord = {
         },
     },
     'towers': {
-        'description': 'G1 West (Red + Purple), G2 East (Yellow + Blue)',
+        'description': '',
         'MT': {
                 role: 'Tank',
                 party: 1,
-                description: '',
+                description: 'Tower on A or 1 (Red) marker',
                 imageUrl: './m8s/p1/toxic-decay-towers.webp',
         },
         'OT': {
                 role: 'Tank',
                 party: 2,
-                description: '',
+                description: 'Tower on C or 3 (Blue) marker',
                 imageUrl: './m8s/p1/toxic-decay-towers.webp',
         },
         'H1': {
                 role: 'Healer',
                 party: 1,
-                description: '',
+                description: 'Tower on D or 4 (Purple) marker',
                 imageUrl: './m8s/p1/toxic-decay-towers.webp',
         },
         'H2': {
                 role: 'Healer',
                 party: 2,
-                description: '',
+                description: 'Tower on B or 2 (Yellow) marker',
                 imageUrl: './m8s/p1/toxic-decay-towers.webp',
         },
         'M1': {
                 role: 'Melee',
                 party: 1,
-                description: '',
+                description: 'Tower on D or 4 (Purple) marker',
                 imageUrl: './m8s/p1/toxic-decay-towers.webp',
         },
         'M2': {
                 role: 'Melee',
                 party: 2,
-                description: '',
+                description: 'Tower on C or 3 (Blue) marker',
                 imageUrl: './m8s/p1/toxic-decay-towers.webp',
         },
         'R1': {
                 role: 'Ranged',
                 party: 1,
-                description: '',
+                description: 'Tower on A or 1 (Red) marker',
                 imageUrl: './m8s/p1/toxic-decay-towers.webp',
         },
         'R2': {
                 role: 'Ranged',
                 party: 2,
-                description: '',
+                description: 'Tower on B or 2 (Yellow) marker',
                 imageUrl: './m8s/p1/toxic-decay-towers.webp',
         },
     }
@@ -1798,7 +1798,7 @@ const allP1: PhaseStrats[] = [
     },
     {
         phaseName: 'Eminent + Revolutionary Reign',
-        description: '',
+        description: 'Looking at boss from mid, G1 Left, G2 Right',
         mechs: [
             {
                 mechanic: 'Eminent',
@@ -1806,49 +1806,49 @@ const allP1: PhaseStrats[] = [
                     {
                         role: 'Tank',
                         party: 1,
-                        description: '',
+                        description: 'Left side behind boss',
                         imageUrl: './m8s/p1/toxic-eminent.webp',
                     },
                     {
                         role: 'Tank',
                         party: 2,
-                        description: '',
+                        description: 'Right side behind boss',
                         imageUrl: './m8s/p1/toxic-eminent.webp',
                     },
                     {
                         role: 'Healer',
                         party: 1,
-                        description: '',
+                        description: 'Left side with G1',
                         imageUrl: './m8s/p1/toxic-eminent.webp',
                     },
                     {
                         role: 'Healer',
                         party: 2,
-                        description: '',
+                        description: 'Right side with G2',
                         imageUrl: './m8s/p1/toxic-eminent.webp',
                     },
                     {
                         role: 'Melee',
                         party: 1,
-                        description: '',
+                        description: 'Left side with G1',
                         imageUrl: './m8s/p1/toxic-eminent.webp',
                     },
                     {
                         role: 'Melee',
                         party: 2,
-                        description: '',
+                        description: 'Right side with G2',
                         imageUrl: './m8s/p1/toxic-eminent.webp',
                     },
                     {
                         role: 'Ranged',
                         party: 1,
-                        description: '',
+                        description: 'Left side with G1',
                         imageUrl: './m8s/p1/toxic-eminent.webp',
                     },
                     {
                         role: 'Ranged',
                         party: 2,
-                        description: '',
+                        description: 'Right side with G2',
                         imageUrl: './m8s/p1/toxic-eminent.webp',
                     },
                 ]
@@ -1859,49 +1859,49 @@ const allP1: PhaseStrats[] = [
                     {
                         role: 'Tank',
                         party: 1,
-                        description: '',
+                        description: 'Far left side',
                         imageUrl: './m8s/p1/toxic-revolutionary.webp',
                     },
                     {
                         role: 'Tank',
                         party: 2,
-                        description: '',
+                        description: 'Far right side',
                         imageUrl: './m8s/p1/toxic-revolutionary.webp',
                     },
                     {
                         role: 'Healer',
                         party: 1,
-                        description: '',
+                        description: 'Left side with G1',
                         imageUrl: './m8s/p1/toxic-revolutionary.webp',
                     },
                     {
                         role: 'Healer',
                         party: 2,
-                        description: '',
+                        description: 'Right side with G2',
                         imageUrl: './m8s/p1/toxic-revolutionary.webp',
                     },
                     {
                         role: 'Melee',
                         party: 1,
-                        description: '',
+                        description: 'Left side with G1',
                         imageUrl: './m8s/p1/toxic-revolutionary.webp',
                     },
                     {
                         role: 'Melee',
                         party: 2,
-                        description: '',
+                        description: 'Right side with G2',
                         imageUrl: './m8s/p1/toxic-revolutionary.webp',
                     },
                     {
                         role: 'Ranged',
                         party: 1,
-                        description: '',
+                        description: 'Left side with G1',
                         imageUrl: './m8s/p1/toxic-revolutionary.webp',
                     },
                     {
                         role: 'Ranged',
                         party: 2,
-                        description: '',
+                        description: 'Right side with G2',
                         imageUrl: './m8s/p1/toxic-revolutionary.webp',
                     },
                 ]
@@ -1921,12 +1921,14 @@ const allP1: PhaseStrats[] = [
             },
             {
                 mechanic: 'Spreads',
+                description: getStringObject(decayStrats, 'spreads', 'description'),
                 strats: [
                     ...getStratArray(decayStrats, 'spreads')
                 ]
             },
             {
                 mechanic: 'Towers',
+                description: getStringObject(decayStrats, 'towers', 'description'),
                 strats: [
                     ...getStratArray(decayStrats, 'towers')
                 ]
