@@ -10,7 +10,7 @@
             <a href="{base}/72/m5s" class="btn preset-tonal-secondary border border-secondary-500">AAC Cruiserweight M1 (Savage)</a>
             <a href="{base}/72/m6s" class="btn preset-tonal-secondary border border-secondary-500">AAC Cruiserweight M2 (Savage)</a>
             <a href="{base}/72/m7s" class="btn preset-tonal-secondary border border-secondary-500">AAC Cruiserweight M3 (Savage)</a>
-            <button class="btn preset-tonal-secondary border border-secondary-500 disabled cursor-not-allowed">AAC Cruiserweight M4 (Savage)</button>
+            <a href="{base}/72/m8s" class="btn preset-tonal-secondary border border-secondary-500">AAC Cruiserweight M4 (Savage)</a>
         </div>
         <div class="card grid preset-filled-surface-100-900 border-[1px] border-surface-200-800 w-sm p-4 text-center gap-4">
             <div>Patch 7.1</div>

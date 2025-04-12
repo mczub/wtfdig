@@ -17,7 +17,13 @@
 
 	let { data, children }: Props = $props();
 	let stratName: string | undefined = $state();
-	let stratState: Record<string, string | null> = $state({});
+	let stratState: Record<string, string | null> = $state({
+		decay: null,
+		terrestrial: null,
+		moonlight: null,
+		p2: null,
+		lament: null,
+	});
 
 	
 	let role: Role | undefined = $state();
@@ -28,6 +34,34 @@
 	let alignment: Alignment = $state('original');
 	let optionsString = $derived(getOptionsString(stratName, role, party));
 	export const toast: ToastContext = getContext('toast');
+
+	const decayUrls: Record<string, any> = {
+		'toxic': {name: 'Toxic Decay', url: 'https://raidplan.io/plan/46uVU6o49FPuYXOs'},
+		'fer': {name: 'Fering Decay', url: 'https://raidplan.io/plan/IRl6bjA5WzSweStq'}
+	}
+
+	const terrestrialUrls: Record<string, any> = {
+		'clock': {name: 'Clock Terrestrial', url: 'https://raidplan.io/plan/s3EIvZnk3qvuFy86'},
+		'toxic': {name: 'Toxic Terrestrial', url: 'https://raidplan.io/plan/46uVU6o49FPuYXOs'},
+		'dn': {name: 'DN Terrestrial', url: 'https://www.youtube.com/watch?v=9tnQnMYHs1Q&t=975s'},
+	}
+
+	const moonlightUrls: Record<string, any> = {
+		'quad': {name: 'Quad Moonlight', url: 'https://raidplan.io/plan/WFsLBku1C9Iyxneu'},
+		'toxic': {name: 'Toxic Moonlight', url: 'https://raidplan.io/plan/46uVU6o49FPuYXOs'},
+	}
+
+	const p2Urls: Record<string, any> = {
+		'toxic': {name: 'Toxic P2', url: 'https://raidplan.io/plan/9M-1G-mmOaaroDOG'},
+		'rinon': {name: 'Rinon P2', url: 'https://www.youtube.com/watch?v=CPpfqs0ysuM'}
+	}
+
+	const lamentUrls: Record<string, any> = {
+		'toxic': {name: 'Toxic Lament', url: 'https://raidplan.io/plan/9M-1G-mmOaaroDOG'},
+		'rinon': {name: 'Rinon Lament', url: 'https://www.youtube.com/watch?v=CPpfqs0ysuM&t=621s'},
+		'fer': {name: 'Fering Lament', url: 'https://raidplan.io/plan/7WtylgRteRBAsa3D'},
+		'tired': {name: 'Tired Lament', url: 'https://raidplan.io/plan/rQxBsY35gvOR5ycy'}
+	}
 
 	$effect(() => {
 		let stratCode = '';
@@ -43,12 +77,16 @@
 		if (stratArray[0]) {
 			stratName = stratArray[0];
 		}
-		stratState = {
-			ef1: stratArray[1],
-			bloom3: stratArray[2],
-			ef2: stratArray[3],
-			bloom4: stratArray[4],
-			bloom6: stratArray[5],
+		if (stratArray.length === 1) {
+			stratState = getStratMechs(stratArray[0]);
+		} else {
+			stratState = {
+				decay: stratArray[1],
+				terrestrial: stratArray[2],
+				moonlight: stratArray[3],
+				p2: stratArray[4],
+				lament: stratArray[5],
+			}
 		}
 	}
 
@@ -60,7 +98,7 @@
 
 	function getStratCode(stratName: string | undefined, stratState: any) {
 		if (!stratName) return '';
-		return `${stratName}:${stratState.ef1}:${stratState.bloom3}:${stratState.ef2}:${stratState.bloom4}:${stratState.bloom6}`;
+		return `${stratName}:${stratState.decay}:${stratState.terrestrial}:${stratState.moonlight}:${stratState.p2}:${stratState.lament}`;
 	}
 
 	function onSelectStrat(e) {
@@ -109,7 +147,9 @@
 						phaseStratMech => {
 							return {
 								...phaseStratMech,
-								strats: phaseStratMech.strats.filter(strat => (strat.role === role && strat.party === party)).map(
+								description: getStratItem(phaseStratMech.description, phaseStrat.tag),
+								imageUrl: getStratItem(phaseStratMech.imageUrl, phaseStrat.tag),
+								strats: phaseStratMech.strats && phaseStratMech.strats.filter(strat => (strat.role === role && strat.party === party)).map(
 									iStrat => {
 										return {
 											...iStrat,
@@ -130,10 +170,25 @@
 		return individualPackages;
 	}
 
+
 	function getStratMechs(stratName: string){
-		const stratMechs: Record<string, any> = {}
-		//return stratMechs[stratName];
-		''
+		const stratMechs: Record<string, any> = {
+			'toxic': {
+				decay: 'toxic',
+				terrestrial: 'toxic',
+				moonlight: 'toxic',
+				p2: 'toxic',
+				lament: 'toxic',
+			},
+			'pb-eQ': {
+				decay: 'fer',
+				terrestrial: 'clock',
+				moonlight: 'quad',
+				p2: 'toxic',
+				lament: 'toxic',
+			},
+		}
+		return stratMechs[stratName];
 	}
 
 	function getMask(mask: string): string {
@@ -146,7 +201,18 @@
 	function getOptionsString(stratName?: string, role?: Role, party?: number): string {
 		if (!stratName || !role || !party) return '';
 		const stratNames: Record<string, string> = {
-			
+			'toxic': 'Toxic Friends',
+			'pb-eQ': 'Pastebin (eQ3PHFKr)'
+		}
+		const jpRoleAbbrev: Record<string, string> = {
+			'MT': 'MT',
+			'OT': 'ST',
+			'H1': 'H1',
+			'H2': 'H2',
+			'M1': 'D1',
+			'M2': 'D2',
+			'R1': 'D3',
+			'R2': 'D4',
 		}
 		let roleAbbrev = '';
 		if (role === 'Tank') {
@@ -154,8 +220,55 @@
 		} else {
 			roleAbbrev = role.charAt(0).toUpperCase() + party.toString();
 		}
+		let stratDiffs = [stratNames[stratName]];
+		if (stratState.decay !== getStratMechs(stratName)['decay']) {
+			if (stratState.decay === 'toxic') {
+				stratDiffs.push(`Toxic Decay`);
+			}
+			if (stratState.decay === 'fer') {
+				stratDiffs.push(`Fering Decay`);
+			}
+		}
+		if (stratState.terrestrial !== getStratMechs(stratName)['terrestrial']) {
+			if (stratState.terrestrial === 'clock') {
+				stratDiffs.push(`Clock Terrestrial`);
+			}
+			if (stratState.terrestrial === 'toxic') {
+				stratDiffs.push(`Toxic Terrestrial`);
+			}
+			if (stratState.terrestrial === 'dn') {
+				stratDiffs.push(`DN Terrestrial`);
+			}
+		}
+		if (stratState.moonlight !== getStratMechs(stratName)['moonlight']) {
+			if (stratState.moonlight === 'quad') {
+				stratDiffs.push(`Quad Moonlight`);
+			}
+			if (stratState.moonlight === 'toxic') {
+				stratDiffs.push(`Toxic Moonlight`);
+			}
+		}
+		if (stratState.p2 !== getStratMechs(stratName)['p2']) {
+			if (stratState.p2 === 'toxic') {
+				stratDiffs.push(`Toxic P2`);
+			}
+		}
+		if (stratState.lament !== getStratMechs(stratName)['lament']) {
+			if (stratState.lament === 'rinon') {
+				stratDiffs.push(`Rinon Lament`);
+			}
+			if (stratState.lament === 'toxic') {
+				stratDiffs.push(`Toxic Lament`);
+			}
+			if (stratState.lament === 'fer') {
+				stratDiffs.push(`Fering Lament`);
+			}
+			if (stratState.lament === 'tired') {
+				stratDiffs.push(`Tired Lament`);
+			}
+		}
 
-		return `${roleAbbrev}`;
+		return `${stratDiffs.join(' | ')} - ${roleAbbrev}`;
 	}
 </script>
 
@@ -170,29 +283,145 @@
 			<div class="space-y-5 v-full dark">
 				<div class="card preset-outlined-warning-500 gap-4 p-4">
                     <p>This guide is still under construction, thank you for your patience while we continue to work on it.</p>
-					<p>Some combinations of strats may be missing images or highlights.</p>
+					<p>Some strats may be missing images or highlights.</p>
                 </div>
-				<!--div>
+				<div>
 					<div class="text-xl mb-2">Which strat are you using?</div>
 					<Segment classes="flex-wrap" name="stratName" value={stratName} onValueChange={onSelectStrat}>
-						<Segment.Item value="hector">Hector</Segment.Item>
+						<Segment.Item value="pb-eQ">Pastebin (eQ3PHFKr)</Segment.Item>
+						<Segment.Item value="toxic">Toxic</Segment.Item>
 					</Segment>
-					{#if stratName}
-					<div class="text-lg my-2">Mechanics</div>
-					<div class="flex flex-row space-x-4 space-y-2 flex-wrap">
-						<div class="flex flex-col">
-							<div class="flex flex-row">
-								<div class="text-md mb-2">Mech</div>
-							</div>
-							<Segment classes="flex-wrap" name="mech" value={stratState.ef1} onValueChange={(e) => (setStratState('mech', e.value))}>
-								<Segment.Item value="supports">Supports bait first</Segment.Item>
-								<Segment.Item value="dps">DPS bait first</Segment.Item>
-								<Segment.Item value="dpsin">DPS in first</Segment.Item>
-							</Segment>
+				</div>
+				{#if stratName}
+				<div class="text-lg my-2">P1</div>
+				<div class="flex flex-row space-x-4 space-y-2 flex-wrap">
+					<div class="flex flex-col">
+						<div class="flex flex-row">
+							<div class="text-md mb-2">Millenial Decay</div>
+							{#if stratName && stratState.decay !== getStratMechs(stratName)['decay']}
+								<Tooltip
+									positioning={{ placement: 'top' }}
+									triggerBase="underline"
+									contentBase="card bg-surface-800 p-4 "
+									classes="ml-2 z-9999"
+									openDelay={200}
+									arrow
+									arrowBackground="!bg-surface-800"
+
+								>
+									{#snippet trigger()}<div class="text-warning-500"><TriangleAlert /></div>{/snippet}
+									{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
+								</Tooltip>
+							{/if}
 						</div>
+						<Segment classes="flex-wrap" name="decay" value={stratState.decay} onValueChange={(e) => (setStratState('decay', e.value))}>
+							<Segment.Item value="fer">Fering</Segment.Item>
+							<Segment.Item value="toxic">Toxic</Segment.Item>
+						</Segment>
 					</div>
-					{/if}
-				</div-->
+					<div class="flex flex-col">
+						<div class="flex flex-row">
+							<div class="text-md mb-2">Terrestrial Rage</div>
+							{#if stratName && stratState.terrestrial !== getStratMechs(stratName)['terrestrial']}
+								<Tooltip
+									positioning={{ placement: 'top' }}
+									triggerBase="underline"
+									contentBase="card bg-surface-800 p-4 "
+									classes="ml-2 z-9999"
+									openDelay={200}
+									arrow
+									arrowBackground="!bg-surface-800"
+
+								>
+									{#snippet trigger()}<div class="text-warning-500"><TriangleAlert /></div>{/snippet}
+									{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
+								</Tooltip>
+							{/if}
+						</div>
+						<Segment classes="flex-wrap" name="terrestrial" value={stratState.terrestrial} onValueChange={(e) => (setStratState('terrestrial', e.value))}>
+							<Segment.Item value="clock">Clock</Segment.Item>
+							<Segment.Item value="toxic">Toxic</Segment.Item>
+							<Segment.Item value="dn">DN</Segment.Item>
+						</Segment>
+					</div>
+					<div class="flex flex-col">
+						<div class="flex flex-row">
+							<div class="text-md mb-2">Beckon Moonlight</div>
+							{#if stratName && stratState.moonlight !== getStratMechs(stratName)['moonlight']}
+								<Tooltip
+									positioning={{ placement: 'top' }}
+									triggerBase="underline"
+									contentBase="card bg-surface-800 p-4 "
+									classes="ml-2 z-9999"
+									openDelay={200}
+									arrow
+									arrowBackground="!bg-surface-800"
+
+								>
+									{#snippet trigger()}<div class="text-warning-500"><TriangleAlert /></div>{/snippet}
+									{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
+								</Tooltip>
+							{/if}
+						</div>
+						<Segment classes="flex-wrap" name="moonlight" value={stratState.moonlight} onValueChange={(e) => (setStratState('moonlight', e.value))}>
+							<Segment.Item value="quad">Quad</Segment.Item>
+							<Segment.Item value="toxic">Toxic</Segment.Item>
+						</Segment>
+					</div>
+				</div>
+				<div class="text-lg my-2">P2</div>
+				<div class="flex flex-row space-x-4 space-y-2 flex-wrap">
+					<div class="flex flex-col">
+						<div class="flex flex-row">
+							<div class="text-md mb-2">Overall</div>
+							{#if stratName && stratState.p2 !== getStratMechs(stratName)['p2']}
+								<Tooltip
+									positioning={{ placement: 'top' }}
+									triggerBase="underline"
+									contentBase="card bg-surface-800 p-4 "
+									classes="ml-2 z-9999"
+									openDelay={200}
+									arrow
+									arrowBackground="!bg-surface-800"
+
+								>
+									{#snippet trigger()}<div class="text-warning-500"><TriangleAlert /></div>{/snippet}
+									{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
+								</Tooltip>
+							{/if}
+						</div>
+						<Segment classes="flex-wrap" name="p2" value={stratState.p2} onValueChange={(e) => (setStratState('p2', e.value))}>
+							<Segment.Item value="toxic">Toxic</Segment.Item>
+						</Segment>
+					</div>
+					<div class="flex flex-col">
+						<div class="flex flex-row">
+							<div class="text-md mb-2">Lone Wolf's Lament</div>
+							{#if stratName && stratState.lament !== getStratMechs(stratName)['lament']}
+								<Tooltip
+									positioning={{ placement: 'top' }}
+									triggerBase="underline"
+									contentBase="card bg-surface-800 p-4 "
+									classes="ml-2 z-9999"
+									openDelay={200}
+									arrow
+									arrowBackground="!bg-surface-800"
+
+								>
+									{#snippet trigger()}<div class="text-warning-500"><TriangleAlert /></div>{/snippet}
+									{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
+								</Tooltip>
+							{/if}
+						</div>
+						<Segment classes="flex-wrap" name="lament" value={stratState.lament} onValueChange={(e) => (setStratState('lament', e.value))}>
+							<Segment.Item value="rinon">Rinon</Segment.Item>
+							<Segment.Item value="toxic">Toxic</Segment.Item>
+							<Segment.Item value="fer">Fering</Segment.Item>
+							<Segment.Item value="tired">Tired</Segment.Item>
+						</Segment>
+					</div>
+				</div>
+				{/if}
 				<div>
 					<div class="text-xl mb-2">Which role are you?</div>
 					<Segment name="role" value={role} onValueChange={(e) => (role = e.value)}>
@@ -238,6 +467,51 @@
 								</a>
 							{/each}
 						{/if}
+						{#if (stratState.decay && decayUrls[stratState.decay])}
+							<div>
+								<a class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href={decayUrls[stratState.decay].url}>{decayUrls[stratState.decay].name}
+									<svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+										<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+									</svg>
+								</a>
+							</div>
+						{/if}
+						{#if (stratState.terrestrial && terrestrialUrls[stratState.terrestrial])}
+							<div>
+								<a class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href={terrestrialUrls[stratState.terrestrial].url}>{terrestrialUrls[stratState.terrestrial].name}
+									<svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+										<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+									</svg>
+								</a>
+							</div>
+						{/if}
+						{#if (stratState.moonlight && moonlightUrls[stratState.moonlight])}
+							<div>
+								<a class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href={moonlightUrls[stratState.moonlight].url}>{moonlightUrls[stratState.moonlight].name}
+									<svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+										<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+									</svg>
+								</a>
+							</div>
+						{/if}
+						{#if (stratState.p2 && p2Urls[stratState.p2])}
+							<div>
+								<a class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href={p2Urls[stratState.p2].url}>{p2Urls[stratState.p2].name}
+									<svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+										<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+									</svg>
+								</a>
+							</div>
+						{/if}
+						{#if (stratState.lament && lamentUrls[stratState.lament])}
+							<div>
+								<a class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href={lamentUrls[stratState.lament].url}>{lamentUrls[stratState.lament].name}
+									<svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+										<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+									</svg>
+								</a>
+							</div>
+						{/if}
 					</div>
 					<div class="grow"></div>
 					<div class="grid gap-y-2 content-center">
@@ -257,7 +531,12 @@
 						</div>
 					{/if}
 				</div>
-
+				{#if strat?.notes}
+					<div class="card preset-outlined-primary-500 p-2 flex flex-row space-x-2 my-2">
+						<CircleAlert size={32} />
+						<div class="whitespace-pre-wrap text-lg mb-0">{strat.notes}</div>
+					</div>
+				{/if}
 				{#each individualStrat as phase}
 				<div class="card border border-surface-800 mb-8 p-4">
 					<div class="flex flex-row">
@@ -267,7 +546,7 @@
 								positioning={{ placement: 'top' }}
 								triggerBase="underline"
 								contentBase="card bg-surface-800 p-4"
-								classes="ml-2"
+								classes="ml-2 z-9999"
 								openDelay={200}
 								arrow
 								arrowBackground="!bg-surface-800"
@@ -281,7 +560,7 @@
 					{#if phase?.description}<div class="text-lg whitespace-pre-wrap">{phase.description}</div>{/if}
 					{#if phase?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />{/if}
 					{#if phase?.mechs}
-						<div class="grid xl:grid-cols-2 grid-cols-2 gap-2 mt-4">
+						<div class="grid lg:grid-cols-2 grid-cols-1 gap-2 mt-4">
 							{#each phase.mechs as mech}
 								{#key [spotlight, alignment]}
 								<div class="space-y-4" class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}>
@@ -293,9 +572,9 @@
 										</div>
 									{/if}
 									{#if mech?.description}<div class="whitespace-pre-wrap text-lg mb-0">{mech.description}</div>{/if}
-									
-									<div class="whitespace-pre-wrap text-lg mb-0">{mech.strats[0].description}</div>
-									{#if mech.strats[0]?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />{/if}
+									{#if mech?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" src={mech.imageUrl} />{/if}
+									<div class="whitespace-pre-wrap text-lg mb-0">{mech?.strats && mech.strats[0].description}</div>
+									{#if mech?.strats && mech.strats[0]?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />{/if}
 								</div>
 								{/key}
 							{/each}

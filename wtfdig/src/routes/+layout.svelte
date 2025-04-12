@@ -125,11 +125,11 @@
                                 <div class="text-sm">Savage</div>
                             </a>
                         </div>
-                        <div class="px-4 py-2 cursor-not-allowed">
-                            <div class="flex flex-col w-full items-start cursor-not-allowed">
+                        <div class="px-4 py-2">
+                            <a href="{base}/72/m8s" class="flex flex-col w-full items-start">
                                 <div class="text-lg -mb-2">AAC Cruiserweight M4</div>
                                 <div class="text-sm">Savage</div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </article>
