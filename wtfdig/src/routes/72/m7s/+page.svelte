@@ -38,6 +38,7 @@
 		'alpha': {name: 'Alpha 1.0 P2', url: 'https://raidplan.io/plan/jtQenPvoJy7hsV-x'},
 		'alpha2': {name: 'Alpha 2.0 P2', url: 'https://raidplan.io/plan/zjpDmFrJ6VvUcDhV'},
 		'zenith': {name: 'Zenith P2', url: 'https://raidplan.io/plan/2Y1HT42osFhYD6Pe'},
+		'cute': {name: 'Cute P2', url: 'https://raidplan.io/plan/q_qH0crFmPZqrY4L'},
 	}
 
 	const p3Urls: Record<string, any> = {
@@ -204,6 +205,9 @@
 			if (stratState.p2 === 'zenith') {
 				stratDiffs.push(`Zenith P2`);
 			}
+			if (stratState.p2 === 'cute') {
+				stratDiffs.push(`Zenith P2`);
+			}
 		}
 		if (stratState.p3 !== getStratMechs(stratName)['p3']) {
 			if (stratState.p3 === 'toxic') {
@@ -265,6 +269,7 @@
 							<Segment.Item value="alpha">Alpha 1.0</Segment.Item>
 							<Segment.Item value="alpha2">Alpha 2.0</Segment.Item>
 							<Segment.Item value="zenith">Zenith</Segment.Item>
+							<Segment.Item value="cute">Cute</Segment.Item>
 						</Segment>
 					</div>
 					<div class="flex flex-col">
