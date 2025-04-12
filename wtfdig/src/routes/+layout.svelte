@@ -33,7 +33,7 @@
         </header>
         <article>
             <div>
-                <p>4/12/2025: m8s + renamed m6s toxic to hector/toxic, update ex4 hector bloom6 to match video</p>
+                <p>4/12/2025: m8s + renamed m6s toxic to hector/toxic, update ex4 hector bloom6 to match video, added ko-fi link</p>
                 <p>4/9/2025: m7s improvements + fixed m5s toxic ride the wave</p>
                 <p>4/8/2025: m7s</p>
                 <p>4/6/2025: add some m6s adds variations</p>
@@ -156,6 +156,7 @@
         <div class="text-sm text-gray-500 dark:text-gray-400 text-end">
             <div>Made by Mara Kaminagi @ Adamantoise</div>
             <div>You can find me on <a target="_blank" rel="noopener noreferrer" class="anchor" href="https://bsky.app/profile/shittyidiot.com">Bluesky</a> or <a target="_blank" rel="noopener noreferrer" class="anchor" href="https://x.com/mczub">Twitter</a></div>
+            <div>Really love the site? <a target="_blank" rel="noopener noreferrer" class="anchor" href="https://ko-fi.com/mczub">Buy me a coffee!</a></div>
         </div>
     </div>
 </footer>

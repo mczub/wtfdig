@@ -1937,7 +1937,7 @@ const allP1: PhaseStrats[] = [
     },
     {
         phaseName: 'Adds',
-        description: '21/36/54 Timers\nYellow cleanse first after line\nGreen cleanse when vuln drops',
+        description: '21/36/54 Timers\nYellow (Square) cleanse first after line\nGreen (Circle) cleanse when vuln drops',
         imageUrl: './m8s/p1/toxic-adds.webp'
     },
     {
