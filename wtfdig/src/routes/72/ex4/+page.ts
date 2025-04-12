@@ -129,7 +129,7 @@ const raidplanStrat: Strat = {
                                 dps: 'Follow symbol on 2 & 4',
                                 dpsin: 'Always start out\nDodge either once or twice',
                             },
-                            imageUrl: './ex4/raidplan/ef1.png',
+                            imageUrl: './ex4/raidplan/ef1.webp',
                             mask: 'radial-gradient(circle at 50% 41%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -140,7 +140,7 @@ const raidplanStrat: Strat = {
                                 dps: 'Follow symbol on 2 & 4',
                                 dpsin: 'Always start out\nDodge either once or twice'
                             },
-                            imageUrl: './ex4/raidplan/ef1.png',
+                            imageUrl: './ex4/raidplan/ef1.webp',
                             mask: 'radial-gradient(circle at 50% 60%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -151,7 +151,7 @@ const raidplanStrat: Strat = {
                                 dps: 'Follow symbol on 2 & 4',
                                 dpsin: 'Always start out\nDodge either once or twice'
                             },
-                            imageUrl: './ex4/raidplan/ef1.png',
+                            imageUrl: './ex4/raidplan/ef1.webp',
                             mask: 'radial-gradient(circle at 39% 50%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -162,7 +162,7 @@ const raidplanStrat: Strat = {
                                 dps: 'Follow symbol on 2 & 4',
                                 dpsin: 'Always start out\nDodge either once or twice'
                             },
-                            imageUrl: './ex4/raidplan/ef1.png',
+                            imageUrl: './ex4/raidplan/ef1.webp',
                             mask: 'radial-gradient(circle at 61% 50%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -173,7 +173,7 @@ const raidplanStrat: Strat = {
                                 dps: 'Follow symbol on 1 & 3',
                                 dpsin: 'Always start in\nDodge either once or twice'
                             },
-                            imageUrl: './ex4/raidplan/ef1.png',
+                            imageUrl: './ex4/raidplan/ef1.webp',
                             mask: 'radial-gradient(circle at 31% 69%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
                         },
                         {
@@ -184,7 +184,7 @@ const raidplanStrat: Strat = {
                                 dps: 'Follow symbol on 1 & 3',
                                 dpsin: 'Always start in\nDodge either once or twice'
                             },
-                            imageUrl: './ex4/raidplan/ef1.png',
+                            imageUrl: './ex4/raidplan/ef1.webp',
                             mask: 'radial-gradient(circle at 69% 69%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
                         },
                         {
@@ -195,7 +195,7 @@ const raidplanStrat: Strat = {
                                 dps: 'Follow symbol on 1 & 3',
                                 dpsin: 'Always start in\nDodge either once or twice'
                             }, 
-                            imageUrl: './ex4/raidplan/ef1.png',
+                            imageUrl: './ex4/raidplan/ef1.webp',
                             mask: 'radial-gradient(circle at 31% 31%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
                         },
                         {
@@ -206,7 +206,7 @@ const raidplanStrat: Strat = {
                                 dps: 'Follow symbol on 1 & 3',
                                 dpsin: 'Always start in\nDodge either once or twice'
                             },
-                            imageUrl: './ex4/raidplan/ef1.png',
+                            imageUrl: './ex4/raidplan/ef1.webp',
                             mask: 'radial-gradient(circle at 69% 31%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
                         },
                     ]
@@ -216,7 +216,7 @@ const raidplanStrat: Strat = {
         {
             phaseName: `Adds`,
             description: 'Supports W, DPS E',
-            imageUrl: './ex4/raidplan/adds.png',
+            imageUrl: './ex4/raidplan/adds.webp',
         },
         {
             phaseName: `Bloom 3`,
@@ -226,7 +226,7 @@ const raidplanStrat: Strat = {
                 color: 'True North (Colors)'
             },
             imageUrl: {
-                relative: './ex4/raidplan/bloom3-relative.png',
+                relative: './ex4/raidplan/bloom3-relative.webp',
                 color: '',
             },
             mechs: [
@@ -242,7 +242,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Inner slice North',
                                 color: 'Inner slice near North'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-support-roses.png',
+                            imageUrl: './ex4/raidplan/bloom3-support-roses.webp',
                             mask: 'radial-gradient(circle at 57% 35%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
@@ -252,7 +252,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Inner slice South',
                                 color: 'Inner slice near South'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-support-roses.png',
+                            imageUrl: './ex4/raidplan/bloom3-support-roses.webp',
                             mask: 'radial-gradient(circle at 44% 65%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
@@ -262,7 +262,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Inner slice Southwest',
                                 color: 'Inner slice near West'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-support-roses.png',
+                            imageUrl: './ex4/raidplan/bloom3-support-roses.webp',
                             mask: 'radial-gradient(circle at 34% 56%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
@@ -272,7 +272,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Inner slice Southeast',
                                 color: 'Inner slice near East'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-support-roses.png',
+                            imageUrl: './ex4/raidplan/bloom3-support-roses.webp',
                             mask: 'radial-gradient(circle at 57% 66%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
@@ -282,7 +282,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Inner slice Southwest',
                                 color: 'Inner slice near Southwest'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png',
+                            imageUrl: './ex4/raidplan/bloom3-dps-roses.webp',
                             mask: 'radial-gradient(circle at 34% 57%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
@@ -292,7 +292,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Inner slice South',
                                 color: 'Inner slice near Southeast'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png',
+                            imageUrl: './ex4/raidplan/bloom3-dps-roses.webp',
                             mask: 'radial-gradient(circle at 44% 66%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
@@ -302,7 +302,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Inner slice North',
                                 color: 'Inner slice near Northwest'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png',
+                            imageUrl: './ex4/raidplan/bloom3-dps-roses.webp',
                             mask: 'radial-gradient(circle at 57% 34%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
@@ -312,7 +312,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Inner slice Southeast',
                                 color: 'Inner slice near Northeast'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png',
+                            imageUrl: './ex4/raidplan/bloom3-dps-roses.webp',
                             mask: 'radial-gradient(circle at 57% 67%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                     ]
@@ -329,7 +329,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Outer slice North',
                                 color: 'Outer slice touching North'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png',
+                            imageUrl: './ex4/raidplan/bloom3-dps-roses.webp',
                             mask: 'radial-gradient(circle at 64% 15%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
@@ -339,7 +339,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Outer slice South',
                                 color: 'Outer slice touching South'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png',
+                            imageUrl: './ex4/raidplan/bloom3-dps-roses.webp',
                             mask: 'radial-gradient(circle at 36% 84%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
@@ -349,7 +349,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Outer slice West',
                                 color: 'Outer slice touching West'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png',
+                            imageUrl: './ex4/raidplan/bloom3-dps-roses.webp',
                             mask: 'radial-gradient(circle at 16% 36%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
@@ -359,7 +359,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Outer slice East',
                                 color: 'Outer slice touching East'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-dps-roses.png',
+                            imageUrl: './ex4/raidplan/bloom3-dps-roses.webp',
                             mask: 'radial-gradient(circle at 84% 64%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
@@ -369,7 +369,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Outer slice West',
                                 color: 'Outer slice touching West'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-support-roses.png',
+                            imageUrl: './ex4/raidplan/bloom3-support-roses.webp',
                             mask: 'radial-gradient(circle at 16% 36%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
@@ -379,7 +379,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Outer slice South',
                                 color: 'Outer slice touching South'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-support-roses.png',
+                            imageUrl: './ex4/raidplan/bloom3-support-roses.webp',
                             mask: 'radial-gradient(circle at 36% 84%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
@@ -389,7 +389,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Outer slice North',
                                 color: 'Outer slice touching North'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-support-roses.png',
+                            imageUrl: './ex4/raidplan/bloom3-support-roses.webp',
                             mask: 'radial-gradient(circle at 64% 15%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                         {
@@ -399,7 +399,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Outer slice East',
                                 color: 'Outer slice touching East'
                             },
-                            imageUrl: './ex4/raidplan/bloom3-support-roses.png',
+                            imageUrl: './ex4/raidplan/bloom3-support-roses.webp',
                             mask: 'radial-gradient(circle at 84% 64%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
                         },
                     ]
@@ -429,8 +429,8 @@ const raidplanStrat: Strat = {
                                 we: 'Stack West on hitbox'
                             },
                             imageUrl: {
-                                bd: './ex4/raidplan/ef2-bd-stacks.png',
-                                ns: './ex4/raidplan/ef2-ns-stacks.png',
+                                bd: './ex4/raidplan/ef2-bd-stacks.webp',
+                                ns: './ex4/raidplan/ef2-ns-stacks.webp',
                                 we: '',
                             },
                             mask: {
@@ -448,8 +448,8 @@ const raidplanStrat: Strat = {
                                 we: 'Stack West on hitbox'
                             },
                             imageUrl: {
-                                bd: './ex4/raidplan/ef2-bd-stacks.png',
-                                ns: './ex4/raidplan/ef2-ns-stacks.png',
+                                bd: './ex4/raidplan/ef2-bd-stacks.webp',
+                                ns: './ex4/raidplan/ef2-ns-stacks.webp',
                                 we: '',
                             },
                             mask: {
@@ -467,8 +467,8 @@ const raidplanStrat: Strat = {
                                 we: 'Stack West on hitbox'
                             },
                             imageUrl: {
-                                bd: './ex4/raidplan/ef2-bd-stacks.png',
-                                ns: './ex4/raidplan/ef2-ns-stacks.png',
+                                bd: './ex4/raidplan/ef2-bd-stacks.webp',
+                                ns: './ex4/raidplan/ef2-ns-stacks.webp',
                                 we: '',
                             },
                             mask: {
@@ -486,8 +486,8 @@ const raidplanStrat: Strat = {
                                 we: 'Stack West on hitbox'
                             },
                             imageUrl: {
-                                bd: './ex4/raidplan/ef2-bd-stacks.png',
-                                ns: './ex4/raidplan/ef2-ns-stacks.png',
+                                bd: './ex4/raidplan/ef2-bd-stacks.webp',
+                                ns: './ex4/raidplan/ef2-ns-stacks.webp',
                                 we: '',
                             },
                             mask: {
@@ -505,8 +505,8 @@ const raidplanStrat: Strat = {
                                 we: 'Stack East on hitbox'
                             },
                             imageUrl: {
-                                bd: './ex4/raidplan/ef2-bd-stacks.png',
-                                ns: './ex4/raidplan/ef2-ns-stacks.png',
+                                bd: './ex4/raidplan/ef2-bd-stacks.webp',
+                                ns: './ex4/raidplan/ef2-ns-stacks.webp',
                                 we: '',
                             },
                             mask: {
@@ -524,8 +524,8 @@ const raidplanStrat: Strat = {
                                 we: 'Stack East on hitbox'
                             },
                             imageUrl: {
-                                bd: './ex4/raidplan/ef2-bd-stacks.png',
-                                ns: './ex4/raidplan/ef2-ns-stacks.png',
+                                bd: './ex4/raidplan/ef2-bd-stacks.webp',
+                                ns: './ex4/raidplan/ef2-ns-stacks.webp',
                                 we: '',
                             },
                             mask: {
@@ -543,8 +543,8 @@ const raidplanStrat: Strat = {
                                 we: 'Stack East on hitbox'
                             },
                             imageUrl: {
-                                bd: './ex4/raidplan/ef2-bd-stacks.png',
-                                ns: './ex4/raidplan/ef2-ns-stacks.png',
+                                bd: './ex4/raidplan/ef2-bd-stacks.webp',
+                                ns: './ex4/raidplan/ef2-ns-stacks.webp',
                                 we: '',
                             },
                             mask: {
@@ -562,8 +562,8 @@ const raidplanStrat: Strat = {
                                 we: 'Stack East on hitbox'
                             },
                             imageUrl: {
-                                bd: './ex4/raidplan/ef2-bd-stacks.png',
-                                ns: './ex4/raidplan/ef2-ns-stacks.png',
+                                bd: './ex4/raidplan/ef2-bd-stacks.webp',
+                                ns: './ex4/raidplan/ef2-ns-stacks.webp',
                                 we: '',
                             },
                             mask: {
@@ -588,8 +588,8 @@ const raidplanStrat: Strat = {
                                 we: 'Fan out WNW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: './ex4/raidplan/ef2-bd-witchhunt.png',
-                                ns: './ex4/raidplan/ef2-ns-witchhunt.png',
+                                bd: './ex4/raidplan/ef2-bd-witchhunt.webp',
+                                ns: './ex4/raidplan/ef2-ns-witchhunt.webp',
                                 we: '',
                             },
                             mask: {
@@ -607,8 +607,8 @@ const raidplanStrat: Strat = {
                                 we: 'Fan out WSW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: './ex4/raidplan/ef2-bd-witchhunt.png',
-                                ns: './ex4/raidplan/ef2-ns-witchhunt.png',
+                                bd: './ex4/raidplan/ef2-bd-witchhunt.webp',
+                                ns: './ex4/raidplan/ef2-ns-witchhunt.webp',
                                 we: '',
                             },
                             mask: {
@@ -626,8 +626,8 @@ const raidplanStrat: Strat = {
                                 we: 'Fan out NNW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: './ex4/raidplan/ef2-bd-witchhunt.png',
-                                ns: './ex4/raidplan/ef2-ns-witchhunt.png',
+                                bd: './ex4/raidplan/ef2-bd-witchhunt.webp',
+                                ns: './ex4/raidplan/ef2-ns-witchhunt.webp',
                                 we: '',
                             },
                             mask: {
@@ -645,8 +645,8 @@ const raidplanStrat: Strat = {
                                 we: 'Fan out SSW for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: './ex4/raidplan/ef2-bd-witchhunt.png',
-                                ns: './ex4/raidplan/ef2-ns-witchhunt.png',
+                                bd: './ex4/raidplan/ef2-bd-witchhunt.webp',
+                                ns: './ex4/raidplan/ef2-ns-witchhunt.webp',
                                 we: '',
                             },
                             mask: {
@@ -664,8 +664,8 @@ const raidplanStrat: Strat = {
                                 we: 'Fan out ENE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: './ex4/raidplan/ef2-bd-witchhunt.png',
-                                ns: './ex4/raidplan/ef2-ns-witchhunt.png',
+                                bd: './ex4/raidplan/ef2-bd-witchhunt.webp',
+                                ns: './ex4/raidplan/ef2-ns-witchhunt.webp',
                                 we: '',
                             },
                             mask: {
@@ -683,8 +683,8 @@ const raidplanStrat: Strat = {
                                 we: 'Fan out ESE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: './ex4/raidplan/ef2-bd-witchhunt.png',
-                                ns: './ex4/raidplan/ef2-ns-witchhunt.png',
+                                bd: './ex4/raidplan/ef2-bd-witchhunt.webp',
+                                ns: './ex4/raidplan/ef2-ns-witchhunt.webp',
                                 we: '',
                             },
                             mask: {
@@ -702,8 +702,8 @@ const raidplanStrat: Strat = {
                                 we: 'Fan out NNE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: './ex4/raidplan/ef2-bd-witchhunt.png',
-                                ns: './ex4/raidplan/ef2-ns-witchhunt.png',
+                                bd: './ex4/raidplan/ef2-bd-witchhunt.webp',
+                                ns: './ex4/raidplan/ef2-ns-witchhunt.webp',
                                 we: '',
                             },
                             mask: {
@@ -721,8 +721,8 @@ const raidplanStrat: Strat = {
                                 we: 'Fan out SSE for proteans\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: './ex4/raidplan/ef2-bd-witchhunt.png',
-                                ns: './ex4/raidplan/ef2-ns-witchhunt.png',
+                                bd: './ex4/raidplan/ef2-bd-witchhunt.webp',
+                                ns: './ex4/raidplan/ef2-ns-witchhunt.webp',
                                 we: '',
                             },
                             mask: {
@@ -755,7 +755,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Drop rose on inner left tile',
                                 tn: 'Drop rose on inner East tile'
                             },
-                            imageUrl: './ex4/raidplan/bloom4-support-roses.png',
+                            imageUrl: './ex4/raidplan/bloom4-support-roses.webp',
                             mask: 'radial-gradient(circle at 44% 66%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -765,7 +765,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Drop rose on inner right tile',
                                 tn: 'Drop rose on inner West tile'
                             },
-                            imageUrl: './ex4/raidplan/bloom4-support-roses.png',
+                            imageUrl: './ex4/raidplan/bloom4-support-roses.webp',
                             mask: 'radial-gradient(circle at 56% 66%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -775,7 +775,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Drop rose on outer left tile',
                                 tn: 'Drop rose on outer East tile'
                             },
-                            imageUrl: './ex4/raidplan/bloom4-support-roses.png',
+                            imageUrl: './ex4/raidplan/bloom4-support-roses.webp',
                             mask: 'radial-gradient(circle at 38% 81%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
                         },
                         {
@@ -785,7 +785,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Drop rose on outer right tile',
                                 tn: 'Drop rose on outer West tile'
                             },
-                            imageUrl: './ex4/raidplan/bloom4-support-roses.png',
+                            imageUrl: './ex4/raidplan/bloom4-support-roses.webp',
                             mask: 'radial-gradient(circle at 60% 81%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
                         },
                         {
@@ -795,7 +795,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Drop rose on inner left tile',
                                 tn: 'Drop rose on inner East tile'
                             },
-                            imageUrl: './ex4/raidplan/bloom4-dps-roses.png',
+                            imageUrl: './ex4/raidplan/bloom4-dps-roses.webp',
                             mask: 'radial-gradient(circle at 44% 66%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -805,7 +805,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Drop rose on inner right tile',
                                 tn: 'Drop rose on inner West tile'
                             },
-                            imageUrl: './ex4/raidplan/bloom4-dps-roses.png',
+                            imageUrl: './ex4/raidplan/bloom4-dps-roses.webp',
                             mask: 'radial-gradient(circle at 56% 66%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -815,7 +815,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Drop rose on outer left tile',
                                 tn: 'Drop rose on outer East tile'
                             },
-                            imageUrl: './ex4/raidplan/bloom4-dps-roses.png',
+                            imageUrl: './ex4/raidplan/bloom4-dps-roses.webp',
                             mask: 'radial-gradient(circle at 38% 81%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
                         },
                         {
@@ -825,7 +825,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Drop rose on outer right tile',
                                 tn: 'Drop rose on outer West tile'
                             },
-                            imageUrl: './ex4/raidplan/bloom4-dps-roses.png',
+                            imageUrl: './ex4/raidplan/bloom4-dps-roses.webp',
                             mask: 'radial-gradient(circle at 60% 81%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
                         },
                     ]
@@ -842,7 +842,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Facing boss\nGo left to stretch tethers',
                                 tn: 'Go West to stretch tethers'
                             },
-                            imageUrl: './ex4/raidplan/bloom4-thorns.png'
+                            imageUrl: './ex4/raidplan/bloom4-thorns.webp'
                         },
                         {
                             role: 'Tank',
@@ -851,7 +851,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Facing boss\nGo left to stretch tethers',
                                 tn: 'Go West to stretch tethers'
                             },
-                            imageUrl: './ex4/raidplan/bloom4-thorns.png'
+                            imageUrl: './ex4/raidplan/bloom4-thorns.webp'
                         },
                         {
                             role: 'Healer',
@@ -860,7 +860,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Facing boss\nGo left to stretch tethers',
                                 tn: 'Go West to stretch tethers'
                             },
-                            imageUrl: './ex4/raidplan/bloom4-thorns.png'
+                            imageUrl: './ex4/raidplan/bloom4-thorns.webp'
                         },
                         {
                             role: 'Healer',
@@ -869,7 +869,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Facing boss\nGo left to stretch tethers',
                                 tn: 'Go West to stretch tethers'
                             },
-                            imageUrl: './ex4/raidplan/bloom4-thorns.png'
+                            imageUrl: './ex4/raidplan/bloom4-thorns.webp'
                         },
                         {
                             role: 'Melee',
@@ -878,7 +878,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Facing boss\nGo right to stretch tethers',
                                 tn: 'Go East to stretch tethers'
                             },
-                            imageUrl: './ex4/raidplan/bloom4-thorns.png'
+                            imageUrl: './ex4/raidplan/bloom4-thorns.webp'
                         },
                         {
                             role: 'Melee',
@@ -887,7 +887,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Facing boss\nGo right to stretch tethers',
                                 tn: 'Go East to stretch tethers'
                             },
-                            imageUrl: './ex4/raidplan/bloom4-thorns.png'
+                            imageUrl: './ex4/raidplan/bloom4-thorns.webp'
                         },
                         {
                             role: 'Ranged',
@@ -896,7 +896,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Facing boss\nGo right to stretch tethers',
                                 tn: 'Go East to stretch tethers'
                             },
-                            imageUrl: './ex4/raidplan/bloom4-thorns.png'
+                            imageUrl: './ex4/raidplan/bloom4-thorns.webp'
                         },
                         {
                             role: 'Ranged',
@@ -905,7 +905,7 @@ const raidplanStrat: Strat = {
                                 relative: 'Facing boss\nGo right to stretch tethers',
                                 tn: 'Go East to stretch tethers'
                             },
-                            imageUrl: './ex4/raidplan/bloom4-thorns.png'
+                            imageUrl: './ex4/raidplan/bloom4-thorns.webp'
                         },
                     ]
                 }
@@ -934,8 +934,8 @@ const raidplanStrat: Strat = {
                                 we: 'Drop rose on inner or outer SSW tile\nLink to the tower not being hit by 1st cleave',
                             },
                             imageUrl: {
-                                lb3: './ex4/raidplan/bloom6-lb3.png',
-                                ns: './ex4/raidplan/bloom6-ns.png',
+                                lb3: './ex4/raidplan/bloom6-lb3.webp',
+                                ns: './ex4/raidplan/bloom6-ns.webp',
                                 we: '',
                             },
                             mask: {
@@ -953,8 +953,8 @@ const raidplanStrat: Strat = {
                                 we: 'Drop rose on inner or outer SSE tile\nLink to the tower not being hit by 1st cleave',
                             },
                             imageUrl: {
-                                lb3: './ex4/raidplan/bloom6-lb3.png',
-                                ns: './ex4/raidplan/bloom6-ns.png',
+                                lb3: './ex4/raidplan/bloom6-lb3.webp',
+                                ns: './ex4/raidplan/bloom6-ns.webp',
                                 we: '',
                             },
                             mask: {
@@ -972,8 +972,8 @@ const raidplanStrat: Strat = {
                                 we: 'Drop rose on inner or outer NNW tile\nLink to the tower not being hit by 1st cleave',
                             },
                             imageUrl: {
-                                lb3: './ex4/raidplan/bloom6-lb3.png',
-                                ns: './ex4/raidplan/bloom6-ns.png',
+                                lb3: './ex4/raidplan/bloom6-lb3.webp',
+                                ns: './ex4/raidplan/bloom6-ns.webp',
                                 we: '',
                             },
                             mask: {
@@ -991,8 +991,8 @@ const raidplanStrat: Strat = {
                                 we: 'Drop rose on inner or outer NNE tile\nLink to the tower not being hit by 1st cleave',
                             },
                             imageUrl: {
-                                lb3: './ex4/raidplan/bloom6-lb3.png',
-                                ns: './ex4/raidplan/bloom6-ns.png',
+                                lb3: './ex4/raidplan/bloom6-lb3.webp',
+                                ns: './ex4/raidplan/bloom6-ns.webp',
                                 we: '',
                             },
                             mask: {
@@ -1010,8 +1010,8 @@ const raidplanStrat: Strat = {
                                 we: 'Drop rose on inner or outer SSW tile\nLink to the tower not being hit by 1st cleave',
                             },
                             imageUrl: {
-                                lb3: './ex4/raidplan/bloom6-lb3.png',
-                                ns: './ex4/raidplan/bloom6-ns.png',
+                                lb3: './ex4/raidplan/bloom6-lb3.webp',
+                                ns: './ex4/raidplan/bloom6-ns.webp',
                                 we: '',
                             },
                             mask: {
@@ -1029,8 +1029,8 @@ const raidplanStrat: Strat = {
                                 we: 'Drop rose on inner or outer SSE tile\nLink to the tower not being hit by 1st cleave',
                             },
                             imageUrl: {
-                                lb3: './ex4/raidplan/bloom6-lb3.png',
-                                ns: './ex4/raidplan/bloom6-ns.png',
+                                lb3: './ex4/raidplan/bloom6-lb3.webp',
+                                ns: './ex4/raidplan/bloom6-ns.webp',
                                 we: '',
                             },
                             mask: {
@@ -1048,8 +1048,8 @@ const raidplanStrat: Strat = {
                                 we: 'Drop rose on inner or outer NNW tile\nLink to the tower not being hit by 1st cleave',
                             },
                             imageUrl: {
-                                lb3: './ex4/raidplan/bloom6-lb3.png',
-                                ns: './ex4/raidplan/bloom6-ns.png',
+                                lb3: './ex4/raidplan/bloom6-lb3.webp',
+                                ns: './ex4/raidplan/bloom6-ns.webp',
                                 we: '',
                             },
                             mask: {
@@ -1067,8 +1067,8 @@ const raidplanStrat: Strat = {
                                 we: 'Drop rose on inner or outer NNE tile\nLink to the tower not being hit by 1st cleave',
                             },
                             imageUrl: {
-                                lb3: './ex4/raidplan/bloom6-lb3.png',
-                                ns: './ex4/raidplan/bloom6-ns.png',
+                                lb3: './ex4/raidplan/bloom6-lb3.webp',
+                                ns: './ex4/raidplan/bloom6-ns.webp',
                                 we: '',
                             },
                             mask: {
@@ -1093,8 +1093,8 @@ const raidplanStrat: Strat = {
                                 we: 'Take inner West tower',
                             },
                             imageUrl: {
-                                lb3: './ex4/raidplan/bloom6-lb3.png',
-                                ns: './ex4/raidplan/bloom6-ns.png',
+                                lb3: './ex4/raidplan/bloom6-lb3.webp',
+                                ns: './ex4/raidplan/bloom6-ns.webp',
                                 we: '',
                             },
                             mask: {
@@ -1112,8 +1112,8 @@ const raidplanStrat: Strat = {
                                 we: 'Take inner East tower',
                             },
                             imageUrl: {
-                                lb3: './ex4/raidplan/bloom6-lb3.png',
-                                ns: './ex4/raidplan/bloom6-ns.png',
+                                lb3: './ex4/raidplan/bloom6-lb3.webp',
+                                ns: './ex4/raidplan/bloom6-ns.webp',
                                 we: '',
                             },
                             mask: {
@@ -1131,8 +1131,8 @@ const raidplanStrat: Strat = {
                                 we: 'Take outer West tower',
                             },
                             imageUrl: {
-                                lb3: './ex4/raidplan/bloom6-lb3.png',
-                                ns: './ex4/raidplan/bloom6-ns.png',
+                                lb3: './ex4/raidplan/bloom6-lb3.webp',
+                                ns: './ex4/raidplan/bloom6-ns.webp',
                                 we: '',
                             },
                             mask: {
@@ -1150,8 +1150,8 @@ const raidplanStrat: Strat = {
                                 we: 'Take outer East tower',
                             },
                             imageUrl: {
-                                lb3: './ex4/raidplan/bloom6-lb3.png',
-                                ns: './ex4/raidplan/bloom6-ns.png',
+                                lb3: './ex4/raidplan/bloom6-lb3.webp',
+                                ns: './ex4/raidplan/bloom6-ns.webp',
                                 we: '',
                             },
                             mask: {
@@ -1169,8 +1169,8 @@ const raidplanStrat: Strat = {
                                 we: 'Take inner West tower',
                             },
                             imageUrl: {
-                                lb3: './ex4/raidplan/bloom6-lb3.png',
-                                ns: './ex4/raidplan/bloom6-ns.png',
+                                lb3: './ex4/raidplan/bloom6-lb3.webp',
+                                ns: './ex4/raidplan/bloom6-ns.webp',
                                 we: '',
                             },
                             mask: {
@@ -1188,8 +1188,8 @@ const raidplanStrat: Strat = {
                                 we: 'Take inner East tower',
                             },
                             imageUrl: {
-                                lb3: './ex4/raidplan/bloom6-lb3.png',
-                                ns: './ex4/raidplan/bloom6-ns.png',
+                                lb3: './ex4/raidplan/bloom6-lb3.webp',
+                                ns: './ex4/raidplan/bloom6-ns.webp',
                                 we: '',
                             },
                             mask: {
@@ -1207,8 +1207,8 @@ const raidplanStrat: Strat = {
                                 we: 'Take outer West tower',
                             },
                             imageUrl: {
-                                lb3: './ex4/raidplan/bloom6-lb3.png',
-                                ns: './ex4/raidplan/bloom6-ns.png',
+                                lb3: './ex4/raidplan/bloom6-lb3.webp',
+                                ns: './ex4/raidplan/bloom6-ns.webp',
                                 we: '',
                             },
                             mask: {
@@ -1226,8 +1226,8 @@ const raidplanStrat: Strat = {
                                 we: 'Take outer East tower',
                             },
                             imageUrl: {
-                                lb3: './ex4/raidplan/bloom6-lb3.png',
-                                ns: './ex4/raidplan/bloom6-ns.png',
+                                lb3: './ex4/raidplan/bloom6-lb3.webp',
+                                ns: './ex4/raidplan/bloom6-ns.webp',
                                 we: '',
                             },
                             mask: {
@@ -1321,7 +1321,7 @@ const hectorStrat: Strat = {
                                 dps: 'Follow symbol on 2 & 4',
                                 dpsin: 'Always start out\nDodge either once or twice'
                             },
-                            imageUrl: './ex4/hector/ef1.png',
+                            imageUrl: './ex4/hector/ef1.webp',
                             mask: 'radial-gradient(circle at 50% 24%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -1332,7 +1332,7 @@ const hectorStrat: Strat = {
                                 dps: 'Follow symbol on 2 & 4',
                                 dpsin: 'Always start out\nDodge either once or twice'
                             },
-                            imageUrl: './ex4/hector/ef1.png',
+                            imageUrl: './ex4/hector/ef1.webp',
                             mask: 'radial-gradient(circle at 50% 71%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -1343,7 +1343,7 @@ const hectorStrat: Strat = {
                                 dps: 'Follow symbol on 2 & 4',
                                 dpsin: 'Always start out\nDodge either once or twice'
                             },
-                            imageUrl: './ex4/hector/ef1.png',
+                            imageUrl: './ex4/hector/ef1.webp',
                             mask: 'radial-gradient(circle at 24% 50%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -1354,7 +1354,7 @@ const hectorStrat: Strat = {
                                 dps: 'Follow symbol on 2 & 4',
                                 dpsin: 'Always start out\nDodge either once or twice'
                             },
-                            imageUrl: './ex4/hector/ef1.png',
+                            imageUrl: './ex4/hector/ef1.webp',
                             mask: 'radial-gradient(circle at 76% 50%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -1365,7 +1365,7 @@ const hectorStrat: Strat = {
                                 dps: 'Follow symbol on 1 & 3',
                                 dpsin: 'Always start in\nDodge either once or twice'
                             },
-                            imageUrl: './ex4/hector/ef1.png',
+                            imageUrl: './ex4/hector/ef1.webp',
                             mask: 'radial-gradient(circle at 35% 62%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -1376,7 +1376,7 @@ const hectorStrat: Strat = {
                                 dps: 'Follow symbol on 1 & 3',
                                 dpsin: 'Always start in\nDodge either once or twice'
                             },
-                            imageUrl: './ex4/hector/ef1.png',
+                            imageUrl: './ex4/hector/ef1.webp',
                             mask: 'radial-gradient(circle at 64% 62%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -1387,7 +1387,7 @@ const hectorStrat: Strat = {
                                 dps: 'Follow symbol on 1 & 3',
                                 dpsin: 'Always start in\nDodge either once or twice'
                             },
-                            imageUrl: './ex4/hector/ef1.png',
+                            imageUrl: './ex4/hector/ef1.webp',
                             mask: 'radial-gradient(circle at 38% 36%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -1398,7 +1398,7 @@ const hectorStrat: Strat = {
                                 dps: 'Follow symbol on 1 & 3',
                                 dpsin: 'Always start in\nDodge either once or twice'
                             },
-                            imageUrl: './ex4/hector/ef1.png',
+                            imageUrl: './ex4/hector/ef1.webp',
                             mask: 'radial-gradient(circle at 64% 36%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                     ]
@@ -1408,7 +1408,7 @@ const hectorStrat: Strat = {
         {
             phaseName: `Adds`,
             description: 'Supports W, DPS E',
-            imageUrl: './ex4/hector/adds.png',
+            imageUrl: './ex4/hector/adds.webp',
         },
         {
             phaseName: `Bloom 3`,
@@ -1430,7 +1430,7 @@ const hectorStrat: Strat = {
                                 relative: 'Inner slice North',
                                 color: 'Inner slice near North'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            imageUrl: './ex4/hector/bloom3-relative.webp',
                             mask: 'radial-gradient(circle at 50% 31%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -1440,7 +1440,7 @@ const hectorStrat: Strat = {
                                 relative: 'Inner slice South',
                                 color: 'Inner slice near South'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            imageUrl: './ex4/hector/bloom3-relative.webp',
                             mask: 'radial-gradient(circle at 50% 70%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -1450,7 +1450,7 @@ const hectorStrat: Strat = {
                                 relative: 'Inner slice Southwest',
                                 color: 'Inner slice near West'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            imageUrl: './ex4/hector/bloom3-relative.webp',
                             mask: 'radial-gradient(circle at 34% 65%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -1460,7 +1460,7 @@ const hectorStrat: Strat = {
                                 relative: 'Inner slice Southeast',
                                 color: 'Inner slice near East'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            imageUrl: './ex4/hector/bloom3-relative.webp',
                             mask: 'radial-gradient(circle at 65% 64%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -1470,7 +1470,7 @@ const hectorStrat: Strat = {
                                 relative: 'Inner slice Southwest',
                                 color: 'Inner slice near Southwest'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            imageUrl: './ex4/hector/bloom3-relative.webp',
                             mask: 'radial-gradient(circle at 34% 65%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -1480,7 +1480,7 @@ const hectorStrat: Strat = {
                                 relative: 'Inner slice South',
                                 color: 'Inner slice near Southeast'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            imageUrl: './ex4/hector/bloom3-relative.webp',
                             mask: 'radial-gradient(circle at 50% 70%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -1490,7 +1490,7 @@ const hectorStrat: Strat = {
                                 relative: 'Inner slice North',
                                 color: 'Inner slice near Northwest'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            imageUrl: './ex4/hector/bloom3-relative.webp',
                             mask: 'radial-gradient(circle at 50% 31%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -1500,7 +1500,7 @@ const hectorStrat: Strat = {
                                 relative: 'Inner slice Southeast',
                                 color: 'Inner slice near Northeast'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            imageUrl: './ex4/hector/bloom3-relative.webp',
                             mask: 'radial-gradient(circle at 65% 64%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                     ]
@@ -1517,7 +1517,7 @@ const hectorStrat: Strat = {
                                 relative: 'Outer slice North',
                                 color: 'Outer slice touching North'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            imageUrl: './ex4/hector/bloom3-relative.webp',
                             mask: 'radial-gradient(circle at 50% 17%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -1527,7 +1527,7 @@ const hectorStrat: Strat = {
                                 relative: 'Outer slice South',
                                 color: 'Outer slice touching South'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            imageUrl: './ex4/hector/bloom3-relative.webp',
                             mask: 'radial-gradient(circle at 49% 82%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -1537,7 +1537,7 @@ const hectorStrat: Strat = {
                                 relative: 'Outer slice West',
                                 color: 'Outer slice touching West'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            imageUrl: './ex4/hector/bloom3-relative.webp',
                             mask: 'radial-gradient(circle at 17% 50%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -1547,7 +1547,7 @@ const hectorStrat: Strat = {
                                 relative: 'Outer slice East',
                                 color: 'Outer slice touching East'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            imageUrl: './ex4/hector/bloom3-relative.webp',
                             mask: 'radial-gradient(circle at 81% 51%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -1557,7 +1557,7 @@ const hectorStrat: Strat = {
                                 relative: 'Outer slice West',
                                 color: 'Outer slice touching West'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            imageUrl: './ex4/hector/bloom3-relative.webp',
                             mask: 'radial-gradient(circle at 17% 50%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -1567,7 +1567,7 @@ const hectorStrat: Strat = {
                                 relative: 'Outer slice South',
                                 color: 'Outer slice touching South'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            imageUrl: './ex4/hector/bloom3-relative.webp',
                             mask: 'radial-gradient(circle at 49% 82%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -1577,7 +1577,7 @@ const hectorStrat: Strat = {
                                 relative: 'Outer slice North',
                                 color: 'Outer slice touching North'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            imageUrl: './ex4/hector/bloom3-relative.webp',
                             mask: 'radial-gradient(circle at 50% 17%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                         {
@@ -1587,7 +1587,7 @@ const hectorStrat: Strat = {
                                 relative: 'Outer slice East',
                                 color: 'Outer slice touching East'
                             },
-                            imageUrl: './ex4/hector/bloom3-relative.png',
+                            imageUrl: './ex4/hector/bloom3-relative.webp',
                             mask: 'radial-gradient(circle at 81% 51%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
                         },
                     ]
@@ -1617,9 +1617,9 @@ const hectorStrat: Strat = {
                                 we: 'Stack West on hitbox'
                             },
                             imageUrl: {
-                                bd: './ex4/hector/ef2-bd-stacks.png',
+                                bd: './ex4/hector/ef2-bd-stacks.webp',
                                 ns: '',
-                                we: './ex4/hector/ef2-we-stacks.png'
+                                we: './ex4/hector/ef2-we-stacks.webp'
                             },
                             mask: {
                                 bd: '',
@@ -1636,9 +1636,9 @@ const hectorStrat: Strat = {
                                 we: 'Stack West on hitbox'
                             },
                             imageUrl: {
-                                bd: './ex4/hector/ef2-bd-stacks.png',
+                                bd: './ex4/hector/ef2-bd-stacks.webp',
                                 ns: '',
-                                we: './ex4/hector/ef2-we-stacks.png'
+                                we: './ex4/hector/ef2-we-stacks.webp'
                             },
                             mask: {
                                 bd: '',
@@ -1655,9 +1655,9 @@ const hectorStrat: Strat = {
                                 we: 'Stack West on hitbox'
                             },
                             imageUrl: {
-                                bd: './ex4/hector/ef2-bd-stacks.png',
+                                bd: './ex4/hector/ef2-bd-stacks.webp',
                                 ns: '',
-                                we: './ex4/hector/ef2-we-stacks.png'
+                                we: './ex4/hector/ef2-we-stacks.webp'
                             },
                             mask: {
                                 bd: '',
@@ -1674,9 +1674,9 @@ const hectorStrat: Strat = {
                                 we: 'Stack West on hitbox'
                             },
                             imageUrl: {
-                                bd: './ex4/hector/ef2-bd-stacks.png',
+                                bd: './ex4/hector/ef2-bd-stacks.webp',
                                 ns: '',
-                                we: './ex4/hector/ef2-we-stacks.png'
+                                we: './ex4/hector/ef2-we-stacks.webp'
                             },
                             mask: {
                                 bd: '',
@@ -1693,9 +1693,9 @@ const hectorStrat: Strat = {
                                 we: 'Stack East on hitbox'
                             },
                             imageUrl: {
-                                bd: './ex4/hector/ef2-bd-stacks.png',
+                                bd: './ex4/hector/ef2-bd-stacks.webp',
                                 ns: '',
-                                we: './ex4/hector/ef2-we-stacks.png'
+                                we: './ex4/hector/ef2-we-stacks.webp'
                             },
                             mask: {
                                 bd: '',
@@ -1712,9 +1712,9 @@ const hectorStrat: Strat = {
                                 we: 'Stack East on hitbox'
                             },
                             imageUrl: {
-                                bd: './ex4/hector/ef2-bd-stacks.png',
+                                bd: './ex4/hector/ef2-bd-stacks.webp',
                                 ns: '',
-                                we: './ex4/hector/ef2-we-stacks.png'
+                                we: './ex4/hector/ef2-we-stacks.webp'
                             },
                             mask: {
                                 bd: '',
@@ -1731,9 +1731,9 @@ const hectorStrat: Strat = {
                                 we: 'Stack East on hitbox'
                             },
                             imageUrl: {
-                                bd: './ex4/hector/ef2-bd-stacks.png',
+                                bd: './ex4/hector/ef2-bd-stacks.webp',
                                 ns: '',
-                                we: './ex4/hector/ef2-we-stacks.png'
+                                we: './ex4/hector/ef2-we-stacks.webp'
                             },
                             mask: {
                                 bd: '',
@@ -1750,9 +1750,9 @@ const hectorStrat: Strat = {
                                 we: 'Stack East on hitbox'
                             },
                             imageUrl: {
-                                bd: './ex4/hector/ef2-bd-stacks.png',
+                                bd: './ex4/hector/ef2-bd-stacks.webp',
                                 ns: '',
-                                we: './ex4/hector/ef2-we-stacks.png'
+                                we: './ex4/hector/ef2-we-stacks.webp'
                             },
                             mask: {
                                 bd: '',
@@ -1776,9 +1776,9 @@ const hectorStrat: Strat = {
                                 we: 'Fan out for proteans on West half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: './ex4/hector/ef2-bd-witchhunt.png',
+                                bd: './ex4/hector/ef2-bd-witchhunt.webp',
                                 ns: '',
-                                we: './ex4/hector/ef2-we-witchhunt.png'
+                                we: './ex4/hector/ef2-we-witchhunt.webp'
                             }
                         },
                         {
@@ -1790,9 +1790,9 @@ const hectorStrat: Strat = {
                                 we: 'Fan out for proteans on West half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: './ex4/hector/ef2-bd-witchhunt.png',
+                                bd: './ex4/hector/ef2-bd-witchhunt.webp',
                                 ns: '',
-                                we: './ex4/hector/ef2-we-witchhunt.png'
+                                we: './ex4/hector/ef2-we-witchhunt.webp'
                             }
                         },
                         {
@@ -1804,9 +1804,9 @@ const hectorStrat: Strat = {
                                 we: 'Fan out for proteans on West half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: './ex4/hector/ef2-bd-witchhunt.png',
+                                bd: './ex4/hector/ef2-bd-witchhunt.webp',
                                 ns: '',
-                                we: './ex4/hector/ef2-we-witchhunt.png'
+                                we: './ex4/hector/ef2-we-witchhunt.webp'
                             }
                         },
                         {
@@ -1818,9 +1818,9 @@ const hectorStrat: Strat = {
                                 we: 'Fan out for proteans on West half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: './ex4/hector/ef2-bd-witchhunt.png',
+                                bd: './ex4/hector/ef2-bd-witchhunt.webp',
                                 ns: '',
-                                we: './ex4/hector/ef2-we-witchhunt.png'
+                                we: './ex4/hector/ef2-we-witchhunt.webp'
                             }
                         },
                         {
@@ -1832,9 +1832,9 @@ const hectorStrat: Strat = {
                                 we: 'Fan out for proteans on East half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: './ex4/hector/ef2-bd-witchhunt.png',
+                                bd: './ex4/hector/ef2-bd-witchhunt.webp',
                                 ns: '',
-                                we: './ex4/hector/ef2-we-witchhunt.png'
+                                we: './ex4/hector/ef2-we-witchhunt.webp'
                             }
                         },
                         {
@@ -1846,9 +1846,9 @@ const hectorStrat: Strat = {
                                 we: 'Fan out for proteans on East half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: './ex4/hector/ef2-bd-witchhunt.png',
+                                bd: './ex4/hector/ef2-bd-witchhunt.webp',
                                 ns: '',
-                                we: './ex4/hector/ef2-we-witchhunt.png'
+                                we: './ex4/hector/ef2-we-witchhunt.webp'
                             }
                         },
                         {
@@ -1860,9 +1860,9 @@ const hectorStrat: Strat = {
                                 we: 'Fan out for proteans on East half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: './ex4/hector/ef2-bd-witchhunt.png',
+                                bd: './ex4/hector/ef2-bd-witchhunt.webp',
                                 ns: '',
-                                we: './ex4/hector/ef2-we-witchhunt.png'
+                                we: './ex4/hector/ef2-we-witchhunt.webp'
                             }
                         },
                         {
@@ -1874,9 +1874,9 @@ const hectorStrat: Strat = {
                                 we: 'Fan out for proteans on East half\nNon-Donuts follow symbol on 1 & 3\nDonuts follow symbol on 2 & 4'
                             },
                             imageUrl: {
-                                bd: './ex4/hector/ef2-bd-witchhunt.png',
+                                bd: './ex4/hector/ef2-bd-witchhunt.webp',
                                 ns: '',
-                                we: './ex4/hector/ef2-we-witchhunt.png'
+                                we: './ex4/hector/ef2-we-witchhunt.webp'
                             }
                         },
                     ]
@@ -1903,7 +1903,7 @@ const hectorStrat: Strat = {
                                 relative: 'Drop rose on inner left tile',
                                 tn: 'Drop rose on inner West tile'
                             },
-                            imageUrl: './ex4/hector/bloom4-roses.png'
+                            imageUrl: './ex4/hector/bloom4-roses.webp'
                         },
                         {
                             role: 'Tank',
@@ -1912,7 +1912,7 @@ const hectorStrat: Strat = {
                                 relative: 'Drop rose on inner right tile',
                                 tn: 'Drop rose on inner East tile'
                             },
-                            imageUrl: './ex4/hector/bloom4-roses.png'
+                            imageUrl: './ex4/hector/bloom4-roses.webp'
                         },
                         {
                             role: 'Healer',
@@ -1921,7 +1921,7 @@ const hectorStrat: Strat = {
                                 relative: 'Drop rose on outer left tile',
                                 tn: 'Drop rose on outer West tile'
                             },
-                            imageUrl: './ex4/hector/bloom4-roses.png'
+                            imageUrl: './ex4/hector/bloom4-roses.webp'
                         },
                         {
                             role: 'Healer',
@@ -1930,7 +1930,7 @@ const hectorStrat: Strat = {
                                 relative: 'Drop rose on outer right tile',
                                 tn: 'Drop rose on outer East tile'
                             },
-                            imageUrl: './ex4/hector/bloom4-roses.png'
+                            imageUrl: './ex4/hector/bloom4-roses.webp'
                         },
                         {
                             role: 'Melee',
@@ -1939,7 +1939,7 @@ const hectorStrat: Strat = {
                                 relative: 'Drop rose on inner left tile',
                                 tn: 'Drop rose on inner West tile'
                             },
-                            imageUrl: './ex4/hector/bloom4-roses.png'
+                            imageUrl: './ex4/hector/bloom4-roses.webp'
                         },
                         {
                             role: 'Melee',
@@ -1948,7 +1948,7 @@ const hectorStrat: Strat = {
                                 relative: 'Drop rose on inner right tile',
                                 tn: 'Drop rose on inner East tile'
                             },
-                            imageUrl: './ex4/hector/bloom4-roses.png'
+                            imageUrl: './ex4/hector/bloom4-roses.webp'
                         },
                         {
                             role: 'Ranged',
@@ -1957,7 +1957,7 @@ const hectorStrat: Strat = {
                                 relative: 'Drop rose on outer left tile',
                                 tn: 'Drop rose on outer West tile'
                             },
-                            imageUrl: './ex4/hector/bloom4-roses.png'
+                            imageUrl: './ex4/hector/bloom4-roses.webp'
                         },
                         {
                             role: 'Ranged',
@@ -1966,7 +1966,7 @@ const hectorStrat: Strat = {
                                 relative: 'Drop rose on outer right tile',
                                 tn: 'Drop rose on outer East tile'
                             },
-                            imageUrl: './ex4/hector/bloom4-roses.png'
+                            imageUrl: './ex4/hector/bloom4-roses.webp'
                         },
                     ]
                 },
@@ -1982,7 +1982,7 @@ const hectorStrat: Strat = {
                                 relative: 'Facing boss\nGo left to stretch tethers',
                                 tn: 'Go West to stretch tethers'
                             },
-                            imageUrl: './ex4/hector/bloom4-thorns.png'
+                            imageUrl: './ex4/hector/bloom4-thorns.webp'
                         },
                         {
                             role: 'Tank',
@@ -1991,7 +1991,7 @@ const hectorStrat: Strat = {
                                 relative: 'Facing boss\nGo left to stretch tethers',
                                 tn: 'Go West to stretch tethers'
                             },
-                            imageUrl: './ex4/hector/bloom4-thorns.png'
+                            imageUrl: './ex4/hector/bloom4-thorns.webp'
                         },
                         {
                             role: 'Healer',
@@ -2000,7 +2000,7 @@ const hectorStrat: Strat = {
                                 relative: 'Facing boss\nGo left to stretch tethers',
                                 tn: 'Go West to stretch tethers'
                             },
-                            imageUrl: './ex4/hector/bloom4-thorns.png'
+                            imageUrl: './ex4/hector/bloom4-thorns.webp'
                         },
                         {
                             role: 'Healer',
@@ -2009,7 +2009,7 @@ const hectorStrat: Strat = {
                                 relative: 'Facing boss\nGo left to stretch tethers',
                                 tn: 'Go West to stretch tethers'
                             },
-                            imageUrl: './ex4/hector/bloom4-thorns.png'
+                            imageUrl: './ex4/hector/bloom4-thorns.webp'
                         },
                         {
                             role: 'Melee',
@@ -2018,7 +2018,7 @@ const hectorStrat: Strat = {
                                 relative: 'Facing boss\nGo right to stretch tethers',
                                 tn: 'Go East to stretch tethers'
                             },
-                            imageUrl: './ex4/hector/bloom4-thorns.png'
+                            imageUrl: './ex4/hector/bloom4-thorns.webp'
                         },
                         {
                             role: 'Melee',
@@ -2027,7 +2027,7 @@ const hectorStrat: Strat = {
                                 relative: 'Facing boss\nGo right to stretch tethers',
                                 tn: 'Go East to stretch tethers'
                             },
-                            imageUrl: './ex4/hector/bloom4-thorns.png'
+                            imageUrl: './ex4/hector/bloom4-thorns.webp'
                         },
                         {
                             role: 'Ranged',
@@ -2036,7 +2036,7 @@ const hectorStrat: Strat = {
                                 relative: 'Facing boss\nGo right to stretch tethers',
                                 tn: 'Go East to stretch tethers'
                             },
-                            imageUrl: './ex4/hector/bloom4-thorns.png'
+                            imageUrl: './ex4/hector/bloom4-thorns.webp'
                         },
                         {
                             role: 'Ranged',
@@ -2045,7 +2045,7 @@ const hectorStrat: Strat = {
                                 relative: 'Facing boss\nGo right to stretch tethers',
                                 tn: 'Go East to stretch tethers'
                             },
-                            imageUrl: './ex4/hector/bloom4-thorns.png'
+                            imageUrl: './ex4/hector/bloom4-thorns.webp'
                         },
                     ]
                 }
@@ -2074,9 +2074,9 @@ const hectorStrat: Strat = {
                                 we: 'Drop rose on inner or outer NNW tile\nLink to the tower not being hit by 1st cleave',
                             },
                             imageUrl: {
-                                lb3: './ex4/hector/bloom6-we-support-roses.png',
+                                lb3: './ex4/hector/bloom6-we-support-roses.webp',
                                 ns: '',
-                                we: './ex4/hector/bloom6-we-support-roses.png',
+                                we: './ex4/hector/bloom6-we-support-roses.webp',
                             }
                         },
                         {
@@ -2088,9 +2088,9 @@ const hectorStrat: Strat = {
                                 we: 'Drop rose on inner or outer SSE tile\nLink to the tower not being hit by 1st cleave',
                             },
                             imageUrl: {
-                                lb3: './ex4/hector/bloom6-we-support-roses.png',
+                                lb3: './ex4/hector/bloom6-we-support-roses.webp',
                                 ns: '',
-                                we: './ex4/hector/bloom6-we-support-roses.png',
+                                we: './ex4/hector/bloom6-we-support-roses.webp',
                             }
                         },
                         {
@@ -2102,9 +2102,9 @@ const hectorStrat: Strat = {
                                 we: 'Drop rose on inner or outer SSW tile\nLink to the tower not being hit by 1st cleave',
                             },
                             imageUrl: {
-                                lb3: './ex4/hector/bloom6-we-support-roses.png',
+                                lb3: './ex4/hector/bloom6-we-support-roses.webp',
                                 ns: '',
-                                we: './ex4/hector/bloom6-we-support-roses.png',
+                                we: './ex4/hector/bloom6-we-support-roses.webp',
                             }
                         },
                         {
@@ -2116,9 +2116,9 @@ const hectorStrat: Strat = {
                                 we: 'Drop rose on inner or outer NNE tile\nLink to the tower not being hit by 1st cleave',
                             },
                             imageUrl: {
-                                lb3: './ex4/hector/bloom6-we-support-roses.png',
+                                lb3: './ex4/hector/bloom6-we-support-roses.webp',
                                 ns: '',
-                                we: './ex4/hector/bloom6-we-support-roses.png',
+                                we: './ex4/hector/bloom6-we-support-roses.webp',
                             }
                         },
                         {
@@ -2130,9 +2130,9 @@ const hectorStrat: Strat = {
                                 we: 'Drop rose on inner or outer SSW tile\nLink to the tower not being hit by 1st cleave',
                             },
                             imageUrl: {
-                                lb3: './ex4/hector/bloom6-we-dps-roses.png',
+                                lb3: './ex4/hector/bloom6-we-dps-roses.webp',
                                 ns: '',
-                                we: './ex4/hector/bloom6-we-dps-roses.png',
+                                we: './ex4/hector/bloom6-we-dps-roses.webp',
                             }
                         },
                         {
@@ -2144,9 +2144,9 @@ const hectorStrat: Strat = {
                                 we: 'Drop rose on inner or outer SSE tile\nLink to the tower not being hit by 1st cleave',
                             },
                             imageUrl: {
-                                lb3: './ex4/hector/bloom6-we-dps-roses.png',
+                                lb3: './ex4/hector/bloom6-we-dps-roses.webp',
                                 ns: '',
-                                we: './ex4/hector/bloom6-we-dps-roses.png',
+                                we: './ex4/hector/bloom6-we-dps-roses.webp',
                             }
                         },
                         {
@@ -2158,9 +2158,9 @@ const hectorStrat: Strat = {
                                 we: 'Drop rose on inner or outer NNW tile\nLink to the tower not being hit by 1st cleave',
                             },
                             imageUrl: {
-                                lb3: './ex4/hector/bloom6-we-dps-roses.png',
+                                lb3: './ex4/hector/bloom6-we-dps-roses.webp',
                                 ns: '',
-                                we: './ex4/hector/bloom6-we-dps-roses.png',
+                                we: './ex4/hector/bloom6-we-dps-roses.webp',
                             }
                         },
                         {
@@ -2172,9 +2172,9 @@ const hectorStrat: Strat = {
                                 we: 'Drop rose on inner or outer NNE tile\nLink to the tower not being hit by 1st cleave',
                             },
                             imageUrl: {
-                                lb3: './ex4/hector/bloom6-we-dps-roses.png',
+                                lb3: './ex4/hector/bloom6-we-dps-roses.webp',
                                 ns: '',
-                                we: './ex4/hector/bloom6-we-dps-roses.png',
+                                we: './ex4/hector/bloom6-we-dps-roses.webp',
                             }
                         },
                     ]
@@ -2193,9 +2193,9 @@ const hectorStrat: Strat = {
                                 we: 'Take inner West tower',
                             },
                             imageUrl: {
-                                lb3: './ex4/hector/bloom6-we-dps-roses.png',
+                                lb3: './ex4/hector/bloom6-we-dps-roses.webp',
                                 ns: '',
-                                we: './ex4/hector/bloom6-we-dps-roses.png',
+                                we: './ex4/hector/bloom6-we-dps-roses.webp',
                             }
                         },
                         {
@@ -2207,9 +2207,9 @@ const hectorStrat: Strat = {
                                 we: 'Take inner East tower',
                             },
                             imageUrl: {
-                                lb3: './ex4/hector/bloom6-we-dps-roses.png',
+                                lb3: './ex4/hector/bloom6-we-dps-roses.webp',
                                 ns: '',
-                                we: './ex4/hector/bloom6-we-dps-roses.png',
+                                we: './ex4/hector/bloom6-we-dps-roses.webp',
                             }
                         },
                         {
@@ -2221,9 +2221,9 @@ const hectorStrat: Strat = {
                                 we: 'Take outer West tower',
                             },
                             imageUrl: {
-                                lb3: './ex4/hector/bloom6-we-dps-roses.png',
+                                lb3: './ex4/hector/bloom6-we-dps-roses.webp',
                                 ns: '',
-                                we: './ex4/hector/bloom6-we-dps-roses.png',
+                                we: './ex4/hector/bloom6-we-dps-roses.webp',
                             }
                         },
                         {
@@ -2235,9 +2235,9 @@ const hectorStrat: Strat = {
                                 we: 'Take outer East tower',
                             },
                             imageUrl: {
-                                lb3: './ex4/hector/bloom6-we-dps-roses.png',
+                                lb3: './ex4/hector/bloom6-we-dps-roses.webp',
                                 ns: '',
-                                we: './ex4/hector/bloom6-we-dps-roses.png',
+                                we: './ex4/hector/bloom6-we-dps-roses.webp',
                             }
                         },
                         {
@@ -2249,9 +2249,9 @@ const hectorStrat: Strat = {
                                 we: 'Take inner West tower',
                             },
                             imageUrl: {
-                                lb3: './ex4/hector/bloom6-we-support-roses.png',
+                                lb3: './ex4/hector/bloom6-we-support-roses.webp',
                                 ns: '',
-                                we: './ex4/hector/bloom6-we-support-roses.png',
+                                we: './ex4/hector/bloom6-we-support-roses.webp',
                             }
                         },
                         {
@@ -2263,9 +2263,9 @@ const hectorStrat: Strat = {
                                 we: 'Take inner East tower',
                             },
                             imageUrl: {
-                                lb3: './ex4/hector/bloom6-we-support-roses.png',
+                                lb3: './ex4/hector/bloom6-we-support-roses.webp',
                                 ns: '',
-                                we: './ex4/hector/bloom6-we-support-roses.png',
+                                we: './ex4/hector/bloom6-we-support-roses.webp',
                             }
                         },
                         {
@@ -2277,9 +2277,9 @@ const hectorStrat: Strat = {
                                 we: 'Take outer West tower',
                             },
                             imageUrl: {
-                                lb3: './ex4/hector/bloom6-we-support-roses.png',
+                                lb3: './ex4/hector/bloom6-we-support-roses.webp',
                                 ns: '',
-                                we: './ex4/hector/bloom6-we-support-roses.png',
+                                we: './ex4/hector/bloom6-we-support-roses.webp',
                             }
                         },
                         {
@@ -2291,9 +2291,9 @@ const hectorStrat: Strat = {
                                 we: 'Take outer East tower',
                             },
                             imageUrl: {
-                                lb3: './ex4/hector/bloom6-we-support-roses.png',
+                                lb3: './ex4/hector/bloom6-we-support-roses.webp',
                                 ns: '',
-                                we: './ex4/hector/bloom6-we-support-roses.png',
+                                we: './ex4/hector/bloom6-we-support-roses.webp',
                             }
                         },
                     ]
