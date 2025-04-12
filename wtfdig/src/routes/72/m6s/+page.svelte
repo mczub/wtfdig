@@ -156,7 +156,7 @@
 		if (!stratName || !role || !party) return '';
 		const stratNames: Record<string, string> = {
 			'latte': 'Latte (0066fd3CVp1_G36R)',
-			'toxic': 'Toxic Friends (Pgj53K49w8LAZpI6)',
+			'toxic': 'Hector/Toxic Friends (Pgj53K49w8LAZpI6)',
 			'yukizuri': 'Yukizuri'
 		}
 		const jpRoleAbbrev: Record<string, string> = {
@@ -181,7 +181,7 @@
 				stratDiffs.push(`Latte adds`);
 			}
 			if (stratState.adds === 'toxic') {
-				stratDiffs.push(`Toxic Friends adds`);
+				stratDiffs.push(`Hector/Toxic adds`);
 			}
 			if (stratState.adds === 'yukizuri') {
 				stratDiffs.push(`Yukizuri adds`);
@@ -215,7 +215,7 @@
 					<div class="text-xl mb-2">Which strat are you using?</div>
 					<Segment classes="flex-wrap" name="stratName" value={stratName} onValueChange={onSelectStrat}>
 						<Segment.Item value="latte">Latte (0066⋯G36R)</Segment.Item>
-						<Segment.Item value="toxic">Toxic Friends (Pgj5⋯ZpI6)</Segment.Item>
+						<Segment.Item value="toxic">Hector/Toxic (Pgj5⋯ZpI6)</Segment.Item>
 						<Segment.Item value="yukizuri">Yukizuri</Segment.Item>
 					</Segment>
 				</div>
@@ -243,7 +243,7 @@
 						</div>
 						<Segment classes="flex-wrap" name="adds" value={stratState.adds} onValueChange={(e) => (setStratState('adds', e.value))}>
 							<Segment.Item value="latte">Latte</Segment.Item>
-							<Segment.Item value="toxic">Toxic Friends</Segment.Item>
+							<Segment.Item value="toxic">Hector/Toxic</Segment.Item>
 							<Segment.Item value="yukizuri">Yukizuri</Segment.Item>
 							<Segment.Item value="cleave">Cleavemaxxing</Segment.Item>
 						</Segment>
