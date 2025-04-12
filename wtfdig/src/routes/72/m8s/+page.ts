@@ -651,7 +651,7 @@ const dnTerrestrial: StratRecord = {
 
 const toxicTerrestrial: StratRecord = {
     'spreads1': {
-        'description': 'Wall laser is RELATIVE/NEW NORTH',
+        'description': '1 or 2 marker is RELATIVE/NEW NORTH',
         'MT': {
                 role: 'Tank',
                 party: 1,
