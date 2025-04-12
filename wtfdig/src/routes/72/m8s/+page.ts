@@ -2059,7 +2059,7 @@ const allP2: PhaseStrats[] = [
         phaseName: `Champion's Circuit`,
         tag: 'p2',
         description: getStringObject(p2Strats, 'champions', 'description'),
-        imageUrl: getStringObject(p2Strats, 'hero', 'imageUrl'),
+        imageUrl: getStringObject(p2Strats, 'champions', 'imageUrl'),
     },
     {
         phaseName: `Lone Wolf's Lament`,
