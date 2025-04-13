@@ -206,7 +206,7 @@
 				stratDiffs.push(`Zenith P2`);
 			}
 			if (stratState.p2 === 'cute') {
-				stratDiffs.push(`Zenith P2`);
+				stratDiffs.push(`Cute P2`);
 			}
 		}
 		if (stratState.p3 !== getStratMechs(stratName)['p3']) {
