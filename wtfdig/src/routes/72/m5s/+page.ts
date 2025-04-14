@@ -3,6 +3,7 @@ import type { PageLoad } from "./$types";
 export const load: PageLoad = ({params}) => {
     return {
         strats: [latteStrat, toxicStrat, sunStrat, evansithStrat, hectorStrat, game8Strat],
+        timeline: timeline,
     }
 }
 
@@ -47,6 +48,165 @@ export interface Strat {
     notes: string;
     strats: PhaseStrats[];
 }
+
+export interface TimelineItem {
+    mechName: string;
+    mechType: string;
+    startTimeMs: number;
+}
+
+const timeline: TimelineItem[] = [
+    {
+        mechName: 'Start',
+        mechType: 'Start',
+        startTimeMs: 0,
+    },
+    {
+        mechName: 'Deep Cut',
+        mechType: 'Tankbuster',
+        startTimeMs: 15246,
+    },
+    {
+        mechName: 'A/B-Side (Cast)',
+        mechType: 'StoredMechanic',
+        startTimeMs: 23415,
+    },
+    {
+        mechName: '#-snap Twist + A/B Side',
+        mechType: 'Mechanic',
+        startTimeMs: 29523,
+    },
+    {
+        mechName: 'A/B-Side (Cast)',
+        mechType: 'StoredMechanic',
+        startTimeMs: 42764,
+    },
+    {
+        mechName: '#-snap Twist + A/B Side',
+        mechType: 'Mechanic',
+        startTimeMs: 48868,
+    },
+    {
+        mechName: 'Celebrate Good Times',
+        mechType: 'Raidwide',
+        startTimeMs: 65084,
+    },
+    {
+        mechName: 'Disco Infernal 1',
+        mechType: 'Mechanic',
+        startTimeMs: 77483,
+    },
+    {
+        mechName: 'A/B-Side (Cast)',
+        mechType: 'StoredMechanic',
+        startTimeMs: 95711,
+    },
+    {
+        mechName: '#-snap Twist + A/B Side',
+        mechType: 'Mechanic',
+        startTimeMs: 112275,
+    },
+    {
+        mechName: 'Celebrate Good Times',
+        mechType: 'Raidwide',
+        startTimeMs: 128490,
+    },
+    {
+        mechName: 'Deep Cut',
+        mechType: 'Tankbuster',
+        startTimeMs: 135941,
+    },
+    {
+        mechName: 'Ensemble Assemble 1',
+        mechType: 'Mechanic',
+        startTimeMs: 144232,
+    },
+    {
+        mechName: 'Arcady Night Fever 1',
+        mechType: 'Mechanic',
+        startTimeMs: 155150,
+    },
+    {
+        mechName: `Let's Dance 1`,
+        mechType: 'Mechanic',
+        startTimeMs: 177184,
+    },
+    {
+        mechName: 'A/B-Side (Cast)',
+        mechType: 'StoredMechanic',
+        startTimeMs: 223625,
+    },
+    {
+        mechName: 'Ride the Waves',
+        mechType: 'Mechanic',
+        startTimeMs: 233208,
+    },
+    {
+        mechName: '#-snap Twist + A/B Side',
+        mechType: 'Mechanic',
+        startTimeMs: 266994,
+    },
+    {
+        mechName: 'Deep Cut',
+        mechType: 'Tankbuster',
+        startTimeMs: 284552,
+    },
+    {
+        mechName: 'Celebrate Good Times',
+        mechType: 'Raidwide',
+        startTimeMs: 291365,
+    },
+    {
+        mechName: 'Frogtourage 1',
+        mechType: 'Mechanic',
+        startTimeMs: 302737,
+    },
+    {
+        mechName: 'Disco Infernal 2',
+        mechType: 'Mechanic',
+        startTimeMs: 325013,
+    },
+    {
+        mechName: 'A/B-Side (Cast)',
+        mechType: 'StoredMechanic',
+        startTimeMs: 342306,
+    },
+    {
+        mechName: '#-snap Twist + A/B Side',
+        mechType: 'Mechanic',
+        startTimeMs: 348415,
+    },
+    {
+        mechName: 'Celebrate Good Times',
+        mechType: 'Raidwide',
+        startTimeMs: 364636,
+    },
+    {
+        mechName: 'Ensemble Assemble 2',
+        mechType: 'Mechanic',
+        startTimeMs: 373241,
+    },
+    {
+        mechName: 'Arcady Night Fever 2',
+        mechType: 'Mechanic',
+        startTimeMs: 384163,
+    },
+    {
+        mechName: `Let's Dance 2`,
+        mechType: 'Mechanic',
+        startTimeMs: 406205,
+    },
+    {
+        mechName: 'Frogtourage 2',
+        mechType: 'Mechanic',
+        startTimeMs: 449952,
+    },
+    {
+        mechName: 'Enrage',
+        mechType: 'Enrage',
+        startTimeMs: 606421
+    }
+]
 
 const latteStrat: Strat = {
     stratName: 'latte',
