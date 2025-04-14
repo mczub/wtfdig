@@ -3,6 +3,7 @@ import type { PageLoad } from "./$types";
 export const load: PageLoad = ({params}) => {
     return {
         strats: [latteStrat, yukizuriStrat, toxicStrat],
+        timeline: timeline,
     }
 }
 
@@ -47,6 +48,25 @@ export interface Strat {
     notes: string;
     strats: PhaseStrats[];
 }
+
+export interface TimelineItem {
+    mechName: string;
+    mechType: string;
+    startTimeMs: number;
+}
+
+const timeline: TimelineItem[] = [
+    {
+        mechName: 'Start',
+        mechType: 'Start',
+        startTimeMs: 0,
+    },
+    {
+        mechName: 'Enrage',
+        mechType: 'Enrage',
+        startTimeMs: 684419,
+    },
+]
 
 const toxicAdds: Record<string,Record<string, PlayerMechStrat>> = {
     'wave1': {

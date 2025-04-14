@@ -202,6 +202,26 @@ const timeline: TimelineItem[] = [
         startTimeMs: 449952,
     },
     {
+        mechName: 'Deep Cut',
+        mechType: 'Tankbuster',
+        startTimeMs: 515082,
+    },
+    {
+        mechName: 'Funky Floor 2',
+        mechType: 'Mechanic',
+        startTimeMs: 525650,
+    },
+    {
+        mechName: 'Celebrate Good Times',
+        mechType: 'Raidwide',
+        startTimeMs: 561080,
+    },
+    {
+        mechName: 'Celebrate Good Times',
+        mechType: 'Raidwide',
+        startTimeMs: 571240,
+    },
+    {
         mechName: 'Enrage',
         mechType: 'Enrage',
         startTimeMs: 606421

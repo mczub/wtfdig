@@ -1,16 +1,22 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import type { Alignment, PlayerMechStrat, PhaseStrats, Role, MechanicStrat, Strat } from '../+page';
+	import type { Alignment, PlayerMechStrat, PhaseStrats, Role, MechanicStrat, Strat, TimelineItem } from './+page';
 	import { Accordion, Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
+	import X from '@lucide/svelte/icons/x';
+	import Shield from '@lucide/svelte/icons/shield';
+	import Siren from '@lucide/svelte/icons/siren';
+	import Cog from '@lucide/svelte/icons/cog';
+	import Package from '@lucide/svelte/icons/package';
 	import { getContext } from 'svelte';
-  	import { type ToastContext } from '@skeletonlabs/skeleton-svelte';
+  	import { type ToastContext, Modal } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
 
 	interface Props {
 		data: {
 			strats: Strat[];
+			timeline: TimelineItem[];
 		};
 		children?: import('svelte').Snippet;
 	}
@@ -20,6 +26,11 @@
 	let stratState: Record<string, string | null> = $state({
 		adds: null,
 	});
+	let cheatsheetOpenState = $state(false);
+
+	function closeCheatsheet() {
+		cheatsheetOpenState = false;
+	}
 
 	
 	let role: Role | undefined = $state();
@@ -196,7 +207,104 @@
 
 		return `${stratDiffs.join(' | ')} - ${roleAbbrev}`;
 	}
+
+	function msToTime(timeInMs: number): string {
+		const seconds = (Math.floor(timeInMs / 1000) % 60).toString().padStart(2, '0');
+		const minutes = (Math.floor(timeInMs / 60000)).toString();
+
+		return `${minutes}:${seconds}`;
+	}
+
+	function getFightPercentClass(timeInMs: number): string {
+		const enrageTime = data.timeline.find((item) => {return item.mechType === 'Enrage'})?.startTimeMs;
+		if (!enrageTime) return '0';
+		return `${(Math.floor(timeInMs * 1000 / enrageTime)/10).toString()}%`;
+	}
 </script>
+
+<Modal
+  open={cheatsheetOpenState}
+  onOpenChange={(e) => (cheatsheetOpenState = e.open)}
+  contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl flex flex-col h-full w-full"
+  backdropClasses="backdrop-blur-sm"
+>
+  {#snippet content()}
+    <header class="flex justify-between">
+      <div class="text-2xl">AAC Cruiserweight M2 (Savage) Cheatsheet - {optionsString}</div>
+	  <X onclick={closeCheatsheet} />
+    </header>
+    <div class="grid grid-rows-3 grid-cols-7 gap-2 h-full">
+      <div class="card row-span-full border-surface-500 p-4 flex flex-col">
+        <div class="text-lg">Timeline</div>
+		<div class="grow relative">
+			{#each data.timeline as item}
+				<div style:top={getFightPercentClass(item.startTimeMs)} class="absolute flex text-xs w-full" >
+					<div class="w-1/8">
+						{#if item.mechType === 'Raidwide'}
+							<Siren size={16} strokeWidth={1} />
+						{/if}
+						{#if item.mechType === 'Mechanic'}
+							<Cog size={16} strokeWidth={1} />
+						{/if}
+						{#if item.mechType === 'Tankbuster'}
+							<Shield size={16} strokeWidth={1} />
+						{/if}
+						{#if item.mechType === 'StoredMechanic'}
+							<Package size={16} strokeWidth={1} />
+						{/if}
+					</div>
+					<div class="w-1/4">
+						{msToTime(item.startTimeMs)}
+					</div>
+					<div class="w-5/8">
+						{item.mechName}
+					</div>
+				</div>
+			{/each}
+		</div>
+	  </div>
+		{#each individualStrat as phase}
+			<div class="card border border-surface-800 p-4 h-0 min-h-full" style:grid-column={`span ${phase.mechs ? phase.mechs.length : 1}`}>
+				<div class="flex flex-row">
+					<div class="capitalize font-bold text-lg mb-0">{phase.phaseName}</div>
+					{#if phase?.tag && (stratState[phase.tag] !== getStratMechs(stratName)[phase.tag])}
+						<Tooltip
+							positioning={{ placement: 'top' }}
+							triggerBase="underline"
+							contentBase="card bg-surface-800 p-4"
+							classes="ml-2"
+							openDelay={200}
+							arrow
+							arrowBackground="!bg-surface-800"
+
+						>
+							{#snippet trigger()}<div class="text-warning-500"><TriangleAlert size={32}/></div>{/snippet}
+							{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
+						</Tooltip>
+					{/if}
+				</div>
+				{#if phase?.description}<div class="text-md whitespace-pre-wrap">{phase.description}</div>{/if}
+				{#if phase?.imageUrl}<img class="max-h-[400px] rounded-md mt-2" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />{/if}
+				{#if phase?.mechs}
+					<div class="grid grid-flow-col auto-cols-fr gap-2 mt-2" style:grid-column={`span ${phase.mechs.length}`}>
+						{#each phase.mechs as mech}
+							{#key [spotlight, alignment]}
+							<div class="space-y-4" class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}>
+								<div class="capitalize font-semibold text-md mb-0">{mech.mechanic}</div> 
+								{#if mech?.description}<div class="whitespace-pre-wrap text-md mb-0">{mech.description}</div>{/if}
+								{#if mech?.imageUrl}<img class="max-h-[250px] rounded-md mt-4" src={mech.imageUrl} />{/if}
+								<div class="whitespace-pre-wrap text-md mb-0">{mech?.strats && mech.strats[0].description}</div>
+								{#if mech?.strats && mech.strats[0]?.imageUrl}<img class="max-h-[250px] rounded-md mt-4 object-contain" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />{/if}
+							</div>
+							{/key}
+						{/each}
+					</div>
+				{/if}
+			</div>
+		{/each}
+    </div>
+  {/snippet}
+</Modal>
 
 <div class="container grow px-4 mx-auto mb-6">
 	<div class="container">
@@ -298,7 +406,8 @@
 					</div>
 					<div class="grow"></div>
 					<div class="grid gap-y-2 content-center">
-						<button on:click={() => copyLinkToClipboard()} class="button btn preset-tonal-secondary border border-secondary-500">Copy link</button>
+						<button onclick={() => (cheatsheetOpenState = true)} class="button btn preset-tonal-secondary border border-secondary-500">Open cheatsheet</button>
+						<button onclick={() => copyLinkToClipboard()} class="button btn preset-tonal-secondary border border-secondary-500">Copy link</button>
 						<Switch name="spotlight-toggle" checked={spotlight} onCheckedChange={(e) => (spotlight = e.checked)}>Highlight my spots</Switch>
 					</div>
 				</div>

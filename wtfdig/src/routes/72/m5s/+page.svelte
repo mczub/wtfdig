@@ -5,10 +5,10 @@
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
 	import X from '@lucide/svelte/icons/x';
-	import Shield from '@lucide/svelte/icons/shield';
+	import Shield from '@lucide/svelte/icons/shield-alert';
 	import Siren from '@lucide/svelte/icons/siren';
-	import Cog from '@lucide/svelte/icons/cog';
-	import Package from '@lucide/svelte/icons/package';
+	import Wrench from '@lucide/svelte/icons/wrench';
+	import Clock from '@lucide/svelte/icons/clock';
 	import { getContext } from 'svelte';
   	import { type ToastContext, Modal } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
@@ -191,7 +191,7 @@
 	function getFightPercentClass(timeInMs: number): string {
 		const enrageTime = data.timeline.find((item) => {return item.mechType === 'Enrage'})?.startTimeMs;
 		if (!enrageTime) return '0';
-		return `${(Math.floor(timeInMs * 1000 / enrageTime)/10).toString()}%`;
+		return `${(Math.floor(timeInMs * 990 / enrageTime)/10).toString()}%`;
 	}
 </script>
 
@@ -206,9 +206,8 @@
       <div class="text-2xl">AAC Cruiserweight M1 (Savage) Cheatsheet - {optionsString}</div>
 	  <X onclick={closeCheatsheet} />
     </header>
-    <div class="grid grid-rows-3 grid-cols-7 gap-2 h-full">
+    <div class="grid grid-rows-3 grid-cols-5 gap-2 h-full">
       <div class="card row-span-full border-surface-500 p-4 flex flex-col">
-        <div class="text-lg">Timeline</div>
 		<div class="grow relative">
 			{#each data.timeline as item}
 				<div style:top={getFightPercentClass(item.startTimeMs)} class="absolute flex text-xs w-full" >
@@ -217,13 +216,13 @@
 							<Siren size={16} strokeWidth={1} />
 						{/if}
 						{#if item.mechType === 'Mechanic'}
-							<Cog size={16} strokeWidth={1} />
+							<Wrench size={16} strokeWidth={1} />
 						{/if}
 						{#if item.mechType === 'Tankbuster'}
 							<Shield size={16} strokeWidth={1} />
 						{/if}
 						{#if item.mechType === 'StoredMechanic'}
-							<Package size={16} strokeWidth={1} />
+							<Clock size={16} strokeWidth={1} />
 						{/if}
 					</div>
 					<div class="w-1/4">
@@ -237,7 +236,7 @@
 		</div>
 	  </div>
 		{#each individualStrat as phase}
-			<div class="card border border-surface-800 p-4" style:grid-column={`span ${phase.mechs.length}`}>
+			<div class="card border border-surface-800 p-2 h-0 min-h-full" style:grid-column={`span ${phase.mechs.length}`}>
 				<div class="flex flex-row">
 					<div class="capitalize font-bold text-lg mb-0">{phase.phaseName}</div>
 					{#if phase?.tag && (stratState[phase.tag] !== getStratMechs(stratName)[phase.tag])}
@@ -257,19 +256,13 @@
 					{/if}
 				</div>
 				{#if phase?.description}<div class="text-md whitespace-pre-wrap">{phase.description}</div>{/if}
-				{#if phase?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />{/if}
+				{#if phase?.imageUrl}<img class="max-h-[400px] rounded-md mt-2" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />{/if}
 				{#if phase?.mechs}
-					<div class="grid grid-flow-col auto-cols-fr gap-2 mt-4" style:grid-column={`span ${phase.mechs.length}`}>
+					<div class="grid grid-flow-col auto-cols-fr gap-2 mt-2" style:grid-column={`span ${phase.mechs.length}`}>
 						{#each phase.mechs as mech}
 							{#key [spotlight, alignment]}
 							<div class="space-y-4" class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}>
 								<div class="capitalize font-semibold text-md mb-0">{mech.mechanic}</div> 
-								{#if mech?.notes}
-									<div class="card preset-outlined-primary-500 p-2 flex flex-row space-x-2 my-2">
-										<CircleAlert size={32} />
-										<div class="whitespace-pre-wrap text-md mb-0">{mech.notes}</div>
-									</div>
-								{/if}
 								{#if mech?.description}<div class="whitespace-pre-wrap text-md mb-0">{mech.description}</div>{/if}
 								{#if mech?.imageUrl}<img class="max-h-[250px] rounded-md mt-4" src={mech.imageUrl} />{/if}
 								<div class="whitespace-pre-wrap text-md mb-0">{mech?.strats && mech.strats[0].description}</div>
