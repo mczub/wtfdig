@@ -704,13 +704,13 @@ const cleaveAdds: Record<string,Record<string, PlayerMechStrat>> = {
         'M1': {
                 role: 'Melee',
                 party: 1,
-                description: 'Stand NE with Squirrels\nKill NE Manta while cleaving Squirrels, then continue cleaving Squirrels',
+                description: 'Stand NE with Squirrels\nKill NE Manta while cleaving Squirrels, then kill NW Manta\nContinue cleaving Squirrels',
                 imageUrl: './m6s/adds/cleave-wave2.webp',
             },
         'M2': {
                 role: 'Melee',
                 party: 2,
-                description: 'Stand NE with Squirrels\nKill NE Manta while cleaving Squirrels, then continue cleaving Squirrels',
+                description: 'Stand NE with Squirrels\nKill NE Manta while cleaving Squirrels, then kill NW Manta\nContinue cleaving Squirrels',
                 imageUrl: './m6s/adds/cleave-wave2.webp',
             },
         'R1': {
@@ -792,13 +792,13 @@ const cleaveAdds: Record<string,Record<string, PlayerMechStrat>> = {
         'H1': {
                 role: 'Healer',
                 party: 1,
-                description: `If targeted by Jabber, go Southeast and single target\nMake sure to keep OT alive\nKill Jabber, SE Manta, Cat, SW Manta, Squirrels, Yans`,
+                description: `If targeted by Jabber, go South and single target\nMake sure to keep OT alive\nKill Jabber, SE Manta, Cat, SW Manta, Squirrels, Yans`,
                 imageUrl: './m6s/adds/cleave-wave4.webp',
             },
         'H2': {
                 role: 'Healer',
                 party: 2,
-                description: `If targeted by Jabber, go Southeast and single target\nMake sure to keep OT alive\nKill Jabber, SE Manta, Cat, SW Manta, Squirrels, Yans`,
+                description: `If targeted by Jabber, go South and single target\nMake sure to keep OT alive\nKill Jabber, SE Manta, Cat, SW Manta, Squirrels, Yans`,
                 imageUrl: './m6s/adds/cleave-wave4.webp',
             },
         'M1': {
