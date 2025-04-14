@@ -25,6 +25,11 @@
 	let stratName: string | undefined = $state();
 	let stratState: Record<string, string | null> = $state({});
 	let cheatsheetOpenState = $state(false);
+	let timelineFilters = $state({
+		"mechs": true,
+		"raidwides": true,
+		"tankbusters": true
+	})
 
 	function closeCheatsheet() {
 		cheatsheetOpenState = false;
@@ -191,7 +196,20 @@
 	function getFightPercentClass(timeInMs: number): string {
 		const enrageTime = data.timeline.find((item) => {return item.mechType === 'Enrage'})?.startTimeMs;
 		if (!enrageTime) return '0';
-		return `${(Math.floor(timeInMs * 990 / enrageTime)/10).toString()}%`;
+		return `${(Math.floor(timeInMs * 980 / enrageTime)/10).toString()}%`;
+	}
+
+	function showMechType(mechType: string): boolean {
+		if (mechType === 'Mechanic' || mechType === 'StoredMechanic') {
+			return timelineFilters.mechs;
+		}
+		if (mechType === 'Raidwide') {
+			return timelineFilters.raidwides;
+		}
+		if (mechType === 'Tankbuster') {
+			return timelineFilters.tankbusters;
+		}
+		return true;
 	}
 </script>
 
@@ -203,42 +221,49 @@
 >
   {#snippet content()}
     <header class="flex justify-between">
-      <div class="text-2xl">AAC Cruiserweight M1 (Savage) Cheatsheet - {optionsString}</div>
+      <div class="text-lg 3xl:text-2xl">AAC Cruiserweight M1 (Savage) Cheatsheet - {optionsString}</div>
 	  <X onclick={closeCheatsheet} />
     </header>
     <div class="grid grid-rows-3 grid-cols-5 gap-2 h-full">
-      <div class="card row-span-full border-surface-500 p-4 flex flex-col">
+      <div class="card border row-span-full border-surface-800 p-2 flex flex-col">
+		<div class="flex mb-2 gap-1">
+			<button class={`chip ${timelineFilters.mechs ? 'preset-filled-secondary-500' : 'preset-tonal-secondary'}`} onclick={() => timelineFilters.mechs = !timelineFilters.mechs}><Wrench size={16} strokeWidth={1} />Mech</button>
+			<button class={`chip ${timelineFilters.raidwides ? 'preset-filled-secondary-500' : 'preset-tonal-secondary'}`} onclick={() => timelineFilters.raidwides = !timelineFilters.raidwides}><Siren size={16} strokeWidth={1} />Raidwide</button>
+			<button class={`chip ${timelineFilters.tankbusters ? 'preset-filled-secondary-500' : 'preset-tonal-secondary'}`} onclick={() => timelineFilters.tankbusters = !timelineFilters.tankbusters}><Shield size={16} strokeWidth={1} />TB</button>
+		</div>
 		<div class="grow relative">
 			{#each data.timeline as item}
-				<div style:top={getFightPercentClass(item.startTimeMs)} class="absolute flex text-xs w-full" >
-					<div class="w-1/8">
-						{#if item.mechType === 'Raidwide'}
-							<Siren size={16} strokeWidth={1} />
-						{/if}
-						{#if item.mechType === 'Mechanic'}
-							<Wrench size={16} strokeWidth={1} />
-						{/if}
-						{#if item.mechType === 'Tankbuster'}
-							<Shield size={16} strokeWidth={1} />
-						{/if}
-						{#if item.mechType === 'StoredMechanic'}
-							<Clock size={16} strokeWidth={1} />
-						{/if}
+				{#if showMechType(item.mechType)}
+					<div style:top={getFightPercentClass(item.startTimeMs)} class="absolute flex text-xs w-full" >
+						<div class="w-1/8">
+							{#if item.mechType === 'Raidwide'}
+								<Siren size={16} strokeWidth={1} />
+							{/if}
+							{#if item.mechType === 'Mechanic'}
+								<Wrench size={16} strokeWidth={1} />
+							{/if}
+							{#if item.mechType === 'Tankbuster'}
+								<Shield size={16} strokeWidth={1} />
+							{/if}
+							{#if item.mechType === 'StoredMechanic'}
+								<Clock size={16} strokeWidth={1} />
+							{/if}
+						</div>
+						<div class="w-1/4">
+							{msToTime(item.startTimeMs)}
+						</div>
+						<div class="w-5/8">
+							{item.mechName}
+						</div>
 					</div>
-					<div class="w-1/4">
-						{msToTime(item.startTimeMs)}
-					</div>
-					<div class="w-5/8">
-						{item.mechName}
-					</div>
-				</div>
+				{/if}
 			{/each}
 		</div>
 	  </div>
 		{#each individualStrat as phase}
-			<div class="card border border-surface-800 p-2 h-0 min-h-full" style:grid-column={`span ${phase.mechs.length}`}>
+			<div class="card border border-surface-800 p-2 h-0 min-h-full flex flex-col" style:grid-column={`span ${phase.mechs.length}`}>
 				<div class="flex flex-row">
-					<div class="capitalize font-bold text-lg mb-0">{phase.phaseName}</div>
+					<div class="capitalize font-bold text-sm 3xl:text-lg mb-0">{phase.phaseName}</div>
 					{#if phase?.tag && (stratState[phase.tag] !== getStratMechs(stratName)[phase.tag])}
 						<Tooltip
 							positioning={{ placement: 'top' }}
@@ -255,18 +280,21 @@
 						</Tooltip>
 					{/if}
 				</div>
-				{#if phase?.description}<div class="text-md whitespace-pre-wrap">{phase.description}</div>{/if}
+				{#if phase?.description}<div class="text-xs 3xl:text-base whitespace-pre-wrap">{phase.description}</div>{/if}
 				{#if phase?.imageUrl}<img class="max-h-[400px] rounded-md mt-2" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />{/if}
 				{#if phase?.mechs}
-					<div class="grid grid-flow-col auto-cols-fr gap-2 mt-2" style:grid-column={`span ${phase.mechs.length}`}>
+					<div class="grid grid-flow-col auto-cols-fr auto-rows-fr gap-2 mt-2 h-full" style:grid-column={`span ${phase.mechs.length}`}>
 						{#each phase.mechs as mech}
 							{#key [spotlight, alignment]}
-							<div class="space-y-4" class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}>
-								<div class="capitalize font-semibold text-md mb-0">{mech.mechanic}</div> 
-								{#if mech?.description}<div class="whitespace-pre-wrap text-md mb-0">{mech.description}</div>{/if}
-								{#if mech?.imageUrl}<img class="max-h-[250px] rounded-md mt-4" src={mech.imageUrl} />{/if}
-								<div class="whitespace-pre-wrap text-md mb-0">{mech?.strats && mech.strats[0].description}</div>
-								{#if mech?.strats && mech.strats[0]?.imageUrl}<img class="max-h-[250px] rounded-md mt-4" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />{/if}
+							<div class="flex flex-col h-0 min-h-full overflow-hidden" class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}>
+								<div class="capitalize font-semibold text-sm 3xl:text-base mb-0">{mech.mechanic}</div> 
+								{#if mech?.description}<div class="whitespace-pre-wrap text-xs 3xl:text-base mb-0">{mech.description}</div>{/if}
+								{#if mech?.imageUrl}<img class="max-h-[10dvh] 2xl:max-h-[15dvh] object-contain rounded-md mt-4" src={mech.imageUrl} />{/if}
+								<div class="whitespace-pre-wrap text-xs 3xl:text-base mb-0">{mech?.strats && mech.strats[0].description}</div>
+								
+								{#if mech?.strats && mech.strats[0]?.imageUrl}
+									<img class="max-h-[10dvh] 2xl:max-h-[15dvh] object-contain rounded-md mt-4 h-[400px]" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />
+								{/if}
 							</div>
 							{/key}
 						{/each}
