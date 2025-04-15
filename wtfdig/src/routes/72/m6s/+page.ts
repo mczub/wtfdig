@@ -3,6 +3,7 @@ import type { PageLoad } from "./$types";
 export const load: PageLoad = ({params}) => {
     return {
         strats: [latteStrat, yukizuriStrat, toxicStrat],
+        timeline: timeline,
     }
 }
 
@@ -47,6 +48,245 @@ export interface Strat {
     notes: string;
     strats: PhaseStrats[];
 }
+
+export interface TimelineItem {
+    mechName: string;
+    mechType: string;
+    startTimeMs: number;
+}
+
+const timeline: TimelineItem[] = [
+    {
+        mechName: 'Start',
+        mechType: 'Start',
+        startTimeMs: 0,
+    },
+    {
+        mechName: 'Mousse Mural',
+        mechType: 'Raidwide',
+        startTimeMs: 11970
+    },
+    {
+        mechName: 'Color Riot',
+        mechType: 'Tankbuster',
+        startTimeMs: 23149
+    },
+    {
+        mechName: 'Wingmark + Clash (Cast)',
+        mechType: 'StoredMechanic',
+        startTimeMs: 35784
+    },
+    {
+        mechName: 'Wingmark + Clash',
+        mechType: 'Mechanic',
+        startTimeMs: 56784
+    },
+    {
+        mechName: 'Sticky Mousse',
+        mechType: 'Mechanic',
+        startTimeMs: 70872
+    },
+    {
+        mechName: 'Color Riot',
+        mechType: 'Tankbuster',
+        startTimeMs: 82663
+    },
+    {
+        mechName: 'Sugarscape (Desert)',
+        mechType: 'Phase',
+        startTimeMs: 91200
+    },
+    {
+        mechName: 'Layer (Cactus Dodges)',
+        mechType: 'Mechanic',
+        startTimeMs: 107545
+    },
+    {
+        mechName: 'Brulee (Tank + DPS)',
+        mechType: 'Mechanic',
+        startTimeMs: 142318
+    },
+    {
+        mechName: 'Sticky Mousse',
+        mechType: 'Mechanic',
+        startTimeMs: 150435
+    },
+    {
+        mechName: 'Brulee (Healers)',
+        mechType: 'Mechanic',
+        startTimeMs: 177539
+    },
+    {
+        mechName: 'Pudding Graf (Bombs)',
+        mechType: 'Mechanic',
+        startTimeMs: 191002
+    },
+    {
+        mechName: 'Mousse Mural',
+        mechType: 'Raidwide',
+        startTimeMs: 200135
+    },
+    {
+        mechName: 'Color Riot',
+        mechType: 'Tankbuster',
+        startTimeMs: 208280
+    },
+    {
+        mechName: 'Soul Sugar (Adds)',
+        mechType: 'Phase',
+        startTimeMs: 218532
+    },
+    {
+        mechName: 'Adds Wave 1',
+        mechType: 'Mechanic',
+        startTimeMs: 228798
+    },
+    {
+        mechName: 'Adds Wave 2',
+        mechType: 'Mechanic',
+        startTimeMs: 257987
+    },
+    {
+        mechName: 'Adds Wave 3',
+        mechType: 'Mechanic',
+        startTimeMs: 280149
+    },
+    {
+        mechName: 'Jabber 1 Targetable',
+        mechType: 'Mechanic',
+        startTimeMs: 288248
+    },
+    {
+        mechName: 'Ready Ore Not',
+        mechType: 'Raidwide',
+        startTimeMs: 307192
+    },
+    {
+        mechName: 'Adds Wave 4',
+        mechType: 'Mechanic',
+        startTimeMs: 319455
+    },
+    {
+        mechName: 'Jabber 2 Targetable',
+        mechType: 'Mechanic',
+        startTimeMs: 327648
+    },
+    {
+        mechName: 'Ready Ore Not',
+        mechType: 'Raidwide',
+        startTimeMs: 390497
+    },
+    {
+        mechName: 'Color Riot',
+        mechType: 'Tankbuster',
+        startTimeMs: 412855
+    },
+    {
+        mechName: 'Mousse Mural',
+        mechType: 'Raidwide',
+        startTimeMs: 421004
+    },
+    {
+        mechName: 'Sugarscape (River)',
+        mechType: 'Phase',
+        startTimeMs: 429535
+    },
+    {
+        mechName: 'Double Style (Cast)',
+        mechType: 'StoredMechanic',
+        startTimeMs: 444697
+    },
+    {
+        mechName: 'Fire/Lightning',
+        mechType: 'Mechanic',
+        startTimeMs: 454866
+    },
+    {
+        mechName: 'Thunderstorm 1',
+        mechType: 'Mechanic',
+        startTimeMs: 481012
+    },
+    {
+        mechName: 'Thunderstorm 2',
+        mechType: 'Mechanic',
+        startTimeMs: 491751
+    },
+    {
+        mechName: 'Thunderstorm 3',
+        mechType: 'Mechanic',
+        startTimeMs: 502298
+    },
+    {
+        mechName: 'Thunderstorm 4',
+        mechType: 'Mechanic',
+        startTimeMs: 513125
+    },
+    {
+        mechName: 'Pudding Party (Stack)',
+        mechType: 'Raidwide',
+        startTimeMs: 518217
+    },
+    {
+        mechName: 'Layer (Lava)',
+        mechType: 'Phase',
+        startTimeMs: 531646
+    },
+    {
+        mechName: 'Mousse Drip x4',
+        mechType: 'Mechanic',
+        startTimeMs: 548778
+    },
+    {
+        mechName: 'Towers 1',
+        mechType: 'Mechanic',
+        startTimeMs: 567843
+    },
+    {
+        mechName: 'Wingmark (Cast)',
+        mechType: 'StoredMechanic',
+        startTimeMs: 572104
+    },
+    {
+        mechName: 'Wingmark',
+        mechType: 'Mechanic',
+        startTimeMs: 582104
+    },
+    {
+        mechName: 'Towers 2',
+        mechType: 'Mechanic',
+        startTimeMs: 594372
+    },
+    {
+        mechName: 'Mousse Mural',
+        mechType: 'Raidwide',
+        startTimeMs: 599304
+    },
+    {
+        mechName: 'Sticky Mousse',
+        mechType: 'Mechanic',
+        startTimeMs: 609860
+    },
+    {
+        mechName: 'Color Riot',
+        mechType: 'Tankbuster',
+        startTimeMs: 621624
+    },
+    {
+        mechName: 'Wingmark + Clash (Cast)',
+        mechType: 'StoredMechanic',
+        startTimeMs: 634276
+    },
+    {
+        mechName: 'Wingmark + Clash',
+        mechType: 'Mechanic',
+        startTimeMs: 651276
+    },
+    {
+        mechName: 'Enrage',
+        mechType: 'Enrage',
+        startTimeMs: 684419,
+    },
+]
 
 const toxicAdds: Record<string,Record<string, PlayerMechStrat>> = {
     'wave1': {

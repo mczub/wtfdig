@@ -29,6 +29,10 @@
 @layer utilities {
 }
 
+@theme {
+  --breakpoint-3xl: 124rem;
+}
+
 /* Headings */
 .preset-typo-display-4,
 .preset-typo-display-3,

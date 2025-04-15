@@ -1,16 +1,18 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import type { Alignment, PlayerMechStrat, PhaseStrats, Role, MechanicStrat, Strat } from '../+page';
+	import type { Alignment, PlayerMechStrat, PhaseStrats, Role, MechanicStrat, Strat, TimelineItem } from './+page';
 	import { Accordion, Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
+	import { Clock, Info, Shield, Siren, Wrench, X} from '@lucide/svelte/icons';
 	import { getContext } from 'svelte';
-  	import { type ToastContext } from '@skeletonlabs/skeleton-svelte';
+  	import { type ToastContext, Modal } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
 
 	interface Props {
 		data: {
 			strats: Strat[];
+			timeline: TimelineItem[];
 		};
 		children?: import('svelte').Snippet;
 	}
@@ -18,6 +20,7 @@
 	let { data, children }: Props = $props();
 	let stratName: string | undefined = $state();
 	let stratState: Record<string, string | null> = $state({});
+	
 
 	
 	let role: Role | undefined = $state();
@@ -169,7 +172,151 @@
 
 		return `${stratNames[stratName]} - ${roleAbbrev}`;
 	}
+
+	function msToTime(timeInMs: number): string {
+		const seconds = (Math.floor(timeInMs / 1000) % 60).toString().padStart(2, '0');
+		const minutes = (Math.floor(timeInMs / 60000)).toString();
+
+		return `${minutes}:${seconds}`;
+	}
+
+	function getFightPercentClass(timeInMs: number): string {
+		const enrageTime = data.timeline.find((item) => {return item.mechType === 'Enrage'})?.startTimeMs;
+		if (!enrageTime) return '0';
+		return `${(Math.floor(timeInMs * 980 / enrageTime)/10).toString()}%`;
+	}
+
+	function showMechType(mechType: string): boolean {
+		if (mechType === 'Mechanic' || mechType === 'StoredMechanic') {
+			return timelineFilters.mechs;
+		}
+		if (mechType === 'Raidwide') {
+			return timelineFilters.raidwides;
+		}
+		if (mechType === 'Tankbuster') {
+			return timelineFilters.tankbusters;
+		}
+		return true;
+	}
+
+	let innerWidth = $state(0);
+	let innerHeight = $state(0);
+	let isCheatsheetEnabled = $derived(innerWidth > 1600 && innerWidth > 900);
+
+	let cheatsheetOpenState = $state(false);
+	let timelineFilters = $state({
+		"mechs": true,
+		"raidwides": true,
+		"tankbusters": true
+	})
+
+	function closeCheatsheet() {
+		cheatsheetOpenState = false;
+	}
 </script>
+
+<svelte:window bind:innerWidth={innerWidth} bind:innerHeight={innerHeight} />
+
+<Modal
+  open={cheatsheetOpenState}
+  onOpenChange={(e) => (cheatsheetOpenState = e.open)}
+  contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl flex flex-col h-full w-full"
+  backdropClasses="backdrop-blur-sm"
+>
+  {#snippet content()}
+    <header class="flex justify-between">
+      <div class="text-lg 3xl:text-2xl">AAC Cruiserweight M1 (Savage) Cheatsheet - {optionsString}</div>
+	  <X onclick={closeCheatsheet} />
+    </header>
+    <div class="grid grid-rows-3 grid-cols-5 gap-2 h-full">
+      <div class="card border row-span-full border-surface-800 p-2 flex flex-col">
+		<div class="flex mb-2 gap-1">
+			<button class={`chip ${timelineFilters.mechs ? 'preset-outlined-warning-500 bg-warning-800' : 'preset-outlined-warning-500'}`} onclick={() => timelineFilters.mechs = !timelineFilters.mechs}><Wrench size={16} strokeWidth={2} />Mech</button>
+			<button class={`chip ${timelineFilters.raidwides ? 'preset-outlined-secondary-500 bg-secondary-500' : 'preset-outlined-secondary-500'}`} onclick={() => timelineFilters.raidwides = !timelineFilters.raidwides}><Siren size={16} strokeWidth={2} />Raidwide</button>
+			<button class={`chip ${timelineFilters.tankbusters ? 'preset-outlined-primary-500 bg-primary-500' : 'preset-outlined-primary-500'}`} onclick={() => timelineFilters.tankbusters = !timelineFilters.tankbusters}><Shield size={16} strokeWidth={2} />TB</button>
+		</div>
+		<div class="grow relative">
+			{#each data.timeline as item}
+				{#if showMechType(item.mechType)}
+					<div style:top={getFightPercentClass(item.startTimeMs)} class="absolute flex text-xs w-full items-center" >
+						<div class="w-1/8">
+							{#if item.mechType === 'Raidwide'}
+								<div class="grid bg-secondary-500 rounded-sm h-[16px] w-[16px] p-auto place-content-center">
+									<Siren size={14} strokeWidth={2} />
+								</div>
+							{/if}
+							{#if item.mechType === 'Mechanic'}
+								<div class="grid bg-warning-800 rounded-sm h-[16px] w-[16px] p-auto place-content-center">
+									<Wrench size={14} strokeWidth={2} />
+								</div>
+							{/if}
+							{#if item.mechType === 'Tankbuster'}
+								<div class="grid bg-primary-500 rounded-sm h-[16px] w-[16px] p-auto place-content-center">
+									<Shield size={14} strokeWidth={2} />
+								</div>
+							{/if}
+							{#if item.mechType === 'StoredMechanic'}
+								<div class="grid bg-warning-800 rounded-sm h-[16px] w-[16px] p-auto place-content-center">
+									<Clock size={14} strokeWidth={2} />
+								</div>
+							{/if}
+						</div>
+						<div class="w-1/4">
+							{msToTime(item.startTimeMs)}
+						</div>
+						<div class="w-5/8">
+							{item.mechName}
+						</div>
+					</div>
+				{/if}
+			{/each}
+		</div>
+	  </div>
+		{#each individualStrat as phase}
+			<div class="card border border-surface-800 p-2 h-0 min-h-full flex flex-col" style:grid-column={`span ${phase.mechs.length}`}>
+				<div class="flex flex-row">
+					<div class="capitalize font-bold text-sm 3xl:text-lg mb-0">{phase.phaseName}</div>
+					{#if phase?.tag && (stratState[phase.tag] !== getStratMechs(stratName)[phase.tag])}
+						<Tooltip
+							positioning={{ placement: 'top' }}
+							triggerBase="underline"
+							contentBase="card bg-surface-800 p-4"
+							classes="ml-2"
+							openDelay={200}
+							arrow
+							arrowBackground="!bg-surface-800"
+
+						>
+							{#snippet trigger()}<div class="text-warning-500"><TriangleAlert size={32}/></div>{/snippet}
+							{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
+						</Tooltip>
+					{/if}
+				</div>
+				{#if phase?.description}<div class="text-xs 3xl:text-base whitespace-pre-wrap">{phase.description}</div>{/if}
+				{#if phase?.imageUrl}<img class="max-h-[400px] rounded-md mt-2" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />{/if}
+				{#if phase?.mechs}
+					<div class="grid grid-flow-col auto-cols-fr auto-rows-fr gap-2 mt-2 h-full" style:grid-column={`span ${phase.mechs.length}`}>
+						{#each phase.mechs as mech}
+							{#key [spotlight, alignment]}
+							<div class="flex flex-col h-0 min-h-full overflow-hidden" class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}>
+								<div class="capitalize font-semibold text-sm 3xl:text-base mb-0">{mech.mechanic}</div> 
+								{#if mech?.description}<div class="whitespace-pre-wrap text-xs 3xl:text-base mb-0">{mech.description}</div>{/if}
+								{#if mech?.imageUrl}<img class="object-contain rounded-md mt-4 min-h-0 h-full" src={mech.imageUrl} />{/if}
+								<div class="whitespace-pre-wrap text-xs 3xl:text-base mb-0">{mech?.strats && mech.strats[0].description}</div>
+								
+								{#if mech?.strats && mech.strats[0]?.imageUrl}
+									<img class="object-contain rounded-md mt-4 min-h-0 h-full" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />
+								{/if}
+							</div>
+							{/key}
+						{/each}
+					</div>
+				{/if}
+			</div>
+		{/each}
+    </div>
+  {/snippet}
+</Modal>
 
 <div class="container grow px-4 mx-auto mb-6">
 	<div class="container">
@@ -242,8 +389,18 @@
 						{/if}
 					</div>
 					<div class="grow"></div>
-					<div class="grid gap-y-2 content-center">
-						<button on:click={() => copyLinkToClipboard()} class="button btn preset-tonal-secondary border border-secondary-500">Copy link</button>
+					<div class="grid gap-y-2 content-center max-w-[40%] lg:max-w-[20%]">
+						{#if isCheatsheetEnabled}
+							<button onclick={() => (cheatsheetOpenState = true)} class="button btn preset-tonal-secondary border border-secondary-500">Open cheatsheet</button>
+						{:else}
+							<button class="button btn preset-tonal-secondary border border-secondary-500 disabled">Open cheatsheet</button>
+							<div class="flex flex-row items-center gap-2">
+								<Info size={40} />
+								<span>Cheatsheet mode needs a browser window size of at least 1600 x 900</span>
+							</div>
+							
+						{/if}
+						<button onclick={() => copyLinkToClipboard()} class="button btn preset-tonal-secondary border border-secondary-500">Copy link</button>
 						<Switch name="spotlight-toggle" checked={spotlight} onCheckedChange={(e) => (spotlight = e.checked)}>Highlight my spots</Switch>
 					</div>
 				</div>
