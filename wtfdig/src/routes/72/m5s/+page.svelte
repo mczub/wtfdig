@@ -301,11 +301,11 @@
 							<div class="flex flex-col h-0 min-h-full overflow-hidden" class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}>
 								<div class="capitalize font-semibold text-sm 3xl:text-base mb-0">{mech.mechanic}</div> 
 								{#if mech?.description}<div class="whitespace-pre-wrap text-xs 3xl:text-base mb-0">{mech.description}</div>{/if}
-								{#if mech?.imageUrl}<img class="max-h-[10dvh] 2xl:max-h-[15dvh] object-contain rounded-md mt-4" src={mech.imageUrl} />{/if}
+								{#if mech?.imageUrl}<img class="object-contain rounded-md mt-4 min-h-0 h-full" src={mech.imageUrl} />{/if}
 								<div class="whitespace-pre-wrap text-xs 3xl:text-base mb-0">{mech?.strats && mech.strats[0].description}</div>
 								
 								{#if mech?.strats && mech.strats[0]?.imageUrl}
-									<img class="max-h-[10dvh] 2xl:max-h-[15dvh] object-contain rounded-md mt-4 h-[400px]" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />
+									<img class="object-contain rounded-md mt-4 min-h-0 h-full" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />
 								{/if}
 							</div>
 							{/key}
