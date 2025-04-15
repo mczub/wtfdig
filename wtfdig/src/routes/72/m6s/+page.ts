@@ -72,7 +72,7 @@ const timeline: TimelineItem[] = [
         startTimeMs: 23149
     },
     {
-        mechName: 'Wingmark + Clash (Cast)',
+        mechName: 'Wingmark (Cast)',
         mechType: 'StoredMechanic',
         startTimeMs: 35784
     },
@@ -92,12 +92,12 @@ const timeline: TimelineItem[] = [
         startTimeMs: 82663
     },
     {
-        mechName: 'Sugarscape (Desert)',
+        mechName: 'Desert',
         mechType: 'Phase',
         startTimeMs: 91200
     },
     {
-        mechName: 'Layer (Cactus Dodges)',
+        mechName: 'Cactus Dodges',
         mechType: 'Mechanic',
         startTimeMs: 107545
     },
@@ -117,7 +117,7 @@ const timeline: TimelineItem[] = [
         startTimeMs: 177539
     },
     {
-        mechName: 'Pudding Graf (Bombs)',
+        mechName: 'Bombs',
         mechType: 'Mechanic',
         startTimeMs: 191002
     },
@@ -132,7 +132,7 @@ const timeline: TimelineItem[] = [
         startTimeMs: 208280
     },
     {
-        mechName: 'Soul Sugar (Adds)',
+        mechName: 'Adds',
         mechType: 'Phase',
         startTimeMs: 218532
     },
@@ -187,7 +187,7 @@ const timeline: TimelineItem[] = [
         startTimeMs: 421004
     },
     {
-        mechName: 'Sugarscape (River)',
+        mechName: 'River',
         mechType: 'Phase',
         startTimeMs: 429535
     },
@@ -222,17 +222,17 @@ const timeline: TimelineItem[] = [
         startTimeMs: 513125
     },
     {
-        mechName: 'Pudding Party (Stack)',
+        mechName: 'Pudding Party',
         mechType: 'Raidwide',
         startTimeMs: 518217
     },
     {
-        mechName: 'Layer (Lava)',
+        mechName: 'Lava',
         mechType: 'Phase',
         startTimeMs: 531646
     },
     {
-        mechName: 'Mousse Drip x4',
+        mechName: 'Puddles x4',
         mechType: 'Mechanic',
         startTimeMs: 548778
     },
@@ -272,7 +272,7 @@ const timeline: TimelineItem[] = [
         startTimeMs: 621624
     },
     {
-        mechName: 'Wingmark + Clash (Cast)',
+        mechName: 'Wingmark (Cast)',
         mechType: 'StoredMechanic',
         startTimeMs: 634276
     },
@@ -906,13 +906,13 @@ const cleaveAdds: Record<string,Record<string, PlayerMechStrat>> = {
         'R1': {
                 role: 'Ranged',
                 party: 1,
-                description: 'Stack on Yan to bait Cat jump\nFocus Yan, then focus Yan',
+                description: 'Stack on Yan to bait Cat jump\nFocus Yan, then focus Cat',
                 imageUrl: './m6s/adds/cleave-wave1.webp',
             },
         'R2': {
                 role: 'Ranged',
                 party: 2,
-                description: 'Stack on Yan to bait Cat jump\nFocus Yan, then focus Yan',
+                description: 'Stack on Yan to bait Cat jump\nFocus Yan, then focus Cat',
                 imageUrl: './m6s/adds/cleave-wave1.webp',
             },
     },

@@ -205,7 +205,10 @@
 		return `${minutes}:${seconds}`;
 	}
 
-	function getFightPercentClass(timeInMs: number): string {
+	function getFightPercentClass(timeInMs: number, index: number): string {
+		if (useEvenTimelineSpacing) {
+			return `${(Math.floor(index * 980 / data.timeline.length)/10).toString()}%`;
+		}
 		const enrageTime = data.timeline.find((item) => {return item.mechType === 'Enrage'})?.startTimeMs;
 		if (!enrageTime) return '0';
 		return `${(Math.floor(timeInMs * 980 / enrageTime)/10).toString()}%`;
@@ -226,7 +229,9 @@
 
 	let innerWidth = $state(0);
 	let innerHeight = $state(0);
-	let isCheatsheetEnabled = $derived(innerWidth > 1600 && innerWidth > 900);
+	let useEvenTimelineSpacing = $derived(innerHeight <= 1024);
+	let showFilterCaptions = $derived(innerWidth > 1536)
+	let isCheatsheetEnabled = $derived(innerWidth > 1024 && innerHeight > 768);
 
 	let cheatsheetOpenState = $state(false);
 	let timelineFilters = $state({
@@ -256,14 +261,14 @@
     <div class="grid grid-rows-3 grid-cols-7 gap-2 h-full">
       <div class="card border row-span-full border-surface-800 p-2 flex flex-col">
 		<div class="flex mb-2 gap-1">
-			<button class={`chip px-2 ${timelineFilters.mechs ? 'preset-outlined-warning-500 bg-warning-800' : 'preset-outlined-warning-500'}`} onclick={() => timelineFilters.mechs = !timelineFilters.mechs}><Wrench size={16} strokeWidth={2} />Mech</button>
-			<button class={`chip px-2 ${timelineFilters.raidwides ? 'preset-outlined-secondary-500 bg-secondary-500' : 'preset-outlined-secondary-500'}`} onclick={() => timelineFilters.raidwides = !timelineFilters.raidwides}><Siren size={16} strokeWidth={2} />Raidwide</button>
-			<button class={`chip px-2 ${timelineFilters.tankbusters ? 'preset-outlined-primary-500 bg-primary-500' : 'preset-outlined-primary-500'}`} onclick={() => timelineFilters.tankbusters = !timelineFilters.tankbusters}><Shield size={16} strokeWidth={2} />TB</button>
+			<button class={`chip px-1 3xl:px-2 ${timelineFilters.mechs ? 'preset-outlined-warning-500 bg-warning-800' : 'preset-outlined-warning-500'}`} onclick={() => timelineFilters.mechs = !timelineFilters.mechs}><Wrench size={16} strokeWidth={2} />{showFilterCaptions ? 'Mech' : ''}</button>
+			<button class={`chip px-1 3xl:px-2 ${timelineFilters.raidwides ? 'preset-outlined-secondary-500 bg-secondary-500' : 'preset-outlined-secondary-500'}`} onclick={() => timelineFilters.raidwides = !timelineFilters.raidwides}><Siren size={16} strokeWidth={2} />{showFilterCaptions ? 'Raidwide' : ''}</button>
+			<button class={`chip px-1 3xl:px-2 ${timelineFilters.tankbusters ? 'preset-outlined-primary-500 bg-primary-500' : 'preset-outlined-primary-500'}`} onclick={() => timelineFilters.tankbusters = !timelineFilters.tankbusters}><Shield size={16} strokeWidth={2} />{showFilterCaptions ? 'TB' : ''}</button>
 		</div>
 		<div class="grow relative">
-			{#each data.timeline as item}
+			{#each data.timeline as item, index}
 				{#if showMechType(item.mechType)}
-					<div style:top={getFightPercentClass(item.startTimeMs)} class="absolute flex text-xs w-full items-center" >
+				<div style:top={getFightPercentClass(item.startTimeMs, index)} class="absolute flex text-xs w-full items-center" >
 						<div class="w-1/8">
 							{#if item.mechType === 'Raidwide'}
 								<div class="grid bg-secondary-500 rounded-sm h-[16px] w-[16px] p-auto place-content-center">
@@ -289,7 +294,7 @@
 						<div class="w-1/4">
 							{msToTime(item.startTimeMs)}
 						</div>
-						<div class="w-5/8">
+						<div class="w-5/8 overflow-hidden text-nowrap">
 							{item.mechName}
 						</div>
 					</div>
@@ -299,12 +304,12 @@
 	  </div>
 		{#each individualStrat as phase}
 			<div class="card border border-surface-800 p-2 h-0 min-h-full flex flex-col" style:grid-column={`span ${phase.mechs ? phase.mechs.length : 0}`}>
-				<div class="flex flex-row">
+				<div class="flex flex-row items-center">
 					<div class="capitalize font-bold text-sm 3xl:text-lg mb-0">{phase.phaseName}</div>
 					{#if phase?.tag && (stratState[phase.tag] !== getStratMechs(stratName)[phase.tag])}
 						<Tooltip
 							positioning={{ placement: 'top' }}
-							triggerBase="underline"
+							triggerBase="flex"
 							contentBase="card bg-surface-800 p-4"
 							classes="ml-2"
 							openDelay={200}
@@ -312,13 +317,13 @@
 							arrowBackground="!bg-surface-800"
 
 						>
-							{#snippet trigger()}<div class="text-warning-500"><TriangleAlert size={32}/></div>{/snippet}
+							{#snippet trigger()}<div class="text-warning-500 self-center"><TriangleAlert size={24}/></div>{/snippet}
 							{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
 						</Tooltip>
 					{/if}
 				</div>
 				{#if phase?.description}<div class="text-xs 3xl:text-base whitespace-pre-wrap">{phase.description}</div>{/if}
-				{#if phase?.imageUrl}<img class="max-h-[400px] rounded-md mt-2" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />{/if}
+				{#if phase?.imageUrl}<img class="object-contain rounded-md mt-2 min-h-0 h-full" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />{/if}
 				{#if phase?.mechs}
 					<div class="grid grid-flow-col auto-cols-fr auto-rows-fr gap-2 mt-2 h-full" style:grid-column={`span ${phase.mechs.length}`}>
 						{#each phase.mechs as mech}
@@ -326,11 +331,11 @@
 							<div class="flex flex-col h-0 min-h-full overflow-hidden" class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}>
 								<div class="capitalize font-semibold text-sm 3xl:text-base mb-0">{mech.mechanic}</div> 
 								{#if mech?.description}<div class="whitespace-pre-wrap text-xs 3xl:text-base mb-0">{mech.description}</div>{/if}
-								{#if mech?.imageUrl}<img class="object-contain rounded-md mt-4 min-h-0 h-full" src={mech.imageUrl} />{/if}
+								{#if mech?.imageUrl}<img class="object-contain rounded-md mt-2 min-h-0 h-full" src={mech.imageUrl} />{/if}
 								<div class="whitespace-pre-wrap text-xs 3xl:text-base mb-0">{mech?.strats && mech.strats[0].description}</div>
 								
 								{#if mech?.strats && mech.strats[0]?.imageUrl}
-									<img class="object-contain rounded-md mt-4 min-h-0 h-full" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />
+									<img class="object-contain rounded-md mt-2 min-h-0 h-full" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />
 								{/if}
 							</div>
 							{/key}

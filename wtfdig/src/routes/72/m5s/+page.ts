@@ -72,7 +72,7 @@ const timeline: TimelineItem[] = [
         startTimeMs: 23415,
     },
     {
-        mechName: '#-snap Twist + A/B Side',
+        mechName: '#-snap Twist + A/B',
         mechType: 'Mechanic',
         startTimeMs: 29523,
     },
@@ -82,12 +82,12 @@ const timeline: TimelineItem[] = [
         startTimeMs: 42764,
     },
     {
-        mechName: '#-snap Twist + A/B Side',
+        mechName: '#-snap Twist + A/B',
         mechType: 'Mechanic',
         startTimeMs: 48868,
     },
     {
-        mechName: 'Celebrate Good Times',
+        mechName: 'Celebrate',
         mechType: 'Raidwide',
         startTimeMs: 65084,
     },
@@ -102,12 +102,12 @@ const timeline: TimelineItem[] = [
         startTimeMs: 95711,
     },
     {
-        mechName: '#-snap Twist + A/B Side',
+        mechName: '#-snap Twist + A/B',
         mechType: 'Mechanic',
         startTimeMs: 112275,
     },
     {
-        mechName: 'Celebrate Good Times',
+        mechName: 'Celebrate',
         mechType: 'Raidwide',
         startTimeMs: 128490,
     },
@@ -142,7 +142,7 @@ const timeline: TimelineItem[] = [
         startTimeMs: 233208,
     },
     {
-        mechName: '#-snap Twist + A/B Side',
+        mechName: '#-snap Twist + A/B',
         mechType: 'Mechanic',
         startTimeMs: 266994,
     },
@@ -152,7 +152,7 @@ const timeline: TimelineItem[] = [
         startTimeMs: 284552,
     },
     {
-        mechName: 'Celebrate Good Times',
+        mechName: 'Celebrate',
         mechType: 'Raidwide',
         startTimeMs: 291365,
     },
@@ -172,12 +172,12 @@ const timeline: TimelineItem[] = [
         startTimeMs: 342306,
     },
     {
-        mechName: '#-snap Twist + A/B Side',
+        mechName: '#-snap Twist + A/B',
         mechType: 'Mechanic',
         startTimeMs: 348415,
     },
     {
-        mechName: 'Celebrate Good Times',
+        mechName: 'Celebrate',
         mechType: 'Raidwide',
         startTimeMs: 364636,
     },
@@ -212,12 +212,12 @@ const timeline: TimelineItem[] = [
         startTimeMs: 525650,
     },
     {
-        mechName: 'Celebrate Good Times',
+        mechName: 'Celebrate',
         mechType: 'Raidwide',
         startTimeMs: 561080,
     },
     {
-        mechName: 'Celebrate Good Times',
+        mechName: 'Celebrate',
         mechType: 'Raidwide',
         startTimeMs: 571240,
     },
