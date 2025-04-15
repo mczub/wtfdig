@@ -4,11 +4,7 @@
 	import { Accordion, Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
-	import X from '@lucide/svelte/icons/x';
-	import Shield from '@lucide/svelte/icons/shield-alert';
-	import Siren from '@lucide/svelte/icons/siren';
-	import Wrench from '@lucide/svelte/icons/wrench';
-	import Clock from '@lucide/svelte/icons/clock';
+	import { Clock, Info, Shield, Siren, Wrench, X} from '@lucide/svelte/icons';
 	import { getContext } from 'svelte';
   	import { type ToastContext, Modal } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
@@ -24,16 +20,7 @@
 	let { data, children }: Props = $props();
 	let stratName: string | undefined = $state();
 	let stratState: Record<string, string | null> = $state({});
-	let cheatsheetOpenState = $state(false);
-	let timelineFilters = $state({
-		"mechs": true,
-		"raidwides": true,
-		"tankbusters": true
-	})
-
-	function closeCheatsheet() {
-		cheatsheetOpenState = false;
-	}
+	
 
 	
 	let role: Role | undefined = $state();
@@ -215,6 +202,17 @@
 	let innerWidth = $state(0);
 	let innerHeight = $state(0);
 	let isCheatsheetEnabled = $derived(innerWidth > 1600 && innerWidth > 900);
+
+	let cheatsheetOpenState = $state(false);
+	let timelineFilters = $state({
+		"mechs": true,
+		"raidwides": true,
+		"tankbusters": true
+	})
+
+	function closeCheatsheet() {
+		cheatsheetOpenState = false;
+	}
 </script>
 
 <svelte:window bind:innerWidth={innerWidth} bind:innerHeight={innerHeight} />
@@ -391,22 +389,15 @@
 						{/if}
 					</div>
 					<div class="grow"></div>
-					<div class="grid gap-y-2 content-center">
+					<div class="grid gap-y-2 content-center max-w-[40%] lg:max-w-[20%]">
 						{#if isCheatsheetEnabled}
 							<button onclick={() => (cheatsheetOpenState = true)} class="button btn preset-tonal-secondary border border-secondary-500">Open cheatsheet</button>
 						{:else}
-							<Tooltip
-								positioning={{ placement: 'top' }}
-								contentBase="card bg-surface-800 p-4"
-								triggerBase="button btn preset-tonal-secondary border border-secondary-500 disabled w-full"
-								openDelay={200}
-								arrow
-								arrowBackground="!bg-surface-800"
-
-							>
-								{#snippet trigger()}Open cheatsheet{/snippet}
-								{#snippet content()}Cheatsheet mode works best if your browser window is at least 1600x900{/snippet}
-							</Tooltip>
+							<button class="button btn preset-tonal-secondary border border-secondary-500 disabled">Open cheatsheet</button>
+							<div class="flex flex-row items-center gap-2">
+								<Info size={40} />
+								<span>Cheatsheet mode needs a browser window size of at least 1600 x 900</span>
+							</div>
 							
 						{/if}
 						<button onclick={() => copyLinkToClipboard()} class="button btn preset-tonal-secondary border border-secondary-500">Copy link</button>
