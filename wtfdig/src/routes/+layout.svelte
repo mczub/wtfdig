@@ -33,6 +33,7 @@
         </header>
         <article>
             <div>
+                <p>4/15/2025: cheatsheet mode for 5 + 6, add locked seeds to 7</p>
                 <p>4/14/2025: fixed some reported issues</p>
                 <p>4/12/2025: m8s + renamed m6s toxic to hector/toxic, update ex4 hector bloom6 to match video, added ko-fi link</p>
                 <p>4/9/2025: m7s improvements + fixed m5s toxic ride the wave</p>

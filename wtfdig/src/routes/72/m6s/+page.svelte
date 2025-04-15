@@ -454,7 +454,7 @@
 							<button class="button btn preset-tonal-secondary border border-secondary-500 disabled">Open cheatsheet</button>
 							<div class="flex flex-row items-center gap-2">
 								<Info size={40} />
-								<span>Cheatsheet mode needs a browser window size of at least 1600 x 900</span>
+								<span>Cheatsheet mode needs a browser window size of at least 1024 x 768</span>
 							</div>
 							
 						{/if}
