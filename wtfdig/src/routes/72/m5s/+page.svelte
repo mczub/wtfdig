@@ -211,7 +211,13 @@
 		}
 		return true;
 	}
+
+	let innerWidth = $state(0);
+	let innerHeight = $state(0);
+	let isCheatsheetEnabled = $derived(innerWidth > 1600 && innerWidth > 900);
 </script>
+
+<svelte:window bind:innerWidth={innerWidth} bind:innerHeight={innerHeight} />
 
 <Modal
   open={cheatsheetOpenState}
@@ -227,26 +233,34 @@
     <div class="grid grid-rows-3 grid-cols-5 gap-2 h-full">
       <div class="card border row-span-full border-surface-800 p-2 flex flex-col">
 		<div class="flex mb-2 gap-1">
-			<button class={`chip ${timelineFilters.mechs ? 'preset-filled-secondary-500' : 'preset-tonal-secondary'}`} onclick={() => timelineFilters.mechs = !timelineFilters.mechs}><Wrench size={16} strokeWidth={1} />Mech</button>
-			<button class={`chip ${timelineFilters.raidwides ? 'preset-filled-secondary-500' : 'preset-tonal-secondary'}`} onclick={() => timelineFilters.raidwides = !timelineFilters.raidwides}><Siren size={16} strokeWidth={1} />Raidwide</button>
-			<button class={`chip ${timelineFilters.tankbusters ? 'preset-filled-secondary-500' : 'preset-tonal-secondary'}`} onclick={() => timelineFilters.tankbusters = !timelineFilters.tankbusters}><Shield size={16} strokeWidth={1} />TB</button>
+			<button class={`chip ${timelineFilters.mechs ? 'preset-outlined-warning-500 bg-warning-800' : 'preset-outlined-warning-500'}`} onclick={() => timelineFilters.mechs = !timelineFilters.mechs}><Wrench size={16} strokeWidth={1} />Mech</button>
+			<button class={`chip ${timelineFilters.raidwides ? 'preset-outlined-secondary-500 bg-secondary-500' : 'preset-outlined-secondary-500'}`} onclick={() => timelineFilters.raidwides = !timelineFilters.raidwides}><Siren size={16} strokeWidth={1} />Raidwide</button>
+			<button class={`chip ${timelineFilters.tankbusters ? 'preset-outlined-primary-500 bg-primary-500' : 'preset-outlined-primary-500'}`} onclick={() => timelineFilters.tankbusters = !timelineFilters.tankbusters}><Shield size={16} strokeWidth={1} />TB</button>
 		</div>
 		<div class="grow relative">
 			{#each data.timeline as item}
 				{#if showMechType(item.mechType)}
-					<div style:top={getFightPercentClass(item.startTimeMs)} class="absolute flex text-xs w-full" >
+					<div style:top={getFightPercentClass(item.startTimeMs)} class="absolute flex text-xs w-full items-center" >
 						<div class="w-1/8">
 							{#if item.mechType === 'Raidwide'}
-								<Siren size={16} strokeWidth={1} />
+								<div class="grid bg-secondary-500 rounded-sm h-[16px] w-[16px] p-auto place-content-center">
+									<Siren size={14} strokeWidth={2} />
+								</div>
 							{/if}
 							{#if item.mechType === 'Mechanic'}
-								<Wrench size={16} strokeWidth={1} />
+								<div class="grid bg-warning-800 rounded-sm h-[16px] w-[16px] p-auto place-content-center">
+									<Wrench size={14} strokeWidth={2} />
+								</div>
 							{/if}
 							{#if item.mechType === 'Tankbuster'}
-								<Shield size={16} strokeWidth={1} />
+								<div class="grid bg-primary-500 rounded-sm h-[16px] w-[16px] p-auto place-content-center">
+									<Shield size={14} strokeWidth={2} />
+								</div>
 							{/if}
 							{#if item.mechType === 'StoredMechanic'}
-								<Clock size={16} strokeWidth={1} />
+								<div class="grid bg-warning-800 rounded-sm h-[16px] w-[16px] p-auto place-content-center">
+									<Clock size={14} strokeWidth={2} />
+								</div>
 							{/if}
 						</div>
 						<div class="w-1/4">
@@ -378,7 +392,23 @@
 					</div>
 					<div class="grow"></div>
 					<div class="grid gap-y-2 content-center">
-						<button onclick={() => (cheatsheetOpenState = true)} class="button btn preset-tonal-secondary border border-secondary-500">Open cheatsheet</button>
+						{#if isCheatsheetEnabled}
+							<button onclick={() => (cheatsheetOpenState = true)} class="button btn preset-tonal-secondary border border-secondary-500">Open cheatsheet</button>
+						{:else}
+							<Tooltip
+								positioning={{ placement: 'top' }}
+								contentBase="card bg-surface-800 p-4"
+								triggerBase="button btn preset-tonal-secondary border border-secondary-500 disabled w-full"
+								openDelay={200}
+								arrow
+								arrowBackground="!bg-surface-800"
+
+							>
+								{#snippet trigger()}Open cheatsheet{/snippet}
+								{#snippet content()}Cheatsheet mode works best if your browser window is at least 1600x900{/snippet}
+							</Tooltip>
+							
+						{/if}
 						<button onclick={() => copyLinkToClipboard()} class="button btn preset-tonal-secondary border border-secondary-500">Copy link</button>
 						<Switch name="spotlight-toggle" checked={spotlight} onCheckedChange={(e) => (spotlight = e.checked)}>Highlight my spots</Switch>
 					</div>
