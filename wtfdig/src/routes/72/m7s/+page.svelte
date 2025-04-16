@@ -250,7 +250,7 @@
 				<div class="flex flex-row space-x-4 space-y-2 flex-wrap">
 					<div class="flex flex-col">
 						<div class="flex flex-row">
-							<div class="text-xl mb-2">Which P2 strat are you using?</div>
+							<div class="text-xl mb-2">Which P2/Seeds strat are you using?</div>
 							{#if stratName && stratState.p2 !== getStratMechs(stratName)['p2']}
 								<Tooltip
 									positioning={{ placement: 'top' }}
