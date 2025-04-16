@@ -2850,13 +2850,9 @@ const toxicStrat: Strat = {
             phaseName: 'Cactus Dodges', 
             mechs: [
                 {
-                    mechanic: 'Dodges',
-                    description: 'North-ish',
-                    imageUrl: './m6s/toxic/desert-dodges.webp'
-                },
-                {
-                    mechanic: 'Short Defamations',
-                    description: 'Tanks SW-ish, DPS SE-ish',
+                    mechanic: 'Stack + Short Defamations',
+                    notes: 'This is the only difference between Toxic and Hector strats',
+                    description: 'Toxic: Stack North, Tanks SW, DPS SE\nHector: Stack Mid, Tanks NW, DPS SW',
                     imageUrl: './m6s/toxic/desert-dodges.webp'
                 },
             ]
