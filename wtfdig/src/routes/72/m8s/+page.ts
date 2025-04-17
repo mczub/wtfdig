@@ -1118,7 +1118,7 @@ const toxicP2: StratRecord = {
         'M2': {
                 role: 'Melee',
                 party: 2,
-                description: 'SE platform tower w/ OT',
+                description: 'NE platform tower w/ H2',
                 imageUrl: './m8s/p2/toxic-gale.webp',
         },
         'R1': {
@@ -1130,7 +1130,7 @@ const toxicP2: StratRecord = {
         'R2': {
                 role: 'Ranged',
                 party: 2,
-                description: 'NE platform tower w/ H2',
+                description: 'SE platform tower w/ OT',
                 imageUrl: './m8s/p2/toxic-gale.webp',
         },
     },
