@@ -1169,13 +1169,13 @@ const toxicP2: StratRecord = {
         'M2': {
                 role: 'Melee',
                 party: 2,
-                description: '2nd or 3rd Tether\nTeleport to SE and hand tether off to M2 if needed at start\nTake tether from M2 or R1 and bait far with H2 on NE platform\nHand tether off to R1 or R2',
+                description: '2nd or 3rd Tether\nTeleport to SE and hand tether off to R2 if needed at start\nTake tether from R2 or R1 and bait far with H2 on NE platform\nHand tether off to R1 or R2',
                 imageUrl: './m8s/p2/toxic-twofold-tethers.webp',
         },
         'R1': {
                 role: 'Ranged',
                 party: 1,
-                description: '2nd or 3rd Tether\nTeleport to SW and hand tether off to M1 if needed at start\nTake tether from M1 or R2 and bait far with H1 on NW platform\nHand tether off to M2 or M1',
+                description: '2nd or 3rd Tether\nTeleport to SW and hand tether off to M1 if needed at start\nTake tether from M1 or M2 and bait far with H1 on NW platform\nHand tether off to M2 or M1',
                 imageUrl: './m8s/p2/toxic-twofold-tethers.webp',
         },
         'R2': {
