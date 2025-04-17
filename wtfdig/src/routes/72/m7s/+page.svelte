@@ -4,6 +4,7 @@
 	import { Accordion, Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
+	import { Info } from '@lucide/svelte/icons';
 	import { getContext } from 'svelte';
   	import { type ToastContext } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
