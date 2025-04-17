@@ -1,3 +1,4 @@
+<svelte:options customElement={{shadow: 'none'}} ></svelte:options>
 <script lang="ts">
     import { Modal, Tabs, Tooltip } from '@skeletonlabs/skeleton-svelte';
     import { Clock, Info, Shield, Siren, TriangleAlert, Wrench, X} from '@lucide/svelte/icons';
@@ -71,7 +72,7 @@
             {/snippet}
         </Tabs>
     {/if}
-        <div class={`grid grid-rows-${rows} grid-cols-${columns} gap-2 h-full`}>
+        <div class={`grid gap-2 h-full`} style:grid-template-rows={`repeat(${rows}, minmax(0, 1fr))`} style:grid-template-columns={`repeat(${columns}, minmax(0, 1fr))`}>
         {#if timeline.length > 0}
         <div class="card border row-span-full border-surface-800 p-2 flex flex-col">
             <div class="flex mb-2 gap-1">
