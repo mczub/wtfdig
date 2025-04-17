@@ -2,7 +2,7 @@ import type { PageLoad } from "./$types";
 
 export const load: PageLoad = ({params}) => {
     return {
-        strats: [toxicStrat, pbeQ3],
+        strats: [toxicStrat, pbeQ3, pbr],
     }
 }
 
@@ -1459,221 +1459,17 @@ const rinonLament: StratRecord = {
     },
 }
 
-const feringLament: StratRecord = {
-    'overall': {
-        'description': 'Tanks start Northeast\nDPS start Southwest\nHealers start Southeast',
-        'imageUrl': './m8s/p2/fer-lament-start.webp'
-    },
-    'blue': {
-        'description': 'Blue Tether = Stay Far',
-        'MT': {
-                role: 'Tank',
-                party: 1,
-                description: 'Stay, then take solo tower Northeast or Northwest',
-                imageUrl: './m8s/p2/fer-lament-tethers.webp',
-        },
-        'OT': {
-                role: 'Tank',
-                party: 2,
-                description: 'Stay, then take solo tower Northeast or Northwest',
-                imageUrl: './m8s/p2/fer-lament-tethers.webp',
-        },
-        'H1': {
-                role: 'Healer',
-                party: 1,
-                description: 'Take solo tower Southeast',
-                imageUrl: './m8s/p2/fer-lament-tethers.webp',
-        },
-        'H2': {
-                role: 'Healer',
-                party: 2,
-                description: 'Take solo tower Southeast',
-                imageUrl: './m8s/p2/fer-lament-tethers.webp',
-        },
-        'M1': {
-                role: 'Melee',
-                party: 1,
-                description: 'If tethered to healer, stay and take solo tower Southwest\nIf tethered to tank, immediately move South and take 3-person tower',
-                imageUrl: './m8s/p2/fer-lament-tethers.webp',
-        },
-        'M2': {
-                role: 'Melee',
-                party: 2,
-                description: 'If tethered to healer, stay and take solo tower Southwest\nIf tethered to tank, immediately move South and take 3-person tower',
-                imageUrl: './m8s/p2/fer-lament-tethers.webp',
-        },
-        'R1': {
-                role: 'Ranged',
-                party: 1,
-                description: 'If tethered to healer, stay and take solo tower Southwest\nIf tethered to tank, immediately move South and take 3-person tower',
-                imageUrl: './m8s/p2/fer-lament-tethers.webp',
-        },
-        'R2': {
-                role: 'Ranged',
-                party: 2,
-                description: 'If tethered to healer, stay and take solo tower Southwest\nIf tethered to tank, immediately move South and take 3-person tower',
-                imageUrl: './m8s/p2/fer-lament-tethers.webp',
-        },
-    },
-    'green': {
-        'description': 'Green Tether = Stay Close',
-        'MT': {
-                role: 'Tank',
-                party: 1,
-                description: 'Immediately move Northwest, then take 2-person tower Northeast or Northwest',
-                imageUrl: './m8s/p2/fer-lament-tethers.webp',
-        },
-        'OT': {
-                role: 'Tank',
-                party: 2,
-                description: 'Immediately move Northwest, then take 2-person tower Northeast or Northwest',
-                imageUrl: './m8s/p2/fer-lament-tethers.webp',
-        },
-        'H1': {
-                role: 'Healer',
-                party: 1,
-                description: 'Take 3-person tower South',
-                imageUrl: './m8s/p2/fer-lament-tethers.webp',
-        },
-        'H2': {
-                role: 'Healer',
-                party: 2,
-                description: 'Take 3-person tower South',
-                imageUrl: './m8s/p2/fer-lament-tethers.webp',
-        },
-        'M1': {
-                role: 'Melee',
-                party: 1,
-                description: 'If tethered to healer, immediately move South and take 3-person tower\nIf tethered to tank, immediately move Northwest, then take 2-person tower Northeast or Northwest',
-                imageUrl: './m8s/p2/fer-lament-tethers.webp',
-        },
-        'M2': {
-                role: 'Melee',
-                party: 2,
-                description: 'If tethered to healer, immediately move South and take 3-person tower\nIf tethered to tank, immediately move Northwest, then take 2-person tower Northeast or Northwest',
-                imageUrl: './m8s/p2/fer-lament-tethers.webp',
-        },
-        'R1': {
-                role: 'Ranged',
-                party: 1,
-                description: 'If tethered to healer, immediately move South and take 3-person tower\nIf tethered to tank, immediately move Northwest, then take 2-person tower Northeast or Northwest',
-                imageUrl: './m8s/p2/fer-lament-tethers.webp',
-        },
-        'R2': {
-                role: 'Ranged',
-                party: 2,
-                description: 'If tethered to healer, immediately move South and take 3-person tower\nIf tethered to tank, immediately move Northwest, then take 2-person tower Northeast or Northwest',
-                imageUrl: './m8s/p2/fer-lament-tethers.webp',
-        },
+const rinonUV4: StratRecord = {
+    'uv4': {
+        'description': 'DPS from North + Tanks start NW\nDPS from South + Healers start S\nConga with Supports First/Last\nEast-most marker always goes East',
+        'imageUrl': './m8s/p2/rinon-uv4.webp'
     },
 }
 
-const tiredLament: StratRecord = {
-    'overall': {
-        'description': 'Tanks start NW\nDPS start E\nHealers start S',
-        'imageUrl': './m8s/p2/tired-lament-start.webp'
-    },
-    'blue': {
-        'description': 'Blue Tether = Stay Far',
-        'MT': {
-                role: 'Tank',
-                party: 1,
-                description: 'Immediately move West and take solo tower',
-                imageUrl: './m8s/p2/tired-lament-tethers.webp',
-        },
-        'OT': {
-                role: 'Tank',
-                party: 2,
-                description: 'Immediately move West and take solo tower',
-                imageUrl: './m8s/p2/tired-lament-tethers.webp',
-        },
-        'H1': {
-                role: 'Healer',
-                party: 1,
-                description: 'Take 3-person tower South',
-                imageUrl: './m8s/p2/tired-lament-tethers.webp',
-        },
-        'H2': {
-                role: 'Healer',
-                party: 2,
-                description: 'Take 3-person tower South',
-                imageUrl: './m8s/p2/tired-lament-tethers.webp',
-        },
-        'M1': {
-                role: 'Melee',
-                party: 1,
-                description: 'If tethered to healer, immediately move Northeast, then take 2-person tower Northeast or Northwest\nIf tethered to tank, stay East and take solo tower',
-                imageUrl: './m8s/p2/tired-lament-tethers.webp',
-        },
-        'M2': {
-                role: 'Melee',
-                party: 2,
-                description: 'If tethered to healer, immediately move Northeast, then take 2-person tower Northeast or Northwest\nIf tethered to tank, stay East and take solo tower',
-                imageUrl: './m8s/p2/tired-lament-tethers.webp',
-        },
-        'R1': {
-                role: 'Ranged',
-                party: 1,
-                description: 'If tethered to healer, immediately move Northeast, then take 2-person tower Northeast or Northwest\nIf tethered to tank, stay East and take solo tower',
-                imageUrl: './m8s/p2/tired-lament-tethers.webp',
-        },
-        'R2': {
-                role: 'Ranged',
-                party: 2,
-                description: 'If tethered to healer, immediately move Northeast, then take 2-person tower Northeast or Northwest\nIf tethered to tank, stay East and take solo tower',
-                imageUrl: './m8s/p2/tired-lament-tethers.webp',
-        },
-    },
-    'green': {
-        'description': 'Green Tether = Stay Close',
-        'MT': {
-                role: 'Tank',
-                party: 1,
-                description: 'Immediately meet up with DPS Northeast or Northwest, then then take 2-person tower Northeast or Northwest',
-                imageUrl: './m8s/p2/tired-lament-tethers.webp',
-        },
-        'OT': {
-                role: 'Tank',
-                party: 2,
-                description: 'Immediately meet up with DPS Northeast or Northwest, then then take 2-person tower Northeast or Northwest',
-                imageUrl: './m8s/p2/tired-lament-tethers.webp',
-        },
-        'H1': {
-                role: 'Healer',
-                party: 1,
-                description: 'Take 3-person tower South',
-                imageUrl: './m8s/p2/tired-lament-tethers.webp',
-        },
-        'H2': {
-                role: 'Healer',
-                party: 2,
-                description: 'Take 3-person tower South',
-                imageUrl: './m8s/p2/tired-lament-tethers.webp',
-        },
-        'M1': {
-                role: 'Melee',
-                party: 1,
-                description: 'If tethered to healer, immediately move South and take 3-person tower\nIf tethered to tank, immediately meet up with them Northeast or Northwest, then take 2-person tower Northeast or Northwest',
-                imageUrl: './m8s/p2/tired-lament-tethers.webp',
-        },
-        'M2': {
-                role: 'Melee',
-                party: 2,
-                description: 'If tethered to healer, immediately move South and take 3-person tower\nIf tethered to tank, immediately meet up with them Northeast or Northwest, then take 2-person tower Northeast or Northwest',
-                imageUrl: './m8s/p2/tired-lament-tethers.webp',
-        },
-        'R1': {
-                role: 'Ranged',
-                party: 1,
-                description: 'If tethered to healer, immediately move South and take 3-person tower\nIf tethered to tank, immediately meet up with them Northeast or Northwest, then take 2-person tower Northeast or Northwest',
-                imageUrl: './m8s/p2/tired-lament-tethers.webp',
-        },
-        'R2': {
-                role: 'Ranged',
-                party: 2,
-                description: 'If tethered to healer, immediately move South and take 3-person tower\nIf tethered to tank, immediately meet up with them Northeast or Northwest, then take 2-person tower Northeast or Northwest',
-                imageUrl: './m8s/p2/tired-lament-tethers.webp',
-        },
+const toxicUV4: StratRecord = {
+    'uv4': {
+        'description': 'Try to get back to SW/SE\nUse eyes and YOLO',
+        'imageUrl': './m8s/p2/toxic-uv4.webp'
     },
 }
 
@@ -1681,7 +1477,8 @@ const decayStrats = {'toxic': toxicDecay, 'fer': feringDecay};
 const terrestrialStrats = {'clock': clockTerrestrial, 'dn': dnTerrestrial, 'toxic': toxicTerrestrial};
 const moonlightStrats = {'quad': quadMoonlight, 'toxic': toxicMoonlight};
 const p2Strats = {'toxic': toxicP2};
-const lamentStrats = {'toxic': toxicLament, 'rinon': rinonLament, 'fer': feringLament, 'tired': tiredLament}
+const lamentStrats = {'toxic': toxicLament, 'rinon': rinonLament}
+const uv4Strats = {'toxic': toxicUV4, 'rinon': rinonUV4}
 
 const allP1: PhaseStrats[] = [
     {
@@ -2079,6 +1876,12 @@ const allP2: PhaseStrats[] = [
             },
         ]
     },
+    {
+        phaseName: `Ultraviolent Ray 4`,
+        tag: 'uv4',
+        description: getStringObject(uv4Strats, 'uv4', 'description'),
+        imageUrl: getStringObject(uv4Strats, 'uv4', 'imageUrl'),
+    },
 ]
 
 const toxicStrat: Strat = {
@@ -2095,6 +1898,16 @@ const pbeQ3: Strat = {
     stratName: 'pb-eQ',
     description: 'Pastebin',
     stratUrl: 'https://pastebin.com/eQ3PHFKr',
+    strats: [
+        ...allP1,
+        ...allP2,
+    ]
+}
+
+const pbr: Strat = {
+    stratName: 'pb-r',
+    description: 'Pastebin + Rinon',
+    stratUrl: 'https://pastebin.com/xT2gAw2R',
     strats: [
         ...allP1,
         ...allP2,

@@ -23,6 +23,7 @@
 		moonlight: null,
 		p2: null,
 		lament: null,
+		uv4: null,
 	});
 
 	
@@ -58,9 +59,12 @@
 
 	const lamentUrls: Record<string, any> = {
 		'toxic': {name: 'Toxic Lament', url: 'https://raidplan.io/plan/9M-1G-mmOaaroDOG'},
-		'rinon': {name: 'Rinon Lament', url: 'https://www.youtube.com/watch?v=CPpfqs0ysuM&t=621s'},
-		'fer': {name: 'Fering Lament', url: 'https://raidplan.io/plan/7WtylgRteRBAsa3D'},
-		'tired': {name: 'Tired Lament', url: 'https://raidplan.io/plan/rQxBsY35gvOR5ycy'}
+		'rinon': {name: 'Rinon Lament', url: 'https://raidplan.io/plan/Zzf38hNz9aFrn-6T'},
+	}
+
+	const uv4Urls: Record<string, any> = {
+		'toxic': {name: 'Toxic UV4', url: 'https://raidplan.io/plan/9M-1G-mmOaaroDOG'},
+		'rinon': {name: 'Rinon UV4', url: 'https://raidplan.io/plan/Zzf38hNz9aFrn-6T'},
 	}
 
 	$effect(() => {
@@ -86,6 +90,7 @@
 				moonlight: stratArray[3],
 				p2: stratArray[4],
 				lament: stratArray[5],
+				uv4: stratArray[6]
 			}
 		}
 	}
@@ -98,7 +103,7 @@
 
 	function getStratCode(stratName: string | undefined, stratState: any) {
 		if (!stratName) return '';
-		return `${stratName}:${stratState.decay}:${stratState.terrestrial}:${stratState.moonlight}:${stratState.p2}:${stratState.lament}`;
+		return `${stratName}:${stratState.decay}:${stratState.terrestrial}:${stratState.moonlight}:${stratState.p2}:${stratState.lament}:${stratState.uv4}`;
 	}
 
 	function onSelectStrat(e) {
@@ -179,6 +184,7 @@
 				moonlight: 'toxic',
 				p2: 'toxic',
 				lament: 'toxic',
+				uv4: 'toxic'
 			},
 			'pb-eQ': {
 				decay: 'fer',
@@ -186,6 +192,15 @@
 				moonlight: 'quad',
 				p2: 'toxic',
 				lament: 'toxic',
+				uv4: 'toxic'
+			},
+			'pb-r': {
+				decay: 'fer',
+				terrestrial: 'clock',
+				moonlight: 'quad',
+				p2: 'toxic',
+				lament: 'rinon',
+				uv4: 'rinon'
 			},
 		}
 		return stratMechs[stratName];
@@ -202,7 +217,8 @@
 		if (!stratName || !role || !party) return '';
 		const stratNames: Record<string, string> = {
 			'toxic': 'Toxic Friends',
-			'pb-eQ': 'Pastebin (eQ3PHFKr)'
+			'pb-eQ': 'Pastebin (eQ3PHFKr)',
+			'pb-r': 'Pastebin + Rinon'
 		}
 		const jpRoleAbbrev: Record<string, string> = {
 			'MT': 'MT',
@@ -260,11 +276,13 @@
 			if (stratState.lament === 'toxic') {
 				stratDiffs.push(`Toxic Lament`);
 			}
-			if (stratState.lament === 'fer') {
-				stratDiffs.push(`Fering Lament`);
+		}
+		if (stratState.uv4 !== getStratMechs(stratName)['uv4']) {
+			if (stratState.uv4 === 'rinon') {
+				stratDiffs.push(`Rinon UV4`);
 			}
-			if (stratState.lament === 'tired') {
-				stratDiffs.push(`Tired Lament`);
+			if (stratState.uv4 === 'toxic') {
+				stratDiffs.push(`Toxic UV4`);
 			}
 		}
 
@@ -289,6 +307,7 @@
 					<div class="text-xl mb-2">Which strat are you using?</div>
 					<Segment classes="flex-wrap" name="stratName" value={stratName} onValueChange={onSelectStrat}>
 						<Segment.Item value="pb-eQ">Pastebin (eQ3PHFKr)</Segment.Item>
+						<Segment.Item value="pb-r">Pastebin + Rinon</Segment.Item>
 						<Segment.Item value="toxic">Toxic</Segment.Item>
 					</Segment>
 				</div>
@@ -416,8 +435,30 @@
 						<Segment classes="flex-wrap" name="lament" value={stratState.lament} onValueChange={(e) => (setStratState('lament', e.value))}>
 							<Segment.Item value="rinon">Rinon</Segment.Item>
 							<Segment.Item value="toxic">Toxic</Segment.Item>
-							<Segment.Item value="fer">Fering</Segment.Item>
-							<Segment.Item value="tired">Tired</Segment.Item>
+						</Segment>
+					</div>
+					<div class="flex flex-col">
+						<div class="flex flex-row">
+							<div class="text-md mb-2">UV4</div>
+							{#if stratName && stratState.uv4 !== getStratMechs(stratName)['uv4']}
+								<Tooltip
+									positioning={{ placement: 'top' }}
+									triggerBase="underline"
+									contentBase="card bg-surface-800 p-4 "
+									classes="ml-2 z-9999"
+									openDelay={200}
+									arrow
+									arrowBackground="!bg-surface-800"
+
+								>
+									{#snippet trigger()}<div class="text-warning-500"><TriangleAlert /></div>{/snippet}
+									{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
+								</Tooltip>
+							{/if}
+						</div>
+						<Segment classes="flex-wrap" name="uv4" value={stratState.uv4} onValueChange={(e) => (setStratState('uv4', e.value))}>
+							<Segment.Item value="rinon">Rinon</Segment.Item>
+							<Segment.Item value="toxic">Toxic</Segment.Item>
 						</Segment>
 					</div>
 				</div>
@@ -506,6 +547,15 @@
 						{#if (stratState.lament && lamentUrls[stratState.lament])}
 							<div>
 								<a class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href={lamentUrls[stratState.lament].url}>{lamentUrls[stratState.lament].name}
+									<svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+										<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+									</svg>
+								</a>
+							</div>
+						{/if}
+						{#if (stratState.uv4 && uv4Urls[stratState.uv4])}
+							<div>
+								<a class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href={uv4Urls[stratState.uv4].url}>{uv4Urls[stratState.uv4].name}
 									<svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
 										<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
 									</svg>
