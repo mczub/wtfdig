@@ -1135,7 +1135,7 @@ const toxicP2: StratRecord = {
         },
     },
     'twofold-tethers': {
-        'description': 'DPS handle tethers\nTether baits start on SW or SE\nTether pair bait at the back of platform\nPair 2 platforms over from tether move close to boss to bait line',
+        'description': 'DPS handle tethers\nTether baits start on SW or SE\nM1/MT R1/H1 M2/H2 R2/OT Pairs\nNote that M2 and R2 swap for better caster movement',
         'MT': {
                 role: 'Tank',
                 party: 1,
@@ -1169,19 +1169,19 @@ const toxicP2: StratRecord = {
         'M2': {
                 role: 'Melee',
                 party: 2,
-                description: '1st or 4th Tether\nTake tether from R2 and bait far with OT on SE platform\nHand tether off to R2 (hop platforms if R1 not already there)',
+                description: '2nd or 3rd Tether\nTeleport to SE and hand tether off to M2 if needed at start\nTake tether from M2 or R1 and bait far with H2 on NE platform\nHand tether off to R1 or R2',
                 imageUrl: './m8s/p2/toxic-twofold-tethers.webp',
         },
         'R1': {
                 role: 'Ranged',
                 party: 1,
-                description: '2nd or 3rd Tether\nTeleport to SW and hand tether off to M1 if needed at start\nTake tether from M1 or R2 and bait far with H1 on NW platform\nHand tether off to R2 or M1',
+                description: '2nd or 3rd Tether\nTeleport to SW and hand tether off to M1 if needed at start\nTake tether from M1 or R2 and bait far with H1 on NW platform\nHand tether off to M2 or M1',
                 imageUrl: './m8s/p2/toxic-twofold-tethers.webp',
         },
         'R2': {
                 role: 'Ranged',
                 party: 2,
-                description: '2nd or 3rd Tether\nTeleport to SE and hand tether off to M2 if needed at start\nTake tether from M2 or R1 and bait far with H2 on NE platform\nHand tether off to R1 or M2',
+                description: '1st or 4th Tether\nTake tether from M2 and bait far with OT on SE platform\nHand tether off to M2 (hop platforms if R1 not already there)',
                 imageUrl: './m8s/p2/toxic-twofold-tethers.webp',
         },
     },
@@ -1219,7 +1219,7 @@ const toxicP2: StratRecord = {
         'M2': {
                 role: 'Melee',
                 party: 2,
-                description: '2nd or 3rd Line\nReset to SE platform\nMove close to bait line when tether is NW',
+                description: '1st or 4th Line\nReset to NE platform\nMove close to bait line when tether is SW',
                 imageUrl: './m8s/p2/toxic-twofold-line.webp',
         },
         'R1': {
@@ -1231,7 +1231,7 @@ const toxicP2: StratRecord = {
         'R2': {
                 role: 'Ranged',
                 party: 2,
-                description: '1st or 4th Line\nReset to NE platform\nMove close to bait line when tether is SW',
+                description: '2nd or 3rd Line\nReset to SE platform\nMove close to bait line when tether is NW',
                 imageUrl: './m8s/p2/toxic-twofold-line.webp',
         },
     },
