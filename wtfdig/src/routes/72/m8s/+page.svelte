@@ -7,6 +7,7 @@
 	import { getContext } from 'svelte';
   	import { type ToastContext } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
+	import Cheatsheet from '../../../components/Cheatsheet.svelte';
 
 	interface Props {
 		data: {
@@ -288,7 +289,32 @@
 
 		return `${stratDiffs.join(' | ')} - ${roleAbbrev}`;
 	}
+	
+	let innerWidth = $state(0);
+	let innerHeight = $state(0);
+	let isCheatsheetEnabled = $derived(innerWidth > 1024 && innerHeight > 768);
+
+	let cheatsheetOpenState = $state(false);
 </script>
+
+<svelte:window bind:innerWidth={innerWidth} bind:innerHeight={innerHeight} />
+
+<Cheatsheet 
+	title={`M8S Cheatsheet - ${optionsString}`}
+	bind:cheatsheetOpenState={cheatsheetOpenState}
+	timeline={[]}
+	stratName={stratName}
+	stratState={stratState}
+	getStratMechs={getStratMechs}
+	individualStrat={individualStrat}
+	spotlight={spotlight}
+	alignment={alignment}
+	rows=3
+	columns=5
+	innerHeight={innerHeight}
+	innerWidth={innerWidth}
+	tabTags={{"P1": ['p1', 'decay', 'terrestrial', 'moonlight'], "P2": ['p2', 'lament', 'uv4']}}
+/>
 
 <div class="container grow px-4 mx-auto mb-6">
 	<div class="container">
@@ -564,8 +590,18 @@
 						{/if}
 					</div>
 					<div class="grow"></div>
-					<div class="grid gap-y-2 content-center">
-						<button on:click={() => copyLinkToClipboard()} class="button btn preset-tonal-secondary border border-secondary-500">Copy link</button>
+					<div class="grid gap-y-2 content-center max-w-[40%] lg:max-w-[20%]">
+						{#if isCheatsheetEnabled}
+							<button onclick={() => (cheatsheetOpenState = true)} class="button btn preset-tonal-secondary border border-secondary-500">Open cheatsheet</button>
+						{:else}
+							<button class="button btn preset-tonal-secondary border border-secondary-500 disabled">Open cheatsheet</button>
+							<div class="flex flex-row items-center gap-2">
+								<Info size={40} />
+								<span>Cheatsheet mode needs a browser window size of at least 1024 x 768</span>
+							</div>
+							
+						{/if}
+						<button onclick={() => copyLinkToClipboard()} class="button btn preset-tonal-secondary border border-secondary-500">Copy link</button>
 						<Switch name="spotlight-toggle" checked={spotlight} onCheckedChange={(e) => (spotlight = e.checked)}>Highlight my spots</Switch>
 					</div>
 				</div>

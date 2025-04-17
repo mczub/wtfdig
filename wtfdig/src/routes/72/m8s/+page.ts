@@ -1242,22 +1242,67 @@ const toxicP2: StratRecord = {
 }
 
 const toxicLament: StratRecord = {
-    'overall': {
-        'description': 'Tanks start NW\nDPS start SW\nHealers start S\nDPS movement priority',
-        'imageUrl': './m8s/p2/toxic-lament-start.webp'
-    },
-    'blue': {
-        'description': 'Blue Tether = Stay Far',
+    'start': {
         'MT': {
                 role: 'Tank',
                 party: 1,
-                description: 'Take solo tower Southwest\nLet DPS move to SE first',
+                description: 'Start Northwest',
+                imageUrl: './m8s/p2/toxic-lament-start.webp',
+        },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: 'Start Northwest',
+                imageUrl: './m8s/p2/toxic-lament-start.webp',
+        },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: 'Start South',
+                imageUrl: './m8s/p2/toxic-lament-start.webp',
+        },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: 'Start South',
+                imageUrl: './m8s/p2/toxic-lament-start.webp',
+        },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: 'Start Southwest',
+                imageUrl: './m8s/p2/toxic-lament-start.webp',
+        },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: 'Start Southwest',
+                imageUrl: './m8s/p2/toxic-lament-start.webp',
+        },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: 'Start Southwest',
+                imageUrl: './m8s/p2/toxic-lament-start.webp',
+        },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: 'Start Southwest',
+                imageUrl: './m8s/p2/toxic-lament-start.webp',
+        },
+    },
+    'tethers': {
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: 'Blue: Take solo tower SW, Let DPS move to SE first\nGreen: Take 2-person tower NW or NE with DPS',
                 imageUrl: './m8s/p2/toxic-lament-tethers.webp',
         },
         'OT': {
                 role: 'Tank',
                 party: 2,
-                description: 'Take solo tower Southwest\nLet DPS move to SE first',
+                description: 'Blue: Take solo tower SW, let DPS move to SE first\nGreen: Take 2-person tower NW or NE with DPS',
                 imageUrl: './m8s/p2/toxic-lament-tethers.webp',
         },
         'H1': {
@@ -1275,98 +1320,92 @@ const toxicLament: StratRecord = {
         'M1': {
                 role: 'Melee',
                 party: 1,
-                description: 'If tethered to healer, take solo tower Northwest or Northeast\nIf tethered to tank, take solo tower Southeast',
+                description: 'Blue, Healer: Take solo tower NW or NE\nBlue, Tank: Take solo tower SE\nGreen, Healer: Take 3-person tower S\nGreen, Tank: Take 2-person tower NW or NE',
                 imageUrl: './m8s/p2/toxic-lament-tethers.webp',
         },
         'M2': {
                 role: 'Melee',
                 party: 2,
-                description: 'If tethered to healer, take solo tower Northwest or Northeast\nIf tethered to tank, take solo tower Southeast',
+                description: 'Blue, Healer: Take solo tower NW or NE\nBlue, Tank: Take solo tower SE\nGreen, Healer: Take 3-person tower S\nGreen, Tank: Take 2-person tower NW or NE',
                 imageUrl: './m8s/p2/toxic-lament-tethers.webp',
         },
         'R1': {
                 role: 'Ranged',
                 party: 1,
-                description: 'If tethered to healer, take solo tower Northwest or Northeast\nIf tethered to tank, take solo tower Southeast',
+                description: 'Blue, Healer: Take solo tower NW or NE\nBlue, Tank: Take solo tower SE\nGreen, Healer: Take 3-person tower S\nGreen, Tank: Take 2-person tower NW or NE',
                 imageUrl: './m8s/p2/toxic-lament-tethers.webp',
         },
         'R2': {
                 role: 'Ranged',
                 party: 2,
-                description: 'If tethered to healer, take solo tower Northwest or Northeast\nIf tethered to tank, take solo tower Southeast',
-                imageUrl: './m8s/p2/toxic-lament-tethers.webp',
-        },
-    },
-    'green': {
-        'description': 'Green Tether = Stay Close',
-        'MT': {
-                role: 'Tank',
-                party: 1,
-                description: 'Take 2-person tower NW or NE with DPS',
-                imageUrl: './m8s/p2/toxic-lament-tethers.webp',
-        },
-        'OT': {
-                role: 'Tank',
-                party: 2,
-                description: 'Take 2-person tower NW or NE with DPS',
-                imageUrl: './m8s/p2/toxic-lament-tethers.webp',
-        },
-        'H1': {
-                role: 'Healer',
-                party: 1,
-                description: 'Take 3-person tower South',
-                imageUrl: './m8s/p2/toxic-lament-tethers.webp',
-        },
-        'H2': {
-                role: 'Healer',
-                party: 2,
-                description: 'Take 3-person tower South',
-                imageUrl: './m8s/p2/toxic-lament-tethers.webp',
-        },
-        'M1': {
-                role: 'Melee',
-                party: 1,
-                description: 'If tethered to healer, take 3-person tower South\nIf tethered to tank, take 2-person tower NW or NE',
-                imageUrl: './m8s/p2/toxic-lament-tethers.webp',
-        },
-        'M2': {
-                role: 'Melee',
-                party: 2,
-                description: 'If tethered to healer, take 3-person tower South\nIf tethered to tank, take 2-person tower NW or NE',
-                imageUrl: './m8s/p2/toxic-lament-tethers.webp',
-        },
-        'R1': {
-                role: 'Ranged',
-                party: 1,
-                description: 'If tethered to healer, take 3-person tower South\nIf tethered to tank, take 2-person tower NW or NE',
-                imageUrl: './m8s/p2/toxic-lament-tethers.webp',
-        },
-        'R2': {
-                role: 'Ranged',
-                party: 2,
-                description: 'If tethered to healer, take 3-person tower South\nIf tethered to tank, take 2-person tower NW or NE',
+                description: 'Blue, Healer: Take solo tower NW or NE\nBlue, Tank: Take solo tower SE\nGreen, Healer: Take 3-person tower S\nGreen, Tank: Take 2-person tower NW or NE',
                 imageUrl: './m8s/p2/toxic-lament-tethers.webp',
         },
     },
 }
 
 const rinonLament: StratRecord = {
-    'overall': {
-        'description': 'Tanks start Northwest\nDPS start East\nHealers start South',
-        'imageUrl': './m8s/p2/rinon-lament-start.webp'
-    },
-    'blue': {
-        'description': 'Blue Tether = Stay Far',
+    'start': {
         'MT': {
                 role: 'Tank',
                 party: 1,
-                description: 'Immediately move West and take solo tower',
+                description: 'Start Northwest',
+                imageUrl: './m8s/p2/rinon-lament-start.webp',
+        },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: 'Start Northwest',
+                imageUrl: './m8s/p2/rinon-lament-start.webp',
+        },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: 'Start South',
+                imageUrl: './m8s/p2/rinon-lament-start.webp',
+        },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: 'Start South',
+                imageUrl: './m8s/p2/rinon-lament-start.webp',
+        },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: 'Start East',
+                imageUrl: './m8s/p2/rinon-lament-start.webp',
+        },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: 'Start East',
+                imageUrl: './m8s/p2/rinon-lament-start.webp',
+        },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: 'Start East',
+                imageUrl: './m8s/p2/rinon-lament-start.webp',
+        },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: 'Start East',
+                imageUrl: './m8s/p2/rinon-lament-start.webp',
+        },
+    },
+    'tethers': {
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: 'Blue: Immediately move W and take solo tower\nGreen: Immediately move NE, then take 2-person tower NE or NW',
                 imageUrl: './m8s/p2/rinon-lament-tethers.webp',
         },
         'OT': {
                 role: 'Tank',
                 party: 2,
-                description: 'Immediately move West and take solo tower',
+                description: 'Blue: Immediately move W and take solo tower\nGreen: Immediately move NE, then take 2-person tower NE or NW',
                 imageUrl: './m8s/p2/rinon-lament-tethers.webp',
         },
         'H1': {
@@ -1384,76 +1423,25 @@ const rinonLament: StratRecord = {
         'M1': {
                 role: 'Melee',
                 party: 1,
-                description: 'If tethered to healer, immediately move Northeast, then take solo tower Northeast or Northwest\nIf tethered to tank, stay and take solo tower East',
+                description: 'Blue, Healer: Immediately move NE, then take solo tower NE or NW\nBlue, Tank: Take solo tower E\nGreen, Healer: Immediately move S and take 3-person tower\nGreen, Tank: Immediately move NE, then take 2-person tower NE or NW',
                 imageUrl: './m8s/p2/rinon-lament-tethers.webp',
         },
         'M2': {
                 role: 'Melee',
                 party: 2,
-                description: 'If tethered to healer, immediately move Northeast, then take solo tower Northeast or Northwest\nIf tethered to tank, stay and take solo tower East',
+                description: 'Blue, Healer: Immediately move NE, then take solo tower NE or NW\nBlue, Tank: Take solo tower E\nGreen, Healer: Immediately move S and take 3-person tower\nGreen, Tank: Immediately move NE, then take 2-person tower NE or NW',
                 imageUrl: './m8s/p2/rinon-lament-tethers.webp',
         },
         'R1': {
                 role: 'Ranged',
                 party: 1,
-                description: 'If tethered to healer, immediately move Northeast, then take solo tower Northeast or Northwest\nIf tethered to tank, stay and take solo tower East',
+                description: 'Blue, Healer: Immediately move NE, then take solo tower NE or NW\nBlue, Tank: Take solo tower E\nGreen, Healer: Immediately move S and take 3-person tower\nGreen, Tank: Immediately move NE, then take 2-person tower NE or NW',
                 imageUrl: './m8s/p2/rinon-lament-tethers.webp',
         },
         'R2': {
                 role: 'Ranged',
                 party: 2,
-                description: 'If tethered to healer, immediately move Northeast, then take solo tower Northeast or Northwest\nIf tethered to tank, stay and take solo tower East',
-                imageUrl: './m8s/p2/rinon-lament-tethers.webp',
-        },
-    },
-    'green': {
-        'description': 'Green Tether = Stay Close',
-        'MT': {
-                role: 'Tank',
-                party: 1,
-                description: 'Immediately move Northeast, then take 2-person tower Northeast or Northwest',
-                imageUrl: './m8s/p2/rinon-lament-tethers.webp',
-        },
-        'OT': {
-                role: 'Tank',
-                party: 2,
-                description: 'Immediately move Northeast, then take 2-person tower Northeast or Northwest',
-                imageUrl: './m8s/p2/rinon-lament-tethers.webp',
-        },
-        'H1': {
-                role: 'Healer',
-                party: 1,
-                description: 'Take 3-person tower South',
-                imageUrl: './m8s/p2/rinon-lament-tethers.webp',
-        },
-        'H2': {
-                role: 'Healer',
-                party: 2,
-                description: 'Take 3-person tower South',
-                imageUrl: './m8s/p2/rinon-lament-tethers.webp',
-        },
-        'M1': {
-                role: 'Melee',
-                party: 1,
-                description: 'If tethered to healer, immediately move South and take 3-person tower\nIf tethered to tank, immediately move Northeast, then take 2-person tower Northeast or Northwest',
-                imageUrl: './m8s/p2/rinon-lament-tethers.webp',
-        },
-        'M2': {
-                role: 'Melee',
-                party: 2,
-                description: 'If tethered to healer, immediately move South and take 3-person tower\nIf tethered to tank, immediately move Northeast, then take 2-person tower Northeast or Northwest',
-                imageUrl: './m8s/p2/rinon-lament-tethers.webp',
-        },
-        'R1': {
-                role: 'Ranged',
-                party: 1,
-                description: 'If tethered to healer, immediately move South and take 3-person tower\nIf tethered to tank, immediately move Northeast, then take 2-person tower Northeast or Northwest',
-                imageUrl: './m8s/p2/rinon-lament-tethers.webp',
-        },
-        'R2': {
-                role: 'Ranged',
-                party: 2,
-                description: 'If tethered to healer, immediately move South and take 3-person tower\nIf tethered to tank, immediately move Northeast, then take 2-person tower Northeast or Northwest',
+                description: 'Blue, Healer: Immediately move NE, then take solo tower NE or NW\nBlue, Tank: Take solo tower E\nGreen, Healer: Immediately move S and take 3-person tower\nGreen, Tank: Immediately move NE, then take 2-person tower NE or NW',
                 imageUrl: './m8s/p2/rinon-lament-tethers.webp',
         },
     },
@@ -1483,6 +1471,7 @@ const uv4Strats = {'toxic': toxicUV4, 'rinon': rinonUV4}
 const allP1: PhaseStrats[] = [
     {
         phaseName: 'Windfang + Stonefang',
+        tag: 'p1',
         description: 'Spread or stack around safe color marker',
         mechs: [
             {
@@ -1595,6 +1584,7 @@ const allP1: PhaseStrats[] = [
     },
     {
         phaseName: 'Eminent + Revolutionary Reign',
+        tag: 'p1',
         description: 'Looking at boss from mid, G1 Left, G2 Right',
         mechs: [
             {
@@ -1734,6 +1724,7 @@ const allP1: PhaseStrats[] = [
     },
     {
         phaseName: 'Adds',
+        tag: 'p1',
         description: '21/36/54 Timers\nYellow (Square) cleanse first after line\nGreen (Circle) cleanse when vuln drops',
         imageUrl: './m8s/p1/toxic-adds.webp'
     },
@@ -1746,10 +1737,6 @@ const allP1: PhaseStrats[] = [
                 mechanic: 'Spreads',
                 strats: getStratArray(terrestrialStrats, 'spreads1'),
             },
-            {
-                mechanic: 'Stacks',
-                description: getStringObject(terrestrialStrats, 'stack1', 'description'),
-            },
         ]
     },
     {
@@ -1760,10 +1747,6 @@ const allP1: PhaseStrats[] = [
             {
                 mechanic: 'Spreads',
                 strats: getStratArray(terrestrialStrats, 'spreads2'),
-            },
-            {
-                mechanic: 'Stacks',
-                description: getStringObject(terrestrialStrats, 'stack2', 'description'),
             },
         ]
     },
@@ -1861,18 +1844,16 @@ const allP2: PhaseStrats[] = [
     {
         phaseName: `Lone Wolf's Lament`,
         tag: 'lament',
-        description: getStringObject(lamentStrats, 'overall', 'description'),
-        imageUrl: getStringObject(lamentStrats, 'overall', 'imageUrl'),
         mechs: [
             {
-                mechanic: 'Blue',
-                description: getStringObject(lamentStrats, 'blue', 'description'),
-                strats: getStratArray(lamentStrats, 'blue'),
+                mechanic: 'Start',
+                description: getStringObject(lamentStrats, 'start', 'description'),
+                strats: getStratArray(lamentStrats, 'start'),
             },
             {
-                mechanic: 'Green',
-                description: getStringObject(lamentStrats, 'green', 'description'),
-                strats: getStratArray(lamentStrats, 'green'),
+                mechanic: 'Tethers',
+                description: getStringObject(lamentStrats, 'tethers', 'description'),
+                strats: getStratArray(lamentStrats, 'tethers'),
             },
         ]
     },

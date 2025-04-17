@@ -3,6 +3,7 @@ import type { PageLoad } from "./$types";
 export const load: PageLoad = ({params}) => {
     return {
         strats: [toxicStrat, uptimeStrat],
+        timeline: timeline,
     }
 }
 
@@ -47,6 +48,12 @@ export interface Strat {
     description: string | Record<string, string>;
     notes: string;
     strats: PhaseStrats[];
+}
+
+export interface TimelineItem {
+    mechName: string;
+    mechType: string;
+    startTimeMs: number;
 }
 
 function getStringObject(stratRecord: Record<string, StratRecord>, mechanic: string, property: string, role?: string): Record<string, string> {
@@ -114,6 +121,289 @@ function getStratArray(stratRecord: Record<string, StratRecord>, mechanic: strin
         },
     ]
 }
+
+const timeline: TimelineItem[] = [
+    {
+        mechName: 'Start',
+        mechType: 'Start',
+        startTimeMs: 0,
+    },
+    {
+        mechName: 'Brutal Impact',
+        mechType: 'Raidwide',
+        startTimeMs: 10000,
+    },
+    {
+        mechName: 'Stoneringer',
+        mechType: 'StoredMechanic',
+        startTimeMs: 21000,
+    },
+    {
+        mechName: 'Smash Here/There',
+        mechType: 'Tankbuster',
+        startTimeMs: 33000,
+    },
+    {
+        mechName: 'Spore Sac',
+        mechType: 'Mechanic',
+        startTimeMs: 48000,
+    },
+    {
+        mechName: 'Sinister Seeds',
+        mechType: 'Mechanic',
+        startTimeMs: 53000,
+    },
+    {
+        mechName: 'Quarry Swamp',
+        mechType: 'Mechanic',
+        startTimeMs: 93000,
+    },
+    {
+        mechName: 'Gigaflare',
+        mechType: 'Raidwide',
+        startTimeMs: 105000,
+    },
+    {
+        mechName: 'Stoneringer',
+        mechType: 'StoredMechanic',
+        startTimeMs: 107000,
+    },
+    {
+        mechName: 'Smash Here/There',
+        mechType: 'Tankbuster',
+        startTimeMs: 118000,
+    },
+    {
+        mechName: 'Pulp Smash',
+        mechType: 'Mechanic',
+        startTimeMs: 127000,
+    },
+    {
+        mechName: 'Neo Bombarian Special',
+        mechType: 'Raidwide',
+        startTimeMs: 148000,
+    },
+    {
+        mechName: 'Stoneringer',
+        mechType: 'StoredMechanic',
+        startTimeMs: 168000,
+    },
+    {
+        mechName: 'Brutish Swing',
+        mechType: 'Mechanic',
+        startTimeMs: 184000,
+    },
+    {
+        mechName: 'Revenge of the Vines',
+        mechType: 'Raidwide',
+        startTimeMs: 195000,
+    },
+    {
+        mechName: 'Thorny Deathmatch',
+        mechType: 'Mechanic',
+        startTimeMs: 203000,
+    },
+    {
+        mechName: 'Stoneringer',
+        mechType: 'StoredMechanic',
+        startTimeMs: 208000,
+    },
+    {
+        mechName: 'Abominable Blink',
+        mechType: 'Mechanic',
+        startTimeMs: 222000,
+    },
+    {
+        mechName: 'Sporesplosion',
+        mechType: 'Mechanic',
+        startTimeMs: 228000,
+    },
+    {
+        mechName: 'Brutish Swing',
+        mechType: 'Mechanic',
+        startTimeMs: 247000,
+    },
+    {
+        mechName: 'Revenge of the Vines',
+        mechType: 'Raidwide',
+        startTimeMs: 258000,
+    },
+    {
+        mechName: 'Demolition Deathmatch',
+        mechType: 'Mechanic',
+        startTimeMs: 264000,
+    },
+    {
+        mechName: 'Abominable Blink',
+        mechType: 'Mechanic',
+        startTimeMs: 280000,
+    },
+    {
+        mechName: 'Strange Seeds',
+        mechType: 'Mechanic',
+        startTimeMs: 288000,
+    },
+    {
+        mechName: 'Stoneringer',
+        mechType: 'StoredMechanic',
+        startTimeMs: 294000,
+    },
+    {
+        mechName: 'Killer Seeds',
+        mechType: 'Mechanic',
+        startTimeMs: 320000,
+    },
+    {
+        mechName: 'Brutish Swing',
+        mechType: 'Mechanic',
+        startTimeMs: 330000,
+    },
+    {
+        mechName: 'Revenge of the Vines',
+        mechType: 'Raidwide',
+        startTimeMs: 340000,
+    },
+    {
+        mechName: 'Powerslam',
+        mechType: 'Raidwide',
+        startTimeMs: 353000,
+    },
+    {
+        mechName: 'Brutal Impact x7',
+        mechType: 'Raidwide',
+        startTimeMs: 382000,
+    },
+    {
+        mechName: 'Stoneringer 2',
+        mechType: 'StoredMechanic',
+        startTimeMs: 394000,
+    },
+    {
+        mechName: 'Brutish Swing',
+        mechType: 'Mechanic',
+        startTimeMs: 409000,
+    },
+    {
+        mechName: 'Lashing Lariat',
+        mechType: 'Mechanic',
+        startTimeMs: 416000,
+    },
+    {
+        mechName: 'Brutish Swing',
+        mechType: 'Mechanic',
+        startTimeMs: 425000,
+    },
+    {
+        mechName: 'Slaminator',
+        mechType: 'Mechanic',
+        startTimeMs: 434000,
+    },
+    {
+        mechName: 'Brutal Impact x8',
+        mechType: 'Raidwide',
+        startTimeMs: 443000,
+    },
+    {
+        mechName: 'Stoneringer',
+        mechType: 'StoredMechanic',
+        startTimeMs: 453000,
+    },
+    {
+        mechName: 'Smash Here/There',
+        mechType: 'Tankbuster',
+        startTimeMs: 465000,
+    },
+    {
+        mechName: 'Debris Deathmatch',
+        mechType: 'Mechanic',
+        startTimeMs: 478000,
+    },
+    {
+        mechName: 'Spore Sac',
+        mechType: 'Mechanic',
+        startTimeMs: 488000,
+    },
+    {
+        mechName: 'Killer Seeds',
+        mechType: 'Mechanic',
+        startTimeMs: 497000,
+    },
+    {
+        mechName: 'Quarry Swamp',
+        mechType: 'Mechanic',
+        startTimeMs: 514000,
+    },
+    {
+        mechName: 'Sinister Seeds',
+        mechType: 'Mechanic',
+        startTimeMs: 525000,
+    },
+    {
+        mechName: 'Pulp Smash',
+        mechType: 'Mechanic',
+        startTimeMs: 543000,
+    },
+    {
+        mechName: 'Brutal Impact x8',
+        mechType: 'Raidwide',
+        startTimeMs: 553000,
+    },
+    {
+        mechName: 'Stoneringer 2',
+        mechType: 'StoredMechanic',
+        startTimeMs: 570000,
+    },
+    {
+        mechName: 'Strange Seeds',
+        mechType: 'Mechanic',
+        startTimeMs: 582000,
+    },
+    {
+        mechName: 'Tendrils + Brutish',
+        mechType: 'Mechanic',
+        startTimeMs: 593000,
+    },
+    {
+        mechName: 'Lashing Lariat',
+        mechType: 'Mechanic',
+        startTimeMs: 598000,
+    },
+    {
+        mechName: 'Strange Seeds',
+        mechType: 'Mechanic',
+        startTimeMs: 602000,
+    },
+    {
+        mechName: 'Tendrils + Brutish',
+        mechType: 'Mechanic',
+        startTimeMs: 607000,
+    },
+    {
+        mechName: 'Slaminator',
+        mechType: 'Mechanic',
+        startTimeMs: 614000,
+    },
+    {
+        mechName: 'Stoneringer',
+        mechType: 'StoredMechanic',
+        startTimeMs: 620000,
+    },
+    {
+        mechName: 'Smash Here/There',
+        mechType: 'Tankbuster',
+        startTimeMs: 630000,
+    },
+    {
+        mechName: 'Brutal Impact x8',
+        mechType: 'Raidwide',
+        startTimeMs: 640000,
+    },
+    {
+        mechName: 'Enrage',
+        mechType: 'Enrage',
+        startTimeMs: 661100,
+    },
+]
 
 const toxicP2: Record<string, string | Record<string, string | PlayerMechStrat>> = {
     'url': 'https://raidplan.io/plan/gIcsj6_cyedVQON7',

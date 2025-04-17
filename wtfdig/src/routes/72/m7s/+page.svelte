@@ -1,16 +1,18 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import type { Alignment, PlayerMechStrat, PhaseStrats, Role, MechanicStrat, Strat } from '../+page';
+	import type { Alignment, PlayerMechStrat, PhaseStrats, Role, MechanicStrat, Strat, TimelineItem } from './+page';
 	import { Accordion, Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
 	import { getContext } from 'svelte';
   	import { type ToastContext } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
+	import Cheatsheet from '../../../components/Cheatsheet.svelte';
 
 	interface Props {
 		data: {
 			strats: Strat[];
+			timeline: TimelineItem[];
 		};
 		children?: import('svelte').Snippet;
 	}
@@ -224,7 +226,31 @@
 
 		return `${stratDiffs.join(' | ')} - ${roleAbbrev}`;
 	}
+	
+	let innerWidth = $state(0);
+	let innerHeight = $state(0);
+	let isCheatsheetEnabled = $derived(innerWidth > 1024 && innerHeight > 768);
+
+	let cheatsheetOpenState = $state(false);
 </script>
+
+<svelte:window bind:innerWidth={innerWidth} bind:innerHeight={innerHeight} />
+
+<Cheatsheet 
+	title={`M7S Cheatsheet - ${optionsString}`}
+	bind:cheatsheetOpenState={cheatsheetOpenState}
+	timeline={data.timeline}
+	stratName={stratName}
+	stratState={stratState}
+	getStratMechs={getStratMechs}
+	individualStrat={individualStrat}
+	spotlight={spotlight}
+	alignment={alignment}
+	rows=4
+	columns=7
+	innerHeight={innerHeight}
+	innerWidth={innerWidth}
+/>
 
 <div class="container grow px-4 mx-auto mb-6">
 	<div class="container">
@@ -251,21 +277,6 @@
 					<div class="flex flex-col">
 						<div class="flex flex-row">
 							<div class="text-xl mb-2">Which P2/Seeds strat are you using?</div>
-							{#if stratName && stratState.p2 !== getStratMechs(stratName)['p2']}
-								<Tooltip
-									positioning={{ placement: 'top' }}
-									triggerBase="underline"
-									contentBase="card bg-surface-800 p-4 "
-									classes="ml-2 z-9999"
-									openDelay={200}
-									arrow
-									arrowBackground="!bg-surface-800"
-
-								>
-									{#snippet trigger()}<div class="text-warning-500"><TriangleAlert /></div>{/snippet}
-									{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
-								</Tooltip>
-							{/if}
 						</div>
 						<Segment classes="flex-wrap" name="p2" value={stratState.p2} onValueChange={(e) => (setStratState('p2', e.value))}>
 							<Segment.Item value="toxic">Toxic Friends</Segment.Item>
@@ -280,21 +291,6 @@
 					<div class="flex flex-col">
 						<div class="flex flex-row">
 							<div class="text-xl mb-2">Which P3 strat are you using?</div>
-							{#if stratName && stratState.p3 !== getStratMechs(stratName)['p3']}
-								<Tooltip
-									positioning={{ placement: 'top' }}
-									triggerBase="underline"
-									contentBase="card bg-surface-800 p-4 z-50"
-									classes="ml-2 z-9999"
-									openDelay={200}
-									arrow
-									arrowBackground="!bg-surface-800"
-
-								>
-									{#snippet trigger()}<div class="text-warning-500"><TriangleAlert /></div>{/snippet}
-									{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
-								</Tooltip>
-							{/if}
 						</div>
 						<div>
 							<Segment classes="flex-wrap shrink" name="p3" value={stratState.p3} onValueChange={(e) => (setStratState('p3', e.value))}>
@@ -369,8 +365,18 @@
 						{/if}
 					</div>
 					<div class="grow"></div>
-					<div class="grid gap-y-2 content-center">
-						<button on:click={() => copyLinkToClipboard()} class="button btn preset-tonal-secondary border border-secondary-500">Copy link</button>
+					<div class="grid gap-y-2 content-center max-w-[40%] lg:max-w-[20%]">
+						{#if isCheatsheetEnabled}
+							<button onclick={() => (cheatsheetOpenState = true)} class="button btn preset-tonal-secondary border border-secondary-500">Open cheatsheet</button>
+						{:else}
+							<button class="button btn preset-tonal-secondary border border-secondary-500 disabled">Open cheatsheet</button>
+							<div class="flex flex-row items-center gap-2">
+								<Info size={40} />
+								<span>Cheatsheet mode needs a browser window size of at least 1024 x 768</span>
+							</div>
+							
+						{/if}
+						<button onclick={() => copyLinkToClipboard()} class="button btn preset-tonal-secondary border border-secondary-500">Copy link</button>
 						<Switch name="spotlight-toggle" checked={spotlight} onCheckedChange={(e) => (spotlight = e.checked)}>Highlight my spots</Switch>
 					</div>
 				</div>
