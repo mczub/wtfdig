@@ -2112,7 +2112,7 @@ const latteStrat: Strat = {
                         {
                             role: 'Tank',
                             party: 1,
-                            description: 'Center North',
+                            description: 'West',
                             imageUrl: './m6s/latte/pudding-800.webp'
                         },
                         {
@@ -2124,31 +2124,31 @@ const latteStrat: Strat = {
                         {
                             role: 'Healer',
                             party: 1,
-                            description: 'Close South West',
+                            description: 'Close South East',
                             imageUrl: './m6s/latte/pudding-800.webp'
                         },
                         {
                             role: 'Healer',
                             party: 2,
-                            description: 'Close South East',
+                            description: 'Center North',
                             imageUrl: './m6s/latte/pudding-800.webp'
                         },
                         {
                             role: 'Melee',
                             party: 1,
-                            description: 'West',
+                            description: 'Close South West',
                             imageUrl: './m6s/latte/pudding-800.webp'
                         },
                         {
                             role: 'Melee',
                             party: 2,
-                            description: 'East',
+                            description: 'Close North West',
                             imageUrl: './m6s/latte/pudding-800.webp'
                         },
                         {
                             role: 'Ranged',
                             party: 1,
-                            description: 'Far South West',
+                            description: 'Far North East',
                             imageUrl: './m6s/latte/pudding-800.webp'
                         },
                         {
