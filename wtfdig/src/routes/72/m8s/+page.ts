@@ -762,7 +762,7 @@ const toxicTerrestrial: StratRecord = {
 
 const quadMoonlight: StratRecord = {
     'first': {
-        'description': 'Spreads RMMR G1 Right/G2 Left facing boss',
+        'description': 'Spreads RMMR G1 Left/G2 Right facing boss',
         'MT': {
                 role: 'Tank',
                 party: 1,
@@ -813,7 +813,7 @@ const quadMoonlight: StratRecord = {
         },
     },
     'second': {
-        'description': '\nSpreads RMMR G1 Right/G2 Left facing boss',
+        'description': 'Spreads RMMR G1 Left/G2 Right facing boss',
         'MT': {
                 role: 'Tank',
                 party: 1,
