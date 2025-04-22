@@ -43,6 +43,7 @@
 		'zenith': {name: 'Zenith P2', url: 'https://raidplan.io/plan/2Y1HT42osFhYD6Pe'},
 		'cute': {name: 'Cute P2', url: 'https://raidplan.io/plan/q_qH0crFmPZqrY4L'},
 		'locked': {name: 'Locked P2', url: 'https://raidplan.io/plan/FGvPnlaAe1fwlsIB'},
+		'fixed': {name: 'Fixed P2', url: 'https://raidplan.io/plan/-lZai2v34Y8bC15S'},
 	}
 
 	const p3Urls: Record<string, any> = {
@@ -215,6 +216,9 @@
 			if (stratState.p2 === 'locked') {
 				stratDiffs.push(`Locked P2`);
 			}
+			if (stratState.p2 === 'fixed') {
+				stratDiffs.push(`Fixed P2`);
+			}
 		}
 		if (stratState.p3 !== getStratMechs(stratName)['p3']) {
 			if (stratState.p3 === 'toxic') {
@@ -287,6 +291,7 @@
 							<Segment.Item value="zenith">Zenith</Segment.Item>
 							<Segment.Item value="cute">Cute</Segment.Item>
 							<Segment.Item value="locked">Locked</Segment.Item>
+							<Segment.Item value="fixed">Fixed</Segment.Item>
 						</Segment>
 					</div>
 					<div class="flex flex-col">
