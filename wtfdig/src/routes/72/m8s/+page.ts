@@ -1084,54 +1084,215 @@ const toxicP2: StratRecord = {
                 imageUrl: './m8s/p2/toxic-mooncleaver.webp',
         },
     },
+    'champions': {
+        'description': 'Reset to South\nCW (Orange): Sides Donut In Out In\nCCW (Blue): Sides In Out In Donut',
+        'imageUrl': './m8s/p2/toxic-champions.webp'
+    },
+}
+
+const originalTwofold: StratRecord = {
     'gale': {
         'MT': {
                 role: 'Tank',
                 party: 1,
                 description: 'SW platform tower w/ M1',
-                imageUrl: './m8s/p2/toxic-gale.webp',
+                imageUrl: './m8s/p2/gale-original.webp',
         },
         'OT': {
                 role: 'Tank',
                 party: 2,
                 description: 'SE platform tower w/ M2',
-                imageUrl: './m8s/p2/toxic-gale.webp',
+                imageUrl: './m8s/p2/gale-original.webp',
         },
         'H1': {
                 role: 'Healer',
                 party: 1,
                 description: 'NW platform tower w/ R1',
-                imageUrl: './m8s/p2/toxic-gale.webp',
+                imageUrl: './m8s/p2/gale-original.webp',
         },
         'H2': {
                 role: 'Healer',
                 party: 2,
                 description: 'NE platform tower w/ R2',
-                imageUrl: './m8s/p2/toxic-gale.webp',
+                imageUrl: './m8s/p2/gale-original.webp',
         },
         'M1': {
                 role: 'Melee',
                 party: 1,
                 description: 'SW platform tower w/ MT',
-                imageUrl: './m8s/p2/toxic-gale.webp',
+                imageUrl: './m8s/p2/gale-original.webp',
         },
         'M2': {
                 role: 'Melee',
                 party: 2,
-                description: 'NE platform tower w/ H2',
-                imageUrl: './m8s/p2/toxic-gale.webp',
+                description: 'SE platform tower w/ OT',
+                imageUrl: './m8s/p2/gale-original.webp',
         },
         'R1': {
                 role: 'Ranged',
                 party: 1,
                 description: 'NW platform tower w/ H1',
-                imageUrl: './m8s/p2/toxic-gale.webp',
+                imageUrl: './m8s/p2/gale-original.webp',
+        },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: 'NE platform tower w/ H2',
+                imageUrl: './m8s/p2/gale-original.webp',
+        },
+    },
+    'twofold-tethers': {
+        'description': 'DPS handle tethers\nTether baits start on SW or SE\nM1/MT R1/H1 R2/H2 M2/OT Pairs',
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: 'Take tether bait far with M1 on SW platform',
+                imageUrl: './m8s/p2/twofold-tethers-original.webp',
+        },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: 'Take tether bait far with M2 on SE platform',
+                imageUrl: './m8s/p2/twofold-tethers-original.webp',
+        },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: 'Take tether bait far with R1 on NW platform',
+                imageUrl: './m8s/p2/twofold-tethers-original.webp',
+        },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: 'Take tether bait far with R2 on NE platform',
+                imageUrl: './m8s/p2/twofold-tethers-original.webp',
+        },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: '1st or 4th Tether\nTake tether from R1 and bait far with MT on SW platform\nHand tether off to R1 (hop platforms if R1 not already there)',
+                imageUrl: './m8s/p2/twofold-tethers-original.webp',
+        },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: '1st or 4th Tether\nTake tether from R2 and bait far with OT on SE platform\nHand tether off to R2 (hop platforms if R2 not already there)',
+                imageUrl: './m8s/p2/twofold-tethers-original.webp',
+        },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: '2nd or 3rd Tether\nTeleport to SW and hand tether off to M1 if needed at start\nTake tether from M1 or M2 and bait far with H1 on NW platform\nHand tether off to R2 or M1',
+                imageUrl: './m8s/p2/twofold-tethers-original.webp',
+        },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: '2nd or 3rd Tether\nTeleport to SE and hand tether off to M2 if needed at start\nTake tether from R1 or M2 and bait far with H2 on NE platform\nHand tether off to M2 or R1',
+                imageUrl: './m8s/p2/twofold-tethers-original.webp',
+        },
+    },
+    'twofold-lines': {
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: '2nd or 3rd Line\nMove close to bait line when tether is NE',
+                imageUrl: './m8s/p2/twofold-lines-original.webp',
+        },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: '2nd or 3rd Line\nMove close to bait line when tether is NW',
+                imageUrl: './m8s/p2/twofold-lines-original.webp',
+        },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: '1st or 4th Line\nMove close to bait line when tether is SE',
+                imageUrl: './m8s/p2/twofold-lines-original.webp',
+        },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: '1st or 4th Line\nMove close to bait line when tether is SW',
+                imageUrl: './m8s/p2/twofold-lines-original.webp',
+        },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: '2nd or 3rd Line\nReset to SW platform\nMove close to bait line when tether is NE',
+                imageUrl: './m8s/p2/twofold-lines-original.webp',
+        },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: '2nd or 3rd Line\nReset to SE platform\nMove close to bait line when tether is NW',
+                imageUrl: './m8s/p2/twofold-lines-original.webp',
+        },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: '1st or 4th Line\nReset to NW platform\nMove close to bait line when tether is SE',
+                imageUrl: './m8s/p2/twofold-lines-original.webp',
+        },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: '1st or 4th Line\nReset to NE platform\nMove close to bait line when tether is SW',
+                imageUrl: './m8s/p2/twofold-lines-original.webp',
+        },
+    },
+}
+
+const casterseTwofold: StratRecord = {
+    'gale': {
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: 'SW platform tower w/ M1',
+                imageUrl: './m8s/p2/gale-caster-se.webp',
+        },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: 'SE platform tower w/ M2',
+                imageUrl: './m8s/p2/gale-caster-se.webp',
+        },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: 'NW platform tower w/ R1',
+                imageUrl: './m8s/p2/gale-caster-se.webp',
+        },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: 'NE platform tower w/ R2',
+                imageUrl: './m8s/p2/gale-caster-se.webp',
+        },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: 'SW platform tower w/ MT',
+                imageUrl: './m8s/p2/gale-caster-se.webp',
+        },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: 'NE platform tower w/ H2',
+                imageUrl: './m8s/p2/gale-caster-se.webp',
+        },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: 'NW platform tower w/ H1',
+                imageUrl: './m8s/p2/gale-caster-se.webp',
         },
         'R2': {
                 role: 'Ranged',
                 party: 2,
                 description: 'SE platform tower w/ OT',
-                imageUrl: './m8s/p2/toxic-gale.webp',
+                imageUrl: './m8s/p2/gale-caster-se.webp',
         },
     },
     'twofold-tethers': {
@@ -1140,49 +1301,49 @@ const toxicP2: StratRecord = {
                 role: 'Tank',
                 party: 1,
                 description: 'Take tether bait far with M1 on SW platform',
-                imageUrl: './m8s/p2/toxic-twofold-tethers.webp',
+                imageUrl: './m8s/p2/twofold-tethers-caster-se.webp',
         },
         'OT': {
                 role: 'Tank',
                 party: 2,
                 description: 'Take tether bait far with M2 on SE platform',
-                imageUrl: './m8s/p2/toxic-twofold-tethers.webp',
+                imageUrl: './m8s/p2/twofold-tethers-caster-se.webp',
         },
         'H1': {
                 role: 'Healer',
                 party: 1,
                 description: 'Take tether bait far with R1 on NW platform',
-                imageUrl: './m8s/p2/toxic-twofold-tethers.webp',
+                imageUrl: './m8s/p2/twofold-tethers-caster-se.webp',
         },
         'H2': {
                 role: 'Healer',
                 party: 2,
                 description: 'Take tether bait far with R2 on NE platform',
-                imageUrl: './m8s/p2/toxic-twofold-tethers.webp',
+                imageUrl: './m8s/p2/twofold-tethers-caster-se.webp',
         },
         'M1': {
                 role: 'Melee',
                 party: 1,
                 description: '1st or 4th Tether\nTake tether from R1 and bait far with MT on SW platform\nHand tether off to R1 (hop platforms if R1 not already there)',
-                imageUrl: './m8s/p2/toxic-twofold-tethers.webp',
+                imageUrl: './m8s/p2/twofold-tethers-caster-se.webp',
         },
         'M2': {
                 role: 'Melee',
                 party: 2,
-                description: '2nd or 3rd Tether\nTeleport to SE and hand tether off to R2 if needed at start\nTake tether from R2 or R1 and bait far with H2 on NE platform\nHand tether off to R1 or R2',
-                imageUrl: './m8s/p2/toxic-twofold-tethers.webp',
+                description: '2nd or 3rd Tether\nTeleport to SE and hand tether off to R2 if needed at start\nTake tether from R1 or R2 and bait far with H2 on NE platform\nHand tether off to R2 or R1',
+                imageUrl: './m8s/p2/twofold-tethers-caster-se.webp',
         },
         'R1': {
                 role: 'Ranged',
                 party: 1,
                 description: '2nd or 3rd Tether\nTeleport to SW and hand tether off to M1 if needed at start\nTake tether from M1 or M2 and bait far with H1 on NW platform\nHand tether off to M2 or M1',
-                imageUrl: './m8s/p2/toxic-twofold-tethers.webp',
+                imageUrl: './m8s/p2/twofold-tethers-caster-se.webp',
         },
         'R2': {
                 role: 'Ranged',
                 party: 2,
-                description: '1st or 4th Tether\nTake tether from M2 and bait far with OT on SE platform\nHand tether off to M2 (hop platforms if R1 not already there)',
-                imageUrl: './m8s/p2/toxic-twofold-tethers.webp',
+                description: '1st or 4th Tether\nTake tether from M2 and bait far with OT on SE platform\nHand tether off to M2 (hop platforms if M2 not already there)',
+                imageUrl: './m8s/p2/twofold-tethers-caster-se.webp',
         },
     },
     'twofold-lines': {
@@ -1190,54 +1351,50 @@ const toxicP2: StratRecord = {
                 role: 'Tank',
                 party: 1,
                 description: '2nd or 3rd Line\nMove close to bait line when tether is NE',
-                imageUrl: './m8s/p2/toxic-twofold-line.webp',
+                imageUrl: './m8s/p2/twofold-lines-caster-se.webp',
         },
         'OT': {
                 role: 'Tank',
                 party: 2,
                 description: '2nd or 3rd Line\nMove close to bait line when tether is NW',
-                imageUrl: './m8s/p2/toxic-twofold-line.webp',
+                imageUrl: './m8s/p2/twofold-lines-caster-se.webp',
         },
         'H1': {
                 role: 'Healer',
                 party: 1,
                 description: '1st or 4th Line\nMove close to bait line when tether is SE',
-                imageUrl: './m8s/p2/toxic-twofold-line.webp',
+                imageUrl: './m8s/p2/twofold-lines-caster-se.webp',
         },
         'H2': {
                 role: 'Healer',
                 party: 2,
                 description: '1st or 4th Line\nMove close to bait line when tether is SW',
-                imageUrl: './m8s/p2/toxic-twofold-line.webp',
+                imageUrl: './m8s/p2/twofold-lines-caster-se.webp',
         },
         'M1': {
                 role: 'Melee',
                 party: 1,
                 description: '2nd or 3rd Line\nReset to SW platform\nMove close to bait line when tether is NE',
-                imageUrl: './m8s/p2/toxic-twofold-line.webp',
+                imageUrl: './m8s/p2/twofold-lines-caster-se.webp',
         },
         'M2': {
                 role: 'Melee',
                 party: 2,
                 description: '1st or 4th Line\nReset to NE platform\nMove close to bait line when tether is SW',
-                imageUrl: './m8s/p2/toxic-twofold-line.webp',
+                imageUrl: './m8s/p2/twofold-lines-caster-se.webp',
         },
         'R1': {
                 role: 'Ranged',
                 party: 1,
                 description: '1st or 4th Line\nReset to NW platform\nMove close to bait line when tether is SE',
-                imageUrl: './m8s/p2/toxic-twofold-line.webp',
+                imageUrl: './m8s/p2/twofold-lines-caster-se.webp',
         },
         'R2': {
                 role: 'Ranged',
                 party: 2,
                 description: '2nd or 3rd Line\nReset to SE platform\nMove close to bait line when tether is NW',
-                imageUrl: './m8s/p2/toxic-twofold-line.webp',
+                imageUrl: './m8s/p2/twofold-lines-caster-se.webp',
         },
-    },
-    'champions': {
-        'description': 'Reset to South\nCW (Orange): Sides Donut In Out In\nCCW (Blue): Sides In Out In Donut',
-        'imageUrl': './m8s/p2/toxic-champions.webp'
     },
 }
 
@@ -1465,6 +1622,7 @@ const decayStrats = {'toxic': toxicDecay, 'fer': feringDecay};
 const terrestrialStrats = {'clock': clockTerrestrial, 'dn': dnTerrestrial, 'toxic': toxicTerrestrial};
 const moonlightStrats = {'quad': quadMoonlight, 'toxic': toxicMoonlight};
 const p2Strats = {'toxic': toxicP2};
+const twofoldStrats = {'original': originalTwofold, 'casterse': casterseTwofold};
 const lamentStrats = {'toxic': toxicLament, 'rinon': rinonLament}
 const uv4Strats = {'toxic': toxicUV4, 'rinon': rinonUV4}
 
@@ -1811,27 +1969,27 @@ const allP2: PhaseStrats[] = [
     },
     {
         phaseName: `Prowling Gale`,
-        tag: 'p2',
+        tag: 'twofold',
         mechs: [
             {
                 mechanic: 'Towers',
-                description: getStringObject(p2Strats, 'gale', 'description'),
-                strats: getStratArray(p2Strats, 'gale'),
+                description: getStringObject(twofoldStrats, 'gale', 'description'),
+                strats: getStratArray(twofoldStrats, 'gale'),
             },
         ]
     },
     {
         phaseName: `Twofold Tempest`,
-        tag: 'p2',
-        description: getStringObject(p2Strats, 'twofold-tethers', 'description'),
+        tag: 'twofold',
+        description: getStringObject(twofoldStrats, 'twofold-tethers', 'description'),
         mechs: [
             {
                 mechanic: 'Tethers',
-                strats: getStratArray(p2Strats, 'twofold-tethers'),
+                strats: getStratArray(twofoldStrats, 'twofold-tethers'),
             },
             {
                 mechanic: 'Line AOEs',
-                strats: getStratArray(p2Strats, 'twofold-lines'),
+                strats: getStratArray(twofoldStrats, 'twofold-lines'),
             },
         ]
     },

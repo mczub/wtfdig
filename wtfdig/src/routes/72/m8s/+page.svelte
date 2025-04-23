@@ -59,6 +59,11 @@
 		'rinon': {name: 'Rinon P2', url: 'https://www.youtube.com/watch?v=CPpfqs0ysuM'}
 	}
 
+	const twofoldUrls: Record<string, any> = {
+		'original': {name: 'Original Twofold', url: 'https://raidplan.io/plan/Zzf38hNz9aFrn-6T'},
+		'casterse': {name: 'Caster SE Twofold', url: 'https://raidplan.io/plan/9M-1G-mmOaaroDOG'},
+	}
+
 	const lamentUrls: Record<string, any> = {
 		'toxic': {name: 'Toxic Lament', url: 'https://raidplan.io/plan/9M-1G-mmOaaroDOG'},
 		'rinon': {name: 'Rinon Lament', url: 'https://raidplan.io/plan/Zzf38hNz9aFrn-6T'},
@@ -85,14 +90,27 @@
 		}
 		if (stratArray.length === 1) {
 			stratState = getStratMechs(stratArray[0]);
-		} else {
+		} 
+		if (stratArray.length === 8){
 			stratState = {
 				decay: stratArray[1],
 				terrestrial: stratArray[2],
 				moonlight: stratArray[3],
 				p2: stratArray[4],
-				lament: stratArray[5],
-				uv4: stratArray[6]
+				twofold: stratArray[5],
+				lament: stratArray[6],
+				uv4: stratArray[7],
+				
+			}
+		} else {
+			stratName = '';
+			stratState = {
+				decay: null,
+				terrestrial: null,
+				moonlight: null,
+				p2: null,
+				lament: null,
+				uv4: null,
 			}
 		}
 	}
@@ -105,7 +123,7 @@
 
 	function getStratCode(stratName: string | undefined, stratState: any) {
 		if (!stratName) return '';
-		return `${stratName}:${stratState.decay}:${stratState.terrestrial}:${stratState.moonlight}:${stratState.p2}:${stratState.lament}:${stratState.uv4}`;
+		return `${stratName}:${stratState.decay}:${stratState.terrestrial}:${stratState.moonlight}:${stratState.p2}:${stratState.twofold}:${stratState.lament}:${stratState.uv4}`;
 	}
 
 	function onSelectStrat(e) {
@@ -185,14 +203,16 @@
 				terrestrial: 'toxic',
 				moonlight: 'toxic',
 				p2: 'toxic',
+				twofold: 'casterse',
 				lament: 'toxic',
-				uv4: 'toxic'
+				uv4: 'toxic',
 			},
 			'pb-eQ': {
 				decay: 'fer',
 				terrestrial: 'clock',
 				moonlight: 'quad',
 				p2: 'toxic',
+				twofold: 'casterse',
 				lament: 'toxic',
 				uv4: 'toxic'
 			},
@@ -201,6 +221,7 @@
 				terrestrial: 'clock',
 				moonlight: 'quad',
 				p2: 'toxic',
+				twofold: 'original',
 				lament: 'rinon',
 				uv4: 'rinon'
 			},
@@ -271,6 +292,14 @@
 				stratDiffs.push(`Toxic P2`);
 			}
 		}
+		if (stratState.twofold !== getStratMechs(stratName)['twofold']) {
+			if (stratState.twofold === 'original') {
+				stratDiffs.push(`Original Twofold`);
+			}
+			if (stratState.twofold === 'casterse') {
+				stratDiffs.push(`Caster SE Twofold`);
+			}
+		}
 		if (stratState.lament !== getStratMechs(stratName)['lament']) {
 			if (stratState.lament === 'rinon') {
 				stratDiffs.push(`Rinon Lament`);
@@ -314,7 +343,7 @@
 	columns=5
 	innerHeight={innerHeight}
 	innerWidth={innerWidth}
-	tabTags={{"P1": ['p1', 'decay', 'terrestrial', 'moonlight'], "P2": ['p2', 'lament', 'uv4']}}
+	tabTags={{"P1": ['p1', 'decay', 'terrestrial', 'moonlight'], "P2": ['p2', 'twofold', 'lament', 'uv4']}}
 />
 
 <div class="container grow px-4 mx-auto mb-6">
@@ -442,6 +471,30 @@
 					</div>
 					<div class="flex flex-col">
 						<div class="flex flex-row">
+							<div class="text-md mb-2">Twofold</div>
+							{#if stratName && stratState.twofold !== getStratMechs(stratName)['twofold']}
+								<Tooltip
+									positioning={{ placement: 'top' }}
+									triggerBase="underline"
+									contentBase="card bg-surface-800 p-4 "
+									classes="ml-2 z-9999"
+									openDelay={200}
+									arrow
+									arrowBackground="!bg-surface-800"
+
+								>
+									{#snippet trigger()}<div class="text-warning-500"><TriangleAlert /></div>{/snippet}
+									{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
+								</Tooltip>
+							{/if}
+						</div>
+						<Segment classes="flex-wrap" name="twofold" value={stratState.twofold} onValueChange={(e) => (setStratState('twofold', e.value))}>
+							<Segment.Item value="original">Original</Segment.Item>
+							<Segment.Item value="casterse">Caster SE</Segment.Item>
+						</Segment>
+					</div>
+					<div class="flex flex-col">
+						<div class="flex flex-row">
 							<div class="text-md mb-2">Lone Wolf's Lament</div>
 							{#if stratName && stratState.lament !== getStratMechs(stratName)['lament']}
 								<Tooltip
@@ -565,6 +618,15 @@
 						{#if (stratState.p2 && p2Urls[stratState.p2])}
 							<div>
 								<a class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href={p2Urls[stratState.p2].url}>{p2Urls[stratState.p2].name}
+									<svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+										<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+									</svg>
+								</a>
+							</div>
+						{/if}
+						{#if (stratState.twofold && twofoldUrls[stratState.twofold])}
+							<div>
+								<a class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href={twofoldUrls[stratState.twofold].url}>{twofoldUrls[stratState.twofold].name}
 									<svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
 										<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
 									</svg>
