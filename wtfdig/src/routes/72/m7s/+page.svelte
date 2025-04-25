@@ -156,7 +156,7 @@
 				p2: 'toxic',
 				p3: 'toxic',
 			},
-			'uptime': {
+			'kindred': {
 				p2: 'alpha',
 				p3: 'toxic',
 			},
@@ -175,7 +175,7 @@
 		if (!stratName || !role || !party) return '';
 		const stratNames: Record<string, string> = {
 			'toxic': 'Toxic Friends',
-			'uptime': 'Uptime/Kindred'
+			'kindred': 'Kindred'
 		}
 		const jpRoleAbbrev: Record<string, string> = {
 			'MT': 'MT',
@@ -273,8 +273,8 @@
 				<div>
 					<div class="text-xl mb-2">Which P1 strat are you using?</div>
 					<Segment classes="flex-wrap" name="stratName" value={stratName} onValueChange={onSelectStrat}>
-						<Segment.Item value="toxic">Toxic Friends (PWFg⋯unO2)</Segment.Item>
-						<Segment.Item value="uptime">Uptime (-OMZ⋯JdIu)</Segment.Item>
+						<Segment.Item value="toxic">Toxic</Segment.Item>
+						<Segment.Item value="kindred">Kindred</Segment.Item>
 					</Segment>
 				</div>
 				{#if stratName}

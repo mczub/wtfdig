@@ -2,7 +2,7 @@ import type { PageLoad } from "./$types";
 
 export const load: PageLoad = ({params}) => {
     return {
-        strats: [toxicStrat, uptimeStrat],
+        strats: [toxicStrat, kindredStrat],
         timeline: timeline,
     }
 }
@@ -5103,8 +5103,8 @@ const toxicStrat: Strat = {
     ]
 }
 
-const uptimeStrat: Strat = {
-    stratName: 'uptime',
+const kindredStrat: Strat = {
+    stratName: 'kindred',
     description: 'Source: UPTIME SEEDING Raidplan and Kindred VODs',
     notes: '',
     stratUrl: 'https://raidplan.io/plan/-OMZSfpCVSPeJdIu',

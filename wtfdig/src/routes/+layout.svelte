@@ -33,7 +33,7 @@
         </header>
         <article>
             <div>
-                <p>4/24/2025: some minor updates for m6s, clarify m7s p3 dd, add m7s stoneringers 2</p>
+                <p>4/24/2025: some minor updates for m6s, clarify m7s p3 dd, add m7s stoneringers 2, rename uptime m7s p1 to kindred</p>
                 <p>4/22/2025: fix m8s quad moon, add fixed seeds, update m6s latte 8-0-0 towers, split out original and caster se twofold</p>
                 <p>4/17/2025: update m8s toxic p2 twofold</p>
                 <p>4/16/2025: cheatsheet mode for 7 + 8</p>
