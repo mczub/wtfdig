@@ -251,8 +251,8 @@
 	individualStrat={individualStrat}
 	spotlight={spotlight}
 	alignment={alignment}
-	rows=4
-	columns=7
+	rows=5
+	columns=6
 	innerHeight={innerHeight}
 	innerWidth={innerWidth}
 />
