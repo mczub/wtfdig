@@ -4613,7 +4613,7 @@ const toxicP3: PhaseStrats[] = [
             },
             {
                 mechanic: 'Stacks',
-                description: 'R1/MT North, R2/OT South, H1/M1 West, H2/M2 East',
+                description: 'R1/MT North, R2/OT South, H1/M1 West, H2/M2 East\nPlace stacks 1 tile away from the wall',
                 strats: [
                     {
                         role: 'Tank',
