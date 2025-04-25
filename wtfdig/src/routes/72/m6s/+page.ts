@@ -9,6 +9,7 @@ export const load: PageLoad = ({params}) => {
 
 export type Role = 'Tank' | 'Healer' | 'Melee' | 'Ranged'; 
 export type Alignment = 'original' | 'truenorth' | 'relative';
+export type StratRecord = Record<string, string | Record<string, string | PlayerMechStrat>>;
 
 export interface PlayerMechStrat {
     role: Role;
@@ -53,6 +54,72 @@ export interface TimelineItem {
     mechName: string;
     mechType: string;
     startTimeMs: number;
+}
+
+function getStringObject(stratRecord: Record<string, StratRecord>, mechanic: string, property: string, role?: string): Record<string, string> {
+    let stringObject = {};
+    for (const [key, strat] of Object.entries(stratRecord)) {
+        if (role) {
+            stringObject[key] = strat[mechanic][role][property] as string || '';
+        } else {
+            stringObject[key] = strat[mechanic][property] as string || '';
+        }
+        
+    };
+    return stringObject;
+}
+
+function getStratArray(stratRecord: Record<string, StratRecord>, mechanic: string): PlayerMechStrat[] {
+    return [
+        {
+            role: 'Tank',
+            party: 1,
+            description: getStringObject(stratRecord, mechanic, 'description', 'MT'),
+            imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'MT'),
+        },
+        {
+            role: 'Tank',
+            party: 2,
+            description: getStringObject(stratRecord, mechanic, 'description', 'OT'),
+            imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'OT'),
+        },
+        {
+            role: 'Healer',
+            party: 1,
+            description: getStringObject(stratRecord, mechanic, 'description', 'H1'),
+            imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'H1'),
+        },
+        {
+            role: 'Healer',
+            party: 2,
+            description: getStringObject(stratRecord, mechanic, 'description', 'H2'),
+            imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'H2'),
+        },
+        {
+            role: 'Melee',
+            party: 1,
+            description: getStringObject(stratRecord, mechanic, 'description', 'M1'),
+            imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'M1'),
+        },
+        {
+            role: 'Melee',
+            party: 2,
+            description: getStringObject(stratRecord, mechanic, 'description', 'M2'),
+            imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'M2'),
+        },
+        {
+            role: 'Ranged',
+            party: 1,
+            description: getStringObject(stratRecord, mechanic, 'description', 'R1'),
+            imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'R1'),
+        },
+        {
+            role: 'Ranged',
+            party: 2,
+            description: getStringObject(stratRecord, mechanic, 'description', 'R2'),
+            imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'R2'),
+        },
+    ]
 }
 
 const timeline: TimelineItem[] = [
@@ -547,49 +614,49 @@ const latteAdds: Record<string,Record<string, PlayerMechStrat>> = {
                 role: 'Tank',
                 party: 1,
                 description: '1. Grab 2 new squirrels.\n2. Wait for ranged to tether East ray.\n3. Bring everything to that ray.\n4. Mitigate and AoE.\n5. If you have AoE damage reduction on actions, target the rays.',
-                imageUrl: './m6s/adds/latte-mt.webp',
+                imageUrl: '',
             },
         'OT': {
                 role: 'Tank',
                 party: 2,
                 description: '1. Once ram is dead, help AoE boss/squirrels.\n2. Wait for ranged to tether east ray.\n3. Kill east ray.\n4. Help ranged kill west ray.\n5. If you have AoE damage reduction on actions, target rays.',
-                imageUrl: './m6s/adds/latte-ot.webp',
+                imageUrl: '',
             },
         'H1': {
                 role: 'Healer',
                 party: 1,
                 description: '1. Once ray targets a ranged, join MT and AoE all of them.\n2. Once this ray is dead, focus the other ray.',
-                imageUrl: './m6s/adds/latte-healer.webp',
+                imageUrl: '',
             },
         'H2': {
                 role: 'Healer',
                 party: 2,
                 description: '1. Once ray targets a ranged, join MT and AoE all of them.\n2. Once this ray is dead, focus the other ray.',
-                imageUrl: './m6s/adds/latte-healer.webp',
+                imageUrl: '',
             },
         'M1': {
                 role: 'Melee',
                 party: 1,
                 description: '1. Once ray targets a ranged, join MT and AoE all of them.\n2. Once this ray is dead, focus the other ray.',
-                imageUrl: './m6s/adds/latte-melee.webp',
+                imageUrl: '',
             },
         'M2': {
                 role: 'Melee',
                 party: 2,
                 description: '1. Once ray targets a ranged, join MT and AoE all of them.\n2. Once this ray is dead, focus the other ray.',
-                imageUrl: './m6s/adds/latte-melee.webp',
+                imageUrl: '',
             },
         'R1': {
                 role: 'Ranged',
                 party: 1,
                 description: '1. Target Northwest ray.\n2. Bait puddles from north to south on the arena sides while attacking rays.\n3. If your targeted ray is dead, focus the other.\n4. Join MT and AoE squirrels until third spawn.',
-                imageUrl: './m6s/adds/latte-ranged.webp',
+                imageUrl: '',
             },
         'R2': {
                 role: 'Ranged',
                 party: 2,
                 description: '1. Target Northeast ray.\n2. Bait puddles from north to south on the arena sides while attacking rays.\n3. If your targeted ray is ead, focus the other.\n4. Join MT and AoE squirrels until third spawn.',
-                imageUrl: './m6s/adds/latte-ranged.webp',
+                imageUrl: '',
             },
     },
     'wave3':{
@@ -597,49 +664,49 @@ const latteAdds: Record<string,Record<string, PlayerMechStrat>> = {
                 role: 'Tank',
                 party: 1,
                 description: `1. Jabber becomes targetable, bring adds and ST focus.\n2. Make sure ram is dead so it doesn't buff your adds.\n3. Stun priority is MT --> M1 --> M2.\n4. Kill squirrels before enrage.\n5. Kill cat.`,
-                imageUrl: './m6s/adds/latte-mt.webp',
+                imageUrl: '',
             },
         'OT': {
                 role: 'Tank',
                 party: 2,
                 description: '1. The party will deal with the jabber.\n2. Focus the new ram that spawns.',
-                imageUrl: './m6s/adds/latte-ot.webp',
+                imageUrl: '',
             },
         'H1': {
                 role: 'Healer',
                 party: 1,
                 description: '1. If targeted by jabber, camp southeast.\n2. Free healer will ST jabber until dead.\n3. If out of range of any add, heal others.\n4. When within range, ST the jabber.\n5. AoE when jabber is dead.',
-                imageUrl: './m6s/adds/latte-healer.webp',
+                imageUrl: '',
             },
         'H2': {
                 role: 'Healer',
                 party: 2,
                 description: '1. If targeted by jabber, camp southeast.\n2. Free healer will ST jabber until dead.\n3. If out of range of any add, heal others.\n4. When within range, ST the jabber.\n5. AoE when jabber is dead.',
-                imageUrl: './m6s/adds/latte-healer.webp',
+                imageUrl: '',
             },
         'M1': {
                 role: 'Melee',
                 party: 1,
                 description: `1. Jabber becomes targetable, ST focus.\n2. Make sure ram is dead so it doesn't buff your adds.\n3. Stun priority is MT --> M1 --> M2.\n4. Kill squirrels before enrage. 5. Kill cat.`,
-                imageUrl: './m6s/adds/latte-melee.webp',
+                imageUrl: '',
             },
         'M2': {
                 role: 'Melee',
                 party: 2,
                 description: `1. Jabber becomes targetable, ST focus.\n2. Make sure ram is dead so it doesn't buff your adds.\n3. Stun priority is MT --> M1 --> M2.\n4. Kill squirrels before enrage. 5. Kill cat.`,
-                imageUrl: './m6s/adds/latte-melee.webp',
+                imageUrl: '',
             },
         'R1': {
                 role: 'Ranged',
                 party: 1,
                 description: `1. Jabber becomes targetable, ST focus.\n2. Make sure ram is dead so it doesn't buff your adds.\n3. Kill squirrels before enrage.\n4. Kill cat before fourth spawn.`,
-                imageUrl: './m6s/adds/latte-ranged.webp',
+                imageUrl: '',
             },
         'R2': {
                 role: 'Ranged',
                 party: 2,
                 description: `1. Jabber becomes targetable, ST focus.\n2. Make sure ram is dead so it doesn't buff your adds.\n3. Kill squirrels before enrage.\n4. Kill cat before fourth spawn.`,
-                imageUrl: './m6s/adds/latte-ranged.webp',
+                imageUrl: '',
             },
     },
     'wave4':{
@@ -647,49 +714,49 @@ const latteAdds: Record<string,Record<string, PlayerMechStrat>> = {
                 role: 'Tank',
                 party: 1,
                 description: `1. Pull boss and 2 new squirrels to the new jabber NORTH.\n2. Mitigate and AoE.\n3. Focus the jabber.\n4. Same stun priority.\n5. After jabber, kill east ray.\n6. Kill cat then Southwest ray.\n7. Dodge lines then focus rams.`,
-                imageUrl: './m6s/adds/latte-mt.webp',
+                imageUrl: '',
             },
         'OT': {
                 role: 'Tank',
                 party: 2,
                 description: '1. Another ram will spawn.\n2. Pull both rams SW to avoid buffs on other adds.\n3. Wait till every other add is dead (squirrels last to die), then bring rams to boss.\nCURRENT OBJECTIVE: SURVIVE',
-                imageUrl: './m6s/adds/latte-ot.webp',
+                imageUrl: '',
             },
         'H1': {
                 role: 'Healer',
                 party: 1,
                 description: `1. Another jabber will spawn, ignore cat.\n2. If targeted by jabber,  camp southeast again.\n3. ST jabber and/or AoE anyone you can within range.\n4. Targeted healer leaves corner when jabber is dead.\n5. After jabber, focus east ray, then cat, then west ray.\n6. Mitigate/heal raidwide, dodge lines, then AoE rams.`,
-                imageUrl: './m6s/adds/latte-healer.webp',
+                imageUrl: '',
             },
         'H2': {
                 role: 'Healer',
                 party: 2,
                 description: `1. Another jabber will spawn, ignore cat.\n2. If targeted by jabber,  camp southeast again.\n3. ST jabber and/or AoE anyone you can within range.\n4. Targeted healer leaves corner when jabber is dead.\n5. After jabber, focus east ray, then cat, then west ray.\n6. Mitigate/heal raidwide, dodge lines, then AoE rams.`,
-                imageUrl: './m6s/adds/latte-healer.webp',
+                imageUrl: '',
             },
         'M1': {
                 role: 'Melee',
                 party: 1,
                 description: `1. Assist MT in killing new squirrels.\n2. ST focus the jabber once targetable.\n3. Same stun priority.\n4. After jabber, kill east ray.\n5. Kill cat then Southwest ray.\n6. Dodge lines then focus rams.`,
-                imageUrl: './m6s/adds/latte-melee.webp',
+                imageUrl: '',
             },
         'M2': {
                 role: 'Melee',
                 party: 2,
                 description: `1. Assist MT in killing new squirrels.\n2. ST focus the jabber once targetable.\n3. Same stun priority.\n4. After jabber, kill east ray.\n5. Kill cat then Southwest ray.\n6. Dodge lines then focus rams.`,
-                imageUrl: './m6s/adds/latte-melee.webp',
+                imageUrl: '',
             },
         'R1': {
                 role: 'Ranged',
                 party: 1,
                 description: '1. Ignore cat.\n2. New rays spawn, take Southwest ray.\n3. Continue baiting the puddles.\n4. When jabber is targetable, ST focus it.\n5. After jabber is dead, focus Southeast ray.\n6. Kill cat then Southwest ray.\n7. Dodge lines, AoE rams.',
-                imageUrl: './m6s/adds/latte-ranged.webp',
+                imageUrl: '',
             },
         'R2': {
                 role: 'Ranged',
                 party: 2,
                 description: '1. Ignore cat.\n2. New rays spawn, take Southeast ray.\n3. Continue baiting the puddles.\n4. When jabber is targetable, ST focus it.\n5. After jabber is dead, focus Southeast ray.\n6. Kill cat then Southwest ray.\n7. Dodge lines, AoE rams.',
-                imageUrl: './m6s/adds/latte-ranged.webp',
+                imageUrl: '',
             },
     }
 }
@@ -956,7 +1023,7 @@ const cleaveAdds: Record<string,Record<string, PlayerMechStrat>> = {
         'R1': {
                 role: 'Ranged',
                 party: 1,
-                description: '\nKill NE Manta first while cleaving, then kill NW Manta',
+                description: 'Kill NE Manta first while cleaving, then kill NW Manta',
                 imageUrl: './m6s/adds/cleave-wave2.webp',
             },
         'R2': {
@@ -1067,6 +1134,8 @@ const cleaveAdds: Record<string,Record<string, PlayerMechStrat>> = {
             },
     }
 }
+
+const addsStrats = {toxic: toxicAdds, latte: latteAdds, yukizuri: yukizuriAdds, cleave: cleaveAdds}
 
 const latteStrat: Strat = {
     stratName: 'latte',
@@ -1336,535 +1405,19 @@ const latteStrat: Strat = {
             mechs: [
                 {
                     mechanic: 'Wave 1',
-                    strats: [
-                        {
-                            role: 'Tank',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave1']['MT']['description'] as string,
-                                latte: latteAdds['wave1']['MT']['description'] as string,
-                                yukizuri: yukizuriAdds['wave1']['MT']['description'] as string,
-                                cleave: cleaveAdds['wave1']['MT']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave1']['MT']['imageUrl'] as string,
-                                latte: latteAdds['wave1']['MT']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave1']['MT']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave1']['MT']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Tank',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave1']['OT']['description'] as string,
-                                latte: latteAdds['wave1']['OT']['description'] as string,
-                                yukizuri: yukizuriAdds['wave1']['OT']['description'] as string,
-                                cleave: cleaveAdds['wave1']['OT']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave1']['OT']['imageUrl'] as string,
-                                latte: latteAdds['wave1']['OT']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave1']['OT']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave1']['OT']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave1']['H1']['description'] as string,
-                                latte: latteAdds['wave1']['H1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave1']['H1']['description'] as string,
-                                cleave: cleaveAdds['wave1']['H1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave1']['H1']['imageUrl'] as string,
-                                latte: latteAdds['wave1']['H1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave1']['H1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave1']['H1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave1']['H2']['description'] as string,
-                                latte: latteAdds['wave1']['H2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave1']['H2']['description'] as string,
-                                cleave: cleaveAdds['wave1']['H2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave1']['H2']['imageUrl'] as string,
-                                latte: latteAdds['wave1']['H2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave1']['H2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave1']['H2']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Melee',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave1']['M1']['description'] as string,
-                                latte: latteAdds['wave1']['M1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave1']['M1']['description'] as string,
-                                cleave: cleaveAdds['wave1']['M1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave1']['M1']['imageUrl'] as string,
-                                latte: latteAdds['wave1']['M1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave1']['M1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave1']['M1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Melee',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave1']['M2']['description'] as string,
-                                latte: latteAdds['wave1']['M2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave1']['M2']['description'] as string,
-                                cleave: cleaveAdds['wave1']['M2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave1']['M2']['imageUrl'] as string,
-                                latte: latteAdds['wave1']['M2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave1']['M2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave1']['M2']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave1']['R1']['description'] as string,
-                                latte: latteAdds['wave1']['R1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave1']['R1']['description'] as string,
-                                cleave: cleaveAdds['wave1']['R1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave1']['R1']['imageUrl'] as string,
-                                latte: latteAdds['wave1']['R1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave1']['R1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave1']['R1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave1']['R2']['description'] as string,
-                                latte: latteAdds['wave1']['R2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave1']['R2']['description'] as string,
-                                cleave: cleaveAdds['wave1']['R2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave1']['R2']['imageUrl'] as string,
-                                latte: latteAdds['wave1']['R2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave1']['R2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave1']['R2']['imageUrl'] as string,
-                            }
-                        },
-                    ]
+                    strats: getStratArray(addsStrats, 'wave1'),
                 },
                 {
                     mechanic: 'Wave 2',
-                    strats: [
-                        {
-                            role: 'Tank',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave2']['MT']['description'] as string,
-                                latte: latteAdds['wave2']['MT']['description'] as string,
-                                yukizuri: yukizuriAdds['wave2']['MT']['description'] as string,
-                                cleave: cleaveAdds['wave2']['MT']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave2']['MT']['imageUrl'] as string,
-                                latte: latteAdds['wave2']['MT']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave2']['MT']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave2']['MT']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Tank',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave2']['OT']['description'] as string,
-                                latte: latteAdds['wave2']['OT']['description'] as string,
-                                yukizuri: yukizuriAdds['wave2']['OT']['description'] as string,
-                                cleave: cleaveAdds['wave2']['OT']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave2']['OT']['imageUrl'] as string,
-                                latte: latteAdds['wave2']['OT']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave2']['OT']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave2']['OT']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave2']['H1']['description'] as string,
-                                latte: latteAdds['wave2']['H1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave2']['H1']['description'] as string,
-                                cleave: cleaveAdds['wave2']['H1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave2']['H1']['imageUrl'] as string,
-                                latte: latteAdds['wave2']['H1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave2']['H1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave2']['H1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave2']['H2']['description'] as string,
-                                latte: latteAdds['wave2']['H2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave2']['H2']['description'] as string,
-                                cleave: cleaveAdds['wave2']['H2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave2']['H2']['imageUrl'] as string,
-                                latte: latteAdds['wave2']['H2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave2']['H2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave2']['H2']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Melee',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave2']['M1']['description'] as string,
-                                latte: latteAdds['wave2']['M1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave2']['M1']['description'] as string,
-                                cleave: cleaveAdds['wave2']['M1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave2']['M1']['imageUrl'] as string,
-                                latte: latteAdds['wave2']['M1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave2']['M1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave2']['M1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Melee',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave2']['M2']['description'] as string,
-                                latte: latteAdds['wave2']['M2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave2']['M2']['description'] as string,
-                                cleave: cleaveAdds['wave2']['M2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave2']['M2']['imageUrl'] as string,
-                                latte: latteAdds['wave2']['M2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave2']['M2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave2']['M2']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave2']['R1']['description'] as string,
-                                latte: latteAdds['wave2']['R1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave2']['R1']['description'] as string,
-                                cleave: cleaveAdds['wave2']['R1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave2']['R1']['imageUrl'] as string,
-                                latte: latteAdds['wave2']['R1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave2']['R1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave2']['R1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave2']['R2']['description'] as string,
-                                latte: latteAdds['wave2']['R2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave2']['R2']['description'] as string,
-                                cleave: cleaveAdds['wave2']['R2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave2']['R2']['imageUrl'] as string,
-                                latte: latteAdds['wave2']['R2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave2']['R2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave2']['R2']['imageUrl'] as string,
-                            }
-                        },
-                    ]
+                    strats: getStratArray(addsStrats, 'wave2'),
                 },
                 {
                     mechanic: 'Wave 3',
-                    strats: [
-                        {
-                            role: 'Tank',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave3']['MT']['description'] as string,
-                                latte: latteAdds['wave3']['MT']['description'] as string,
-                                yukizuri: yukizuriAdds['wave3']['MT']['description'] as string,
-                                cleave: cleaveAdds['wave3']['MT']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave3']['MT']['imageUrl'] as string,
-                                latte: latteAdds['wave3']['MT']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave3']['MT']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave3']['MT']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Tank',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave3']['OT']['description'] as string,
-                                latte: latteAdds['wave3']['OT']['description'] as string,
-                                yukizuri: yukizuriAdds['wave3']['OT']['description'] as string,
-                                cleave: cleaveAdds['wave3']['OT']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave3']['OT']['imageUrl'] as string,
-                                latte: latteAdds['wave3']['OT']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave3']['OT']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave3']['OT']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave3']['H1']['description'] as string,
-                                latte: latteAdds['wave3']['H1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave3']['H1']['description'] as string,
-                                cleave: cleaveAdds['wave3']['H1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave3']['H1']['imageUrl'] as string,
-                                latte: latteAdds['wave3']['H1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave3']['H1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave3']['H1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave3']['H2']['description'] as string,
-                                latte: latteAdds['wave3']['H2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave3']['H2']['description'] as string,
-                                cleave: cleaveAdds['wave3']['H2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave3']['H2']['imageUrl'] as string,
-                                latte: latteAdds['wave3']['H2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave3']['H2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave3']['H2']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Melee',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave3']['M1']['description'] as string,
-                                latte: latteAdds['wave3']['M1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave3']['M1']['description'] as string,
-                                cleave: cleaveAdds['wave3']['M1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave3']['M1']['imageUrl'] as string,
-                                latte: latteAdds['wave3']['M1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave3']['M1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave3']['M1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Melee',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave3']['M2']['description'] as string,
-                                latte: latteAdds['wave3']['M2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave3']['M2']['description'] as string,
-                                cleave: cleaveAdds['wave3']['M2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave3']['M2']['imageUrl'] as string,
-                                latte: latteAdds['wave3']['M2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave3']['M2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave3']['M2']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave3']['R1']['description'] as string,
-                                latte: latteAdds['wave3']['R1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave3']['R1']['description'] as string,
-                                cleave: cleaveAdds['wave3']['R1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave3']['R1']['imageUrl'] as string,
-                                latte: latteAdds['wave3']['R1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave3']['R1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave3']['R1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave3']['R2']['description'] as string,
-                                latte: latteAdds['wave3']['R2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave3']['R2']['description'] as string,
-                                cleave: cleaveAdds['wave3']['R2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave3']['R2']['imageUrl'] as string,
-                                latte: latteAdds['wave3']['R2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave3']['R2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave3']['R2']['imageUrl'] as string,
-                            }
-                        },
-                    ]
+                    strats: getStratArray(addsStrats, 'wave3'),
                 },
                 {
                     mechanic: 'Wave 4',
-                    strats: [
-                        {
-                            role: 'Tank',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave4']['MT']['description'] as string,
-                                latte: latteAdds['wave4']['MT']['description'] as string,
-                                yukizuri: yukizuriAdds['wave4']['MT']['description'] as string,
-                                cleave: cleaveAdds['wave4']['MT']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave4']['MT']['imageUrl'] as string,
-                                latte: latteAdds['wave4']['MT']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave4']['MT']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave4']['MT']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Tank',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave4']['OT']['description'] as string,
-                                latte: latteAdds['wave4']['OT']['description'] as string,
-                                yukizuri: yukizuriAdds['wave4']['OT']['description'] as string,
-                                cleave: cleaveAdds['wave4']['OT']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave4']['OT']['imageUrl'] as string,
-                                latte: latteAdds['wave4']['OT']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave4']['OT']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave4']['OT']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave4']['H1']['description'] as string,
-                                latte: latteAdds['wave4']['H1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave4']['H1']['description'] as string,
-                                cleave: cleaveAdds['wave4']['H1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave4']['H1']['imageUrl'] as string,
-                                latte: latteAdds['wave4']['H1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave4']['H1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave4']['H1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave4']['H2']['description'] as string,
-                                latte: latteAdds['wave4']['H2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave4']['H2']['description'] as string,
-                                cleave: cleaveAdds['wave4']['H2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave4']['H2']['imageUrl'] as string,
-                                latte: latteAdds['wave4']['H2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave4']['H2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave4']['H2']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Melee',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave4']['M1']['description'] as string,
-                                latte: latteAdds['wave4']['M1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave4']['M1']['description'] as string,
-                                cleave: cleaveAdds['wave4']['M1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave4']['M1']['imageUrl'] as string,
-                                latte: latteAdds['wave4']['M1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave4']['M1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave4']['M1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Melee',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave4']['M2']['description'] as string,
-                                latte: latteAdds['wave4']['M2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave4']['M2']['description'] as string,
-                                cleave: cleaveAdds['wave4']['M2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave4']['M2']['imageUrl'] as string,
-                                latte: latteAdds['wave4']['M2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave4']['M2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave4']['M2']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave4']['R1']['description'] as string,
-                                latte: latteAdds['wave4']['R1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave4']['R1']['description'] as string,
-                                cleave: cleaveAdds['wave4']['R1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave4']['R1']['imageUrl'] as string,
-                                latte: latteAdds['wave4']['R1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave4']['R1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave4']['R1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave4']['R2']['description'] as string,
-                                latte: latteAdds['wave4']['R2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave4']['R2']['description'] as string,
-                                cleave: cleaveAdds['wave4']['R2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave4']['R2']['imageUrl'] as string,
-                                latte: latteAdds['wave4']['R2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave4']['R2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave4']['R2']['imageUrl'] as string,
-                            }
-                        },
-                    ]
+                    strats: getStratArray(addsStrats, 'wave4'),
                 },
             ]
         },
@@ -2177,535 +1730,19 @@ const yukizuriStrat: Strat = {
             mechs: [
                 {
                     mechanic: 'Wave 1',
-                    strats: [
-                        {
-                            role: 'Tank',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave1']['MT']['description'] as string,
-                                latte: latteAdds['wave1']['MT']['description'] as string,
-                                yukizuri: yukizuriAdds['wave1']['MT']['description'] as string,
-                                cleave: cleaveAdds['wave1']['MT']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave1']['MT']['imageUrl'] as string,
-                                latte: latteAdds['wave1']['MT']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave1']['MT']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave1']['MT']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Tank',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave1']['OT']['description'] as string,
-                                latte: latteAdds['wave1']['OT']['description'] as string,
-                                yukizuri: yukizuriAdds['wave1']['OT']['description'] as string,
-                                cleave: cleaveAdds['wave1']['OT']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave1']['OT']['imageUrl'] as string,
-                                latte: latteAdds['wave1']['OT']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave1']['OT']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave1']['OT']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave1']['H1']['description'] as string,
-                                latte: latteAdds['wave1']['H1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave1']['H1']['description'] as string,
-                                cleave: cleaveAdds['wave1']['H1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave1']['H1']['imageUrl'] as string,
-                                latte: latteAdds['wave1']['H1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave1']['H1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave1']['H1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave1']['H2']['description'] as string,
-                                latte: latteAdds['wave1']['H2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave1']['H2']['description'] as string,
-                                cleave: cleaveAdds['wave1']['H2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave1']['H2']['imageUrl'] as string,
-                                latte: latteAdds['wave1']['H2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave1']['H2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave1']['H2']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Melee',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave1']['M1']['description'] as string,
-                                latte: latteAdds['wave1']['M1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave1']['M1']['description'] as string,
-                                cleave: cleaveAdds['wave1']['M1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave1']['M1']['imageUrl'] as string,
-                                latte: latteAdds['wave1']['M1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave1']['M1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave1']['M1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Melee',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave1']['M2']['description'] as string,
-                                latte: latteAdds['wave1']['M2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave1']['M2']['description'] as string,
-                                cleave: cleaveAdds['wave1']['M2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave1']['M2']['imageUrl'] as string,
-                                latte: latteAdds['wave1']['M2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave1']['M2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave1']['M2']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave1']['R1']['description'] as string,
-                                latte: latteAdds['wave1']['R1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave1']['R1']['description'] as string,
-                                cleave: cleaveAdds['wave1']['R1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave1']['R1']['imageUrl'] as string,
-                                latte: latteAdds['wave1']['R1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave1']['R1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave1']['R1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave1']['R2']['description'] as string,
-                                latte: latteAdds['wave1']['R2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave1']['R2']['description'] as string,
-                                cleave: cleaveAdds['wave1']['R2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave1']['R2']['imageUrl'] as string,
-                                latte: latteAdds['wave1']['R2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave1']['R2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave1']['R2']['imageUrl'] as string,
-                            }
-                        },
-                    ]
+                    strats: getStratArray(addsStrats, 'wave1'),
                 },
                 {
                     mechanic: 'Wave 2',
-                    strats: [
-                        {
-                            role: 'Tank',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave2']['MT']['description'] as string,
-                                latte: latteAdds['wave2']['MT']['description'] as string,
-                                yukizuri: yukizuriAdds['wave2']['MT']['description'] as string,
-                                cleave: cleaveAdds['wave2']['MT']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave2']['MT']['imageUrl'] as string,
-                                latte: latteAdds['wave2']['MT']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave2']['MT']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave2']['MT']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Tank',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave2']['OT']['description'] as string,
-                                latte: latteAdds['wave2']['OT']['description'] as string,
-                                yukizuri: yukizuriAdds['wave2']['OT']['description'] as string,
-                                cleave: cleaveAdds['wave2']['OT']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave2']['OT']['imageUrl'] as string,
-                                latte: latteAdds['wave2']['OT']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave2']['OT']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave2']['OT']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave2']['H1']['description'] as string,
-                                latte: latteAdds['wave2']['H1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave2']['H1']['description'] as string,
-                                cleave: cleaveAdds['wave2']['H1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave2']['H1']['imageUrl'] as string,
-                                latte: latteAdds['wave2']['H1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave2']['H1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave2']['H1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave2']['H2']['description'] as string,
-                                latte: latteAdds['wave2']['H2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave2']['H2']['description'] as string,
-                                cleave: cleaveAdds['wave2']['H2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave2']['H2']['imageUrl'] as string,
-                                latte: latteAdds['wave2']['H2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave2']['H2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave2']['H2']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Melee',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave2']['M1']['description'] as string,
-                                latte: latteAdds['wave2']['M1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave2']['M1']['description'] as string,
-                                cleave: cleaveAdds['wave2']['M1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave2']['M1']['imageUrl'] as string,
-                                latte: latteAdds['wave2']['M1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave2']['M1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave2']['M1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Melee',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave2']['M2']['description'] as string,
-                                latte: latteAdds['wave2']['M2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave2']['M2']['description'] as string,
-                                cleave: cleaveAdds['wave2']['M2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave2']['M2']['imageUrl'] as string,
-                                latte: latteAdds['wave2']['M2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave2']['M2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave2']['M2']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave2']['R1']['description'] as string,
-                                latte: latteAdds['wave2']['R1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave2']['R1']['description'] as string,
-                                cleave: cleaveAdds['wave2']['R1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave2']['R1']['imageUrl'] as string,
-                                latte: latteAdds['wave2']['R1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave2']['R1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave2']['R1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave2']['R2']['description'] as string,
-                                latte: latteAdds['wave2']['R2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave2']['R2']['description'] as string,
-                                cleave: cleaveAdds['wave2']['R2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave2']['R2']['imageUrl'] as string,
-                                latte: latteAdds['wave2']['R2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave2']['R2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave2']['R2']['imageUrl'] as string,
-                            }
-                        },
-                    ]
+                    strats: getStratArray(addsStrats, 'wave2'),
                 },
                 {
                     mechanic: 'Wave 3',
-                    strats: [
-                        {
-                            role: 'Tank',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave3']['MT']['description'] as string,
-                                latte: latteAdds['wave3']['MT']['description'] as string,
-                                yukizuri: yukizuriAdds['wave3']['MT']['description'] as string,
-                                cleave: cleaveAdds['wave3']['MT']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave3']['MT']['imageUrl'] as string,
-                                latte: latteAdds['wave3']['MT']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave3']['MT']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave3']['MT']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Tank',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave3']['OT']['description'] as string,
-                                latte: latteAdds['wave3']['OT']['description'] as string,
-                                yukizuri: yukizuriAdds['wave3']['OT']['description'] as string,
-                                cleave: cleaveAdds['wave3']['OT']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave3']['OT']['imageUrl'] as string,
-                                latte: latteAdds['wave3']['OT']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave3']['OT']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave3']['OT']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave3']['H1']['description'] as string,
-                                latte: latteAdds['wave3']['H1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave3']['H1']['description'] as string,
-                                cleave: cleaveAdds['wave3']['H1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave3']['H1']['imageUrl'] as string,
-                                latte: latteAdds['wave3']['H1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave3']['H1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave3']['H1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave3']['H2']['description'] as string,
-                                latte: latteAdds['wave3']['H2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave3']['H2']['description'] as string,
-                                cleave: cleaveAdds['wave3']['H2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave3']['H2']['imageUrl'] as string,
-                                latte: latteAdds['wave3']['H2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave3']['H2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave3']['H2']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Melee',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave3']['M1']['description'] as string,
-                                latte: latteAdds['wave3']['M1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave3']['M1']['description'] as string,
-                                cleave: cleaveAdds['wave3']['M1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave3']['M1']['imageUrl'] as string,
-                                latte: latteAdds['wave3']['M1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave3']['M1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave3']['M1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Melee',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave3']['M2']['description'] as string,
-                                latte: latteAdds['wave3']['M2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave3']['M2']['description'] as string,
-                                cleave: cleaveAdds['wave3']['M2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave3']['M2']['imageUrl'] as string,
-                                latte: latteAdds['wave3']['M2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave3']['M2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave3']['M2']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave3']['R1']['description'] as string,
-                                latte: latteAdds['wave3']['R1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave3']['R1']['description'] as string,
-                                cleave: cleaveAdds['wave3']['R1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave3']['R1']['imageUrl'] as string,
-                                latte: latteAdds['wave3']['R1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave3']['R1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave3']['R1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave3']['R2']['description'] as string,
-                                latte: latteAdds['wave3']['R2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave3']['R2']['description'] as string,
-                                cleave: cleaveAdds['wave3']['R2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave3']['R2']['imageUrl'] as string,
-                                latte: latteAdds['wave3']['R2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave3']['R2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave3']['R2']['imageUrl'] as string,
-                            }
-                        },
-                    ]
+                    strats: getStratArray(addsStrats, 'wave3'),
                 },
                 {
                     mechanic: 'Wave 4',
-                    strats: [
-                        {
-                            role: 'Tank',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave4']['MT']['description'] as string,
-                                latte: latteAdds['wave4']['MT']['description'] as string,
-                                yukizuri: yukizuriAdds['wave4']['MT']['description'] as string,
-                                cleave: cleaveAdds['wave4']['MT']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave4']['MT']['imageUrl'] as string,
-                                latte: latteAdds['wave4']['MT']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave4']['MT']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave4']['MT']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Tank',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave4']['OT']['description'] as string,
-                                latte: latteAdds['wave4']['OT']['description'] as string,
-                                yukizuri: yukizuriAdds['wave4']['OT']['description'] as string,
-                                cleave: cleaveAdds['wave4']['OT']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave4']['OT']['imageUrl'] as string,
-                                latte: latteAdds['wave4']['OT']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave4']['OT']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave4']['OT']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave4']['H1']['description'] as string,
-                                latte: latteAdds['wave4']['H1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave4']['H1']['description'] as string,
-                                cleave: cleaveAdds['wave4']['H1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave4']['H1']['imageUrl'] as string,
-                                latte: latteAdds['wave4']['H1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave4']['H1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave4']['H1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave4']['H2']['description'] as string,
-                                latte: latteAdds['wave4']['H2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave4']['H2']['description'] as string,
-                                cleave: cleaveAdds['wave4']['H2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave4']['H2']['imageUrl'] as string,
-                                latte: latteAdds['wave4']['H2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave4']['H2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave4']['H2']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Melee',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave4']['M1']['description'] as string,
-                                latte: latteAdds['wave4']['M1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave4']['M1']['description'] as string,
-                                cleave: cleaveAdds['wave4']['M1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave4']['M1']['imageUrl'] as string,
-                                latte: latteAdds['wave4']['M1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave4']['M1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave4']['M1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Melee',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave4']['M2']['description'] as string,
-                                latte: latteAdds['wave4']['M2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave4']['M2']['description'] as string,
-                                cleave: cleaveAdds['wave4']['M2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave4']['M2']['imageUrl'] as string,
-                                latte: latteAdds['wave4']['M2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave4']['M2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave4']['M2']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave4']['R1']['description'] as string,
-                                latte: latteAdds['wave4']['R1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave4']['R1']['description'] as string,
-                                cleave: cleaveAdds['wave4']['R1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave4']['R1']['imageUrl'] as string,
-                                latte: latteAdds['wave4']['R1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave4']['R1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave4']['R1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave4']['R2']['description'] as string,
-                                latte: latteAdds['wave4']['R2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave4']['R2']['description'] as string,
-                                cleave: cleaveAdds['wave4']['R2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave4']['R2']['imageUrl'] as string,
-                                latte: latteAdds['wave4']['R2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave4']['R2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave4']['R2']['imageUrl'] as string,
-                            }
-                        },
-                    ]
+                    strats: getStratArray(addsStrats, 'wave4'),
                 },
             ]
         },
@@ -2982,535 +2019,19 @@ const toxicStrat: Strat = {
             mechs: [
                 {
                     mechanic: 'Wave 1',
-                    strats: [
-                        {
-                            role: 'Tank',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave1']['MT']['description'] as string,
-                                latte: latteAdds['wave1']['MT']['description'] as string,
-                                yukizuri: yukizuriAdds['wave1']['MT']['description'] as string,
-                                cleave: cleaveAdds['wave1']['MT']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave1']['MT']['imageUrl'] as string,
-                                latte: latteAdds['wave1']['MT']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave1']['MT']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave1']['MT']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Tank',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave1']['OT']['description'] as string,
-                                latte: latteAdds['wave1']['OT']['description'] as string,
-                                yukizuri: yukizuriAdds['wave1']['OT']['description'] as string,
-                                cleave: cleaveAdds['wave1']['OT']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave1']['OT']['imageUrl'] as string,
-                                latte: latteAdds['wave1']['OT']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave1']['OT']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave1']['OT']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave1']['H1']['description'] as string,
-                                latte: latteAdds['wave1']['H1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave1']['H1']['description'] as string,
-                                cleave: cleaveAdds['wave1']['H1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave1']['H1']['imageUrl'] as string,
-                                latte: latteAdds['wave1']['H1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave1']['H1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave1']['H1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave1']['H2']['description'] as string,
-                                latte: latteAdds['wave1']['H2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave1']['H2']['description'] as string,
-                                cleave: cleaveAdds['wave1']['H2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave1']['H2']['imageUrl'] as string,
-                                latte: latteAdds['wave1']['H2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave1']['H2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave1']['H2']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Melee',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave1']['M1']['description'] as string,
-                                latte: latteAdds['wave1']['M1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave1']['M1']['description'] as string,
-                                cleave: cleaveAdds['wave1']['M1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave1']['M1']['imageUrl'] as string,
-                                latte: latteAdds['wave1']['M1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave1']['M1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave1']['M1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Melee',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave1']['M2']['description'] as string,
-                                latte: latteAdds['wave1']['M2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave1']['M2']['description'] as string,
-                                cleave: cleaveAdds['wave1']['M2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave1']['M2']['imageUrl'] as string,
-                                latte: latteAdds['wave1']['M2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave1']['M2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave1']['M2']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave1']['R1']['description'] as string,
-                                latte: latteAdds['wave1']['R1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave1']['R1']['description'] as string,
-                                cleave: cleaveAdds['wave1']['R1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave1']['R1']['imageUrl'] as string,
-                                latte: latteAdds['wave1']['R1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave1']['R1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave1']['R1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave1']['R2']['description'] as string,
-                                latte: latteAdds['wave1']['R2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave1']['R2']['description'] as string,
-                                cleave: cleaveAdds['wave1']['R2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave1']['R2']['imageUrl'] as string,
-                                latte: latteAdds['wave1']['R2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave1']['R2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave1']['R2']['imageUrl'] as string,
-                            }
-                        },
-                    ]
+                    strats: getStratArray(addsStrats, 'wave1'),
                 },
                 {
                     mechanic: 'Wave 2',
-                    strats: [
-                        {
-                            role: 'Tank',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave2']['MT']['description'] as string,
-                                latte: latteAdds['wave2']['MT']['description'] as string,
-                                yukizuri: yukizuriAdds['wave2']['MT']['description'] as string,
-                                cleave: cleaveAdds['wave2']['MT']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave2']['MT']['imageUrl'] as string,
-                                latte: latteAdds['wave2']['MT']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave2']['MT']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave2']['MT']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Tank',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave2']['OT']['description'] as string,
-                                latte: latteAdds['wave2']['OT']['description'] as string,
-                                yukizuri: yukizuriAdds['wave2']['OT']['description'] as string,
-                                cleave: cleaveAdds['wave2']['OT']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave2']['OT']['imageUrl'] as string,
-                                latte: latteAdds['wave2']['OT']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave2']['OT']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave2']['OT']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave2']['H1']['description'] as string,
-                                latte: latteAdds['wave2']['H1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave2']['H1']['description'] as string,
-                                cleave: cleaveAdds['wave2']['H1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave2']['H1']['imageUrl'] as string,
-                                latte: latteAdds['wave2']['H1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave2']['H1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave2']['H1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave2']['H2']['description'] as string,
-                                latte: latteAdds['wave2']['H2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave2']['H2']['description'] as string,
-                                cleave: cleaveAdds['wave2']['H2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave2']['H2']['imageUrl'] as string,
-                                latte: latteAdds['wave2']['H2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave2']['H2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave2']['H2']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Melee',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave2']['M1']['description'] as string,
-                                latte: latteAdds['wave2']['M1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave2']['M1']['description'] as string,
-                                cleave: cleaveAdds['wave2']['M1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave2']['M1']['imageUrl'] as string,
-                                latte: latteAdds['wave2']['M1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave2']['M1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave2']['M1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Melee',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave2']['M2']['description'] as string,
-                                latte: latteAdds['wave2']['M2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave2']['M2']['description'] as string,
-                                cleave: cleaveAdds['wave2']['M2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave2']['M2']['imageUrl'] as string,
-                                latte: latteAdds['wave2']['M2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave2']['M2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave2']['M2']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave2']['R1']['description'] as string,
-                                latte: latteAdds['wave2']['R1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave2']['R1']['description'] as string,
-                                cleave: cleaveAdds['wave2']['R1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave2']['R1']['imageUrl'] as string,
-                                latte: latteAdds['wave2']['R1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave2']['R1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave2']['R1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave2']['R2']['description'] as string,
-                                latte: latteAdds['wave2']['R2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave2']['R2']['description'] as string,
-                                cleave: cleaveAdds['wave2']['R2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave2']['R2']['imageUrl'] as string,
-                                latte: latteAdds['wave2']['R2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave2']['R2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave2']['R2']['imageUrl'] as string,
-                            }
-                        },
-                    ]
+                    strats: getStratArray(addsStrats, 'wave2'),
                 },
                 {
                     mechanic: 'Wave 3',
-                    strats: [
-                        {
-                            role: 'Tank',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave3']['MT']['description'] as string,
-                                latte: latteAdds['wave3']['MT']['description'] as string,
-                                yukizuri: yukizuriAdds['wave3']['MT']['description'] as string,
-                                cleave: cleaveAdds['wave3']['MT']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave3']['MT']['imageUrl'] as string,
-                                latte: latteAdds['wave3']['MT']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave3']['MT']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave3']['MT']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Tank',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave3']['OT']['description'] as string,
-                                latte: latteAdds['wave3']['OT']['description'] as string,
-                                yukizuri: yukizuriAdds['wave3']['OT']['description'] as string,
-                                cleave: cleaveAdds['wave3']['OT']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave3']['OT']['imageUrl'] as string,
-                                latte: latteAdds['wave3']['OT']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave3']['OT']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave3']['OT']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave3']['H1']['description'] as string,
-                                latte: latteAdds['wave3']['H1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave3']['H1']['description'] as string,
-                                cleave: cleaveAdds['wave3']['H1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave3']['H1']['imageUrl'] as string,
-                                latte: latteAdds['wave3']['H1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave3']['H1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave3']['H1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave3']['H2']['description'] as string,
-                                latte: latteAdds['wave3']['H2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave3']['H2']['description'] as string,
-                                cleave: cleaveAdds['wave3']['H2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave3']['H2']['imageUrl'] as string,
-                                latte: latteAdds['wave3']['H2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave3']['H2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave3']['H2']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Melee',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave3']['M1']['description'] as string,
-                                latte: latteAdds['wave3']['M1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave3']['M1']['description'] as string,
-                                cleave: cleaveAdds['wave3']['M1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave3']['M1']['imageUrl'] as string,
-                                latte: latteAdds['wave3']['M1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave3']['M1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave3']['M1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Melee',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave3']['M2']['description'] as string,
-                                latte: latteAdds['wave3']['M2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave3']['M2']['description'] as string,
-                                cleave: cleaveAdds['wave3']['M2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave3']['M2']['imageUrl'] as string,
-                                latte: latteAdds['wave3']['M2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave3']['M2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave3']['M2']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave3']['R1']['description'] as string,
-                                latte: latteAdds['wave3']['R1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave3']['R1']['description'] as string,
-                                cleave: cleaveAdds['wave3']['R1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave3']['R1']['imageUrl'] as string,
-                                latte: latteAdds['wave3']['R1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave3']['R1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave3']['R1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave3']['R2']['description'] as string,
-                                latte: latteAdds['wave3']['R2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave3']['R2']['description'] as string,
-                                cleave: cleaveAdds['wave3']['R2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave3']['R2']['imageUrl'] as string,
-                                latte: latteAdds['wave3']['R2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave3']['R2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave3']['R2']['imageUrl'] as string,
-                            }
-                        },
-                    ]
+                    strats: getStratArray(addsStrats, 'wave3'),
                 },
                 {
                     mechanic: 'Wave 4',
-                    strats: [
-                        {
-                            role: 'Tank',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave4']['MT']['description'] as string,
-                                latte: latteAdds['wave4']['MT']['description'] as string,
-                                yukizuri: yukizuriAdds['wave4']['MT']['description'] as string,
-                                cleave: cleaveAdds['wave4']['MT']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave4']['MT']['imageUrl'] as string,
-                                latte: latteAdds['wave4']['MT']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave4']['MT']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave4']['MT']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Tank',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave4']['OT']['description'] as string,
-                                latte: latteAdds['wave4']['OT']['description'] as string,
-                                yukizuri: yukizuriAdds['wave4']['OT']['description'] as string,
-                                cleave: cleaveAdds['wave4']['OT']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave4']['OT']['imageUrl'] as string,
-                                latte: latteAdds['wave4']['OT']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave4']['OT']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave4']['OT']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave4']['H1']['description'] as string,
-                                latte: latteAdds['wave4']['H1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave4']['H1']['description'] as string,
-                                cleave: cleaveAdds['wave4']['H1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave4']['H1']['imageUrl'] as string,
-                                latte: latteAdds['wave4']['H1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave4']['H1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave4']['H1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Healer',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave4']['H2']['description'] as string,
-                                latte: latteAdds['wave4']['H2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave4']['H2']['description'] as string,
-                                cleave: cleaveAdds['wave4']['H2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave4']['H2']['imageUrl'] as string,
-                                latte: latteAdds['wave4']['H2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave4']['H2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave4']['H2']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Melee',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave4']['M1']['description'] as string,
-                                latte: latteAdds['wave4']['M1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave4']['M1']['description'] as string,
-                                cleave: cleaveAdds['wave4']['M1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave4']['M1']['imageUrl'] as string,
-                                latte: latteAdds['wave4']['M1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave4']['M1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave4']['M1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Melee',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave4']['M2']['description'] as string,
-                                latte: latteAdds['wave4']['M2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave4']['M2']['description'] as string,
-                                cleave: cleaveAdds['wave4']['M2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave4']['M2']['imageUrl'] as string,
-                                latte: latteAdds['wave4']['M2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave4']['M2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave4']['M2']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 1,
-                            description: {
-                                toxic: toxicAdds['wave4']['R1']['description'] as string,
-                                latte: latteAdds['wave4']['R1']['description'] as string,
-                                yukizuri: yukizuriAdds['wave4']['R1']['description'] as string,
-                                cleave: cleaveAdds['wave4']['R1']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave4']['R1']['imageUrl'] as string,
-                                latte: latteAdds['wave4']['R1']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave4']['R1']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave4']['R1']['imageUrl'] as string,
-                            }
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 2,
-                            description: {
-                                toxic: toxicAdds['wave4']['R2']['description'] as string,
-                                latte: latteAdds['wave4']['R2']['description'] as string,
-                                yukizuri: yukizuriAdds['wave4']['R2']['description'] as string,
-                                cleave: cleaveAdds['wave4']['R2']['description'] as string,
-                            },
-                            imageUrl: {
-                                toxic: toxicAdds['wave4']['R2']['imageUrl'] as string,
-                                latte: latteAdds['wave4']['R2']['imageUrl'] as string,
-                                yukizuri: yukizuriAdds['wave4']['R2']['imageUrl'] as string,
-                                cleave: cleaveAdds['wave4']['R2']['imageUrl'] as string,
-                            }
-                        },
-                    ]
+                    strats: getStratArray(addsStrats, 'wave4'),
                 },
             ]
         },

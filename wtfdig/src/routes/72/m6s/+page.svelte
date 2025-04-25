@@ -4,7 +4,7 @@
 	import { Accordion, Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
-	import { Clock, Info, Shield, Siren, Wrench, X} from '@lucide/svelte/icons';
+	import { Info } from '@lucide/svelte/icons';
 	import { getContext } from 'svelte';
   	import { type ToastContext, Modal } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
@@ -32,6 +32,13 @@
 	let alignment: Alignment = $state('original');
 	let optionsString = $derived(getOptionsString(stratName, role, party));
 	export const toast: ToastContext = getContext('toast');
+
+	const addsUrls: Record<string, any> = {
+		'latte': {name: 'Latte Adds', url: 'https://raidplan.io/plan/s_q_kuYAhHcOLcxb'},
+		'toxic': {name: 'Toxic Adds', url: 'https://raidplan.io/plan/Pgj53K49w8LAZpI6'},
+		'yukizuri': {name: 'Yukizuri Adds', url: 'https://www.youtube.com/watch?v=1LQ2OzMn7EE'},
+		'cleave': {name: 'Cleavemaxxing Adds', url: 'https://raidplan.io/plan/ywV9cu6GRQ68SQLy'},
+	}
 
 	$effect(() => {
 		let stratCode = '';
@@ -320,6 +327,15 @@
 									</svg>
 								</a>
 							{/each}
+						{/if}
+						{#if (stratState.adds && addsUrls[stratState.adds])}
+							<div>
+								<a class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href={addsUrls[stratState.adds].url}>{addsUrls[stratState.adds].name}
+									<svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+										<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+									</svg>
+								</a>
+							</div>
 						{/if}
 					</div>
 					<div class="grow"></div>
