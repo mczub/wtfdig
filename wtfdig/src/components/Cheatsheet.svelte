@@ -1,7 +1,7 @@
 <svelte:options customElement={{shadow: 'none'}} ></svelte:options>
 <script lang="ts">
     import { Modal, Tabs, Tooltip } from '@skeletonlabs/skeleton-svelte';
-    import { Clock, Info, Shield, Siren, TriangleAlert, Wrench, X} from '@lucide/svelte/icons';
+    import { Clock, Expand, ExternalLink, Shield, Siren, TriangleAlert, Wrench, X} from '@lucide/svelte/icons';
 
     let { title, stratName, stratState, getStratMechs, cheatsheetOpenState = $bindable(), individualStrat, spotlight, alignment, timeline, innerWidth, innerHeight, rows, columns, tabTags = null } = $props();
     
@@ -49,12 +49,58 @@
 	function closeCheatsheet() {
 		cheatsheetOpenState = false;
 	}
+
+    let imageOpenState = $state(false);
+	let imageModalProps = $state({
+		title: '',
+		description: '',
+		url: ''
+	});
+
+	function openImageModal(title: string, description: string, imgUrl: string) {
+		imageModalProps = {
+			title: title,
+			description: description,
+			url: imgUrl,
+		}
+		imageOpenState = true;
+	}
+
+	function closeImage() {
+		imageModalProps = {
+			title: '',
+			description: '',
+			url: ''
+		};
+		imageOpenState = false;
+	}
 </script>
+
+<Modal
+  open={imageOpenState}
+  onOpenChange={(e) => (imageOpenState = e.open)}
+  contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl flex flex-col"
+  backdropClasses="backdrop-blur-sm"
+  zIndex={"3000"}
+>
+	{#snippet content()}
+		<header class="flex justify-between">
+			<div class="text-lg 3xl:text-2xl">{imageModalProps.title}</div>
+			<X onclick={closeImage} />
+		</header>
+		<div>
+			<div class="whitespace-pre-wrap">{imageModalProps.description}</div>
+			<img class="rounded-md mt-4" src={imageModalProps.url} />
+		</div>
+	{/snippet}
+</Modal>
+
 
 <Modal
   open={cheatsheetOpenState}
   onOpenChange={(e) => (cheatsheetOpenState = e.open)}
   contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl flex flex-col h-full w-full"
+  contentClasses={imageOpenState ? 'blur-sm' : ''}
   backdropClasses="backdrop-blur-sm"
 >
   {#snippet content()}
@@ -145,8 +191,11 @@
                         <div class="grid grid-flow-col auto-cols-fr auto-rows-fr gap-2 h-full" style:grid-column={`span ${phase.mechs.length}`}>
                             {#each phase.mechs as mech}
                                 {#key [spotlight, alignment]}
-                                <div class="flex flex-col h-0 min-h-full overflow-hidden" class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}>
-                                    <div class="capitalize font-semibold text-sm 3xl:text-base mb-0">{mech.mechanic}</div> 
+                                <button class="flex flex-col h-0 min-h-full overflow-hidden group text-start" class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]} onclick={() => openImageModal(mech.mechanic, (mech.description || ''), mech.imageUrl ? mech.imageUrl : mech.strats[0]?.imageUrl)}>
+                                    <div class="flex justify-between capitalize font-semibold text-sm 3xl:text-base mb-0">
+                                        {mech.mechanic}
+                                        <span class="not-group-hover:hidden"><Expand size={16}/></span>
+                                    </div> 
                                     {#if mech?.description}<div class="whitespace-pre-wrap text-xs 3xl:text-base mb-0">{mech.description}</div>{/if}
                                     {#if mech?.imageUrl}<img class="object-contain rounded-md mt-1 min-h-0 h-full" src={mech.imageUrl} />{/if}
                                     <div class="whitespace-pre-wrap text-xs 3xl:text-base mb-0">{mech?.strats && mech.strats[0].description}</div>
@@ -154,7 +203,7 @@
                                     {#if mech?.strats && mech.strats[0]?.imageUrl}
                                         <img class="object-contain rounded-md mt-1 min-h-0 h-full" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />
                                     {/if}
-                                </div>
+                                </button>
                                 {/key}
                             {/each}
                         </div>

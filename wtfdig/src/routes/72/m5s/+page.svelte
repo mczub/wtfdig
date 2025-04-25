@@ -4,7 +4,7 @@
 	import { Accordion, Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
-	import { Clock, Info, Shield, Siren, Wrench, X} from '@lucide/svelte/icons';
+	import { ExternalLink, Info, Shield, Siren, Wrench, X} from '@lucide/svelte/icons';
 	import { getContext } from 'svelte';
   	import { type ToastContext, Modal } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
@@ -180,6 +180,30 @@
 	let isCheatsheetEnabled = $derived(innerWidth > 1024 && innerHeight > 768);
 
 	let cheatsheetOpenState = $state(false);
+	let imageOpenState = $state(false);
+	let imageModalProps = $state({
+		title: '',
+		description: '',
+		url: ''
+	});
+
+	function openImageModal(title: string, description: string, imgUrl: string) {
+		imageModalProps = {
+			title: title,
+			description: description,
+			url: imgUrl,
+		}
+		imageOpenState = true;
+	}
+
+	function closeImage() {
+		imageModalProps = {
+			title: '',
+			description: '',
+			url: ''
+		};
+		imageOpenState = false;
+	}
 </script>
 
 <svelte:window bind:innerWidth={innerWidth} bind:innerHeight={innerHeight} />
@@ -199,6 +223,24 @@
 	innerHeight={innerHeight}
 	innerWidth={innerWidth}
 />
+
+<Modal
+  open={imageOpenState}
+  onOpenChange={(e) => (imageOpenState = e.open)}
+  contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl flex flex-col"
+  backdropClasses="backdrop-blur-sm"
+>
+	{#snippet content()}
+		<header class="flex justify-between">
+			<div class="text-lg 3xl:text-2xl">{imageModalProps.title}</div>
+			<X onclick={closeImage} />
+		</header>
+		<div>
+			<div>{imageModalProps.description}</div>
+			<img class="rounded-md mt-4" src={imageModalProps.url} />
+		</div>
+	{/snippet}
+</Modal>
 
 <div class="container grow px-4 mx-auto mb-6">
 	<div class="container">
@@ -325,13 +367,13 @@
 						{/if}
 					</div>
 					{#if phase?.description}<div class="text-lg whitespace-pre-wrap">{phase.description}</div>{/if}
-					{#if phase?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />{/if}
+					{#if phase?.imageUrl}<img class="rounded-md mt-4" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />{/if}
 					{#if phase?.mechs}
 						<div class="grid xl:grid-cols-2 grid-cols-2 gap-2 mt-4">
 							{#each phase.mechs as mech}
 								{#key [spotlight, alignment]}
 								<div class="space-y-4" class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}>
-									<div class="capitalize font-semibold text-xl mb-0">{mech.mechanic}</div> 
+									<div class="capitalize font-semibold text-xl mb-0">{mech.mechanic} <button onclick={() => openImageModal(mech.mechanic, (mech.description || ''), mech.imageUrl ? mech.imageUrl : mech.strats[0]?.imageUrl)} ><ExternalLink /></button></div> 
 									{#if mech?.notes}
 										<div class="card preset-outlined-primary-500 p-2 flex flex-row space-x-2 my-2">
 											<CircleAlert size={32} />
