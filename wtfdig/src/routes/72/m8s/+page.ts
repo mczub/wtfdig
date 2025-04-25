@@ -1854,7 +1854,7 @@ const allP1: PhaseStrats[] = [
         ]
     },
     {
-        phaseName: 'Millenial Decay',
+        phaseName: 'Millennial Decay',
         tag: 'decay',
         mechs: [
             {
