@@ -4903,6 +4903,65 @@ const toxicP3: PhaseStrats[] = [
             },
         ]
     },
+    {
+        phaseName: 'Stoneringers 2', 
+        mechs: [
+            {
+                mechanic: 'Seeds',
+                description: 'Color Markers',
+                strats: [
+                    {
+                        role: 'Tank',
+                        party: 1,
+                        description: 'A (Red) Marker',
+                        imageUrl: './m7s/p3/toxic-stoneringers2-supports.webp'
+                    },
+                    {
+                        role: 'Tank',
+                        party: 2,
+                        description: 'C (Blue) Marker',
+                        imageUrl: './m7s/p3/toxic-stoneringers2-supports.webp'
+                    },
+                    {
+                        role: 'Healer',
+                        party: 1,
+                        description: 'B (Yellow) Marker',
+                        imageUrl: './m7s/p3/toxic-stoneringers2-supports.webp'
+                    },
+                    {
+                        role: 'Healer',
+                        party: 2,
+                        description: 'D (Purple) Marker',
+                        imageUrl: './m7s/p3/toxic-stoneringers2-supports.webp'
+                    },
+                    {
+                        role: 'Melee',
+                        party: 1,
+                        description: 'D (Purple) Marker',
+                        imageUrl: './m7s/p3/toxic-stoneringers2-dps.webp'
+                    },
+                    {
+                        role: 'Melee',
+                        party: 2,
+                        description: 'C (Blue) Marker',
+                        imageUrl: './m7s/p3/toxic-stoneringers2-dps.webp'
+                    },
+                    {
+                        role: 'Ranged',
+                        party: 1,
+                        description: 'A (Red) Marker',
+                        imageUrl: './m7s/p3/toxic-stoneringers2-dps.webp'
+                    },
+                    {
+                        role: 'Ranged',
+                        party: 2,
+                        description: 'B (Yellow) Marker',
+                        imageUrl: './m7s/p3/toxic-stoneringers2-dps.webp'
+                    },
+                ]
+            },
+        ]
+    },
 ]
 
 const toxicStrat: Strat = {
