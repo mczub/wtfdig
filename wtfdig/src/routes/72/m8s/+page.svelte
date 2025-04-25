@@ -372,7 +372,7 @@
 				<div class="flex flex-row space-x-4 space-y-2 flex-wrap">
 					<div class="flex flex-col">
 						<div class="flex flex-row">
-							<div class="text-md mb-2">Millenial Decay</div>
+							<div class="text-md mb-2">Millennial Decay</div>
 							{#if stratName && stratState.decay !== getStratMechs(stratName)['decay']}
 								<Tooltip
 									positioning={{ placement: 'top' }}
