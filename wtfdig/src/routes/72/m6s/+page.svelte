@@ -241,8 +241,9 @@
 		<div class="flex flex-wrap min-w-full justify-between mb-8 card preset-filled-surface-50-950 border-[1px] border-surface-200-800 p-4">
 			<div class="space-y-5 v-full dark">
 				<div class="card preset-outlined-warning-500 gap-4 p-4">
-                    <p>This guide is still under construction, thank you for your patience while we continue to work on it.</p>
+                    <p>This site is still under construction, thank you for your patience while we continue to work on it.</p>
 					<p>Some strats may be missing images or highlights.</p>
+					<p>This is intended to be a quick reference, please refer to the original guides for full explanations of mechanics.</p>
                 </div>
 				<div>
 					<div class="text-xl mb-2">Which strat are you using?</div>
