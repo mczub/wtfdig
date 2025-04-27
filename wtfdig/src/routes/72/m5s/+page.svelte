@@ -9,7 +9,6 @@
   	import { type ToastContext, Modal } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
 	import Cheatsheet from '../../../components/Cheatsheet.svelte';
-	import ImagePreview from '../../../components/ImagePreview.svelte';
 
 	interface Props {
 		data: {
@@ -323,7 +322,7 @@
 						{/if}
 					</div>
 					{#if phase?.description}<div class="text-lg whitespace-pre-wrap">{phase.description}</div>{/if}
-					{#if phase?.imageUrl}<img class="rounded-md mt-4" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />{/if}
+					{#if phase?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />{/if}
 					{#if phase?.mechs}
 						<div class="grid xl:grid-cols-2 grid-cols-2 gap-2 mt-4">
 							{#each phase.mechs as mech}
