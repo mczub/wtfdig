@@ -9,6 +9,7 @@
   	import { type ToastContext, Modal } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
 	import Cheatsheet from '../../../components/Cheatsheet.svelte';
+	import ImagePreview from '../../../components/ImagePreview.svelte';
 
 	interface Props {
 		data: {
@@ -180,30 +181,6 @@
 	let isCheatsheetEnabled = $derived(innerWidth > 1024 && innerHeight > 768);
 
 	let cheatsheetOpenState = $state(false);
-	let imageOpenState = $state(false);
-	let imageModalProps = $state({
-		title: '',
-		description: '',
-		url: ''
-	});
-
-	function openImageModal(title: string, description: string, imgUrl: string) {
-		imageModalProps = {
-			title: title,
-			description: description,
-			url: imgUrl,
-		}
-		imageOpenState = true;
-	}
-
-	function closeImage() {
-		imageModalProps = {
-			title: '',
-			description: '',
-			url: ''
-		};
-		imageOpenState = false;
-	}
 </script>
 
 <svelte:window bind:innerWidth={innerWidth} bind:innerHeight={innerHeight} />
@@ -223,24 +200,6 @@
 	innerHeight={innerHeight}
 	innerWidth={innerWidth}
 />
-
-<Modal
-  open={imageOpenState}
-  onOpenChange={(e) => (imageOpenState = e.open)}
-  contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl flex flex-col"
-  backdropClasses="backdrop-blur-sm"
->
-	{#snippet content()}
-		<header class="flex justify-between">
-			<div class="text-lg 3xl:text-2xl">{imageModalProps.title}</div>
-			<X onclick={closeImage} />
-		</header>
-		<div>
-			<div>{imageModalProps.description}</div>
-			<img class="rounded-md mt-4" src={imageModalProps.url} />
-		</div>
-	{/snippet}
-</Modal>
 
 <div class="container grow px-4 mx-auto mb-6">
 	<div class="container">
@@ -370,7 +329,7 @@
 							{#each phase.mechs as mech}
 								{#key [spotlight, alignment]}
 								<div class="space-y-4" class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}>
-									<div class="capitalize font-semibold text-xl mb-0">{mech.mechanic} <button onclick={() => openImageModal(mech.mechanic, (mech.description || ''), mech.imageUrl ? mech.imageUrl : mech.strats[0]?.imageUrl)} ><ExternalLink /></button></div> 
+									<div class="capitalize font-semibold text-xl mb-0">{mech.mechanic}</div> 
 									{#if mech?.notes}
 										<div class="card preset-outlined-primary-500 p-2 flex flex-row space-x-2 my-2">
 											<CircleAlert size={32} />
