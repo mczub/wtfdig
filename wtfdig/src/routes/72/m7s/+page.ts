@@ -4925,13 +4925,13 @@ const toxicP3: PhaseStrats[] = [
                     {
                         role: 'Healer',
                         party: 1,
-                        description: 'B (Yellow) Marker',
+                        description: 'D (Purple) Marker',
                         imageUrl: './m7s/p3/toxic-stoneringers2-supports.webp'
                     },
                     {
                         role: 'Healer',
                         party: 2,
-                        description: 'D (Purple) Marker',
+                        description: 'B (Yellow) Marker',
                         imageUrl: './m7s/p3/toxic-stoneringers2-supports.webp'
                     },
                     {

@@ -4,7 +4,7 @@
 	import { Accordion, Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
-	import { Info } from '@lucide/svelte/icons';
+	import { ExternalLink, Info } from '@lucide/svelte/icons';
 	import { getContext } from 'svelte';
   	import { type ToastContext, Modal } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
@@ -241,8 +241,9 @@
 		<div class="flex flex-wrap min-w-full justify-between mb-8 card preset-filled-surface-50-950 border-[1px] border-surface-200-800 p-4">
 			<div class="space-y-5 v-full dark">
 				<div class="card preset-outlined-warning-500 gap-4 p-4">
-                    <p>This guide is still under construction, thank you for your patience while we continue to work on it.</p>
+                    <p>This site is still under construction, thank you for your patience while we continue to work on it.</p>
 					<p>Some strats may be missing images or highlights.</p>
+					<p>This is intended to be a quick reference, please refer to the original guides for full explanations of mechanics.</p>
                 </div>
 				<div>
 					<div class="text-xl mb-2">Which strat are you using?</div>
@@ -312,28 +313,22 @@
 					<div class="content-center">
 						<div class="capitalize font-semibold text-2xl mb-0">{optionsString}</div>
 						{#if typeof strat?.stratUrl === 'string'}
-							<a class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href={strat.stratUrl}>{strat.description}
-								<svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-									<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-								</svg>
+							<a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={strat.stratUrl}>{strat.description}
+								<ExternalLink />
 							</a>
 						{:else if typeof strat?.stratUrl === 'object'}
-							{strat.description}
+							<span class="text-lg">{strat.description}</span>
 							{#each Object.entries(strat.stratUrl) as [linkName, linkUrl]}
 								 
-								<a class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href={linkUrl}>{linkName}
-									<svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-										<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-									</svg>
+								<a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={linkUrl}>{linkName}
+									<ExternalLink />
 								</a>
 							{/each}
 						{/if}
 						{#if (stratState.adds && addsUrls[stratState.adds])}
 							<div>
-								<a class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href={addsUrls[stratState.adds].url}>{addsUrls[stratState.adds].name}
-									<svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-										<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-									</svg>
+								<a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={addsUrls[stratState.adds].url}>{addsUrls[stratState.adds].name}
+									<ExternalLink />
 								</a>
 							</div>
 						{/if}
