@@ -594,7 +594,7 @@ const raidplanStrat: Strat = {
                             },
                             mask: {
                                 bd: '',
-                                ns: 'radial-gradient(circle at 45% 32%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
+                                ns: 'radial-gradient(circle at 55% 31%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
                                 we: '',
                             }
                         },
@@ -613,7 +613,7 @@ const raidplanStrat: Strat = {
                             },
                             mask: {
                                 bd: '',
-                                ns: 'radial-gradient(circle at 55% 31%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
+                                ns: 'radial-gradient(circle at 45% 32%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
                                 we: '',
                             }
                         },
