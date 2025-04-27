@@ -1,7 +1,8 @@
 <svelte:options customElement={{shadow: 'none'}} ></svelte:options>
 <script lang="ts">
     import { Modal, Tabs, Tooltip } from '@skeletonlabs/skeleton-svelte';
-    import { Clock, Info, Shield, Siren, TriangleAlert, Wrench, X} from '@lucide/svelte/icons';
+    import { Clock, Expand, ExternalLink, Shield, Siren, TriangleAlert, Wrench, X} from '@lucide/svelte/icons';
+	import ImagePreview from './ImagePreview.svelte';
 
     let { title, stratName, stratState, getStratMechs, cheatsheetOpenState = $bindable(), individualStrat, spotlight, alignment, timeline, innerWidth, innerHeight, rows, columns, tabTags = null } = $props();
     
@@ -49,12 +50,33 @@
 	function closeCheatsheet() {
 		cheatsheetOpenState = false;
 	}
+
+    let imageOpenState = $state(false);
+	let imageModalProps = $state({
+        phase: null,
+        mech: null,
+	});
+
+	function openImageModal(phase: any, mech?: any) {
+		imageModalProps = {
+			phase: phase,
+            mech: mech
+		}
+		imageOpenState = true;
+	}
 </script>
+
+<ImagePreview 
+    bind:imageOpenState={imageOpenState}
+    mech={imageModalProps.mech}
+    phase={imageModalProps.phase}
+/>
 
 <Modal
   open={cheatsheetOpenState}
   onOpenChange={(e) => (cheatsheetOpenState = e.open)}
   contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl flex flex-col h-full w-full"
+  contentClasses={imageOpenState ? 'blur-sm' : ''}
   backdropClasses="backdrop-blur-sm"
 >
   {#snippet content()}
@@ -120,46 +142,78 @@
         {/if}
         {#each individualStrat as phase}
             {#if (tabTags && tabTags[tab] ? tabTags[tab].includes(phase.tag) : true)}
-                <div class="card border border-surface-800 p-2 h-0 min-h-full flex flex-col" style:grid-column={`span ${phase.mechs ? phase.mechs.length : 0}`}>
-                    <div class="flex flex-row items-center">
-                        <div class="capitalize font-bold text-sm 3xl:text-lg mb-0">{phase.phaseName}</div>
-                        {#if phase?.tag && (stratState[phase.tag] !== getStratMechs(stratName)[phase.tag])}
-                            <Tooltip
-                                positioning={{ placement: 'top' }}
-                                triggerBase="flex"
-                                contentBase="card bg-surface-800 p-4"
-                                classes="ml-2"
-                                openDelay={200}
-                                arrow
-                                arrowBackground="!bg-surface-800"
+                {#if phase?.mechs}
+                    <div class="card border border-surface-800 p-2 h-0 min-h-full flex flex-col" style:grid-column={`span ${phase.mechs ? phase.mechs.length : 0}`}>
+                        <div class="flex flex-row items-center">
+                            <div class="capitalize font-bold text-sm 3xl:text-lg mb-0">{phase.phaseName}</div>
+                            {#if phase?.tag && (stratState[phase.tag] !== getStratMechs(stratName)[phase.tag])}
+                                <Tooltip
+                                    positioning={{ placement: 'top' }}
+                                    triggerBase="flex"
+                                    contentBase="card bg-surface-800 p-4"
+                                    classes="ml-2"
+                                    openDelay={200}
+                                    arrow
+                                    arrowBackground="!bg-surface-800"
 
-                            >
-                            {#snippet trigger()}<div class="text-warning-500 self-center"><TriangleAlert size={24}/></div>{/snippet}
-                            {#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
-                            </Tooltip>
+                                >
+                                {#snippet trigger()}<div class="text-warning-500 self-center"><TriangleAlert size={24}/></div>{/snippet}
+                                {#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
+                                </Tooltip>
+                            {/if}
+                        </div>
+                        {#if phase?.description}<div class="text-xs 3xl:text-base whitespace-pre-wrap">{phase.description}</div>{/if}
+                        {#if phase?.imageUrl}<img class="object-contain rounded-md min-h-0 h-full" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />{/if}
+                        {#if phase?.mechs}
+                            <div class="grid grid-flow-col auto-cols-fr auto-rows-fr gap-2 h-full" style:grid-column={`span ${phase.mechs.length}`}>
+                                {#each phase.mechs as mech}
+                                    {#key [spotlight, alignment]}
+                                    <button class="flex flex-col h-0 min-h-full overflow-hidden group text-start" class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]} onclick={() => openImageModal(phase, mech)}>
+                                        <div class="flex justify-between capitalize font-semibold text-sm 3xl:text-base mb-0">
+                                            {mech.mechanic}
+                                            <span class="not-group-hover:hidden"><Expand size={16}/></span>
+                                        </div> 
+                                        {#if mech?.description}<div class="whitespace-pre-wrap text-xs 3xl:text-base mb-0">{mech.description}</div>{/if}
+                                        {#if mech?.imageUrl}<img class="object-contain rounded-md mt-1 min-h-0 h-full" src={mech.imageUrl} />{/if}
+                                        <div class="whitespace-pre-wrap text-xs 3xl:text-base mb-0">{mech?.strats && mech.strats[0].description}</div>
+                                        
+                                        {#if mech?.strats && mech.strats[0]?.imageUrl}
+                                            <img class="object-contain rounded-md mt-1 min-h-0 h-full" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />
+                                        {/if}
+                                    </button>
+                                    {/key}
+                                {/each}
+                            </div>
                         {/if}
                     </div>
-                    {#if phase?.description}<div class="text-xs 3xl:text-base whitespace-pre-wrap">{phase.description}</div>{/if}
-                    {#if phase?.imageUrl}<img class="object-contain rounded-md min-h-0 h-full" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />{/if}
-                    {#if phase?.mechs}
-                        <div class="grid grid-flow-col auto-cols-fr auto-rows-fr gap-2 h-full" style:grid-column={`span ${phase.mechs.length}`}>
-                            {#each phase.mechs as mech}
-                                {#key [spotlight, alignment]}
-                                <div class="flex flex-col h-0 min-h-full overflow-hidden" class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}>
-                                    <div class="capitalize font-semibold text-sm 3xl:text-base mb-0">{mech.mechanic}</div> 
-                                    {#if mech?.description}<div class="whitespace-pre-wrap text-xs 3xl:text-base mb-0">{mech.description}</div>{/if}
-                                    {#if mech?.imageUrl}<img class="object-contain rounded-md mt-1 min-h-0 h-full" src={mech.imageUrl} />{/if}
-                                    <div class="whitespace-pre-wrap text-xs 3xl:text-base mb-0">{mech?.strats && mech.strats[0].description}</div>
-                                    
-                                    {#if mech?.strats && mech.strats[0]?.imageUrl}
-                                        <img class="object-contain rounded-md mt-1 min-h-0 h-full" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />
-                                    {/if}
-                                </div>
-                                {/key}
-                            {/each}
+                {:else}
+                    <button class="card border border-surface-800 p-2 h-0 min-h-full flex flex-col text-start group" style:grid-column={`span ${phase.mechs ? phase.mechs.length : 0}`} onclick={() => openImageModal(phase)}>
+                        <div class="flex flex-row items-center">
+                            <div class="flex justify-between capitalize font-bold text-sm 3xl:text-lg mb-0 w-full">
+                                {phase.phaseName}
+                                <span class="not-group-hover:hidden"><Expand size={16}/></span>
+                            </div>
+                            {#if phase?.tag && (stratState[phase.tag] !== getStratMechs(stratName)[phase.tag])}
+                                <Tooltip
+                                    positioning={{ placement: 'top' }}
+                                    triggerBase="flex"
+                                    contentBase="card bg-surface-800 p-4"
+                                    classes="ml-2"
+                                    openDelay={200}
+                                    arrow
+                                    arrowBackground="!bg-surface-800"
+
+                                >
+                                {#snippet trigger()}<div class="text-warning-500 self-center"><TriangleAlert size={24}/></div>{/snippet}
+                                {#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
+                                </Tooltip>
+                            {/if}
                         </div>
-                    {/if}
-                </div>
+                        {#if phase?.description}<div class="text-xs 3xl:text-base whitespace-pre-wrap">{phase.description}</div>{/if}
+                        {#if phase?.imageUrl}<img class="object-contain rounded-md min-h-0 h-full" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />{/if}
+                    </button>
+                {/if}
+
             {/if}
         {/each}
     </div>
