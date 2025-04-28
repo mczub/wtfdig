@@ -87,6 +87,7 @@
     bind:imageOpenState={imageOpenState}
     mech={imageModalProps.mech}
     phase={imageModalProps.phase}
+    spotlight={spotlight}
 />
 
 <Modal

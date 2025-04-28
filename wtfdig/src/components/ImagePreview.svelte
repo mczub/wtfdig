@@ -3,7 +3,7 @@
     import { Modal } from '@skeletonlabs/skeleton-svelte';
     import { X } from '@lucide/svelte/icons';
 
-    let { phase, mech = null, imageOpenState = $bindable() } = $props();
+    let { phase, mech = null, spotlight, imageOpenState = $bindable() } = $props();
 
 	function openImageModal() {
 		imageOpenState = true;
@@ -22,6 +22,16 @@
         }
         if (mech?.strats) {
             return mech?.strats[0]?.imageUrl;
+        }
+        return '';
+    }
+
+    function getImageMask() {
+        if (phase && !mech) {
+            return phase.mask;
+        }
+        if (mech?.strats) {
+            return mech.strats[0]?.mask;
         }
         return '';
     }
@@ -47,7 +57,7 @@
             <div class="font-bold text-base lg:text-xl">{mech ? mech?.mechanic : ''}</div>
 			<div class="whitespace-pre-wrap text-xs lg:text-lg">{mech ? mech?.description : ''}</div>
             <div class="whitespace-pre-wrap text-xs lg:text-lg mb-0">{mech ? mech?.strats && mech.strats[0].description : ''}</div>
-			<img class="rounded-md mt-4" src={getImageModalUrl()} />
+			<img class="rounded-md mt-4" src={getImageModalUrl()} style:mask-image={spotlight && getImageMask()} />
 		</div>
 	{/snippet}
 </Modal>
