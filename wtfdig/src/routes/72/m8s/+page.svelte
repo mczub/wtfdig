@@ -9,10 +9,12 @@
   	import { type ToastContext } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
 	import Cheatsheet from '../../../components/Cheatsheet.svelte';
+	import type { TimelineItem } from '$lib/types';
 
 	interface Props {
 		data: {
 			strats: Strat[];
+			timeline: TimelineItem[];
 		};
 		children?: import('svelte').Snippet;
 	}
@@ -332,7 +334,7 @@
 <Cheatsheet 
 	title={`M8S Cheatsheet - ${optionsString}`}
 	bind:cheatsheetOpenState={cheatsheetOpenState}
-	timeline={[]}
+	timeline={data.timeline}
 	stratName={stratName}
 	stratState={stratState}
 	getStratMechs={getStratMechs}
@@ -340,7 +342,7 @@
 	spotlight={spotlight}
 	alignment={alignment}
 	rows=3
-	columns=5
+	columns=6
 	innerHeight={innerHeight}
 	innerWidth={innerWidth}
 	tabTags={{"P1": ['p1', 'decay', 'terrestrial', 'moonlight'], "P2": ['p2', 'twofold', 'lament', 'uv4']}}

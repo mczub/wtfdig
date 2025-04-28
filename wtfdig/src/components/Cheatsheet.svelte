@@ -3,8 +3,14 @@
     import { Modal, Tabs, Tooltip } from '@skeletonlabs/skeleton-svelte';
     import { Clock, Expand, ExternalLink, Shield, Siren, TriangleAlert, Wrench, X} from '@lucide/svelte/icons';
 	import ImagePreview from './ImagePreview.svelte';
+	import type { TimelineItem } from '$lib/types';
 
-    let { title, stratName, stratState, getStratMechs, cheatsheetOpenState = $bindable(), individualStrat, spotlight, alignment, timeline, innerWidth, innerHeight, rows, columns, tabTags = null } = $props();
+    interface Props {
+		timeline: TimelineItem[];
+        [propName: string]: any;
+	}
+
+    let { title, stratName, stratState, getStratMechs, cheatsheetOpenState = $bindable(), individualStrat, spotlight, alignment, timeline, innerWidth, innerHeight, rows, columns, tabTags = null }: Props = $props();
     
 	function msToTime(timeInMs: number): string {
 		const seconds = (Math.floor(timeInMs / 1000) % 60).toString().padStart(2, '0');
@@ -17,7 +23,12 @@
 		if (useEvenTimelineSpacing) {
 			return `${(Math.floor(index * 980 / timeline.length)/10).toString()}%`;
 		}
-		const enrageTime = timeline.find((item) => {return item.mechType === 'Enrage'})?.startTimeMs;
+        let enrageTime;
+        if (tab) {
+            enrageTime = timeline.find((item) => {return item.mechType === 'Enrage' && tabTags[tab].includes(item.mechTag) })?.startTimeMs;
+        } else {
+            enrageTime = timeline.find((item) => {return item.mechType === 'Enrage'})?.startTimeMs;
+        }
 		if (!enrageTime) return '0';
 		return `${(Math.floor(timeInMs * 980 / enrageTime)/10).toString()}%`;
 	}
@@ -35,11 +46,17 @@
 		return true;
 	}
 
+    function showMechTag(mechTag: string): boolean {
+        if (tab) {
+            return tabTags[tab].includes(mechTag);
+        }
+        return true;
+    }
+
     let tab = $state(tabTags ? Object.keys(tabTags)[0] : '');
 
 	let useEvenTimelineSpacing = $derived(innerHeight <= 1024);
-	let showFilterCaptions = $derived(innerWidth > 1280)
-	let isCheatsheetEnabled = $derived(innerWidth > 1024 && innerHeight > 768);
+	let showFilterCaptions = $derived(innerWidth > 1280);
 
 	let timelineFilters = $state({
 		"mechs": true,
@@ -104,7 +121,7 @@
             </div>
             <div class="grow relative">
                 {#each timeline as item, index}
-                    {#if showMechType(item.mechType)}
+                    {#if showMechType(item.mechType) && (item.mechTag ? showMechTag(item.mechTag) : true)}
                         <div style:top={getFightPercentClass(item.startTimeMs, index)} class="absolute flex text-xs w-full items-center" >
                             <div class="w-1/8">
                                 {#if item.mechType === 'Raidwide'}

@@ -1,8 +1,10 @@
+import type { TimelineItem } from "$lib/types";
 import type { PageLoad } from "./$types";
 
 export const load: PageLoad = ({params}) => {
     return {
         strats: [toxicStrat, pbeQ3, pbr],
+        timeline: timeline,
     }
 }
 
@@ -114,6 +116,339 @@ function getStratArray(stratRecord: Record<string, StratRecord>, mechanic: strin
         },
     ]
 }
+
+const timeline: TimelineItem[] = [
+    {
+      mechName: 'Start',
+      mechType: 'Start',
+      mechTag: 'p1',
+      startTimeMs: 0,
+    },
+    {
+      mechName: 'Extraplanar Pursuit',
+      mechType: 'Raidwide',
+      mechTag: 'p1',
+      startTimeMs: 14000,
+    },
+    {
+      mechName: 'Wind/Stonefang',
+      mechType: 'Mechanic',
+      mechTag: 'p1',
+      startTimeMs: 29000,
+    },
+    {
+      mechName: 'Reign',
+      mechType: 'Mechanic',
+      mechTag: 'p1',
+      startTimeMs: 41000,
+    },
+    {
+      mechName: 'Millenial Decay',
+      mechType: 'Mechanic',
+      mechTag: 'p1',
+      startTimeMs: 66000,
+    },
+    {
+      mechName: 'Tracking Tremors',
+      mechType: 'Raidwide',
+      mechTag: 'p1',
+      startTimeMs: 101000,
+    },
+    {
+      mechName: 'Extraplanar Pursuit',
+      mechType: 'Raidwide',
+      mechTag: 'p1',
+      startTimeMs: 115000,
+    },
+    {
+      mechName: 'Great Divide',
+      mechType: 'Tankbuster',
+      mechTag: 'p1',
+      startTimeMs: 124000,
+    },
+    {
+      mechName: 'Terrestrial Titans',
+      mechType: 'Mechanic',
+      mechTag: 'p1',
+      startTimeMs: 139000,
+    },
+    {
+      mechName: 'Reign',
+      mechType: 'Mechanic',
+      mechTag: 'p1',
+      startTimeMs: 161000,
+    },
+    {
+      mechName: 'Tactical Pack',
+      mechType: 'StoredMechanic',
+      mechTag: 'p1',
+      startTimeMs: 179000,
+    },
+    {
+      mechName: 'Adds Targetable',
+      mechType: 'Mechanic',
+      mechTag: 'p1',
+      startTimeMs: 190000,
+    },
+    {
+      mechName: 'Ravenous Saber',
+      mechType: 'Raidwide',
+      mechTag: 'p1',
+      startTimeMs: 260000,
+    },
+    {
+      mechName: 'Terrestrial Rage',
+      mechType: 'Mechanic',
+      mechTag: 'p1',
+      startTimeMs: 281000,
+    },
+    {
+      mechName: 'Reign + Heads',
+      mechType: 'Mechanic',
+      mechTag: 'p1',
+      startTimeMs: 307000,
+    },
+    {
+      mechName: 'Great Divide',
+      mechType: 'Tankbuster',
+      mechTag: 'p1',
+      startTimeMs: 326000,
+    },
+    {
+      mechName: 'Beckon Moonlight',
+      mechType: 'StoredMechanic',
+      mechTag: 'p1',
+      startTimeMs: 341000,
+    },
+    {
+      mechName: 'Moonlight #1',
+      mechType: 'Mechanic',
+      mechTag: 'p1',
+      startTimeMs: 353000,
+    },
+    {
+      mechName: 'Moonlight #2',
+      mechType: 'Mechanic',
+      mechTag: 'p1',
+      startTimeMs: 361000,
+    },
+    {
+      mechName: 'Wind/Stonefang',
+      mechType: 'Mechanic',
+      mechTag: 'p1',
+      startTimeMs: 371000,
+    },
+    {
+      mechName: 'Tracking Tremors',
+      mechType: 'Raidwide',
+      mechTag: 'p1',
+      startTimeMs: 380000,
+    },
+    {
+      mechName: 'Extraplanar Pursuit',
+      mechType: 'Raidwide',
+      mechTag: 'p1',
+      startTimeMs: 394000,
+    },
+    {
+      mechName: 'Extraplanar Pursuit',
+      mechType: 'Raidwide',
+      mechTag: 'p1',
+      startTimeMs: 404000,
+    },
+    {
+      mechName: 'Enrage',
+      mechType: 'Enrage',
+      mechTag: 'p1',
+      startTimeMs: 408000,
+    },
+    {
+      mechName: 'Cutscene',
+      mechType: 'Start',
+      mechTag: 'p2',
+      startTimeMs: 0,
+    },
+    {
+      mechName: 'Boss Targetable',
+      mechType: 'Start',
+      mechTag: 'p2',
+      startTimeMs: 45000,
+    },
+    {
+      mechName: 'Quake III',
+      mechType: 'Raidwide',
+      mechTag: 'p2',
+      startTimeMs: 58000,
+    },
+    {
+      mechName: 'Ultraviolent Ray 1',
+      mechType: 'Mechanic',
+      mechTag: 'p2',
+      startTimeMs: 70000,
+    },
+    {
+      mechName: 'Twinbite',
+      mechType: 'Tankbuster',
+      mechTag: 'p2',
+      startTimeMs: 81000,
+    },
+    {
+      mechName: `Hero's Blow`,
+      mechType: 'Mechanic',
+      mechTag: 'p2',
+      startTimeMs: 94000,
+    },
+    {
+      mechName: `Ultraviolent Ray 2`,
+      mechType: 'Mechanic',
+      mechTag: 'p2',
+      startTimeMs: 104000,
+    },
+    {
+      mechName: `Quake III`,
+      mechType: 'Raidwide',
+      mechTag: 'p2',
+      startTimeMs: 115000,
+    },
+    {
+      mechName: `Mooncleaver`,
+      mechType: 'Mechanic',
+      mechTag: 'p2',
+      startTimeMs: 126000,
+    },
+    {
+      mechName: `Prowling Gale`,
+      mechType: 'Mechanic',
+      mechTag: 'p2',
+      startTimeMs: 152000,
+    },
+    {
+      mechName: `Twofold Tempest #1`,
+      mechType: 'Mechanic',
+      mechTag: 'p2',
+      startTimeMs: 163000,
+    },
+    {
+      mechName: `Twofold Tempest #2`,
+      mechType: 'Mechanic',
+      mechTag: 'p2',
+      startTimeMs: 170000,
+    },
+    {
+      mechName: `Twofold Tempest #3`,
+      mechType: 'Mechanic',
+      mechTag: 'p2',
+      startTimeMs: 177000,
+    },
+    {
+      mechName: `Twofold Tempest #4`,
+      mechType: 'Mechanic',
+      mechTag: 'p2',
+      startTimeMs: 184000,
+    },
+    {
+      mechName: `Champion's Circuit`,
+      mechType: 'Mechanic',
+      mechTag: 'p2',
+      startTimeMs: 208000,
+    },
+    {
+      mechName: `Quake III`,
+      mechType: 'Raidwide',
+      mechTag: 'p2',
+      startTimeMs: 236000,
+    },
+    {
+      mechName: `Ultraviolent Ray 3`,
+      mechType: 'Mechanic',
+      mechTag: 'p2',
+      startTimeMs: 252000,
+    },
+    {
+      mechName: 'Twinbite',
+      mechType: 'Tankbuster',
+      mechTag: 'p2',
+      startTimeMs: 263000,
+    },
+    {
+      mechName: `Lone Wolf's Lament`,
+      mechType: 'Mechanic',
+      mechTag: 'p2',
+      startTimeMs: 284000,
+    },
+    {
+      mechName: `Hero's Blow`,
+      mechType: 'Mechanic',
+      mechTag: 'p2',
+      startTimeMs: 312000,
+    },
+    {
+      mechName: `Ultraviolent Ray 4`,
+      mechType: 'Mechanic',
+      mechTag: 'p2',
+      startTimeMs: 326000,
+    },
+    {
+      mechName: `Howling Eight 1`,
+      mechType: 'Mechanic',
+      mechTag: 'p2',
+      startTimeMs: 341000,
+    },
+    {
+      mechName: `Mooncleaver 1`,
+      mechType: 'Mechanic',
+      mechTag: 'p2',
+      startTimeMs: 352000,
+    },
+    {
+      mechName: `Howling Eight 2`,
+      mechType: 'Mechanic',
+      mechTag: 'p2',
+      startTimeMs: 360000,
+    },
+    {
+      mechName: `Mooncleaver 2`,
+      mechType: 'Mechanic',
+      mechTag: 'p2',
+      startTimeMs: 372000,
+    },
+    {
+      mechName: `Howling Eight 3`,
+      mechType: 'Mechanic',
+      mechTag: 'p2',
+      startTimeMs: 380000,
+    },
+    {
+      mechName: `Mooncleaver 3`,
+      mechType: 'Mechanic',
+      mechTag: 'p2',
+      startTimeMs: 392000,
+    },
+    {
+      mechName: `Howling Eight 4`,
+      mechType: 'Mechanic',
+      mechTag: 'p2',
+      startTimeMs: 400000,
+    },
+    {
+      mechName: `Mooncleaver 4`,
+      mechType: 'Mechanic',
+      mechTag: 'p2',
+      startTimeMs: 412000,
+    },
+    {
+      mechName: `Howling Eight 5`,
+      mechType: 'Mechanic',
+      mechTag: 'p2',
+      startTimeMs: 420000,
+    },
+    {
+      mechName: 'Enrage',
+      mechType: 'Enrage',
+      mechTag: 'p2',
+      startTimeMs: 438000,
+    },
+]
 
 const feringDecay: StratRecord = {
     'start': {
@@ -1088,6 +1423,10 @@ const toxicP2: StratRecord = {
         'description': 'Reset to South\nCW (Orange): Sides Donut In Out In\nCCW (Blue): Sides In Out In Donut',
         'imageUrl': './m8s/p2/toxic-champions.webp'
     },
+    'enrage': {
+        'description': 'Start South, go Clockwise\nParty Stack, Tank Invuln, Tanks Share, Tank Invuln, Party Stack',
+        'imageUrl': './m8s/p2/toxic-enrage.webp'
+    },
 }
 
 const originalTwofold: StratRecord = {
@@ -2020,6 +2359,12 @@ const allP2: PhaseStrats[] = [
         tag: 'uv4',
         description: getStringObject(uv4Strats, 'uv4', 'description'),
         imageUrl: getStringObject(uv4Strats, 'uv4', 'imageUrl'),
+    },
+    {
+        phaseName: `Enrage`,
+        tag: 'p2',
+        description: getStringObject(p2Strats, 'enrage', 'description'),
+        imageUrl: getStringObject(p2Strats, 'enrage', 'imageUrl'),
     },
 ]
 

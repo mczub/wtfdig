@@ -1,3 +1,4 @@
+import type { TimelineItem } from "$lib/types";
 import type { PageLoad } from "./$types";
 
 export const load: PageLoad = ({params}) => {
@@ -48,12 +49,6 @@ export interface Strat {
     description: string;
     notes: string;
     strats: PhaseStrats[];
-}
-
-export interface TimelineItem {
-    mechName: string;
-    mechType: string;
-    startTimeMs: number;
 }
 
 function getStringObject(stratRecord: Record<string, StratRecord>, mechanic: string, property: string, role?: string): Record<string, string> {

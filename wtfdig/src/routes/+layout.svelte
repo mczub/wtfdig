@@ -33,6 +33,7 @@
         </header>
         <article>
             <div>
+                <p>4/27/2025: add timeline for m8s, add cheatsheet for ex4</p>
                 <p>4/26/2025: fix m7s stoneringers 2, add image previews in cheatsheet mode</p>
                 <p>4/25/2025: update m6s toxic towers, made links bigger and added some disclaimers</p>
                 <p>4/24/2025: some minor updates for m6s, clarify m7s p3 dd, add m7s stoneringers 2, rename uptime m7s p1 to kindred</p>
