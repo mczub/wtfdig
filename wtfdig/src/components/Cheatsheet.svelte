@@ -163,7 +163,12 @@
                             {/if}
                         </div>
                         {#if phase?.description}<div class="text-xs 3xl:text-base whitespace-pre-wrap">{phase.description}</div>{/if}
-                        {#if phase?.imageUrl}<img class="object-contain rounded-md min-h-0 h-full" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />{/if}
+                        {#if phase?.imageUrl && !phase?.mechs}
+                            <div class="mt-1 min-h-0 h-full">
+                                <img class="rounded-md h-auto w-auto max-h-full max-w-full" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />
+                            </div>
+                            
+                        {/if}
                         {#if phase?.mechs}
                             <div class="grid grid-flow-col auto-cols-fr auto-rows-fr gap-2 h-full" style:grid-column={`span ${phase.mechs.length}`}>
                                 {#each phase.mechs as mech}
@@ -174,11 +179,18 @@
                                             <span class="not-group-hover:hidden"><Expand size={16}/></span>
                                         </div> 
                                         {#if mech?.description}<div class="whitespace-pre-wrap text-xs 3xl:text-base mb-0">{mech.description}</div>{/if}
-                                        {#if mech?.imageUrl}<img class="object-contain rounded-md mt-1 min-h-0 h-full" src={mech.imageUrl} />{/if}
+                                        {#if mech?.imageUrl}
+                                            <div class="mt-1 min-h-0 h-full">
+                                                <img class="rounded-md h-auto w-auto max-h-full max-w-full" src={mech.imageUrl} />
+                                            </div>
+                                        {/if}
                                         <div class="whitespace-pre-wrap text-xs 3xl:text-base mb-0">{mech?.strats && mech.strats[0].description}</div>
                                         
                                         {#if mech?.strats && mech.strats[0]?.imageUrl}
-                                            <img class="object-contain rounded-md mt-1 min-h-0 h-full" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />
+                                            <div class="mt-1 min-h-0 h-full">
+                                                <img class="rounded-md h-auto w-auto max-h-full max-w-full" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />
+                                            </div>
+                                            
                                         {/if}
                                     </button>
                                     {/key}
@@ -210,7 +222,11 @@
                             {/if}
                         </div>
                         {#if phase?.description}<div class="text-xs 3xl:text-base whitespace-pre-wrap">{phase.description}</div>{/if}
-                        {#if phase?.imageUrl}<img class="object-contain rounded-md min-h-0 h-full" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />{/if}
+                        {#if phase?.imageUrl}
+                            <div class="mt-1 min-h-0 h-full">
+                                <img class="rounded-md h-auto w-auto max-h-full max-w-full" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />
+                            </div>
+                        {/if}
                     </button>
                 {/if}
 
