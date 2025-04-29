@@ -4721,11 +4721,11 @@ const hectorP3: Record<string, string | Record<string, string | PlayerMechStrat>
         },
     },
     'debris-melee-stack': {
-        'description': 'Dodge vines and stack in center',
+        'description': 'Dodge vines and stack Southwest',
         'imageUrl': './m7s/p3/hector-debris-melee-puddles-stack.webp'
     },
     'debris-melee-proteans': {
-        'description': 'True North clock spots',
+        'description': 'Boss Relative clock spots',
         'MT': {
             role: 'Tank',
             party: 1,
@@ -5140,11 +5140,11 @@ const toxicP3: Record<string, string | Record<string, string | PlayerMechStrat>>
         },
     },
     'debris-melee-stack': {
-        'description': 'Dodge vines and stack in center',
+        'description': 'Dodge vines and stack Southwest',
         'imageUrl': './m7s/p3/toxic-debris-melee-puddles-stack.webp'
     },
     'debris-melee-proteans': {
-        'description': 'True North clock spots',
+        'description': 'Boss Relative clock spots',
         'MT': {
             role: 'Tank',
             party: 1,
