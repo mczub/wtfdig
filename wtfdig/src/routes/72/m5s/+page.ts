@@ -1,4 +1,5 @@
 import type { TimelineItem } from "$lib/types";
+import { getCircleMaskUrl, getRectMaskUrl } from "$lib/utils";
 import type { PageLoad } from "./$types";
 
 export const load: PageLoad = ({params}) => {
@@ -1960,18 +1961,21 @@ const hectorStrat: Strat = {
                             party: 1,
                             description: 'North',
                             imageUrl: './m5s/hector/twist-aside.webp',
+                            mask: getCircleMaskUrl(50, 35, 10)
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'North',
                             imageUrl: './m5s/hector/twist-aside.webp',
+                            mask: getCircleMaskUrl(50, 35, 10)
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'E/W',
                             imageUrl: './m5s/hector/twist-aside.webp',
+                            mask: getRectMaskUrl(30, 70, 44, 58)
                         },
                         {
                             role: 'Healer',
@@ -1984,24 +1988,28 @@ const hectorStrat: Strat = {
                             party: 1,
                             description: 'South',
                             imageUrl: './m5s/hector/twist-aside.webp',
+                            mask: getCircleMaskUrl(50, 65, 10)
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'South',
                             imageUrl: './m5s/hector/twist-aside.webp',
+                            mask: getCircleMaskUrl(50, 65, 10)
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'South',
                             imageUrl: './m5s/hector/twist-aside.webp',
+                            mask: getCircleMaskUrl(50, 65, 10)
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'South',
                             imageUrl: './m5s/hector/twist-aside.webp',
+                            mask: getCircleMaskUrl(50, 65, 10)
                         },
                     ]
                 },
@@ -2014,48 +2022,56 @@ const hectorStrat: Strat = {
                             party: 1,
                             description: 'North',
                             imageUrl: './m5s/hector/twist-bside.webp',
+                            mask: getRectMaskUrl(36, 64, 20, 51)
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'South',
                             imageUrl: './m5s/hector/twist-bside.webp',
+                            mask: getRectMaskUrl(36, 64, 51, 82)
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'North',
                             imageUrl: './m5s/hector/twist-bside.webp',
+                            mask: getRectMaskUrl(36, 64, 20, 51)
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'South',
                             imageUrl: './m5s/hector/twist-bside.webp',
+                            mask: getRectMaskUrl(36, 64, 51, 82)
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'North',
                             imageUrl: './m5s/hector/twist-bside.webp',
+                            mask: getRectMaskUrl(36, 64, 20, 51)
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'South',
                             imageUrl: './m5s/hector/twist-bside.webp',
+                            mask: getRectMaskUrl(36, 64, 51, 82)
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'North',
                             imageUrl: './m5s/hector/twist-bside.webp',
+                            mask: getRectMaskUrl(36, 64, 20, 51)
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'South',
                             imageUrl: './m5s/hector/twist-bside.webp',
+                            mask: getRectMaskUrl(36, 64, 51, 82)
                         },
                     ]
                 }
@@ -2074,48 +2090,56 @@ const hectorStrat: Strat = {
                             party: 1,
                             description: 'West half, close to boss',
                             imageUrl: './m5s/hector/disco-infernal-1-supports.webp',
+                            mask: getRectMaskUrl(29, 50, 30.5, 72)
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'East half, close to boss',
                             imageUrl: './m5s/hector/disco-infernal-1-supports.webp',
+                            mask: getRectMaskUrl(50, 71, 30.5, 72)
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'West half, far from boss',
                             imageUrl: './m5s/hector/disco-infernal-1-supports.webp',
+                            mask: getRectMaskUrl(18.5, 29.5, 20, 82.5)
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'East half, far from boss',
                             imageUrl: './m5s/hector/disco-infernal-1-supports.webp',
+                            mask: getRectMaskUrl(70.5, 81.5, 20, 82.5)
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'West half, close to boss',
                             imageUrl: './m5s/hector/disco-infernal-1-dps.webp',
+                            mask: getRectMaskUrl(29, 50, 30.5, 72)
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'East half, close to boss',
                             imageUrl: './m5s/hector/disco-infernal-1-dps.webp',
+                            mask: getRectMaskUrl(50, 71, 30.5, 72)
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'West half, far from boss',
                             imageUrl: './m5s/hector/disco-infernal-1-dps.webp',
+                            mask: getRectMaskUrl(18.5, 29.5, 20, 82.5)
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'East half, far from boss',
                             imageUrl: './m5s/hector/disco-infernal-1-dps.webp',
+                            mask: getRectMaskUrl(70.5, 81.5, 20, 82.5)
                         },
                     ]
                 },
@@ -2134,48 +2158,56 @@ const hectorStrat: Strat = {
                             party: 1,
                             description: 'North-Northwest',
                             imageUrl: './m5s/hector/arcady-proteans.webp',
+                            mask: getCircleMaskUrl(43, 33, 7)
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'North-Northeast',
                             imageUrl: './m5s/hector/arcady-proteans.webp',
+                            mask: getCircleMaskUrl(57.5, 33, 7)
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'West-Northwest',
                             imageUrl: './m5s/hector/arcady-proteans.webp',
+                            mask: getCircleMaskUrl(34, 41, 7)
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'East-Northeast',
                             imageUrl: './m5s/hector/arcady-proteans.webp',
+                            mask: getCircleMaskUrl(65.5, 41, 7)
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'South-Southwest',
                             imageUrl: './m5s/hector/arcady-proteans.webp',
+                            mask: getCircleMaskUrl(42.5, 69.5, 7)
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'South-Southeast',
                             imageUrl: './m5s/hector/arcady-proteans.webp',
+                            mask: getCircleMaskUrl(57.5, 69.5, 7)
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'West-Southwest',
                             imageUrl: './m5s/hector/arcady-proteans.webp',
+                            mask: getCircleMaskUrl(33, 61.5, 7)
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'East-Southeast',
                             imageUrl: './m5s/hector/arcady-proteans.webp',
+                            mask: getCircleMaskUrl(67, 61.5, 7)
                         },
                     ]
                 },
@@ -2198,48 +2230,56 @@ const hectorStrat: Strat = {
                             party: 1,
                             description: 'West lane, north side, close to boss\nStack with R1',
                             imageUrl: './m5s/hector/ride-the-wave.webp',
+                            mask: getRectMaskUrl(15, 45, 30, 50)
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'East lane, north side, close to boss\nStack with R2',
                             imageUrl: './m5s/hector/ride-the-wave.webp',
+                            mask: getRectMaskUrl(45, 75, 30, 50)
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'West lane, south side, far from boss\nStack with M1',
                             imageUrl: './m5s/hector/ride-the-wave.webp',
+                            mask: getRectMaskUrl(15, 45, 55, 90)
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'East lane, north side, far from boss\nStack with M2',
                             imageUrl: './m5s/hector/ride-the-wave.webp',
+                            mask: getRectMaskUrl(45, 75, 55, 90)
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'West lane, south side, close to boss\nStack with H1',
                             imageUrl: './m5s/hector/ride-the-wave.webp',
+                            mask: getRectMaskUrl(15, 45, 55, 80)
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'East lane, north side, close to boss\nStack with H2',
                             imageUrl: './m5s/hector/ride-the-wave.webp',
+                            mask: getRectMaskUrl(45, 75, 55, 80)
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'West lane, north side, far from boss\nStack with MT',
                             imageUrl: './m5s/hector/ride-the-wave.webp',
+                            mask: getRectMaskUrl(15, 45, 10, 45)
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'East lane, north side, far from boss\nStack with OT',
                             imageUrl: './m5s/hector/ride-the-wave.webp',
+                            mask: getRectMaskUrl(45, 75, 10, 45)
                         },
                     ]
                 },
@@ -2257,48 +2297,56 @@ const hectorStrat: Strat = {
                             party: 1,
                             description: 'North or West\nFront left facing boss\nStack with M1',
                             imageUrl: './m5s/hector/frogtourage-1.webp',
+                            mask: getCircleMaskUrl(58.5, 27.5, 7)
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'South or East\nFront left facing boss\nStack with M2',
                             imageUrl: './m5s/hector/frogtourage-1.webp',
+                            mask: getCircleMaskUrl(41.5, 74.5, 7)
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'North or West\nBack left facing boss\nStack with R1',
                             imageUrl: './m5s/hector/frogtourage-1.webp',
+                            mask: getCircleMaskUrl(58.5, 11, 7)
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'South or East\nBack left facing boss\nStack with R2',
                             imageUrl: './m5s/hector/frogtourage-1.webp',
+                            mask: getCircleMaskUrl(41.5, 90.5, 7)
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'North or West\nFront right facing boss\nStack with MT',
                             imageUrl: './m5s/hector/frogtourage-1.webp',
+                            mask: getCircleMaskUrl(41.5, 27.5, 7)
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'South or East\nFront right facing boss\nStack with OT',
                             imageUrl: './m5s/hector/frogtourage-1.webp',
+                            mask: getCircleMaskUrl(58.5, 74.5, 7)
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'North or West\nBack right facing boss\nStack with H1',
                             imageUrl: './m5s/hector/frogtourage-1.webp',
+                            mask: getCircleMaskUrl(41.5, 11, 7)
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'South or East\nBack right facing boss\nStack with H2',
                             imageUrl: './m5s/hector/frogtourage-1.webp',
+                            mask: getCircleMaskUrl(58.5, 90.5, 7)
                         },
                     ]
                 },
@@ -2316,48 +2364,56 @@ const hectorStrat: Strat = {
                             party: 1,
                             description: 'Near Red markers (N or NW)',
                             imageUrl: './m5s/hector/disco-infernal-2-supports.webp',
+                            mask: getRectMaskUrl(12, 55, 12, 45)
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Near Yellow markers (E or NE)',
                             imageUrl: './m5s/hector/disco-infernal-2-supports.webp',
+                            mask: getRectMaskUrl(55, 88, 12, 57)
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Near Purple markers (W or SW)',
                             imageUrl: './m5s/hector/disco-infernal-2-supports.webp',
+                            mask: getRectMaskUrl(12, 45, 47, 90)
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'Near Blue markers (S or SE)',
                             imageUrl: './m5s/hector/disco-infernal-2-supports.webp',
+                            mask: getRectMaskUrl(45, 88, 57, 90)
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Near Purple markers (W or SW)',
                             imageUrl: './m5s/hector/disco-infernal-2-dps.webp',
+                            mask: getRectMaskUrl(12, 45, 47, 90)
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Near Blue markers (S or SE)',
                             imageUrl: './m5s/hector/disco-infernal-2-dps.webp',
+                            mask: getRectMaskUrl(45, 88, 57, 90)
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Near Red markers (N or NW)',
                             imageUrl: './m5s/hector/disco-infernal-2-dps.webp',
+                            mask: getRectMaskUrl(12, 55, 12, 45)
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'Near Yellow markers (E or NE)',
                             imageUrl: './m5s/hector/disco-infernal-2-dps.webp',
+                            mask: getRectMaskUrl(55, 88, 12, 57)
                         },
                     ]
                 },
@@ -2369,48 +2425,56 @@ const hectorStrat: Strat = {
                             party: 1,
                             description: 'Near Red markers (N or NW)',
                             imageUrl: './m5s/hector/disco-infernal-2-dps.webp',
+                            mask: getRectMaskUrl(12, 55, 12, 45)
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Near Yellow markers (E or NE)',
                             imageUrl: './m5s/hector/disco-infernal-2-dps.webp',
+                            mask: getRectMaskUrl(55, 88, 12, 57)
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Near Purple markers (W or SW)',
                             imageUrl: './m5s/hector/disco-infernal-2-dps.webp',
+                            mask: getRectMaskUrl(12, 45, 47, 90)
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'Near Blue markers (S or SE)',
                             imageUrl: './m5s/hector/disco-infernal-2-dps.webp',
+                            mask: getRectMaskUrl(45, 88, 57, 90)
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Near Purple markers (W or SW)',
                             imageUrl: './m5s/hector/disco-infernal-2-supports.webp',
+                            mask: getRectMaskUrl(12, 45, 47, 90)
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Near Blue markers (S or SE)',
                             imageUrl: './m5s/hector/disco-infernal-2-supports.webp',
+                            mask: getRectMaskUrl(45, 88, 57, 90)
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Near Red markers (N or NW)',
                             imageUrl: './m5s/hector/disco-infernal-2-supports.webp',
+                            mask: getRectMaskUrl(12, 55, 12, 45)
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'Near Yellow markers (E or NE)',
                             imageUrl: './m5s/hector/disco-infernal-2-supports.webp',
+                            mask: getRectMaskUrl(55, 88, 12, 57)
                         },
                     ]
                 },
@@ -2428,48 +2492,57 @@ const hectorStrat: Strat = {
                             party: 1,
                             description: 'Near Red markers (N or NW)',
                             imageUrl: './m5s/hector/more-amphibians-supports.webp',
+                            mask: getRectMaskUrl(28, 54, 22, 47)
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Near Yellow markers (E or NE)',
                             imageUrl: './m5s/hector/more-amphibians-supports.webp',
+                            mask: getRectMaskUrl(54, 79, 22, 54)
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Near Purple markers (W or SW)',
                             imageUrl: './m5s/hector/more-amphibians-supports.webp',
+                            mask: getRectMaskUrl(22, 46, 47, 86)
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'Near Blue markers (S or SE)',
                             imageUrl: './m5s/hector/more-amphibians-supports.webp',
+                            mask: getRectMaskUrl(46, 79, 54, 86)
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Near Purple markers (W or SW)',
                             imageUrl: './m5s/hector/more-amphibians-dps.webp',
+                            mask: getRectMaskUrl(22, 46, 47, 86)
+                            
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Near Blue markers (S or SE)',
                             imageUrl: './m5s/hector/more-amphibians-dps.webp',
+                            mask: getRectMaskUrl(46, 72, 54, 86)
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Near Red markers (N or NW)',
                             imageUrl: './m5s/hector/more-amphibians-dps.webp',
+                            mask: getRectMaskUrl(28, 55, 22, 48)
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'Near Yellow markers (E or NE)',
                             imageUrl: './m5s/hector/more-amphibians-dps.webp',
+                            mask: getRectMaskUrl(54, 79, 22, 54)
                         },
                     ]
                 },

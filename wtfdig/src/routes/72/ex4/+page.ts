@@ -1,5 +1,6 @@
 import type { Url } from "url";
 import type { PageLoad } from "./$types";
+import { getCircleMask, getCircleMaskUrl } from "$lib/utils";
 
 export const load: PageLoad = ({params}) => {
     return {
@@ -130,7 +131,7 @@ const raidplanStrat: Strat = {
                                 dpsin: 'Always start out\nDodge either once or twice',
                             },
                             imageUrl: './ex4/raidplan/ef1.webp',
-                            mask: 'radial-gradient(circle at 50% 41%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
+                            mask: getCircleMaskUrl(50, 41, 7),
                         },
                         {
                             role: 'Tank',
@@ -141,7 +142,7 @@ const raidplanStrat: Strat = {
                                 dpsin: 'Always start out\nDodge either once or twice'
                             },
                             imageUrl: './ex4/raidplan/ef1.webp',
-                            mask: 'radial-gradient(circle at 50% 60%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
+                            mask: getCircleMaskUrl(50, 60, 7),
                         },
                         {
                             role: 'Healer',
@@ -152,7 +153,7 @@ const raidplanStrat: Strat = {
                                 dpsin: 'Always start out\nDodge either once or twice'
                             },
                             imageUrl: './ex4/raidplan/ef1.webp',
-                            mask: 'radial-gradient(circle at 39% 50%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
+                            mask: getCircleMaskUrl(39, 50, 7),
                         },
                         {
                             role: 'Healer',
@@ -163,7 +164,7 @@ const raidplanStrat: Strat = {
                                 dpsin: 'Always start out\nDodge either once or twice'
                             },
                             imageUrl: './ex4/raidplan/ef1.webp',
-                            mask: 'radial-gradient(circle at 61% 50%, black 9%, rgba(0, 0, 0, 0.4) 9%)',
+                            mask: getCircleMaskUrl(61, 50, 7),
                         },
                         {
                             role: 'Melee',
@@ -174,7 +175,7 @@ const raidplanStrat: Strat = {
                                 dpsin: 'Always start in\nDodge either once or twice'
                             },
                             imageUrl: './ex4/raidplan/ef1.webp',
-                            mask: 'radial-gradient(circle at 31% 69%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
+                            mask: getCircleMaskUrl(31, 69, 7),
                         },
                         {
                             role: 'Melee',
@@ -185,7 +186,7 @@ const raidplanStrat: Strat = {
                                 dpsin: 'Always start in\nDodge either once or twice'
                             },
                             imageUrl: './ex4/raidplan/ef1.webp',
-                            mask: 'radial-gradient(circle at 69% 69%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
+                            mask: getCircleMaskUrl(69, 69, 7),
                         },
                         {
                             role: 'Ranged',
@@ -196,7 +197,7 @@ const raidplanStrat: Strat = {
                                 dpsin: 'Always start in\nDodge either once or twice'
                             }, 
                             imageUrl: './ex4/raidplan/ef1.webp',
-                            mask: 'radial-gradient(circle at 31% 31%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
+                            mask: getCircleMaskUrl(31, 31, 7),
                         },
                         {
                             role: 'Ranged',
@@ -207,7 +208,7 @@ const raidplanStrat: Strat = {
                                 dpsin: 'Always start in\nDodge either once or twice'
                             },
                             imageUrl: './ex4/raidplan/ef1.webp',
-                            mask: 'radial-gradient(circle at 69% 31%, black 8%, rgba(0, 0, 0, 0.4) 8%)',
+                            mask: getCircleMaskUrl(69, 31, 7),
                         },
                     ]
                 }
@@ -243,7 +244,7 @@ const raidplanStrat: Strat = {
                                 color: 'Inner slice near North'
                             },
                             imageUrl: './ex4/raidplan/bloom3-support-roses.webp',
-                            mask: 'radial-gradient(circle at 57% 35%, black 9%, rgba(0, 0, 0, 0.4) 9%)'
+                            mask: getCircleMask(57, 35, 9),
                         },
                         {
                             role: 'Tank',
