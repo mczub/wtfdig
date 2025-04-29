@@ -47,7 +47,8 @@
 	}
 
 	const p3Urls: Record<string, any> = {
-		'toxic': {name: 'Toxic P3', url: 'https://raidplan.io/plan/DEijc3hhq_CNGaRg'}
+		'toxic': {name: 'Toxic P3', url: 'https://raidplan.io/plan/DEijc3hhq_CNGaRg'},
+		'hector': {name: 'Hector P3', url: 'https://www.youtube.com/watch?v=fIYMPk54cJc&t=994s'}
 	}
 
 	$effect(() => {
@@ -127,6 +128,7 @@
 						phaseStratMech => {
 							return {
 								...phaseStratMech,
+								description: getStratItem(phaseStratMech.description, phaseStrat.tag),
 								imageUrl: getStratItem(phaseStratMech.imageUrl, phaseStrat.tag),
 								strats: phaseStratMech.strats && phaseStratMech.strats.filter(strat => (strat.role === role && strat.party === party)).map(
 									iStrat => {
@@ -153,7 +155,7 @@
 	function getStratMechs(stratName: string){
 		const stratMechs: Record<string, any> = {
 			'toxic': {
-				p2: 'toxic',
+				p2: 'locked',
 				p3: 'toxic',
 			},
 			'kindred': {
@@ -174,7 +176,7 @@
 	function getOptionsString(stratName?: string, role?: Role, party?: number): string {
 		if (!stratName || !role || !party) return '';
 		const stratNames: Record<string, string> = {
-			'toxic': 'Toxic Friends',
+			'toxic': 'Toxic',
 			'kindred': 'Kindred'
 		}
 		const jpRoleAbbrev: Record<string, string> = {
@@ -223,6 +225,9 @@
 		if (stratState.p3 !== getStratMechs(stratName)['p3']) {
 			if (stratState.p3 === 'toxic') {
 				stratDiffs.push(`Toxic P3`);
+			}
+			if (stratState.p3 === 'hector') {
+				stratDiffs.push(`Hector P3`);
 			}
 		}
 		if (stratName === 'game8' && roleAbbrev !== jpRoleAbbrev[roleAbbrev]) {
@@ -285,7 +290,7 @@
 							<div class="text-xl mb-2">Which P2/Seeds strat are you using?</div>
 						</div>
 						<Segment classes="flex-wrap" name="p2" value={stratState.p2} onValueChange={(e) => (setStratState('p2', e.value))}>
-							<Segment.Item value="toxic">Toxic Friends</Segment.Item>
+							<Segment.Item value="toxic">Toxic</Segment.Item>
 							<Segment.Item value="bili">Bilibili</Segment.Item>
 							<Segment.Item value="alpha">Alpha 1.0</Segment.Item>
 							<Segment.Item value="alpha2">Alpha 2.0</Segment.Item>
@@ -301,7 +306,8 @@
 						</div>
 						<div>
 							<Segment classes="flex-wrap shrink" name="p3" value={stratState.p3} onValueChange={(e) => (setStratState('p3', e.value))}>
-								<Segment.Item value="toxic">Toxic Friends</Segment.Item>
+								<Segment.Item value="toxic">Toxic</Segment.Item>
+								<Segment.Item value="hector">Hector</Segment.Item>
 							</Segment>
 						</div>
 					</div>
@@ -354,7 +360,7 @@
 								</a>
 							</div>
 						{/if}
-						{#if (stratState.p3 && p2Urls[stratState.p3])}
+						{#if (stratState.p3 && p3Urls[stratState.p3])}
 							<div>
 								<a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={p3Urls[stratState.p3].url}>{p3Urls[stratState.p3].name}
 									<ExternalLink />

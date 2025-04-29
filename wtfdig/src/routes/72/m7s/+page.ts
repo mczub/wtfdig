@@ -27,7 +27,7 @@ export interface PlayerMechStrat {
 
 export interface MechanicStrat {
     mechanic: string;
-    description?: string;
+    description?: string | Record<string, string>;
     notes?: string;
     strats?: PlayerMechStrat[];
     imageUrl?: string | Record<string, string>;
@@ -4409,8 +4409,847 @@ const fixedP2: Record<string, string | Record<string, string | PlayerMechStrat>>
     },
 }
 
+const hectorP3: Record<string, string | Record<string, string | PlayerMechStrat>> = {
+    'stoneringers1': {
+        'description': 'G1 Left G2 Right facing boss',
+        'MT': {
+            role: 'Tank',
+            party: 1,
+            description: 'Front, Far left',
+            imageUrl: './m7s/p3/hector-stoneringers1-spread.webp'
+        },
+        'OT': {
+            role: 'Tank',
+            party: 2,
+            description: 'Front, Far right',
+            imageUrl: './m7s/p3/hector-stoneringers1-spread.webp'
+        },
+        'H1': {
+            role: 'Healer',
+            party: 1,
+            description: 'Back, Close left',
+            imageUrl: './m7s/p3/hector-stoneringers1-spread.webp'
+        },
+        'H2': {
+            role: 'Healer',
+            party: 2,
+            description: 'Back, Close right',
+            imageUrl: './m7s/p3/hector-stoneringers1-spread.webp'
+        },
+        'M1': {
+            role: 'Melee',
+            party: 1,
+            description: 'Front, Close left',
+            imageUrl: './m7s/p3/hector-stoneringers1-spread.webp'
+        },
+        'M2': {
+            role: 'Melee',
+            party: 2,
+            description: 'Front, Close right',
+            imageUrl: './m7s/p3/hector-stoneringers1-spread.webp'
+        },
+        'R1': {
+            role: 'Ranged',
+            party: 1,
+            description: 'Back, Far left',
+            imageUrl: './m7s/p3/hector-stoneringers1-spread.webp'
+        },
+        'R2': {
+            role: 'Ranged',
+            party: 2,
+            description: 'Back, Far right',
+            imageUrl: './m7s/p3/hector-stoneringers1-spread.webp'
+        },
+    },
+    'debris-tethers': {
+        'description': 'R1 North, R2 South, H1 West, H2 East',
+        'MT': {
+            role: 'Tank',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-tethers.webp'
+        },
+        'OT': {
+            role: 'Tank',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-tethers.webp'
+        },
+        'H1': {
+            role: 'Healer',
+            party: 1,
+            description: 'West tether',
+            imageUrl: './m7s/p3/hector-debris-tethers.webp'
+        },
+        'H2': {
+            role: 'Healer',
+            party: 2,
+            description: 'East tether',
+            imageUrl: './m7s/p3/hector-debris-tethers.webp'
+        },
+        'M1': {
+            role: 'Melee',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-tethers.webp'
+        },
+        'M2': {
+            role: 'Melee',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-tethers.webp'
+        },
+        'R1': {
+            role: 'Ranged',
+            party: 1,
+            description: 'North tether',
+            imageUrl: './m7s/p3/hector-debris-tethers.webp'
+        },
+        'R2': {
+            role: 'Ranged',
+            party: 2,
+            description: 'South tether',
+            imageUrl: './m7s/p3/hector-debris-tethers.webp'
+        },
+    },
+    'debris-stacks': {
+        'description': 'R1/MT North, R2/OT South, H1/M1 West, H2/M2 East\nPlace stacks on the wall',
+        'MT': {
+            role: 'Tank',
+            party: 1,
+            description: 'North',
+            imageUrl: './m7s/p3/hector-debris-stacks.webp'
+        },
+        'OT': {
+            role: 'Tank',
+            party: 2,
+            description: 'South',
+            imageUrl: './m7s/p3/hector-debris-stacks.webp'
+        },
+        'H1': {
+            role: 'Healer',
+            party: 1,
+            description: 'West',
+            imageUrl: './m7s/p3/hector-debris-stacks.webp'
+        },
+        'H2': {
+            role: 'Healer',
+            party: 2,
+            description: 'East',
+            imageUrl: './m7s/p3/hector-debris-stacks.webp'
+        },
+        'M1': {
+            role: 'Melee',
+            party: 1,
+            description: 'West',
+            imageUrl: './m7s/p3/hector-debris-stacks.webp'
+        },
+        'M2': {
+            role: 'Melee',
+            party: 2,
+            description: 'East',
+            imageUrl: './m7s/p3/hector-debris-stacks.webp'
+        },
+        'R1': {
+            role: 'Ranged',
+            party: 1,
+            description: 'North',
+            imageUrl: './m7s/p3/hector-debris-stacks.webp'
+        },
+        'R2': {
+            role: 'Ranged',
+            party: 2,
+            description: 'South',
+            imageUrl: './m7s/p3/hector-debris-stacks.webp'
+        },
+    },
+    'debris-ranged-puddles': {
+        'description': 'Ranged start on left side and bait puddles CCW\nMelees drop seeds on color markers',
+        'MT': {
+            role: 'Tank',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-ranged-puddles.webp'
+        },
+        'OT': {
+            role: 'Tank',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-ranged-puddles.webp'
+        },
+        'H1': {
+            role: 'Healer',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-ranged-puddles.webp'
+        },
+        'H2': {
+            role: 'Healer',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-ranged-puddles.webp'
+        },
+        'M1': {
+            role: 'Melee',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-ranged-puddles.webp'
+        },
+        'M2': {
+            role: 'Melee',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-ranged-puddles.webp'
+        },
+        'R1': {
+            role: 'Ranged',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-ranged-puddles.webp'
+        },
+        'R2': {
+            role: 'Ranged',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-ranged-puddles.webp'
+        },
+    },
+    'debris-ranged-stack': {
+        'description': 'Dodge vines and stack in center',
+        'imageUrl': './m7s/p3/hector-debris-ranged-puddles-stack.webp'
+    },
+    'debris-ranged-proteans': {
+        'description': 'True North clock spots',
+        'MT': {
+            role: 'Tank',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-ranged-puddles-proteans.webp'
+        },
+        'OT': {
+            role: 'Tank',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-ranged-puddles-proteans.webp'
+        },
+        'H1': {
+            role: 'Healer',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-ranged-puddles-proteans.webp'
+        },
+        'H2': {
+            role: 'Healer',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-ranged-puddles-proteans.webp'
+        },
+        'M1': {
+            role: 'Melee',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-ranged-puddles-proteans.webp'
+        },
+        'M2': {
+            role: 'Melee',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-ranged-puddles-proteans.webp'
+        },
+        'R1': {
+            role: 'Ranged',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-ranged-puddles-proteans.webp'
+        },
+        'R2': {
+            role: 'Ranged',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-ranged-puddles-proteans.webp'
+        },
+    },
+    'debris-melee-puddles': {
+        'description': 'Melee bait AOEs CW around the boss\nRanged drop seeds on cardinals at the walls',
+        'MT': {
+            role: 'Tank',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-melee-puddles.webp'
+        },
+        'OT': {
+            role: 'Tank',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-melee-puddles.webp'
+        },
+        'H1': {
+            role: 'Healer',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-melee-puddles.webp'
+        },
+        'H2': {
+            role: 'Healer',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-melee-puddles.webp'
+        },
+        'M1': {
+            role: 'Melee',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-melee-puddles.webp'
+        },
+        'M2': {
+            role: 'Melee',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-melee-puddles.webp'
+        },
+        'R1': {
+            role: 'Ranged',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-melee-puddles.webp'
+        },
+        'R2': {
+            role: 'Ranged',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-melee-puddles.webp'
+        },
+    },
+    'debris-melee-stack': {
+        'description': 'Dodge vines and stack in center',
+        'imageUrl': './m7s/p3/hector-debris-melee-puddles-stack.webp'
+    },
+    'debris-melee-proteans': {
+        'description': 'True North clock spots',
+        'MT': {
+            role: 'Tank',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-melee-puddles-proteans.webp'
+        },
+        'OT': {
+            role: 'Tank',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-melee-puddles-proteans.webp'
+        },
+        'H1': {
+            role: 'Healer',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-melee-puddles-proteans.webp'
+        },
+        'H2': {
+            role: 'Healer',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-melee-puddles-proteans.webp'
+        },
+        'M1': {
+            role: 'Melee',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-melee-puddles-proteans.webp'
+        },
+        'M2': {
+            role: 'Melee',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-melee-puddles-proteans.webp'
+        },
+        'R1': {
+            role: 'Ranged',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-melee-puddles-proteans.webp'
+        },
+        'R2': {
+            role: 'Ranged',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/hector-debris-melee-puddles-proteans.webp'
+        },
+    },
+    'stoneringers2': {
+        'description': 'Hector Color Markers',
+        'MT': {
+            role: 'Tank',
+            party: 1,
+            description: 'A (Red) Marker',
+            imageUrl: './m7s/p3/hector-stoneringers2-supports.webp'
+        },
+        'OT': {
+            role: 'Tank',
+            party: 2,
+            description: 'B (Yellow) Marker',
+            imageUrl: './m7s/p3/hector-stoneringers2-supports.webp'
+        },
+        'H1': {
+            role: 'Healer',
+            party: 1,
+            description: 'D (Purple) Marker',
+            imageUrl: './m7s/p3/hector-stoneringers2-supports.webp'
+        },
+        'H2': {
+            role: 'Healer',
+            party: 2,
+            description: 'C (Blue) Marker',
+            imageUrl: './m7s/p3/hector-stoneringers2-supports.webp'
+        },
+        'M1': {
+            role: 'Melee',
+            party: 1,
+            description: 'D (Purple) Marker',
+            imageUrl: './m7s/p3/hector-stoneringers2-dps.webp'
+        },
+        'M2': {
+            role: 'Melee',
+            party: 2,
+            description: 'C (Blue) Marker',
+            imageUrl: './m7s/p3/hector-stoneringers2-dps.webp'
+        },
+        'R1': {
+            role: 'Ranged',
+            party: 1,
+            description: 'A (Red) Marker',
+            imageUrl: './m7s/p3/hector-stoneringers2-dps.webp'
+        },
+        'R2': {
+            role: 'Ranged',
+            party: 2,
+            description: 'B (Yellow) Marker',
+            imageUrl: './m7s/p3/hector-stoneringers2-dps.webp'
+        },
+    },
+}
+
+const toxicP3: Record<string, string | Record<string, string | PlayerMechStrat>> = {
+    'stoneringers1': {
+        'description': 'G1 Left G2 Right facing boss',
+        'MT': {
+            role: 'Tank',
+            party: 1,
+            description: 'Front, Far left',
+            imageUrl: './m7s/p3/toxic-stoneringers1-spread.webp'
+        },
+        'OT': {
+            role: 'Tank',
+            party: 2,
+            description: 'Front, Far right',
+            imageUrl: './m7s/p3/toxic-stoneringers1-spread.webp'
+        },
+        'H1': {
+            role: 'Healer',
+            party: 1,
+            description: 'Back, Close left',
+            imageUrl: './m7s/p3/toxic-stoneringers1-spread.webp'
+        },
+        'H2': {
+            role: 'Healer',
+            party: 2,
+            description: 'Back, Close right',
+            imageUrl: './m7s/p3/toxic-stoneringers1-spread.webp'
+        },
+        'M1': {
+            role: 'Melee',
+            party: 1,
+            description: 'Front, Close left',
+            imageUrl: './m7s/p3/toxic-stoneringers1-spread.webp'
+        },
+        'M2': {
+            role: 'Melee',
+            party: 2,
+            description: 'Front, Close right',
+            imageUrl: './m7s/p3/toxic-stoneringers1-spread.webp'
+        },
+        'R1': {
+            role: 'Ranged',
+            party: 1,
+            description: 'Back, Far left',
+            imageUrl: './m7s/p3/toxic-stoneringers1-spread.webp'
+        },
+        'R2': {
+            role: 'Ranged',
+            party: 2,
+            description: 'Back, Far right',
+            imageUrl: './m7s/p3/toxic-stoneringers1-spread.webp'
+        },
+    },
+    'debris-tethers': {
+        'description': 'R1 North, R2 South, H1 West, H2 East',
+        'MT': {
+            role: 'Tank',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-tethers.webp'
+        },
+        'OT': {
+            role: 'Tank',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-tethers.webp'
+        },
+        'H1': {
+            role: 'Healer',
+            party: 1,
+            description: 'West tether',
+            imageUrl: './m7s/p3/toxic-debris-tethers.webp'
+        },
+        'H2': {
+            role: 'Healer',
+            party: 2,
+            description: 'East tether',
+            imageUrl: './m7s/p3/toxic-debris-tethers.webp'
+        },
+        'M1': {
+            role: 'Melee',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-tethers.webp'
+        },
+        'M2': {
+            role: 'Melee',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-tethers.webp'
+        },
+        'R1': {
+            role: 'Ranged',
+            party: 1,
+            description: 'North tether',
+            imageUrl: './m7s/p3/toxic-debris-tethers.webp'
+        },
+        'R2': {
+            role: 'Ranged',
+            party: 2,
+            description: 'South tether',
+            imageUrl: './m7s/p3/toxic-debris-tethers.webp'
+        },
+    },
+    'debris-stacks': {
+        'description': 'R1/MT North, R2/OT South, H1/M1 West, H2/M2 East\nPlace stacks 1 tile away from the wall',
+        'MT': {
+            role: 'Tank',
+            party: 1,
+            description: 'North',
+            imageUrl: './m7s/p3/toxic-debris-stacks.webp'
+        },
+        'OT': {
+            role: 'Tank',
+            party: 2,
+            description: 'South',
+            imageUrl: './m7s/p3/toxic-debris-stacks.webp'
+        },
+        'H1': {
+            role: 'Healer',
+            party: 1,
+            description: 'West',
+            imageUrl: './m7s/p3/toxic-debris-stacks.webp'
+        },
+        'H2': {
+            role: 'Healer',
+            party: 2,
+            description: 'East',
+            imageUrl: './m7s/p3/toxic-debris-stacks.webp'
+        },
+        'M1': {
+            role: 'Melee',
+            party: 1,
+            description: 'West',
+            imageUrl: './m7s/p3/toxic-debris-stacks.webp'
+        },
+        'M2': {
+            role: 'Melee',
+            party: 2,
+            description: 'East',
+            imageUrl: './m7s/p3/toxic-debris-stacks.webp'
+        },
+        'R1': {
+            role: 'Ranged',
+            party: 1,
+            description: 'North',
+            imageUrl: './m7s/p3/toxic-debris-stacks.webp'
+        },
+        'R2': {
+            role: 'Ranged',
+            party: 2,
+            description: 'South',
+            imageUrl: './m7s/p3/toxic-debris-stacks.webp'
+        },
+    },
+    'debris-ranged-puddles': {
+        'description': 'Ranged start on left side and bait puddles CCW\nMelees drop seeds on color markers',
+        'MT': {
+            role: 'Tank',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-ranged-puddles.webp'
+        },
+        'OT': {
+            role: 'Tank',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-ranged-puddles.webp'
+        },
+        'H1': {
+            role: 'Healer',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-ranged-puddles.webp'
+        },
+        'H2': {
+            role: 'Healer',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-ranged-puddles.webp'
+        },
+        'M1': {
+            role: 'Melee',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-ranged-puddles.webp'
+        },
+        'M2': {
+            role: 'Melee',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-ranged-puddles.webp'
+        },
+        'R1': {
+            role: 'Ranged',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-ranged-puddles.webp'
+        },
+        'R2': {
+            role: 'Ranged',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-ranged-puddles.webp'
+        },
+    },
+    'debris-ranged-stack': {
+        'description': 'Dodge vines and stack in center',
+        'imageUrl': './m7s/p3/toxic-debris-ranged-puddles-stack.webp'
+    },
+    'debris-ranged-proteans': {
+        'description': 'True North clock spots',
+        'MT': {
+            role: 'Tank',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-ranged-puddles-proteans.webp'
+        },
+        'OT': {
+            role: 'Tank',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-ranged-puddles-proteans.webp'
+        },
+        'H1': {
+            role: 'Healer',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-ranged-puddles-proteans.webp'
+        },
+        'H2': {
+            role: 'Healer',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-ranged-puddles-proteans.webp'
+        },
+        'M1': {
+            role: 'Melee',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-ranged-puddles-proteans.webp'
+        },
+        'M2': {
+            role: 'Melee',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-ranged-puddles-proteans.webp'
+        },
+        'R1': {
+            role: 'Ranged',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-ranged-puddles-proteans.webp'
+        },
+        'R2': {
+            role: 'Ranged',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-ranged-puddles-proteans.webp'
+        },
+    },
+    'debris-melee-puddles': {
+        'description': 'Melee bait AOEs CW around the boss\nRanged drop seeds on cardinals at the walls',
+        'MT': {
+            role: 'Tank',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-melee-puddles.webp'
+        },
+        'OT': {
+            role: 'Tank',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-melee-puddles.webp'
+        },
+        'H1': {
+            role: 'Healer',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-melee-puddles.webp'
+        },
+        'H2': {
+            role: 'Healer',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-melee-puddles.webp'
+        },
+        'M1': {
+            role: 'Melee',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-melee-puddles.webp'
+        },
+        'M2': {
+            role: 'Melee',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-melee-puddles.webp'
+        },
+        'R1': {
+            role: 'Ranged',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-melee-puddles.webp'
+        },
+        'R2': {
+            role: 'Ranged',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-melee-puddles.webp'
+        },
+    },
+    'debris-melee-stack': {
+        'description': 'Dodge vines and stack in center',
+        'imageUrl': './m7s/p3/toxic-debris-melee-puddles-stack.webp'
+    },
+    'debris-melee-proteans': {
+        'description': 'True North clock spots',
+        'MT': {
+            role: 'Tank',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-melee-puddles-proteans.webp'
+        },
+        'OT': {
+            role: 'Tank',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-melee-puddles-proteans.webp'
+        },
+        'H1': {
+            role: 'Healer',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-melee-puddles-proteans.webp'
+        },
+        'H2': {
+            role: 'Healer',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-melee-puddles-proteans.webp'
+        },
+        'M1': {
+            role: 'Melee',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-melee-puddles-proteans.webp'
+        },
+        'M2': {
+            role: 'Melee',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-melee-puddles-proteans.webp'
+        },
+        'R1': {
+            role: 'Ranged',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-melee-puddles-proteans.webp'
+        },
+        'R2': {
+            role: 'Ranged',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/toxic-debris-melee-puddles-proteans.webp'
+        },
+    },
+    'stoneringers2': {
+        'description': 'Color Markers',
+        'MT': {
+            role: 'Tank',
+            party: 1,
+            description: 'A (Red) Marker',
+            imageUrl: './m7s/p3/toxic-stoneringers2-supports.webp'
+        },
+        'OT': {
+            role: 'Tank',
+            party: 2,
+            description: 'C (Blue) Marker',
+            imageUrl: './m7s/p3/toxic-stoneringers2-supports.webp'
+        },
+        'H1': {
+            role: 'Healer',
+            party: 1,
+            description: 'D (Purple) Marker',
+            imageUrl: './m7s/p3/toxic-stoneringers2-supports.webp'
+        },
+        'H2': {
+            role: 'Healer',
+            party: 2,
+            description: 'B (Yellow) Marker',
+            imageUrl: './m7s/p3/toxic-stoneringers2-supports.webp'
+        },
+        'M1': {
+            role: 'Melee',
+            party: 1,
+            description: 'D (Purple) Marker',
+            imageUrl: './m7s/p3/toxic-stoneringers2-dps.webp'
+        },
+        'M2': {
+            role: 'Melee',
+            party: 2,
+            description: 'C (Blue) Marker',
+            imageUrl: './m7s/p3/toxic-stoneringers2-dps.webp'
+        },
+        'R1': {
+            role: 'Ranged',
+            party: 1,
+            description: 'A (Red) Marker',
+            imageUrl: './m7s/p3/toxic-stoneringers2-dps.webp'
+        },
+        'R2': {
+            role: 'Ranged',
+            party: 2,
+            description: 'B (Yellow) Marker',
+            imageUrl: './m7s/p3/toxic-stoneringers2-dps.webp'
+        },
+    },
+}
+
 
 const p2Strats = {toxic: toxicP2, bili: biliP2, alpha: alphaP2, zenith: zenithP2, alpha2: alpha2P2, cute: cuteP2, locked: lockedP2, fixed: fixedP2}
+const p3Strats = {toxic: toxicP3, hector: hectorP3}
 
 const allP2: PhaseStrats[] = [
     {
@@ -4489,475 +5328,88 @@ const allP2: PhaseStrats[] = [
     },
 ]
 
-const toxicP3: PhaseStrats[] = [
-    {
-        phaseName: 'Stoneringers 1', 
-        mechs: [
-            {
-                mechanic: 'Glower Spreads',
-                description: 'G1 Left G2 Right facing boss',
-                strats: [
-                    {
-                        role: 'Tank',
-                        party: 1,
-                        description: 'Front, Far left',
-                        imageUrl: './m7s/p3/toxic-stoneringers1-spread.webp'
-                    },
-                    {
-                        role: 'Tank',
-                        party: 2,
-                        description: 'Front, Far right',
-                        imageUrl: './m7s/p3/toxic-stoneringers1-spread.webp'
-                    },
-                    {
-                        role: 'Healer',
-                        party: 1,
-                        description: 'Back, Close left',
-                        imageUrl: './m7s/p3/toxic-stoneringers1-spread.webp'
-                    },
-                    {
-                        role: 'Healer',
-                        party: 2,
-                        description: 'Back, Close right',
-                        imageUrl: './m7s/p3/toxic-stoneringers1-spread.webp'
-                    },
-                    {
-                        role: 'Melee',
-                        party: 1,
-                        description: 'Front, Close left',
-                        imageUrl: './m7s/p3/toxic-stoneringers1-spread.webp'
-                    },
-                    {
-                        role: 'Melee',
-                        party: 2,
-                        description: 'Front, Close right',
-                        imageUrl: './m7s/p3/toxic-stoneringers1-spread.webp'
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 1,
-                        description: 'Back, Far left',
-                        imageUrl: './m7s/p3/toxic-stoneringers1-spread.webp'
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 2,
-                        description: 'Back, Far right',
-                        imageUrl: './m7s/p3/toxic-stoneringers1-spread.webp'
-                    },
-                ]
-            },
-        ]
-    },
-    {
-        phaseName: 'Debris Deathmatch', 
-        mechs: [
-            {
-                mechanic: 'Tethers',
-                description: 'R1 North, R2 South, H1 West, H2 East',
-                strats: [
-                    {
-                        role: 'Tank',
-                        party: 1,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-tethers.webp'
-                    },
-                    {
-                        role: 'Tank',
-                        party: 2,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-tethers.webp'
-                    },
-                    {
-                        role: 'Healer',
-                        party: 1,
-                        description: 'West tether',
-                        imageUrl: './m7s/p3/toxic-debris-tethers.webp'
-                    },
-                    {
-                        role: 'Healer',
-                        party: 2,
-                        description: 'East tether',
-                        imageUrl: './m7s/p3/toxic-debris-tethers.webp'
-                    },
-                    {
-                        role: 'Melee',
-                        party: 1,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-tethers.webp'
-                    },
-                    {
-                        role: 'Melee',
-                        party: 2,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-tethers.webp'
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 1,
-                        description: 'North tether',
-                        imageUrl: './m7s/p3/toxic-debris-tethers.webp'
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 2,
-                        description: 'South tether',
-                        imageUrl: './m7s/p3/toxic-debris-tethers.webp'
-                    },
-                ]
-            },
-            {
-                mechanic: 'Stacks',
-                description: 'R1/MT North, R2/OT South, H1/M1 West, H2/M2 East\nPlace stacks 1 tile away from the wall',
-                strats: [
-                    {
-                        role: 'Tank',
-                        party: 1,
-                        description: 'North',
-                        imageUrl: './m7s/p3/toxic-debris-stacks.webp'
-                    },
-                    {
-                        role: 'Tank',
-                        party: 2,
-                        description: 'South',
-                        imageUrl: './m7s/p3/toxic-debris-stacks.webp'
-                    },
-                    {
-                        role: 'Healer',
-                        party: 1,
-                        description: 'West',
-                        imageUrl: './m7s/p3/toxic-debris-stacks.webp'
-                    },
-                    {
-                        role: 'Healer',
-                        party: 2,
-                        description: 'East',
-                        imageUrl: './m7s/p3/toxic-debris-stacks.webp'
-                    },
-                    {
-                        role: 'Melee',
-                        party: 1,
-                        description: 'West',
-                        imageUrl: './m7s/p3/toxic-debris-stacks.webp'
-                    },
-                    {
-                        role: 'Melee',
-                        party: 2,
-                        description: 'East',
-                        imageUrl: './m7s/p3/toxic-debris-stacks.webp'
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 1,
-                        description: 'North',
-                        imageUrl: './m7s/p3/toxic-debris-stacks.webp'
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 2,
-                        description: 'South',
-                        imageUrl: './m7s/p3/toxic-debris-stacks.webp'
-                    },
-                ]
-            },
-        ]
-    },
-    {
-        phaseName: 'Debris Deathmatch (Ranged Puddles)', 
-        mechs: [
-            {
-                mechanic: 'Puddles and Seeds',
-                description: 'Ranged start on left side and bait puddles CCW\nMelees drop seeds on color markers',
-                strats: [
-                    {
-                        role: 'Tank',
-                        party: 1,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-ranged-puddles.webp'
-                    },
-                    {
-                        role: 'Tank',
-                        party: 2,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-ranged-puddles.webp'
-                    },
-                    {
-                        role: 'Healer',
-                        party: 1,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-ranged-puddles.webp'
-                    },
-                    {
-                        role: 'Healer',
-                        party: 2,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-ranged-puddles.webp'
-                    },
-                    {
-                        role: 'Melee',
-                        party: 1,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-ranged-puddles.webp'
-                    },
-                    {
-                        role: 'Melee',
-                        party: 2,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-ranged-puddles.webp'
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 1,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-ranged-puddles.webp'
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 2,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-ranged-puddles.webp'
-                    },
-                ]
-            },
-            {
-                mechanic: 'Stack',
-                description: 'Dodge vines and stack in center',
-                imageUrl: './m7s/p3/toxic-debris-ranged-puddles-stack.webp'
-            },
-            {
-                mechanic: 'Proteans',
-                description: 'True North clock spots',
-                strats: [
-                    {
-                        role: 'Tank',
-                        party: 1,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-ranged-puddles-proteans.webp'
-                    },
-                    {
-                        role: 'Tank',
-                        party: 2,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-ranged-puddles-proteans.webp'
-                    },
-                    {
-                        role: 'Healer',
-                        party: 1,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-ranged-puddles-proteans.webp'
-                    },
-                    {
-                        role: 'Healer',
-                        party: 2,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-ranged-puddles-proteans.webp'
-                    },
-                    {
-                        role: 'Melee',
-                        party: 1,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-ranged-puddles-proteans.webp'
-                    },
-                    {
-                        role: 'Melee',
-                        party: 2,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-ranged-puddles-proteans.webp'
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 1,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-ranged-puddles-proteans.webp'
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 2,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-ranged-puddles-proteans.webp'
-                    },
-                ]
-            },
-        ]
-    },
-    {
-        phaseName: 'Debris Deathmatch (Melee Puddles)', 
-        mechs: [
-            {
-                mechanic: 'Puddles and Seeds',
-                description: 'Melee bait AOEs CW around the boss\nRanged drop seeds on cardinals at the walls',
-                strats: [
-                    {
-                        role: 'Tank',
-                        party: 1,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-melee-puddles.webp'
-                    },
-                    {
-                        role: 'Tank',
-                        party: 2,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-melee-puddles.webp'
-                    },
-                    {
-                        role: 'Healer',
-                        party: 1,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-melee-puddles.webp'
-                    },
-                    {
-                        role: 'Healer',
-                        party: 2,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-melee-puddles.webp'
-                    },
-                    {
-                        role: 'Melee',
-                        party: 1,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-melee-puddles.webp'
-                    },
-                    {
-                        role: 'Melee',
-                        party: 2,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-melee-puddles.webp'
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 1,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-melee-puddles.webp'
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 2,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-melee-puddles.webp'
-                    },
-                ]
-            },
-            {
-                mechanic: 'Stack',
-                description: 'Run to SW as quickly as possible\nPlace stack on front half of boss hitbox',
-                imageUrl: './m7s/p3/toxic-debris-melee-puddles-stack.webp'
-            },
-            {
-                mechanic: 'Proteans',
-                description: 'BOSS RELATIVE clock spots',
-                strats: [
-                    {
-                        role: 'Tank',
-                        party: 1,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-melee-puddles-proteans.webp'
-                    },
-                    {
-                        role: 'Tank',
-                        party: 2,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-melee-puddles-proteans.webp'
-                    },
-                    {
-                        role: 'Healer',
-                        party: 1,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-melee-puddles-proteans.webp'
-                    },
-                    {
-                        role: 'Healer',
-                        party: 2,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-melee-puddles-proteans.webp'
-                    },
-                    {
-                        role: 'Melee',
-                        party: 1,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-melee-puddles-proteans.webp'
-                    },
-                    {
-                        role: 'Melee',
-                        party: 2,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-melee-puddles-proteans.webp'
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 1,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-melee-puddles-proteans.webp'
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 2,
-                        description: '',
-                        imageUrl: './m7s/p3/toxic-debris-melee-puddles-proteans.webp'
-                    },
-                ]
-            },
-        ]
-    },
-    {
-        phaseName: 'Stoneringers 2', 
-        mechs: [
-            {
-                mechanic: 'Seeds',
-                description: 'Color Markers',
-                strats: [
-                    {
-                        role: 'Tank',
-                        party: 1,
-                        description: 'A (Red) Marker',
-                        imageUrl: './m7s/p3/toxic-stoneringers2-supports.webp'
-                    },
-                    {
-                        role: 'Tank',
-                        party: 2,
-                        description: 'C (Blue) Marker',
-                        imageUrl: './m7s/p3/toxic-stoneringers2-supports.webp'
-                    },
-                    {
-                        role: 'Healer',
-                        party: 1,
-                        description: 'D (Purple) Marker',
-                        imageUrl: './m7s/p3/toxic-stoneringers2-supports.webp'
-                    },
-                    {
-                        role: 'Healer',
-                        party: 2,
-                        description: 'B (Yellow) Marker',
-                        imageUrl: './m7s/p3/toxic-stoneringers2-supports.webp'
-                    },
-                    {
-                        role: 'Melee',
-                        party: 1,
-                        description: 'D (Purple) Marker',
-                        imageUrl: './m7s/p3/toxic-stoneringers2-dps.webp'
-                    },
-                    {
-                        role: 'Melee',
-                        party: 2,
-                        description: 'C (Blue) Marker',
-                        imageUrl: './m7s/p3/toxic-stoneringers2-dps.webp'
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 1,
-                        description: 'A (Red) Marker',
-                        imageUrl: './m7s/p3/toxic-stoneringers2-dps.webp'
-                    },
-                    {
-                        role: 'Ranged',
-                        party: 2,
-                        description: 'B (Yellow) Marker',
-                        imageUrl: './m7s/p3/toxic-stoneringers2-dps.webp'
-                    },
-                ]
-            },
-        ]
-    },
-]
+const allP3: PhaseStrats[] = [
+        {
+            phaseName: 'Stoneringers 1', 
+            tag: 'p3',
+            mechs: [
+                {
+                    mechanic: 'Glower Spreads',
+                    description: getStringObject(p3Strats, 'stoneringers1', 'description'),
+                    strats: getStratArray(p3Strats, 'stoneringers1'),
+                },
+            ]
+        },
+        {
+            phaseName: 'Debris Deathmatch', 
+            tag: 'p3',
+            mechs: [
+                {
+                    mechanic: 'Tethers',
+                    description: getStringObject(p3Strats, 'debris-tethers', 'description'),
+                    strats: getStratArray(p3Strats, 'debris-tethers'),
+                },
+                {
+                    mechanic: 'Stacks',
+                    description: getStringObject(p3Strats, 'debris-stacks', 'description'),
+                    strats: getStratArray(p3Strats, 'debris-stacks'),
+                },
+            ]
+        },
+        {
+            phaseName: 'Debris Deathmatch (Ranged Puddles)', 
+            tag: 'p3',
+            mechs: [
+                {
+                    mechanic: 'Puddles and Seeds',
+                    description: getStringObject(p3Strats, 'debris-ranged-puddles', 'description'),
+                    strats: getStratArray(p3Strats, 'debris-ranged-puddles'),
+                },
+                {
+                    mechanic: 'Stack',
+                    description: getStringObject(p3Strats, 'debris-ranged-stack', 'description'),
+                    imageUrl: getStringObject(p3Strats, 'debris-ranged-stack', 'imageUrl'),
+                },
+                {
+                    mechanic: 'Proteans',
+                    description: getStringObject(p3Strats, 'debris-ranged-proteans', 'description'),
+                    strats: getStratArray(p3Strats, 'debris-ranged-proteans'),
+                },
+            ]
+        },
+        {
+            phaseName: 'Debris Deathmatch (Melee Puddles)', 
+            tag: 'p3',
+            mechs: [
+                {
+                    mechanic: 'Puddles and Seeds',
+                    description: getStringObject(p3Strats, 'debris-melee-puddles', 'description'),
+                    strats: getStratArray(p3Strats, 'debris-melee-puddles'),
+                },
+                {
+                    mechanic: 'Stack',
+                    description: getStringObject(p3Strats, 'debris-melee-stack', 'description'),
+                    imageUrl: getStringObject(p3Strats, 'debris-melee-stack', 'imageUrl'),
+                },
+                {
+                    mechanic: 'Proteans',
+                    description: getStringObject(p3Strats, 'debris-melee-proteans', 'description'),
+                    strats: getStratArray(p3Strats, 'debris-melee-proteans'),
+                },
+            ]
+        },
+        {
+            phaseName: 'Stoneringers 2', 
+            tag: 'p3',
+            mechs: [
+                {
+                    mechanic: 'Seeds',
+                    description: getStringObject(p3Strats, 'stoneringers2', 'description'),
+                    strats: getStratArray(p3Strats, 'stoneringers2'),
+                },
+            ]
+        },
+    ]
 
 const toxicStrat: Strat = {
     stratName: 'toxic',
@@ -5094,7 +5546,7 @@ const toxicStrat: Strat = {
             imageUrl: './m7s/p1/toxic-pulp.webp'
         },
         ...allP2,
-        ...toxicP3
+        ...allP3
     ]
 }
 
@@ -5611,7 +6063,7 @@ const kindredStrat: Strat = {
             imageUrl: './m7s/p1/uptime-pulp.webp'
         },
         ...allP2,
-        ...toxicP3
+        ...allP3,
     ]
 }
 
