@@ -33,7 +33,7 @@
         </header>
         <article>
             <div>
-                <p>4/27/2025: highlights for m5s hector</p>
+                <p>4/27/2025: highlights for m5s hector, split m7s p3 hector strat out into its own thing</p>
                 <p>4/27/2025: add timeline for m8s, add cheatsheet for ex4</p>
                 <p>4/26/2025: fix m7s stoneringers 2, add image previews in cheatsheet mode</p>
                 <p>4/25/2025: update m6s toxic towers, made links bigger and added some disclaimers</p>
