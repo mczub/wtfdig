@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import type { Alignment, PlayerMechStrat, PhaseStrats, Role, MechanicStrat, Strat, TimelineItem } from './+page';
-	import { Accordion, Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
+	import { Accordion, Modal, Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
-	import { ExternalLink, Info } from '@lucide/svelte/icons';
+	import { ExternalLink, Info, X } from '@lucide/svelte/icons';
 	import { getContext } from 'svelte';
   	import { type ToastContext } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
@@ -159,7 +159,7 @@
 				p3: 'toxic',
 			},
 			'kindred': {
-				p2: 'alpha',
+				p2: 'locked',
 				p3: 'toxic',
 			},
 		}
@@ -242,6 +242,11 @@
 	let isCheatsheetEnabled = $derived(innerWidth > 1024 && innerHeight > 768);
 
 	let cheatsheetOpenState = $state(false);
+	let otherOpenState = $state(false);
+
+	function closeOther() {
+		otherOpenState = false;
+	}
 </script>
 
 <svelte:window bind:innerWidth={innerWidth} bind:innerHeight={innerHeight} />
@@ -261,6 +266,46 @@
 	innerHeight={innerHeight}
 	innerWidth={innerWidth}
 />
+
+<Modal
+	open={otherOpenState}
+	onOpenChange={(e) => (otherOpenState = e.open)}
+	contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl flex flex-col border border-surface-600 min-w-[600px]"
+	backdropClasses="backdrop-blur-sm"
+	zIndex={"3000"}
+>
+	{#snippet content()}
+		<header class="flex justify-between">
+			<div>
+				<h3 class="h3">Additional or Outdated Strats</h3>
+			</div>
+			<X onclick={closeOther} />
+		</header>
+		<div>
+			<div class="card preset-outlined-warning-500 gap-4 p-4 mb-2">
+				<p>These strats are relatively unused in PF, either because they're new or outdated.</p>
+				<p>If you see a strat here that's picking up steam in PF, please <a target="_blank" rel="noopener noreferrer" class="anchor" href="https://docs.google.com/forms/d/e/1FAIpQLScJEJ43FKjSRJ2MyLuGXznce-P_SQNyPLWga_Xme_CJKPiQIQ/viewform?usp=header">let me know!</a></p>
+			</div>
+			<div>
+				<h4 class="h4">P1</h4>
+				<div><a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={'https://raidplan.io/plan/9q3NYbwkt64Wswif'}>LA Uptime P1</a></div>
+				<div><a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={'hthttps://raidplan.io/plan/fU48afCXIw8Sbb30'}>Shenpai P1</a></div>
+			</div>
+			<div>
+				<h4 class="h4">P2</h4>
+				<div><a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={'https://raidplan.io/plan/gIcsj6_cyedVQON7'}>Toxic P2</a></div>
+				<div><a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={'https://raidplan.io/plan/jtQenPvoJy7hsV-x'}>Alpha 1.0 P2</a></div>
+				<div><a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={'https://raidplan.io/plan/zjpDmFrJ6VvUcDhV'}>Alpha 2.0 P2</a></div>
+				<div><a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={'https://raidplan.io/plan/2Y1HT42osFhYD6Pe'}>Zenith Seeds</a></div>
+				<div><a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={'https://raidplan.io/plan/xqt73wqsyzeykudf'}>QR Seeds</a></div>
+			</div>
+			<div>
+				<h4 class="h4">P3</h4>
+				<div><a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={'https://raidplan.io/plan/tFbTaL_Noj4ePdly'}>Cute Debris Deathmatch</a></div>
+			</div>
+		</div>
+	{/snippet}
+</Modal>
 
 <div class="container grow px-4 mx-auto mb-6">
 	<div class="container">
@@ -284,20 +329,16 @@
 					</Segment>
 				</div>
 				{#if stratName}
-				<div class="flex flex-row space-x-4 space-y-2 flex-wrap">
+				<div class="flex flex-row space-x-4 space-y-2 flex-wrap mb-2">
 					<div class="flex flex-col">
 						<div class="flex flex-row">
 							<div class="text-xl mb-2">Which P2/Seeds strat are you using?</div>
 						</div>
 						<Segment classes="flex-wrap" name="p2" value={stratState.p2} onValueChange={(e) => (setStratState('p2', e.value))}>
-							<Segment.Item value="toxic">Toxic</Segment.Item>
-							<Segment.Item value="bili">Bilibili</Segment.Item>
-							<Segment.Item value="alpha">Alpha 1.0</Segment.Item>
-							<Segment.Item value="alpha2">Alpha 2.0</Segment.Item>
-							<Segment.Item value="zenith">Zenith</Segment.Item>
-							<Segment.Item value="cute">Cute</Segment.Item>
 							<Segment.Item value="locked">Locked</Segment.Item>
+							<Segment.Item value="bili">Bilibili</Segment.Item>
 							<Segment.Item value="fixed">Fixed</Segment.Item>
+							<Segment.Item value="cute">Cute</Segment.Item>
 						</Segment>
 					</div>
 					<div class="flex flex-col">
@@ -310,6 +351,11 @@
 								<Segment.Item value="hector">Hector</Segment.Item>
 							</Segment>
 						</div>
+					</div>
+				</div>
+				<div class="flex flex-col">
+					<div class="flex flex-row">
+						<button type="button" class="btn preset-tonal-primary" onclick={() => otherOpenState = true}>View other strats</button>
 					</div>
 				</div>
 				{/if}
