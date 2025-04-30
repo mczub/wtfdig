@@ -34,7 +34,7 @@
 	export const toast: ToastContext = getContext('toast');
 
 	const addsUrls: Record<string, any> = {
-		'latte': {name: 'Latte Adds', url: 'https://raidplan.io/plan/s_q_kuYAhHcOLcxb'},
+		'latte': {name: 'Latte Adds', url: 'https://raidplan.io/plan/0066fd3CVp1_G36R'},
 		'toxic': {name: 'Toxic Adds', url: 'https://raidplan.io/plan/Pgj53K49w8LAZpI6'},
 		'yukizuri': {name: 'Yukizuri Adds', url: 'https://www.youtube.com/watch?v=1LQ2OzMn7EE'},
 		'cleave': {name: 'Cleavemaxxing Adds', url: 'https://raidplan.io/plan/ywV9cu6GRQ68SQLy'},
