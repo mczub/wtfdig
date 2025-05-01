@@ -452,7 +452,7 @@ const timeline: TimelineItem[] = [
 
 const feringDecay: StratRecord = {
     'start': {
-        'description': 'Healers/Melee West, Tanks/Ranged East\nG1 N, G2 S\nStay in start positions and rotate with heads',
+        'description': 'H/M West, T/R East, G1 N, G2 S\nRotate with line AOEs',
         'MT': {
                 role: 'Tank',
                 party: 1,
@@ -468,13 +468,13 @@ const feringDecay: StratRecord = {
         'H1': {
                 role: 'Healer',
                 party: 1,
-                description: '',
+                description: 'Ranged without AOEs can stay between melee AOEs to give more space',
                 imageUrl: './m8s/p1/fer-decay-start.webp',
         },
         'H2': {
                 role: 'Healer',
                 party: 2,
-                description: '',
+                description: 'Ranged without AOEs can stay between melee AOEs to give more space',
                 imageUrl: './m8s/p1/fer-decay-start.webp',
         },
         'M1': {
@@ -492,18 +492,18 @@ const feringDecay: StratRecord = {
         'R1': {
                 role: 'Ranged',
                 party: 1,
-                description: '',
+                description: 'Ranged without AOEs can stay between melee AOEs to give more space',
                 imageUrl: './m8s/p1/fer-decay-start.webp',
         },
         'R2': {
                 role: 'Ranged',
                 party: 2,
-                description: '',
+                description: 'Ranged without AOEs can stay between melee AOEs to give more space',
                 imageUrl: './m8s/p1/fer-decay-start.webp',
         },
     },
     'spreads': {
-        'description': 'Stay in static positions while rotating\nMelee Close, Ranged Far',
+        'description': 'Second spreads resolve with third line AOE\nMelee Close, Ranged Far',
         'MT': {
                 role: 'Tank',
                 party: 1,
@@ -519,13 +519,13 @@ const feringDecay: StratRecord = {
         'H1': {
                 role: 'Healer',
                 party: 1,
-                description: '',
+                description: 'Ranged without AOEs can stay between melee AOEs to give more space',
                 imageUrl: './m8s/p1/fer-decay-spreads.webp',
         },
         'H2': {
                 role: 'Healer',
                 party: 2,
-                description: '',
+                description: 'Ranged without AOEs can stay between melee AOEs to give more space',
                 imageUrl: './m8s/p1/fer-decay-spreads.webp',
         },
         'M1': {
@@ -543,13 +543,13 @@ const feringDecay: StratRecord = {
         'R1': {
                 role: 'Ranged',
                 party: 1,
-                description: '',
+                description: 'Ranged without AOEs can stay between melee AOEs to give more space',
                 imageUrl: './m8s/p1/fer-decay-spreads.webp',
         },
         'R2': {
                 role: 'Ranged',
                 party: 2,
-                description: '',
+                description: 'Ranged without AOEs can stay between melee AOEs to give more space',
                 imageUrl: './m8s/p1/fer-decay-spreads.webp',
         },
     },
