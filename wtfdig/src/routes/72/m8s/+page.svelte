@@ -365,8 +365,8 @@
 				<div>
 					<div class="text-xl mb-2">Which strat are you using?</div>
 					<Segment classes="flex-wrap" name="stratName" value={stratName} onValueChange={onSelectStrat}>
+						<Segment.Item value="pb-r"labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span>Toxic + Rinon</Segment.Item>
 						<Segment.Item value="pb-eQ">Pastebin (eQ3PHFKr)</Segment.Item>
-						<Segment.Item value="pb-r">Pastebin + Rinon</Segment.Item>
 						<Segment.Item value="toxic">Toxic</Segment.Item>
 					</Segment>
 				</div>

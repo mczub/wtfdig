@@ -324,7 +324,7 @@
 				<div>
 					<div class="text-xl mb-2">Which P1 strat are you using?</div>
 					<Segment classes="flex-wrap" name="stratName" value={stratName} onValueChange={onSelectStrat}>
-						<Segment.Item value="toxic">Toxic</Segment.Item>
+						<Segment.Item value="toxic" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span>Toxic</Segment.Item>
 						<Segment.Item value="kindred">Kindred</Segment.Item>
 					</Segment>
 				</div>
@@ -335,7 +335,7 @@
 							<div class="text-xl mb-2">Which P2/Seeds strat are you using?</div>
 						</div>
 						<Segment classes="flex-wrap" name="p2" value={stratState.p2} onValueChange={(e) => (setStratState('p2', e.value))}>
-							<Segment.Item value="locked">Locked</Segment.Item>
+							<Segment.Item value="locked" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span>Locked</Segment.Item>
 							<Segment.Item value="bili">Bilibili</Segment.Item>
 							<Segment.Item value="fixed">Fixed</Segment.Item>
 							<Segment.Item value="cute">Cute</Segment.Item>
@@ -347,7 +347,7 @@
 						</div>
 						<div>
 							<Segment classes="flex-wrap shrink" name="p3" value={stratState.p3} onValueChange={(e) => (setStratState('p3', e.value))}>
-								<Segment.Item value="toxic">Toxic</Segment.Item>
+								<Segment.Item value="toxic" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span>Toxic</Segment.Item>
 								<Segment.Item value="hector">Hector</Segment.Item>
 							</Segment>
 						</div>
