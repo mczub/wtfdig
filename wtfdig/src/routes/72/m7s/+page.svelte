@@ -336,8 +336,8 @@
 						</div>
 						<Segment classes="flex-wrap" name="p2" value={stratState.p2} onValueChange={(e) => (setStratState('p2', e.value))}>
 							<Segment.Item value="locked" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span>Locked</Segment.Item>
+							<Segment.Item value="fixed" labelClasses="flex items-center"><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Fixed</Segment.Item>
 							<Segment.Item value="bili">Bilibili</Segment.Item>
-							<Segment.Item value="fixed">Fixed</Segment.Item>
 							<Segment.Item value="cute">Cute</Segment.Item>
 						</Segment>
 					</div>
