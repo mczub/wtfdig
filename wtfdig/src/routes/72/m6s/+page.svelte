@@ -144,6 +144,9 @@
 			'latte': {
 				adds: 'latte',
 			},
+			'game8': {
+				adds: 'game8',
+			},
 			'toxic': {
 				adds: 'cleave',
 			},
@@ -165,6 +168,7 @@
 		if (!stratName || !role || !party) return '';
 		const stratNames: Record<string, string> = {
 			'latte': 'Latte (0066fd3CVp1_G36R)',
+			'game8': 'Game8',
 			'toxic': 'Hector/Toxic Friends (Pgj53K49w8LAZpI6)',
 			'yukizuri': 'Yukizuri'
 		}
@@ -249,6 +253,7 @@
 					<div class="text-xl mb-2">Which strat are you using?</div>
 					<Segment classes="flex-wrap" name="stratName" value={stratName} onValueChange={onSelectStrat}>
 						<Segment.Item value="toxic" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span>Hector/Toxic (Pgj5⋯ZpI6)</Segment.Item>
+						<Segment.Item value="game8" labelClasses="flex items-center"><span class="badge preset-tonal-error px-2 mr-2">JP</span>Game8</Segment.Item>
 						<Segment.Item value="latte">Latte (0066⋯G36R)</Segment.Item>
 						<Segment.Item value="yukizuri">Yukizuri</Segment.Item>
 					</Segment>
@@ -277,6 +282,7 @@
 						</div>
 						<Segment classes="flex-wrap" name="adds" value={stratState.adds} onValueChange={(e) => (setStratState('adds', e.value))}>
 							<Segment.Item value="cleave" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span>Cleavemaxxing</Segment.Item>
+							<Segment.Item value="game8" labelClasses="flex items-center"><span class="badge preset-tonal-error px-2 mr-2">JP</span>Game8</Segment.Item>
 							<Segment.Item value="toxic">Hector/Toxic</Segment.Item>
 							<Segment.Item value="latte">Latte</Segment.Item>
 							<Segment.Item value="yukizuri">Yukizuri</Segment.Item>
