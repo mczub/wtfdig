@@ -369,12 +369,12 @@
 						</div>
 					</div>
 				</div>
+				{/if}
 				<div class="flex flex-col">
 					<div class="flex flex-row">
 						<button type="button" class="btn preset-tonal-primary" onclick={() => otherOpenState = true}>View other strats</button>
 					</div>
 				</div>
-				{/if}
 				<div>
 					<div class="text-xl mb-2">Which role are you?</div>
 					<Segment name="role" value={role} onValueChange={(e) => (role = e.value)}>
