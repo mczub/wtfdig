@@ -3,7 +3,7 @@ import type { PageLoad } from "./$types";
 
 export const load: PageLoad = ({params}) => {
     return {
-        strats: [toxicStrat, kindredStrat],
+        strats: [toxicStrat, kindredStrat, game8Strat],
         timeline: timeline,
     }
 }
@@ -121,281 +121,337 @@ const timeline: TimelineItem[] = [
     {
         mechName: 'Start',
         mechType: 'Start',
+        mechTag: 'p1',
         startTimeMs: 0,
     },
     {
         mechName: 'Brutal Impact',
         mechType: 'Raidwide',
+        mechTag: 'p1',
         startTimeMs: 10000,
     },
     {
         mechName: 'Stoneringer',
         mechType: 'StoredMechanic',
+        mechTag: 'p1',
         startTimeMs: 21000,
     },
     {
         mechName: 'Smash Here/There',
         mechType: 'Tankbuster',
+        mechTag: 'p1',
         startTimeMs: 33000,
     },
     {
         mechName: 'Spore Sac',
         mechType: 'Mechanic',
+        mechTag: 'p1',
         startTimeMs: 48000,
     },
     {
         mechName: 'Sinister Seeds',
         mechType: 'Mechanic',
+        mechTag: 'p1',
         startTimeMs: 53000,
     },
     {
         mechName: 'Quarry Swamp',
         mechType: 'Mechanic',
+        mechTag: 'p1',
         startTimeMs: 93000,
     },
     {
         mechName: 'Gigaflare',
         mechType: 'Raidwide',
+        mechTag: 'p1',
         startTimeMs: 105000,
     },
     {
         mechName: 'Stoneringer',
         mechType: 'StoredMechanic',
+        mechTag: 'p1',
         startTimeMs: 107000,
     },
     {
         mechName: 'Smash Here/There',
         mechType: 'Tankbuster',
+        mechTag: 'p1',
         startTimeMs: 118000,
     },
     {
         mechName: 'Pulp Smash',
         mechType: 'Mechanic',
+        mechTag: 'p1',
         startTimeMs: 127000,
     },
     {
         mechName: 'Neo Bombarian Special',
         mechType: 'Raidwide',
+        mechTag: 'p1',
         startTimeMs: 148000,
     },
     {
         mechName: 'Stoneringer',
         mechType: 'StoredMechanic',
+        mechTag: 'p2',
         startTimeMs: 168000,
     },
     {
         mechName: 'Brutish Swing',
         mechType: 'Mechanic',
+        mechTag: 'p2',
         startTimeMs: 184000,
     },
     {
         mechName: 'Revenge of the Vines',
         mechType: 'Raidwide',
+        mechTag: 'p2',
         startTimeMs: 195000,
     },
     {
         mechName: 'Thorny Deathmatch',
         mechType: 'Mechanic',
+        mechTag: 'p2',
         startTimeMs: 203000,
     },
     {
         mechName: 'Stoneringer',
         mechType: 'StoredMechanic',
+        mechTag: 'p2',
         startTimeMs: 208000,
     },
     {
         mechName: 'Abominable Blink',
         mechType: 'Mechanic',
+        mechTag: 'p2',
         startTimeMs: 222000,
     },
     {
         mechName: 'Sporesplosion',
         mechType: 'Mechanic',
+        mechTag: 'p2',
         startTimeMs: 228000,
     },
     {
         mechName: 'Brutish Swing',
         mechType: 'Mechanic',
+        mechTag: 'p2',
         startTimeMs: 247000,
     },
     {
         mechName: 'Revenge of the Vines',
         mechType: 'Raidwide',
+        mechTag: 'p2',
         startTimeMs: 258000,
     },
     {
         mechName: 'Demolition Deathmatch',
         mechType: 'Mechanic',
+        mechTag: 'p2',
         startTimeMs: 264000,
     },
     {
         mechName: 'Abominable Blink',
         mechType: 'Mechanic',
+        mechTag: 'p2',
         startTimeMs: 280000,
     },
     {
         mechName: 'Strange Seeds',
         mechType: 'Mechanic',
+        mechTag: 'p2',
         startTimeMs: 288000,
     },
     {
         mechName: 'Stoneringer',
         mechType: 'StoredMechanic',
         startTimeMs: 294000,
+        mechTag: 'p2',
     },
     {
         mechName: 'Killer Seeds',
         mechType: 'Mechanic',
+        mechTag: 'p2',
         startTimeMs: 320000,
     },
     {
         mechName: 'Brutish Swing',
         mechType: 'Mechanic',
+        mechTag: 'p2',
         startTimeMs: 330000,
     },
     {
         mechName: 'Revenge of the Vines',
         mechType: 'Raidwide',
+        mechTag: 'p2',
         startTimeMs: 340000,
     },
     {
         mechName: 'Powerslam',
         mechType: 'Raidwide',
+        mechTag: 'p2',
         startTimeMs: 353000,
     },
     {
         mechName: 'Brutal Impact x7',
         mechType: 'Raidwide',
+        mechTag: 'p3',
         startTimeMs: 382000,
     },
     {
         mechName: 'Stoneringer 2',
         mechType: 'StoredMechanic',
+        mechTag: 'p3',
         startTimeMs: 394000,
     },
     {
         mechName: 'Brutish Swing',
         mechType: 'Mechanic',
+        mechTag: 'p3',
         startTimeMs: 409000,
     },
     {
         mechName: 'Lashing Lariat',
         mechType: 'Mechanic',
+        mechTag: 'p3',
         startTimeMs: 416000,
     },
     {
         mechName: 'Brutish Swing',
         mechType: 'Mechanic',
+        mechTag: 'p3',
         startTimeMs: 425000,
     },
     {
         mechName: 'Slaminator',
         mechType: 'Mechanic',
+        mechTag: 'p3',
         startTimeMs: 434000,
     },
     {
         mechName: 'Brutal Impact x8',
         mechType: 'Raidwide',
+        mechTag: 'p3',
         startTimeMs: 443000,
     },
     {
         mechName: 'Stoneringer',
         mechType: 'StoredMechanic',
+        mechTag: 'p3',
         startTimeMs: 453000,
     },
     {
         mechName: 'Smash Here/There',
         mechType: 'Tankbuster',
+        mechTag: 'p3',
         startTimeMs: 465000,
     },
     {
         mechName: 'Debris Deathmatch',
         mechType: 'Mechanic',
+        mechTag: 'p3',
         startTimeMs: 478000,
     },
     {
         mechName: 'Spore Sac',
         mechType: 'Mechanic',
+        mechTag: 'p3',
         startTimeMs: 488000,
     },
     {
         mechName: 'Killer Seeds',
         mechType: 'Mechanic',
+        mechTag: 'p3',
         startTimeMs: 497000,
     },
     {
         mechName: 'Quarry Swamp',
         mechType: 'Mechanic',
+        mechTag: 'p3',
         startTimeMs: 514000,
     },
     {
         mechName: 'Sinister Seeds',
         mechType: 'Mechanic',
+        mechTag: 'p3',
         startTimeMs: 525000,
     },
     {
         mechName: 'Pulp Smash',
         mechType: 'Mechanic',
+        mechTag: 'p3',
         startTimeMs: 543000,
     },
     {
         mechName: 'Brutal Impact x8',
         mechType: 'Raidwide',
+        mechTag: 'p3',
         startTimeMs: 553000,
     },
     {
         mechName: 'Stoneringer 2',
         mechType: 'StoredMechanic',
+        mechTag: 'p3',
         startTimeMs: 570000,
     },
     {
         mechName: 'Strange Seeds',
         mechType: 'Mechanic',
+        mechTag: 'p3',
         startTimeMs: 582000,
     },
     {
         mechName: 'Tendrils + Brutish',
         mechType: 'Mechanic',
+        mechTag: 'p3',
         startTimeMs: 593000,
     },
     {
         mechName: 'Lashing Lariat',
         mechType: 'Mechanic',
+        mechTag: 'p3',
         startTimeMs: 598000,
     },
     {
         mechName: 'Strange Seeds',
         mechType: 'Mechanic',
+        mechTag: 'p3',
         startTimeMs: 602000,
     },
     {
         mechName: 'Tendrils + Brutish',
         mechType: 'Mechanic',
+        mechTag: 'p3',
         startTimeMs: 607000,
     },
     {
         mechName: 'Slaminator',
         mechType: 'Mechanic',
+        mechTag: 'p3',
         startTimeMs: 614000,
     },
     {
         mechName: 'Stoneringer',
         mechType: 'StoredMechanic',
+        mechTag: 'p3',
         startTimeMs: 620000,
     },
     {
         mechName: 'Smash Here/There',
         mechType: 'Tankbuster',
+        mechTag: 'p3',
         startTimeMs: 630000,
     },
     {
         mechName: 'Brutal Impact x8',
         mechType: 'Raidwide',
+        mechTag: 'p3',
         startTimeMs: 640000,
     },
     {
         mechName: 'Enrage',
         mechType: 'Enrage',
+        mechTag: 'p3',
         startTimeMs: 661100,
     },
 ]
@@ -4409,6 +4465,519 @@ const fixedP2: Record<string, string | Record<string, string | PlayerMechStrat>>
     },
 }
 
+const game8P2: Record<string, string | Record<string, string | PlayerMechStrat>> = {
+    'swing1spreads': {
+        'description': 'G1 Left, G2 Right facing boss\nMTHR',
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: 'Left facing boss, 2nd',
+                imageUrl: './m7s/p2/game8-swing-spreads.webp',
+        },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: `Right facing boss, 2nd`,
+                imageUrl: './m7s/p2/game8-swing-spreads.webp',
+        },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: 'Left facing boss, 3rd',
+                imageUrl: './m7s/p2/game8-swing-spreads.webp',
+        },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: 'Right facing boss, 3rd',
+                imageUrl: './m7s/p2/game8-swing-spreads.webp',
+        },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: 'Left facing boss, 1st',
+                imageUrl: './m7s/p2/game8-swing-spreads.webp',
+        },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: 'Right facing boss, 1st',
+                imageUrl: './m7s/p2/game8-swing-spreads.webp',
+        },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: 'Left facing boss, 4th',
+                imageUrl: './m7s/p2/game8-swing-spreads.webp',
+        },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: 'Right facing boss, 4th',
+                imageUrl: './m7s/p2/game8-swing-spreads.webp',
+        },
+    },
+    'flares': {
+        'description': 'Tank run flare away from boss',
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: 'Run far if flare',
+                imageUrl: '',
+        },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: `Provoke if no flare\nRun far if flare`,
+                imageUrl: '',
+        },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: 'Stay near boss',
+                imageUrl: '',
+        },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: 'Stay near boss',
+                imageUrl: '',
+        },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: 'Stay near boss',
+                imageUrl: '',
+        },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: 'Stay near boss',
+                imageUrl: '',
+        },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: 'Stay near boss',
+                imageUrl: '',
+        },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: 'Stay near boss',
+                imageUrl: '',
+        },
+    },
+    'swing2spreads': {
+        'description': 'G1 Left, G2 Right facing boss\nMTHR',
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: 'Left facing boss, 2nd',
+                imageUrl: './m7s/p2/game8-swing-spreads.webp',
+        },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: `Right facing boss, 2nd`,
+                imageUrl: './m7s/p2/game8-swing-spreads.webp',
+        },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: 'Left facing boss, 3rd',
+                imageUrl: './m7s/p2/game8-swing-spreads.webp',
+        },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: 'Right facing boss, 3rd',
+                imageUrl: './m7s/p2/game8-swing-spreads.webp',
+        },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: 'Left facing boss, 1st',
+                imageUrl: './m7s/p2/game8-swing-spreads.webp',
+        },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: 'Right facing boss, 1st',
+                imageUrl: './m7s/p2/game8-swing-spreads.webp',
+        },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: 'Left facing boss, 4th',
+                imageUrl: './m7s/p2/game8-swing-spreads.webp',
+        },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: 'Right facing boss, 4th',
+                imageUrl: './m7s/p2/game8-swing-spreads.webp',
+        },
+    },
+    'strangeseedsbossnorth': {
+        'description': 'Alternate seed drops between 1/3 and 2/4 spots\nSafe spots are in blue',
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/game8-seeds-setup.webp',
+        },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: ``,
+                imageUrl: './m7s/p2/game8-seeds-setup.webp',
+        },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/game8-seeds-setup.webp',
+        },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/game8-seeds-setup.webp',
+        },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/game8-seeds-setup.webp',
+        },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/game8-seeds-setup.webp',
+        },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: 'Take short side tether',
+                imageUrl: './m7s/p2/game8-seeds-setup.webp',
+        },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: 'Take long side tether',
+                imageUrl: './m7s/p2/game8-seeds-setup.webp',
+        },
+    },
+    'strangeseedsnorthtethers': {
+        'description': 'D3 take short side tether, D4 take long side tether',
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: '',
+                imageUrl: '',
+        },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: ``,
+                imageUrl: '',
+        },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: '',
+                imageUrl: '',
+        },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: '',
+                imageUrl: '',
+        },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: '',
+                imageUrl: '',
+        },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: '',
+                imageUrl: '',
+        },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: 'Take short side tether',
+                imageUrl: '',
+        },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: 'Take long side tether',
+                imageUrl: '',
+        },
+    },
+    'strangeseedsnorthstacks': {
+        'description': 'MT D1 corner near boss\nST D2 mid near boss\nH2 D4 mid away from boss\nH1 D3 NW corner',
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/game8-seeds-stacks.webp',
+        },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: ``,
+                imageUrl: './m7s/p2/game8-seeds-stacks.webp',
+        },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/game8-seeds-stacks.webp',
+        },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/game8-seeds-stacks.webp',
+        },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/game8-seeds-stacks.webp',
+        },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/game8-seeds-stacks.webp',
+        },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/game8-seeds-stacks.webp',
+        },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/game8-seeds-stacks.webp',
+        },
+    },
+    'strangeseedsbosssouth': {
+        'description': 'Alternate seed drops between 1/3 and 2/4 spots\nSafe spots are in blue',
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/game8-seeds-setup.webp',
+        },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: ``,
+                imageUrl: './m7s/p2/game8-seeds-setup.webp',
+        },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/game8-seeds-setup.webp',
+        },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/game8-seeds-setup.webp',
+        },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/game8-seeds-setup.webp',
+        },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/game8-seeds-setup.webp',
+        },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: 'Take short side tether',
+                imageUrl: './m7s/p2/game8-seeds-setup.webp',
+        },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: 'Take long side tether',
+                imageUrl: './m7s/p2/game8-seeds-setup.webp',
+        },
+    },
+    'strangeseedssouthtethers': {
+        'description': 'D3 take short side tether, D4 take long side tether',
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: '',
+                imageUrl: '',
+        },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: ``,
+                imageUrl: '',
+        },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: '',
+                imageUrl: '',
+        },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: '',
+                imageUrl: '',
+        },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: '',
+                imageUrl: '',
+        },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: '',
+                imageUrl: '',
+        },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: 'Take short side tether',
+                imageUrl: '',
+        },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: 'Take long side tether',
+                imageUrl: '',
+        },
+    },
+    'strangeseedssouthstacks': {
+        'description': 'MT D1 corner near boss\nST D2 mid near boss\nH2 D4 mid away from boss\nH1 D3 NW corner',
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/game8-seeds-stacks.webp',
+        },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: ``,
+                imageUrl: './m7s/p2/game8-seeds-stacks.webp',
+        },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/game8-seeds-stacks.webp',
+        },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/game8-seeds-stacks.webp',
+        },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/game8-seeds-stacks.webp',
+        },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/game8-seeds-stacks.webp',
+        },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: '',
+                imageUrl: './m7s/p2/game8-seeds-stacks.webp',
+        },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: '',
+                imageUrl: './m7s/p2/game8-seeds-stacks.webp',
+        },
+    },
+    'swing3spreads': {
+        'description': 'G1 Left, G2 Right facing boss\nMTHR',
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: 'Left facing boss, 2nd',
+                imageUrl: './m7s/p2/game8-swing-spreads.webp',
+        },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: `Right facing boss, 2nd`,
+                imageUrl: './m7s/p2/game8-swing-spreads.webp',
+        },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: 'Left facing boss, 3rd',
+                imageUrl: './m7s/p2/game8-swing-spreads.webp',
+        },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: 'Right facing boss, 3rd',
+                imageUrl: './m7s/p2/game8-swing-spreads.webp',
+        },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: 'Left facing boss, 1st',
+                imageUrl: './m7s/p2/game8-swing-spreads.webp',
+        },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: 'Right facing boss, 1st',
+                imageUrl: './m7s/p2/game8-swing-spreads.webp',
+        },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: 'Left facing boss, 4th',
+                imageUrl: './m7s/p2/game8-swing-spreads.webp',
+        },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: 'Right facing boss, 4th',
+                imageUrl: './m7s/p2/game8-swing-spreads.webp',
+        },
+    },
+}
+
 const hectorP3: Record<string, string | Record<string, string | PlayerMechStrat>> = {
     'stoneringers1': {
         'description': 'G1 Left G2 Right facing boss',
@@ -5247,9 +5816,428 @@ const toxicP3: Record<string, string | Record<string, string | PlayerMechStrat>>
     },
 }
 
+const game8P3: Record<string, string | Record<string, string | PlayerMechStrat>> = {
+    'stoneringers1': {
+        'description': 'G1 Left, G2 Right facing boss\nMTHR',
+        'MT': {
+            role: 'Tank',
+            party: 1,
+            description: 'Left facing boss, 2nd',
+            imageUrl: './m7s/p3/game8-stoneringers1-spread.webp'
+        },
+        'OT': {
+            role: 'Tank',
+            party: 2,
+            description: 'Right facing boss, 2nd',
+            imageUrl: './m7s/p3/game8-stoneringers1-spread.webp'
+        },
+        'H1': {
+            role: 'Healer',
+            party: 1,
+            description: 'Left facing boss, 3rd',
+            imageUrl: './m7s/p3/game8-stoneringers1-spread.webp'
+        },
+        'H2': {
+            role: 'Healer',
+            party: 2,
+            description: 'Right facing boss, 3rd',
+            imageUrl: './m7s/p3/game8-stoneringers1-spread.webp'
+        },
+        'M1': {
+            role: 'Melee',
+            party: 1,
+            description: 'Left facing boss, 1st',
+            imageUrl: './m7s/p3/game8-stoneringers1-spread.webp'
+        },
+        'M2': {
+            role: 'Melee',
+            party: 2,
+            description: 'Right facing boss, 1st',
+            imageUrl: './m7s/p3/game8-stoneringers1-spread.webp'
+        },
+        'R1': {
+            role: 'Ranged',
+            party: 1,
+            description: 'Left facing boss, 4th',
+            imageUrl: './m7s/p3/game8-stoneringers1-spread.webp'
+        },
+        'R2': {
+            role: 'Ranged',
+            party: 2,
+            description: 'Right facing boss, 4th',
+            imageUrl: './m7s/p3/game8-stoneringers1-spread.webp'
+        },
+    },
+    'debris-tethers': {
+        'description': 'D3 North, D4 South, H1 West, H2 East',
+        'MT': {
+            role: 'Tank',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-tethers.webp'
+        },
+        'OT': {
+            role: 'Tank',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-tethers.webp'
+        },
+        'H1': {
+            role: 'Healer',
+            party: 1,
+            description: 'West tether',
+            imageUrl: './m7s/p3/game8-debris-tethers.webp'
+        },
+        'H2': {
+            role: 'Healer',
+            party: 2,
+            description: 'East tether',
+            imageUrl: './m7s/p3/game8-debris-tethers.webp'
+        },
+        'M1': {
+            role: 'Melee',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-tethers.webp'
+        },
+        'M2': {
+            role: 'Melee',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-tethers.webp'
+        },
+        'R1': {
+            role: 'Ranged',
+            party: 1,
+            description: 'North tether',
+            imageUrl: './m7s/p3/game8-debris-tethers.webp'
+        },
+        'R2': {
+            role: 'Ranged',
+            party: 2,
+            description: 'South tether',
+            imageUrl: './m7s/p3/game8-debris-tethers.webp'
+        },
+    },
+    'debris-stacks': {
+        'description': 'MT/D3 North, ST/D4 South, H1/D1 West, H2/D2 East\nPlace stacks on the wall',
+        'MT': {
+            role: 'Tank',
+            party: 1,
+            description: 'North',
+            imageUrl: './m7s/p3/game8-debris-stacks.webp'
+        },
+        'OT': {
+            role: 'Tank',
+            party: 2,
+            description: 'South',
+            imageUrl: './m7s/p3/game8-debris-stacks.webp'
+        },
+        'H1': {
+            role: 'Healer',
+            party: 1,
+            description: 'West',
+            imageUrl: './m7s/p3/game8-debris-stacks.webp'
+        },
+        'H2': {
+            role: 'Healer',
+            party: 2,
+            description: 'East',
+            imageUrl: './m7s/p3/game8-debris-stacks.webp'
+        },
+        'M1': {
+            role: 'Melee',
+            party: 1,
+            description: 'West',
+            imageUrl: './m7s/p3/game8-debris-stacks.webp'
+        },
+        'M2': {
+            role: 'Melee',
+            party: 2,
+            description: 'East',
+            imageUrl: './m7s/p3/game8-debris-stacks.webp'
+        },
+        'R1': {
+            role: 'Ranged',
+            party: 1,
+            description: 'North',
+            imageUrl: './m7s/p3/game8-debris-stacks.webp'
+        },
+        'R2': {
+            role: 'Ranged',
+            party: 2,
+            description: 'South',
+            imageUrl: './m7s/p3/game8-debris-stacks.webp'
+        },
+    },
+    'debris-ranged-puddles': {
+        'description': 'Ranged start on South/West side and bait puddles towards North/East\nMelees drop seeds on cardinals',
+        'MT': {
+            role: 'Tank',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-ranged-puddles.webp'
+        },
+        'OT': {
+            role: 'Tank',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-ranged-puddles.webp'
+        },
+        'H1': {
+            role: 'Healer',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-ranged-puddles.webp'
+        },
+        'H2': {
+            role: 'Healer',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-ranged-puddles.webp'
+        },
+        'M1': {
+            role: 'Melee',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-ranged-puddles.webp'
+        },
+        'M2': {
+            role: 'Melee',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-ranged-puddles.webp'
+        },
+        'R1': {
+            role: 'Ranged',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-ranged-puddles.webp'
+        },
+        'R2': {
+            role: 'Ranged',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-ranged-puddles.webp'
+        },
+    },
+    'debris-ranged-stack': {
+        'description': 'Dodge vines and stack in center',
+        'imageUrl': './m7s/p3/game8-debris-ranged-puddles-stack.webp'
+    },
+    'debris-ranged-proteans': {
+        'description': 'Boss Relative clock spots',
+        'MT': {
+            role: 'Tank',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-ranged-puddles-proteans.webp'
+        },
+        'OT': {
+            role: 'Tank',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-ranged-puddles-proteans.webp'
+        },
+        'H1': {
+            role: 'Healer',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-ranged-puddles-proteans.webp'
+        },
+        'H2': {
+            role: 'Healer',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-ranged-puddles-proteans.webp'
+        },
+        'M1': {
+            role: 'Melee',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-ranged-puddles-proteans.webp'
+        },
+        'M2': {
+            role: 'Melee',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-ranged-puddles-proteans.webp'
+        },
+        'R1': {
+            role: 'Ranged',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-ranged-puddles-proteans.webp'
+        },
+        'R2': {
+            role: 'Ranged',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-ranged-puddles-proteans.webp'
+        },
+    },
+    'debris-melee-puddles': {
+        'description': 'Melees start NW and bait AOEs CW around the boss\nRanged drop seeds on cardinals at the walls',
+        'MT': {
+            role: 'Tank',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-melee-puddles.webp'
+        },
+        'OT': {
+            role: 'Tank',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-melee-puddles.webp'
+        },
+        'H1': {
+            role: 'Healer',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-melee-puddles.webp'
+        },
+        'H2': {
+            role: 'Healer',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-melee-puddles.webp'
+        },
+        'M1': {
+            role: 'Melee',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-melee-puddles.webp'
+        },
+        'M2': {
+            role: 'Melee',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-melee-puddles.webp'
+        },
+        'R1': {
+            role: 'Ranged',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-melee-puddles.webp'
+        },
+        'R2': {
+            role: 'Ranged',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-melee-puddles.webp'
+        },
+    },
+    'debris-melee-stack': {
+        'description': 'Dodge vines and stack Southwest',
+        'imageUrl': './m7s/p3/game8-debris-melee-puddles-stack.webp'
+    },
+    'debris-melee-proteans': {
+        'description': 'Boss Relative clock spots',
+        'MT': {
+            role: 'Tank',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-melee-puddles-proteans.webp'
+        },
+        'OT': {
+            role: 'Tank',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-melee-puddles-proteans.webp'
+        },
+        'H1': {
+            role: 'Healer',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-melee-puddles-proteans.webp'
+        },
+        'H2': {
+            role: 'Healer',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-melee-puddles-proteans.webp'
+        },
+        'M1': {
+            role: 'Melee',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-melee-puddles-proteans.webp'
+        },
+        'M2': {
+            role: 'Melee',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-melee-puddles-proteans.webp'
+        },
+        'R1': {
+            role: 'Ranged',
+            party: 1,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-melee-puddles-proteans.webp'
+        },
+        'R2': {
+            role: 'Ranged',
+            party: 2,
+            description: '',
+            imageUrl: './m7s/p3/game8-debris-melee-puddles-proteans.webp'
+        },
+    },
+    'stoneringers2': {
+        'description': '',
+        'MT': {
+            role: 'Tank',
+            party: 1,
+            description: 'Northwest',
+            imageUrl: './m7s/p3/game8-stoneringers2.webp'
+        },
+        'OT': {
+            role: 'Tank',
+            party: 2,
+            description: 'Northeast',
+            imageUrl: './m7s/p3/game8-stoneringers2.webp'
+        },
+        'H1': {
+            role: 'Healer',
+            party: 1,
+            description: 'Southwest',
+            imageUrl: './m7s/p3/game8-stoneringers2.webp'
+        },
+        'H2': {
+            role: 'Healer',
+            party: 2,
+            description: 'Southeast',
+            imageUrl: './m7s/p3/game8-stoneringers2.webp'
+        },
+        'M1': {
+            role: 'Melee',
+            party: 1,
+            description: 'Southwest',
+            imageUrl: './m7s/p3/game8-stoneringers2.webp'
+        },
+        'M2': {
+            role: 'Melee',
+            party: 2,
+            description: 'Southeast',
+            imageUrl: './m7s/p3/game8-stoneringers2.webp'
+        },
+        'R1': {
+            role: 'Ranged',
+            party: 1,
+            description: 'Northwest',
+            imageUrl: './m7s/p3/game8-stoneringers2.webp'
+        },
+        'R2': {
+            role: 'Ranged',
+            party: 2,
+            description: 'Northeast',
+            imageUrl: './m7s/p3/game8-stoneringers2.webp'
+        },
+    },
+}
 
-const p2Strats = {toxic: toxicP2, bili: biliP2, alpha: alphaP2, zenith: zenithP2, alpha2: alpha2P2, cute: cuteP2, locked: lockedP2, fixed: fixedP2}
-const p3Strats = {toxic: toxicP3, hector: hectorP3}
+
+const p2Strats = {toxic: toxicP2, bili: biliP2, alpha: alphaP2, zenith: zenithP2, alpha2: alpha2P2, cute: cuteP2, locked: lockedP2, fixed: fixedP2, game8: game8P2}
+const p3Strats = {toxic: toxicP3, hector: hectorP3, game8: game8P3}
 
 const allP2: PhaseStrats[] = [
     {
@@ -5419,6 +6407,7 @@ const toxicStrat: Strat = {
     strats: [
         {
             phaseName: 'Sinister Seeds', 
+            tag: 'p1',
             mechs: [
                 {
                     mechanic: 'Safespots',
@@ -5537,11 +6526,13 @@ const toxicStrat: Strat = {
         },
         {
             phaseName: 'Adds',
+            tag: 'p1',
             description: 'Take adds north\nInterrupt priority on Winding Wildwinds',
             imageUrl: './m7s/p1/toxic-adds.webp'
         },
         {
             phaseName: 'Pulp Smash',
+            tag: 'p1',
             description: 'True North clock spots',
             imageUrl: './m7s/p1/toxic-pulp.webp'
         },
@@ -5557,70 +6548,12 @@ const kindredStrat: Strat = {
     stratUrl: 'https://raidplan.io/plan/-OMZSfpCVSPeJdIu',
     strats: [
         {
-            phaseName: 'Sinister Seeds', 
-            mechs: [
-                {
-                    mechanic: 'Safespots',
-                    description: 'G1 West G2 East\nRanged Out Melee In',
-                    strats: [
-                        {
-                            role: 'Tank',
-                            party: 1,
-                            description: 'Close',
-                            imageUrl: './m7s/p1/uptime-sinister.webp'
-                        },
-                        {
-                            role: 'Tank',
-                            party: 2,
-                            description: 'Close',
-                            imageUrl: './m7s/p1/uptime-sinister.webp'
-                        },
-                        {
-                            role: 'Healer',
-                            party: 1,
-                            description: 'Far',
-                            imageUrl: './m7s/p1/uptime-sinister.webp'
-                        },
-                        {
-                            role: 'Healer',
-                            party: 2,
-                            description: 'Far',
-                            imageUrl: './m7s/p1/uptime-sinister.webp'
-                        },
-                        {
-                            role: 'Melee',
-                            party: 1,
-                            description: 'Close',
-                            imageUrl: './m7s/p1/uptime-sinister.webp'
-                        },
-                        {
-                            role: 'Melee',
-                            party: 2,
-                            description: 'Close',
-                            imageUrl: './m7s/p1/uptime-sinister.webp'
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 1,
-                            description: 'Far',
-                            imageUrl: './m7s/p1/uptime-sinister.webp'
-                        },
-                        {
-                            role: 'Ranged',
-                            party: 2,
-                            description: 'Far',
-                            imageUrl: './m7s/p1/uptime-sinister.webp'
-                        },
-                    ]
-                },
-            ]
-        },
-        {
             phaseName: 'Sinister Seeds (Melee Seeds, Ranged Puddles)', 
+            tag: 'p1',
             mechs: [
                 {
                     mechanic: 'Start',
-                    description: '',
+                    description: 'G1 West G2 East\nRanged Out Melee In',
                     strats: [
                         {
                             role: 'Tank',
@@ -5838,10 +6771,11 @@ const kindredStrat: Strat = {
         },
         {
             phaseName: 'Sinister Seeds (Ranged Seeds, Melee Puddles)', 
+            tag: 'p1',
             mechs: [
                 {
                     mechanic: 'Start',
-                    description: '',
+                    description: 'G1 West G2 East\nRanged Out Melee In',
                     strats: [
                         {
                             role: 'Tank',
@@ -6059,6 +6993,7 @@ const kindredStrat: Strat = {
         },
         {
             phaseName: 'Pulp Smash',
+            tag: 'p1',
             description: 'True North clock spots',
             imageUrl: './m7s/p1/uptime-pulp.webp'
         },
@@ -6067,3 +7002,463 @@ const kindredStrat: Strat = {
     ]
 }
 
+const game8Strat: Strat = {
+    stratName: 'game8',
+    description: 'Source: Game8',
+    notes: '',
+    stratUrl: 'https://game8.jp/ff14/681274',
+    strats: [
+        {
+            phaseName: 'Sinister Seeds (Melee Seeds, Ranged Puddles)',
+            tag: 'p1',
+            mechs: [
+                {
+                    mechanic: 'Start',
+                    description: 'Melee South + Close\nH1H2 South + Far\nD3D4 North + Far',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'South + Close',
+                            imageUrl: './m7s/p1/game8-sinister-melee-seeds-start.webp'
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'South + Close',
+                            imageUrl: './m7s/p1/game8-sinister-melee-seeds-start.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'South + Far',
+                            imageUrl: './m7s/p1/game8-sinister-melee-seeds-start.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'South + Far',
+                            imageUrl: './m7s/p1/game8-sinister-melee-seeds-start.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'South + Close',
+                            imageUrl: './m7s/p1/game8-sinister-melee-seeds-start.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'South + Close',
+                            imageUrl: './m7s/p1/game8-sinister-melee-seeds-start.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'North + Far',
+                            imageUrl: './m7s/p1/game8-sinister-melee-seeds-start.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'North + Far',
+                            imageUrl: './m7s/p1/game8-sinister-melee-seeds-start.webp'
+                        },
+                    ]
+                },
+                {
+                    mechanic: 'Seed and Puddle Drops',
+                    description: 'Ranged drop puddles towards N/S then in\nMelee place seeds on intercard rivets',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Northwest',
+                            imageUrl: './m7s/p1/game8-sinister-melee-seeds-drop.webp'
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Northeast',
+                            imageUrl: './m7s/p1/game8-sinister-melee-seeds-drop.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Drop puddles towards South',
+                            imageUrl: './m7s/p1/game8-sinister-melee-seeds-drop.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Drop puddles towards South',
+                            imageUrl: './m7s/p1/game8-sinister-melee-seeds-drop.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Southwest',
+                            imageUrl: './m7s/p1/game8-sinister-melee-seeds-drop.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Southeast',
+                            imageUrl: './m7s/p1/game8-sinister-melee-seeds-drop.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Drop puddles towards North',
+                            imageUrl: './m7s/p1/game8-sinister-melee-seeds-drop.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Drop puddles towards North',
+                            imageUrl: './m7s/p1/game8-sinister-melee-seeds-drop.webp'
+                        },
+                    ]
+                },
+                {
+                    mechanic: 'Stacks',
+                    description: 'G1 West/G2 East',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'West',
+                            imageUrl: './m7s/p1/game8-sinister-stacks.webp'
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'East',
+                            imageUrl: './m7s/p1/game8-sinister-stacks.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'West',
+                            imageUrl: './m7s/p1/game8-sinister-stacks.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'East',
+                            imageUrl: './m7s/p1/game8-sinister-stacks.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'West',
+                            imageUrl: './m7s/p1/game8-sinister-stacks.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'East',
+                            imageUrl: './m7s/p1/game8-sinister-stacks.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'West',
+                            imageUrl: './m7s/p1/game8-sinister-stacks.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'East',
+                            imageUrl: './m7s/p1/game8-sinister-stacks.webp'
+                        },
+                    ]
+                },
+                {
+                    mechanic: 'Adds',
+                    description: 'Pull adds far West\nInterrupt priority on Winding Wildwinds\nTanks first, Ranged last',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: '',
+                            imageUrl: './m7s/p1/game8-sinister-melee-seeds-adds.webp'
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: '',
+                            imageUrl: './m7s/p1/game8-sinister-melee-seeds-adds.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: '',
+                            imageUrl: './m7s/p1/game8-sinister-melee-seeds-adds.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: '',
+                            imageUrl: './m7s/p1/game8-sinister-melee-seeds-adds.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: '',
+                            imageUrl: './m7s/p1/game8-sinister-melee-seeds-adds.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: '',
+                            imageUrl: './m7s/p1/game8-sinister-melee-seeds-adds.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: '',
+                            imageUrl: './m7s/p1/game8-sinister-melee-seeds-adds.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: '',
+                            imageUrl: './m7s/p1/game8-sinister-melee-seeds-adds.webp'
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            phaseName: 'Sinister Seeds (Ranged Seeds, Melee Puddles)', 
+            tag: 'p1',
+            mechs: [
+                {
+                    mechanic: 'Start',
+                    description: 'Melee South + Close\nH1H2 South + Far\nD3D4 North + Far',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'South + Close',
+                            imageUrl: './m7s/p1/game8-sinister-ranged-seeds-start.webp'
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'South + Close',
+                            imageUrl: './m7s/p1/game8-sinister-ranged-seeds-start.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'South + Far',
+                            imageUrl: './m7s/p1/game8-sinister-ranged-seeds-start.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'South + Far',
+                            imageUrl: './m7s/p1/game8-sinister-ranged-seeds-start.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'South + Close',
+                            imageUrl: './m7s/p1/game8-sinister-ranged-seeds-start.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'South + Close',
+                            imageUrl: './m7s/p1/game8-sinister-ranged-seeds-start.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'North + Far',
+                            imageUrl: './m7s/p1/game8-sinister-ranged-seeds-start.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'North + Far',
+                            imageUrl: './m7s/p1/game8-sinister-ranged-seeds-start.webp'
+                        },
+                    ]
+                },
+                {
+                    mechanic: 'Seed and Puddle Drops',
+                    description: 'Ranged place seeds on intercard rivets\nMelee drop puddles Clockwise tight in the center',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Drop puddles Clockwise tight in the center',
+                            imageUrl: './m7s/p1/game8-sinister-ranged-seeds-drop.webp'
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Drop puddles Clockwise tight in the center',
+                            imageUrl: './m7s/p1/game8-sinister-ranged-seeds-drop.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Southwest',
+                            imageUrl: './m7s/p1/game8-sinister-ranged-seeds-drop.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Southeast',
+                            imageUrl: './m7s/p1/game8-sinister-ranged-seeds-drop.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Drop puddles Clockwise tight in the center',
+                            imageUrl: './m7s/p1/game8-sinister-ranged-seeds-drop.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Drop puddles Clockwise tight in the center',
+                            imageUrl: './m7s/p1/game8-sinister-ranged-seeds-drop.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Northwest',
+                            imageUrl: './m7s/p1/game8-sinister-ranged-seeds-drop.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Northeast',
+                            imageUrl: './m7s/p1/game8-sinister-ranged-seeds-drop.webp'
+                        },
+                    ]
+                },
+                {
+                    mechanic: 'Stacks',
+                    description: 'G1 West/G2 East',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'West',
+                            imageUrl: './m7s/p1/game8-sinister-stacks.webp'
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'East',
+                            imageUrl: './m7s/p1/game8-sinister-stacks.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'West',
+                            imageUrl: './m7s/p1/game8-sinister-stacks.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'East',
+                            imageUrl: './m7s/p1/game8-sinister-stacks.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'West',
+                            imageUrl: './m7s/p1/game8-sinister-stacks.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'East',
+                            imageUrl: './m7s/p1/game8-sinister-stacks.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'West',
+                            imageUrl: './m7s/p1/game8-sinister-stacks.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'East',
+                            imageUrl: './m7s/p1/game8-sinister-stacks.webp'
+                        },
+                    ]
+                },
+                {
+                    mechanic: 'Adds',
+                    description: 'Pull adds far Northwest\nInterrupt priority on Winding Wildwinds\nTanks first, Ranged last',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: '',
+                            imageUrl: './m7s/p1/game8-sinister-ranged-seeds-adds.webp'
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: '',
+                            imageUrl: './m7s/p1/game8-sinister-ranged-seeds-adds.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: '',
+                            imageUrl: './m7s/p1/game8-sinister-ranged-seeds-adds.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: '',
+                            imageUrl: './m7s/p1/game8-sinister-ranged-seeds-adds.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: '',
+                            imageUrl: './m7s/p1/game8-sinister-ranged-seeds-adds.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: '',
+                            imageUrl: './m7s/p1/game8-sinister-ranged-seeds-adds.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: '',
+                            imageUrl: './m7s/p1/game8-sinister-ranged-seeds-adds.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: '',
+                            imageUrl: './m7s/p1/game8-sinister-ranged-seeds-adds.webp'
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            phaseName: 'Pulp Smash',
+            tag: 'p1',
+            description: 'Boss Relative clock spots',
+            imageUrl: './m7s/p1/game8-pulp.webp'
+        },
+        ...allP2,
+        ...allP3,
+    ]
+}

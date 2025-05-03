@@ -10,7 +10,7 @@
         [propName: string]: any;
 	}
 
-    let { title, stratName, stratState, getStratMechs, cheatsheetOpenState = $bindable(), individualStrat, spotlight, alignment, timeline, innerWidth, innerHeight, rows, columns, tabTags = null }: Props = $props();
+    let { title, stratName, stratState, getStratMechs, cheatsheetOpenState = $bindable(), individualStrat, spotlight, alignment, timeline, innerWidth, innerHeight, rows, columns, tabTags = null, splitTimeline = false }: Props = $props();
     
 	function msToTime(timeInMs: number): string {
 		const seconds = (Math.floor(timeInMs / 1000) % 60).toString().padStart(2, '0');
@@ -24,7 +24,7 @@
 			return `${(Math.floor(index * 980 / timeline.length)/10).toString()}%`;
 		}
         let enrageTime;
-        if (tab) {
+        if (tab && splitTimeline) {
             enrageTime = timeline.find((item) => {return item.mechType === 'Enrage' && tabTags[tab].includes(item.mechTag) })?.startTimeMs;
         } else {
             enrageTime = timeline.find((item) => {return item.mechType === 'Enrage'})?.startTimeMs;
@@ -47,6 +47,7 @@
 	}
 
     function showMechTag(mechTag: string): boolean {
+        if (splitTimeline === false) return true;
         if (tab) {
             return tabTags[tab].includes(mechTag);
         }

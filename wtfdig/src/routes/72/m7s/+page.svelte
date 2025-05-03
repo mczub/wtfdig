@@ -162,6 +162,10 @@
 				p2: 'locked',
 				p3: 'toxic',
 			},
+			'game8': {
+				p2: 'game8',
+				p3: 'game8',
+			},
 		}
 		return stratMechs[stratName];
 	}
@@ -176,6 +180,7 @@
 	function getOptionsString(stratName?: string, role?: Role, party?: number): string {
 		if (!stratName || !role || !party) return '';
 		const stratNames: Record<string, string> = {
+			'game8': 'Game8',
 			'toxic': 'Toxic',
 			'kindred': 'Kindred'
 		}
@@ -221,6 +226,9 @@
 			if (stratState.p2 === 'fixed') {
 				stratDiffs.push(`Fixed P2`);
 			}
+			if (stratState.p2 === 'game8') {
+				stratDiffs.push(`Game8 P2`);
+			}
 		}
 		if (stratState.p3 !== getStratMechs(stratName)['p3']) {
 			if (stratState.p3 === 'toxic') {
@@ -228,6 +236,9 @@
 			}
 			if (stratState.p3 === 'hector') {
 				stratDiffs.push(`Hector P3`);
+			}
+			if (stratState.p3 === 'game8') {
+				stratDiffs.push(`Game8 P3`);
 			}
 		}
 		if (stratName === 'game8' && roleAbbrev !== jpRoleAbbrev[roleAbbrev]) {
@@ -261,10 +272,12 @@
 	individualStrat={individualStrat}
 	spotlight={spotlight}
 	alignment={alignment}
-	rows=5
-	columns=6
+	rows=3
+	columns=5
 	innerHeight={innerHeight}
 	innerWidth={innerWidth}
+	tabTags={{"P1": ['p1'], "P2": ['p2'], "P3": ['p3']}}
+	splitTimeline={false}
 />
 
 <Modal
@@ -325,6 +338,7 @@
 					<div class="text-xl mb-2">Which P1 strat are you using?</div>
 					<Segment classes="flex-wrap" name="stratName" value={stratName} onValueChange={onSelectStrat}>
 						<Segment.Item value="toxic" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span>Toxic</Segment.Item>
+						<Segment.Item value="game8" labelClasses="flex items-center"><span class="badge preset-tonal-error px-2 mr-2">JP</span>Game8</Segment.Item>
 						<Segment.Item value="kindred">Kindred</Segment.Item>
 					</Segment>
 				</div>
@@ -337,6 +351,7 @@
 						<Segment classes="flex-wrap" name="p2" value={stratState.p2} onValueChange={(e) => (setStratState('p2', e.value))}>
 							<Segment.Item value="locked" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span>Locked</Segment.Item>
 							<Segment.Item value="fixed" labelClasses="flex items-center"><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Fixed</Segment.Item>
+							<Segment.Item value="game8" labelClasses="flex items-center"><span class="badge preset-tonal-error px-2 mr-2">JP</span>Game8/さり式</Segment.Item>
 							<Segment.Item value="bili">Bilibili</Segment.Item>
 							<Segment.Item value="cute">Cute</Segment.Item>
 						</Segment>
@@ -348,6 +363,7 @@
 						<div>
 							<Segment classes="flex-wrap shrink" name="p3" value={stratState.p3} onValueChange={(e) => (setStratState('p3', e.value))}>
 								<Segment.Item value="toxic" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span>Toxic</Segment.Item>
+								<Segment.Item value="game8" labelClasses="flex items-center"><span class="badge preset-tonal-error px-2 mr-2">JP</span>Game8</Segment.Item>
 								<Segment.Item value="hector">Hector</Segment.Item>
 							</Segment>
 						</div>
