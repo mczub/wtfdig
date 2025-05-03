@@ -4,7 +4,7 @@ import type { PageLoad } from "./$types";
 
 export const load: PageLoad = ({params}) => {
     return {
-        strats: [latteStrat, toxicStrat, sunStrat, evansithStrat, hectorStrat, game8Strat],
+        strats: [latteStrat, toxicStrat, sunStrat, evansithStrat, hectorStrat, game8Strat, oceStrat],
         timeline: timeline,
     }
 }
@@ -3201,6 +3201,605 @@ const game8Strat: Strat = {
                             party: 2,
                             description: 'Stack with H2',
                             imageUrl: './m5s/game8/funky-floor-2.webp',
+                        },
+                    ]
+                },
+            ]
+        }
+    ]
+}
+
+const oceStrat: Strat = {
+    stratName: 'oce',
+    description: 'Source: MR/Raidplan by Valyntine Arkani',
+    notes: '',
+    stratUrl: {
+        'Materia Raiding': 'https://materiaraiding.com/savage/m5s',
+        'Raidplan': 'https://raidplan.io/plan/nDb_1x1B_dTpLoPu'
+    },
+    strats: [
+        {
+            phaseName: '#-snap Twist', 
+            description: 'Fixed stacks',
+            mechs: [
+                {
+                    mechanic: 'A-Side',
+                    description: 'Role stacks\nFixed positions',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'North',
+                            imageUrl: './m5s/oce/twist-aside.webp',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'North',
+                            imageUrl: './m5s/oce/twist-aside.webp',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Northwest',
+                            imageUrl: './m5s/oce/twist-aside.webp',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Southeast',
+                            imageUrl: './m5s/oce/twist-aside.webp',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'South',
+                            imageUrl: './m5s/oce/twist-aside.webp',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'South',
+                            imageUrl: './m5s/oce/twist-aside.webp',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'South',
+                            imageUrl: './m5s/oce/twist-aside.webp',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'South',
+                            imageUrl: './m5s/oce/twist-aside.webp',
+                        },
+                    ]
+                },
+                {
+                    mechanic: 'B-Side',
+                    description: 'Light party stacks\nStatic positions',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'North',
+                            imageUrl: './m5s/oce/twist-bside.webp',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'North',
+                            imageUrl: './m5s/oce/twist-bside.webp',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Northwest',
+                            imageUrl: './m5s/oce/twist-bside.webp',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Southeast',
+                            imageUrl: './m5s/oce/twist-bside.webp',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'South',
+                            imageUrl: './m5s/oce/twist-bside.webp',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'South',
+                            imageUrl: './m5s/oce/twist-bside.webp',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'South',
+                            imageUrl: './m5s/oce/twist-bside.webp',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'South',
+                            imageUrl: './m5s/oce/twist-bside.webp',
+                        },
+                    ]
+                }
+            ]
+        },
+        {
+            phaseName: 'Disco Infernal 1', 
+            description: 'Safe spotlight starts on an unsafe tile',
+            mechs: [
+                {
+                    mechanic: 'Spotlights',
+                    description: 'G1 West, G2 East',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'West half, close to boss',
+                            imageUrl: './m5s/oce/disco-infernal-1.webp',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'East half, close to boss',
+                            imageUrl: './m5s/oce/disco-infernal-1.webp',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'West half, far from boss',
+                            imageUrl: './m5s/oce/disco-infernal-1.webp',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'East half, far from boss',
+                            imageUrl: './m5s/oce/disco-infernal-1.webp',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'West half, close to boss',
+                            imageUrl: './m5s/oce/disco-infernal-1.webp',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'East half, close to boss',
+                            imageUrl: './m5s/oce/disco-infernal-1.webp',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'West half, far from boss',
+                            imageUrl: './m5s/oce/disco-infernal-1.webp',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'East half, far from boss',
+                            imageUrl: './m5s/oce/disco-infernal-1.webp',
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            phaseName: 'Arcady Night Fever 1/2', 
+            description: 'HTTH North, RMMR South\nConga Debuffs',
+            mechs: [
+                {
+                    mechanic: 'Proteans',
+                    description: 'Dodge out of protean after getting hit',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'North-Northwest',
+                            imageUrl: './m5s/oce/arcady-proteans.webp',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'North-Northeast',
+                            imageUrl: './m5s/oce/arcady-proteans.webp',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'West-Northwest',
+                            imageUrl: './m5s/oce/arcady-proteans.webp',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'East-Northeast',
+                            imageUrl: './m5s/oce/arcady-proteans.webp',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'South-Southwest',
+                            imageUrl: './m5s/oce/arcady-proteans.webp',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'South-Southeast',
+                            imageUrl: './m5s/oce/arcady-proteans.webp',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'West-Southwest',
+                            imageUrl: './m5s/oce/arcady-proteans.webp',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'East-Southeast',
+                            imageUrl: './m5s/oce/arcady-proteans.webp',
+                        },
+                    ]
+                },
+                {
+                    mechanic: 'Debuffs',
+                    description: 'Stack with your debuff timer partner\nShortest north, longest south\n8-13-18-23',
+                    imageUrl: './m5s/oce/arcady-debuffs.webp',
+                },
+            ]
+        },
+        {
+            phaseName: 'Ride the Waves', 
+            description: 'Melees Close, Ranged Far\nG1 North, G2 South',
+            mechs: [
+                {
+                    mechanic: 'Stacks/Spreads',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Close lane, far North\nStack with D1',
+                            imageUrl: './m5s/oce/ride-the-wave.webp',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Close lane, far South\nStack with D2',
+                            imageUrl: './m5s/oce/ride-the-wave.webp',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Far lane, far North\nStack with D3',
+                            imageUrl: './m5s/oce/ride-the-wave.webp',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Far lane, far South\nStack with D4',
+                            imageUrl: './m5s/oce/ride-the-wave.webp',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Close lane, close North\nStack with MT',
+                            imageUrl: './m5s/oce/ride-the-wave.webp',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Close lane, close South\nStack with ST',
+                            imageUrl: './m5s/oce/ride-the-wave.webp',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Far lane, close North\nStack with H1',
+                            imageUrl: './m5s/oce/ride-the-wave.webp',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Far lane, close South\nStack with H2',
+                            imageUrl: './m5s/oce/ride-the-wave.webp',
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            phaseName: 'Frogtourage 1', 
+            description: 'Take closest safespot to intercard\nMelees close, Ranged far',
+            mechs: [
+                {
+                    mechanic: 'Stacks/Spreads',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Northwest, Close\nStack with D3',
+                            imageUrl: './m5s/oce/frogtourage-1.webp',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Northeast, Close\nStack with D4',
+                            imageUrl: './m5s/oce/frogtourage-1.webp',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Southwest, Far\nStack with D1',
+                            imageUrl: './m5s/oce/frogtourage-1.webp',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Southeast, Far\nStack with D2',
+                            imageUrl: './m5s/oce/frogtourage-1.webp',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Southwest, Close\nStack with H1',
+                            imageUrl: './m5s/oce/frogtourage-1.webp',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Southeast, Close\nStack with H2',
+                            imageUrl: './m5s/oce/frogtourage-1.webp',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Northwest, Far\nStack with MT',
+                            imageUrl: './m5s/oce/frogtourage-1.webp',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Northeast, Far\nStack with ST',
+                            imageUrl: './m5s/oce/frogtourage-1.webp',
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            phaseName: 'Disco Infernal 2', 
+            description: 'MTD3/STD4/H1D1/H2D2 Partners\nShort debuffs take spotlights first',
+            mechs: [
+                {
+                    mechanic: 'Spotlights',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Near N or NW (with D3)',
+                            imageUrl: './m5s/oce/disco-infernal-2-supports.webp',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Near E or NE (with D4)',
+                            imageUrl: './m5s/oce/disco-infernal-2-supports.webp',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Near W or SW (with D1)',
+                            imageUrl: './m5s/oce/disco-infernal-2-supports.webp',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Near S or SE (with D2)',
+                            imageUrl: './m5s/oce/disco-infernal-2-supports.webp',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Near W or SW (with H1)',
+                            imageUrl: './m5s/oce/disco-infernal-2-dps.webp',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Near S or SE (with ST)',
+                            imageUrl: './m5s/oce/disco-infernal-2-dps.webp',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Near N or NW (with MT)',
+                            imageUrl: './m5s/oce/disco-infernal-2-dps.webp',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Near E or NE (with H2)',
+                            imageUrl: './m5s/oce/disco-infernal-2-dps.webp',
+                        },
+                    ]
+                },
+                {
+                    mechanic: 'Baits',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Near N or NW (with D3)',
+                            imageUrl: './m5s/oce/disco-infernal-2-dps.webp',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Near E or NE (with D4)',
+                            imageUrl: './m5s/oce/disco-infernal-2-dps.webp',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Near W or SW (with D1)',
+                            imageUrl: './m5s/oce/disco-infernal-2-dps.webp',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Near S or SE (with D2)',
+                            imageUrl: './m5s/oce/disco-infernal-2-dps.webp',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Near W or SW (with H1)',
+                            imageUrl: './m5s/oce/disco-infernal-2-supports.webp',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Near S or SE (with ST)',
+                            imageUrl: './m5s/oce/disco-infernal-2-supports.webp',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Near N or NW (with MT)',
+                            imageUrl: './m5s/oce/disco-infernal-2-supports.webp',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Near E or NE (with H2)',
+                            imageUrl: './m5s/oce/disco-infernal-2-supports.webp',
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            phaseName: 'More Amphibians', 
+            description: 'G1 East G2 West\nT/R North H/M South\nSupports bait first',
+            mechs: [
+                {
+                    mechanic: 'Baits',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Northwest',
+                            imageUrl: './m5s/oce/more-amphibians-supports.webp',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Northeast',
+                            imageUrl: './m5s/oce/more-amphibians-supports.webp',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Southwest',
+                            imageUrl: './m5s/oce/more-amphibians-supports.webp',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Southeast',
+                            imageUrl: './m5s/oce/more-amphibians-supports.webp',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Southwest',
+                            imageUrl: './m5s/oce/more-amphibians-dps.webp',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Southeast',
+                            imageUrl: './m5s/oce/more-amphibians-dps.webp',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Northwest',
+                            imageUrl: './m5s/oce/more-amphibians-dps.webp',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Northeast',
+                            imageUrl: './m5s/oce/more-amphibians-dps.webp',
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            phaseName: 'Funky Floor 2', 
+            description: 'Melee close, Ranged far\nMTD3/STD4/H1D1/H2D2 Partners for stacks',
+            mechs: [
+                {
+                    mechanic: 'Stack/Spread',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Stack with D3',
+                            imageUrl: './m5s/oce/funky-floor-2.webp',
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Stack with D4',
+                            imageUrl: './m5s/oce/funky-floor-2.webp',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Stack with D1',
+                            imageUrl: './m5s/oce/funky-floor-2.webp',
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Stack with D2',
+                            imageUrl: './m5s/oce/funky-floor-2.webp',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Stack with H1',
+                            imageUrl: './m5s/oce/funky-floor-2.webp',
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Stack with ST',
+                            imageUrl: './m5s/oce/funky-floor-2.webp',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Stack with MT',
+                            imageUrl: './m5s/oce/funky-floor-2.webp',
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Stack with H2',
+                            imageUrl: './m5s/oce/funky-floor-2.webp',
                         },
                     ]
                 },
