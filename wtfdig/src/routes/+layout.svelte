@@ -33,7 +33,7 @@
         </header>
         <article>
             <div>
-                <p>5/2/2025: rearranged strats, added badges to indicate region standards, add game8 m6s + m7s</p>
+                <p>5/2/2025: rearranged strats, added badges to indicate region standards, add game8 m6s + m7s, add oce m5s</p>
                 <p>5/1/2025: updated fering decay diagrams, fix twofold line baits</p>
                 <p>4/27/2025: highlights for m5s hector, split m7s p3 hector strat out into its own thing</p>
                 <p>4/27/2025: add timeline for m8s, add cheatsheet for ex4</p>
