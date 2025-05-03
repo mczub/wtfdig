@@ -217,7 +217,7 @@
 				<div>
 					<div class="text-xl mb-2">Which strat are you using?</div>
 					<Segment classes="flex-wrap" name="stratName" value={stratName} onValueChange={onSelectStrat}>
-						<Segment.Item value="hector" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span>Hector</Segment.Item>
+						<Segment.Item value="hector" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Hector</Segment.Item>
 						<Segment.Item value="latte">Latte (X-fx⋯Xd5m)</Segment.Item>
 						<Segment.Item value="toxic">Toxic Friends (pztj⋯g6pH)</Segment.Item>
 						<Segment.Item value="game8" labelClasses="flex items-center"><span class="badge preset-tonal-error px-2 mr-2">JP</span>Game8/Nukemaru</Segment.Item>

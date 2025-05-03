@@ -252,7 +252,7 @@
 				<div>
 					<div class="text-xl mb-2">Which strat are you using?</div>
 					<Segment classes="flex-wrap" name="stratName" value={stratName} onValueChange={onSelectStrat}>
-						<Segment.Item value="toxic" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span>Hector/Toxic (Pgj5⋯ZpI6)</Segment.Item>
+						<Segment.Item value="toxic" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Hector/Toxic (Pgj5⋯ZpI6)</Segment.Item>
 						<Segment.Item value="game8" labelClasses="flex items-center"><span class="badge preset-tonal-error px-2 mr-2">JP</span>Game8</Segment.Item>
 						<Segment.Item value="latte">Latte (0066⋯G36R)</Segment.Item>
 						<Segment.Item value="yukizuri">Yukizuri</Segment.Item>
@@ -281,7 +281,7 @@
 							{/if}
 						</div>
 						<Segment classes="flex-wrap" name="adds" value={stratState.adds} onValueChange={(e) => (setStratState('adds', e.value))}>
-							<Segment.Item value="cleave" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span>Cleavemaxxing</Segment.Item>
+							<Segment.Item value="cleave" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Cleavemaxxing</Segment.Item>
 							<Segment.Item value="game8" labelClasses="flex items-center"><span class="badge preset-tonal-error px-2 mr-2">JP</span>Game8</Segment.Item>
 							<Segment.Item value="toxic">Hector/Toxic</Segment.Item>
 							<Segment.Item value="latte">Latte</Segment.Item>
