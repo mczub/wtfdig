@@ -4,7 +4,7 @@ import type { PageLoad } from "./$types";
 
 export const load: PageLoad = ({params}) => {
     return {
-        strats: [latteStrat, toxicStrat, sunStrat, evansithStrat, hectorStrat, game8Strat, oceStrat],
+        strats: [latteStrat, toxicStrat, sunStrat, evansithStrat, hectorStrat, game8Strat, mrStrat],
         timeline: timeline,
     }
 }
@@ -3209,9 +3209,9 @@ const game8Strat: Strat = {
     ]
 }
 
-const oceStrat: Strat = {
-    stratName: 'oce',
-    description: 'Source: MR/Raidplan by Valyntine Arkani',
+const mrStrat: Strat = {
+    stratName: 'mr',
+    description: 'Source: Materia Raiding/Raidplan by Valyntine Arkani',
     notes: '',
     stratUrl: {
         'Materia Raiding': 'https://materiaraiding.com/savage/m5s',

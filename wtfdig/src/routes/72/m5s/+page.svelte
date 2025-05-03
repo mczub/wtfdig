@@ -150,7 +150,7 @@
 			'evansith': 'Evansith',
 			'hector': 'Hector',
 			'game8': 'Game8/Nukemaru',
-			'oce': 'Oceania'
+			'mr': 'Materia Raiding'
 		}
 		const jpRoleAbbrev: Record<string, string> = {
 			'MT': 'MT',
@@ -253,7 +253,7 @@
 					<Segment classes="flex-wrap" name="stratName" value={stratName} onValueChange={onSelectStrat}>
 						<Segment.Item value="hector" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Hector</Segment.Item>
 						<Segment.Item value="game8" labelClasses="flex items-center"><span class="badge preset-tonal-error px-2 mr-2">JP</span>Game8/Nukemaru</Segment.Item>
-						<Segment.Item value="oce" labelClasses="flex items-center"><span class="badge preset-filled-success-500 px-2 mr-2">OCE</span>MR</Segment.Item>
+						<Segment.Item value="mr" labelClasses="flex items-center"><span class="badge preset-filled-success-500 px-2 mr-2">OCE</span>MR</Segment.Item>
 						<Segment.Item value="latte">Latte (X-fx⋯Xd5m)</Segment.Item>
 						<Segment.Item value="toxic">Toxic Friends (pztj⋯g6pH)</Segment.Item>
 					</Segment>
