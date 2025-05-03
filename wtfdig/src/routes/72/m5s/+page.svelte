@@ -180,6 +180,11 @@
 	let isCheatsheetEnabled = $derived(innerWidth > 1024 && innerHeight > 768);
 
 	let cheatsheetOpenState = $state(false);
+	let otherOpenState = $state(false);
+
+	function closeOther() {
+		otherOpenState = false;
+	}
 </script>
 
 <svelte:window bind:innerWidth={innerWidth} bind:innerHeight={innerHeight} />
@@ -200,6 +205,34 @@
 	innerWidth={innerWidth}
 />
 
+<Modal
+	open={otherOpenState}
+	onOpenChange={(e) => (otherOpenState = e.open)}
+	contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl flex flex-col border border-surface-600 min-w-[600px]"
+	backdropClasses="backdrop-blur-sm"
+	zIndex={"3000"}
+>
+	{#snippet content()}
+		<header class="flex justify-between">
+			<div>
+				<h3 class="h3">Additional or Outdated Strats</h3>
+			</div>
+			<X onclick={closeOther} />
+		</header>
+		<div>
+			<div class="card preset-outlined-warning-500 gap-4 p-4 mb-2">
+				<p>These strats are relatively unused in PF, either because they're new or outdated.</p>
+				<p>If you see a strat here that's picking up steam in PF, please <a target="_blank" rel="noopener noreferrer" class="anchor" href="https://docs.google.com/forms/d/e/1FAIpQLScJEJ43FKjSRJ2MyLuGXznce-P_SQNyPLWga_Xme_CJKPiQIQ/viewform?usp=header">let me know!</a></p>
+			</div>
+			<div>
+				<div><a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={'https://raidplan.io/plan/h-WjosHQoM7oJR0n'}>Sun</a></div>
+				<div><a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={'https://raidplan.io/plan/xLodsjMOZ3jGmopK'}>Evansith Part 1</a></div>
+				<div><a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={'https://raidplan.io/plan/iZdwA3hbQkp6HEsp'}>Evansith Part 2</a></div>
+			</div>
+		</div>
+	{/snippet}
+</Modal>
+
 <div class="container grow px-4 mx-auto mb-6">
 	<div class="container">
         <div class="mb-6">
@@ -218,12 +251,15 @@
 					<div class="text-xl mb-2">Which strat are you using?</div>
 					<Segment classes="flex-wrap" name="stratName" value={stratName} onValueChange={onSelectStrat}>
 						<Segment.Item value="hector" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Hector</Segment.Item>
+						<Segment.Item value="game8" labelClasses="flex items-center"><span class="badge preset-tonal-error px-2 mr-2">JP</span>Game8/Nukemaru</Segment.Item>
 						<Segment.Item value="latte">Latte (X-fx⋯Xd5m)</Segment.Item>
 						<Segment.Item value="toxic">Toxic Friends (pztj⋯g6pH)</Segment.Item>
-						<Segment.Item value="game8" labelClasses="flex items-center"><span class="badge preset-tonal-error px-2 mr-2">JP</span>Game8/Nukemaru</Segment.Item>
-						<Segment.Item value="sun">Sun (h-Wj⋯JR0n)</Segment.Item>
-						<Segment.Item value="evansith">Evansith</Segment.Item>
 					</Segment>
+				</div>
+				<div class="flex flex-col">
+					<div class="flex flex-row">
+						<button type="button" class="btn preset-tonal-primary" onclick={() => otherOpenState = true}>View other strats</button>
+					</div>
 				</div>
 				<div>
 					<div class="text-xl mb-2">Which role are you?</div>

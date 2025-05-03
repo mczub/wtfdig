@@ -302,7 +302,7 @@
 			<div>
 				<h4 class="h4">P1</h4>
 				<div><a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={'https://raidplan.io/plan/9q3NYbwkt64Wswif'}>LA Uptime P1</a></div>
-				<div><a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={'hthttps://raidplan.io/plan/fU48afCXIw8Sbb30'}>Shenpai P1</a></div>
+				<div><a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={'https://raidplan.io/plan/fU48afCXIw8Sbb30'}>Shenpai P1</a></div>
 			</div>
 			<div>
 				<h4 class="h4">P2</h4>
