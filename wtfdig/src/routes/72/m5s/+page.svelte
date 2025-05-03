@@ -9,6 +9,7 @@
   	import { type ToastContext, Modal } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
 	import Cheatsheet from '../../../components/Cheatsheet.svelte';
+	import { replaceState } from '$app/navigation';
 
 	interface Props {
 		data: {
@@ -52,7 +53,7 @@
 	function setStratState(mech: string, value: string) {
 		stratState[mech] = value;
 		const stratCode = getStratCode(stratName);
-		history.replaceState(undefined, '', `#${stratCode}`);
+		replaceState(`#${stratCode}`, {});
 	}
 
 	function getStratCode(stratName: string | undefined) {
@@ -62,9 +63,8 @@
 
 	function onSelectStrat(e) {
 		stratName = e.value;
-		stratState = getStratMechs(e.value);
 		const stratCode = getStratCode(stratName);
-		history.replaceState(undefined, '', `#${stratCode}`);
+		replaceState(`#${stratCode}`, {});
 	}
 
 	function copyLinkToClipboard() {

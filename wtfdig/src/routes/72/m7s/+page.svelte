@@ -9,6 +9,8 @@
   	import { type ToastContext } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
 	import Cheatsheet from '../../../components/Cheatsheet.svelte';
+	import deepEquals from 'fast-deep-equal';
+	import { replaceState } from '$app/navigation';
 
 	interface Props {
 		data: {
@@ -51,6 +53,21 @@
 		'hector': {name: 'Hector P3', url: 'https://www.youtube.com/watch?v=fIYMPk54cJc&t=994s'}
 	}
 
+	const stratMechs: Record<string, any> = {
+		'toxic': {
+			p2: 'locked',
+			p3: 'toxic',
+		},
+		'kindred': {
+			p2: 'locked',
+			p3: 'toxic',
+		},
+		'game8': {
+			p2: 'game8',
+			p3: 'game8',
+		},
+	}
+
 	$effect(() => {
 		let stratCode = '';
 		untrack(() => stratCode = getStratCode(stratName, stratState))
@@ -65,20 +82,37 @@
 		if (stratArray[0]) {
 			stratName = stratArray[0];
 		}
-		stratState = {
-			p2: stratArray[1],
-			p3: stratArray[2],
+		if (stratArray.length === 1) {
+			stratState = getStratMechs(stratArray[0]);
 		}
+		if (stratArray.length === 3) {
+			stratState = {
+				p2: stratArray[1],
+				p3: stratArray[2],
+			}
+		} else {
+			stratName ='';
+			stratState = {
+				p2: null,
+				p3: null,
+			}
+		}
+		
 	}
 
 	function setStratState(mech: string, value: string) {
 		stratState[mech] = value;
 		const stratCode = getStratCode(stratName, stratState);
-		history.replaceState(undefined, '', `#${stratCode}`);
+		replaceState(`#${stratCode}`, {});
 	}
 
 	function getStratCode(stratName: string | undefined, stratState: any) {
 		if (!stratName) return '';
+		if (stratName && stratState) {
+			if (deepEquals(getStratMechs(stratName), stratState)) {
+				return stratName;
+			}
+		}
 		return `${stratName}:${stratState.p2}:${stratState.p3}`;
 	}
 
@@ -86,7 +120,7 @@
 		stratName = e.value;
 		stratState = getStratMechs(e.value);
 		const stratCode = getStratCode(stratName, stratState);
-		history.replaceState(undefined, '', `#${stratCode}`);
+		replaceState(`#${stratCode}`, {});
 	}
 
 	function copyLinkToClipboard() {
@@ -153,20 +187,6 @@
 
 
 	function getStratMechs(stratName: string){
-		const stratMechs: Record<string, any> = {
-			'toxic': {
-				p2: 'locked',
-				p3: 'toxic',
-			},
-			'kindred': {
-				p2: 'locked',
-				p3: 'toxic',
-			},
-			'game8': {
-				p2: 'game8',
-				p3: 'game8',
-			},
-		}
 		return stratMechs[stratName];
 	}
 

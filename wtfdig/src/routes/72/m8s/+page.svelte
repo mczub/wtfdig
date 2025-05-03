@@ -10,6 +10,8 @@
 	import { untrack } from 'svelte';
 	import Cheatsheet from '../../../components/Cheatsheet.svelte';
 	import type { TimelineItem } from '$lib/types';
+	import deepEquals from 'fast-deep-equal';
+	import { replaceState } from '$app/navigation';
 
 	interface Props {
 		data: {
@@ -120,11 +122,16 @@
 	function setStratState(mech: string, value: string) {
 		stratState[mech] = value;
 		const stratCode = getStratCode(stratName, stratState);
-		history.replaceState(undefined, '', `#${stratCode}`);
+		replaceState(`#${stratCode}`, {});
 	}
 
 	function getStratCode(stratName: string | undefined, stratState: any) {
 		if (!stratName) return '';
+		if (stratName && stratState) {
+			if (deepEquals(getStratMechs(stratName), stratState)) {
+				return stratName;
+			}
+		}
 		return `${stratName}:${stratState.decay}:${stratState.terrestrial}:${stratState.moonlight}:${stratState.p2}:${stratState.twofold}:${stratState.lament}:${stratState.uv4}`;
 	}
 
@@ -132,7 +139,7 @@
 		stratName = e.value;
 		stratState = getStratMechs(e.value);
 		const stratCode = getStratCode(stratName, stratState);
-		history.replaceState(undefined, '', `#${stratCode}`);
+		replaceState(`#${stratCode}`, {});
 	}
 
 	function copyLinkToClipboard() {
@@ -346,6 +353,7 @@
 	innerHeight={innerHeight}
 	innerWidth={innerWidth}
 	tabTags={{"P1": ['p1', 'decay', 'terrestrial', 'moonlight'], "P2": ['p2', 'twofold', 'lament', 'uv4']}}
+	splitTimeline={true}
 />
 
 <div class="container grow px-4 mx-auto mb-6">

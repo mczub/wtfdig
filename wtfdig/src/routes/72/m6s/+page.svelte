@@ -9,6 +9,8 @@
   	import { type ToastContext, Modal } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
 	import Cheatsheet from '../../../components/Cheatsheet.svelte';
+	import { replaceState } from '$app/navigation';
+	import deepEquals from 'fast-deep-equal';
 
 	interface Props {
 		data: {
@@ -40,6 +42,21 @@
 		'cleave': {name: 'Cleavemaxxing Adds', url: 'https://raidplan.io/plan/ywV9cu6GRQ68SQLy'},
 	}
 
+	const stratMechs: Record<string, any> = {
+		'latte': {
+			adds: 'latte',
+		},
+		'game8': {
+			adds: 'game8',
+		},
+		'toxic': {
+			adds: 'cleave',
+		},
+		'yukizuri': {
+			adds: 'yukizuri',
+		},
+	}
+
 	$effect(() => {
 		let stratCode = '';
 		untrack(() => stratCode = getStratCode(stratName, stratState))
@@ -54,19 +71,30 @@
 		if (stratArray[0]) {
 			stratName = stratArray[0];
 		}
-		stratState = {
-			adds: stratArray[1],
+		if (stratArray.length === 1) {
+			stratState = getStratMechs(stratArray[0]);
 		}
+		if (stratArray.length === 2) {
+			stratState = {
+				adds: stratArray[1],
+			}
+		}
+		
 	}
 
 	function setStratState(mech: string, value: string) {
 		stratState[mech] = value;
 		const stratCode = getStratCode(stratName, stratState);
-		history.replaceState(undefined, '', `#${stratCode}`);
+		replaceState(`#${stratCode}`, {});
 	}
 
 	function getStratCode(stratName: string | undefined, stratState: any) {
 		if (!stratName) return '';
+		if (stratName && stratState) {
+			if (deepEquals(getStratMechs(stratName), stratState)) {
+				return stratName;
+			}
+		}
 		return `${stratName}:${stratState.adds}`;
 	}
 
@@ -74,7 +102,7 @@
 		stratName = e.value;
 		stratState = getStratMechs(e.value);
 		const stratCode = getStratCode(stratName, stratState);
-		history.replaceState(undefined, '', `#${stratCode}`);
+		replaceState(`#${stratCode}`, {});
 	}
 
 	function copyLinkToClipboard() {
@@ -140,20 +168,6 @@
 
 
 	function getStratMechs(stratName: string){
-		const stratMechs: Record<string, any> = {
-			'latte': {
-				adds: 'latte',
-			},
-			'game8': {
-				adds: 'game8',
-			},
-			'toxic': {
-				adds: 'cleave',
-			},
-			'yukizuri': {
-				adds: 'yukizuri',
-			},
-		}
 		return stratMechs[stratName];
 	}
 
