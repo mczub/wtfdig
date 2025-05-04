@@ -1,6 +1,6 @@
 <svelte:options customElement={{shadow: 'none'}} ></svelte:options>
 <script lang="ts">
-    import { Modal, Tabs, Tooltip } from '@skeletonlabs/skeleton-svelte';
+    import { Modal, Switch, Tabs, Tooltip } from '@skeletonlabs/skeleton-svelte';
     import { Clock, Expand, ExternalLink, Shield, Siren, TriangleAlert, Wrench, X} from '@lucide/svelte/icons';
 	import ImagePreview from './ImagePreview.svelte';
 	import type { TimelineItem } from '$lib/types';
@@ -56,6 +56,8 @@
 
     let tab = $state(tabTags ? Object.keys(tabTags)[0] : '');
 
+    let showTimeline = $state(true);
+
 	let useEvenTimelineSpacing = $derived(innerHeight <= 1024);
 	let showFilterCaptions = $derived(innerWidth > 1280);
 
@@ -101,7 +103,14 @@
   {#snippet content()}
     <header class="flex justify-between">
       <div class="text-lg 3xl:text-2xl">{title}</div>
-	  <X onclick={closeCheatsheet} />
+      <div class="flex flex-row items-center gap-8">
+        <div class="flex flex-row items-center gap-2">
+            <p>Timeline</p>
+            <Switch name="showTimeline" checked={showTimeline} onCheckedChange={(e) => (showTimeline = e.checked)}></Switch>
+        </div>
+        <X onclick={closeCheatsheet} />
+      </div>
+	  
     </header>
     
     {#if tabTags}
@@ -113,8 +122,8 @@
             {/snippet}
         </Tabs>
     {/if}
-        <div class={`grid gap-2 h-full`} style:grid-template-rows={`repeat(${rows}, minmax(0, 1fr))`} style:grid-template-columns={`repeat(${columns}, minmax(0, 1fr))`}>
-        {#if timeline.length > 0}
+        <div class={`grid gap-2 h-full`} style:grid-template-rows={`repeat(${rows}, minmax(0, 1fr))`} style:grid-template-columns={`repeat(${showTimeline ? columns : columns - 1}, minmax(0, 1fr))`}>
+        {#if timeline.length > 0 && showTimeline}
         <div class="card border row-span-full border-surface-800 p-2 flex flex-col">
             <div class="flex mb-2 gap-1">
                 <button class={`chip px-1 2xl:px-2 ${timelineFilters.mechs ? 'preset-outlined-warning-500 bg-warning-800' : 'preset-outlined-warning-500'}`} onclick={() => timelineFilters.mechs = !timelineFilters.mechs}><Wrench size={16} strokeWidth={2} />{showFilterCaptions ? 'Mech' : ''}</button>
