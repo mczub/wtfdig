@@ -38,8 +38,10 @@
 	const addsUrls: Record<string, any> = {
 		'latte': {name: 'Latte Adds', url: 'https://raidplan.io/plan/0066fd3CVp1_G36R'},
 		'toxic': {name: 'Toxic Adds', url: 'https://raidplan.io/plan/Pgj53K49w8LAZpI6'},
+		'game8': {name: 'Game8 Adds', url: 'https://game8.jp/ff14/681086'},
 		'yukizuri': {name: 'Yukizuri Adds', url: 'https://www.youtube.com/watch?v=1LQ2OzMn7EE'},
 		'cleave': {name: 'Cleavemaxxing Adds', url: 'https://raidplan.io/plan/ywV9cu6GRQ68SQLy'},
+		'mr': {name: 'MR Adds', url: 'https://raidplan.io/plan/LjZsRWUJahEe1fdM'}
 	}
 
 	const stratMechs: Record<string, any> = {
@@ -54,6 +56,9 @@
 		},
 		'yukizuri': {
 			adds: 'yukizuri',
+		},
+		'mr': {
+			adds: 'mr',
 		},
 	}
 
@@ -184,7 +189,8 @@
 			'latte': 'Latte (0066fd3CVp1_G36R)',
 			'game8': 'Game8',
 			'toxic': 'Hector/Toxic Friends (Pgj53K49w8LAZpI6)',
-			'yukizuri': 'Yukizuri'
+			'yukizuri': 'Yukizuri',
+			'mr': 'Materia Raiding',
 		}
 		const jpRoleAbbrev: Record<string, string> = {
 			'MT': 'MT',
@@ -215,6 +221,12 @@
 			}
 			if (stratState.adds === 'cleave') {
 				stratDiffs.push(`Cleavemaxxing adds`);
+			}
+			if (stratState.adds === 'game8') {
+				stratDiffs.push(`Game8 adds`);
+			}
+			if (stratState.adds === 'mr') {
+				stratDiffs.push(`MR adds`);
 			}
 		}
 		if (stratName === 'game8' && roleAbbrev !== jpRoleAbbrev[roleAbbrev]) {
@@ -268,6 +280,7 @@
 					<Segment classes="flex-wrap" name="stratName" value={stratName} onValueChange={onSelectStrat}>
 						<Segment.Item value="toxic" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Hector/Toxic (Pgj5⋯ZpI6)</Segment.Item>
 						<Segment.Item value="game8" labelClasses="flex items-center"><span class="badge preset-tonal-error px-2 mr-2">JP</span>Game8</Segment.Item>
+						<Segment.Item value="mr" labelClasses="flex items-center"><span class="badge preset-filled-success-500 px-2 mr-2">OCE</span>MR</Segment.Item>
 						<Segment.Item value="latte">Latte (0066⋯G36R)</Segment.Item>
 						<Segment.Item value="yukizuri">Yukizuri</Segment.Item>
 					</Segment>
@@ -297,6 +310,7 @@
 						<Segment classes="flex-wrap" name="adds" value={stratState.adds} onValueChange={(e) => (setStratState('adds', e.value))}>
 							<Segment.Item value="cleave" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Cleavemaxxing</Segment.Item>
 							<Segment.Item value="game8" labelClasses="flex items-center"><span class="badge preset-tonal-error px-2 mr-2">JP</span>Game8</Segment.Item>
+							<Segment.Item value="mr" labelClasses="flex items-center"><span class="badge preset-filled-success-500 px-2 mr-2">OCE</span>MR</Segment.Item>
 							<Segment.Item value="toxic">Hector/Toxic</Segment.Item>
 							<Segment.Item value="latte">Latte</Segment.Item>
 							<Segment.Item value="yukizuri">Yukizuri</Segment.Item>

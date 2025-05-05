@@ -3,7 +3,7 @@ import type { PageLoad } from "./$types";
 
 export const load: PageLoad = ({params}) => {
     return {
-        strats: [latteStrat, yukizuriStrat, toxicStrat, game8Strat],
+        strats: [latteStrat, yukizuriStrat, toxicStrat, game8Strat, mrStrat],
         timeline: timeline,
     }
 }
@@ -1333,7 +1333,210 @@ const game8Adds: Record<string,Record<string, PlayerMechStrat>> = {
     }
 }
 
-const addsStrats = {toxic: toxicAdds, latte: latteAdds, yukizuri: yukizuriAdds, cleave: cleaveAdds, game8: game8Adds}
+const mrAdds: Record<string,Record<string, PlayerMechStrat>> = {
+    'wave1': {
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: 'Tank boss and Squirrels Southeast',
+                imageUrl: './m6s/adds/mr-wave1.webp',
+        },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: `Tank Yan West`,
+                imageUrl: './m6s/adds/mr-wave1.webp',
+            },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: 'Stack on Yan to bait Cat jump\nDoT Cat, then kill Yan',
+                imageUrl: './m6s/adds/mr-wave1.webp',
+            },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: 'Stack on Yan to bait Cat jump\nDoT Cat, then kill Yan',
+                imageUrl: './m6s/adds/mr-wave1.webp',
+            },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: 'Stack on Yan to bait Cat jump\nFocus Yan',
+                imageUrl: './m6s/adds/mr-wave1.webp',
+            },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: 'Stack on Yan to bait Cat jump\nFocus Yan',
+                imageUrl: './m6s/adds/mr-wave1.webp',
+            },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: 'Stack on Yan to bait Cat jump\nFocus Cat, then kill Yan',
+                imageUrl: './m6s/adds/mr-wave1.webp',
+            },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: 'Stack on Yan to bait Cat jump\nFocus Cat, then kill Yan',
+                imageUrl: './m6s/adds/mr-wave1.webp',
+            },
+    },
+    'wave2': {
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: 'Pick up Squirrels South, bring them to NE Manta as soon as possible\nBring Squirrels to NW Manta when NE Manta dies',
+                imageUrl: './m6s/adds/mr-wave2.webp',
+            },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: 'Drag Yan away from NE if still alive\nKill NE Manta while cleaving Squirrels\nKill NW Manta, then move North for Wave 3',
+                imageUrl: './m6s/adds/mr-wave2.webp',
+            },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: 'Take NE Manta\nDrop first puddle Northeast, move south if a second drops\nKill NE Manta while cleaving Squirrels, then kill NW Manta',
+                imageUrl: './m6s/adds/mr-wave2.webp',
+            },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: 'Stand NE with Squirrels\nKill NE Manta while cleaving Squirrels, then kill NW Manta',
+                imageUrl: './m6s/adds/mr-wave2.webp',
+            },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: 'Stand NE with Squirrels\nKill NE Manta while cleaving Squirrels, then kill NW Manta\nContinue cleaving Squirrels',
+                imageUrl: './m6s/adds/mr-wave2.webp',
+            },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: 'Stand NE with Squirrels\nKill NE Manta while cleaving Squirrels, then kill NW Manta\nContinue cleaving Squirrels',
+                imageUrl: './m6s/adds/mr-wave2.webp',
+            },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: 'Take NW Manta\nDrop first puddle Northwest, then move south for the second ',
+                imageUrl: './m6s/adds/mr-wave2.webp',
+            },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: 'Kill NE Manta first while cleaving, then kill NW Manta',
+                imageUrl: './m6s/adds/mr-wave2.webp',
+            },
+    },
+    'wave3':{
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: `Take squirrels to Jabber spawn West\nFirst stun on Jabber\nOnce Jabber is dead, kill remaining Squirrels before they enrage`,
+                imageUrl: './m6s/adds/mr-wave3.webp',
+            },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: 'Pick up Yan North and chill',
+                imageUrl: './m6s/adds/mr-wave3.webp',
+            },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: 'If targeted by Jabber, go Southeast and single target\nKill Jabber\nKill Squirrels before they enrage',
+                imageUrl: './m6s/adds/mr-wave3.webp',
+            },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: 'If targeted by Jabber, go Southeast and single target\nKill Jabber\nKill Squirrels before they enrage',
+                imageUrl: './m6s/adds/mr-wave3.webp',
+            },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: `Damage squirrels until Jabber spawns\nPrioritize Jabber, take second stun\nKill Squirrels before they enrage`,
+                imageUrl: './m6s/adds/mr-wave3.webp',
+            },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: `Damage squirrels until Jabber spawns\nPrioritize Jabber, take third stun\nKill Squirrels before they enrage`,
+                imageUrl: './m6s/adds/mr-wave3.webp',
+            },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: `Kill Jabber\nKill squirrels before enrage\nKill cat before meteor cast`,
+                imageUrl: './m6s/adds/mr-wave3.webp',
+            },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: `Kill Jabber\nKill squirrels before enrage\nKill cat before meteor cast`,
+                imageUrl: './m6s/adds/mr-wave3.webp',
+            },
+    },
+    'wave4':{
+        'MT': {
+                role: 'Tank',
+                party: 1,
+                description: `Pick up new Squirrels, take them to SE Manta\nStack and kill SE Manta\nStack and kill SW Manta\nKill Squirrels\nKill Yans`,
+                imageUrl: './m6s/adds/mr-wave4.webp',
+            },
+        'OT': {
+                role: 'Tank',
+                party: 2,
+                description: `Pick up new Yan, stay North\nTake first Jabber stun\nAfter Squirrels die, take Yans to boss and kill\nCURRENT OBJECTIVE: SURVIVE`,
+                imageUrl: './m6s/adds/mr-wave4.webp',
+            },
+        'H1': {
+                role: 'Healer',
+                party: 1,
+                description: `If targeted by Jabber, go Southeast and single target\nMake sure to keep OT alive\nKill Jabber, SE Manta, Cat, SW Manta, Squirrels, Yans`,
+                imageUrl: './m6s/adds/mr-wave4.webp',
+            },
+        'H2': {
+                role: 'Healer',
+                party: 2,
+                description: `If targeted by Jabber, go Southeast and single target\nMake sure to keep OT alive\nKill Jabber, SE Manta, Cat, SW Manta, Squirrels, Yans`,
+                imageUrl: './m6s/adds/mr-wave4.webp',
+            },
+        'M1': {
+                role: 'Melee',
+                party: 1,
+                description: `Hit Squirrels until Jabber spawns\nPrioritize Jabber, take second stun\nKill Jabber, SE Manta, Cat, SW Manta, Squirrels, Yans`,
+                imageUrl: './m6s/adds/mr-wave4.webp',
+            },
+        'M2': {
+                role: 'Melee',
+                party: 2,
+                description: `Hit Squirrels until Jabber spawns\nPrioritize Jabber, take third stun\nKill Jabber, SE Manta, Cat, SW Manta, Squirrels, Yans`,
+                imageUrl: './m6s/adds/mr-wave4.webp',
+            },
+        'R1': {
+                role: 'Ranged',
+                party: 1,
+                description: `Take SW Manta\nDrop puddles along West wall, then along South wall, then loop back up\nKill Jabber, SE Manta, Cat, SW Manta, Squirrels, Yans`,
+                imageUrl: './m6s/adds/mr-wave4.webp',
+            },
+        'R2': {
+                role: 'Ranged',
+                party: 2,
+                description: 'Take SE Manta\nDrop puddles along East wall\nKill Jabber, SE Manta, Cat, SW Manta, Squirrels, Yans',
+                imageUrl: './m6s/adds/mr-wave4.webp',
+            },
+    }
+}
+
+const addsStrats = {toxic: toxicAdds, latte: latteAdds, yukizuri: yukizuriAdds, cleave: cleaveAdds, game8: game8Adds, mr: mrAdds}
 
 const latteStrat: Strat = {
     stratName: 'latte',
@@ -3094,6 +3297,585 @@ const game8Strat: Strat = {
                             party: 2,
                             description: 'Northeast',
                             imageUrl: './m6s/game8/pudding-800.webp'
+                        },
+                    ]
+                },
+            ]
+        },
+    ]
+}
+
+const mrStrat: Strat = {
+    stratName: 'mr',
+    description: 'Source: Materia Raiding',
+    notes: '',
+    stratUrl: {
+        'Materia Raiding': 'https://materiaraiding.com/savage/m6s',
+        'Start + Adds': 'https://raidplan.io/plan/LjZsRWUJahEe1fdM',
+        'Desert': 'https://raidplan.io/plan/PqngLnEaS1I214wO',
+        'Bridges': 'https://raidplan.io/plan/9mcgjmDLobOka-P5'
+    },
+    strats: [
+        {
+            phaseName: 'Wingmark/Double Style', 
+            mechs: [
+                {
+                    mechanic: 'Light Parties',
+                    description: 'G1 Left, G2 Right Facing Boss',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Left',
+                            imageUrl: './m6s/mr/double-lps.webp'
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Right',
+                            imageUrl: './m6s/mr/double-lps.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Left',
+                            imageUrl: './m6s/mr/double-lps.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Right',
+                            imageUrl: './m6s/mr/double-lps.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Left',
+                            imageUrl: './m6s/mr/double-lps.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Right',
+                            imageUrl: './m6s/mr/double-lps.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Left',
+                            imageUrl: './m6s/mr/double-lps.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Right',
+                            imageUrl: './m6s/mr/double-lps.webp'
+                        },
+                    ]
+                },{
+                    mechanic: 'Partners',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Front with D1',
+                            imageUrl: './m6s/mr/double-partners.webp'
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Back with D2',
+                            imageUrl: './m6s/mr/double-partners.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Left with D3',
+                            imageUrl: './m6s/mr/double-partners.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Right with D4',
+                            imageUrl: './m6s/mr/double-partners.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Front with MT',
+                            imageUrl: './m6s/mr/double-partners.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Back with ST',
+                            imageUrl: './m6s/mr/double-partners.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Left with H1',
+                            imageUrl: './m6s/mr/double-partners.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Right with H2',
+                            imageUrl: './m6s/mr/double-partners.webp'
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            phaseName: 'Sticky Mousse', 
+            mechs: [
+                {
+                    mechanic: 'Stacks',
+                    description: 'Start in clock spots, LPs or use eyes',
+                    imageUrl: './m6s/mr/sticky.webp'
+                },
+            ]
+        },
+        {
+            phaseName: 'Cactus Dodges', 
+            mechs: [
+                {
+                    mechanic: 'Stack + Short Defamations',
+                    description: 'Stack North\nTank Defam W, DPS Defam E',
+                    imageUrl: './m6s/mr/desert-dodges.webp'
+                },
+            ]
+        },
+        {
+            phaseName: 'Quicksand + Healer Defamations', 
+            description: 'H1 CW, H2 CCW from cactus',
+            mechs: [
+                {
+                    mechanic: 'Party + Healer Defamations',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Across from unsafe corner',
+                            imageUrl: './m6s/mr/desert-healers.webp'
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Across from unsafe corner',
+                            imageUrl: './m6s/mr/desert-healers.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Clockwise from cactus corner',
+                            imageUrl: './m6s/mr/desert-healers.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Counter-Clockwise from cactus corner',
+                            imageUrl: './m6s/mr/desert-healers.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Across from unsafe corner',
+                            imageUrl: './m6s/mr/desert-healers.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Across from unsafe corner',
+                            imageUrl: './m6s/mr/desert-healers.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Across from unsafe corner',
+                            imageUrl: './m6s/mr/desert-healers.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Across from unsafe corner',
+                            imageUrl: './m6s/mr/desert-healers.webp'
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            phaseName: 'Quicksand + Bombs', 
+            description: 'True North\nG1 W, G2 E, RMMR',
+            mechs: [
+                {
+                    mechanic: 'Bombs',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'West close to boss',
+                            imageUrl: './m6s/mr/desert-bombs.webp'
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'East close to boss',
+                            imageUrl: './m6s/mr/desert-bombs.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'West far from boss',
+                            imageUrl: './m6s/mr/desert-bombs.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'East far from boss',
+                            imageUrl: './m6s/mr/desert-bombs.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'West close to boss',
+                            imageUrl: './m6s/mr/desert-bombs.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'East close to boss',
+                            imageUrl: './m6s/mr/desert-bombs.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'West far from boss',
+                            imageUrl: './m6s/mr/desert-bombs.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'East far from boss',
+                            imageUrl: './m6s/mr/desert-bombs.webp'
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            phaseName: 'Adds', 
+            tag: 'adds',
+            description: '',
+            mechs: [
+                {
+                    mechanic: 'Wave 1',
+                    strats: getStratArray(addsStrats, 'wave1'),
+                },
+                {
+                    mechanic: 'Wave 2',
+                    strats: getStratArray(addsStrats, 'wave2'),
+                },
+                {
+                    mechanic: 'Wave 3',
+                    strats: getStratArray(addsStrats, 'wave3'),
+                },
+                {
+                    mechanic: 'Wave 4',
+                    strats: getStratArray(addsStrats, 'wave4'),
+                },
+            ]
+        },
+        {
+            phaseName: 'Sugarscape (River)', 
+            description: '',
+            mechs: [
+                {
+                    mechanic: 'Lightning (Spreads)',
+                    description: '',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Northwest',
+                            imageUrl: './m6s/mr/river-lightning.webp'
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'North',
+                            imageUrl: './m6s/mr/river-lightning.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'South',
+                            imageUrl: './m6s/mr/river-lightning.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'East',
+                            imageUrl: './m6s/mr/river-lightning.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'West',
+                            imageUrl: './m6s/mr/river-lightning.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Mid or Northwest',
+                            imageUrl: './m6s/mr/river-lightning.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Southwest',
+                            imageUrl: './m6s/mr/river-lightning.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Northeast',
+                            imageUrl: './m6s/mr/river-lightning.webp'
+                        },
+                    ]
+                },
+                {
+                    mechanic: 'Fire (Stacks)',
+                    description: '',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Middle',
+                            imageUrl: './m6s/mr/river-fire.webp'
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Far behind SW bridge',
+                            imageUrl: './m6s/mr/river-fire.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Middle',
+                            imageUrl: './m6s/mr/river-fire.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Far behind SW bridge',
+                            imageUrl: './m6s/mr/river-fire.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Middle',
+                            imageUrl: './m6s/mr/river-fire.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Middle',
+                            imageUrl: './m6s/mr/river-fire.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Far behind SW bridge',
+                            imageUrl: './m6s/mr/river-fire.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Far behind SW bridge',
+                            imageUrl: './m6s/mr/river-fire.webp'
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            phaseName: 'Lightning Storm', 
+            description: 'Party stays on bridge\nSupports CW, DPS CCW',
+            imageUrl: './m6s/mr/storm.webp'
+        },
+        {
+            phaseName: 'Pudding Party', 
+            description: 'True North\nG1 West G2 East',
+            mechs: [
+                {
+                    mechanic: 'Towers',
+                    notes: 'Remember to bait the Twister-style AoE when the Lightning flash happens',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Bait proteans\nTake West tower close to wall',
+                            imageUrl: './m6s/mr/pudding-towers.webp'
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Bait proteans\nTake East tower close to wall',
+                            imageUrl: './m6s/mr/pudding-towers.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'West island\nStay close to let ranged bait stacks\nTake tower closer to middle',
+                            imageUrl: './m6s/mr/pudding-towers.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'East island\nStay close to let ranged bait stacks\nTake tower closer to middle',
+                            imageUrl: './m6s/mr/pudding-towers.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Bait proteans\nTake West tower further from wall',
+                            imageUrl: './m6s/mr/pudding-towers.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Bait proteans\nTake West tower further from wall',
+                            imageUrl: './m6s/mr/pudding-towers.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'West island\nBait stacks far\nTake tower closer to edge',
+                            imageUrl: './m6s/mr/pudding-towers.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'East island\nBait stacks far\nTake tower closer to edge',
+                            imageUrl: './m6s/mr/pudding-towers.webp'
+                        },
+                    ]
+                },
+            ]
+        },
+        {
+            phaseName: 'Wingmark + Towers', 
+            description: 'Melees + Tanks in the 4 tower platform\nEveryone rotate the same direction',
+            mechs: [
+                {
+                    mechanic: '4-2-2',
+                    description: '',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'Take North-most tower',
+                            imageUrl: './m6s/mr/pudding-422.webp'
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'Take South-most tower',
+                            imageUrl: './m6s/mr/pudding-422.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Left island\nTake tower closer to middle',
+                            imageUrl: './m6s/mr/pudding-422.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'Right island\nTake tower closer to middle',
+                            imageUrl: './m6s/mr/pudding-422.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Take 2nd tower from North',
+                            imageUrl: './m6s/mr/pudding-422.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Take 2nd tower from South',
+                            imageUrl: './m6s/mr/pudding-422.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'Left island\nTake tower further from middle',
+                            imageUrl: './m6s/mr/pudding-422.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Right island\nTake tower further from middle',
+                            imageUrl: './m6s/mr/pudding-422.webp'
+                        },
+                    ]
+                },
+                {
+                    mechanic: '8-0-0',
+                    description: 'Static positions',
+                    strats: [
+                        {
+                            role: 'Tank',
+                            party: 1,
+                            description: 'West',
+                            imageUrl: './m6s/mr/pudding-800.webp'
+                        },
+                        {
+                            role: 'Tank',
+                            party: 2,
+                            description: 'South',
+                            imageUrl: './m6s/mr/pudding-800.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 1,
+                            description: 'Southeast',
+                            imageUrl: './m6s/mr/pudding-800.webp'
+                        },
+                        {
+                            role: 'Healer',
+                            party: 2,
+                            description: 'North',
+                            imageUrl: './m6s/mr/pudding-800.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 1,
+                            description: 'Southwest',
+                            imageUrl: './m6s/mr/pudding-800.webp'
+                        },
+                        {
+                            role: 'Melee',
+                            party: 2,
+                            description: 'Northwest',
+                            imageUrl: './m6s/mr/pudding-800.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 1,
+                            description: 'East',
+                            imageUrl: './m6s/mr/pudding-800.webp'
+                        },
+                        {
+                            role: 'Ranged',
+                            party: 2,
+                            description: 'Northeast',
+                            imageUrl: './m6s/mr/pudding-800.webp'
                         },
                     ]
                 },
