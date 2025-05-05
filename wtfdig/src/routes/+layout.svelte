@@ -150,7 +150,7 @@
                 {/snippet}
             </Popover>
             
-            <button type="button" onclick={() => changelogOpen()} class="btn ml-2 preset-tonal border border-surface-500">Changelog</button>
+            <button type="button" onclick={() => changelogOpen()} class="btn preset-tonal border border-surface-500">Changelog</button>
         </div>
     </div>
 </header>
@@ -161,12 +161,12 @@
 
 
 <footer class="bottom-0 left-0 z-40 w-full p-4 border-t shadow-sm md:flex md:items-center md:justify-between md:p-6 bg-surface-1000 border-gray-600">
-    <div class="flex w-full max-w-(--breakpoint-xl) mx-auto justify-between">
+    <div class="flex flex-col lg:flex-row w-full max-w-(--breakpoint-xl) mx-auto justify-between">
 		<div class="text-sm text-gray-500 dark:text-gray-400">
             <div>Comments? Questions? Something incorrect? <a target="_blank" rel="noopener noreferrer" class="anchor" href="https://docs.google.com/forms/d/e/1FAIpQLScJEJ43FKjSRJ2MyLuGXznce-P_SQNyPLWga_Xme_CJKPiQIQ/viewform?usp=header">Let me know.</a></div>
             <div>FINAL FANTASY is a registered trademark of Square Enix Holdings Co., Ltd. FINAL FANTASY XIV © SQUARE ENIX</div>
         </div>
-        <div class="text-sm text-gray-500 dark:text-gray-400 text-end">
+        <div class="text-sm text-gray-500 dark:text-gray-400 md:text-end">
             <div>Made by Mara Kaminagi @ Adamantoise</div>
             <div>You can find me on <a target="_blank" rel="noopener noreferrer" class="anchor" href="https://bsky.app/profile/shittyidiot.com">Bluesky</a> or <a target="_blank" rel="noopener noreferrer" class="anchor" href="https://x.com/mczub">Twitter</a></div>
             <div>Really love the site? <a target="_blank" rel="noopener noreferrer" class="anchor" href="https://ko-fi.com/mczub">Buy me a coffee!</a></div>
