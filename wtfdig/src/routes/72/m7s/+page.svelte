@@ -46,11 +46,13 @@
 		'cute': {name: 'Cute P2', url: 'https://raidplan.io/plan/q_qH0crFmPZqrY4L'},
 		'locked': {name: 'Locked P2', url: 'https://raidplan.io/plan/FGvPnlaAe1fwlsIB'},
 		'fixed': {name: 'Fixed P2', url: 'https://raidplan.io/plan/-lZai2v34Y8bC15S'},
+		'mr': {name: 'MR P2', url: 'https://raidplan.io/plan/QeESzBHNANmJAkDv'},
 	}
 
 	const p3Urls: Record<string, any> = {
 		'toxic': {name: 'Toxic P3', url: 'https://raidplan.io/plan/DEijc3hhq_CNGaRg'},
-		'hector': {name: 'Hector P3', url: 'https://www.youtube.com/watch?v=fIYMPk54cJc&t=994s'}
+		'hector': {name: 'Hector P3', url: 'https://www.youtube.com/watch?v=fIYMPk54cJc&t=994s'},
+		'mr': {name: 'MR P3', url: 'https://raidplan.io/plan/XJ7zmjNpEWKtuqdJ'}
 	}
 
 	const stratMechs: Record<string, any> = {
@@ -65,6 +67,10 @@
 		'game8': {
 			p2: 'game8',
 			p3: 'game8',
+		},
+		'mr': {
+			p2: 'mr',
+			p3: 'mr',
 		},
 	}
 
@@ -85,7 +91,7 @@
 		if (stratArray.length === 1) {
 			stratState = getStratMechs(stratArray[0]);
 		}
-		if (stratArray.length === 3) {
+		else if (stratArray.length === 3) {
 			stratState = {
 				p2: stratArray[1],
 				p3: stratArray[2],
@@ -202,7 +208,8 @@
 		const stratNames: Record<string, string> = {
 			'game8': 'Game8',
 			'toxic': 'Toxic',
-			'kindred': 'Kindred'
+			'kindred': 'Kindred',
+			'mr': 'Materia Raiding'
 		}
 		const jpRoleAbbrev: Record<string, string> = {
 			'MT': 'MT',
@@ -249,6 +256,9 @@
 			if (stratState.p2 === 'game8') {
 				stratDiffs.push(`Game8 P2`);
 			}
+			if (stratState.p2 === 'mr') {
+				stratDiffs.push(`MR P2`);
+			}
 		}
 		if (stratState.p3 !== getStratMechs(stratName)['p3']) {
 			if (stratState.p3 === 'toxic') {
@@ -260,8 +270,11 @@
 			if (stratState.p3 === 'game8') {
 				stratDiffs.push(`Game8 P3`);
 			}
+			if (stratState.p3 === 'mr') {
+				stratDiffs.push(`MR P3`);
+			}
 		}
-		if (stratName === 'game8' && roleAbbrev !== jpRoleAbbrev[roleAbbrev]) {
+		if ((stratName === 'game8' || stratName === 'mr') && roleAbbrev !== jpRoleAbbrev[roleAbbrev]) {
 			return `${stratNames[stratName]} - ${roleAbbrev}/${jpRoleAbbrev[roleAbbrev]}`;
 		}
 
@@ -359,6 +372,7 @@
 					<Segment classes="flex-wrap" name="stratName" value={stratName} onValueChange={onSelectStrat}>
 						<Segment.Item value="toxic" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Toxic</Segment.Item>
 						<Segment.Item value="game8" labelClasses="flex items-center"><span class="badge preset-tonal-error px-2 mr-2">JP</span>Game8</Segment.Item>
+						<Segment.Item value="mr" labelClasses="flex items-center"><span class="badge preset-filled-success-500 px-2 mr-2">OCE</span>MR</Segment.Item>
 						<Segment.Item value="kindred">Kindred</Segment.Item>
 					</Segment>
 				</div>
@@ -372,6 +386,7 @@
 							<Segment.Item value="locked" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span>Locked</Segment.Item>
 							<Segment.Item value="fixed" labelClasses="flex items-center"><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Fixed</Segment.Item>
 							<Segment.Item value="game8" labelClasses="flex items-center"><span class="badge preset-tonal-error px-2 mr-2">JP</span>Game8/さり式</Segment.Item>
+							<Segment.Item value="mr" labelClasses="flex items-center"><span class="badge preset-filled-success-500 px-2 mr-2">OCE</span>MR</Segment.Item>
 							<Segment.Item value="bili">Bilibili</Segment.Item>
 							<Segment.Item value="cute">Cute</Segment.Item>
 						</Segment>
@@ -384,6 +399,7 @@
 							<Segment classes="flex-wrap shrink" name="p3" value={stratState.p3} onValueChange={(e) => (setStratState('p3', e.value))}>
 								<Segment.Item value="toxic" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Toxic</Segment.Item>
 								<Segment.Item value="game8" labelClasses="flex items-center"><span class="badge preset-tonal-error px-2 mr-2">JP</span>Game8</Segment.Item>
+								<Segment.Item value="mr" labelClasses="flex items-center"><span class="badge preset-filled-success-500 px-2 mr-2">OCE</span>MR</Segment.Item>
 								<Segment.Item value="hector">Hector</Segment.Item>
 							</Segment>
 						</div>
