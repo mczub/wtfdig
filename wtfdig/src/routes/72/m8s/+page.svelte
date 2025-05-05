@@ -94,8 +94,7 @@
 		}
 		if (stratArray.length === 1) {
 			stratState = getStratMechs(stratArray[0]);
-		} 
-		if (stratArray.length === 8){
+		} else if (stratArray.length === 8){
 			stratState = {
 				decay: stratArray[1],
 				terrestrial: stratArray[2],
@@ -234,6 +233,15 @@
 				lament: 'rinon',
 				uv4: 'rinon'
 			},
+			'84ddog': {
+				decay: 'toxic',
+				terrestrial: 'fullr',
+				moonlight: 'quad',
+				p2: 'toxic',
+				twofold: 'casterse',
+				lament: 'toxic',
+				uv4: 'toxic'
+			},
 		}
 		return stratMechs[stratName];
 	}
@@ -250,7 +258,8 @@
 		const stratNames: Record<string, string> = {
 			'toxic': 'Toxic Friends',
 			'pb-eQ': 'Pastebin (eQ3PHFKr)',
-			'pb-r': 'Pastebin + Rinon'
+			'pb-r': 'Pastebin + Rinon',
+			'84ddog': '84d + DOG'
 		}
 		const jpRoleAbbrev: Record<string, string> = {
 			'MT': 'MT',
@@ -286,6 +295,12 @@
 			}
 			if (stratState.terrestrial === 'dn') {
 				stratDiffs.push(`DN Terrestrial`);
+			}
+			if (stratState.terrestrial === 'fullr') {
+				stratDiffs.push(`Full Rinon Terrestrial`);
+			}
+			if (stratState.terrestrial === 'halfr') {
+				stratDiffs.push(`Half Rinon Terrestrial`);
 			}
 		}
 		if (stratState.moonlight !== getStratMechs(stratName)['moonlight']) {
@@ -373,7 +388,8 @@
 				<div>
 					<div class="text-xl mb-2">Which strat are you using?</div>
 					<Segment classes="flex-wrap" name="stratName" value={stratName} onValueChange={onSelectStrat}>
-						<Segment.Item value="pb-r"labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span>Toxic + Rinon</Segment.Item>
+						<Segment.Item value="pb-r" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span>Toxic + Rinon</Segment.Item>
+						<Segment.Item value="84ddog" labelClasses="flex items-center"><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>84d + DOG</Segment.Item>
 						<Segment.Item value="pb-eQ">Pastebin (eQ3PHFKr)</Segment.Item>
 						<Segment.Item value="toxic">Toxic</Segment.Item>
 					</Segment>
@@ -401,8 +417,8 @@
 							{/if}
 						</div>
 						<Segment classes="flex-wrap" name="decay" value={stratState.decay} onValueChange={(e) => (setStratState('decay', e.value))}>
-							<Segment.Item value="fer">Fering</Segment.Item>
-							<Segment.Item value="toxic">Toxic</Segment.Item>
+							<Segment.Item value="fer" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span>Fering</Segment.Item>
+							<Segment.Item value="toxic" labelClasses="flex items-center"><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Toxic</Segment.Item>
 						</Segment>
 					</div>
 					<div class="flex flex-col">
@@ -425,9 +441,11 @@
 							{/if}
 						</div>
 						<Segment classes="flex-wrap" name="terrestrial" value={stratState.terrestrial} onValueChange={(e) => (setStratState('terrestrial', e.value))}>
-							<Segment.Item value="clock">Clock</Segment.Item>
+							<Segment.Item value="clock" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span>Clock</Segment.Item>
 							<Segment.Item value="toxic">Toxic</Segment.Item>
 							<Segment.Item value="dn">DN</Segment.Item>
+							<Segment.Item value="fullr" labelClasses="flex items-center"><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Full Rinon</Segment.Item>
+							<Segment.Item value="halfr">Half Rinon</Segment.Item>
 						</Segment>
 					</div>
 					<div class="flex flex-col">
@@ -450,7 +468,7 @@
 							{/if}
 						</div>
 						<Segment classes="flex-wrap" name="moonlight" value={stratState.moonlight} onValueChange={(e) => (setStratState('moonlight', e.value))}>
-							<Segment.Item value="quad">Quad</Segment.Item>
+							<Segment.Item value="quad" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Quad</Segment.Item>
 							<Segment.Item value="toxic">Toxic</Segment.Item>
 						</Segment>
 					</div>
@@ -477,7 +495,7 @@
 							{/if}
 						</div>
 						<Segment classes="flex-wrap" name="p2" value={stratState.p2} onValueChange={(e) => (setStratState('p2', e.value))}>
-							<Segment.Item value="toxic">Toxic</Segment.Item>
+							<Segment.Item value="toxic" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Toxic</Segment.Item>
 						</Segment>
 					</div>
 					<div class="flex flex-col">
@@ -501,7 +519,7 @@
 						</div>
 						<Segment classes="flex-wrap" name="twofold" value={stratState.twofold} onValueChange={(e) => (setStratState('twofold', e.value))}>
 							<Segment.Item value="original">Original</Segment.Item>
-							<Segment.Item value="casterse">Caster SE</Segment.Item>
+							<Segment.Item value="casterse" labelClasses="flex items-center"><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Caster SE</Segment.Item>
 						</Segment>
 					</div>
 					<div class="flex flex-col">
@@ -524,8 +542,8 @@
 							{/if}
 						</div>
 						<Segment classes="flex-wrap" name="lament" value={stratState.lament} onValueChange={(e) => (setStratState('lament', e.value))}>
-							<Segment.Item value="rinon">Rinon</Segment.Item>
-							<Segment.Item value="toxic">Toxic</Segment.Item>
+							<Segment.Item value="rinon" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span>Rinon</Segment.Item>
+							<Segment.Item value="toxic" labelClasses="flex items-center"><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Toxic</Segment.Item>
 						</Segment>
 					</div>
 					<div class="flex flex-col">
@@ -548,8 +566,8 @@
 							{/if}
 						</div>
 						<Segment classes="flex-wrap" name="uv4" value={stratState.uv4} onValueChange={(e) => (setStratState('uv4', e.value))}>
-							<Segment.Item value="rinon">Rinon</Segment.Item>
-							<Segment.Item value="toxic">Toxic</Segment.Item>
+							<Segment.Item value="rinon" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span>Rinon</Segment.Item>
+							<Segment.Item value="toxic" labelClasses="flex items-center"><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Toxic</Segment.Item>
 						</Segment>
 					</div>
 				</div>
@@ -587,13 +605,14 @@
 								<ExternalLink />
 							</a>
 						{:else if typeof strat?.stratUrl === 'object'}
+						<div class="flex gap-2">
 							{strat.description}
 							{#each Object.entries(strat.stratUrl) as [linkName, linkUrl]}
-								 
 								<a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={linkUrl}>{linkName}
 									<ExternalLink />
 								</a>
 							{/each}
+						</div>
 						{/if}
 						{#if (stratState.decay && decayUrls[stratState.decay])}
 							<div>

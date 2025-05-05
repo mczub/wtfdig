@@ -3,7 +3,7 @@ import type { PageLoad } from "./$types";
 
 export const load: PageLoad = ({params}) => {
     return {
-        strats: [toxicStrat, pbeQ3, pbr],
+        strats: [toxicStrat, pbeQ3, pbr, r84ddog],
         timeline: timeline,
     }
 }
@@ -1095,6 +1095,228 @@ const toxicTerrestrial: StratRecord = {
     },
 }
 
+const fullRinonTerrestrial: StratRecord = {
+  'spreads1': {
+      'description': 'Wall Laser is RELATIVE/NEW NORTH\nStack South',
+      'MT': {
+              role: 'Tank',
+              party: 1,
+              description: 'Left + Inner',
+              imageUrl: './m8s/p1/rinon-terrestrial-1.webp',
+      },
+      'OT': {
+              role: 'Tank',
+              party: 2,
+              description: 'Right + Inner',
+              imageUrl: './m8s/p1/rinon-terrestrial-1.webp',
+      },
+      'H1': {
+              role: 'Healer',
+              party: 1,
+              description: 'Left + Outer',
+              imageUrl: './m8s/p1/rinon-terrestrial-1.webp',
+      },
+      'H2': {
+              role: 'Healer',
+              party: 2,
+              description: 'Right + Outer',
+              imageUrl: './m8s/p1/rinon-terrestrial-1.webp',
+      },
+      'M1': {
+              role: 'Melee',
+              party: 1,
+              description: 'Left + Inner',
+              imageUrl: './m8s/p1/rinon-terrestrial-1.webp',
+      },
+      'M2': {
+              role: 'Melee',
+              party: 2,
+              description: 'Right + Inner',
+              imageUrl: './m8s/p1/rinon-terrestrial-1.webp',
+      },
+      'R1': {
+              role: 'Ranged',
+              party: 1,
+              description: 'Left + Outer',
+              imageUrl: './m8s/p1/rinon-terrestrial-1.webp',
+      },
+      'R2': {
+              role: 'Ranged',
+              party: 2,
+              description: 'Right + Outer',
+              imageUrl: './m8s/p1/rinon-terrestrial-1.webp',
+      },
+  },
+  'stack1': {
+      'description': 'Center, a couple steps towards safe lane',
+  },
+  'spreads2': {
+      'description': 'Stack will be at the previous new north\nRotate CW if needed\nG1 Left, G2 Right',
+      'MT': {
+              role: 'Tank',
+              party: 1,
+              description: 'Left + Close',
+              imageUrl: './m8s/p1/rinon-terrestrial-2.webp',
+      },
+      'OT': {
+              role: 'Tank',
+              party: 2,
+              description: 'Right + Close',
+              imageUrl: './m8s/p1/rinon-terrestrial-2.webp',
+      },
+      'H1': {
+              role: 'Healer',
+              party: 1,
+              description: 'Left + Far',
+              imageUrl: './m8s/p1/rinon-terrestrial-2.webp',
+      },
+      'H2': {
+              role: 'Healer',
+              party: 2,
+              description: 'Right + Far',
+              imageUrl: './m8s/p1/rinon-terrestrial-2.webp',
+      },
+      'M1': {
+              role: 'Melee',
+              party: 1,
+              description: 'Left + Close',
+              imageUrl: './m8s/p1/rinon-terrestrial-2.webp',
+      },
+      'M2': {
+              role: 'Melee',
+              party: 2,
+              description: 'Right + Close',
+              imageUrl: './m8s/p1/rinon-terrestrial-2.webp',
+      },
+      'R1': {
+              role: 'Ranged',
+              party: 1,
+              description: 'Left + Far',
+              imageUrl: './m8s/p1/rinon-terrestrial-2.webp',
+      },
+      'R2': {
+              role: 'Ranged',
+              party: 2,
+              description: 'Right + Far',
+              imageUrl: './m8s/p1/rinon-terrestrial-2.webp',
+      },
+  },
+  'stack2': {
+      'description': 'Stack on new north',
+  },
+}
+
+const halfRinonTerrestrial: StratRecord = {
+  'spreads1': {
+      'description': 'Wall Laser is RELATIVE/NEW NORTH\nStack South',
+      'MT': {
+              role: 'Tank',
+              party: 1,
+              description: 'Left + Inner',
+              imageUrl: './m8s/p1/rinon-terrestrial-1.webp',
+      },
+      'OT': {
+              role: 'Tank',
+              party: 2,
+              description: 'Right + Inner',
+              imageUrl: './m8s/p1/rinon-terrestrial-1.webp',
+      },
+      'H1': {
+              role: 'Healer',
+              party: 1,
+              description: 'Left + Outer',
+              imageUrl: './m8s/p1/rinon-terrestrial-1.webp',
+      },
+      'H2': {
+              role: 'Healer',
+              party: 2,
+              description: 'Right + Outer',
+              imageUrl: './m8s/p1/rinon-terrestrial-1.webp',
+      },
+      'M1': {
+              role: 'Melee',
+              party: 1,
+              description: 'Left + Inner',
+              imageUrl: './m8s/p1/rinon-terrestrial-1.webp',
+      },
+      'M2': {
+              role: 'Melee',
+              party: 2,
+              description: 'Right + Inner',
+              imageUrl: './m8s/p1/rinon-terrestrial-1.webp',
+      },
+      'R1': {
+              role: 'Ranged',
+              party: 1,
+              description: 'Left + Outer',
+              imageUrl: './m8s/p1/rinon-terrestrial-1.webp',
+      },
+      'R2': {
+              role: 'Ranged',
+              party: 2,
+              description: 'Right + Outer',
+              imageUrl: './m8s/p1/rinon-terrestrial-1.webp',
+      },
+  },
+  'stack1': {
+      'description': 'Center, a couple steps towards safe lane',
+  },
+  'spreads2': {
+      'description': 'Stack will be on A or 2\nMT/R1 H1/M1 OT/M2 H2/R2 facing Stack',
+      'MT': {
+              role: 'Tank',
+              party: 1,
+              description: 'Northwest',
+              imageUrl: './m8s/p1/toxic-terrestrial-2.webp',
+      },
+      'OT': {
+              role: 'Tank',
+              party: 2,
+              description: 'Southeast',
+              imageUrl: './m8s/p1/toxic-terrestrial-2.webp',
+      },
+      'H1': {
+              role: 'Healer',
+              party: 1,
+              description: 'Southwest',
+              imageUrl: './m8s/p1/toxic-terrestrial-2.webp',
+      },
+      'H2': {
+              role: 'Healer',
+              party: 2,
+              description: 'Northeast',
+              imageUrl: './m8s/p1/toxic-terrestrial-2.webp',
+      },
+      'M1': {
+              role: 'Melee',
+              party: 1,
+              description: 'Southwest',
+              imageUrl: './m8s/p1/toxic-terrestrial-2.webp',
+      },
+      'M2': {
+              role: 'Melee',
+              party: 2,
+              description: 'Southeast',
+              imageUrl: './m8s/p1/toxic-terrestrial-2.webp',
+      },
+      'R1': {
+              role: 'Ranged',
+              party: 1,
+              description: 'Northwest',
+              imageUrl: './m8s/p1/toxic-terrestrial-2.webp',
+      },
+      'R2': {
+              role: 'Ranged',
+              party: 2,
+              description: 'Northeast',
+              imageUrl: './m8s/p1/toxic-terrestrial-2.webp',
+      },
+  },
+  'stack2': {
+      'description': 'Stack on A or 2',
+  },
+}
+
 const quadMoonlight: StratRecord = {
     'first': {
         'description': 'Spreads RMMR G1 Left/G2 Right facing boss',
@@ -1958,7 +2180,7 @@ const toxicUV4: StratRecord = {
 }
 
 const decayStrats = {'toxic': toxicDecay, 'fer': feringDecay};
-const terrestrialStrats = {'clock': clockTerrestrial, 'dn': dnTerrestrial, 'toxic': toxicTerrestrial};
+const terrestrialStrats = {'clock': clockTerrestrial, 'dn': dnTerrestrial, 'toxic': toxicTerrestrial, 'fullr': fullRinonTerrestrial, 'halfr': halfRinonTerrestrial};
 const moonlightStrats = {'quad': quadMoonlight, 'toxic': toxicMoonlight};
 const p2Strats = {'toxic': toxicP2};
 const twofoldStrats = {'original': originalTwofold, 'casterse': casterseTwofold};
@@ -2396,4 +2618,17 @@ const pbr: Strat = {
         ...allP1,
         ...allP2,
     ]
+}
+
+const r84ddog: Strat = {
+  stratName: '84ddog',
+  description: '',
+  stratUrl: {
+    '84d': 'https://raidplan.io/plan/B5Q3Mk62YKuTy84d',
+    'DOG': 'https://raidplan.io/plan/9M-1G-mmOaaroDOG'
+  },
+  strats: [
+      ...allP1,
+      ...allP2,
+  ]
 }
