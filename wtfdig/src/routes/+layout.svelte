@@ -95,7 +95,7 @@
                 <article>
                     <div class="opacity-60 preset-outlined-surface-200-800 grid p-0 w-full divide-y divide-surface-800 rounded-md hover:bg-surface-900 bg-surface-950">
                         <div class="px-4 py-2">
-                            <a href="{base}/71/chaotic" class="flex flex-col w-full items-start">
+                            <a data-sveltekit-reload href="{base}/71/chaotic" class="flex flex-col w-full items-start">
                                 <div class="text-lg -mb-2">Cloud of Darkness</div>
                                 <div class="text-sm">Chaotic</div>
                             </a>
@@ -116,31 +116,31 @@
                 <article>
                     <div class="opacity-60 preset-outlined-surface-200-800 grid grid-rows-4 p-0 w-full divide-y divide-surface-800 rounded-md bg-surface-950">
                         <div class="px-4 py-2">
-                            <a href="{base}/72/ex4" class="flex flex-col w-full items-start">
+                            <a data-sveltekit-reload href="{base}/72/ex4" class="flex flex-col w-full items-start">
                                 <div class="text-lg -mb-2">Recollection</div>
                                 <div class="text-sm">Extreme</div>
                             </a>
                         </div>
                         <div class="px-4 py-2">
-                            <a href="{base}/72/m5s" class="flex flex-col w-full items-start">
+                            <a data-sveltekit-reload href="{base}/72/m5s" class="flex flex-col w-full items-start">
                                 <div class="text-lg -mb-2">AAC Cruiserweight M1</div>
                                 <div class="text-sm">Savage</div>
                             </a>
                         </div>
                         <div class="px-4 py-2">
-                            <a href="{base}/72/m6s" class="flex flex-col w-full items-start">
+                            <a data-sveltekit-reload href="{base}/72/m6s" class="flex flex-col w-full items-start">
                                 <div class="text-lg -mb-2">AAC Cruiserweight M2</div>
                                 <div class="text-sm">Savage</div>
                             </a>
                         </div>
                         <div class="px-4 py-2">
-                            <a href="{base}/72/m7s" class="flex flex-col w-full items-start">
+                            <a data-sveltekit-reload href="{base}/72/m7s" class="flex flex-col w-full items-start">
                                 <div class="text-lg -mb-2">AAC Cruiserweight M3</div>
                                 <div class="text-sm">Savage</div>
                             </a>
                         </div>
                         <div class="px-4 py-2">
-                            <a href="{base}/72/m8s" class="flex flex-col w-full items-start">
+                            <a data-sveltekit-reload href="{base}/72/m8s" class="flex flex-col w-full items-start">
                                 <div class="text-lg -mb-2">AAC Cruiserweight M4</div>
                                 <div class="text-sm">Savage</div>
                             </a>
