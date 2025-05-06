@@ -16,13 +16,6 @@
     }
     let popover71OpenState = $state(false);
     let popover72OpenState = $state(false);
-    onMount(() => {
-        if (window.location.host === 'mczub.github.io') {
-            const url = window.location.href.replace('mczub.github.io/wtfdig', 'wtfdig.info');
-            window.location.replace(url);
-        }
-    });
-
 
     let { children }: Props = $props();
 </script>
