@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '../app.css';
+    import { onMount } from 'svelte';
     import { Modal, Popover, ToastProvider } from '@skeletonlabs/skeleton-svelte';
     import ChevronDown from '@lucide/svelte/icons/chevron-down';
     import { base } from '$app/paths';
@@ -15,6 +16,12 @@
     }
     let popover71OpenState = $state(false);
     let popover72OpenState = $state(false);
+    onMount(() => {
+        if (window.location.host === 'mczub.github.io') {
+            const url = window.location.href.replace('mczub.github.io/wtfdig', 'wtfdig.info');
+            window.location.replace(url);
+        }
+    });
 
 
     let { children }: Props = $props();
@@ -33,6 +40,7 @@
         </header>
         <article>
             <div>
+                <p>5/5/2025: redirecting mczub.github.io/wtfdig to wtfdig.info</p>
                 <p>5/4/2025: add oce m6s + m7s, eu m8s</p>
                 <p>5/2/2025: rearranged strats, added badges to indicate region standards, add game8 m6s + m7s, add oce m5s</p>
                 <p>5/1/2025: updated fering decay diagrams, fix twofold line baits</p>
