@@ -9,6 +9,7 @@
 	import { untrack } from 'svelte';
 	import Cheatsheet from '../../../components/Cheatsheet.svelte';
 	import { Info } from '@lucide/svelte';
+	import StratView from '../../../components/StratView.svelte';
 
 	interface Props {
 		data: {
@@ -419,7 +420,7 @@
 				</div>
 				<div>
 					<div class="text-xl mb-2">Which role are you?</div>
-					<Segment name="role" value={role} onValueChange={(e) => (role = e.value)}>
+					<Segment name="role" classes="flex-wrap" value={role} onValueChange={(e) => (role = e.value)}>
 						<Segment.Item value="Tank">Tank</Segment.Item>
 						<Segment.Item value="Healer">Healer</Segment.Item>
 						<Segment.Item value="Melee">Melee</Segment.Item>
@@ -464,7 +465,7 @@
 						{/if}
 					</div>
 					<div class="grow"></div>
-					<div class="grid gap-y-2 content-center max-w-[40%] lg:max-w-[20%]">
+					<div class="grid gap-y-2 content-center max-w-full lg:max-w-[20%]">
 						{#if isCheatsheetEnabled}
 							<button onclick={() => (cheatsheetOpenState = true)} class="button btn preset-tonal-secondary border border-secondary-500">Open cheatsheet</button>
 						{:else}
@@ -492,53 +493,17 @@
 					{/if}
 				</div>
 
-				{#each individualStrat as phase}
-				<div class="card border border-surface-800 mb-8 p-4">
-					<div class="flex flex-row">
-						<div class="capitalize font-bold text-2xl mb-0">{phase.phaseName}</div>
-						{#if phase?.tag && (stratState[phase.tag] !== getStratMechs(stratName)[phase.tag])}
-							<Tooltip
-								positioning={{ placement: 'top' }}
-								triggerBase="underline"
-								contentBase="card bg-surface-800 p-4"
-								classes="ml-2"
-								openDelay={200}
-								arrow
-								arrowBackground="!bg-surface-800"
-
-							>
-								{#snippet trigger()}<div class="text-warning-500"><TriangleAlert size={32}/></div>{/snippet}
-								{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
-							</Tooltip>
-						{/if}
-					</div>
-					{#if phase?.description}<div class="text-lg whitespace-pre-wrap">{phase.description}</div>{/if}
-					{#if phase?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />{/if}
-					{#if phase?.mechs}
-						<div class="grid xl:grid-cols-2 grid-cols-2 gap-2 mt-4">
-							{#each phase.mechs as mech}
-								{#key [spotlight, alignment]}
-								<div class="space-y-4" class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}>
-									<div class="capitalize font-semibold text-xl mb-0">{mech.mechanic}</div> 
-									{#if mech?.notes}
-										<div class="card preset-outlined-primary-500 p-2 flex flex-row space-x-2 my-2">
-											<CircleAlert size={32} />
-											<div class="whitespace-pre-wrap text-lg mb-0">{mech.notes}</div>
-										</div>
-									{/if}
-									{#if mech?.description}<div class="whitespace-pre-wrap text-lg mb-0">{mech.description}</div>{/if}
-									
-									<div class="whitespace-pre-wrap text-lg mb-0">{mech.strats[0].description}</div>
-									{#if mech.strats[0]?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />{/if}
-								</div>
-								{/key}
-							{/each}
-						</div>
-					{/if}
-				</div>
-				{/each}
-				
-				</div>
+				<StratView
+					strat={strat}
+					timeline={[]}
+					stratName={stratName}
+					stratState={stratState}
+					getStratMechs={getStratMechs}
+					individualStrat={individualStrat}
+					spotlight={spotlight}
+					alignment={alignment}
+				/>
+			</div>
 			{/if}
 		{/if}
 	</div>

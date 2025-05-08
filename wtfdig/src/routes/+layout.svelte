@@ -33,6 +33,7 @@
         </header>
         <article>
             <div>
+                <p>5/7/2025: a bunch of formatting stuff! you can click on images!</p>
                 <p>5/5/2025: redirecting mczub.github.io/wtfdig to wtfdig.info</p>
                 <p>5/4/2025: add oce m6s + m7s, eu m8s</p>
                 <p>5/2/2025: rearranged strats, added badges to indicate region standards, add game8 m6s + m7s, add oce m5s</p>
@@ -82,13 +83,13 @@
 <header class="w-full mx-auto px-6 py-6 border-b border-gray-600 flex-none">
     <div class="grid grid-cols-1 md:grid-cols-3 justify-items-stretch items-center">
         <a href="{base}/" class="text-2xl font-semibold my-4 md:my-0 md:justify-self-start">WTFDIG</a>
-        <div class="card preset-outlined-secondary-500 gap-4 p-4 lg:grid-cols-[auto_1fr_auto] md:justify-self-center">WTFDIG can now be found at <a target="_blank" rel="noopener noreferrer" class="anchor" href="https://wtfdig.info">WTFDIG.info</a></div>
-        <div class="my-4 md:my-0 md:justify-self-end">
+        <div class="card md:mx-auto preset-outlined-secondary-500 gap-4 p-4 lg:grid-cols-[auto_1fr_auto] md:text-center">WTFDIG can now be found at <a target="_blank" rel="noopener noreferrer" class="anchor" href="https://wtfdig.info">WTFDIG.info</a></div>
+        <div class="flex flex-wrap gap-2 md:justify-end my-4 md:ml-4 md:my-0">
             <Popover
                 open={popover71OpenState}
                 onOpenChange={(e) => (popover71OpenState = e.open)}
                 positioning={{ placement: 'bottom-end' }}
-                triggerBase="btn preset-tonal-secondary border border-secondary-500"
+                triggerBase="btn preset-tonal-secondary border border-secondary-500 px-4"
                 contentBase="card bg-surface-200-800 space-y-4 min-w-[240px]"
             >
                 {#snippet trigger()}Patch 7.1 <ChevronDown size={16}/>{/snippet}
@@ -109,7 +110,7 @@
                 open={popover72OpenState}
                 onOpenChange={(e) => (popover72OpenState = e.open)}
                 positioning={{ placement: 'bottom-end' }}
-                triggerBase="btn preset-tonal-secondary border border-secondary-500"
+                triggerBase="btn preset-tonal-secondary border border-secondary-500 px-4"
                 contentBase="card bg-surface-200-800 min-w-[240px]"
             >
                 {#snippet trigger()}Patch 7.2 <ChevronDown size={16}/>{/snippet}
@@ -151,7 +152,7 @@
                 {/snippet}
             </Popover>
             
-            <button type="button" onclick={() => changelogOpen()} class="btn preset-tonal border border-surface-500">Changelog</button>
+            <button type="button" onclick={() => changelogOpen()} class="btn preset-tonal border border-surface-500 px-6">Changelog</button>
         </div>
     </div>
 </header>

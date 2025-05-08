@@ -40,7 +40,7 @@
 <Modal
   open={imageOpenState}
   onOpenChange={(e) => (imageOpenState = e.open)}
-  contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl flex flex-col border border-surface-600"
+  contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl flex flex-col border border-surface-600 max-w-full max-h-full"
   backdropClasses="backdrop-blur-sm"
   zIndex={"3000"}
 >
@@ -57,7 +57,7 @@
             <div class="font-bold text-base lg:text-xl">{mech ? mech?.mechanic : ''}</div>
 			<div class="whitespace-pre-wrap text-xs lg:text-lg">{mech ? mech?.description : ''}</div>
             <div class="whitespace-pre-wrap text-xs lg:text-lg mb-0">{mech ? mech?.strats && mech.strats[0].description : ''}</div>
-			<img class="rounded-md mt-4" src={getImageModalUrl()} style:mask-image={spotlight && getImageMask()} />
+			<img class="rounded-md mt-4 max-h-full" src={getImageModalUrl()} style:mask-image={spotlight && getImageMask()} />
 		</div>
 	{/snippet}
 </Modal>

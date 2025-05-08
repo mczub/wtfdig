@@ -10,6 +10,7 @@
 	import { untrack } from 'svelte';
 	import Cheatsheet from '../../../components/Cheatsheet.svelte';
 	import { replaceState } from '$app/navigation';
+	import StratView from '../../../components/StratView.svelte';
 
 	interface Props {
 		data: {
@@ -36,7 +37,7 @@
 
 	$effect(() => {
 		let stratCode = '';
-		untrack(() => stratCode = getStratCode(stratName, stratState))
+		untrack(() => stratCode = getStratCode(stratName));
 		const urlHash = page.url.hash.substring(1);
 		if (urlHash !== stratCode) {
 			untrack(() => setStratsFromUrlHash(urlHash));
@@ -209,7 +210,7 @@
 <Modal
 	open={otherOpenState}
 	onOpenChange={(e) => (otherOpenState = e.open)}
-	contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl flex flex-col border border-surface-600 min-w-[600px]"
+	contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl flex flex-col border border-surface-600 lg:min-w-[600px]"
 	backdropClasses="backdrop-blur-sm"
 	zIndex={"3000"}
 >
@@ -265,7 +266,7 @@
 				</div>
 				<div>
 					<div class="text-xl mb-2">Which role are you?</div>
-					<Segment name="role" value={role} onValueChange={(e) => (role = e.value)}>
+					<Segment name="role" classes="flex-wrap" value={role} onValueChange={(e) => (role = e.value)}>
 						<Segment.Item value="Tank">Tank</Segment.Item>
 						<Segment.Item value="Healer">Healer</Segment.Item>
 						<Segment.Item value="Melee">Melee</Segment.Item>
@@ -288,8 +289,8 @@
 				<div></div>
 			{:else}
 			<div class="card preset-filled-surface-50-950 border-[1px] border-surface-200-800 p-4">
-				<div class="flex flex-wrap items-center gap-2">
-					<div class="content-center">
+				<div class="flex flex-col lg:flex-row gap-2">
+					<div class="w-full lg:w-auto content-center">
 						<div class="capitalize font-semibold text-2xl mb-0">{optionsString}</div>
 						{#if typeof strat?.stratUrl === 'string'}
 							<a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={strat.stratUrl}>{strat.description}
@@ -306,7 +307,7 @@
 						{/if}
 					</div>
 					<div class="grow"></div>
-					<div class="grid gap-y-2 content-center max-w-[40%] lg:max-w-[20%]">
+					<div class="grid gap-y-2 content-center max-w-full sm:max-w-1/2 lg:max-w-[20%]">
 						{#if isCheatsheetEnabled}
 							<button onclick={() => (cheatsheetOpenState = true)} class="button btn preset-tonal-secondary border border-secondary-500">Open cheatsheet</button>
 						{:else}
@@ -333,59 +334,17 @@
 						</div>
 					{/if}
 				</div>
-				{#if strat?.notes}
-					<div class="card preset-outlined-primary-500 p-2 flex flex-row space-x-2 my-2">
-						<CircleAlert size={32} />
-						<div class="whitespace-pre-wrap text-lg mb-0">{strat.notes}</div>
-					</div>
-				{/if}
-				{#each individualStrat as phase}
-				<div class="card border border-surface-800 mb-8 p-4">
-					<div class="flex flex-row">
-						<div class="capitalize font-bold text-2xl mb-0">{phase.phaseName}</div>
-						{#if phase?.tag && (stratState[phase.tag] !== getStratMechs(stratName)[phase.tag])}
-							<Tooltip
-								positioning={{ placement: 'top' }}
-								triggerBase="underline"
-								contentBase="card bg-surface-800 p-4"
-								classes="ml-2"
-								openDelay={200}
-								arrow
-								arrowBackground="!bg-surface-800"
-
-							>
-								{#snippet trigger()}<div class="text-warning-500"><TriangleAlert size={32}/></div>{/snippet}
-								{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
-							</Tooltip>
-						{/if}
-					</div>
-					{#if phase?.description}<div class="text-lg whitespace-pre-wrap">{phase.description}</div>{/if}
-					{#if phase?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />{/if}
-					{#if phase?.mechs}
-						<div class="grid xl:grid-cols-2 grid-cols-2 gap-2 mt-4">
-							{#each phase.mechs as mech}
-								{#key [spotlight, alignment]}
-								<div class="space-y-4" class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}>
-									<div class="capitalize font-semibold text-xl mb-0">{mech.mechanic}</div> 
-									{#if mech?.notes}
-										<div class="card preset-outlined-primary-500 p-2 flex flex-row space-x-2 my-2">
-											<CircleAlert size={32} />
-											<div class="whitespace-pre-wrap text-lg mb-0">{mech.notes}</div>
-										</div>
-									{/if}
-									{#if mech?.description}<div class="whitespace-pre-wrap text-lg mb-0">{mech.description}</div>{/if}
-									{#if mech?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" src={mech.imageUrl} />{/if}
-									<div class="whitespace-pre-wrap text-lg mb-0">{mech?.strats && mech.strats[0].description}</div>
-									{#if mech?.strats && mech.strats[0]?.imageUrl}<img class="max-h-[400px] rounded-md mt-4" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />{/if}
-								</div>
-								{/key}
-							{/each}
-						</div>
-					{/if}
-				</div>
-				{/each}
-				
-				</div>
+				<StratView
+					strat={strat}
+					timeline={data.timeline}
+					stratName={stratName}
+					stratState={stratState}
+					getStratMechs={getStratMechs}
+					individualStrat={individualStrat}
+					spotlight={spotlight}
+					alignment={alignment}
+				/>
+			</div>
 			{/if}
 		{/if}
 	</div>
