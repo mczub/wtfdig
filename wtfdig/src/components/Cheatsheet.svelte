@@ -11,13 +11,6 @@
 	}
 
     let { title, stratName, stratState, getStratMechs, cheatsheetOpenState = $bindable(), individualStrat, spotlight, alignment, timeline, innerWidth, innerHeight, rows, columns, tabTags = null, splitTimeline = false }: Props = $props();
-    
-	function msToTime(timeInMs: number): string {
-		const seconds = (Math.floor(timeInMs / 1000) % 60).toString().padStart(2, '0');
-		const minutes = (Math.floor(timeInMs / 60000)).toString();
-
-		return `${minutes}:${seconds}`;
-	}
 
 	function getFightPercentClass(timeInMs: number, index: number): string {
 		if (useEvenTimelineSpacing) {
@@ -104,10 +97,12 @@
     <header class="flex justify-between">
       <div class="text-lg 3xl:text-2xl">{title}</div>
       <div class="flex flex-row items-center gap-8">
+        {#if timeline.length > 0}
         <div class="flex flex-row items-center gap-2">
             <p>Timeline</p>
             <Switch name="showTimeline" checked={showTimeline} onCheckedChange={(e) => (showTimeline = e.checked)}></Switch>
         </div>
+        {/if}
         <X onclick={closeCheatsheet} />
       </div>
 	  

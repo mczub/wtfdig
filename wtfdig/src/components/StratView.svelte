@@ -1,16 +1,17 @@
 <svelte:options customElement={{shadow: 'none'}} ></svelte:options>
 <script lang="ts">
-    import { Tooltip } from '@skeletonlabs/skeleton-svelte';
-    import { CircleAlert, Divide, Expand, TriangleAlert } from '@lucide/svelte/icons';
+    import { Accordion, Tooltip } from '@skeletonlabs/skeleton-svelte';
+    import { CircleAlert, Clock, Divide, Expand, Shield, Siren, TriangleAlert, Wrench } from '@lucide/svelte/icons';
 	import ImagePreview from './ImagePreview.svelte';
 	import type { TimelineItem } from '$lib/types';
+    import { msToTime } from '$lib/utils';
 
     interface Props {
 		timeline: TimelineItem[];
         [propName: string]: any;
 	}
 
-    let { strat, stratName, stratState, getStratMechs, individualStrat, spotlight, alignment }: Props = $props();
+    let { timeline, strat, stratName, stratState, getStratMechs, individualStrat, spotlight, alignment }: Props = $props();
     
     let imageOpenState = $state(false);
 	let imageModalProps = $state({
@@ -25,6 +26,8 @@
 		}
 		imageOpenState = true;
 	}
+
+    let timelineValue = $state(['']);
 </script>
 
 <ImagePreview 
@@ -35,10 +38,55 @@
 />
 
 {#if strat?.notes}
-    <div class="card preset-outlined-primary-500 p-2 flex flex-row space-x-2 my-2">
+    <div class="card preset-outlined-primary-500 p-2 flex flex-row space-x-2 my-4">
         <CircleAlert size={32} />
         <div class="whitespace-pre-wrap text-lg mb-0">{strat.notes}</div>
     </div>
+{/if}
+{#if timeline.length > 0}
+<div class="card preset-filled-surface-50-950 border-[1px] border-surface-200-800 mb-4">
+    <Accordion value={timelineValue} onValueChange={(e) => (timelineValue = e.value)} collapsible>
+        <Accordion.Item value="timeline">
+            {#snippet control()}<div class="font-semibold text-xl">Timeline</div>{/snippet}
+            {#snippet panel()}
+                <div class="grid lg:grid-flow-col grid-cols-1 lg:grid-cols-3 gap-1" style:grid-template-rows={`repeat(${Math.floor(timeline.length / 3) + 1}, minmax(0, 1fr))`}>
+                    {#each timeline as item, index}
+                        <div class="flex flex-row gap-4 items-center">
+                            <div class="w-4">
+                                {#if item.mechType === 'Raidwide'}
+                                    <div class="grid bg-secondary-500 rounded-sm h-[16px] w-[16px] p-auto place-content-center">
+                                        <Siren size={14} strokeWidth={2} />
+                                    </div>
+                                {/if}
+                                {#if item.mechType === 'Mechanic'}
+                                    <div class="grid bg-warning-800 rounded-sm h-[16px] w-[16px] p-auto place-content-center">
+                                        <Wrench size={14} strokeWidth={2} />
+                                    </div>
+                                {/if}
+                                {#if item.mechType === 'Tankbuster'}
+                                    <div class="grid bg-primary-500 rounded-sm h-[16px] w-[16px] p-auto place-content-center">
+                                        <Shield size={14} strokeWidth={2} />
+                                    </div>
+                                {/if}
+                                {#if item.mechType === 'StoredMechanic'}
+                                    <div class="grid bg-warning-800 rounded-sm h-[16px] w-[16px] p-auto place-content-center">
+                                        <Clock size={14} strokeWidth={2} />
+                                    </div>
+                                {/if}
+                            </div>
+                            <div class="w-12">
+                                {msToTime(item.startTimeMs)}
+                            </div>
+                            <div>
+                                {item.mechName}
+                            </div>
+                        </div>
+                    {/each}
+                </div>
+            {/snippet}
+        </Accordion.Item>
+    </Accordion>
+</div>
 {/if}
 {#each individualStrat as phase}
     {#if phase?.mechs}

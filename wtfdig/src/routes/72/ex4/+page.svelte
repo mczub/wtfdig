@@ -8,7 +8,7 @@
   	import { type ToastContext } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
 	import Cheatsheet from '../../../components/Cheatsheet.svelte';
-	import { Info } from '@lucide/svelte';
+	import { ExternalLink, Fullscreen, Info, Link } from '@lucide/svelte';
 	import StratView from '../../../components/StratView.svelte';
 
 	interface Props {
@@ -442,43 +442,39 @@
 			{:else if typeof individualStrat === 'undefined'}
 				<div></div>
 			{:else}
+			<div class="flex flex-col lg:flex-row gap-2 mb-8">
+				{#if isCheatsheetEnabled}
+					<button onclick={() => (cheatsheetOpenState = true)} class="button btn btn-lg preset-tonal-secondary border border-secondary-500"><Fullscreen />Open cheatsheet</button>
+				{:else}
+					<button class="button btn btn-lg preset-tonal-secondary border border-secondary-500 disabled"><Fullscreen />Open cheatsheet</button>
+					<div class="flex flex-row items-center gap-2">
+						<Info size={24} />
+						<span>Cheatsheet mode needs a browser window size of at least 1024 x 768</span>
+					</div>
+					
+				{/if}
+				<button onclick={() => copyLinkToClipboard()} class="button btn btn-lg preset-tonal-secondary border border-secondary-500"><Link />Copy link</button>
+			</div>
 			<div class="card preset-filled-surface-50-950 border-[1px] border-surface-200-800 p-4">
-				<div class="flex flex-wrap items-center gap-2">
-					<div class="content-center">
+				<div class="flex flex-col lg:flex-row gap-2">
+					<div class="w-full lg:w-auto content-center">
 						<div class="capitalize font-semibold text-2xl mb-0">{optionsString}</div>
 						{#if typeof strat?.stratUrl === 'string'}
-							<a class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href={strat.stratUrl}>{strat.description}
-								<svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-									<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-								</svg>
+							<a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={strat.stratUrl}>{strat.description}
+								<ExternalLink />
 							</a>
 						{:else if typeof strat?.stratUrl === 'object'}
 							{strat.description}
 							{#each Object.entries(strat.stratUrl) as [linkName, linkUrl]}
 								 
-								<a class="inline-flex items-center font-medium text-blue-600 dark:text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer" href={linkUrl}>{linkName}
-									<svg class="w-4 h-4 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-										<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-									</svg>
+								<a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={linkUrl}>{linkName}
+									<ExternalLink />
 								</a>
 							{/each}
 						{/if}
 					</div>
 					<div class="grow"></div>
-					<div class="grid gap-y-2 content-center max-w-full lg:max-w-[20%]">
-						{#if isCheatsheetEnabled}
-							<button onclick={() => (cheatsheetOpenState = true)} class="button btn preset-tonal-secondary border border-secondary-500">Open cheatsheet</button>
-						{:else}
-							<button class="button btn preset-tonal-secondary border border-secondary-500 disabled">Open cheatsheet</button>
-							<div class="flex flex-row items-center gap-2">
-								<Info size={40} />
-								<span>Cheatsheet mode needs a browser window size of at least 1024 x 768</span>
-							</div>
-							
-						{/if}
-						<button onclick={() => copyLinkToClipboard()} class="button btn preset-tonal-secondary border border-secondary-500">Copy link</button>
-						<Switch name="spotlight-toggle" checked={spotlight} onCheckedChange={(e) => (spotlight = e.checked)}>Highlight my spots</Switch>
-					</div>
+					<div><Switch name="spotlight-toggle" checked={spotlight} onCheckedChange={(e) => (spotlight = e.checked)}>Highlight my spots</Switch></div>
 				</div>
 				<div class="flex flex-wrap items-center justify-between my-4">
 					<div class="text-xl">{individualStrat.notes}</div>

@@ -11,3 +11,10 @@ export function getRectMaskUrl(xStart: number, xEnd: number, yStart: number, yEn
 export function getCircleMask(hPercent: number, vPercent: number, size: number) {
     return `radial-gradient(circle at ${hPercent}% ${vPercent}%, black ${size - 0.1}%, rgba(0, 0, 0, 0.4)  ${size}%)`;
 }
+
+export function msToTime(timeInMs: number): string {
+    const seconds = (Math.floor(timeInMs / 1000) % 60).toString().padStart(2, '0');
+    const minutes = (Math.floor(timeInMs / 60000)).toString();
+
+    return `${minutes}:${seconds}`;
+}

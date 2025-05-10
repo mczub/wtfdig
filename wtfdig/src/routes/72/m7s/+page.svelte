@@ -4,7 +4,7 @@
 	import { Accordion, Modal, Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
-	import { ExternalLink, Info, X } from '@lucide/svelte/icons';
+	import { ExternalLink, Fullscreen, Info, Link, X } from '@lucide/svelte/icons';
 	import { getContext } from 'svelte';
   	import { type ToastContext } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
@@ -436,6 +436,19 @@
 			{:else if typeof individualStrat === 'undefined'}
 				<div></div>
 			{:else}
+			<div class="flex flex-col lg:flex-row gap-2 mb-8">
+				{#if isCheatsheetEnabled}
+					<button onclick={() => (cheatsheetOpenState = true)} class="button btn btn-lg preset-tonal-secondary border border-secondary-500"><Fullscreen />Open cheatsheet</button>
+				{:else}
+					<button class="button btn btn-lg preset-tonal-secondary border border-secondary-500 disabled"><Fullscreen />Open cheatsheet</button>
+					<div class="flex flex-row items-center gap-2">
+						<Info size={24} />
+						<span>Cheatsheet mode needs a browser window size of at least 1024 x 768</span>
+					</div>
+					
+				{/if}
+				<button onclick={() => copyLinkToClipboard()} class="button btn btn-lg preset-tonal-secondary border border-secondary-500"><Link />Copy link</button>
+			</div>
 			<div class="card preset-filled-surface-50-950 border-[1px] border-surface-200-800 p-4">
 				<div class="flex flex-col lg:flex-row gap-2">
 					<div class="w-full lg:w-auto content-center">
@@ -468,20 +481,7 @@
 						{/if}
 					</div>
 					<div class="grow"></div>
-					<div class="grid gap-y-2 content-center max-w-full sm:max-w-1/2 lg:max-w-[20%]">
-						{#if isCheatsheetEnabled}
-							<button onclick={() => (cheatsheetOpenState = true)} class="button btn preset-tonal-secondary border border-secondary-500">Open cheatsheet</button>
-						{:else}
-							<button class="button btn preset-tonal-secondary border border-secondary-500 disabled">Open cheatsheet</button>
-							<div class="flex flex-row items-center gap-2">
-								<Info size={40} />
-								<span>Cheatsheet mode needs a browser window size of at least 1024 x 768</span>
-							</div>
-							
-						{/if}
-						<button onclick={() => copyLinkToClipboard()} class="button btn preset-tonal-secondary border border-secondary-500">Copy link</button>
-						<Switch name="spotlight-toggle" checked={spotlight} onCheckedChange={(e) => (spotlight = e.checked)}>Highlight my spots</Switch>
-					</div>
+					<div><Switch name="spotlight-toggle" checked={spotlight} onCheckedChange={(e) => (spotlight = e.checked)}>Highlight my spots</Switch></div>
 				</div>
 				<div class="flex flex-wrap items-center justify-between my-4">
 					<div class="text-xl">{individualStrat.notes}</div>
