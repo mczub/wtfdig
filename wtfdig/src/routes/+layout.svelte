@@ -33,7 +33,7 @@
         </header>
         <article>
             <div>
-                <p>5/10/2025: some layout adjustment, add timelines to main pages</p>
+                <p>5/10/2025: some layout adjustment, add timelines to main pages, add pf descriptions</p>
                 <p>5/7/2025: a bunch of formatting stuff! you can click on images!</p>
                 <p>5/5/2025: redirecting mczub.github.io/wtfdig to wtfdig.info</p>
                 <p>5/4/2025: add oce m6s + m7s, eu m8s</p>
