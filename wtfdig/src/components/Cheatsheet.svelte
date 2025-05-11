@@ -4,6 +4,7 @@
     import { Clock, Expand, ExternalLink, Shield, Siren, TriangleAlert, Wrench, X} from '@lucide/svelte/icons';
 	import ImagePreview from './ImagePreview.svelte';
 	import type { TimelineItem } from '$lib/types';
+	import { msToTime } from '$lib/utils';
 
     interface Props {
 		timeline: TimelineItem[];
