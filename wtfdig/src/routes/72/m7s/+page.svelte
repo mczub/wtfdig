@@ -4,7 +4,7 @@
 	import { Accordion, Modal, Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
-	import { ExternalLink, Fullscreen, Info, Link, X } from '@lucide/svelte/icons';
+	import { Copy, ExternalLink, Fullscreen, Info, Link, X } from '@lucide/svelte/icons';
 	import { getContext } from 'svelte';
   	import { type ToastContext } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
@@ -281,6 +281,76 @@
 
 		return `${stratDiffs.join(' | ')} - ${roleAbbrev}`;
 	}
+
+	function getPFDescription() {
+		if (!stratName) return '';
+		const stratNames: Record<string, string> = {
+			'game8': 'Game8',
+			'toxic': 'Toxic',
+			'kindred': 'Kindred',
+			'mr': 'MR'
+		}
+		let stratDiffs = [stratNames[stratName]];
+		if ((stratState.p2 !== getStratMechs(stratName)['p2']) || (stratState.p3 !== getStratMechs(stratName)['p3']) || stratName === 'kindred') {
+			if (stratState.p2 === 'toxic') {
+				stratDiffs.push(`Toxic`);
+			}
+			if (stratState.p2 === 'bili') {
+				stratDiffs.push(`Bilibili`);
+			}
+			if (stratState.p2 === 'alpha') {
+				stratDiffs.push(`Alpha 1.0`);
+			}
+			if (stratState.p2 === 'alpha2') {
+				stratDiffs.push(`Alpha 2.0`);
+			}
+			if (stratState.p2 === 'zenith') {
+				stratDiffs.push(`Zenith`);
+			}
+			if (stratState.p2 === 'cute') {
+				stratDiffs.push(`Cute`);
+			}
+			if (stratState.p2 === 'locked') {
+				stratDiffs.push(`Locked`);
+			}
+			if (stratState.p2 === 'fixed') {
+				stratDiffs.push(`Fixed`);
+			}
+			if (stratState.p2 === 'game8') {
+				stratDiffs.push(`Game8`);
+			}
+			if (stratState.p2 === 'mr') {
+				stratDiffs.push(`MR`);
+			}
+			if (stratState.p3 === 'toxic') {
+				stratDiffs.push(`Toxic`);
+			}
+			if (stratState.p3 === 'hector') {
+				stratDiffs.push(`Hector`);
+			}
+			if (stratState.p3 === 'game8') {
+				stratDiffs.push(`Game8`);
+			}
+			if (stratState.p3 === 'mr') {
+				stratDiffs.push(`MR`);
+			}
+		}
+		if (stratName === 'toxic' && stratState.p2 === 'locked' && stratState.p3 === 'toxic') {
+			return `Toxic | Locked | Toxic | ${window.location.href}`
+		}
+		if (stratName === 'toxic' && stratState.p2 === 'fixed' && stratState.p3 === 'toxic') {
+			return `Toxic | Fixed | Toxic | ${window.location.href}`
+		}
+		return `${stratDiffs.join(' | ')} | ${window.location.href}`
+	}
+
+	function copyPFDescription() {
+		navigator.clipboard.writeText(getPFDescription());
+		toast.create({
+			description: 'Copied PF description to clipboard!',
+			type: 'success',
+		});
+	}
 	
 	let innerWidth = $state(0);
 	let innerHeight = $state(0);
@@ -448,6 +518,10 @@
 					
 				{/if}
 				<button onclick={() => copyLinkToClipboard()} class="button btn btn-lg preset-tonal-secondary border border-secondary-500"><Link />Copy link</button>
+				<div class="card flex flex-row border-[1px] border-surface-200-800 flex-auto lg:w-0 lg:max-w-full">
+					<pre class="flex-auto pre overflow-x-auto text-nowrap whitespace-nowrap">{getPFDescription()}</pre>
+					<button onclick={() => copyPFDescription()} class="button btn btn-lg preset-tonal-secondary border border-secondary-500"><Copy />Copy PF description</button>
+				</div>
 			</div>
 			<div class="card preset-filled-surface-50-950 border-[1px] border-surface-200-800 p-4">
 				<div class="flex flex-col lg:flex-row gap-2">

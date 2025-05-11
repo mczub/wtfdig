@@ -4,7 +4,7 @@
 	import { Accordion, Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
-	import { Clock, ExternalLink, Fullscreen, Info, Link, Shield, Siren, Wrench, X} from '@lucide/svelte/icons';
+	import { Clock, Copy, ExternalLink, Fullscreen, Info, Link, Shield, Siren, Wrench, X} from '@lucide/svelte/icons';
 	import { getContext } from 'svelte';
   	import { type ToastContext, Modal } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
@@ -176,6 +176,28 @@
 		return `${stratNames[stratName]} - ${roleAbbrev}`;
 	}
 
+	function getPFDescription() {
+		if (!stratName) return '';
+		const stratNames: Record<string, string> = {
+			'latte': 'Latte',
+			'toxic': 'Toxic',
+			'sun': 'Sun',
+			'evansith': 'Evansith',
+			'hector': 'Hector',
+			'game8': 'Game8',
+			'mr': 'MR'
+		}
+		return `${stratNames[stratName]} | ${window.location.href}`
+	}
+
+	function copyPFDescription() {
+		navigator.clipboard.writeText(getPFDescription());
+		toast.create({
+			description: 'Copied PF description to clipboard!',
+			type: 'success',
+		});
+	}
+
 
 	let innerWidth = $state(0);
 	let innerHeight = $state(0);
@@ -300,6 +322,10 @@
 					
 				{/if}
 				<button onclick={() => copyLinkToClipboard()} class="button btn btn-lg preset-tonal-secondary border border-secondary-500"><Link />Copy link</button>
+				<div class="card flex flex-row border-[1px] border-surface-200-800 flex-auto lg:w-0 lg:max-w-full">
+					<pre class="flex-auto pre overflow-x-auto text-nowrap whitespace-nowrap">{getPFDescription()}</pre>
+					<button onclick={() => copyPFDescription()} class="button btn btn-lg preset-tonal-secondary border border-secondary-500"><Copy />Copy PF description</button>
+				</div>
 			</div>
 			<div class="card preset-filled-surface-50-950 border-[1px] border-surface-200-800 p-4">
 				<div class="flex flex-col lg:flex-row gap-2">

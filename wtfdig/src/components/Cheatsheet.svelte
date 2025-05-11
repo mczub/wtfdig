@@ -1,7 +1,7 @@
 <svelte:options customElement={{shadow: 'none'}} ></svelte:options>
 <script lang="ts">
     import { Modal, Switch, Tabs, Tooltip } from '@skeletonlabs/skeleton-svelte';
-    import { Clock, Expand, ExternalLink, Shield, Siren, TriangleAlert, Wrench, X} from '@lucide/svelte/icons';
+    import { ArrowRight, Clock, Expand, ExternalLink, Play, Shield, Siren, Skull, TriangleAlert, Wrench, X} from '@lucide/svelte/icons';
 	import ImagePreview from './ImagePreview.svelte';
 	import type { TimelineItem } from '$lib/types';
 	import { msToTime } from '$lib/utils';
@@ -131,6 +131,16 @@
                     {#if showMechType(item.mechType) && (item.mechTag ? showMechTag(item.mechTag) : true)}
                         <div style:top={getFightPercentClass(item.startTimeMs, index)} class="absolute flex text-xs w-full items-center" >
                             <div class="w-1/8">
+                                {#if item.mechType === 'Start'}
+                                    <div class="grid bg-success-700 rounded-sm h-[16px] w-[16px] p-auto place-content-center">
+                                        <Play size={14} strokeWidth={2} />
+                                    </div>
+                                {/if}
+                                {#if item.mechType === 'Phase'}
+                                    <div class="grid rounded-sm h-[16px] w-[16px] p-auto place-items-center">
+                                        <ArrowRight size={14} strokeWidth={2} />
+                                    </div>
+                                {/if}
                                 {#if item.mechType === 'Raidwide'}
                                     <div class="grid bg-secondary-500 rounded-sm h-[16px] w-[16px] p-auto place-content-center">
                                         <Siren size={14} strokeWidth={2} />
@@ -149,6 +159,11 @@
                                 {#if item.mechType === 'StoredMechanic'}
                                     <div class="grid bg-warning-800 rounded-sm h-[16px] w-[16px] p-auto place-content-center">
                                         <Clock size={14} strokeWidth={2} />
+                                    </div>
+                                {/if}
+                                {#if item.mechType === 'Enrage'}
+                                    <div class="grid bg-error-900 rounded-sm h-[16px] w-[16px] p-auto place-items-center">
+                                        <Skull size={14} strokeWidth={2} />
                                     </div>
                                 {/if}
                             </div>

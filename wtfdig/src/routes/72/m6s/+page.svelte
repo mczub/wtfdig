@@ -4,7 +4,7 @@
 	import { Accordion, Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
-	import { ExternalLink, Fullscreen, Info, Link } from '@lucide/svelte/icons';
+	import { Copy, ExternalLink, Fullscreen, Info, Link } from '@lucide/svelte/icons';
 	import { getContext } from 'svelte';
   	import { type ToastContext, Modal } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
@@ -237,6 +237,50 @@
 		return `${stratDiffs.join(' | ')} - ${roleAbbrev}`;
 	}
 
+	function getPFDescription() {
+		if (!stratName) return '';
+		const stratNames: Record<string, string> = {
+			'latte': 'Latte',
+			'game8': 'Game8',
+			'toxic': 'Hector/Toxic',
+			'yukizuri': 'Yukizuri',
+			'mr': 'MR',
+		}
+		let stratDiffs = [stratNames[stratName]];
+		if (stratState.adds !== getStratMechs(stratName)['adds']) {
+			if (stratState.adds === 'latte') {
+				stratDiffs.push(`Latte adds`);
+			}
+			if (stratState.adds === 'toxic') {
+				stratDiffs.push(`Hector adds`);
+			}
+			if (stratState.adds === 'yukizuri') {
+				stratDiffs.push(`Yukizuri adds`);
+			}
+			if (stratState.adds === 'cleave') {
+				stratDiffs.push(`Cleavemaxxing adds`);
+			}
+			if (stratState.adds === 'game8') {
+				stratDiffs.push(`Game8 adds`);
+			}
+			if (stratState.adds === 'mr') {
+				stratDiffs.push(`MR adds`);
+			}
+		}
+		if (stratName === 'toxic' && stratState.adds === 'cleave') {
+			return `Hector | Cleavemaxxing | ${window.location.href}`
+		}
+		return `${stratDiffs.join(' | ')} | ${window.location.href}`
+	}
+
+	function copyPFDescription() {
+		navigator.clipboard.writeText(getPFDescription());
+		toast.create({
+			description: 'Copied PF description to clipboard!',
+			type: 'success',
+		});
+	}
+
 	let innerWidth = $state(0);
 	let innerHeight = $state(0);
 	let isCheatsheetEnabled = $derived(innerWidth > 1024 && innerHeight > 768);
@@ -343,7 +387,7 @@
 			{:else if typeof individualStrat === 'undefined'}
 				<div></div>
 			{:else}
-			<div class="flex flex-col lg:flex-row gap-2 mb-8">
+			<div class="flex flex-col lg:flex-row lg:flex-wrap gap-2 mb-8">
 				{#if isCheatsheetEnabled}
 					<button onclick={() => (cheatsheetOpenState = true)} class="button btn btn-lg preset-tonal-secondary border border-secondary-500"><Fullscreen />Open cheatsheet</button>
 				{:else}
@@ -355,6 +399,10 @@
 					
 				{/if}
 				<button onclick={() => copyLinkToClipboard()} class="button btn btn-lg preset-tonal-secondary border border-secondary-500"><Link />Copy link</button>
+				<div class="card flex flex-row border-[1px] border-surface-200-800 flex-auto lg:w-0 lg:max-w-full">
+					<pre class="flex-auto pre overflow-x-auto text-nowrap whitespace-nowrap">{getPFDescription()}</pre>
+					<button onclick={() => copyPFDescription()} class="button btn btn-lg preset-tonal-secondary border border-secondary-500"><Copy />Copy PF description</button>
+				</div>
 			</div>
 			<div class="card preset-filled-surface-50-950 border-[1px] border-surface-200-800 p-4">
 				<div class="flex flex-col lg:flex-row gap-2">

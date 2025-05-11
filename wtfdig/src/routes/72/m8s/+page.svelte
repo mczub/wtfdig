@@ -4,7 +4,7 @@
 	import { Accordion, Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
-	import { ExternalLink, Fullscreen, Info, Link } from '@lucide/svelte/icons';
+	import { Copy, ExternalLink, Fullscreen, Info, Link } from '@lucide/svelte/icons';
 	import { getContext } from 'svelte';
   	import { type ToastContext } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
@@ -257,9 +257,9 @@
 	function getOptionsString(stratName?: string, role?: Role, party?: number): string {
 		if (!stratName || !role || !party) return '';
 		const stratNames: Record<string, string> = {
-			'toxic': 'Toxic Friends',
+			'toxic': 'Toxic',
 			'pb-eQ': 'Pastebin (eQ3PHFKr)',
-			'pb-r': 'Pastebin + Rinon',
+			'pb-r': 'Toxic + Rinon Lament/UV4',
 			'84ddog': '84d + DOG'
 		}
 		const jpRoleAbbrev: Record<string, string> = {
@@ -298,10 +298,10 @@
 				stratDiffs.push(`DN Terrestrial`);
 			}
 			if (stratState.terrestrial === 'fullr') {
-				stratDiffs.push(`Full Rinon Terrestrial`);
+				stratDiffs.push(`Full Rinon`);
 			}
 			if (stratState.terrestrial === 'halfr') {
-				stratDiffs.push(`Half Rinon Terrestrial`);
+				stratDiffs.push(`Half Rinon`);
 			}
 		}
 		if (stratState.moonlight !== getStratMechs(stratName)['moonlight']) {
@@ -343,6 +343,97 @@
 		}
 
 		return `${stratDiffs.join(' | ')} - ${roleAbbrev}`;
+	}
+
+	function getPFDescription() {
+		if (!stratName) return '';
+		const stratNames: Record<string, string> = {
+			'toxic': 'Toxic',
+			'pb-eQ': 'Pastebin',
+			'pb-r': 'Toxic + Rinon Lament/UV4',
+			'84ddog': '84d + DOG'
+		}
+		let stratDiffs = [stratNames[stratName]];
+		if (stratState.decay !== getStratMechs(stratName)['decay']) {
+			if (stratState.decay === 'toxic') {
+				stratDiffs.push(`Toxic Decay`);
+			}
+			if (stratState.decay === 'fer') {
+				stratDiffs.push(`Fering Decay`);
+			}
+		}
+		if (stratState.terrestrial !== getStratMechs(stratName)['terrestrial']) {
+			if (stratState.terrestrial === 'clock') {
+				stratDiffs.push(`Clock Terrestrial`);
+			}
+			if (stratState.terrestrial === 'toxic') {
+				stratDiffs.push(`Toxic Terrestrial`);
+			}
+			if (stratState.terrestrial === 'dn') {
+				stratDiffs.push(`DN Terrestrial`);
+			}
+			if (stratState.terrestrial === 'fullr') {
+				stratDiffs.push(`Full Rinon`);
+			}
+			if (stratState.terrestrial === 'halfr') {
+				stratDiffs.push(`Half Rinon`);
+			}
+		}
+		if (stratState.moonlight !== getStratMechs(stratName)['moonlight']) {
+			if (stratState.moonlight === 'quad') {
+				stratDiffs.push(`Quad Moonlight`);
+			}
+			if (stratState.moonlight === 'toxic') {
+				stratDiffs.push(`Toxic Moonlight`);
+			}
+		}
+		if (stratState.p2 !== getStratMechs(stratName)['p2']) {
+			if (stratState.p2 === 'toxic') {
+				stratDiffs.push(`Toxic P2`);
+			}
+		}
+		if (stratState.twofold !== getStratMechs(stratName)['twofold']) {
+			if (stratState.twofold === 'original') {
+				stratDiffs.push(`Original Twofold`);
+			}
+			if (stratState.twofold === 'casterse') {
+				stratDiffs.push(`Caster SE Twofold`);
+			}
+		}
+		if (stratState.lament !== getStratMechs(stratName)['lament']) {
+			if (stratState.lament === 'rinon') {
+				stratDiffs.push(`Rinon Lament`);
+			}
+			if (stratState.lament === 'toxic') {
+				stratDiffs.push(`Toxic Lament`);
+			}
+		}
+		if (stratState.uv4 !== getStratMechs(stratName)['uv4']) {
+			if (stratState.uv4 === 'rinon') {
+				stratDiffs.push(`Rinon UV4`);
+			}
+			if (stratState.uv4 === 'toxic') {
+				stratDiffs.push(`Toxic UV4`);
+			}
+		}
+		if (stratName === 'pb-r' && (deepEquals(getStratMechs(stratName), stratState))) {
+			return `Toxic | Fering | Clock | Quad | Rinon Lament/UV4 | ${window.location.href}`
+		}
+		if (stratName === 'pb-eQ' && (deepEquals(getStratMechs(stratName), stratState))) {
+			return `Toxic | Fering | Clock | Quad | Toxic P2 ${window.location.href}`
+		}
+		if (stratName === '84ddog' && (deepEquals(getStratMechs(stratName), stratState))) {
+			return `84d+DOG | Full Rinon | ${window.location.href}`
+		}
+		return `${stratDiffs.join(' | ')} | ${window.location.href}`
+	}
+
+	function copyPFDescription() {
+		navigator.clipboard.writeText(getPFDescription());
+		toast.create({
+			description: 'Copied PF description to clipboard!',
+			type: 'success',
+		});
 	}
 	
 	let innerWidth = $state(0);
@@ -609,6 +700,10 @@
 					
 				{/if}
 				<button onclick={() => copyLinkToClipboard()} class="button btn btn-lg preset-tonal-secondary border border-secondary-500"><Link />Copy link</button>
+				<div class="card flex flex-row border-[1px] border-surface-200-800 flex-auto lg:w-0 lg:max-w-full">
+					<pre class="flex-auto pre overflow-x-auto text-nowrap whitespace-nowrap">{getPFDescription()}</pre>
+					<button onclick={() => copyPFDescription()} class="button btn btn-lg preset-tonal-secondary border border-secondary-500"><Copy />Copy PF description</button>
+				</div>
 			</div>
 			<div class="card preset-filled-surface-50-950 border-[1px] border-surface-200-800 p-4">
 				<div class="flex flex-col lg:flex-row gap-2">
