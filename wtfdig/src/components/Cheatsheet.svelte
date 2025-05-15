@@ -1,10 +1,12 @@
 <svelte:options customElement={{shadow: 'none'}} ></svelte:options>
 <script lang="ts">
     import { Modal, Switch, Tabs, Tooltip } from '@skeletonlabs/skeleton-svelte';
-    import { ArrowRight, Clock, Expand, ExternalLink, Play, Shield, Siren, Skull, TriangleAlert, Wrench, X} from '@lucide/svelte/icons';
+    import { ArrowRight, Check, ChevronDown, Clock, Expand, ExternalLink, Play, Shield, Siren, Skull, TriangleAlert, Wrench, X} from '@lucide/svelte/icons';
 	import ImagePreview from './ImagePreview.svelte';
 	import type { TimelineItem } from '$lib/types';
 	import { msToTime } from '$lib/utils';
+    import { Select } from 'melt/components';
+	import { SvelteSet } from 'svelte/reactivity';
 
     interface Props {
 		timeline: TimelineItem[];
@@ -71,6 +73,18 @@
         mech: null,
 	});
 
+    let phaseOptions = $derived(individualStrat.length > 0 ? individualStrat.map(phase => phase.phaseName) : []);
+    let selectedMechs = $derived(new SvelteSet<string>([...phaseOptions]));
+    let selectedMechsString = $derived.by(() => {
+        if (selectedMechs.size === 0) {
+            return 'Select mechanics'
+        }
+        if (selectedMechs.size === phaseOptions.length) {
+            return 'All mechanics'
+        }
+        return Array.from(selectedMechs).join(', ');
+    })
+
 	function openImageModal(phase: any, mech?: any) {
 		imageModalProps = {
 			phase: phase,
@@ -79,6 +93,27 @@
 		imageOpenState = true;
 	}
 </script>
+
+<style>
+	[data-melt-select-content] {
+		position: absolute;
+		pointer-events: none;
+		opacity: 0;
+
+		transform: scale(0.975);
+
+		transition: 0.2s;
+		transition-property: opacity, transform;
+		transform-origin: var(--melt-popover-content-transform-origin, center);
+	}
+
+	[data-melt-select-content][data-open] {
+		pointer-events: auto;
+		opacity: 1;
+
+		transform: scale(1);
+	}
+</style>
 
 <ImagePreview 
     bind:imageOpenState={imageOpenState}
@@ -99,6 +134,34 @@
       <div class="text-lg 3xl:text-2xl">{title}</div>
       <div class="flex flex-row items-center gap-8">
         {#if timeline.length > 0}
+            {#if individualStrat.length > 0}
+            <div class="flex flex-row items-center w-[350px] gap-2">
+                <Select multiple bind:value={selectedMechs}>
+                    {#snippet children(select)}
+                        <label for={select.ids.trigger}>Mechanics</label>
+                        <button  {...select.trigger} class="flex grow items-center justify-between overflow-hidden border border-gray-500 py-2 pl-3 pr-4 hover:cursor-pointer">
+                            <span class="truncate">{selectedMechsString ?? "Select mechanics"}</span>
+                            <ChevronDown class="shrink-0" />
+                        </button>
+
+                        <div {...select.content} class="flex flex-col border border-gray-500 p-2 shadow bg-gray-800">
+                        {#each phaseOptions as option}
+                            <div {...select.getOption(option)} class={[
+                                "relative flex items-center justify-between py-2 px-2",
+                                select.highlighted === option && "bg-gray-700",
+						        select.value === option && "font-semibold",
+                            ]}>
+                            <span>{option}</span>
+                            {#if select.isSelected(option)}
+                                <Check class="text-accent-300 font-bold" />
+                            {/if}
+                            </div>
+                        {/each}
+                        </div>
+                    {/snippet}
+                </Select>
+            </div>
+            {/if}
         <div class="flex flex-row items-center gap-2">
             <p>Timeline</p>
             <Switch name="showTimeline" checked={showTimeline} onCheckedChange={(e) => (showTimeline = e.checked)}></Switch>
@@ -118,9 +181,9 @@
             {/snippet}
         </Tabs>
     {/if}
-        <div class={`grid gap-2 h-full`} style:grid-template-rows={`repeat(${rows}, minmax(0, 1fr))`} style:grid-template-columns={`repeat(${showTimeline ? columns : columns - 1}, minmax(0, 1fr))`}>
+        <div class='flex flex-row gap-2 h-full'>
         {#if timeline.length > 0 && showTimeline}
-        <div class="card border row-span-full border-surface-800 p-2 flex flex-col">
+        <div class="card border min-w-[260px] border-surface-800 p-2 flex flex-col">
             <div class="flex mb-2 gap-1">
                 <button class={`chip px-1 2xl:px-2 ${timelineFilters.mechs ? 'preset-outlined-warning-500 bg-warning-800' : 'preset-outlined-warning-500'}`} onclick={() => timelineFilters.mechs = !timelineFilters.mechs}><Wrench size={16} strokeWidth={2} />{showFilterCaptions ? 'Mech' : ''}</button>
                 <button class={`chip px-1 2xl:px-2 ${timelineFilters.raidwides ? 'preset-outlined-secondary-500 bg-secondary-500' : 'preset-outlined-secondary-500'}`} onclick={() => timelineFilters.raidwides = !timelineFilters.raidwides}><Siren size={16} strokeWidth={2} />{showFilterCaptions ? 'Raidwide' : ''}</button>
@@ -179,8 +242,9 @@
             </div>
         </div>
         {/if}
+        <div class={`grid gap-2 h-full`} style:grid-template-columns={`repeat(${columns - 1}, minmax(0, 1fr))`}>
         {#each individualStrat as phase}
-            {#if (tabTags && tabTags[tab] ? tabTags[tab].includes(phase.tag) : true)}
+            {#if (tabTags && tabTags[tab] ? tabTags[tab].includes(phase.tag) : true) && selectedMechs.has(phase.phaseName)}
                 {#if phase?.mechs}
                     <div class="card border border-surface-800 p-2 h-0 min-h-full flex flex-col" style:grid-column={`span ${phase.mechs ? phase.mechs.length : 0}`}>
                         <div class="flex flex-row items-center">
@@ -271,6 +335,7 @@
 
             {/if}
         {/each}
+        </div>
     </div>
     {/snippet}
 </Modal>

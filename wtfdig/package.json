@@ -40,6 +40,7 @@
   "type": "module",
   "dependencies": {
     "@lucide/svelte": "^0.483.0",
-    "@tailwindcss/vite": "^4.0.15"
+    "@tailwindcss/vite": "^4.0.15",
+    "melt": "^0.30.1"
   }
 }
