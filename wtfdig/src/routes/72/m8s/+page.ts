@@ -2500,7 +2500,7 @@ const allP2: PhaseStrats[] = [
         ]
     },
     {
-        phaseName: 'Ultraviolet',
+        phaseName: 'Ultraviolent',
         tag: 'p2',
         description: getStringObject(p2Strats, 'uv1', 'description'),
         imageUrl: getStringObject(p2Strats, 'uv1', 'imageUrl'),
