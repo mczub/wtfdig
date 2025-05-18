@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import type { Alignment, PlayerMechStrat, PhaseStrats, Role, MechanicStrat, Strat, TimelineItem } from './+page';
-	import { Accordion, Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
-	import CircleAlert from '@lucide/svelte/icons/circle-alert';
+	import type { Alignment, Role, Strat } from './+page';
+	import { Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
 	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
 	import { Copy, ExternalLink, Fullscreen, Info, Link } from '@lucide/svelte/icons';
 	import { getContext } from 'svelte';
@@ -12,6 +11,7 @@
 	import { replaceState } from '$app/navigation';
 	import deepEquals from 'fast-deep-equal';
 	import StratView from '../../../components/StratView.svelte';
+	import type { TimelineItem } from "$lib/types";
 
 	interface Props {
 		data: {

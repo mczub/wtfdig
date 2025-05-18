@@ -1,9 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import type { Alignment, PlayerMechStrat, PhaseStrats, Role, MechanicStrat, Strat, TimelineItem } from './+page';
-	import { Accordion, Modal, Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
-	import CircleAlert from '@lucide/svelte/icons/circle-alert';
-	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
+	import type { Alignment, Role, Strat } from './+page';
+	import { Modal, Segment, Switch } from '@skeletonlabs/skeleton-svelte';
 	import { Copy, ExternalLink, Fullscreen, Info, Link, X } from '@lucide/svelte/icons';
 	import { getContext } from 'svelte';
   	import { type ToastContext } from '@skeletonlabs/skeleton-svelte';
@@ -12,6 +10,7 @@
 	import deepEquals from 'fast-deep-equal';
 	import { replaceState } from '$app/navigation';
 	import StratView from '../../../components/StratView.svelte';
+	import type { TimelineItem } from "$lib/types";
 
 	interface Props {
 		data: {
@@ -94,8 +93,8 @@
 		}
 		else if (stratArray.length === 3) {
 			stratState = {
-				p2: stratArray[1],
-				p3: stratArray[2],
+				p2: stratArray[1] ? stratArray[1] : getStratMechs(stratArray[0]).p2,
+				p3: stratArray[2] ? stratArray[2] : getStratMechs(stratArray[0]).p3
 			}
 		} else {
 			stratName ='';
@@ -105,6 +104,14 @@
 			}
 		}
 		
+	}
+
+	function getStratOrEmptyString(strat: string): string {
+		if (!stratName || !strat) return ''
+		if (getStratMechs(stratName)[strat] === stratState[strat]) {
+			return '';
+		}
+		return stratState[strat] || '';
 	}
 
 	function setStratState(mech: string, value: string) {
@@ -120,7 +127,7 @@
 				return stratName;
 			}
 		}
-		return `${stratName}:${stratState.p2}:${stratState.p3}`;
+		return `${stratName}:${getStratOrEmptyString('p2')}:${getStratOrEmptyString('p3')}`;
 	}
 
 	function onSelectStrat(e) {

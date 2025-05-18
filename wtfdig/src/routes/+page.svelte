@@ -4,6 +4,9 @@
 
 <div class="container grid grow mx-auto my-6">
     <div class="grid place-content-center gap-4">
+        <div class="flex justify-center">
+            <img width="300px" src='{base}/wtfdig-icon-1024.png' />
+        </div>
         <div class="card grid preset-filled-surface-100-900 border-[1px] border-surface-200-800 w-sm p-4 text-center gap-4">
             <div>Patch 7.2</div>
             <a href="{base}/72/ex4" class="btn preset-tonal-secondary border border-secondary-500">Recollection (Extreme)</a>

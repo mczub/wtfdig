@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import type { Alignment, PlayerMechStrat, PhaseStrats, Role, MechanicStrat, Strat } from '../+page';
-	import { Accordion, Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
-	import CircleAlert from '@lucide/svelte/icons/circle-alert';
+	import type { Alignment, Role, Strat } from '../+page';
+	import { Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
 	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
 	import { Copy, ExternalLink, Fullscreen, Info, Link } from '@lucide/svelte/icons';
 	import { getContext } from 'svelte';
@@ -95,26 +94,16 @@
 		}
 		if (stratArray.length === 1) {
 			stratState = getStratMechs(stratArray[0]);
-		} else if (stratArray.length === 8){
-			stratState = {
-				decay: stratArray[1],
-				terrestrial: stratArray[2],
-				moonlight: stratArray[3],
-				p2: stratArray[4],
-				twofold: stratArray[5],
-				lament: stratArray[6],
-				uv4: stratArray[7],
-				
-			}
 		} else {
-			stratName = '';
 			stratState = {
-				decay: null,
-				terrestrial: null,
-				moonlight: null,
-				p2: null,
-				lament: null,
-				uv4: null,
+				decay: stratArray[1] ? stratArray[1] : getStratMechs(stratArray[0]).decay,
+				terrestrial: stratArray[2] ? stratArray[2] : getStratMechs(stratArray[0]).terrestrial,
+				moonlight: stratArray[3] ? stratArray[3] : getStratMechs(stratArray[0]).moonlight,
+				p2: stratArray[4] ? stratArray[4] : getStratMechs(stratArray[0]).p2,
+				twofold: stratArray[5] ? stratArray[5] : getStratMechs(stratArray[0]).twofold,
+				lament: stratArray[6] ? stratArray[6] : getStratMechs(stratArray[0]).lament,
+				uv4: stratArray[7] ? stratArray[7] : getStratMechs(stratArray[0]).uv4,
+				
 			}
 		}
 	}
@@ -125,6 +114,14 @@
 		replaceState(`#${stratCode}`, {});
 	}
 
+	function getStratString(strat: string): string {
+		if (!stratName || !strat) return ''
+		if (getStratMechs(stratName)[strat] === stratState[strat]) {
+			return '';
+		}
+		return stratState[strat] || '';
+	}
+
 	function getStratCode(stratName: string | undefined, stratState: any) {
 		if (!stratName) return '';
 		if (stratName && stratState) {
@@ -132,7 +129,7 @@
 				return stratName;
 			}
 		}
-		return `${stratName}:${stratState.decay}:${stratState.terrestrial}:${stratState.moonlight}:${stratState.p2}:${stratState.twofold}:${stratState.lament}:${stratState.uv4}`;
+		return `${stratName}:${getStratString('decay')}:${getStratString('terrestrial')}:${getStratString('moonlight')}:${getStratString('p2')}:${getStratString('twofold')}:${getStratString('lament')}:${getStratString('uv4')}`;
 	}
 
 	function onSelectStrat(e) {

@@ -83,7 +83,7 @@
 
 <header class="w-full mx-auto px-6 py-6 border-b border-gray-600 flex-none">
     <div class="grid grid-cols-1 md:grid-cols-3 justify-items-stretch items-center">
-        <a href="{base}/" class="text-2xl font-semibold my-4 md:my-0 md:justify-self-start">WTFDIG</a>
+        <a href="{base}/" class="flex flex-row items-center text-2xl font-semibold my-4 md:my-0 md:justify-self-start gap-1">WTFDIG<img width="32px" src='{base}/wtfdig-small-800.png' /></a>
         <div class="card md:mx-auto preset-outlined-secondary-500 gap-4 p-4 lg:grid-cols-[auto_1fr_auto] md:text-center">WTFDIG can now be found at <a target="_blank" rel="noopener noreferrer" class="anchor" href="https://wtfdig.info">WTFDIG.info</a></div>
         <div class="flex flex-wrap gap-2 md:justify-end my-4 md:ml-4 md:my-0">
             <Popover

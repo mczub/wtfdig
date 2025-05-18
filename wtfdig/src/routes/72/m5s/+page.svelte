@@ -1,16 +1,15 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import type { Alignment, PlayerMechStrat, PhaseStrats, Role, MechanicStrat, Strat, TimelineItem } from './+page';
-	import { Accordion, Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
-	import CircleAlert from '@lucide/svelte/icons/circle-alert';
-	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
-	import { Clock, Copy, ExternalLink, Fullscreen, Info, Link, Shield, Siren, Wrench, X} from '@lucide/svelte/icons';
+	import type { Alignment, Role, Strat } from './+page';
+	import { Segment, Switch } from '@skeletonlabs/skeleton-svelte';
+	import { Copy, ExternalLink, Fullscreen, Info, Link, X} from '@lucide/svelte/icons';
 	import { getContext } from 'svelte';
   	import { type ToastContext, Modal } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
 	import Cheatsheet from '../../../components/Cheatsheet.svelte';
 	import { replaceState } from '$app/navigation';
 	import StratView from '../../../components/StratView.svelte';
+	import type { TimelineItem } from "$lib/types";
 
 	interface Props {
 		data: {
