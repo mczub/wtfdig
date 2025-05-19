@@ -33,6 +33,7 @@
         </header>
         <article>
             <div>
+                <p>5/19/2025: add second pattern to m6s toxic/hector river</p>
                 <p>5/17/2025: icons! and shorter urls!</p>
                 <p>5/10/2025: some layout adjustment, add timelines to main pages, add pf descriptions</p>
                 <p>5/7/2025: a bunch of formatting stuff! you can click on images!</p>
