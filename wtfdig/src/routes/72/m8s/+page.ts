@@ -554,7 +554,7 @@ const feringDecay: StratRecord = {
         },
     },
     'towers': {
-        'description': 'Color partners',
+        'description': 'COLOR PARTNERS\nMarkers may differ from diagram, use the colors of your markers',
         'MT': {
                 role: 'Tank',
                 party: 1,

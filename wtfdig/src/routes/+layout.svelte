@@ -33,6 +33,7 @@
         </header>
         <article>
             <div>
+                <p>6/9/2025: added a second line to m8s fering for people who don't understand what color partners means</p>
                 <p>5/19/2025: add second pattern to m6s toxic/hector river</p>
                 <p>5/17/2025: icons! and shorter urls!</p>
                 <p>5/10/2025: some layout adjustment, add timelines to main pages, add pf descriptions</p>
