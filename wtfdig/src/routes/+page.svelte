@@ -21,7 +21,7 @@
         </div>
         <div class="card grid preset-filled-surface-100-900 border-[1px] border-surface-200-800 w-sm p-4 text-center gap-4">
             <div>Ultimates</div>
-            <a href="{base}/ultimates/dsr" class="btn preset-tonal-secondary border border-secondary-500">Dragonsong's Reprise (Ultimate)</a>
+            <button class="btn preset-tonal-secondary border border-secondary-500 disabled">Dragonsong's Reprise (Ultimate)</button>
         </div>
         
     </div>

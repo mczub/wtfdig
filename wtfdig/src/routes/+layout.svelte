@@ -168,10 +168,10 @@
                 <article>
                     <div class="opacity-60 preset-outlined-surface-200-800 grid grid-rows-1 p-0 w-full divide-y divide-surface-800 rounded-md bg-surface-950">
                         <div class="px-4 py-2">
-                            <a data-sveltekit-reload href="{base}/ultimates/dsr" class="flex flex-col w-full items-start">
+                            <button class="flex flex-col w-full items-start disabled">
                                 <div class="text-lg -mb-2">Dragonsong's Reprise</div>
                                 <div class="text-sm">Ultimate</div>
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </article>
