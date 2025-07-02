@@ -5,5 +5,6 @@ After selecting all of this information, the user can then view all of the strat
 Currently, the following fights are implemented:
 - Patch 7.1: Cloud of Darkness (Chaotic)
 - Patch 7.2: EX4, M5S, M6S, M7S, M8S
+- Ultimates: Dragonsong's Reprise (DSR)
 
 The main part of the project lives within the /wtfdig folder, not the root directory.
