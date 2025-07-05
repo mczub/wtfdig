@@ -166,10 +166,40 @@
                 {#snippet trigger()}Ultimates <ChevronDown size={16}/>{/snippet}
                 {#snippet content()}
                 <article>
-                    <div class="opacity-60 preset-outlined-surface-200-800 grid grid-rows-1 p-0 w-full divide-y divide-surface-800 rounded-md bg-surface-950">
+                    <div class="opacity-60 preset-outlined-surface-200-800 grid p-0 w-full divide-y divide-surface-800 rounded-md bg-surface-950">
+                        <div class="px-4 py-2 hover:bg-surface-900">
+                            <a data-sveltekit-reload href="{base}/ultimates/ucob" class="flex flex-col w-full items-start">
+                                <div class="text-lg -mb-2">The Unending Coil of Bahamut</div>
+                                <div class="text-sm">Ultimate</div>
+                            </a>
+                        </div>
+                        <div class="px-4 py-2">
+                            <button class="flex flex-col w-full items-start disabled">
+                                <div class="text-lg -mb-2">The Weapon's Refrain</div>
+                                <div class="text-sm">Ultimate</div>
+                            </button>
+                        </div>
+                        <div class="px-4 py-2">
+                            <button class="flex flex-col w-full items-start disabled">
+                                <div class="text-lg -mb-2">The Epic of Alexander</div>
+                                <div class="text-sm">Ultimate</div>
+                            </button>
+                        </div>
                         <div class="px-4 py-2">
                             <button class="flex flex-col w-full items-start disabled">
                                 <div class="text-lg -mb-2">Dragonsong's Reprise</div>
+                                <div class="text-sm">Ultimate</div>
+                            </button>
+                        </div>
+                        <div class="px-4 py-2">
+                            <button class="flex flex-col w-full items-start disabled">
+                                <div class="text-lg -mb-2">The Omega Protocol</div>
+                                <div class="text-sm">Ultimate</div>
+                            </button>
+                        </div>
+                        <div class="px-4 py-2">
+                            <button class="flex flex-col w-full items-start disabled">
+                                <div class="text-lg -mb-2">Futures Rewritten</div>
                                 <div class="text-sm">Ultimate</div>
                             </button>
                         </div>

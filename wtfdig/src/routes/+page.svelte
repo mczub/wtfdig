@@ -21,7 +21,12 @@
         </div>
         <div class="card grid preset-filled-surface-100-900 border-[1px] border-surface-200-800 w-sm p-4 text-center gap-4">
             <div>Ultimates</div>
+            <a href="{base}/ultimates/ucob" class="btn preset-tonal-secondary border border-secondary-500">The Unending Coil of Bahamut (Ultimate)</a>
+            <button class="btn preset-tonal-secondary border border-secondary-500 disabled">The Weapon's Refrain (Ultimate)</button>
+            <button class="btn preset-tonal-secondary border border-secondary-500 disabled">The Epic of Alexander (Ultimate)</button>
             <button class="btn preset-tonal-secondary border border-secondary-500 disabled">Dragonsong's Reprise (Ultimate)</button>
+            <button class="btn preset-tonal-secondary border border-secondary-500 disabled">The Omega Protocol (Ultimate)</button>
+            <button class="btn preset-tonal-secondary border border-secondary-500 disabled">Futures Rewritten (Ultimate)</button>
         </div>
         
     </div>
