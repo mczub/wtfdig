@@ -353,15 +353,15 @@ const allP2: PhaseStrats[] = [
         mechs: [
             {
                 mechanic: 'Dive 1',
-                description: 'A marker unless cursed\nFirst dive snapshots on first puddle'
+                description: 'Bait first 2 dragons CW from N\nA marker unless cursed\nFirst dive snapshots on first puddle'
             },
             {
                 mechanic: 'Dive 2',
-                description: 'B marker unless cursed\nFirst dive snapshots on THIRD puddle'
+                description: 'Bait 3rd dragon CW from N\nB marker unless cursed\nFirst dive snapshots on THIRD puddle'
             },
             {
                 mechanic: 'Dive 3',
-                description: 'C marker unless cursed\nMove in when marker disappears\nHealer can rescue if quote is Stack'
+                description: 'Bait 4th and 5th dragon CW from N\nC marker unless cursed\nMove in when marker disappears\nHealer can rescue if quote is Stack'
             },
             {
                 mechanic: 'Quote (Stack/Spread)',
@@ -378,28 +378,29 @@ const allP3: PhaseStrats[] = [
         mechs: [
             {
                 mechanic: 'Dive + Spreads',
+                description: 'Dragon spawn is new North',
                 strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
+                    { role: 'Tank', party: 1, description: 'L1 (Left Northmost)', imageUrl: '' },
+                    { role: 'Tank', party: 2, description: 'R1 (Right Northmost)', imageUrl: '' },
+                    { role: 'Healer', party: 1, description: 'L2 (Left 2nd Northmost)', imageUrl: '' },
+                    { role: 'Healer', party: 2, description: 'R2 (Right 2nd Northmost)', imageUrl: '' },
+                    { role: 'Melee', party: 1, description: 'L3 (Left 3rd Northmost)', imageUrl: '' },
+                    { role: 'Melee', party: 2, description: 'R3 (Right 3rd Northmost)', imageUrl: '' },
+                    { role: 'Ranged', party: 1, description: 'L4 (Left Southmost)', imageUrl: '' },
+                    { role: 'Ranged', party: 2, description: 'R4 (Left Southmost)', imageUrl: '' },
                 ]
             },
             {
                 mechanic: 'Earthshakers + Stack',
                 strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
+                    { role: 'Tank', party: 1, description: 'Take tether, go NW-ish', imageUrl: '' },
+                    { role: 'Tank', party: 2, description: 'Take tether, go NE-ish', imageUrl: '' },
+                    { role: 'Healer', party: 1, description: 'Take Earthshaker NW', imageUrl: '' },
+                    { role: 'Healer', party: 2, description: 'Take Earthshaker NE', imageUrl: '' },
+                    { role: 'Melee', party: 1, description: 'Stack SW\nIf you get Earthshaker, take it SE', imageUrl: '' },
+                    { role: 'Melee', party: 2, description: 'Stack SW\nIf you get Earthshaker, take it SE', imageUrl: '' },
+                    { role: 'Ranged', party: 1, description: 'Stack SW\nIf you get Earthshaker, take it SE', imageUrl: '' },
+                    { role: 'Ranged', party: 2, description: 'Stack SW\nIf you get Earthshaker, take it SE', imageUrl: '' },
                 ]
             }
         ]
@@ -410,6 +411,7 @@ const allP3: PhaseStrats[] = [
         mechs: [
             {
                 mechanic: 'Puddles',
+                description: 'Run towards Nael',
                 strats: [
                     { role: 'Tank', party: 1, description: '', imageUrl: '' },
                     { role: 'Tank', party: 2, description: '', imageUrl: '' },
@@ -423,29 +425,21 @@ const allP3: PhaseStrats[] = [
             },
             {
                 mechanic: 'Towers',
+                description: 'DPS CCW, Supports CW\nWait for 2 puddles before taking tower',
                 strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
+                    { role: 'Tank', party: 1, description: 'Tank takes tower closer to Nael', imageUrl: '' },
+                    { role: 'Tank', party: 2, description: 'Tank takes tower closer to Nael', imageUrl: '' },
+                    { role: 'Healer', party: 1, description: 'Healer takes tower closer to stack', imageUrl: '' },
+                    { role: 'Healer', party: 2, description: 'Healer takes tower closer to stack', imageUrl: '' },
+                    { role: 'Melee', party: 1, description: 'DPS towers use eyes', imageUrl: '' },
+                    { role: 'Melee', party: 2, description: 'DPS towers use eyes', imageUrl: '' },
+                    { role: 'Ranged', party: 1, description: 'DPS towers use eyes', imageUrl: '' },
+                    { role: 'Ranged', party: 2, description: 'DPS towers use eyes', imageUrl: '' },
                 ]
             },
             {
                 mechanic: 'Stack',
-                strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
-                ]
+                description: 'Stack near the first Liquid Hell drop'
             }
         ]
     },
@@ -672,10 +666,24 @@ const allP3: PhaseStrats[] = [
 
 const naurStrat: Strat = {
     stratName: 'naur',
-    description: 'NAUR',
-    stratUrl: 'https://raidplan.io/plan/46uVU6o49FPuYXOs',
+    description: 'From NA Ultimate Raiding (NAUR)',
+    stratUrl: {
+        'P1: Twintania': 'https://raidplan.io/plan/9WEG4AEGVdru3hyF',
+        'P1: Liquid Hells': 'https://raidplan.io/plan/19yavfslOUU0l1Gp',
+        'P2: Nael': 'https://raidplan.io/plan/DpoJr4oE_kGz_gRU',
+        'P2: Divebombs': 'https://raidplan.io/plan/vi2rSC6mwW_d_QJF',
+        'P3: Quickmarch': 'https://raidplan.io/plan/3zSKK0DXeJgCLadx',
+        'P3: Blackfire': 'https://raidplan.io/plan/BJPnHRQMEsmOyapB',
+        'P3: Fellruin': 'https://raidplan.io/plan/-83d6AilbZGqba3j',
+        'P3: Heavensfall': 'https://raidplan.io/plan/NGpZ9S-3kiLsDzAY',
+        'P3: Tenstrike': 'https://raidplan.io/plan/2wu2LOy8wKhG29Tr',
+        'P3: Grand Octet': 'https://raidplan.io/plan/iunTUxGNwjAGF_7K',
+        'P4: Adds': 'https://raidplan.io/plan/AMEhnLbUmlTb7ij3',
+        'P5: Golden Bahamut': 'https://raidplan.io/plan/Y4WRFLhdHSQ7oLN_'
+    },
     notes: '',
     strats: [
+        ...setup,
         ...allP1,
         ...allP2,
         ...allP3,

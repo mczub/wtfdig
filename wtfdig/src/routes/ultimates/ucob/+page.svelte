@@ -187,6 +187,7 @@
 	function getOptionsString(stratName?: string, role?: Role, party?: number): string {
 		if (!stratName || !role || !party) return '';
 		const stratNames: Record<string, string> = {
+			'naur': 'NAUR'
 		}
 		const jpRoleAbbrev: Record<string, string> = {
 			'MT': 'MT',
@@ -250,7 +251,7 @@
 	spotlight={spotlight}
 	alignment={alignment}
 	rows=3
-	columns=5
+	columns=6
 	innerHeight={innerHeight}
 	innerWidth={innerWidth}
 	tabTags={{"P1: Twintania": ['p1'], "P2: Nael": ['p2'], "P3: Bahamut Prime": ['p3'], "P4: Adds": ['p4'], "P5: Golden": ['p5']}}
@@ -329,9 +330,11 @@
 						{:else if typeof strat?.stratUrl === 'object'}
 							{strat.description}
 							{#each Object.entries(strat.stratUrl) as [linkName, linkUrl]}
-								<a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={linkUrl}>{linkName}
-									<ExternalLink />
-								</a>
+								<div>
+									<a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={linkUrl}>{linkName}
+										<ExternalLink />
+									</a>
+								</div>
 							{/each}
 						{/if}
 					</div>
