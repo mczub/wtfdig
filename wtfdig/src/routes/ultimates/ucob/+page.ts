@@ -117,13 +117,36 @@ function getStratArray(stratRecord: Record<string, StratRecord>, mechanic: strin
     ]
 }
 
+const setup: PhaseStrats[] = [
+    {
+        phaseName: 'Setup',
+        tag: 'setup',
+        mechs: [
+            {
+                mechanic: 'Quickmarch Spots',
+                strats: [
+                    { role: 'Tank', party: 1, description: 'L1 (Left Northmost)', imageUrl: '' },
+                    { role: 'Tank', party: 2, description: 'R1 (Right Northmost)', imageUrl: '' },
+                    { role: 'Healer', party: 1, description: 'L2 (Left 2nd Northmost)', imageUrl: '' },
+                    { role: 'Healer', party: 2, description: 'R2 (Right 2nd Northmost)', imageUrl: '' },
+                    { role: 'Melee', party: 1, description: 'L3 (Left 3rd Northmost)', imageUrl: '' },
+                    { role: 'Melee', party: 2, description: 'R3 (Right 3rd Northmost)', imageUrl: '' },
+                    { role: 'Ranged', party: 1, description: 'L4 (Left Southmost)', imageUrl: '' },
+                    { role: 'Ranged', party: 2, description: 'R4 (Left Southmost)', imageUrl: '' },
+                ]
+            }
+        ]
+    }
+]
+
 const allP1: PhaseStrats[] = [
     {
-        phaseName: 'Twintania: Twisters + Fireball',
+        phaseName: 'Twintania: Opening',
         tag: 'p1',
         mechs: [
             {
                 mechanic: 'Twisters',
+                description: 'Rough spread to bait twisters, then run in for stack',
                 strats: [
                     { role: 'Tank', party: 1, description: '', imageUrl: '' },
                     { role: 'Tank', party: 2, description: '', imageUrl: '' },
@@ -137,11 +160,12 @@ const allP1: PhaseStrats[] = [
             },
             {
                 mechanic: 'Fireball Stack',
+                description: 'Both tanks and one healer stay out of stack for LB',
                 strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
+                    { role: 'Tank', party: 1, description: '!! Stay out of stack', imageUrl: '' },
+                    { role: 'Tank', party: 2, description: '!! Stay out of stack', imageUrl: '' },
+                    { role: 'Healer', party: 1, description: 'One healer stay out of stack', imageUrl: '' },
+                    { role: 'Healer', party: 2, description: 'One healer stay out of stack', imageUrl: '' },
                     { role: 'Melee', party: 1, description: '', imageUrl: '' },
                     { role: 'Melee', party: 2, description: '', imageUrl: '' },
                     { role: 'Ranged', party: 1, description: '', imageUrl: '' },
@@ -151,11 +175,12 @@ const allP1: PhaseStrats[] = [
         ]
     },
     {
-        phaseName: 'Twintania: Neurolink 2',
+        phaseName: 'Twintania: 74%',
         tag: 'p1',
         mechs: [
             {
                 mechanic: 'Liquid Hells 1',
+                description: 'Phys Ranged bait puddles',
                 strats: [
                     { role: 'Tank', party: 1, description: '', imageUrl: '' },
                     { role: 'Tank', party: 2, description: '', imageUrl: '' },
@@ -169,6 +194,7 @@ const allP1: PhaseStrats[] = [
             },
             {
                 mechanic: 'Hatch + Liquid Hells 2',
+                description: 'Caster intercept Hatch if on Phys Ranged',
                 strats: [
                     { role: 'Tank', party: 1, description: '', imageUrl: '' },
                     { role: 'Tank', party: 2, description: '', imageUrl: '' },
@@ -182,25 +208,17 @@ const allP1: PhaseStrats[] = [
             },
             {
                 mechanic: 'Hatch + Twister',
-                strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
-                ]
+                description: 'Make sure to drop twister outside Neurolink',
             }
         ]
     },
     {
-        phaseName: 'Twintania: Neurolink 3',
+        phaseName: 'Twintania: 44%',
         tag: 'p1',
         mechs: [
             {
                 mechanic: 'Liquid Hells 3 + Hatches',
+                description: 'Phys Ranged continue baiting puddles\nSet of double Hatches as puddles finish',
                 strats: [
                     { role: 'Tank', party: 1, description: '', imageUrl: '' },
                     { role: 'Tank', party: 2, description: '', imageUrl: '' },
@@ -213,7 +231,8 @@ const allP1: PhaseStrats[] = [
                 ]
             },
             {
-                mechanic: 'Fireball Stack',
+                mechanic: 'Fireball Stack + Random Puddles',
+                description: 'Make sure not to drop puddles on the stack',
                 strats: [
                     { role: 'Tank', party: 1, description: '', imageUrl: '' },
                     { role: 'Tank', party: 2, description: '', imageUrl: '' },
@@ -226,7 +245,8 @@ const allP1: PhaseStrats[] = [
                 ]
             },
             {
-                mechanic: 'Liquid Hells 4',
+                mechanic: 'Hatches + Liquid Hells 4',
+                description: 'Phys Ranged continue baiting puddles',
                 strats: [
                     { role: 'Tank', party: 1, description: '', imageUrl: '' },
                     { role: 'Tank', party: 2, description: '', imageUrl: '' },
@@ -249,6 +269,7 @@ const allP2: PhaseStrats[] = [
         mechs: [
             {
                 mechanic: 'Spreads',
+                description: 'Knockback, then spread roughly into QM spots',
                 strats: [
                     { role: 'Tank', party: 1, description: '', imageUrl: '' },
                     { role: 'Tank', party: 2, description: '', imageUrl: '' },
@@ -262,6 +283,7 @@ const allP2: PhaseStrats[] = [
             },
             {
                 mechanic: 'Dive',
+                description: 'Tank with aggro takes dive on D marker',
                 strats: [
                     { role: 'Tank', party: 1, description: '', imageUrl: '' },
                     { role: 'Tank', party: 2, description: '', imageUrl: '' },
@@ -281,29 +303,11 @@ const allP2: PhaseStrats[] = [
         mechs: [
             {
                 mechanic: 'Quote + Thunders',
-                strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
-                ]
+                description: 'Quote is In + Stack or In + Out\nThunders make a Mickey Mouse shape opposite the party inside the first Chariot'
             },
             {
                 mechanic: 'Tether 1 + Cleanse 1',
-                strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
-                ]
+                description: 'Tether 1 is IN\nParty rotate CW to drop puddles'
             }
         ]
     },
@@ -313,42 +317,15 @@ const allP2: PhaseStrats[] = [
         mechs: [
             {
                 mechanic: 'Tether 2',
-                strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
-                ]
+                description: '‼️2nd Tether is OUT'
             },
             {
                 mechanic: 'Thunders',
-                strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
-                ]
+                description: 'Thunders resolve before quote, drop thunders then join stack'
             },
             {
                 mechanic: 'Quote + Cleanse 2',
-                strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
-                ]
+                description: 'Quote is Stack + In or Stack + Out\nParty rotate CW to drop puddles'
             }
         ]
     },
@@ -358,42 +335,15 @@ const allP2: PhaseStrats[] = [
         mechs: [
             {
                 mechanic: 'Thunders + Tether 3',
-                strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
-                ]
+                description: 'Tether 3 is IN (unless you got Tether 2)\n❗⚡Thunder will resolve BEFORE Tether 3\n⚡Join tether stack after fireball'
             },
             {
                 mechanic: 'Quote',
-                strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
-                ]
+                description: `Quote is Spread + In or Spread + Out\nLoose spread, don't go too far if it's Spread + In`
             },
             {
                 mechanic: 'Cleanse 3 + Tether 4 + Thunders',
-                strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
-                ]
+                description: 'Tether 4 is IN\n❗⚡Thunder will resolve AFTER Tether 4\n⚡Take fire then move CCW or away from boss'
             }
         ]
     },
@@ -402,30 +352,20 @@ const allP2: PhaseStrats[] = [
         tag: 'p2',
         mechs: [
             {
-                mechanic: 'Divebombs',
-                strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
-                ]
+                mechanic: 'Dive 1',
+                description: 'A marker unless cursed\nFirst dive snapshots on first puddle'
             },
             {
-                mechanic: 'Quote',
-                strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
-                ]
+                mechanic: 'Dive 2',
+                description: 'B marker unless cursed\nFirst dive snapshots on THIRD puddle'
+            },
+            {
+                mechanic: 'Dive 3',
+                description: 'C marker unless cursed\nMove in when marker disappears\nHealer can rescue if quote is Stack'
+            },
+            {
+                mechanic: 'Quote (Stack/Spread)',
+                description: 'Tank away from the party for Nael dive after Spread or before Stack'
             }
         ]
     }

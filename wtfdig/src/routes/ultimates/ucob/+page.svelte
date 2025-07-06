@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { browser } from '$app/environment';
 	import type { Alignment, Role, Strat } from './+page';
 	import { Modal, Segment, Switch } from '@skeletonlabs/skeleton-svelte';
 	import { Copy, ExternalLink, Fullscreen, Info, Link, X } from '@lucide/svelte/icons';
@@ -34,6 +35,30 @@
 	let alignment: Alignment = $state('original');
 	let optionsString = $derived(getOptionsString(stratName, role, party));
 	export const toast: ToastContext = getContext('toast');
+
+	$effect(() => {
+		if (browser) {
+			const storedRole = localStorage.getItem('ucob-role');
+			const storedParty = localStorage.getItem('ucob-party');
+			if (storedRole) {
+				role = JSON.parse(storedRole);
+			}
+			if (storedParty) {
+				party = JSON.parse(storedParty);
+			}
+		}
+	});
+
+	$effect(() => {
+		if (browser) {
+			if (role) {
+				localStorage.setItem('ucob-role', JSON.stringify(role));
+			}
+			if (party) {
+				localStorage.setItem('ucob-party', JSON.stringify(party));
+			}
+		}
+	});
 
 	$effect(() => {
 		let stratCode = '';
@@ -215,7 +240,7 @@
 <svelte:window bind:innerWidth={innerWidth} bind:innerHeight={innerHeight} />
 
 <Cheatsheet 
-	title={`DSR Cheatsheet - ${optionsString}`}
+	title={`UCOB Cheatsheet - ${optionsString}`}
 	bind:cheatsheetOpenState={cheatsheetOpenState}
 	timeline={data.timeline}
 	stratName={stratName}
@@ -228,7 +253,7 @@
 	columns=5
 	innerHeight={innerHeight}
 	innerWidth={innerWidth}
-	tabTags={{}}
+	tabTags={{"P1: Twintania": ['p1'], "P2: Nael": ['p2'], "P3: Bahamut Prime": ['p3'], "P4: Adds": ['p4'], "P5: Golden": ['p5']}}
 	splitTimeline={false}
 />
 
