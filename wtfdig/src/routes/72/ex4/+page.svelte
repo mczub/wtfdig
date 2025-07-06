@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { page } from '$app/state';
 	import type { Alignment, PlayerMechStrat, PhaseStrats, Role, MechanicStrat, Strat } from '../+page';
 	import { Accordion, Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
@@ -37,6 +38,30 @@
 	let alignment: Alignment = $state('original');
 	let optionsString = $derived(getOptionsString(stratName, role, party));
 	export const toast: ToastContext = getContext('toast');
+
+	$effect(() => {
+		if (browser) {
+			const storedRole = localStorage.getItem('ex4-role');
+			const storedParty = localStorage.getItem('ex4-party');
+			if (storedRole) {
+				role = JSON.parse(storedRole);
+			}
+			if (storedParty) {
+				party = JSON.parse(storedParty);
+			}
+		}
+	});
+
+	$effect(() => {
+		if (browser) {
+			if (role) {
+				localStorage.setItem('ex4-role', JSON.stringify(role));
+			}
+			if (party) {
+				localStorage.setItem('ex4-party', JSON.stringify(party));
+			}
+		}
+	});
 
 	$effect(() => {
 		let stratCode = '';

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { page } from '$app/state';
 	import type { Alignment, Role, Strat } from './+page';
 	import { Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
@@ -35,6 +36,30 @@
 	let alignment: Alignment = $state('original');
 	let optionsString = $derived(getOptionsString(stratName, role, party));
 	export const toast: ToastContext = getContext('toast');
+
+	$effect(() => {
+		if (browser) {
+			const storedRole = localStorage.getItem('m6s-role');
+			const storedParty = localStorage.getItem('m6s-party');
+			if (storedRole) {
+				role = JSON.parse(storedRole);
+			}
+			if (storedParty) {
+				party = JSON.parse(storedParty);
+			}
+		}
+	});
+
+	$effect(() => {
+		if (browser) {
+			if (role) {
+				localStorage.setItem('m6s-role', JSON.stringify(role));
+			}
+			if (party) {
+				localStorage.setItem('m6s-party', JSON.stringify(party));
+			}
+		}
+	});
 
 	const addsUrls: Record<string, any> = {
 		'latte': {name: 'Latte Adds', url: 'https://raidplan.io/plan/0066fd3CVp1_G36R'},
