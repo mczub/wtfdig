@@ -181,64 +181,50 @@
         {/if}
         {#each individualStrat as phase}
             {#if (tabTags && tabTags[tab] ? tabTags[tab].includes(phase.tag) : true)}
-                {#if phase?.mechs}
-                    <div class="card border border-surface-800 p-2 h-0 min-h-full flex flex-col" style:grid-column={`span ${phase.mechs ? phase.mechs.length : 0}`}>
-                        <div class="flex flex-row items-center">
-                            <div class="capitalize font-bold text-sm 3xl:text-lg mb-0">{phase.phaseName}</div>
-                            {#if phase?.tag && (stratState[phase.tag] !== getStratMechs(stratName)[phase.tag])}
-                                <Tooltip
-                                    positioning={{ placement: 'top' }}
-                                    triggerBase="flex"
-                                    contentBase="card bg-surface-800 p-4"
-                                    classes="ml-2"
-                                    openDelay={200}
-                                    arrow
-                                    arrowBackground="!bg-surface-800"
-
-                                >
-                                {#snippet trigger()}<div class="text-warning-500 self-center"><TriangleAlert size={24}/></div>{/snippet}
-                                {#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
-                                </Tooltip>
+                {#if phase.mechs}
+                    {#each phase.mechs as mech, i}
+                        <button class="card border border-surface-800 p-2 h-0 min-h-full flex flex-col text-start group overflow-hidden" class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]} onclick={() => openImageModal(phase, mech)}>
+                            <div class="flex flex-row items-center" class:opacity-60={i > 0}>
+                                <div class="capitalize font-bold text-sm 3xl:text-lg mb-0">{phase.phaseName}</div>
+                                {#if phase?.tag && (stratState[phase.tag] !== getStratMechs(stratName)[phase.tag])}
+                                    <Tooltip
+                                        positioning={{ placement: 'top' }}
+                                        triggerBase="flex"
+                                        contentBase="card bg-surface-800 p-4"
+                                        classes="ml-2"
+                                        openDelay={200}
+                                        arrow
+                                        arrowBackground="!bg-surface-800"
+    
+                                    >
+                                    {#snippet trigger()}<div class="text-warning-500 self-center"><TriangleAlert size={24}/></div>{/snippet}
+                                    {#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
+                                    </Tooltip>
+                                {/if}
+                            </div>
+                            {#if i === 0 && phase?.description}<div class="text-xs 3xl:text-base whitespace-pre-wrap">{phase.description}</div>{/if}
+                            <div class="flex justify-between capitalize font-semibold text-sm 3xl:text-base mb-0 mt-1">
+                                {mech.mechanic}
+                                <span class="not-group-hover:hidden"><Expand size={16}/></span>
+                            </div> 
+                            {#if mech?.description}<div class="whitespace-pre-wrap text-xs 3xl:text-base mb-0">{mech.description}</div>{/if}
+                            {#if mech?.imageUrl}
+                                <div class="mt-1 min-h-0 h-full">
+                                    <img class="rounded-md h-auto w-auto max-h-full max-w-full" src={mech.imageUrl} />
+                                </div>
                             {/if}
-                        </div>
-                        {#if phase?.description}<div class="text-xs 3xl:text-base whitespace-pre-wrap">{phase.description}</div>{/if}
-                        {#if phase?.imageUrl && !phase?.mechs}
-                            <div class="mt-1 min-h-0 h-full">
-                                <img class="rounded-md h-auto w-auto max-h-full max-w-full" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />
-                            </div>
+                            <div class="whitespace-pre-wrap text-xs 3xl:text-base mb-0">{mech?.strats && mech.strats[0].description}</div>
                             
-                        {/if}
-                        {#if phase?.mechs}
-                            <div class="grid grid-flow-col auto-cols-fr auto-rows-fr gap-2 h-full" style:grid-column={`span ${phase.mechs.length}`}>
-                                {#each phase.mechs as mech}
-                                    {#key [spotlight, alignment]}
-                                    <button class="flex flex-col h-0 min-h-full overflow-hidden group text-start" class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]} onclick={() => openImageModal(phase, mech)}>
-                                        <div class="flex justify-between capitalize font-semibold text-sm 3xl:text-base mb-0">
-                                            {mech.mechanic}
-                                            <span class="not-group-hover:hidden"><Expand size={16}/></span>
-                                        </div> 
-                                        {#if mech?.description}<div class="whitespace-pre-wrap text-xs 3xl:text-base mb-0">{mech.description}</div>{/if}
-                                        {#if mech?.imageUrl}
-                                            <div class="mt-1 min-h-0 h-full">
-                                                <img class="rounded-md h-auto w-auto max-h-full max-w-full" src={mech.imageUrl} />
-                                            </div>
-                                        {/if}
-                                        <div class="whitespace-pre-wrap text-xs 3xl:text-base mb-0">{mech?.strats && mech.strats[0].description}</div>
-                                        
-                                        {#if mech?.strats && mech.strats[0]?.imageUrl}
-                                            <div class="mt-1 min-h-0 h-full">
-                                                <img class="rounded-md h-auto w-auto max-h-full max-w-full" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />
-                                            </div>
-                                            
-                                        {/if}
-                                    </button>
-                                    {/key}
-                                {/each}
-                            </div>
-                        {/if}
-                    </div>
+                            {#if mech?.strats && mech.strats[0]?.imageUrl}
+                                <div class="mt-1 min-h-0 h-full">
+                                    <img class="rounded-md h-auto w-auto max-h-full max-w-full" style:mask-image={spotlight && mech.strats[0]?.mask} src={mech.strats[0].imageUrl} />
+                                </div>
+                                
+                            {/if}
+                        </button>
+                    {/each}
                 {:else}
-                    <button class="card border border-surface-800 p-2 h-0 min-h-full flex flex-col text-start group" style:grid-column={`span ${phase.mechs ? phase.mechs.length : 0}`} onclick={() => openImageModal(phase)}>
+                    <button class="card border border-surface-800 p-2 h-0 min-h-full flex flex-col text-start group" onclick={() => openImageModal(phase)}>
                         <div class="flex flex-row items-center">
                             <div class="flex justify-between capitalize font-bold text-sm 3xl:text-lg mb-0 w-full">
                                 {phase.phaseName}
@@ -268,7 +254,6 @@
                         {/if}
                     </button>
                 {/if}
-
             {/if}
         {/each}
     </div>

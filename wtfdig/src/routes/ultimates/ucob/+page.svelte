@@ -250,8 +250,7 @@
 	individualStrat={individualStrat}
 	spotlight={spotlight}
 	alignment={alignment}
-	rows=3
-	columns=6
+	columns=5
 	innerHeight={innerHeight}
 	innerWidth={innerWidth}
 	tabTags={{"P1: Twintania": ['p1'], "P2: Nael": ['p2'], "P3: Bahamut Prime": ['p3'], "P4: Adds": ['p4'], "P5: Golden": ['p5']}}

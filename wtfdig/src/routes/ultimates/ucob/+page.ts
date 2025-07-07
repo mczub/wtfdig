@@ -148,28 +148,28 @@ const allP1: PhaseStrats[] = [
                 mechanic: 'Twisters',
                 description: 'Rough spread to bait twisters, then run in for stack',
                 strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
+                    { role: 'Tank', party: 1, description: '', imageUrl: './ucob/twin-0.webp' },
+                    { role: 'Tank', party: 2, description: '', imageUrl: './ucob/twin-0.webp' },
+                    { role: 'Healer', party: 1, description: '', imageUrl: './ucob/twin-0.webp' },
+                    { role: 'Healer', party: 2, description: '', imageUrl: './ucob/twin-0.webp' },
+                    { role: 'Melee', party: 1, description: '', imageUrl: './ucob/twin-0.webp' },
+                    { role: 'Melee', party: 2, description: '', imageUrl: './ucob/twin-0.webp' },
+                    { role: 'Ranged', party: 1, description: '', imageUrl: './ucob/twin-0.webp' },
+                    { role: 'Ranged', party: 2, description: '', imageUrl: './ucob/twin-0.webp' },
                 ]
             },
             {
                 mechanic: 'Fireball Stack',
                 description: 'Both tanks and one healer stay out of stack for LB',
                 strats: [
-                    { role: 'Tank', party: 1, description: '!! Stay out of stack', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '!! Stay out of stack', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: 'One healer stay out of stack', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: 'One healer stay out of stack', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
+                    { role: 'Tank', party: 1, description: '‼️Stay out of stack', imageUrl: './ucob/twin-1.webp' },
+                    { role: 'Tank', party: 2, description: '‼️Stay out of stack', imageUrl: './ucob/twin-1.webp' },
+                    { role: 'Healer', party: 1, description: 'One healer stay out of stack', imageUrl: './ucob/twin-1.webp' },
+                    { role: 'Healer', party: 2, description: 'One healer stay out of stack', imageUrl: './ucob/twin-1.webp' },
+                    { role: 'Melee', party: 1, description: '', imageUrl: './ucob/twin-1.webp' },
+                    { role: 'Melee', party: 2, description: '', imageUrl: './ucob/twin-1.webp' },
+                    { role: 'Ranged', party: 1, description: '', imageUrl: './ucob/twin-1.webp' },
+                    { role: 'Ranged', party: 2, description: '', imageUrl: './ucob/twin-1.webp' },
                 ]
             }
         ]
@@ -182,28 +182,28 @@ const allP1: PhaseStrats[] = [
                 mechanic: 'Liquid Hells 1',
                 description: 'Phys Ranged bait puddles',
                 strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
+                    { role: 'Tank', party: 1, description: 'Boss can be tanked between 1 and 2 for first Hatch', imageUrl: './ucob/baits-4.webp' },
+                    { role: 'Tank', party: 2, description: 'Boss can be tanked between 1 and 2 for first Hatch', imageUrl: './ucob/baits-4.webp' },
+                    { role: 'Healer', party: 1, description: '', imageUrl: './ucob/baits-4.webp' },
+                    { role: 'Healer', party: 2, description: '', imageUrl: './ucob/baits-4.webp' },
+                    { role: 'Melee', party: 1, description: '', imageUrl: './ucob/baits-4.webp' },
+                    { role: 'Melee', party: 2, description: '', imageUrl: './ucob/baits-4.webp' },
+                    { role: 'Ranged', party: 1, description: '', imageUrl: './ucob/baits-4.webp' },
+                    { role: 'Ranged', party: 2, description: '', imageUrl: './ucob/baits-4.webp' },
                 ]
             },
             {
                 mechanic: 'Hatch + Liquid Hells 2',
                 description: 'Caster intercept Hatch if on Phys Ranged',
                 strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
+                    { role: 'Tank', party: 1, description: '', imageUrl: './ucob/baits-6.webp' },
+                    { role: 'Tank', party: 2, description: '', imageUrl: './ucob/baits-6.webp' },
+                    { role: 'Healer', party: 1, description: '', imageUrl: './ucob/baits-6.webp' },
+                    { role: 'Healer', party: 2, description: '', imageUrl: './ucob/baits-6.webp' },
+                    { role: 'Melee', party: 1, description: '', imageUrl: './ucob/baits-6.webp' },
+                    { role: 'Melee', party: 2, description: '', imageUrl: './ucob/baits-6.webp' },
+                    { role: 'Ranged', party: 1, description: '', imageUrl: './ucob/baits-6.webp' },
+                    { role: 'Ranged', party: 2, description: '', imageUrl: './ucob/baits-6.webp' },
                 ]
             },
             {
@@ -220,14 +220,14 @@ const allP1: PhaseStrats[] = [
                 mechanic: 'Liquid Hells 3 + Hatches',
                 description: 'Phys Ranged continue baiting puddles\nSet of double Hatches as puddles finish',
                 strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
+                    { role: 'Tank', party: 1, description: 'Boss can be tanked Mid until Stack', imageUrl: './ucob/twin-4.webp' },
+                    { role: 'Tank', party: 2, description: 'Boss can be tanked Mid until Stack', imageUrl: './ucob/twin-4.webp' },
+                    { role: 'Healer', party: 1, description: '', imageUrl: './ucob/twin-4.webp' },
+                    { role: 'Healer', party: 2, description: '', imageUrl: './ucob/twin-4.webp' },
+                    { role: 'Melee', party: 1, description: '', imageUrl: './ucob/twin-4.webp' },
+                    { role: 'Melee', party: 2, description: '', imageUrl: './ucob/twin-4.webp' },
+                    { role: 'Ranged', party: 1, description: '', imageUrl: './ucob/twin-4.webp' },
+                    { role: 'Ranged', party: 2, description: '', imageUrl: './ucob/twin-4.webp' },
                 ]
             },
             {
@@ -269,30 +269,30 @@ const allP2: PhaseStrats[] = [
         mechs: [
             {
                 mechanic: 'Spreads',
-                description: 'Knockback, then spread roughly into QM spots',
+                description: 'Stack on D marker for KB, then spread roughly into QM spots',
                 strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
+                    { role: 'Tank', party: 1, description: '', imageUrl: './ucob/nael-1.webp' },
+                    { role: 'Tank', party: 2, description: '', imageUrl: './ucob/nael-1.webp' },
+                    { role: 'Healer', party: 1, description: '', imageUrl: './ucob/nael-1.webp' },
+                    { role: 'Healer', party: 2, description: '', imageUrl: './ucob/nael-1.webp' },
+                    { role: 'Melee', party: 1, description: '', imageUrl: './ucob/nael-1.webp' },
+                    { role: 'Melee', party: 2, description: '', imageUrl: './ucob/nael-1.webp' },
+                    { role: 'Ranged', party: 1, description: '', imageUrl: './ucob/nael-1.webp' },
+                    { role: 'Ranged', party: 2, description: '', imageUrl: './ucob/nael-1.webp' },
                 ]
             },
             {
                 mechanic: 'Dive',
                 description: 'Tank with aggro takes dive on D marker',
                 strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
+                    { role: 'Tank', party: 1, description: '', imageUrl: './ucob/nael-4.webp' },
+                    { role: 'Tank', party: 2, description: '', imageUrl: './ucob/nael-4.webp' },
+                    { role: 'Healer', party: 1, description: '', imageUrl: './ucob/nael-4.webp' },
+                    { role: 'Healer', party: 2, description: '', imageUrl: './ucob/nael-4.webp' },
+                    { role: 'Melee', party: 1, description: '', imageUrl: './ucob/nael-4.webp' },
+                    { role: 'Melee', party: 2, description: '', imageUrl: './ucob/nael-4.webp' },
+                    { role: 'Ranged', party: 1, description: '', imageUrl: './ucob/nael-4.webp' },
+                    { role: 'Ranged', party: 2, description: '', imageUrl: './ucob/nael-4.webp' },
                 ]
             }
         ]
@@ -303,11 +303,13 @@ const allP2: PhaseStrats[] = [
         mechs: [
             {
                 mechanic: 'Quote + Thunders',
-                description: 'Quote is In + Stack or In + Out\nThunders make a Mickey Mouse shape opposite the party inside the first Chariot'
+                description: 'Quote is In + Stack or In + Out\nThunders make a Mickey Mouse shape opposite the party inside the first Chariot',
+                imageUrl: './ucob/nael-7.webp',
             },
             {
                 mechanic: 'Tether 1 + Cleanse 1',
-                description: 'Tether 1 is IN\nParty rotate CW to drop puddles'
+                description: 'Tether 1 is IN\nParty rotate CW to drop puddles',
+                imageUrl: './ucob/nael-9.webp',
             }
         ]
     },
@@ -317,15 +319,18 @@ const allP2: PhaseStrats[] = [
         mechs: [
             {
                 mechanic: 'Tether 2',
-                description: '‼️2nd Tether is OUT'
+                description: '‼️2nd Tether is OUT',
+                imageUrl: './ucob/nael-12.webp',
             },
             {
                 mechanic: 'Thunders',
-                description: 'Thunders resolve before quote, drop thunders then join stack'
+                description: 'Thunders resolve before quote, drop thunders then join stack',
+                imageUrl: './ucob/nael-13.webp',
             },
             {
                 mechanic: 'Quote + Cleanse 2',
-                description: 'Quote is Stack + In or Stack + Out\nParty rotate CW to drop puddles'
+                description: 'Quote is Stack + In or Stack + Out\nParty rotate CW to drop puddles',
+                imageUrl: './ucob/nael-15.webp',
             }
         ]
     },
@@ -335,15 +340,18 @@ const allP2: PhaseStrats[] = [
         mechs: [
             {
                 mechanic: 'Thunders + Tether 3',
-                description: 'Tether 3 is IN (unless you got Tether 2)\n❗⚡Thunder will resolve BEFORE Tether 3\n⚡Join tether stack after fireball'
+                description: 'Tether 3 is IN (unless you got Tether 2)\n❗⚡Thunder will resolve BEFORE Tether 3\n⚡Join tether stack after fireball',
+                imageUrl: './ucob/nael-16.webp',
             },
             {
                 mechanic: 'Quote',
-                description: `Quote is Spread + In or Spread + Out\nLoose spread, don't go too far if it's Spread + In`
+                description: `Quote is Spread + In or Spread + Out\nLoose spread, don't go too far if it's Spread + In`,
+                imageUrl: './ucob/nael-17.webp',
             },
             {
                 mechanic: 'Cleanse 3 + Tether 4 + Thunders',
-                description: 'Tether 4 is IN\n❗⚡Thunder will resolve AFTER Tether 4\n⚡Take fire then move CCW or away from boss'
+                description: 'Tether 4 is IN\n❗⚡Thunder will resolve AFTER Tether 4\n⚡Take fire then move CCW or away from boss',
+                imageUrl: './ucob/nael-19.webp',
             }
         ]
     },
@@ -353,19 +361,28 @@ const allP2: PhaseStrats[] = [
         mechs: [
             {
                 mechanic: 'Dive 1',
-                description: 'Bait first 2 dragons CW from N\nA marker unless cursed\nFirst dive snapshots on first puddle'
+                description: 'Bait first 2 dragons CW from N\nA marker unless cursed\nFirst dive snapshots on first puddle',
+                imageUrl: './ucob/divebombs-2.webp',
             },
             {
                 mechanic: 'Dive 2',
-                description: 'Bait 3rd dragon CW from N\nB marker unless cursed\nFirst dive snapshots on THIRD puddle'
+                description: 'Bait 3rd dragon CW from N\nB marker unless cursed\nFirst dive snapshots on THIRD puddle',
+                imageUrl: './ucob/divebombs-4.webp',
             },
             {
                 mechanic: 'Dive 3',
-                description: 'Bait 4th and 5th dragon CW from N\nC marker unless cursed\nMove in when marker disappears\nHealer can rescue if quote is Stack'
+                description: 'Bait 4th and 5th dragon CW from N\nC marker unless cursed\nMove in when marker disappears\nHealer can rescue if quote is Stack',
+                imageUrl: './ucob/divebombs-6.webp',
             },
             {
-                mechanic: 'Quote (Stack/Spread)',
-                description: 'Tank away from the party for Nael dive after Spread or before Stack'
+                mechanic: 'Quote (Stack)',
+                description: 'Stack Mid\nTank away from the party for Nael dive before Stack',
+                imageUrl: './ucob/divebombs-13.webp',
+            },
+            {
+                mechanic: 'Quote (Spread)',
+                description: 'Spread West-ish\nSave room for dive baits to spread mid\nTank away from the party for Nael dive after Spread',
+                imageUrl: './ucob/divebombs-9.webp',
             }
         ]
     }
