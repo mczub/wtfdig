@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import type { Alliance, Role, PlayerStrats, Alignment, MechanicStrat } from './+page';
 	import { Accordion, Segment, Switch } from '@skeletonlabs/skeleton-svelte';
 
@@ -19,6 +20,36 @@
     let accordion = $state(['swaps']);
 	let optionsString = $derived(getOptionsString(stratName, alliance, role, party));
 
+	$effect(() => {
+		if (browser) {
+			const storedAlliance = localStorage.getItem('chaotic-alliance');
+			const storedRole = localStorage.getItem('chaotic-role');
+			const storedParty = localStorage.getItem('chaotic-party');
+			if (storedAlliance) {
+				alliance = JSON.parse(storedAlliance);
+			}
+			if (storedRole) {
+				role = JSON.parse(storedRole);
+			}
+			if (storedParty) {
+				party = JSON.parse(storedParty);
+			}
+		}
+	});
+
+	$effect(() => {
+		if (browser) {
+			if (alliance) {
+				localStorage.setItem('chaotic-alliance', JSON.stringify(alliance));
+			}
+			if (role) {
+				localStorage.setItem('chaotic-role', JSON.stringify(role));
+			}
+			if (party) {
+				localStorage.setItem('chaotic-party', JSON.stringify(party));
+			}
+		}
+	});
 
 	function getStrat(stratName?: string, alliance?: Alliance, role?: Role, party?: number) {
 		if (!stratName || !alliance || !role || !party) return '';

@@ -1,6 +1,6 @@
 <svelte:options customElement={{shadow: 'none'}} ></svelte:options>
 <script lang="ts">
-    import { Accordion, Tooltip } from '@skeletonlabs/skeleton-svelte';
+    import { Accordion, Tooltip, Tabs } from '@skeletonlabs/skeleton-svelte';
     import { ArrowBigRight, ArrowRight, CircleAlert, Clock, Divide, Expand, Play, Shield, Siren, Skull, TriangleAlert, Wrench } from '@lucide/svelte/icons';
 	import ImagePreview from './ImagePreview.svelte';
 	import type { TimelineItem } from '$lib/types';
@@ -11,7 +11,7 @@
         [propName: string]: any;
 	}
 
-    let { timeline, strat, stratName, stratState, getStratMechs, individualStrat, spotlight, alignment }: Props = $props();
+    let { timeline, strat, stratName, stratState, getStratMechs, individualStrat, spotlight, alignment, tabTags = null }: Props = $props();
     
     let imageOpenState = $state(false);
 	let imageModalProps = $state({
@@ -28,6 +28,8 @@
 	}
 
     let timelineValue = $state(['']);
+
+    let tab = $state(tabTags ? Object.keys(tabTags)[0] : '');
 </script>
 
 <ImagePreview 
@@ -103,7 +105,17 @@
     </Accordion>
 </div>
 {/if}
+{#if tabTags}
+    <Tabs value={tab} onValueChange={(e) => (tab = e.value)} classes="m-0" listMargin="mb-1">
+        {#snippet list()}
+            {#each Object.keys(tabTags) as tabName}
+                <Tabs.Control value={tabName}>{tabName}</Tabs.Control>
+            {/each}
+        {/snippet}
+    </Tabs>
+{/if}
 {#each individualStrat as phase}
+    {#if (tabTags && tabTags[tab] ? tabTags[tab].includes(phase.tag) : true)}
     {#if phase?.mechs}
         <div class="card border border-surface-800 mb-8 p-4">
             <div class="flex flex-row">
@@ -177,5 +189,6 @@
                 {#if phase?.imageUrl}<img class="max-h-[400px] self-start rounded-md mt-4" style:mask-image={spotlight && phase.mask} src={phase.imageUrl} />{/if}
             </button>
         </div>
+    {/if}
     {/if}
 {/each}

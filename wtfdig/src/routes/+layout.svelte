@@ -16,6 +16,7 @@
     }
     let popover71OpenState = $state(false);
     let popover72OpenState = $state(false);
+    let popoverUltimatesOpenState = $state(false);
 
     let { children }: Props = $props();
 </script>
@@ -33,6 +34,7 @@
         </header>
         <article>
             <div>
+                <p>7/7/2025: we got cob; also each fight saves your role to localstorage, also adjusted some layout stuff on cheatsheets</p>
                 <p>6/9/2025: added a second line to m8s fering for people who don't understand what color partners means</p>
                 <p>5/19/2025: add second pattern to m6s toxic/hector river</p>
                 <p>5/17/2025: icons! and shorter urls!</p>
@@ -150,6 +152,57 @@
                                 <div class="text-lg -mb-2">AAC Cruiserweight M4</div>
                                 <div class="text-sm">Savage</div>
                             </a>
+                        </div>
+                    </div>
+                </article>
+                {/snippet}
+            </Popover>
+            <Popover
+                open={popoverUltimatesOpenState}
+                onOpenChange={(e) => (popoverUltimatesOpenState = e.open)}
+                positioning={{ placement: 'bottom-end' }}
+                triggerBase="btn preset-tonal-secondary border border-secondary-500 px-4"
+                contentBase="card bg-surface-200-800 min-w-[240px]"
+            >
+                {#snippet trigger()}Ultimates <ChevronDown size={16}/>{/snippet}
+                {#snippet content()}
+                <article>
+                    <div class="opacity-60 preset-outlined-surface-200-800 grid p-0 w-full divide-y divide-surface-800 rounded-md bg-surface-950">
+                        <div class="px-4 py-2 hover:bg-surface-900">
+                            <a data-sveltekit-reload href="{base}/ultimates/ucob" class="flex flex-col w-full items-start">
+                                <div class="text-lg -mb-2">The Unending Coil of Bahamut</div>
+                                <div class="text-sm">Ultimate</div>
+                            </a>
+                        </div>
+                        <div class="px-4 py-2">
+                            <button class="flex flex-col w-full items-start disabled">
+                                <div class="text-lg -mb-2">The Weapon's Refrain</div>
+                                <div class="text-sm">Ultimate</div>
+                            </button>
+                        </div>
+                        <div class="px-4 py-2">
+                            <button class="flex flex-col w-full items-start disabled">
+                                <div class="text-lg -mb-2">The Epic of Alexander</div>
+                                <div class="text-sm">Ultimate</div>
+                            </button>
+                        </div>
+                        <div class="px-4 py-2">
+                            <button class="flex flex-col w-full items-start disabled">
+                                <div class="text-lg -mb-2">Dragonsong's Reprise</div>
+                                <div class="text-sm">Ultimate</div>
+                            </button>
+                        </div>
+                        <div class="px-4 py-2">
+                            <button class="flex flex-col w-full items-start disabled">
+                                <div class="text-lg -mb-2">The Omega Protocol</div>
+                                <div class="text-sm">Ultimate</div>
+                            </button>
+                        </div>
+                        <div class="px-4 py-2">
+                            <button class="flex flex-col w-full items-start disabled">
+                                <div class="text-lg -mb-2">Futures Rewritten</div>
+                                <div class="text-sm">Ultimate</div>
+                            </button>
                         </div>
                     </div>
                 </article>

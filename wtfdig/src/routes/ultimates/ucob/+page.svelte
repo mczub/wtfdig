@@ -1,13 +1,14 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
 	import { page } from '$app/state';
+	import { browser } from '$app/environment';
 	import type { Alignment, Role, Strat } from './+page';
-	import { Segment, Switch } from '@skeletonlabs/skeleton-svelte';
-	import { Copy, ExternalLink, Fullscreen, Info, Link, X} from '@lucide/svelte/icons';
+	import { Modal, Segment, Switch } from '@skeletonlabs/skeleton-svelte';
+	import { Copy, ExternalLink, Fullscreen, Info, Link, X } from '@lucide/svelte/icons';
 	import { getContext } from 'svelte';
-  	import { type ToastContext, Modal } from '@skeletonlabs/skeleton-svelte';
+  	import { type ToastContext } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
 	import Cheatsheet from '../../../components/Cheatsheet.svelte';
+	import deepEquals from 'fast-deep-equal';
 	import { replaceState } from '$app/navigation';
 	import StratView from '../../../components/StratView.svelte';
 	import type { TimelineItem } from "$lib/types";
@@ -22,8 +23,8 @@
 
 	let { data, children }: Props = $props();
 	let stratName: string | undefined = $state();
-	let stratState: Record<string, string | null> = $state({});
-	
+	let stratState: Record<string, string | null> = $state({
+	});
 
 	
 	let role: Role | undefined = $state();
@@ -37,8 +38,8 @@
 
 	$effect(() => {
 		if (browser) {
-			const storedRole = localStorage.getItem('m5s-role');
-			const storedParty = localStorage.getItem('m5s-party');
+			const storedRole = localStorage.getItem('ucob-role');
+			const storedParty = localStorage.getItem('ucob-party');
 			if (storedRole) {
 				role = JSON.parse(storedRole);
 			}
@@ -51,17 +52,17 @@
 	$effect(() => {
 		if (browser) {
 			if (role) {
-				localStorage.setItem('m5s-role', JSON.stringify(role));
+				localStorage.setItem('ucob-role', JSON.stringify(role));
 			}
 			if (party) {
-				localStorage.setItem('m5s-party', JSON.stringify(party));
+				localStorage.setItem('ucob-party', JSON.stringify(party));
 			}
 		}
 	});
 
 	$effect(() => {
 		let stratCode = '';
-		untrack(() => stratCode = getStratCode(stratName));
+		untrack(() => stratCode = getStratCode(stratName, stratState))
 		const urlHash = page.url.hash.substring(1);
 		if (urlHash !== stratCode) {
 			untrack(() => setStratsFromUrlHash(urlHash));
@@ -73,22 +74,39 @@
 		if (stratArray[0]) {
 			stratName = stratArray[0];
 		}
+		if (stratArray.length === 1) {
+			stratState = getStratMechs(stratArray[0]);
+		}
+	}
+
+	function getStratOrEmptyString(strat: string): string {
+		if (!stratName || !strat) return ''
+		if (getStratMechs(stratName)[strat] === stratState[strat]) {
+			return '';
+		}
+		return stratState[strat] || '';
 	}
 
 	function setStratState(mech: string, value: string) {
 		stratState[mech] = value;
-		const stratCode = getStratCode(stratName);
+		const stratCode = getStratCode(stratName, stratState);
 		replaceState(`#${stratCode}`, {});
 	}
 
-	function getStratCode(stratName: string | undefined) {
+	function getStratCode(stratName: string | undefined, stratState: any) {
 		if (!stratName) return '';
+		if (stratName && stratState) {
+			if (deepEquals(getStratMechs(stratName), stratState)) {
+				return stratName;
+			}
+		}
 		return `${stratName}`;
 	}
 
 	function onSelectStrat(e) {
 		stratName = e.value;
-		const stratCode = getStratCode(stratName);
+		stratState = getStratMechs(e.value);
+		const stratCode = getStratCode(stratName, stratState);
 		replaceState(`#${stratCode}`, {});
 	}
 
@@ -131,6 +149,7 @@
 						phaseStratMech => {
 							return {
 								...phaseStratMech,
+								description: getStratItem(phaseStratMech.description, phaseStrat.tag),
 								imageUrl: getStratItem(phaseStratMech.imageUrl, phaseStrat.tag),
 								strats: phaseStratMech.strats && phaseStratMech.strats.filter(strat => (strat.role === role && strat.party === party)).map(
 									iStrat => {
@@ -153,10 +172,9 @@
 		return individualPackages;
 	}
 
+
 	function getStratMechs(stratName: string){
-		const stratMechs: Record<string, any> = {}
-		//return stratMechs[stratName];
-		''
+		return {};
 	}
 
 	function getMask(mask: string): string {
@@ -169,13 +187,7 @@
 	function getOptionsString(stratName?: string, role?: Role, party?: number): string {
 		if (!stratName || !role || !party) return '';
 		const stratNames: Record<string, string> = {
-			'latte': 'Latte (X-fxE5sxTx2JXd5m)',
-			'toxic': 'Toxic Friends (pztjVHnzfhEkg6pH)',
-			'sun': 'Sun Strat (h-WjosHQoM7oJR0n)',
-			'evansith': 'Evansith',
-			'hector': 'Hector',
-			'game8': 'Game8/Nukemaru',
-			'mr': 'Materia Raiding'
+			'naur': 'NAUR'
 		}
 		const jpRoleAbbrev: Record<string, string> = {
 			'MT': 'MT',
@@ -193,25 +205,23 @@
 		} else {
 			roleAbbrev = role.charAt(0).toUpperCase() + party.toString();
 		}
-		if ((stratName === 'game8' || stratName === 'oce') && roleAbbrev !== jpRoleAbbrev[roleAbbrev]) {
+		let stratDiffs = [stratNames[stratName]];
+		
+		if ((stratName === 'game8' || stratName === 'mr') && roleAbbrev !== jpRoleAbbrev[roleAbbrev]) {
 			return `${stratNames[stratName]} - ${roleAbbrev}/${jpRoleAbbrev[roleAbbrev]}`;
 		}
 
-		return `${stratNames[stratName]} - ${roleAbbrev}`;
+		return `${stratDiffs.join(' | ')} - ${roleAbbrev}`;
 	}
 
 	function getPFDescription() {
 		if (!stratName) return '';
 		const stratNames: Record<string, string> = {
-			'latte': 'Latte',
-			'toxic': 'Toxic',
-			'sun': 'Sun',
-			'evansith': 'Evansith',
-			'hector': 'Hector',
-			'game8': 'Game8',
-			'mr': 'MR'
+			'naur': 'NAUR'
 		}
-		return `${stratNames[stratName]} | ${window.location.href}`
+		let stratDiffs = [stratNames[stratName]];
+		
+		return `${stratDiffs.join(' | ')} | ${window.location.href}`
 	}
 
 	function copyPFDescription() {
@@ -221,24 +231,18 @@
 			type: 'success',
 		});
 	}
-
-
+	
 	let innerWidth = $state(0);
 	let innerHeight = $state(0);
 	let isCheatsheetEnabled = $derived(innerWidth > 1024 && innerHeight > 768);
 
 	let cheatsheetOpenState = $state(false);
-	let otherOpenState = $state(false);
-
-	function closeOther() {
-		otherOpenState = false;
-	}
 </script>
 
 <svelte:window bind:innerWidth={innerWidth} bind:innerHeight={innerHeight} />
 
 <Cheatsheet 
-	title={`M5S Cheatsheet - ${optionsString}`}
+	title={`UCOB Cheatsheet - ${optionsString}`}
 	bind:cheatsheetOpenState={cheatsheetOpenState}
 	timeline={data.timeline}
 	stratName={stratName}
@@ -247,45 +251,18 @@
 	individualStrat={individualStrat}
 	spotlight={spotlight}
 	alignment={alignment}
-	rows=3
 	columns=5
 	innerHeight={innerHeight}
 	innerWidth={innerWidth}
+	tabTags={{"P1: Twintania": ['p1'], "P2: Nael": ['p2'], "P3: Bahamut Prime": ['p3'], "P4: Adds": ['p4'], "P5: Golden": ['p5']}}
+	splitTimeline={false}
 />
-
-<Modal
-	open={otherOpenState}
-	onOpenChange={(e) => (otherOpenState = e.open)}
-	contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl flex flex-col border border-surface-600 lg:min-w-[600px]"
-	backdropClasses="backdrop-blur-sm"
-	zIndex={"3000"}
->
-	{#snippet content()}
-		<header class="flex justify-between">
-			<div>
-				<h3 class="h3">Additional or Outdated Strats</h3>
-			</div>
-			<X onclick={closeOther} />
-		</header>
-		<div>
-			<div class="card preset-outlined-warning-500 gap-4 p-4 mb-2">
-				<p>These strats are relatively unused in PF, either because they're new or outdated.</p>
-				<p>If you see a strat here that's picking up steam in PF, please <a target="_blank" rel="noopener noreferrer" class="anchor" href="https://docs.google.com/forms/d/e/1FAIpQLScJEJ43FKjSRJ2MyLuGXznce-P_SQNyPLWga_Xme_CJKPiQIQ/viewform?usp=header">let me know!</a></p>
-			</div>
-			<div>
-				<div><a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={'https://raidplan.io/plan/h-WjosHQoM7oJR0n'}>Sun</a></div>
-				<div><a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={'https://raidplan.io/plan/xLodsjMOZ3jGmopK'}>Evansith Part 1</a></div>
-				<div><a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={'https://raidplan.io/plan/iZdwA3hbQkp6HEsp'}>Evansith Part 2</a></div>
-			</div>
-		</div>
-	{/snippet}
-</Modal>
 
 <div class="container grow px-4 mx-auto mb-6">
 	<div class="container">
         <div class="mb-6">
-            <div class="preset-typo-display-1 mt-2 lg:mt-0 lg:-mb-5">AAC Cruiserweight M1 (Savage)</div>
-            <div class="text-xl lg:text-3xl text-surface-400">M5S Patch 7.2</div>
+            <div class="preset-typo-display-1 mt-2 lg:mt-0 lg:-mb-5">The Unending Coil of Bahamut (Ultimate)</div>
+            <div class="text-xl lg:text-3xl text-surface-400">UCOB Patch 4.11</div>
         </div>
         
 		<div class="flex flex-wrap min-w-full justify-between mb-8 card preset-filled-surface-50-950 border-[1px] border-surface-200-800 p-4">
@@ -298,17 +275,8 @@
 				<div>
 					<div class="text-xl mb-2">Which strat are you using?</div>
 					<Segment classes="flex-wrap" name="stratName" value={stratName} onValueChange={onSelectStrat}>
-						<Segment.Item value="hector" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Hector</Segment.Item>
-						<Segment.Item value="game8" labelClasses="flex items-center"><span class="badge preset-tonal-error px-2 mr-2">JP</span>Game8/Nukemaru</Segment.Item>
-						<Segment.Item value="mr" labelClasses="flex items-center"><span class="badge preset-filled-success-500 px-2 mr-2">OCE</span>MR</Segment.Item>
-						<Segment.Item value="latte">Latte (X-fx⋯Xd5m)</Segment.Item>
-						<Segment.Item value="toxic">Toxic Friends (pztj⋯g6pH)</Segment.Item>
+						<Segment.Item value="naur" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span>NAUR</Segment.Item>
 					</Segment>
-				</div>
-				<div class="flex flex-col">
-					<div class="flex flex-row">
-						<button type="button" class="btn preset-tonal-primary" onclick={() => otherOpenState = true}>View other strats</button>
-					</div>
 				</div>
 				<div>
 					<div class="text-xl mb-2">Which role are you?</div>
@@ -362,10 +330,11 @@
 						{:else if typeof strat?.stratUrl === 'object'}
 							{strat.description}
 							{#each Object.entries(strat.stratUrl) as [linkName, linkUrl]}
-								 
-								<a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={linkUrl}>{linkName}
-									<ExternalLink />
-								</a>
+								<div>
+									<a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={linkUrl}>{linkName}
+										<ExternalLink />
+									</a>
+								</div>
 							{/each}
 						{/if}
 					</div>
@@ -393,6 +362,7 @@
 					individualStrat={individualStrat}
 					spotlight={spotlight}
 					alignment={alignment}
+					tabTags={{"P1: Twintania": ['setup','p1'], "P2: Nael": ['p2'], "P3: Bahamut Prime": ['p3'], "P4: Adds": ['p4'], "P5: Golden": ['p5']}}
 				/>
 			</div>
 			{/if}

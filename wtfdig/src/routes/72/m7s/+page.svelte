@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { page } from '$app/state';
 	import type { Alignment, Role, Strat } from './+page';
 	import { Modal, Segment, Switch } from '@skeletonlabs/skeleton-svelte';
@@ -36,6 +37,30 @@
 	let alignment: Alignment = $state('original');
 	let optionsString = $derived(getOptionsString(stratName, role, party));
 	export const toast: ToastContext = getContext('toast');
+
+	$effect(() => {
+		if (browser) {
+			const storedRole = localStorage.getItem('m7s-role');
+			const storedParty = localStorage.getItem('m7s-party');
+			if (storedRole) {
+				role = JSON.parse(storedRole);
+			}
+			if (storedParty) {
+				party = JSON.parse(storedParty);
+			}
+		}
+	});
+
+	$effect(() => {
+		if (browser) {
+			if (role) {
+				localStorage.setItem('m7s-role', JSON.stringify(role));
+			}
+			if (party) {
+				localStorage.setItem('m7s-party', JSON.stringify(party));
+			}
+		}
+	});
 
 	const p2Urls: Record<string, any> = {
 		'toxic': {name: 'Toxic P2', url: 'https://raidplan.io/plan/gIcsj6_cyedVQON7'},

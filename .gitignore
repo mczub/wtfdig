@@ -19,3 +19,8 @@ vite.config.js.timestamp-*
 symlink-from
 .idea/
 .vs/
+
+# Cline
+.clinerules
+.clineignore
+memory-bank/
