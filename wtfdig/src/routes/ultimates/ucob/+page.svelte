@@ -217,6 +217,7 @@
 	function getPFDescription() {
 		if (!stratName) return '';
 		const stratNames: Record<string, string> = {
+			'naur': 'NAUR'
 		}
 		let stratDiffs = [stratNames[stratName]];
 		
