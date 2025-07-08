@@ -182,14 +182,14 @@ const allP1: PhaseStrats[] = [
                 mechanic: 'Liquid Hells 1',
                 description: 'Phys Ranged bait puddles',
                 strats: [
-                    { role: 'Tank', party: 1, description: 'Boss can be tanked between 1 and 2 for first Hatch', imageUrl: './ucob/baits-4.webp' },
-                    { role: 'Tank', party: 2, description: 'Boss can be tanked between 1 and 2 for first Hatch', imageUrl: './ucob/baits-4.webp' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: './ucob/baits-4.webp' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: './ucob/baits-4.webp' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: './ucob/baits-4.webp' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: './ucob/baits-4.webp' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: './ucob/baits-4.webp' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: './ucob/baits-4.webp' },
+                    { role: 'Tank', party: 1, description: 'Boss can be tanked between 1 and 2 for first Hatch', imageUrl: './ucob/twin-2.webp' },
+                    { role: 'Tank', party: 2, description: 'Boss can be tanked between 1 and 2 for first Hatch', imageUrl: './ucob/twin-2.webp' },
+                    { role: 'Healer', party: 1, description: '', imageUrl: './ucob/twin-2.webp' },
+                    { role: 'Healer', party: 2, description: '', imageUrl: './ucob/twin-2.webp' },
+                    { role: 'Melee', party: 1, description: '', imageUrl: './ucob/twin-2.webp' },
+                    { role: 'Melee', party: 2, description: '', imageUrl: './ucob/twin-2.webp' },
+                    { role: 'Ranged', party: 1, description: '', imageUrl: './ucob/twin-2.webp' },
+                    { role: 'Ranged', party: 2, description: '', imageUrl: './ucob/twin-2.webp' },
                 ]
             },
             {
@@ -220,14 +220,14 @@ const allP1: PhaseStrats[] = [
                 mechanic: 'Liquid Hells 3 + Hatches',
                 description: 'Phys Ranged continue baiting puddles\nSet of double Hatches as puddles finish',
                 strats: [
-                    { role: 'Tank', party: 1, description: 'Boss can be tanked Mid until Stack', imageUrl: './ucob/twin-4.webp' },
-                    { role: 'Tank', party: 2, description: 'Boss can be tanked Mid until Stack', imageUrl: './ucob/twin-4.webp' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: './ucob/twin-4.webp' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: './ucob/twin-4.webp' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: './ucob/twin-4.webp' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: './ucob/twin-4.webp' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: './ucob/twin-4.webp' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: './ucob/twin-4.webp' },
+                    { role: 'Tank', party: 1, description: 'Boss can be tanked Mid until Stack', imageUrl: './ucob/twin-5.webp' },
+                    { role: 'Tank', party: 2, description: 'Boss can be tanked Mid until Stack', imageUrl: './ucob/twin-5.webp' },
+                    { role: 'Healer', party: 1, description: '', imageUrl: './ucob/twin-5.webp' },
+                    { role: 'Healer', party: 2, description: '', imageUrl: './ucob/twin-5.webp' },
+                    { role: 'Melee', party: 1, description: '', imageUrl: './ucob/twin-5.webp' },
+                    { role: 'Melee', party: 2, description: '', imageUrl: './ucob/twin-5.webp' },
+                    { role: 'Ranged', party: 1, description: '', imageUrl: './ucob/twin-5.webp' },
+                    { role: 'Ranged', party: 2, description: '', imageUrl: './ucob/twin-5.webp' },
                 ]
             },
             {
@@ -395,29 +395,29 @@ const allP3: PhaseStrats[] = [
         mechs: [
             {
                 mechanic: 'Dive + Spreads',
-                description: 'Dragon spawn is new North',
+                description: 'Dragon spawn is new North\n❗Twisters when dive goes off',
                 strats: [
-                    { role: 'Tank', party: 1, description: 'L1 (Left Northmost)', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: 'R1 (Right Northmost)', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: 'L2 (Left 2nd Northmost)', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: 'R2 (Right 2nd Northmost)', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: 'L3 (Left 3rd Northmost)', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: 'R3 (Right 3rd Northmost)', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: 'L4 (Left Southmost)', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: 'R4 (Left Southmost)', imageUrl: '' },
+                    { role: 'Tank', party: 1, description: 'L1 (Left Northmost)', imageUrl: './ucob/quickmarch-0.webp' },
+                    { role: 'Tank', party: 2, description: 'R1 (Right Northmost)', imageUrl: './ucob/quickmarch-0.webp' },
+                    { role: 'Healer', party: 1, description: 'L2 (Left 2nd Northmost)', imageUrl: './ucob/quickmarch-0.webp' },
+                    { role: 'Healer', party: 2, description: 'R2 (Right 2nd Northmost)', imageUrl: './ucob/quickmarch-0.webp' },
+                    { role: 'Melee', party: 1, description: 'L3 (Left 3rd Northmost)', imageUrl: './ucob/quickmarch-0.webp' },
+                    { role: 'Melee', party: 2, description: 'R3 (Right 3rd Northmost)', imageUrl: './ucob/quickmarch-0.webp' },
+                    { role: 'Ranged', party: 1, description: 'L4 (Left Southmost)', imageUrl: './ucob/quickmarch-0.webp' },
+                    { role: 'Ranged', party: 2, description: 'R4 (Left Southmost)', imageUrl: './ucob/quickmarch-0.webp' },
                 ]
             },
             {
                 mechanic: 'Earthshakers + Stack',
                 strats: [
-                    { role: 'Tank', party: 1, description: 'Take tether, go NW-ish', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: 'Take tether, go NE-ish', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: 'Take Earthshaker NW', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: 'Take Earthshaker NE', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: 'Stack SW\nIf you get Earthshaker, take it SE', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: 'Stack SW\nIf you get Earthshaker, take it SE', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: 'Stack SW\nIf you get Earthshaker, take it SE', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: 'Stack SW\nIf you get Earthshaker, take it SE', imageUrl: '' },
+                    { role: 'Tank', party: 1, description: 'Take tether, go NW-ish', imageUrl: './ucob/quickmarch-3.webp' },
+                    { role: 'Tank', party: 2, description: 'Take tether, go NE-ish', imageUrl: './ucob/quickmarch-3.webp' },
+                    { role: 'Healer', party: 1, description: 'Take Earthshaker NW', imageUrl: './ucob/quickmarch-3.webp' },
+                    { role: 'Healer', party: 2, description: 'Take Earthshaker NE', imageUrl: './ucob/quickmarch-3.webp' },
+                    { role: 'Melee', party: 1, description: 'Stack SW\nIf you get Earthshaker, take it SE', imageUrl: './ucob/quickmarch-3.webp' },
+                    { role: 'Melee', party: 2, description: 'Stack SW\nIf you get Earthshaker, take it SE', imageUrl: './ucob/quickmarch-3.webp' },
+                    { role: 'Ranged', party: 1, description: 'Stack SW\nIf you get Earthshaker, take it SE', imageUrl: './ucob/quickmarch-3.webp' },
+                    { role: 'Ranged', party: 2, description: 'Stack SW\nIf you get Earthshaker, take it SE', imageUrl: './ucob/quickmarch-3.webp' },
                 ]
             }
         ]
@@ -428,35 +428,31 @@ const allP3: PhaseStrats[] = [
         mechs: [
             {
                 mechanic: 'Puddles',
-                description: 'Run towards Nael',
+                description: 'Run towards Nael\nDPS CCW, Supports CW',
                 strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
+                    { role: 'Tank', party: 1, description: '', imageUrl: './ucob/blackfire-2.webp' },
+                    { role: 'Tank', party: 2, description: '', imageUrl: './ucob/blackfire-2.webp' },
+                    { role: 'Healer', party: 1, description: '', imageUrl: './ucob/blackfire-2.webp' },
+                    { role: 'Healer', party: 2, description: '', imageUrl: './ucob/blackfire-2.webp' },
+                    { role: 'Melee', party: 1, description: '', imageUrl: './ucob/blackfire-2.webp' },
+                    { role: 'Melee', party: 2, description: '', imageUrl: './ucob/blackfire-2.webp' },
+                    { role: 'Ranged', party: 1, description: '', imageUrl: './ucob/blackfire-2.webp' },
+                    { role: 'Ranged', party: 2, description: '', imageUrl: './ucob/blackfire-2.webp' },
                 ]
             },
             {
-                mechanic: 'Towers',
-                description: 'DPS CCW, Supports CW\nWait for 2 puddles before taking tower',
+                mechanic: 'Towers/Stack',
+                description: 'DPS CCW, Supports CW\nWait for 2 puddles before taking tower\nStack near the first Liquid Hell drop',
                 strats: [
-                    { role: 'Tank', party: 1, description: 'Tank takes tower closer to Nael', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: 'Tank takes tower closer to Nael', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: 'Healer takes tower closer to stack', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: 'Healer takes tower closer to stack', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: 'DPS towers use eyes', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: 'DPS towers use eyes', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: 'DPS towers use eyes', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: 'DPS towers use eyes', imageUrl: '' },
+                    { role: 'Tank', party: 1, description: 'Tank takes tower closer to Nael', imageUrl: './ucob/blackfire-4.webp' },
+                    { role: 'Tank', party: 2, description: 'Tank takes tower closer to Nael', imageUrl: './ucob/blackfire-4.webp' },
+                    { role: 'Healer', party: 1, description: 'Healer takes tower closer to stack', imageUrl: './ucob/blackfire-4.webp' },
+                    { role: 'Healer', party: 2, description: 'Healer takes tower closer to stack', imageUrl: './ucob/blackfire-4.webp' },
+                    { role: 'Melee', party: 1, description: 'DPS towers use eyes', imageUrl: './ucob/blackfire-4.webp' },
+                    { role: 'Melee', party: 2, description: 'DPS towers use eyes', imageUrl: './ucob/blackfire-4.webp' },
+                    { role: 'Ranged', party: 1, description: 'DPS towers use eyes', imageUrl: './ucob/blackfire-4.webp' },
+                    { role: 'Ranged', party: 2, description: 'DPS towers use eyes', imageUrl: './ucob/blackfire-4.webp' },
                 ]
-            },
-            {
-                mechanic: 'Stack',
-                description: 'Stack near the first Liquid Hell drop'
             }
         ]
     },
@@ -466,54 +462,48 @@ const allP3: PhaseStrats[] = [
         mechs: [
             {
                 mechanic: 'Quote',
-                strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
-                ]
+                description: 'Stack center',
+                imageUrl: './ucob/fellruin-0.webp'
             },
             {
                 mechanic: 'In -> Spread',
                 strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
+                    { role: 'Tank', party: 1, description: 'Stay in front of party to grab tethers', imageUrl: './ucob/fellruin-2.webp' },
+                    { role: 'Tank', party: 2, description: 'Stay in front of party to grab tethers', imageUrl: './ucob/fellruin-2.webp' },
+                    { role: 'Healer', party: 1, description: '', imageUrl: './ucob/fellruin-2.webp' },
+                    { role: 'Healer', party: 2, description: '', imageUrl: './ucob/fellruin-2.webp' },
+                    { role: 'Melee', party: 1, description: '', imageUrl: './ucob/fellruin-2.webp' },
+                    { role: 'Melee', party: 2, description: '', imageUrl: './ucob/fellruin-2.webp' },
+                    { role: 'Ranged', party: 1, description: '', imageUrl: './ucob/fellruin-2.webp' },
+                    { role: 'Ranged', party: 2, description: '', imageUrl: './ucob/fellruin-2.webp' },
                 ]
             },
             {
                 mechanic: 'Spread -> In',
+                description: 'Loose Quickmarch spread around mid facing Bahamut',
                 strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
+                    { role: 'Tank', party: 1, description: 'Grab tether', imageUrl: './ucob/fellruin-6.webp' },
+                    { role: 'Tank', party: 2, description: 'Grab tether', imageUrl: './ucob/fellruin-6.webp' },
+                    { role: 'Healer', party: 1, description: '', imageUrl: './ucob/fellruin-6.webp' },
+                    { role: 'Healer', party: 2, description: '', imageUrl: './ucob/fellruin-6.webp' },
+                    { role: 'Melee', party: 1, description: '', imageUrl: './ucob/fellruin-6.webp' },
+                    { role: 'Melee', party: 2, description: '', imageUrl: './ucob/fellruin-6.webp' },
+                    { role: 'Ranged', party: 1, description: '', imageUrl: './ucob/fellruin-6.webp' },
+                    { role: 'Ranged', party: 2, description: '', imageUrl: './ucob/fellruin-6.webp' },
                 ]
             },
             {
                 mechanic: 'Tethers + Stack',
+                description: 'Party in Neurolink opposite Bahamut\n❗Spread right after Aetheric Profusion cast',
                 strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
+                    { role: 'Tank', party: 1, description: 'Take tether, stand in Left Neurolink facing Bahamut', imageUrl: './ucob/fellruin-9.webp' },
+                    { role: 'Tank', party: 2, description: 'Take tether, stand in Right Neurolink facing Bahamut', imageUrl: './ucob/fellruin-9.webp' },
+                    { role: 'Healer', party: 1, description: 'Stand in Neurolink opposite Bahamut', imageUrl: './ucob/fellruin-9.webp' },
+                    { role: 'Healer', party: 2, description: 'Stand in Neurolink opposite Bahamut', imageUrl: './ucob/fellruin-9.webp' },
+                    { role: 'Melee', party: 1, description: 'Stand in Neurolink opposite Bahamut', imageUrl: './ucob/fellruin-9.webp' },
+                    { role: 'Melee', party: 2, description: 'Stand in Neurolink opposite Bahamut', imageUrl: './ucob/fellruin-9.webp' },
+                    { role: 'Ranged', party: 1, description: 'Stand in Neurolink opposite Bahamut', imageUrl: './ucob/fellruin-9.webp' },
+                    { role: 'Ranged', party: 2, description: 'Stand in Neurolink opposite Bahamut', imageUrl: './ucob/fellruin-9.webp' },
                 ]
             }
         ]
@@ -524,42 +514,28 @@ const allP3: PhaseStrats[] = [
         mechs: [
             {
                 mechanic: 'Dives',
+                description: 'Nael is new North\nStack center, can move as soon as markers appear\n❗Twisters when dive goes off',
+                imageUrl: '',
                 strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
+                    { role: 'Tank', party: 1, description: 'Towards Nael', imageUrl: './ucob/heavensfall-1.webp' },
+                    { role: 'Tank', party: 2, description: 'Towards Nael', imageUrl: './ucob/heavensfall-1.webp' },
+                    { role: 'Healer', party: 1, description: 'Left of bosses', imageUrl: './ucob/heavensfall-1.webp' },
+                    { role: 'Healer', party: 2, description: 'Right of bosses', imageUrl: './ucob/heavensfall-1.webp' },
+                    { role: 'Melee', party: 1, description: 'Left of bosses', imageUrl: './ucob/heavensfall-1.webp' },
+                    { role: 'Melee', party: 2, description: 'Right of bosses', imageUrl: './ucob/heavensfall-1.webp' },
+                    { role: 'Ranged', party: 1, description: 'Opposite Nael', imageUrl: './ucob/heavensfall-1.webp' },
+                    { role: 'Ranged', party: 2, description: 'Opposite Nael', imageUrl: './ucob/heavensfall-1.webp' },
                 ]
             },
             {
                 mechanic: 'Towers',
-                strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
-                ]
+                description: 'Bait pepperonis near the outside\nTowers are R1 R2 R3 R4 Under/CW, L1 L2 L3 L4 CCW\n❗Tower under Nael is R1 tower\nSafe distance is near Neurolinks',
+                imageUrl: './ucob/heavensfall-6.webp'
             },
             {
                 mechanic: 'Toilet',
-                strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
-                ]
+                description: '4 bleed puddles on random people\nSpiral inwards towards center for stack',
+                imageUrl: './ucob/heavensfall-12.webp'
             }
         ]
     },
@@ -569,55 +545,32 @@ const allP3: PhaseStrats[] = [
         mechs: [
             {
                 mechanic: 'Initial Spreads',
+                description: '❗1 is always NORTH\nQuickmarch spread facing North',
                 strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
+                    { role: 'Tank', party: 1, description: '', imageUrl: './ucob/tenstrike-0.webp' },
+                    { role: 'Tank', party: 2, description: '', imageUrl: './ucob/tenstrike-0.webp' },
+                    { role: 'Healer', party: 1, description: '', imageUrl: './ucob/tenstrike-0.webp' },
+                    { role: 'Healer', party: 2, description: '', imageUrl: './ucob/tenstrike-0.webp' },
+                    { role: 'Melee', party: 1, description: '', imageUrl: './ucob/tenstrike-0.webp' },
+                    { role: 'Melee', party: 2, description: '', imageUrl: './ucob/tenstrike-0.webp' },
+                    { role: 'Ranged', party: 1, description: '', imageUrl: './ucob/tenstrike-0.webp' },
+                    { role: 'Ranged', party: 2, description: '', imageUrl: './ucob/tenstrike-0.webp' },
                 ]
             },
             {
                 mechanic: 'First Hatches',
-                strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
-                ]
+                description: 'Use your eyes, one Hatch per Neurolink\n❗Spread for Nael dives\nIf no marker, stay away from Hatch explosions',
+                imageUrl: './ucob/tenstrike-2.webp'
             },
             {
                 mechanic: 'Second Hatches',
-                strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
-                ]
+                description: `Hatch players soak, then move straight backwards towards wall\nJump to signal that you're taking a second Hatch\nApproach hatch from side to soak`,
+                imageUrl: './ucob/tenstrike-6.webp'
             },
             {
                 mechanic: 'Earthshakers',
-                strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
-                ]
+                description: `1 Marker is safe\nStand on corners of 1 Marker to signal 2nd Earthshakers`,
+                imageUrl: './ucob/tenstrike-9.webp'
             }
         ]
     },
@@ -627,55 +580,135 @@ const allP3: PhaseStrats[] = [
         mechs: [
             {
                 mechanic: 'Run',
-                strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
-                ]
+                description: 'Bahamut on Cardinal = CCW\nBahamut on Intercard = CW\nParty opposite Bahamut unless Nael is there, then one dragon over in the direction you run',
+                imageUrl: './ucob/octet-1.webp'
             },
             {
                 mechanic: 'Keep Running',
-                strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
-                ]
+                description: '❗Sprint after 2nd dive\nMove center after Bahamut (orange) marker appears\nTank LB3 when Bahamut dives',
+                imageUrl: './ucob/octet-5.webp'
             },
             {
                 mechanic: 'Twin Bait',
-                strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
-                ]
+                description: `If you didn't get a marker, bait Twin CCW against the wall`,
+                imageUrl: './ucob/octet-9.webp'
             },
             {
                 mechanic: 'Towers + Twisters',
+                description: `Twisters spawn when towers go off\nArm's Length/Surecast just in case\n❗Don't run into a twister afterwards`,
+                imageUrl: './ucob/octet-11.webp'
+            }
+        ]
+    }
+]
+
+const allP4: PhaseStrats[] = [
+    {
+        phaseName: 'Adds: Mechanic Order',
+        tag: 'p4',
+        description: 'Mini Busters -> Liquid Hells\nHatch -> Twister\nQuote -> Twister\nMegaflare\n❗Swap\nMini Busters -> Liquid Hells\nHatch -> Twister\nQuote -> Twister\n❗Swap\nMegaflare\nEnrage',
+    },
+    {
+        phaseName: 'Adds: Start',
+        tag: 'p4',
+        mechs: [
+            {
+                mechanic: 'Spawn',
+                description: 'Tank adds between 1 and 3',
+                imageUrl: './ucob/adds-2.webp',
+            },
+            {
+                mechanic: 'Liquid Hells',
                 strats: [
-                    { role: 'Tank', party: 1, description: '', imageUrl: '' },
-                    { role: 'Tank', party: 2, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 1, description: '', imageUrl: '' },
-                    { role: 'Healer', party: 2, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 1, description: '', imageUrl: '' },
-                    { role: 'Melee', party: 2, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 1, description: '', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: '', imageUrl: '' },
+                    { role: 'Tank', party: 1, description: '', imageUrl: './ucob/adds-4.webp' },
+                    { role: 'Tank', party: 2, description: '', imageUrl: './ucob/adds-4.webp' },
+                    { role: 'Healer', party: 1, description: `Don't go too far from bosses`, imageUrl: './ucob/adds-4.webp' },
+                    { role: 'Healer', party: 2, description: `Don't go too far from bosses`, imageUrl: './ucob/adds-4.webp' },
+                    { role: 'Melee', party: 1, description: `Don't go too far from bosses`, imageUrl: './ucob/adds-4.webp' },
+                    { role: 'Melee', party: 2, description: `Don't go too far from bosses`, imageUrl: './ucob/adds-4.webp' },
+                    { role: 'Ranged', party: 1, description: `Phys Ranged bait Liquid Hells, end up near 2`, imageUrl: './ucob/adds-4.webp' },
+                    { role: 'Ranged', party: 2, description: `Phys Ranged bait Liquid Hells, end up near 2`, imageUrl: './ucob/adds-4.webp' },
                 ]
+            },
+            {
+                mechanic: 'Hatch + Twisters',
+                description: '❗Close Hatches (1 & 3) are Hatch then Twister\n❗Far Hatch (2) is Twister then Hatch',
+                strats: [
+                    { role: 'Tank', party: 1, description: '', imageUrl: './ucob/adds-6.webp' },
+                    { role: 'Tank', party: 2, description: '', imageUrl: './ucob/adds-6.webp' },
+                    { role: 'Healer', party: 1, description: '', imageUrl: './ucob/adds-6.webp' },
+                    { role: 'Healer', party: 2, description: '', imageUrl: './ucob/adds-6.webp' },
+                    { role: 'Melee', party: 1, description: 'Always go to 1 marker if Hatch', imageUrl: './ucob/adds-6.webp' },
+                    { role: 'Melee', party: 2, description: 'Always go to 3 marker if Hatch', imageUrl: './ucob/adds-6.webp' },
+                    { role: 'Ranged', party: 1, description: 'Phys Ranged always go to 2 marker, Caster flex', imageUrl: './ucob/adds-6.webp' },
+                    { role: 'Ranged', party: 2, description: 'Phys Ranged always go to 2 marker, Caster flex', imageUrl: './ucob/adds-6.webp' },
+                ]
+            },
+            {
+                mechanic: 'Triple Quote + Twister',
+                description: '❗Stack is always Mid',
+                strats: [
+                    { role: 'Tank', party: 1, description: 'Spread far North, Left side', imageUrl: './ucob/adds-11.webp' },
+                    { role: 'Tank', party: 2, description: 'Spread far North, Right side', imageUrl: './ucob/adds-11.webp' },
+                    { role: 'Healer', party: 1, description: 'Spread towards East', imageUrl: './ucob/adds-11.webp' },
+                    { role: 'Healer', party: 2, description: 'Spread towards West', imageUrl: './ucob/adds-11.webp' },
+                    { role: 'Melee', party: 1, description: 'Spread towards 1 marker Neurolink', imageUrl: './ucob/adds-11.webp' },
+                    { role: 'Melee', party: 2, description: 'Spread towards 3 marker Neurolink', imageUrl: './ucob/adds-11.webp' },
+                    { role: 'Ranged', party: 1, description: 'Spread far Left side', imageUrl: './ucob/adds-11.webp' },
+                    { role: 'Ranged', party: 2, description: 'Spread far Right side', imageUrl: './ucob/adds-11.webp' },
+                ]
+            }
+        ]
+    },
+    {
+        phaseName: 'Adds: Swap',
+        tag: 'p4',
+        mechs: [
+            {
+                mechanic: 'Swap',
+                description: 'Tanks only use Provoke, no Shirk normally',
+                imageUrl: './ucob/adds-15.webp',
+            }
+        ]
+    }
+]
+
+const allP5: PhaseStrats[] = [
+    {
+        phaseName: 'Golden: Mechanic Order',
+        tag: 'p5',
+        description: '1. Morn Afah -> Akh Morn -> Exaflares\n2.❗Akh Morn -> Morn Afah -> Exaflares\n3. Morn Afah -> Akh Morn -> Exaflares\n4. Morn Afah -> Akh Morn -> Exaflares\n5. Morn Afah -> Enrage',
+    },
+    {
+        phaseName: 'Golden: Morn Afah',
+        tag: 'p5',
+        mechs: [
+            {
+                mechanic: 'Morn Afah (Stack)',
+                description: 'Take Morn Afahs in center of boss hitbox',
+                imageUrl: './ucob/golden-0.webp'
+            }
+        ]
+    },
+    {
+        phaseName: 'Golden: Akh Morn',
+        tag: 'p5',
+        mechs: [
+            {
+                mechanic: 'Akh Morn (Shared Tankbuster)',
+                description: 'Take Akh Morns where boss is already facing',
+                imageUrl: './ucob/golden-1.webp'
+            }
+        ]
+    },
+    {
+        phaseName: 'Golden: Exaflares',
+        tag: 'p5',
+        mechs: [
+            {
+                mechanic: 'Exaflares',
+                description: 'Exaflares can spawn on any card/intercard',
+                imageUrl: './ucob/golden-3.webp'
             }
         ]
     }
@@ -704,5 +737,7 @@ const naurStrat: Strat = {
         ...allP1,
         ...allP2,
         ...allP3,
+        ...allP4,
+        ...allP5,
     ]
 }

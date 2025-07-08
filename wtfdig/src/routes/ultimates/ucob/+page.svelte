@@ -361,6 +361,7 @@
 					individualStrat={individualStrat}
 					spotlight={spotlight}
 					alignment={alignment}
+					tabTags={{"P1: Twintania": ['setup','p1'], "P2: Nael": ['p2'], "P3: Bahamut Prime": ['p3'], "P4: Adds": ['p4'], "P5: Golden": ['p5']}}
 				/>
 			</div>
 			{/if}
