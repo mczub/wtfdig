@@ -34,6 +34,7 @@
         </header>
         <article>
             <div>
+                <p>7/8/2025: updated toxic lightning spreads for m6s</p>
                 <p>7/7/2025: we got cob; also each fight saves your role to localstorage, also adjusted some layout stuff on cheatsheets</p>
                 <p>6/9/2025: added a second line to m8s fering for people who don't understand what color partners means</p>
                 <p>5/19/2025: add second pattern to m6s toxic/hector river</p>
