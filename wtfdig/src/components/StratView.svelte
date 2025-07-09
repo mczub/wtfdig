@@ -106,7 +106,7 @@
 </div>
 {/if}
 {#if tabTags}
-    <Tabs value={tab} onValueChange={(e) => (tab = e.value)} classes="m-0" listMargin="mb-1">
+    <Tabs value={tab} onValueChange={(e) => (tab = e.value)} classes="m-0" listMargin="mb-1" listClasses="flex-wrap">
         {#snippet list()}
             {#each Object.keys(tabTags) as tabName}
                 <Tabs.Control value={tabName}>{tabName}</Tabs.Control>
