@@ -132,7 +132,7 @@ const setup: PhaseStrats[] = [
                     { role: 'Melee', party: 1, description: 'L3 (Left 3rd Northmost)', imageUrl: '' },
                     { role: 'Melee', party: 2, description: 'R3 (Right 3rd Northmost)', imageUrl: '' },
                     { role: 'Ranged', party: 1, description: 'L4 (Left Southmost)', imageUrl: '' },
-                    { role: 'Ranged', party: 2, description: 'R4 (Left Southmost)', imageUrl: '' },
+                    { role: 'Ranged', party: 2, description: 'R4 (Right Southmost)', imageUrl: '' },
                 ]
             }
         ]
@@ -404,7 +404,7 @@ const allP3: PhaseStrats[] = [
                     { role: 'Melee', party: 1, description: 'L3 (Left 3rd Northmost)', imageUrl: './ucob/quickmarch-0.webp' },
                     { role: 'Melee', party: 2, description: 'R3 (Right 3rd Northmost)', imageUrl: './ucob/quickmarch-0.webp' },
                     { role: 'Ranged', party: 1, description: 'L4 (Left Southmost)', imageUrl: './ucob/quickmarch-0.webp' },
-                    { role: 'Ranged', party: 2, description: 'R4 (Left Southmost)', imageUrl: './ucob/quickmarch-0.webp' },
+                    { role: 'Ranged', party: 2, description: 'R4 (Right Southmost)', imageUrl: './ucob/quickmarch-0.webp' },
                 ]
             },
             {
