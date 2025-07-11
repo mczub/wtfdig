@@ -202,6 +202,10 @@
 		let roleAbbrev = '';
 		if (role === 'Tank') {
 			roleAbbrev = party === 1 ? 'MT' : 'OT';
+        } else if (role === 'Pranged') {
+            roleAbbrev = 'Phys Ranged';
+		} else if (role === 'Caster') {
+            roleAbbrev = 'Caster';
 		} else {
 			roleAbbrev = role.charAt(0).toUpperCase() + party.toString();
 		}
@@ -284,7 +288,8 @@
 						<Segment.Item value="Tank">Tank</Segment.Item>
 						<Segment.Item value="Healer">Healer</Segment.Item>
 						<Segment.Item value="Melee">Melee</Segment.Item>
-						<Segment.Item value="Ranged">Ranged</Segment.Item>
+						<Segment.Item value="Pranged">Phys Ranged</Segment.Item>
+                        <Segment.Item value="Caster">Caster</Segment.Item>
 					</Segment>
 				</div>
 				<div>

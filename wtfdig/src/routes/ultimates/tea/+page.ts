@@ -8,7 +8,7 @@ export const load: PageLoad = ({params}) => {
     }
 }
 
-export type Role = 'Tank' | 'Healer' | 'Melee' | 'Ranged';
+export type Role = 'Tank' | 'Healer' | 'Shield' | 'Regen' | 'Melee' | 'Ranged' | 'Pranged' | 'Caster';
 export type Alignment = 'original' | 'truenorth' | 'relative';
 export type StratRecord = Record<string, string | Record<string, string | PlayerMechStrat>>;
 
@@ -78,8 +78,10 @@ const p1: PhaseStrats[] = [
                     { role: 'Healer', party: 2, description: 'Stand between East and South tornadoes', imageUrl: './tea/living-liquid-1.webp' },
                     { role: 'Melee', party: 1, description: 'Hit either Liquid or Hand', imageUrl: './tea/living-liquid-1.webp' },
                     { role: 'Melee', party: 2, description: 'Hit either Liquid or Hand', imageUrl: './tea/living-liquid-1.webp' },
-                    { role: 'Ranged', party: 1, description: 'Bait West tornado, point protean North', imageUrl: './tea/living-liquid-1.webp' },
-                    { role: 'Ranged', party: 2, description: 'Bait East tornado, point protean North', imageUrl: './tea/living-liquid-1.webp' },
+                    { role: 'Pranged', party: 1, description: 'Bait East tornado, point protean North', imageUrl: './tea/living-liquid-1.webp' },
+                    { role: 'Pranged', party: 2, description: 'Bait East tornado, point protean North', imageUrl: './tea/living-liquid-1.webp' },
+                    { role: 'Caster', party: 1, description: 'Bait West tornado, point protean North', imageUrl: './tea/living-liquid-1.webp' },
+                    { role: 'Caster', party: 2, description: 'Bait West tornado, point protean North', imageUrl: './tea/living-liquid-1.webp' },
                 ]
             },
             {
@@ -91,8 +93,10 @@ const p1: PhaseStrats[] = [
                     { role: 'Healer', party: 2, description: 'Stand between East and South tornadoes', imageUrl: './tea/living-liquid-2.webp' },
                     { role: 'Melee', party: 1, description: 'Hit either Liquid or Hand', imageUrl: './tea/living-liquid-2.webp' },
                     { role: 'Melee', party: 2, description: 'Hit either Liquid or Hand', imageUrl: './tea/living-liquid-2.webp' },
-                    { role: 'Ranged', party: 1, description: 'Bait West protean, step out, then step back in', imageUrl: './tea/living-liquid-2.webp' },
-                    { role: 'Ranged', party: 2, description: 'Bait East protean, step out, then step back in', imageUrl: './tea/living-liquid-2.webp' },
+                    { role: 'Pranged', party: 1, description: 'Bait East protean, step out, then step back in', imageUrl: './tea/living-liquid-2.webp' },
+                    { role: 'Pranged', party: 2, description: 'Bait East protean, step out, then step back in', imageUrl: './tea/living-liquid-2.webp' },
+                    { role: 'Caster', party: 1, description: 'Bait West protean, step out, then step back in', imageUrl: './tea/living-liquid-2.webp' },
+                    { role: 'Caster', party: 2, description: 'Bait West protean, step out, then step back in', imageUrl: './tea/living-liquid-2.webp' },
                 ]
             },
         ]
@@ -111,8 +115,10 @@ const p1: PhaseStrats[] = [
                     { role: 'Healer', party: 2, description: 'Stand between East and South tornadoes', imageUrl: './tea/living-liquid-3.webp' },
                     { role: 'Melee', party: 1, description: 'Take doll in Southwest quadrant\nStand directly on doll to avoid bait issues', imageUrl: './tea/living-liquid-3.webp' },
                     { role: 'Melee', party: 2, description: 'Take doll in Southeast quadrant\nStand directly on doll to avoid bait issues', imageUrl: './tea/living-liquid-3.webp' },
-                    { role: 'Ranged', party: 1, description: 'Take doll in Northwest quadrant', imageUrl: './tea/living-liquid-3.webp' },
-                    { role: 'Ranged', party: 2, description: 'Take doll in Northeast quadrant', imageUrl: './tea/living-liquid-3.webp' },
+                    { role: 'Pranged', party: 1, description: 'Take doll in Northeast quadrant', imageUrl: './tea/living-liquid-3.webp' },
+                    { role: 'Pranged', party: 2, description: 'Take doll in Northeast quadrant', imageUrl: './tea/living-liquid-3.webp' },
+                    { role: 'Caster', party: 1, description: 'Take doll in Northwest quadrant', imageUrl: './tea/living-liquid-3.webp' },
+                    { role: 'Caster', party: 2, description: 'Take doll in Northwest quadrant', imageUrl: './tea/living-liquid-3.webp' },
                 ]
             },
             {
@@ -124,8 +130,10 @@ const p1: PhaseStrats[] = [
                     { role: 'Healer', party: 2, description: 'Move Center to heal', imageUrl: './tea/living-liquid-4.webp' },
                     { role: 'Melee', party: 1, description: 'Feed after first Exhaust\nAvoid orbs', imageUrl: './tea/living-liquid-4.webp' },
                     { role: 'Melee', party: 2, description: 'Feed after first Exhaust\nAvoid orbs', imageUrl: './tea/living-liquid-4.webp' },
-                    { role: 'Ranged', party: 1, description: 'Move near Center for heals', imageUrl: './tea/living-liquid-4.webp' },
-                    { role: 'Ranged', party: 2, description: 'Move near Center for heals', imageUrl: './tea/living-liquid-4.webp' },
+                    { role: 'Pranged', party: 1, description: 'Move near Center for heals', imageUrl: './tea/living-liquid-4.webp' },
+                    { role: 'Pranged', party: 2, description: 'Move near Center for heals', imageUrl: './tea/living-liquid-4.webp' },
+                    { role: 'Caster', party: 1, description: 'Move near Center for heals', imageUrl: './tea/living-liquid-4.webp' },
+                    { role: 'Caster', party: 2, description: 'Move near Center for heals', imageUrl: './tea/living-liquid-4.webp' },
                 ]
             },
             {
@@ -137,8 +145,10 @@ const p1: PhaseStrats[] = [
                     { role: 'Healer', party: 2, description: 'Stand North-ish to avoid cleaves', imageUrl: './tea/living-liquid-6.webp' },
                     { role: 'Melee', party: 1, description: 'Stand North-ish to avoid cleaves', imageUrl: './tea/living-liquid-6.webp' },
                     { role: 'Melee', party: 2, description: 'Stand North-ish to avoid cleaves', imageUrl: './tea/living-liquid-6.webp' },
-                    { role: 'Ranged', party: 1, description: 'Feed after second Exhaust\nMake sure to avoid cleaves', imageUrl: './tea/living-liquid-6.webp' },
-                    { role: 'Ranged', party: 2, description: 'Feed after second Exhaust\nMake sure to avoid cleaves', imageUrl: './tea/living-liquid-6.webp' },
+                    { role: 'Pranged', party: 1, description: 'Feed after second Exhaust\nMake sure to avoid cleaves', imageUrl: './tea/living-liquid-6.webp' },
+                    { role: 'Pranged', party: 2, description: 'Feed after second Exhaust\nMake sure to avoid cleaves', imageUrl: './tea/living-liquid-6.webp' },
+                    { role: 'Caster', party: 1, description: 'Feed after second Exhaust\nMake sure to avoid cleaves', imageUrl: './tea/living-liquid-6.webp' },
+                    { role: 'Caster', party: 2, description: 'Feed after second Exhaust\nMake sure to avoid cleaves', imageUrl: './tea/living-liquid-6.webp' },
                 ]
             },
         ]
@@ -157,8 +167,10 @@ const p1: PhaseStrats[] = [
                     { role: 'Healer', party: 2, description: 'Bait boss protean North', imageUrl: './tea/living-liquid-7.webp' },
                     { role: 'Melee', party: 1, description: 'Bait boss protean North', imageUrl: './tea/living-liquid-7.webp' },
                     { role: 'Melee', party: 2, description: 'Bait boss protean North', imageUrl: './tea/living-liquid-7.webp' },
-                    { role: 'Ranged', party: 1, description: 'Bait boss protean North', imageUrl: './tea/living-liquid-7.webp' },
-                    { role: 'Ranged', party: 2, description: 'Bait boss protean North', imageUrl: './tea/living-liquid-7.webp' },
+                    { role: 'Pranged', party: 1, description: 'Bait boss protean North', imageUrl: './tea/living-liquid-7.webp' },
+                    { role: 'Pranged', party: 2, description: 'Bait boss protean North', imageUrl: './tea/living-liquid-7.webp' },
+                    { role: 'Caster', party: 1, description: 'Bait boss protean North', imageUrl: './tea/living-liquid-7.webp' },
+                    { role: 'Caster', party: 2, description: 'Bait boss protean North', imageUrl: './tea/living-liquid-7.webp' },
                 ]
             },
             {
@@ -171,8 +183,10 @@ const p1: PhaseStrats[] = [
                     { role: 'Healer', party: 2, description: 'Move out and Northeast to bait puddle', imageUrl: './tea/living-liquid-8.webp' },
                     { role: 'Melee', party: 1, description: 'Bait boss protean West', imageUrl: './tea/living-liquid-8.webp' },
                     { role: 'Melee', party: 2, description: 'Bait boss protean East', imageUrl: './tea/living-liquid-8.webp' },
-                    { role: 'Ranged', party: 1, description: 'Move out and Northwest to bait puddle', imageUrl: './tea/living-liquid-8.webp' },
-                    { role: 'Ranged', party: 2, description: 'Move out and Northeast to bait puddle', imageUrl: './tea/living-liquid-8.webp' },
+                    { role: 'Pranged', party: 1, description: 'Move out and Northeast to bait puddle', imageUrl: './tea/living-liquid-8.webp' },
+                    { role: 'Pranged', party: 2, description: 'Move out and Northeast to bait puddle', imageUrl: './tea/living-liquid-8.webp' },
+                    { role: 'Caster', party: 1, description: 'Move out and Northwest to bait puddle', imageUrl: './tea/living-liquid-8.webp' },
+                    { role: 'Caster', party: 2, description: 'Move out and Northwest to bait puddle', imageUrl: './tea/living-liquid-8.webp' },
                 ]
             },
             {
@@ -185,8 +199,10 @@ const p1: PhaseStrats[] = [
                     { role: 'Healer', party: 2, description: 'Bait boss protean Northeast', imageUrl: './tea/living-liquid-9.webp' },
                     { role: 'Melee', party: 1, description: 'Stand max melee Southwest', imageUrl: './tea/living-liquid-9.webp' },
                     { role: 'Melee', party: 2, description: 'Stand max melee Southeast', imageUrl: './tea/living-liquid-9.webp' },
-                    { role: 'Ranged', party: 1, description: 'Bait boss protean West', imageUrl: './tea/living-liquid-9.webp' },
-                    { role: 'Ranged', party: 2, description: 'Bait boss protean East', imageUrl: './tea/living-liquid-9.webp' },
+                    { role: 'Pranged', party: 1, description: 'Bait boss protean East', imageUrl: './tea/living-liquid-9.webp' },
+                    { role: 'Pranged', party: 2, description: 'Bait boss protean East', imageUrl: './tea/living-liquid-9.webp' },
+                    { role: 'Caster', party: 1, description: 'Bait boss protean West', imageUrl: './tea/living-liquid-9.webp' },
+                    { role: 'Caster', party: 2, description: 'Bait boss protean West', imageUrl: './tea/living-liquid-9.webp' },
                 ]
             },
             {
@@ -210,8 +226,10 @@ const p1: PhaseStrats[] = [
                     { role: 'Healer', party: 2, description: 'Bait boss protean South', imageUrl: './tea/living-liquid-12.webp' },
                     { role: 'Melee', party: 1, description: 'Bait boss protean South', imageUrl: './tea/living-liquid-12.webp' },
                     { role: 'Melee', party: 2, description: 'Bait boss protean South', imageUrl: './tea/living-liquid-12.webp' },
-                    { role: 'Ranged', party: 1, description: 'Bait boss protean North', imageUrl: './tea/living-liquid-12.webp' },
-                    { role: 'Ranged', party: 2, description: 'Bait boss protean South', imageUrl: './tea/living-liquid-12.webp' },
+                    { role: 'Pranged', party: 1, description: 'Bait boss protean South', imageUrl: './tea/living-liquid-12.webp' },
+                    { role: 'Pranged', party: 2, description: 'Bait boss protean South', imageUrl: './tea/living-liquid-12.webp' },
+                    { role: 'Caster', party: 1, description: 'Bait boss protean North', imageUrl: './tea/living-liquid-12.webp' },
+                    { role: 'Caster', party: 2, description: 'Bait boss protean North', imageUrl: './tea/living-liquid-12.webp' },
                 ]
             },
             {
@@ -224,8 +242,10 @@ const p1: PhaseStrats[] = [
                     { role: 'Healer', party: 2, description: 'Move Southwest and bait puddles + South tornado protean towards West', imageUrl: './tea/living-liquid-14.webp' },
                     { role: 'Melee', party: 1, description: 'Bait boss protean South', imageUrl: './tea/living-liquid-14.webp' },
                     { role: 'Melee', party: 2, description: 'Bait boss protean East', imageUrl: './tea/living-liquid-14.webp' },
-                    { role: 'Ranged', party: 1, description: 'Move Northwest and bait puddles + West tornado protean towards arena North', imageUrl: './tea/living-liquid-14.webp' },
-                    { role: 'Ranged', party: 2, description: 'Move Southeast and bait puddles + East tornado protean towards South', imageUrl: './tea/living-liquid-14.webp' },
+                    { role: 'Pranged', party: 1, description: 'Move Southeast and bait puddles + East tornado protean towards South', imageUrl: './tea/living-liquid-14.webp' },
+                    { role: 'Pranged', party: 2, description: 'Move Southeast and bait puddles + East tornado protean towards South', imageUrl: './tea/living-liquid-14.webp' },
+                    { role: 'Caster', party: 1, description: 'Move Northwest and bait puddles + West tornado protean towards arena North', imageUrl: './tea/living-liquid-14.webp' },
+                    { role: 'Caster', party: 2, description: 'Move Northwest and bait puddles + West tornado protean towards arena North', imageUrl: './tea/living-liquid-14.webp' },
                 ]
             },
             {
@@ -238,8 +258,10 @@ const p1: PhaseStrats[] = [
                     { role: 'Healer', party: 2, description: 'Bait boss protean South', imageUrl: './tea/living-liquid-15.webp' },
                     { role: 'Melee', party: 1, description: 'Stand max melee Southeast, get ready to bait South tornado protean', imageUrl: './tea/living-liquid-15.webp' },
                     { role: 'Melee', party: 2, description: 'Stand max melee Northeast, get ready to bait East tornado protean', imageUrl: './tea/living-liquid-15.webp' },
-                    { role: 'Ranged', party: 1, description: 'Bait boss protean West', imageUrl: './tea/living-liquid-15.webp' },
-                    { role: 'Ranged', party: 2, description: 'Bait boss protean East', imageUrl: './tea/living-liquid-15.webp' },
+                    { role: 'Pranged', party: 1, description: 'Bait boss protean East', imageUrl: './tea/living-liquid-15.webp' },
+                    { role: 'Pranged', party: 2, description: 'Bait boss protean East', imageUrl: './tea/living-liquid-15.webp' },
+                    { role: 'Caster', party: 1, description: 'Bait boss protean West', imageUrl: './tea/living-liquid-15.webp' },
+                    { role: 'Caster', party: 2, description: 'Bait boss protean West', imageUrl: './tea/living-liquid-15.webp' },
                 ]
             },
             {
@@ -252,8 +274,10 @@ const p1: PhaseStrats[] = [
                     { role: 'Healer', party: 2, description: 'Bait boss protean South', imageUrl: './tea/living-liquid-16.webp' },
                     { role: 'Melee', party: 1, description: 'Stand Southeast, bait South tornado protean towards East', imageUrl: './tea/living-liquid-16.webp' },
                     { role: 'Melee', party: 2, description: 'Stand Northeast, bait East tornado protean towards North', imageUrl: './tea/living-liquid-16.webp' },
-                    { role: 'Ranged', party: 1, description: 'Hang out near center', imageUrl: './tea/living-liquid-16.webp' },
-                    { role: 'Ranged', party: 2, description: 'Hang out near center', imageUrl: './tea/living-liquid-16.webp' },
+                    { role: 'Pranged', party: 1, description: 'Hang out near center', imageUrl: './tea/living-liquid-16.webp' },
+                    { role: 'Pranged', party: 2, description: 'Hang out near center', imageUrl: './tea/living-liquid-16.webp' },
+                    { role: 'Caster', party: 1, description: 'Hang out near center', imageUrl: './tea/living-liquid-16.webp' },
+                    { role: 'Caster', party: 2, description: 'Hang out near center', imageUrl: './tea/living-liquid-16.webp' },
                 ]
             },
         ]
@@ -307,10 +331,295 @@ const intermission1: PhaseStrats[] = [
 
 const p2: PhaseStrats[] = [
     {
-        phaseName: 'P2: BJCC',
+        phaseName: 'BJCC: Start + Chakrams + First Pass',
         tag: 'p2',
-        mechs: []
-    }
+        mechs: [
+            {
+                mechanic: 'Starting Spots',
+                description: 'Clock spots, stand on the green ring',
+                strats: [
+                    { role: 'Tank', party: 1, description: `❗Provoke BJ and center boss before clock\nNorth`, imageUrl: './tea/bjcc-1.webp' },
+                    { role: 'Tank', party: 2, description: '❗Provoke CC and center boss before clock\nSouth', imageUrl: './tea/bjcc-1.webp' },
+                    { role: 'Healer', party: 1, description: 'West', imageUrl: './tea/bjcc-1.webp' },
+                    { role: 'Healer', party: 2, description: 'East', imageUrl: './tea/bjcc-1.webp' },
+                    { role: 'Melee', party: 1, description: 'Northeast', imageUrl: './tea/bjcc-1.webp' },
+                    { role: 'Melee', party: 2, description: 'Northwest', imageUrl: './tea/bjcc-1.webp' },
+                    { role: 'Pranged', party: 1, description: 'Southwest', imageUrl: './tea/bjcc-1.webp' },
+                    { role: 'Pranged', party: 2, description: 'Southwest', imageUrl: './tea/bjcc-1.webp' },
+                    { role: 'Caster', party: 1, description: 'Southeast', imageUrl: './tea/bjcc-1.webp' },
+                    { role: 'Caster', party: 2, description: 'Southeast', imageUrl: './tea/bjcc-1.webp' },
+                ]
+            },
+            {
+                mechanic: 'Chakrams',
+                description: `2 Chakrams outside arena opposite each other\nMove to edge of arena to bait explosions\n❗Don't be in the path of the chakrams going through mid\nMove back into center, don't touch Nisis`,
+                imageUrl: './tea/bjcc-6.webp'
+            },
+            {
+                mechanic: 'First Nisi Pass',
+                description: `After Photon, DPS rotate CCW to pass Nisi to/from Support`,
+                imageUrl: './tea/bjcc-8.webp'
+            },
+        ]
+    },
+    {
+        phaseName: 'BJCC: Water/Lightning 1',
+        tag: 'p2',
+        mechs: [
+            {
+                mechanic: 'Setup',
+                strats: [
+                    { role: 'Tank', party: 1, description: `Tank BJ North near A marker`, imageUrl: './tea/bjcc-9.webp' },
+                    { role: 'Tank', party: 2, description: 'Take CC South and point South to bait Spin Crusher', imageUrl: './tea/bjcc-9.webp' },
+                    { role: 'Healer', party: 1, description: 'If Water: stand on D marker\nIf no Water: stand N or E of Water', imageUrl: './tea/bjcc-9.webp' },
+                    { role: 'Healer', party: 2, description: 'If Water: stand on D marker\nIf no Water: stand N or E of Water', imageUrl: './tea/bjcc-9.webp' },
+                    { role: 'Melee', party: 1, description: 'If Lightning: stand next to BJ Tank (MT)\nIf no Lightning: stand near mid and keep hitting BJ', imageUrl: './tea/bjcc-9.webp' },
+                    { role: 'Melee', party: 2, description: 'If Lightning: stand next to BJ Tank (MT)\nIf no Lightning: stand near mid and keep hitting BJ', imageUrl: './tea/bjcc-9.webp' },
+                    { role: 'Pranged', party: 1, description: 'If Lightning: loop around CW behind water stack and stand next to MT\nIf no Lightning: stand South of Water stack on D', imageUrl: './tea/bjcc-9.webp' },
+                    { role: 'Pranged', party: 2, description: 'If Lightning: loop around CW behind water stack and stand next to MT\nIf no Lightning: stand South of Water stack on D', imageUrl: './tea/bjcc-9.webp' },
+                    { role: 'Caster', party: 1, description: 'If Lightning: stand next to BJ Tank (MT)\nIf no Lightning: stand SE of Water stack on D', imageUrl: './tea/bjcc-9.webp' },
+                    { role: 'Caster', party: 2, description: 'If Lightning: stand next to BJ Tank (MT)\nIf no Lightning: stand SE of Water stack on D', imageUrl: './tea/bjcc-9.webp' },
+                ]
+            },
+            {
+                mechanic: 'Resolution',
+                description: 'Water + Lightning debuffs get transferred to a random person in that stack\nMake sure to avoid car crashes',
+                strats: [
+                    { role: 'Tank', party: 1, description: 'Keep tanking BJ on A', imageUrl: './tea/bjcc-11.webp' },
+                    { role: 'Tank', party: 2, description: 'Stay S, get ready to bait mines', imageUrl: './tea/bjcc-11.webp' },
+                    { role: 'Healer', party: 1, description: 'Move mid to prepare for Enumerations', imageUrl: './tea/bjcc-11.webp' },
+                    { role: 'Healer', party: 2, description: 'Move mid to prepare for Enumerations', imageUrl: './tea/bjcc-11.webp' },
+                    { role: 'Melee', party: 1, description: 'Move mid to prepare for Enumerations', imageUrl: './tea/bjcc-11.webp' },
+                    { role: 'Melee', party: 2, description: 'Move mid to prepare for Enumerations', imageUrl: './tea/bjcc-11.webp' },
+                    { role: 'Pranged', party: 1, description: 'Move South to prepare to bait mines with OT', imageUrl: './tea/bjcc-11.webp' },
+                    { role: 'Pranged', party: 2, description: 'Move South to prepare to bait mines with OT', imageUrl: './tea/bjcc-11.webp' },
+                    { role: 'Caster', party: 1, description: 'Move mid to prepare for Enumerations', imageUrl: './tea/bjcc-11.webp' },
+                    { role: 'Caster', party: 2, description: 'Move mid to prepare for Enumerations', imageUrl: './tea/bjcc-11.webp' },
+                ]
+            },
+        ]
+    },
+    {
+        phaseName: 'BJCC: Enumerations',
+        tag: 'p2',
+        mechs: [
+            {
+                mechanic: 'Missiles + Mine Baits',
+                description: 'BJ shoots missiles then mines at 2 furthest players (OT and Phys Ranged)',
+                strats: [
+                    { role: 'Tank', party: 1, description: 'Keep tanking BJ on A', imageUrl: './tea/bjcc-13.webp' },
+                    { role: 'Tank', party: 2, description: 'Start on South wall, West of Phys Ranged\nBait Missile puddle then step North to bait Mine', imageUrl: './tea/bjcc-13.webp' },
+                    { role: 'Healer', party: 1, description: 'Preposition for Enumerations', imageUrl: './tea/bjcc-13.webp' },
+                    { role: 'Healer', party: 2, description: 'Preposition for Enumerations', imageUrl: './tea/bjcc-13.webp' },
+                    { role: 'Melee', party: 1, description: 'Preposition for Enumerations', imageUrl: './tea/bjcc-13.webp' },
+                    { role: 'Melee', party: 2, description: 'Preposition for Enumerations', imageUrl: './tea/bjcc-13.webp' },
+                    { role: 'Pranged', party: 1, description: 'Start on South wall, East of OT\nBait Missile puddle then step North to bait Mine', imageUrl: './tea/bjcc-13.webp' },
+                    { role: 'Pranged', party: 2, description: 'Start on South wall, East of OT\nBait Missile puddle then step North to bait Mine', imageUrl: './tea/bjcc-13.webp' },
+                    { role: 'Caster', party: 1, description: 'Preposition for Enumerations', imageUrl: './tea/bjcc-13.webp' },
+                    { role: 'Caster', party: 2, description: 'Preposition for Enumerations', imageUrl: './tea/bjcc-13.webp' },
+                ]
+            },
+            {
+                mechanic: 'Enumerations + Mine Pops + Ice',
+                description: 'Enums must have 3 players\nM1/Phys Ranged will flex',
+                strats: [
+                    { role: 'Tank', party: 1, description: 'If Ice, drop near D to freeze Water\nPlace Ice, then try to recenter BJ\nStand still after for Nisi pass', imageUrl: './tea/bjcc-15.webp' },
+                    { role: 'Tank', party: 2, description: 'If Ice, drop near D to freeze Water\nPlace Ice, then pop mines\nStand still after for Nisi pass', imageUrl: './tea/bjcc-15.webp' },
+                    { role: 'Healer', party: 1, description: 'West Enumeration', imageUrl: './tea/bjcc-15.webp' },
+                    { role: 'Healer', party: 2, description: 'East Enumeration', imageUrl: './tea/bjcc-15.webp' },
+                    { role: 'Melee', party: 1, description: 'West Enumeration\nIf both Melees or both Ranged get enums, swap with Phys Ranged', imageUrl: './tea/bjcc-15.webp' },
+                    { role: 'Melee', party: 2, description: 'West Enumeration', imageUrl: './tea/bjcc-15.webp' },
+                    { role: 'Pranged', party: 1, description: 'East Enumeration\nIf both Melees or both Ranged get enums, swap with M1', imageUrl: './tea/bjcc-15.webp' },
+                    { role: 'Pranged', party: 2, description: 'East Enumeration\nIf both Melees or both Ranged get enums, swap with M1', imageUrl: './tea/bjcc-15.webp' },
+                    { role: 'Caster', party: 1, description: 'East Enumeration', imageUrl: './tea/bjcc-15.webp' },
+                    { role: 'Caster', party: 2, description: 'East Enumeration', imageUrl: './tea/bjcc-15.webp' },
+                ]
+            },
+        ]
+    },
+    {
+        phaseName: 'BJCC: Second Pass',
+        tag: 'p2',
+        mechs: [
+            {
+                mechanic: 'Second Nisi Pass',
+                description: 'Same partners as First Pass\nDPS move',
+                strats: [
+                    { role: 'Tank', party: 1, description: 'Stay still for pass with M1', imageUrl: './tea/bjcc-18.webp' },
+                    { role: 'Tank', party: 2, description: 'Stay still after mine pop for pass with Phys Ranged', imageUrl: './tea/bjcc-18.webp' },
+                    { role: 'Healer', party: 1, description: 'Stay still for pass with M2', imageUrl: './tea/bjcc-18.webp' },
+                    { role: 'Healer', party: 2, description: 'Stay still for pass with Caster', imageUrl: './tea/bjcc-18.webp' },
+                    { role: 'Melee', party: 1, description: 'Pass Nisi to MT (North)', imageUrl: './tea/bjcc-18.webp' },
+                    { role: 'Melee', party: 2, description: 'Pass Nisi to H1 (West Mid)', imageUrl: './tea/bjcc-18.webp' },
+                    { role: 'Pranged', party: 1, description: 'Pass Nisi to OT (South)\n❗Wait for mine pop to avoid explosion', imageUrl: './tea/bjcc-18.webp' },
+                    { role: 'Pranged', party: 2, description: 'Pass Nisi to OT (South)\n❗Wait for mine pop to avoid explosion', imageUrl: './tea/bjcc-18.webp' },
+                    { role: 'Caster', party: 1, description: 'Pass Nisi to H2 (East Mid)', imageUrl: './tea/bjcc-18.webp' },
+                    { role: 'Caster', party: 2, description: 'Pass Nisi to H2 (East Mid)', imageUrl: './tea/bjcc-18.webp' },
+                ]
+            },
+        ]
+    },
+    {
+        phaseName: 'BJCC: Water/Lightning 2',
+        tag: 'p2',
+        mechs: [
+            {
+                mechanic: 'Setup',
+                strats: [
+                    { role: 'Tank', party: 1, description: `Stay North to drop Lightning`, imageUrl: './tea/bjcc-19.webp' },
+                    { role: 'Tank', party: 2, description: 'Tank CC slightly West of C/3\nBe ready to point CC mid for shield', imageUrl: './tea/bjcc-19.webp' },
+                    { role: 'Healer', party: 1, description: 'If Water: stand on B marker\nIf you had first Water: stand North with MT to pick up Lightning\nIf no Water: stand SW of B to take Water stack', imageUrl: './tea/bjcc-19.webp' },
+                    { role: 'Healer', party: 2, description: 'If Water: stand on B marker\nIf you had first Water: stand North with MT to pick up Lightning\nIf no Water: stand SW of B to take Water stack', imageUrl: './tea/bjcc-19.webp' },
+                    { role: 'Melee', party: 1, description: 'Stand near mid and keep hitting BJ\nKeep distance from BJ tank to avoid Lightning AoE', imageUrl: './tea/bjcc-19.webp' },
+                    { role: 'Melee', party: 2, description: 'Stand near mid and keep hitting BJ\nKeep distance from BJ tank to avoid Lightning AoE', imageUrl: './tea/bjcc-19.webp' },
+                    { role: 'Pranged', party: 1, description: 'If Water: stand on B marker\nIf no Water: stand East of B to take Water stack', imageUrl: './tea/bjcc-19.webp' },
+                    { role: 'Pranged', party: 2, description: 'If Water: stand on B marker\nIf no Water: stand East of B to take Water stack', imageUrl: './tea/bjcc-19.webp' },
+                    { role: 'Caster', party: 1, description: 'If Water: stand on B marker\nIf no Water: stand South of B to take Water stack', imageUrl: './tea/bjcc-19.webp' },
+                    { role: 'Caster', party: 2, description: 'If Water: stand on B marker\nIf no Water: stand South of B to take Water stack', imageUrl: './tea/bjcc-19.webp' },
+                ]
+            },
+            {
+                mechanic: 'Resolution',
+                description: 'Water + Lightning debuffs get transferred to a random person in that stack\nMake sure to avoid car crashes',
+                strats: [
+                    { role: 'Tank', party: 1, description: 'Keep tanking BJ on A', imageUrl: './tea/bjcc-20.webp' },
+                    { role: 'Tank', party: 2, description: '❗Point CC at Ranged for Plasma Shield', imageUrl: './tea/bjcc-20.webp' },
+                    { role: 'Healer', party: 1, description: 'Move mid to prepare for Third Pass\nIf Lightning, end up on North side of center ring\nIf Water, end up on South side of center ring', imageUrl: './tea/bjcc-20.webp' },
+                    { role: 'Healer', party: 2, description: 'Move mid to prepare for Third Pass\nIf Lightning, end up on North side of center ring\nIf Water, end up on South side of center ring', imageUrl: './tea/bjcc-20.webp' },
+                    { role: 'Melee', party: 1, description: 'Move mid to prepare for Third Pass', imageUrl: './tea/bjcc-20.webp' },
+                    { role: 'Melee', party: 2, description: 'Move mid to prepare for Third Pass', imageUrl: './tea/bjcc-20.webp' },
+                    { role: 'Pranged', party: 1, description: 'Move mid to prepare for Third Pass\nLoop around near wall since you have more movement', imageUrl: './tea/bjcc-20.webp' },
+                    { role: 'Pranged', party: 2, description: 'Move mid to prepare for Third Pass\nLoop around near wall since you have more movement', imageUrl: './tea/bjcc-20.webp' },
+                    { role: 'Caster', party: 1, description: 'Move mid to prepare for Third Pass', imageUrl: './tea/bjcc-20.webp' },
+                    { role: 'Caster', party: 2, description: 'Move mid to prepare for Third Pass', imageUrl: './tea/bjcc-20.webp' },
+                ]
+            },
+        ]
+    },
+    {
+        phaseName: 'BJCC: Shield + Third Pass',
+        tag: 'p2',
+        mechs: [
+            {
+                mechanic: 'Flarethrower + Shield',
+                description: 'Make sure to identify the Nisi color you need by the !! debuff',
+                strats: [
+                    { role: 'Tank', party: 1, description: 'Bait Flarethrower cone so that it hits the Liquid Rage\nMake sure not to clip the Ranged', imageUrl: './tea/bjcc-22.webp' },
+                    { role: 'Tank', party: 2, description: 'Make sure CC is pointed at Ranged\nHit the shield from the front until it pops', imageUrl: './tea/bjcc-22.webp' },
+                    { role: 'Healer', party: 1, description: 'Chill in your lineup spot on the North or South side of center ring', imageUrl: './tea/bjcc-22.webp' },
+                    { role: 'Healer', party: 2, description: 'Chill in your lineup spot on the North or South side of center ring', imageUrl: './tea/bjcc-22.webp' },
+                    { role: 'Melee', party: 1, description: 'Keep hitting BJ and get ready for Third Pass', imageUrl: './tea/bjcc-22.webp' },
+                    { role: 'Melee', party: 2, description: 'Keep hitting BJ and get ready for Third Pass', imageUrl: './tea/bjcc-22.webp' },
+                    { role: 'Pranged', party: 1, description: 'Hit shield from the front until it pops\nGet ready for Third Pass', imageUrl: './tea/bjcc-22.webp' },
+                    { role: 'Pranged', party: 2, description: 'Hit shield from the front until it pops\nGet ready for Third Pass', imageUrl: './tea/bjcc-22.webp' },
+                    { role: 'Caster', party: 1, description: 'Hit shield from the front until it pops\nGet ready for Third Pass', imageUrl: './tea/bjcc-22.webp' },
+                    { role: 'Caster', party: 2, description: 'Hit shield from the front until it pops\nGet ready for Third Pass', imageUrl: './tea/bjcc-22.webp' },
+                ]
+            },
+            {
+                mechanic: 'Third Pass',
+                description: 'Make sure to identify the Nisi color you need by the !! debuff',
+                strats: [
+                    { role: 'Tank', party: 1, description: 'Stand in North lineup spot and wait for pass', imageUrl: './tea/bjcc-23.webp' },
+                    { role: 'Tank', party: 2, description: 'Stand in South lineup spot and wait for pass', imageUrl: './tea/bjcc-23.webp' },
+                    { role: 'Healer', party: 1, description: 'Stand in your lineup spot on the North or South side of center ring and wait for pass', imageUrl: './tea/bjcc-23.webp' },
+                    { role: 'Healer', party: 2, description: 'Stand in your lineup spot on the North or South side of center ring and wait for pass', imageUrl: './tea/bjcc-23.webp' },
+                    { role: 'Melee', party: 1, description: 'Pass with the support player who has the color you need\n❗Only use the West half for movement', imageUrl: './tea/bjcc-23.webp' },
+                    { role: 'Melee', party: 2, description: 'Pass with the support player who has the color you need\n❗Only use the West half for movement', imageUrl: './tea/bjcc-23.webp' },
+                    { role: 'Pranged', party: 1, description: 'Pass with the support player who has the color you need\n❗Only use the East half for movement', imageUrl: './tea/bjcc-23.webp' },
+                    { role: 'Pranged', party: 2, description: 'Pass with the support player who has the color you need\n❗Only use the East half for movement', imageUrl: './tea/bjcc-23.webp' },
+                    { role: 'Caster', party: 1, description: 'Pass with the support player who has the color you need\n❗Only use the East half for movement', imageUrl: './tea/bjcc-23.webp' },
+                    { role: 'Caster', party: 2, description: 'Pass with the support player who has the color you need\n❗Only use the East half for movement', imageUrl: './tea/bjcc-23.webp' },
+                ]
+            },
+        ]
+    },
+    {
+        phaseName: 'BJCC: Water/Lightning 3',
+        tag: 'p2',
+        mechs: [
+            {
+                mechanic: 'Setup',
+                strats: [
+                    { role: 'Tank', party: 1, description: 'Stay North\nBe ready to join Water stack on B if <3 people', imageUrl: './tea/bjcc-25.webp' },
+                    { role: 'Tank', party: 2, description: 'Stand SW to take Lightning with healer', imageUrl: './tea/bjcc-25.webp' },
+                    { role: 'Healer', party: 1, description: 'If Lightning: stack with OT SW or second Water SE\nIf you had second Water: Stand SE\nIf Water: stand on B', imageUrl: './tea/bjcc-25.webp' },
+                    { role: 'Healer', party: 2, description: 'If Lightning: stack with OT SW or second Water SE\nIf you had second Water: Stand SE\nIf Water: stand on B', imageUrl: './tea/bjcc-25.webp' },
+                    { role: 'Melee', party: 1, description: 'Stand West of B to take Water stack', imageUrl: './tea/bjcc-25.webp' },
+                    { role: 'Melee', party: 2, description: 'Stand near mid and keep hitting BJ\nYou can join Water stack if you want', imageUrl: './tea/bjcc-25.webp' },
+                    { role: 'Pranged', party: 1, description: 'If Water: stand on B marker\nIf you had second Water: Stand SE\nIf no Water: stand South of B to take Water stack', imageUrl: './tea/bjcc-25.webp' },
+                    { role: 'Pranged', party: 2, description: 'If Water: stand on B marker\nIf you had second Water: Stand SE\nIf no Water: stand South of B to take Water stack', imageUrl: './tea/bjcc-25.webp' },
+                    { role: 'Caster', party: 1, description: 'If Water: stand on B marker\nIf you had second Water: Stand SE\nIf no Water: stand South of B to take Water stack', imageUrl: './tea/bjcc-25.webp' },
+                    { role: 'Caster', party: 2, description: 'If Water: stand on B marker\nIf you had second Water: Stand SE\nIf no Water: stand South of B to take Water stack', imageUrl: './tea/bjcc-25.webp' },
+                ]
+            },
+            {
+                mechanic: 'Resolution',
+                description: 'Move towards West to get ready for Gavel (BPOG)\n❗Make sure to avoid car crashes',
+                imageUrl: './tea/bjcc-26.webp'
+            },
+        ]
+    },
+    {
+        phaseName: 'BJCC: Gavel (BPOG)',
+        tag: 'p2',
+        mechs: [
+            {
+                mechanic: 'BPOG',
+                description: 'Line up East of the Ice\nBlue Purple Orange Green\nα γ β δ',
+                strats: [
+                    { role: 'Tank', party: 1, description: '', imageUrl: './tea/bjcc-28.webp' },
+                    { role: 'Tank', party: 2, description: '❗Keep CC behind the ice until Propeller Wind cast', imageUrl: './tea/bjcc-28.webp' },
+                    { role: 'Healer', party: 1, description: '', imageUrl: './tea/bjcc-28.webp' },
+                    { role: 'Healer', party: 2, description: '', imageUrl: './tea/bjcc-28.webp' },
+                    { role: 'Melee', party: 1, description: '', imageUrl: './tea/bjcc-28.webp' },
+                    { role: 'Melee', party: 2, description: '', imageUrl: './tea/bjcc-28.webp' },
+                    { role: 'Pranged', party: 1, description: '', imageUrl: './tea/bjcc-28.webp' },
+                    { role: 'Pranged', party: 2, description: '', imageUrl: './tea/bjcc-28.webp' },
+                    { role: 'Caster', party: 1, description: '', imageUrl: './tea/bjcc-28.webp' },
+                    { role: 'Caster', party: 2, description: '', imageUrl: './tea/bjcc-28.webp' },
+                ]
+            },
+        ]
+    },
+    {
+        phaseName: 'BJCC: Photon + Punch + Super Jump',
+        tag: 'p2',
+        mechs: [
+            {
+                mechanic: 'Photon + Punch',
+                description: 'Make sure boss HPs are close to equal',
+                strats: [
+                    { role: 'Tank', party: 1, description: `Stack bosses together, then stand on top of each other near wall for tankbuster`, imageUrl: './tea/bjcc-30.webp' },
+                    { role: 'Tank', party: 2, description: 'Stack bosses together, then stand on top of each other near wall for tankbuster', imageUrl: './tea/bjcc-30.webp' },
+                    { role: 'Healer', party: 1, description: '', imageUrl: './tea/bjcc-30.webp' },
+                    { role: 'Healer', party: 2, description: '', imageUrl: './tea/bjcc-30.webp' },
+                    { role: 'Melee', party: 1, description: '', imageUrl: './tea/bjcc-30.webp' },
+                    { role: 'Melee', party: 2, description: '', imageUrl: './tea/bjcc-30.webp' },
+                    { role: 'Pranged', party: 1, description: 'Get ready to move towards East wall to bait Super Jump', imageUrl: './tea/bjcc-30.webp' },
+                    { role: 'Pranged', party: 2, description: 'Get ready to move towards East wall to bait Super Jump', imageUrl: './tea/bjcc-30.webp' },
+                    { role: 'Caster', party: 1, description: '', imageUrl: './tea/bjcc-30.webp' },
+                    { role: 'Caster', party: 2, description: '', imageUrl: './tea/bjcc-30.webp' },
+                ]
+            },
+            {
+                mechanic: 'Super Jump',
+                description: '',
+                strats: [
+                    { role: 'Tank', party: 1, description: `Stay on West side of arena until Apocalyptic Ray finishes`, imageUrl: './tea/bjcc-33.webp' },
+                    { role: 'Tank', party: 2, description: 'Stay on West side of arena until Apocalyptic Ray finishes', imageUrl: './tea/bjcc-33.webp' },
+                    { role: 'Healer', party: 1, description: 'Stay on West side of arena until Apocalyptic Ray finishes', imageUrl: './tea/bjcc-33.webp' },
+                    { role: 'Healer', party: 2, description: 'Stay on West side of arena until Apocalyptic Ray finishes', imageUrl: './tea/bjcc-33.webp' },
+                    { role: 'Melee', party: 1, description: 'Stay on West side of arena until Apocalyptic Ray finishes', imageUrl: './tea/bjcc-33.webp' },
+                    { role: 'Melee', party: 2, description: 'Stay on West side of arena until Apocalyptic Ray finishes', imageUrl: './tea/bjcc-33.webp' },
+                    { role: 'Pranged', party: 1, description: 'Bait Super Jump against East wall\nMove slightly North or South after jump to avoid Apocalyptic Ray', imageUrl: './tea/bjcc-33.webp' },
+                    { role: 'Pranged', party: 2, description: 'Bait Super Jump against East wall\nMove slightly North or South after jump to avoid Apocalyptic Ray', imageUrl: './tea/bjcc-33.webp' },
+                    { role: 'Caster', party: 1, description: 'Stay on West side of arena until Apocalyptic Ray finishes', imageUrl: './tea/bjcc-33.webp' },
+                    { role: 'Caster', party: 2, description: 'Stay on West side of arena until Apocalyptic Ray finishes', imageUrl: './tea/bjcc-33.webp' },
+                ]
+            },
+        ]
+    },
 ];
 
 const intermission2: PhaseStrats[] = [
