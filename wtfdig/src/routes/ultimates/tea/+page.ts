@@ -262,9 +262,46 @@ const p1: PhaseStrats[] = [
 
 const intermission1: PhaseStrats[] = [
     {
-        phaseName: 'Intermission: Limit Cut',
+        phaseName: 'Start',
         tag: 'i1',
-        mechs: []
+        mechs: [
+            {
+                mechanic: 'Starting Spots',
+                description: '1256 between W and NE, 3478 between E and SW',
+                imageUrl: './tea/limit-cut-start.webp'
+            },
+            {
+                mechanic: 'First Explosions',
+                description: '1234 on inner ring, 5678 on outer ring\nLower number in front',
+                imageUrl: './tea/limit-cut-4.webp'
+            },
+        ]
+    },
+    {
+        phaseName: 'Limit Cut',
+        tag: 'i1',
+        mechs: [
+            {
+                mechanic: '1 + 2',
+                description: '1 gets slash as 4th explosion goes off\n2 gets dash as Center explosion goes off\n5/6 swap places with 1/2\n❗3/4 make sure to wait',
+                imageUrl: './tea/limit-cut-6.webp'
+            },
+            {
+                mechanic: '3 + 4',
+                description: '3 + 4 get slash + dash\n7/8 swap places with 3/4\n1256 keep moving',
+                imageUrl: './tea/limit-cut-7.webp'
+            },
+            {
+                mechanic: '5 + 6',
+                description: '5 + 6 get slash + dash\n3478 keep moving',
+                imageUrl: './tea/limit-cut-9.webp'
+            },
+            {
+                mechanic: '7 + 8',
+                description: '7 + 8 get slash + dash\nMove into center after final center explosion goes off\nMake sure not to get hit by 7 or 8 mechanics',
+                imageUrl: './tea/limit-cut-11.webp'
+            },
+        ]
     }
 ];
 
@@ -305,6 +342,7 @@ const elinabinStrat: Strat = {
     stratName: 'elina',
     description: 'Elinabin',
     stratUrl: {
+        'Elinabin': 'https://pastebin.com/uxVnJm7R',
         'P1: Living Liquid': 'https://ff14.toolboxgaming.space/?id=725383877116761&preview=1',
         'Intermission: Limit Cut': 'https://ff14.toolboxgaming.space/?id=803293127441961&preview=1',
         'P2: BJCC': 'https://ff14.toolboxgaming.space/?id=492297437831961&preview=1',
