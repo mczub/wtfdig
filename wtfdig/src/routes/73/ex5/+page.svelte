@@ -7,7 +7,7 @@
   	import { type ToastContext } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
 	import Cheatsheet from '../../../components/Cheatsheet.svelte';
-	import { ExternalLink, Fullscreen, Info, Link } from '@lucide/svelte';
+	import { Copy, ExternalLink, Fullscreen, Info, Link } from '@lucide/svelte';
 	import StratView from '../../../components/StratView.svelte';
 
 	interface Props {
@@ -71,8 +71,12 @@
 		if (stratArray[0]) {
 			stratName = stratArray[0];
 		}
-		stratState = {
-			mm2: stratArray[1],
+		if (stratArray.length === 1) {
+			stratState = getStratMechs(stratArray[0]);
+		} else {
+			stratState = {
+				mm2: stratArray[1] ? stratArray[1] : getStratMechs(stratArray[0]).mm2,
+			}
 		}
 	}
 
@@ -133,7 +137,9 @@
 						phaseStratMech => {
 							return {
 								...phaseStratMech,
-								strats: phaseStratMech.strats.filter(strat => (strat.role === role && strat.party === party)).map(
+								description: getStratItem(phaseStratMech.description, phaseStrat.tag),
+								imageUrl: getStratItem(phaseStratMech.imageUrl, phaseStrat.tag),
+								strats: phaseStratMech.strats && phaseStratMech.strats.filter(strat => (strat.role === role && strat.party === party)).map(
 									iStrat => {
 										return {
 											...iStrat,
@@ -157,7 +163,7 @@
 	function getStratMechs(stratName: string){
 		const stratMechs: Record<string, any> = {
 			'hector': {
-				mm2: "raidplan",
+				mm2: "normal",
 			},
 		}
 		return stratMechs[stratName];
@@ -181,8 +187,37 @@
 		} else {
 			roleAbbrev = role.charAt(0).toUpperCase() + party.toString();
 		}
+
+		let stratDiffs = [stratNames[stratName]];
+		if (stratState.mm2 !== getStratMechs(stratName)['mm2']) {
+			if (stratState.mm2 === 'uptime') {
+				stratDiffs.push(`Uptime MM2`);
+			}
+		}
 		
-		return `${stratNames[stratName]} - ${roleAbbrev}`;
+		return `${stratDiffs.join(' | ')} - ${roleAbbrev}`;
+	}
+
+	function getPFDescription() {
+		if (!stratName) return '';
+		const stratNames: Record<string, string> = {
+			'hector': 'Hector'
+		}
+		let stratDiffs = [stratNames[stratName]];
+		if ((stratState.mm2 !== getStratMechs(stratName)['mm2'])) {
+			if (stratState.mm2 === 'uptime') {
+				stratDiffs.push(`Uptime MM2`);
+			}
+		}
+		return `${stratDiffs.join(' | ')} | ${window.location.href}`
+	}
+
+	function copyPFDescription() {
+		navigator.clipboard.writeText(getPFDescription());
+		toast.create({
+			description: 'Copied PF description to clipboard!',
+			type: 'success',
+		});
 	}
 
 	let innerWidth = $state(0);
@@ -204,10 +239,11 @@
 	individualStrat={individualStrat}
 	spotlight={spotlight}
 	alignment={alignment}
-	rows=3
+	rows=4
 	columns=4
 	innerHeight={innerHeight}
 	innerWidth={innerWidth}
+	tabTags={{"P1": ['p1','adds'], "P2":['p2','mm2']}}
 />
 
 <div class="container grow px-4 mx-auto mb-6">
@@ -230,6 +266,19 @@
 						<Segment.Item value="hector">Hector</Segment.Item>
 					</Segment>
 				</div>
+				{#if stratName}
+				<div class="flex flex-row space-x-4 space-y-2 flex-wrap mb-2">
+					<div class="flex flex-col">
+						<div class="flex flex-row">
+							<div class="text-lg mb-2">MM2</div>
+						</div>
+						<Segment classes="flex-wrap" name="mm2" value={stratState.mm2} onValueChange={(e) => (setStratState('mm2', e.value))}>
+							<Segment.Item value="normal" labelClasses="flex items-center">Normal</Segment.Item>
+							<Segment.Item value="uptime" labelClasses="flex items-center">Uptime</Segment.Item>
+						</Segment>
+					</div>
+				</div>
+				{/if}
 				<div>
 					<div class="text-xl mb-2">Which role are you?</div>
 					<Segment name="role" classes="flex-wrap" value={role} onValueChange={(e) => (role = e.value)}>
@@ -266,6 +315,10 @@
 					
 				{/if}
 				<button onclick={() => copyLinkToClipboard()} class="button btn btn-lg preset-tonal-secondary border border-secondary-500"><Link />Copy link</button>
+				<div class="card flex flex-row border-[1px] border-surface-200-800 flex-auto lg:w-0 lg:max-w-full">
+					<pre class="flex-auto pre overflow-x-auto text-nowrap whitespace-nowrap">{getPFDescription()}</pre>
+					<button onclick={() => copyPFDescription()} class="button btn btn-lg preset-tonal-secondary border border-secondary-500"><Copy />Copy PF description</button>
+				</div>
 			</div>
 			<div class="card preset-filled-surface-50-950 border-[1px] border-surface-200-800 p-4">
 				<div class="flex flex-col lg:flex-row gap-2">
