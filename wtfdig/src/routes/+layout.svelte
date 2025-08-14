@@ -16,6 +16,7 @@
     }
     let popover71OpenState = $state(false);
     let popover72OpenState = $state(false);
+    let popover73OpenState = $state(false);
     let popoverUltimatesOpenState = $state(false);
 
     let { children }: Props = $props();
@@ -152,6 +153,27 @@
                             <a data-sveltekit-reload href="{base}/72/m8s" class="flex flex-col w-full items-start">
                                 <div class="text-lg -mb-2">AAC Cruiserweight M4</div>
                                 <div class="text-sm">Savage</div>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                {/snippet}
+            </Popover>
+            <Popover
+                open={popover73OpenState}
+                onOpenChange={(e) => (popover73OpenState = e.open)}
+                positioning={{ placement: 'bottom-end' }}
+                triggerBase="btn preset-tonal-secondary border border-secondary-500 px-4"
+                contentBase="card bg-surface-200-800 min-w-[240px]"
+            >
+                {#snippet trigger()}Patch 7.3 <ChevronDown size={16}/>{/snippet}
+                {#snippet content()}
+                <article>
+                    <div class="opacity-60 preset-outlined-surface-200-800 grid p-0 w-full divide-y divide-surface-800 rounded-md hover:bg-surface-900 bg-surface-950">
+                        <div class="px-4 py-2">
+                            <a data-sveltekit-reload href="{base}/73/ex5" class="flex flex-col w-full items-start">
+                                <div class="text-lg -mb-2">Necron's Embrace</div>
+                                <div class="text-sm">Extreme</div>
                             </a>
                         </div>
                     </div>
