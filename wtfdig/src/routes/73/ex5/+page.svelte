@@ -1,14 +1,16 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { page } from '$app/state';
-	import type { Alignment, PlayerMechStrat, PhaseStrats, Role, MechanicStrat, Strat } from './$types';
+	import type { Alignment, Role, Strat } from './+page';
 	import { Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
 	import { getContext } from 'svelte';
   	import { type ToastContext } from '@skeletonlabs/skeleton-svelte';
 	import { untrack } from 'svelte';
 	import Cheatsheet from '../../../components/Cheatsheet.svelte';
+	import deepEquals from 'fast-deep-equal';
 	import { Copy, ExternalLink, Fullscreen, Info, Link } from '@lucide/svelte';
 	import StratView from '../../../components/StratView.svelte';
+	import { replaceState } from '$app/navigation';
 
 	interface Props {
 		data: {
@@ -80,15 +82,28 @@
 		}
 	}
 
+	function getStratOrEmptyString(strat: string): string {
+		if (!stratName || !strat) return ''
+		if (getStratMechs(stratName)[strat] === stratState[strat]) {
+			return '';
+		}
+		return stratState[strat] || '';
+	}
+
 	function setStratState(mech: string, value: string) {
 		stratState[mech] = value;
 		const stratCode = getStratCode(stratName, stratState);
-		history.replaceState(undefined, '', `#${stratCode}`);
+		replaceState(`#${stratCode}`, {});
 	}
 
 	function getStratCode(stratName: string | undefined, stratState: any) {
 		if (!stratName) return '';
-		return `${stratName}:${stratState.mm2}`;
+		if (stratName && stratState) {
+			if (deepEquals(getStratMechs(stratName), stratState)) {
+				return stratName;
+			}
+		}
+		return `${stratName}:${getStratOrEmptyString('mm2')}`;
 	}
 
 	function onSelectStrat(e) {
@@ -106,7 +121,6 @@
 		});
 	}
 
-	
 	function getStrat(stratName?: string): Strat | string | undefined {
 		if (!stratName || !role || !party) return `Couldn't find ${stratName} strat`;
 		return data.strats.find(strat => strat.stratName === stratName);
