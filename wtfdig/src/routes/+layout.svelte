@@ -171,6 +171,12 @@
                 <article>
                     <div class="opacity-60 preset-outlined-surface-200-800 grid p-0 w-full divide-y divide-surface-800 rounded-md hover:bg-surface-900 bg-surface-950">
                         <div class="px-4 py-2">
+                            <a data-sveltekit-reload href="{base}/73/ex6" class="flex flex-col w-full items-start">
+                                <div class="text-lg -mb-2">Windward Wilds</div>
+                                <div class="text-sm">Extreme</div>
+                            </a>
+                        </div>
+                        <div class="px-4 py-2">
                             <a data-sveltekit-reload href="{base}/73/ex5" class="flex flex-col w-full items-start">
                                 <div class="text-lg -mb-2">Necron's Embrace</div>
                                 <div class="text-sm">Extreme</div>
