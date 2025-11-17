@@ -11,6 +11,7 @@
             <div class="grid gap-4 content-start">
                 <div class="card grid preset-filled-surface-100-900 border-[1px] border-surface-200-800 w-sm p-4 text-center gap-4">
                     <div>Patch 7.3</div>
+                    <a href="{base}/73/ex6" class="btn preset-tonal-secondary border border-secondary-500">Windward Wilds (Extreme)</a>
                     <a href="{base}/73/ex5" class="btn preset-tonal-secondary border border-secondary-500">Necron's Embrace (Extreme)</a>
                 </div>
                 <div class="card grid preset-filled-surface-100-900 border-[1px] border-surface-200-800 w-sm p-4 text-center gap-4">
