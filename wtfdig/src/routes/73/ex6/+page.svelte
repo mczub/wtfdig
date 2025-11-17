@@ -247,6 +247,7 @@
 	columns=4
 	innerHeight={innerHeight}
 	innerWidth={innerWidth}
+	tabTags={{"P1": ['p1'], "P2":['p2']}}
 />
 
 <div class="container grow px-4 mx-auto mb-6">
