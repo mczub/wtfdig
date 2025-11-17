@@ -104,8 +104,8 @@
                 {#snippet trigger()}Patch 7.1 <ChevronDown size={16}/>{/snippet}
                 {#snippet content()}
                 <article>
-                    <div class="opacity-60 preset-outlined-surface-200-800 grid p-0 w-full divide-y divide-surface-800 rounded-md hover:bg-surface-900 bg-surface-950">
-                        <div class="px-4 py-2">
+                    <div class="opacity-60 preset-outlined-surface-200-800 grid p-0 w-full divide-y divide-surface-800 rounded-md bg-surface-950">
+                        <div class="px-4 py-2 hover:bg-surface-900">
                             <a data-sveltekit-reload href="{base}/71/chaotic" class="flex flex-col w-full items-start">
                                 <div class="text-lg -mb-2">Cloud of Darkness</div>
                                 <div class="text-sm">Chaotic</div>
@@ -126,31 +126,31 @@
                 {#snippet content()}
                 <article>
                     <div class="opacity-60 preset-outlined-surface-200-800 grid grid-rows-4 p-0 w-full divide-y divide-surface-800 rounded-md bg-surface-950">
-                        <div class="px-4 py-2">
+                        <div class="px-4 py-2 hover:bg-surface-900">
                             <a data-sveltekit-reload href="{base}/72/ex4" class="flex flex-col w-full items-start">
                                 <div class="text-lg -mb-2">Recollection</div>
                                 <div class="text-sm">Extreme</div>
                             </a>
                         </div>
-                        <div class="px-4 py-2">
+                        <div class="px-4 py-2 hover:bg-surface-900">
                             <a data-sveltekit-reload href="{base}/72/m5s" class="flex flex-col w-full items-start">
                                 <div class="text-lg -mb-2">AAC Cruiserweight M1</div>
                                 <div class="text-sm">Savage</div>
                             </a>
                         </div>
-                        <div class="px-4 py-2">
+                        <div class="px-4 py-2 hover:bg-surface-900">
                             <a data-sveltekit-reload href="{base}/72/m6s" class="flex flex-col w-full items-start">
                                 <div class="text-lg -mb-2">AAC Cruiserweight M2</div>
                                 <div class="text-sm">Savage</div>
                             </a>
                         </div>
-                        <div class="px-4 py-2">
+                        <div class="px-4 py-2 hover:bg-surface-900">
                             <a data-sveltekit-reload href="{base}/72/m7s" class="flex flex-col w-full items-start">
                                 <div class="text-lg -mb-2">AAC Cruiserweight M3</div>
                                 <div class="text-sm">Savage</div>
                             </a>
                         </div>
-                        <div class="px-4 py-2">
+                        <div class="px-4 py-2 hover:bg-surface-900">
                             <a data-sveltekit-reload href="{base}/72/m8s" class="flex flex-col w-full items-start">
                                 <div class="text-lg -mb-2">AAC Cruiserweight M4</div>
                                 <div class="text-sm">Savage</div>
@@ -170,14 +170,14 @@
                 {#snippet trigger()}Patch 7.3 <ChevronDown size={16}/>{/snippet}
                 {#snippet content()}
                 <article>
-                    <div class="opacity-60 preset-outlined-surface-200-800 grid p-0 w-full divide-y divide-surface-800 rounded-md hover:bg-surface-900 bg-surface-950">
-                        <div class="px-4 py-2">
+                    <div class="opacity-60 preset-outlined-surface-200-800 grid p-0 w-full divide-y divide-surface-800 rounded-md bg-surface-950">
+                        <div class="px-4 py-2 hover:bg-surface-900">
                             <a data-sveltekit-reload href="{base}/73/ex6" class="flex flex-col w-full items-start">
                                 <div class="text-lg -mb-2">Windward Wilds</div>
                                 <div class="text-sm">Extreme</div>
                             </a>
                         </div>
-                        <div class="px-4 py-2">
+                        <div class="px-4 py-2 hover:bg-surface-900">
                             <a data-sveltekit-reload href="{base}/73/ex5" class="flex flex-col w-full items-start">
                                 <div class="text-lg -mb-2">Necron's Embrace</div>
                                 <div class="text-sm">Extreme</div>
