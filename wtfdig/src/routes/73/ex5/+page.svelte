@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { FightConfig, Strat } from '$lib/types';
-	import FightStratPage from '../../../components/new/FightStratPage.svelte';
+	import ModernFightStratPage from '../../../components/new/ModernFightStratPage.svelte';
 
 	interface Props {
 		data: {
@@ -12,4 +12,4 @@
 	let { data }: Props = $props();
 </script>
 
-<FightStratPage config={data.config} strats={data.strats} />
+<ModernFightStratPage config={data.config} strats={data.strats} />

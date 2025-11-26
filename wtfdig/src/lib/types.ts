@@ -76,6 +76,7 @@ export interface FightPFContext {
 export interface FightConfig {
 	fightKey: string;
 	title: string;
+	abbreviatedTitle?: string;
 	subtitle: string;
 	cheatsheetTitle: string;
 	stratLabels: Record<string, string>;
