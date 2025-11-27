@@ -255,7 +255,7 @@
 							class="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between pb-2"
 						>
 							<div class="w-full lg:w-auto">
-								<div class="capitalize font-bold text-3xl mb-1 text-surface-50">
+								<div class="capitalize font-bold preset-typo-title mb-1 text-surface-50">
 									{optionsString}
 								</div>
 								{#if typeof selectedStrat?.stratUrl === 'string'}
