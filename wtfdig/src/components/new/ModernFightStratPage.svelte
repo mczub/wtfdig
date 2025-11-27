@@ -233,8 +233,8 @@
 			</div>
 
 			<div class="mb-8 text-left">
-				<div class="preset-typo-display-1 font-bold tracking-tight">{config.title}</div>
-				<div class="text-xl lg:text-3xl text-surface-400 font-light">{config.subtitle}</div>
+				<div class="preset-typo-headline font-bold tracking-tight">{config.title}</div>
+				<div class="text-lg lg:text-2xl text-surface-400 font-light">{config.subtitle}</div>
 			</div>
 
 			{#if stratName && normalizedRole && party}
