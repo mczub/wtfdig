@@ -73,6 +73,11 @@ export interface FightPFContext {
 	currentUrl?: string;
 }
 
+export interface Badge {
+	text: string;
+	class: string;
+}
+
 export interface FightConfig {
 	fightKey: string;
 	title: string;
@@ -80,16 +85,23 @@ export interface FightConfig {
 	subtitle: string;
 	cheatsheetTitle: string;
 	stratLabels: Record<string, string>;
+	stratBadges?: Record<string, Badge[]>;
 	stratDefaults: Record<string, Record<string, string>>;
 	toggles?: FightToggleConfig[];
 	tabTags?: Record<string, string[]>;
 	defaultStratName?: string;
 	timeline?: TimelineItem[];
+	additionalResources?: {
+		title: string;
+		description?: string;
+		links: { text: string; url: string }[];
+	};
 }
 
 export interface StratOption {
 	value: string;
 	label: string;
+	badges?: Badge[];
 }
 
 export interface FightToggleState {

@@ -165,6 +165,7 @@
 			{#each Object.keys(tabTags) as tabName}
 				<Tabs.Control
 					value={tabName}
+					labelBase="btn"
 					classes="px-6 py-2 rounded-none transition-all data-[state=active]:bg-secondary-500 data-[state=active]:text-white data-[state=active]:shadow-md hover:bg-surface-700"
 					>{tabName}</Tabs.Control
 				>
@@ -270,11 +271,9 @@
 											{/if}
 
 											{#if mech?.imageUrl}
-												<div
-													class="mt-4 rounded-lg overflow-hidden border border-surface-700/30 bg-black/20"
-												>
+												<div class="mt-4 rounded-lg overflow-hidden">
 													<img
-														class="w-full h-auto object-contain max-h-[350px]"
+														class="w-auto h-auto object-contain max-w-full max-h-[350px]"
 														src={mech.imageUrl}
 														alt={mech.mechanic}
 													/>
@@ -286,11 +285,9 @@
 											</div>
 
 											{#if mech?.strats && mech.strats[0]?.imageUrl}
-												<div
-													class="mt-2 rounded-lg overflow-hidden border border-surface-700/30 bg-black/20 relative"
-												>
+												<div class="mt-2 rounded-lg overflow-hidden relative">
 													<img
-														class="w-full h-auto object-contain max-h-[350px]"
+														class="w-auto h-auto object-contain max-w-full max-h-[350px]"
 														style:mask-image={spotlight && mech.strats[0]?.mask}
 														src={mech.strats[0].imageUrl}
 														alt={`${mech.mechanic} strategy`}

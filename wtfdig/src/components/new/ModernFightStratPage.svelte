@@ -17,7 +17,8 @@
 	let { config, strats }: Props = $props();
 	const stratOptions = strats.map((strat) => ({
 		value: strat.stratName,
-		label: config.stratLabels[strat.stratName] ?? strat.stratName
+		label: config.stratLabels[strat.stratName] ?? strat.stratName,
+		badges: config.stratBadges?.[strat.stratName]
 	}));
 	const stratKeys = (config.toggles ?? []).map((toggle) => toggle.key);
 
@@ -215,6 +216,7 @@
 		{setParty}
 		{spotlight}
 		setSpotlight={(val) => (spotlight = val)}
+		additionalResources={config.additionalResources}
 	/>
 
 	<div class="container grow px-4 mx-auto mb-6 pt-8">
@@ -232,7 +234,7 @@
 				</div>
 			</div>
 
-			<div class="mb-8 text-left">
+			<div class="mb-4 text-left border-b border-surface-700/50 pb-4">
 				<div class="preset-typo-headline font-bold tracking-tight">{config.title}</div>
 				<div class="text-lg lg:text-2xl text-surface-400 font-light">{config.subtitle}</div>
 			</div>
@@ -247,56 +249,10 @@
 				{:else}
 					{@const selectedStrat = strat}
 
-					<!-- Action Bar -->
-					<div
-						class="flex flex-col lg:flex-row gap-4 mb-8 items-center justify-between bg-surface-900/30 p-4 rounded-xl border border-surface-800/50 backdrop-blur-sm"
-					>
-						<div class="flex gap-2 w-full lg:w-auto">
-							{#if isCheatsheetEnabled}
-								<button
-									onclick={() => (cheatsheetOpenState = true)}
-									class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none"
-									><Fullscreen size={18} />Cheatsheet</button
-								>
-							{:else}
-								<div class="relative group flex-1 lg:flex-none">
-									<button
-										class="btn preset-tonal-secondary border border-secondary-500/50 opacity-50 cursor-not-allowed w-full"
-										><Fullscreen size={18} />Cheatsheet</button
-									>
-									<div
-										class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-surface-800 text-xs rounded shadow-lg hidden group-hover:block text-center"
-									>
-										Requires window size > 1024x768
-									</div>
-								</div>
-							{/if}
-							<button
-								onclick={() => copyLinkToClipboard()}
-								class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none"
-								><Link size={18} />Copy Link</button
-							>
-						</div>
-
-						<div class="flex flex-row gap-2 w-full lg:w-auto items-center">
-							<div
-								class="card flex flex-row border border-surface-700/50 flex-auto items-center bg-surface-950/50 overflow-hidden"
-							>
-								<pre
-									class="flex-auto px-4 py-2 overflow-x-auto text-nowrap whitespace-nowrap font-mono text-sm text-surface-300 scrollbar-hide">{pfDescription}</pre>
-								<button
-									onclick={() => copyPFDescription(pfDescription)}
-									class="btn-icon btn-icon-sm rounded-none hover:bg-surface-800 transition-colors h-full px-3"
-									><Copy size={16} /></button
-								>
-							</div>
-						</div>
-					</div>
-
 					<!-- Strat Info & Content -->
-					<div class="space-y-8">
+					<div class="space-y-4">
 						<div
-							class="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between border-b border-surface-700/50 pb-4"
+							class="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between pb-2"
 						>
 							<div class="w-full lg:w-auto">
 								<div class="capitalize font-bold text-3xl mb-1 text-surface-50">
@@ -312,20 +268,68 @@
 										<ExternalLink size={16} />
 									</a>
 								{:else if typeof selectedStrat?.stratUrl === 'object'}
-									<div class="flex flex-wrap gap-x-4 gap-y-1">
+									<div class="flex flex-col gap-x-4 gap-y-1">
 										<span class="text-surface-300">{selectedStrat.description}</span>
-										{#each Object.entries(selectedStrat.stratUrl) as [linkName, linkUrl]}
-											<a
-												class="inline-flex items-center text-lg text-blue-400 hover:text-blue-300 hover:underline gap-1 transition-colors"
-												target="_blank"
-												rel="noopener noreferrer"
-												href={linkUrl}
-												>{linkName}
-												<ExternalLink size={16} />
-											</a>
-										{/each}
+										<div class="flex flex-wrap gap-x-4 gap-y-1">
+											{#each Object.entries(selectedStrat.stratUrl) as [linkName, linkUrl]}
+												<a
+													class="inline-flex items-center text-lg text-blue-400 hover:text-blue-300 hover:underline gap-1 transition-colors"
+													target="_blank"
+													rel="noopener noreferrer"
+													href={linkUrl}
+													>{linkName}
+													<ExternalLink size={16} />
+												</a>
+											{/each}
+										</div>
 									</div>
 								{/if}
+							</div>
+						</div>
+
+						<!-- Action Bar -->
+						<div
+							class="flex flex-col lg:flex-row gap-4 mb-8 items-center justify-between bg-surface-900/30 p-4 rounded-xl border border-surface-800/50 backdrop-blur-sm"
+						>
+							<div class="flex gap-2 w-full lg:w-auto">
+								{#if isCheatsheetEnabled}
+									<button
+										onclick={() => (cheatsheetOpenState = true)}
+										class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none"
+										><Fullscreen size={18} />Cheatsheet</button
+									>
+								{:else}
+									<div class="relative group flex-1 lg:flex-none">
+										<button
+											class="btn preset-tonal-secondary border border-secondary-500/50 opacity-50 cursor-not-allowed w-full"
+											><Fullscreen size={18} />Cheatsheet</button
+										>
+										<div
+											class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-surface-800 text-xs rounded shadow-lg hidden group-hover:block text-center"
+										>
+											Requires window size > 1024x768
+										</div>
+									</div>
+								{/if}
+								<button
+									onclick={() => copyLinkToClipboard()}
+									class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none"
+									><Link size={18} />Copy Link</button
+								>
+							</div>
+
+							<div class="flex flex-row gap-2 w-full lg:w-auto items-center">
+								<div
+									class="card flex flex-row border border-surface-700/50 flex-auto items-center bg-surface-950/50 overflow-hidden"
+								>
+									<pre
+										class="flex-auto px-4 py-2 overflow-x-auto text-nowrap whitespace-nowrap font-mono text-sm text-surface-300 scrollbar-hide">{pfDescription}</pre>
+									<button
+										onclick={() => copyPFDescription(pfDescription)}
+										class="btn-icon btn-icon-sm rounded-none hover:bg-surface-800 transition-colors h-full px-3"
+										><Copy size={16} /></button
+									>
+								</div>
 							</div>
 						</div>
 

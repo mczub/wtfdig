@@ -1,8 +1,10 @@
 <script lang="ts">
-	import { Segment, Switch, Popover } from '@skeletonlabs/skeleton-svelte';
+	import { onMount } from 'svelte';
+	import { Segment, Switch, Popover, Modal } from '@skeletonlabs/skeleton-svelte';
 	import type { Role, StratOption, FightToggleState } from '$lib/types';
 	import ChevronDown from '@lucide/svelte/icons/chevron-down';
 	import Settings from '@lucide/svelte/icons/settings';
+	import X from '@lucide/svelte/icons/x';
 
 	interface Props {
 		title: string;
@@ -17,6 +19,11 @@
 		setParty: (value: number) => void;
 		spotlight: boolean;
 		setSpotlight: (value: boolean) => void;
+		additionalResources?: {
+			title: string;
+			description?: string;
+			links: { text: string; url: string }[];
+		};
 	}
 
 	let {
@@ -31,10 +38,15 @@
 		party,
 		setParty,
 		spotlight,
-		setSpotlight
+		setSpotlight,
+		additionalResources
 	}: Props = $props();
 
 	let settingsOpen = $state(false);
+	let otherOpenState = $state(false);
+	let isWrapped = $state(false);
+	let stratContainer: HTMLElement | undefined = $state();
+	let roleContainer: HTMLElement | undefined = $state();
 
 	let stratLabel = $derived(stratOptions.find((o) => o.value === stratName)?.label ?? stratName);
 	let toggleLabels = $derived(
@@ -44,12 +56,66 @@
 			.join(' | ')
 	);
 	let displayTitle = $derived(`${title}`);
+
+	function closeOther() {
+		otherOpenState = false;
+	}
+
+	function checkWrap() {
+		if (!stratContainer || !roleContainer) return;
+		// If strat container is significantly lower than role container, it's wrapped
+		isWrapped = stratContainer.offsetTop > roleContainer.offsetTop + 10;
+	}
+
+	onMount(() => {
+		checkWrap();
+		window.addEventListener('resize', checkWrap);
+		return () => window.removeEventListener('resize', checkWrap);
+	});
 </script>
+
+{#if additionalResources}
+	<Modal
+		open={otherOpenState}
+		onOpenChange={(e) => (otherOpenState = e.open)}
+		contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl flex flex-col border border-surface-600 lg:min-w-[600px]"
+		backdropClasses="backdrop-blur-sm"
+		zIndex={'3000'}
+	>
+		{#snippet content()}
+			<header class="flex justify-between">
+				<div>
+					<h3 class="h3">{additionalResources.title}</h3>
+				</div>
+				<X onclick={closeOther} class="cursor-pointer" />
+			</header>
+			<div>
+				{#if additionalResources.description}
+					<div class="card preset-outlined-warning-500 gap-4 p-4 mb-2">
+						<p>{@html additionalResources.description}</p>
+					</div>
+				{/if}
+				<div>
+					{#each additionalResources.links as link}
+						<div>
+							<a
+								class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1"
+								target="_blank"
+								rel="noopener noreferrer"
+								href={link.url}>{link.text}</a
+							>
+						</div>
+					{/each}
+				</div>
+			</div>
+		{/snippet}
+	</Modal>
+{/if}
 
 <div
 	class="z-10 w-full bg-surface-100-900 border-b border-surface-200-800 shadow-md backdrop-blur-md bg-opacity-90 relative lg:sticky lg:top-0"
 >
-	<div class="container mx-auto px-4 py-2 relative">
+	<div class="container mx-auto pl-4 pr-14 py-2 relative">
 		<div class="flex flex-wrap items-center gap-4 w-full">
 			<!-- Fight Title -->
 			<div class="font-bold text-lg text-surface-50 mr-2 block order-1">
@@ -57,8 +123,8 @@
 			</div>
 
 			<!-- Role & Party Selector -->
-			<div class="flex flex-wrap items-center gap-4 order-1 pr-10 lg:pr-0">
-				<div class="flex items-center gap-2">
+			<div class="flex flex-wrap items-center gap-4 order-1" bind:this={roleContainer}>
+				<div class="flex items-center gap-2 relative">
 					<span class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider"
 						>Role</span
 					>
@@ -92,7 +158,7 @@
 			</div>
 
 			<!-- Settings / Toggles Popover -->
-			<div class="flex items-center absolute top-2 right-4 lg:static lg:ml-auto lg:order-3">
+			<div class="flex items-center absolute top-6 right-4">
 				<Popover
 					zIndex="60"
 					open={settingsOpen}
@@ -121,7 +187,10 @@
 
 			<!-- Strat Stuff (Selector + Toggles) -->
 			<div
-				class="flex flex-wrap items-center gap-4 border-surface-600-400 w-full lg:w-auto order-3 lg:order-2 border-t pt-2 lg:border-t-0 lg:pt-0 lg:border-l lg:pl-4"
+				bind:this={stratContainer}
+				class="flex flex-wrap items-center gap-4 border-surface-600-400 w-full lg:w-auto order-3 lg:order-2 {isWrapped
+					? 'border-t pt-2'
+					: 'border-l pl-4'}"
 			>
 				<!-- Strat Selector -->
 				<div class="flex items-center gap-2">
@@ -132,15 +201,34 @@
 						name="stratName"
 						value={stratName}
 						onValueChange={(e) => onSelectStrat(e.value!)}
-						classes="h-12 rounded-none"
+						classes="h-auto min-h-12 rounded-none flex-wrap"
 					>
 						{#each stratOptions as option}
-							<Segment.Item value={option.value} classes="text-sm px-3 py-1 rounded-none"
-								>{option.label}</Segment.Item
+							<Segment.Item
+								value={option.value}
+								classes="text-sm px-3 py-1 rounded-none"
+								labelClasses="flex items-center"
+							>
+								{#if option.badges}
+									{#each option.badges as badge}
+										<span class="badge {badge.class} px-2 mr-2">{badge.text}</span>
+									{/each}
+								{/if}
+								{option.label}</Segment.Item
 							>
 						{/each}
 					</Segment>
 				</div>
+
+				{#if additionalResources}
+					<div class="flex flex-row">
+						<button
+							type="button"
+							class="btn preset-tonal-primary h-12 rounded-none"
+							onclick={() => (otherOpenState = true)}>View other strats</button
+						>
+					</div>
+				{/if}
 
 				<!-- Individual Strat Toggles -->
 				{#if stratName && toggles?.length}
@@ -166,5 +254,15 @@
 				{/if}
 			</div>
 		</div>
+		{#if !role || !party || !stratName}
+			<div
+				class="absolute -bottom-12 left-0 z-50 bg-surface-900 border border-primary-500 text-surface-50 px-4 py-2 rounded-xl shadow-xl"
+			>
+				<div
+					class="absolute -top-1.5 left-8 w-3 h-3 bg-surface-900 border-t border-l border-primary-500 transform rotate-45"
+				></div>
+				<span class="font-bold text-lg whitespace-nowrap">Select your Role, Group & Strat</span>
+			</div>
+		{/if}
 	</div>
 </div>
