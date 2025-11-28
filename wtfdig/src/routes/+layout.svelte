@@ -6,9 +6,10 @@
 	import { Button } from '$lib/components/ui/button';
 	import * as NavigationMenu from '$lib/components/ui/navigation-menu';
 	import * as Sidebar from '$lib/components/ui/sidebar';
+	import { useSidebar } from '$lib/components/ui/sidebar/index';
 	import AppSidebar from '$lib/components/app-sidebar.svelte';
 	import ChevronDown from '@lucide/svelte/icons/chevron-down';
-	import PanelLeftOpenIcon from '@lucide/svelte/icons/panel-left-open';
+	import PanelLeftIcon from '@lucide/svelte/icons/panel-left';
 	import { base } from '$app/paths';
 	interface Props {
 		children?: import('svelte').Snippet;
@@ -22,7 +23,7 @@
 	}
 
 	let { children }: Props = $props();
-	let open = $state(true);
+	const sidebar = useSidebar();
 </script>
 
 <Modal
@@ -333,20 +334,12 @@
 </header-->
 
 <ToastProvider>
-	<Sidebar.Provider bind:open={() => open, (v) => (open = v)}>
+	<Sidebar.Provider>
 		<AppSidebar />
 		<main class="grow">
 			<header class="container grow px-4 mx-auto my-4">
 				<div class="container grid grid-cols-3 items-center justify-between">
-					<Button
-						variant="ghost"
-						size="lg"
-						onclick={() => (open = !open)}
-						class="justify-self-start h-12 text-lg"
-					>
-						<PanelLeftOpenIcon size={32} />
-						<span>Menu</span>
-					</Button>
+					<Sidebar.Trigger />
 					<a
 						href="{base}/"
 						class="flex flex-row items-center text-2xl font-semibold my-4 md:my-0 justify-self-center gap-1"

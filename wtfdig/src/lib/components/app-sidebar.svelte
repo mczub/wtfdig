@@ -62,14 +62,25 @@
 					url: '/71/chaotic'
 				}
 			]
+		},
+		{
+			title: 'Ultimates',
+			url: '#',
+			items: [
+				{
+					title: 'The Unending Coil of Bahamut',
+					subtitle: 'Ultimate',
+					url: '/ultimates/ucob'
+				}
+			]
 		}
 	];
 </script>
 
 <Sidebar.Root>
-	<Sidebar.Content>
+	<Sidebar.Content class="bg-background">
 		<Sidebar.Group>
-			<Sidebar.GroupLabel class="text-lg my-2">Guides</Sidebar.GroupLabel>
+			<Sidebar.GroupLabel class="text-lg my-2 font-bold">Guides</Sidebar.GroupLabel>
 			<Sidebar.GroupContent>
 				<Sidebar.Menu>
 					{#each navItems as item, index (index)}

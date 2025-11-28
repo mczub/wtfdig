@@ -322,12 +322,10 @@
 								<div
 									class="card flex flex-row border border-surface-700/50 flex-auto items-center bg-surface-950/50 overflow-hidden"
 								>
-									<pre
-										class="flex-auto px-4 py-2 overflow-x-auto text-nowrap whitespace-nowrap font-mono text-sm text-surface-300 scrollbar-hide">{pfDescription}</pre>
 									<button
-										onclick={() => copyPFDescription(pfDescription)}
-										class="btn-icon btn-icon-sm rounded-none hover:bg-surface-800 transition-colors h-full px-3"
-										><Copy size={16} /></button
+										onclick={() => copyLinkToClipboard()}
+										class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none"
+										><Copy size={18} />Copy PF Description</button
 									>
 								</div>
 							</div>
