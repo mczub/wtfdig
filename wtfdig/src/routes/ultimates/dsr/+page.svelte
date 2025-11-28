@@ -248,6 +248,7 @@
 	{innerWidth}
 	tabTags={{}}
 	splitTimeline={false}
+	{role}
 />
 
 <div class="container grow px-4 mx-auto mb-6">
@@ -409,6 +410,7 @@
 						{individualStrat}
 						{spotlight}
 						{alignment}
+						{role}
 					/>
 				</div>
 			{/if}

@@ -480,6 +480,7 @@
 		P2: ['p2', 'twofold', 'lament', 'uv4']
 	}}
 	splitTimeline={true}
+	{role}
 />
 
 <div class="container grow px-4 mx-auto mb-6">
@@ -552,11 +553,10 @@
 								onValueChange={(e) => setStratState('decay', e.value)}
 							>
 								<Segment.Item value="fer" labelClasses="flex items-center"
-									><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span
-									>Fering</Segment.Item
+									><span class="badge na-badge px-2 mr-2">NA</span>Fering</Segment.Item
 								>
 								<Segment.Item value="toxic" labelClasses="flex items-center"
-									><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Toxic</Segment.Item
+									><span class="badge eu-badge px-2 mr-2">EU</span>Toxic</Segment.Item
 								>
 							</Segment>
 						</div>
@@ -587,13 +587,12 @@
 								onValueChange={(e) => setStratState('terrestrial', e.value)}
 							>
 								<Segment.Item value="clock" labelClasses="flex items-center"
-									><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span
-									>Clock</Segment.Item
+									><span class="badge na-badge px-2 mr-2">NA</span>Clock</Segment.Item
 								>
 								<Segment.Item value="toxic">Toxic</Segment.Item>
 								<Segment.Item value="dn">DN</Segment.Item>
 								<Segment.Item value="fullr" labelClasses="flex items-center"
-									><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Full Rinon</Segment.Item
+									><span class="badge eu-badge px-2 mr-2">EU</span>Full Rinon</Segment.Item
 								>
 								<Segment.Item value="halfr">Half Rinon</Segment.Item>
 							</Segment>
@@ -625,8 +624,8 @@
 								onValueChange={(e) => setStratState('moonlight', e.value)}
 							>
 								<Segment.Item value="quad" labelClasses="flex items-center"
-									><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span><span
-										class="badge preset-tonal-secondary px-2 mr-2">EU</span
+									><span class="badge na-badge px-2 mr-2">NA</span><span
+										class="badge eu-badge px-2 mr-2">EU</span
 									>Quad</Segment.Item
 								>
 								<Segment.Item value="toxic">Toxic</Segment.Item>
@@ -662,8 +661,8 @@
 								onValueChange={(e) => setStratState('p2', e.value)}
 							>
 								<Segment.Item value="toxic" labelClasses="flex items-center"
-									><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span><span
-										class="badge preset-tonal-secondary px-2 mr-2">EU</span
+									><span class="badge na-badge px-2 mr-2">NA</span><span
+										class="badge eu-badge px-2 mr-2">EU</span
 									>Toxic</Segment.Item
 								>
 							</Segment>
@@ -696,7 +695,7 @@
 							>
 								<Segment.Item value="original">Original</Segment.Item>
 								<Segment.Item value="casterse" labelClasses="flex items-center"
-									><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Caster SE</Segment.Item
+									><span class="badge eu-badge px-2 mr-2">EU</span>Caster SE</Segment.Item
 								>
 							</Segment>
 						</div>
@@ -727,11 +726,10 @@
 								onValueChange={(e) => setStratState('lament', e.value)}
 							>
 								<Segment.Item value="rinon" labelClasses="flex items-center"
-									><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span
-									>Rinon</Segment.Item
+									><span class="badge na-badge px-2 mr-2">NA</span>Rinon</Segment.Item
 								>
 								<Segment.Item value="toxic" labelClasses="flex items-center"
-									><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Toxic</Segment.Item
+									><span class="badge eu-badge px-2 mr-2">EU</span>Toxic</Segment.Item
 								>
 							</Segment>
 						</div>
@@ -762,11 +760,10 @@
 								onValueChange={(e) => setStratState('uv4', e.value)}
 							>
 								<Segment.Item value="rinon" labelClasses="flex items-center"
-									><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span
-									>Rinon</Segment.Item
+									><span class="badge na-badge px-2 mr-2">NA</span>Rinon</Segment.Item
 								>
 								<Segment.Item value="toxic" labelClasses="flex items-center"
-									><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Toxic</Segment.Item
+									><span class="badge eu-badge px-2 mr-2">EU</span>Toxic</Segment.Item
 								>
 							</Segment>
 						</div>
@@ -831,7 +828,7 @@
 						class="card flex flex-row border-[1px] border-surface-200-800 flex-auto lg:w-0 lg:max-w-full"
 					>
 						<pre
-							class="flex-auto pre overflow-x-auto text-nowrap whitespace-nowrap">{getPFDescription()}</pre>
+							class="flex-auto pre overflow-x-auto text-nowrap whitespace-nowrap w-0 max-w-full self-center px-2">{getPFDescription()}</pre>
 						<button
 							onclick={() => copyPFDescription()}
 							class="button btn btn-lg preset-tonal-secondary border border-secondary-500"
@@ -986,6 +983,7 @@
 						{individualStrat}
 						{spotlight}
 						{alignment}
+						{role}
 					/>
 				</div>
 			{/if}

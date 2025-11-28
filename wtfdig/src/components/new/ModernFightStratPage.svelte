@@ -196,6 +196,7 @@
 		{innerHeight}
 		{innerWidth}
 		tabTags={config.tabTags}
+		role={normalizedRole}
 	/>
 
 	<ModernFightStratControls
@@ -341,6 +342,7 @@
 							{spotlight}
 							{alignment}
 							tabTags={config.tabTags}
+							role={normalizedRole}
 						/>
 					</div>
 				{/if}

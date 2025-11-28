@@ -6,7 +6,7 @@
 	import { Modal } from '$lib/components/ui';
 	import { X } from '@lucide/svelte/icons';
 
-	let { phase, mech = null, spotlight, imageOpenState = $bindable() } = $props();
+	let { phase, mech = null, spotlight, imageOpenState = $bindable(), role = null } = $props();
 
 	function openImageModal() {
 		imageOpenState = true;
@@ -43,7 +43,7 @@
 <Modal
 	open={imageOpenState}
 	onOpenChange={(e) => (imageOpenState = e.open)}
-	contentBase="bg-surface-100 dark:bg-surface-900 p-4 space-y-4 shadow-xl flex flex-col border border-surface-600 w-[95vw] h-[95vh] max-w-none max-h-none"
+	contentBase="bg-surface-100 dark:bg-surface-900 p-4 space-y-4 shadow-xl flex flex-col border border-surface-600 w-[95vw] max-w-none max-h-none"
 	backdropClasses="backdrop-blur-sm"
 	zIndex={'3000'}
 >
@@ -62,8 +62,17 @@
 			<div class="whitespace-pre-wrap text-xs lg:text-lg shrink-0">
 				{mech ? mech?.description : ''}
 			</div>
-			<div class="whitespace-pre-wrap text-xs lg:text-lg mb-0 shrink-0">
-				{mech ? mech?.strats && mech.strats[0].description : ''}
+			<div class="flex items-start gap-1 text-xs lg:text-lg mb-0 shrink-0">
+				{#if role && mech?.strats && mech.strats.length > 0}
+					<img
+						src={`/icons/${role.toLowerCase()}.png`}
+						alt={role}
+						class="w-4 h-4 lg:w-6 lg:h-6 shrink-0 mt-1"
+					/>
+				{/if}
+				<div class="whitespace-pre-wrap">
+					{mech ? mech?.strats && mech.strats[0].description : ''}
+				</div>
 			</div>
 			<img
 				class="rounded-md mt-4 flex-1 min-h-0 object-contain w-auto mx-auto"

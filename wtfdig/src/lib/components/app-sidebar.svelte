@@ -1,8 +1,11 @@
 <script lang="ts">
 	import * as Sidebar from '$lib/components/ui/sidebar';
 	import * as Collapsible from '$lib/components/ui/collapsible';
+	import { useSidebar } from '$lib/components/ui/sidebar';
 	import { base } from '$app/paths';
-	import { ChevronDown, ChevronRightIcon } from '@lucide/svelte';
+	import { ArrowLeftFromLine, ChevronDown, ChevronRightIcon } from '@lucide/svelte';
+
+	const sidebar = useSidebar();
 
 	const navItems = [
 		{
@@ -80,7 +83,10 @@
 <Sidebar.Root>
 	<Sidebar.Content class="bg-background">
 		<Sidebar.Group>
-			<Sidebar.GroupLabel class="text-lg my-2 font-bold">Guides</Sidebar.GroupLabel>
+			<Sidebar.GroupLabel class="text-lg my-2 font-bold">Fights</Sidebar.GroupLabel>
+			<Sidebar.GroupAction class="my-1" title="Close" onclick={() => sidebar.toggle()}>
+				<div><ArrowLeftFromLine className="size-8" /></div>
+			</Sidebar.GroupAction>
 			<Sidebar.GroupContent>
 				<Sidebar.Menu>
 					{#each navItems as item, index (index)}

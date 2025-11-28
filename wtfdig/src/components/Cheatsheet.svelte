@@ -41,7 +41,8 @@
 		rows,
 		columns,
 		tabTags = null,
-		splitTimeline = false
+		splitTimeline = false,
+		role = null
 	}: Props = $props();
 
 	function getFightPercentClass(timeInMs: number, index: number): string {
@@ -120,6 +121,7 @@
 	mech={imageModalProps.mech}
 	phase={imageModalProps.phase}
 	{spotlight}
+	{role}
 />
 
 <Modal
@@ -300,8 +302,17 @@
 										/>
 									</div>
 								{/if}
-								<div class="whitespace-pre-wrap text-xs 3xl:text-base mb-0">
-									{mech?.strats && mech.strats[0].description}
+								<div class="flex items-start gap-1 text-xs 3xl:text-base mb-0">
+									{#if role && mech.strats && mech.strats.length > 0}
+										<img
+											src={`/icons/${role.toLowerCase()}.png`}
+											alt={role}
+											class="w-4 h-4 shrink-0 mt-0.5"
+										/>
+									{/if}
+									<div class="whitespace-pre-wrap">
+										{mech?.strats && mech.strats[0].description}
+									</div>
 								</div>
 
 								{#if mech?.strats && mech.strats[0]?.imageUrl}

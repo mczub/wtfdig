@@ -412,6 +412,7 @@
 	{innerWidth}
 	tabTags={{ P1: ['p1'], P2: ['p2'], P3: ['p3'] }}
 	splitTimeline={false}
+	{role}
 />
 
 <Modal
@@ -686,7 +687,7 @@
 						class="card flex flex-row border-[1px] border-surface-200-800 flex-auto lg:w-0 lg:max-w-full"
 					>
 						<pre
-							class="flex-auto pre overflow-x-auto text-nowrap whitespace-nowrap">{getPFDescription()}</pre>
+							class="flex-auto pre overflow-x-auto text-nowrap whitespace-nowrap w-0 max-w-full self-center px-2">{getPFDescription()}</pre>
 						<button
 							onclick={() => copyPFDescription()}
 							class="button btn btn-lg preset-tonal-secondary border border-secondary-500"
@@ -779,6 +780,7 @@
 						{individualStrat}
 						{spotlight}
 						{alignment}
+						{role}
 					/>
 				</div>
 			{/if}

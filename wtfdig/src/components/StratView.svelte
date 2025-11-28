@@ -37,7 +37,8 @@
 		individualStrat,
 		spotlight,
 		alignment,
-		tabTags = null
+		tabTags = null,
+		role = null
 	}: Props = $props();
 
 	let imageOpenState = $state(false);
@@ -64,6 +65,7 @@
 	mech={imageModalProps.mech}
 	phase={imageModalProps.phase}
 	{spotlight}
+	{role}
 />
 
 {#if strat?.notes}
@@ -222,8 +224,17 @@
 											class="max-h-[400px] self-start rounded-md mt-4"
 											src={mech.imageUrl}
 										/>{/if}
-									<div class="whitespace-pre-wrap text-lg mb-0">
-										{mech?.strats && mech.strats[0].description}
+									<div class="flex items-start gap-1 text-lg mb-0">
+										{#if role && mech.strats && mech.strats.length > 0}
+											<img
+												src={`/icons/${role.toLowerCase()}.png`}
+												alt={role}
+												class="w-6 h-6 shrink-0 mt-1"
+											/>
+										{/if}
+										<div class="whitespace-pre-wrap">
+											{mech?.strats && mech.strats[0].description}
+										</div>
 									</div>
 									{#if mech?.strats && mech.strats[0]?.imageUrl}<img
 											class="max-h-[400px] self-start rounded-md mt-4"

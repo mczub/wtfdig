@@ -196,6 +196,7 @@
 		{innerHeight}
 		{innerWidth}
 		tabTags={config.tabTags}
+		role={normalizedRole}
 	/>
 
 	<div class="container grow px-4 mx-auto mb-6">
@@ -334,6 +335,7 @@
 							{individualStrat}
 							{spotlight}
 							{alignment}
+							role={normalizedRole}
 						/>
 					</div>
 				{/if}
