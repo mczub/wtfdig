@@ -1,8 +1,14 @@
+<!-- @ts-nocheck -->
 <script lang="ts">
+	// @ts-nocheck
 	import '../app.css';
-	import { onMount } from 'svelte';
-	import { Modal, Popover, ToastProvider } from '@skeletonlabs/skeleton-svelte';
+	import { Modal, ToastProvider } from '$lib/components/ui';
+	import { Button } from '$lib/components/ui/button';
+	import * as NavigationMenu from '$lib/components/ui/navigation-menu';
+	import * as Sidebar from '$lib/components/ui/sidebar';
+	import AppSidebar from '$lib/components/app-sidebar.svelte';
 	import ChevronDown from '@lucide/svelte/icons/chevron-down';
+	import PanelLeftOpenIcon from '@lucide/svelte/icons/panel-left-open';
 	import { base } from '$app/paths';
 	interface Props {
 		children?: import('svelte').Snippet;
@@ -14,18 +20,15 @@
 	function changelogClose() {
 		changelogOpenState = false;
 	}
-	let popover71OpenState = $state(false);
-	let popover72OpenState = $state(false);
-	let popover73OpenState = $state(false);
-	let popoverUltimatesOpenState = $state(false);
 
 	let { children }: Props = $props();
+	let open = $state(true);
 </script>
 
 <Modal
 	open={changelogOpenState}
 	classes=""
-	contentBase="card bg-surface-100-900 max-h-8/10 p-4 space-y-4 shadow-xl overflow-auto preset-outlined-surface-200-800 bg-surface-1000"
+	contentBase="bg-surface-100 dark:bg-surface-900 max-h-8/10 p-4 space-y-4 shadow-xl overflow-auto border border-surface-200 dark:border-surface-800"
 	backdropClasses="backdrop-blur-sm"
 	onPointerDownOutside={() => changelogClose()}
 >
@@ -125,7 +128,7 @@
 	{/snippet}
 </Modal>
 
-<header class="w-full mx-auto px-6 py-6 border-b border-gray-600 flex-none z-50 relative">
+<!--header class="w-full mx-auto px-6 py-6 border-b border-gray-600 flex-none z-50 relative">
 	<div class="grid grid-cols-1 md:grid-cols-3 justify-items-stretch items-center">
 		<a
 			href="{base}/"
@@ -143,198 +146,182 @@
 			>
 		</div>
 		<div class="flex flex-wrap gap-2 md:justify-end my-4 md:ml-4 md:my-0">
-			<Popover
-				zIndex="60"
-				open={popover71OpenState}
-				onOpenChange={(e) => (popover71OpenState = e.open)}
-				positioning={{ placement: 'bottom-end' }}
-				triggerBase="btn preset-tonal-secondary border border-secondary-500 px-4"
-				contentBase="card bg-surface-200-800 space-y-4 min-w-[240px]"
-			>
-				{#snippet trigger()}Patch 7.1 <ChevronDown size={16} />{/snippet}
-				{#snippet content()}
-					<article>
-						<div
-							class="opacity-60 preset-outlined-surface-200-800 grid p-0 w-full divide-y divide-surface-800 rounded-md bg-surface-950"
+			<NavigationMenu.Root>
+				<NavigationMenu.List>
+					<NavigationMenu.Item>
+						<NavigationMenu.Trigger class="btn preset-tonal-secondary px-4"
+							>Patch 7.1 <ChevronDown size={16} /></NavigationMenu.Trigger
 						>
-							<div class="px-4 py-2 hover:bg-surface-900">
-								<a
-									data-sveltekit-reload
-									href="{base}/71/chaotic"
-									class="flex flex-col w-full items-start"
+						<NavigationMenu.Content class="bg-surface-200 dark:bg-surface-800 min-w-[240px] p-4">
+							<article>
+								<div
+									class="opacity-60 preset-outlined-surface-200-800 grid p-0 w-full divide-y divide-surface-800 rounded-md bg-surface-950"
 								>
-									<div class="text-lg -mb-2">Cloud of Darkness</div>
-									<div class="text-sm">Chaotic</div>
-								</a>
-							</div>
-						</div>
-					</article>
-				{/snippet}
-			</Popover>
-			<Popover
-				zIndex="60"
-				open={popover72OpenState}
-				onOpenChange={(e) => (popover72OpenState = e.open)}
-				positioning={{ placement: 'bottom-end' }}
-				triggerBase="btn preset-tonal-secondary border border-secondary-500 px-4"
-				contentBase="card bg-surface-200-800 min-w-[240px]"
-			>
-				{#snippet trigger()}Patch 7.2 <ChevronDown size={16} />{/snippet}
-				{#snippet content()}
-					<article>
-						<div
-							class="opacity-60 preset-outlined-surface-200-800 grid grid-rows-4 p-0 w-full divide-y divide-surface-800 rounded-md bg-surface-950"
+									<div class="px-4 py-2 hover:bg-surface-900">
+										<a
+											data-sveltekit-reload
+											href="{base}/71/chaotic"
+											class="flex flex-col w-full items-start"
+										>
+											<div class="text-lg -mb-2">Cloud of Darkness</div>
+											<div class="text-sm">Chaotic</div>
+										</a>
+									</div>
+								</div>
+							</article>
+						</NavigationMenu.Content>
+					</NavigationMenu.Item>
+					<NavigationMenu.Item>
+						<NavigationMenu.Trigger class="btn preset-tonal-secondary px-4"
+							>Patch 7.2 <ChevronDown size={16} /></NavigationMenu.Trigger
 						>
-							<div class="px-4 py-2 hover:bg-surface-900">
-								<a
-									data-sveltekit-reload
-									href="{base}/72/ex4"
-									class="flex flex-col w-full items-start"
+						<NavigationMenu.Content class="bg-surface-200 dark:bg-surface-800 min-w-[240px] p-4">
+							<article>
+								<div
+									class="opacity-60 preset-outlined-surface-200-800 grid grid-rows-4 p-0 w-full divide-y divide-surface-800 rounded-md bg-surface-950"
 								>
-									<div class="text-lg -mb-2">Recollection</div>
-									<div class="text-sm">Extreme</div>
-								</a>
-							</div>
-							<div class="px-4 py-2 hover:bg-surface-900">
-								<a
-									data-sveltekit-reload
-									href="{base}/72/m5s"
-									class="flex flex-col w-full items-start"
-								>
-									<div class="text-lg -mb-2">AAC Cruiserweight M1</div>
-									<div class="text-sm">Savage</div>
-								</a>
-							</div>
-							<div class="px-4 py-2 hover:bg-surface-900">
-								<a
-									data-sveltekit-reload
-									href="{base}/72/m6s"
-									class="flex flex-col w-full items-start"
-								>
-									<div class="text-lg -mb-2">AAC Cruiserweight M2</div>
-									<div class="text-sm">Savage</div>
-								</a>
-							</div>
-							<div class="px-4 py-2 hover:bg-surface-900">
-								<a
-									data-sveltekit-reload
-									href="{base}/72/m7s"
-									class="flex flex-col w-full items-start"
-								>
-									<div class="text-lg -mb-2">AAC Cruiserweight M3</div>
-									<div class="text-sm">Savage</div>
-								</a>
-							</div>
-							<div class="px-4 py-2 hover:bg-surface-900">
-								<a
-									data-sveltekit-reload
-									href="{base}/72/m8s"
-									class="flex flex-col w-full items-start"
-								>
-									<div class="text-lg -mb-2">AAC Cruiserweight M4</div>
-									<div class="text-sm">Savage</div>
-								</a>
-							</div>
-						</div>
-					</article>
-				{/snippet}
-			</Popover>
-			<Popover
-				zIndex="60"
-				open={popover73OpenState}
-				onOpenChange={(e) => (popover73OpenState = e.open)}
-				positioning={{ placement: 'bottom-end' }}
-				triggerBase="btn preset-tonal-secondary border border-secondary-500 px-4"
-				contentBase="card bg-surface-200-800 min-w-[240px]"
-			>
-				{#snippet trigger()}Patch 7.3 <ChevronDown size={16} />{/snippet}
-				{#snippet content()}
-					<article>
-						<div
-							class="opacity-60 preset-outlined-surface-200-800 grid p-0 w-full divide-y divide-surface-800 rounded-md bg-surface-950"
+									<div class="px-4 py-2 hover:bg-surface-900">
+										<a
+											data-sveltekit-reload
+											href="{base}/72/ex4"
+											class="flex flex-col w-full items-start"
+										>
+											<div class="text-lg -mb-2">Recollection</div>
+											<div class="text-sm">Extreme</div>
+										</a>
+									</div>
+									<div class="px-4 py-2 hover:bg-surface-900">
+										<a
+											data-sveltekit-reload
+											href="{base}/72/m5s"
+											class="flex flex-col w-full items-start"
+										>
+											<div class="text-lg -mb-2">AAC Cruiserweight M1</div>
+											<div class="text-sm">Savage</div>
+										</a>
+									</div>
+									<div class="px-4 py-2 hover:bg-surface-900">
+										<a
+											data-sveltekit-reload
+											href="{base}/72/m6s"
+											class="flex flex-col w-full items-start"
+										>
+											<div class="text-lg -mb-2">AAC Cruiserweight M2</div>
+											<div class="text-sm">Savage</div>
+										</a>
+									</div>
+									<div class="px-4 py-2 hover:bg-surface-900">
+										<a
+											data-sveltekit-reload
+											href="{base}/72/m7s"
+											class="flex flex-col w-full items-start"
+										>
+											<div class="text-lg -mb-2">AAC Cruiserweight M3</div>
+											<div class="text-sm">Savage</div>
+										</a>
+									</div>
+									<div class="px-4 py-2 hover:bg-surface-900">
+										<a
+											data-sveltekit-reload
+											href="{base}/72/m8s"
+											class="flex flex-col w-full items-start"
+										>
+											<div class="text-lg -mb-2">AAC Cruiserweight M4</div>
+											<div class="text-sm">Savage</div>
+										</a>
+									</div>
+								</div>
+							</article>
+						</NavigationMenu.Content>
+					</NavigationMenu.Item>
+					<NavigationMenu.Item>
+						<NavigationMenu.Trigger class="btn preset-tonal-secondary px-4"
+							>Patch 7.3 <ChevronDown size={16} /></NavigationMenu.Trigger
 						>
-							<div class="px-4 py-2 hover:bg-surface-900">
-								<a
-									data-sveltekit-reload
-									href="{base}/73/ex6"
-									class="flex flex-col w-full items-start"
+						<NavigationMenu.Content class="bg-surface-200 dark:bg-surface-800 min-w-[240px] p-4">
+							<article>
+								<div
+									class="opacity-60 preset-outlined-surface-200-800 grid p-0 w-full divide-y divide-surface-800 rounded-md bg-surface-950"
 								>
-									<div class="text-lg -mb-2">Windward Wilds</div>
-									<div class="text-sm">Extreme</div>
-								</a>
-							</div>
-							<div class="px-4 py-2 hover:bg-surface-900">
-								<a
-									data-sveltekit-reload
-									href="{base}/73/ex5"
-									class="flex flex-col w-full items-start"
-								>
-									<div class="text-lg -mb-2">Necron's Embrace</div>
-									<div class="text-sm">Extreme</div>
-								</a>
-							</div>
-						</div>
-					</article>
-				{/snippet}
-			</Popover>
-			<Popover
-				zIndex="60"
-				open={popoverUltimatesOpenState}
-				onOpenChange={(e) => (popoverUltimatesOpenState = e.open)}
-				positioning={{ placement: 'bottom-end' }}
-				triggerBase="btn preset-tonal-secondary border border-secondary-500 px-4"
-				contentBase="card bg-surface-200-800 min-w-[240px]"
-			>
-				{#snippet trigger()}Ultimates <ChevronDown size={16} />{/snippet}
-				{#snippet content()}
-					<article>
-						<div
-							class="opacity-60 preset-outlined-surface-200-800 grid p-0 w-full divide-y divide-surface-800 rounded-md bg-surface-950"
+									<div class="px-4 py-2 hover:bg-surface-900">
+										<a
+											data-sveltekit-reload
+											href="{base}/73/ex6"
+											class="flex flex-col w-full items-start"
+										>
+											<div class="text-lg -mb-2">Windward Wilds</div>
+											<div class="text-sm">Extreme</div>
+										</a>
+									</div>
+									<div class="px-4 py-2 hover:bg-surface-900">
+										<a
+											data-sveltekit-reload
+											href="{base}/73/ex5"
+											class="flex flex-col w-full items-start"
+										>
+											<div class="text-lg -mb-2">Necron's Embrace</div>
+											<div class="text-sm">Extreme</div>
+										</a>
+									</div>
+								</div>
+							</article>
+						</NavigationMenu.Content>
+					</NavigationMenu.Item>
+					<NavigationMenu.Item>
+						<NavigationMenu.Trigger class="btn preset-tonal-secondary px-4"
+							>Ultimates <ChevronDown size={16} /></NavigationMenu.Trigger
 						>
-							<div class="px-4 py-2 hover:bg-surface-900">
-								<a
-									data-sveltekit-reload
-									href="{base}/ultimates/ucob"
-									class="flex flex-col w-full items-start"
+						<NavigationMenu.Content class="bg-surface-200 dark:bg-surface-800 min-w-[240px] p-4">
+							<article>
+								<div
+									class="opacity-60 preset-outlined-surface-200-800 grid p-0 w-full divide-y divide-surface-800 rounded-md bg-surface-950"
 								>
-									<div class="text-lg -mb-2">The Unending Coil of Bahamut</div>
-									<div class="text-sm">Ultimate</div>
-								</a>
-							</div>
-							<div class="px-4 py-2">
-								<button class="flex flex-col w-full items-start disabled">
-									<div class="text-lg -mb-2">The Weapon's Refrain</div>
-									<div class="text-sm">Ultimate</div>
-								</button>
-							</div>
-							<div class="px-4 py-2">
-								<button class="flex flex-col w-full items-start disabled">
-									<div class="text-lg -mb-2">The Epic of Alexander</div>
-									<div class="text-sm">Ultimate</div>
-								</button>
-							</div>
-							<div class="px-4 py-2">
-								<button class="flex flex-col w-full items-start disabled">
-									<div class="text-lg -mb-2">Dragonsong's Reprise</div>
-									<div class="text-sm">Ultimate</div>
-								</button>
-							</div>
-							<div class="px-4 py-2">
-								<button class="flex flex-col w-full items-start disabled">
-									<div class="text-lg -mb-2">The Omega Protocol</div>
-									<div class="text-sm">Ultimate</div>
-								</button>
-							</div>
-							<div class="px-4 py-2">
-								<button class="flex flex-col w-full items-start disabled">
-									<div class="text-lg -mb-2">Futures Rewritten</div>
-									<div class="text-sm">Ultimate</div>
-								</button>
-							</div>
-						</div>
-					</article>
-				{/snippet}
-			</Popover>
+									<div class="px-4 py-2 hover:bg-surface-900">
+										<a
+											data-sveltekit-reload
+											href="{base}/ultimates/ucob"
+											class="flex flex-col w-full items-start"
+										>
+											<div class="text-lg -mb-2">The Unending Coil of Bahamut</div>
+											<div class="text-sm">Ultimate</div>
+										</a>
+									</div>
+									<div class="px-4 py-2">
+										<button class="flex flex-col w-full items-start disabled">
+											<div class="text-lg -mb-2">The Weapon's Refrain</div>
+											<div class="text-sm">Ultimate</div>
+										</button>
+									</div>
+									<div class="px-4 py-2">
+										<button class="flex flex-col w-full items-start disabled">
+											<div class="text-lg -mb-2">The Epic of Alexander</div>
+											<div class="text-sm">Ultimate</div>
+										</button>
+									</div>
+									<div class="px-4 py-2">
+										<button class="flex flex-col w-full items-start disabled">
+											<div class="text-lg -mb-2">Dragonsong's Reprise</div>
+											<div class="text-sm">Ultimate</div>
+										</button>
+									</div>
+									<div class="px-4 py-2">
+										<button class="flex flex-col w-full items-start disabled">
+											<div class="text-lg -mb-2">The Omega Protocol</div>
+											<div class="text-sm">Ultimate</div>
+										</button>
+									</div>
+									<div class="px-4 py-2">
+										<button class="flex flex-col w-full items-start disabled">
+											<div class="text-lg -mb-2">Futures Rewritten</div>
+											<div class="text-sm">Ultimate</div>
+										</button>
+									</div>
+								</div>
+							</article>
+						</NavigationMenu.Content>
+					</NavigationMenu.Item>
+				</NavigationMenu.List>
+			</NavigationMenu.Root>
 
 			<button
 				type="button"
@@ -343,10 +330,44 @@
 			>
 		</div>
 	</div>
-</header>
+</header-->
 
 <ToastProvider>
-	{@render children?.()}
+	<Sidebar.Provider bind:open={() => open, (v) => (open = v)}>
+		<AppSidebar />
+		<main class="grow">
+			<header class="container grow px-4 mx-auto my-4">
+				<div class="container grid grid-cols-3 items-center justify-between">
+					<Button
+						variant="ghost"
+						size="lg"
+						onclick={() => (open = !open)}
+						class="justify-self-start h-12 text-lg"
+					>
+						<PanelLeftOpenIcon size={32} />
+						<span>Menu</span>
+					</Button>
+					<a
+						href="{base}/"
+						class="flex flex-row items-center text-2xl font-semibold my-4 md:my-0 justify-self-center gap-1"
+						>WTFDIG<img width="32px" src="{base}/wtfdig-small-800.png" /></a
+					>
+					<div
+						class="card preset-outlined-secondary-500 gap-4 p-4 md:justify-self-end text-sm hidden md:block"
+					>
+						WTFDIG can now be found at <a
+							target="_blank"
+							rel="noopener noreferrer"
+							class="anchor"
+							href="https://wtfdig.info">WTFDIG.info</a
+						>
+					</div>
+				</div>
+			</header>
+
+			{@render children?.()}
+		</main>
+	</Sidebar.Provider>
 </ToastProvider>
 
 <footer

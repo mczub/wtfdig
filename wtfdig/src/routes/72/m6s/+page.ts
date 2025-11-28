@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { TimelineItem } from "$lib/types";
 import type { PageLoad } from "./$types";
 

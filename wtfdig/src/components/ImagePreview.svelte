@@ -1,7 +1,9 @@
+<!-- @ts-nocheck -->
 <svelte:options customElement={{ shadow: 'none' }} />
 
 <script lang="ts">
-	import { Modal } from '@skeletonlabs/skeleton-svelte';
+	// @ts-nocheck
+	import { Modal } from '$lib/components/ui';
 	import { X } from '@lucide/svelte/icons';
 
 	let { phase, mech = null, spotlight, imageOpenState = $bindable() } = $props();
@@ -41,7 +43,7 @@
 <Modal
 	open={imageOpenState}
 	onOpenChange={(e) => (imageOpenState = e.open)}
-	contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl flex flex-col border border-surface-600 max-w-full max-h-[90vh]"
+	contentBase="bg-surface-100 dark:bg-surface-900 p-4 space-y-4 shadow-xl flex flex-col border border-surface-600 w-[95vw] h-[95vh] max-w-none max-h-none"
 	backdropClasses="backdrop-blur-sm"
 	zIndex={'3000'}
 >

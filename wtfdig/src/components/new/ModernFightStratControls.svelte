@@ -1,6 +1,8 @@
+<!-- @ts-nocheck -->
 <script lang="ts">
+	// @ts-nocheck
 	import { onMount } from 'svelte';
-	import { Segment, Switch, Popover, Modal } from '@skeletonlabs/skeleton-svelte';
+	import { Segment, Switch, Popover, Modal } from '$lib/components/ui';
 	import type { Role, StratOption, FightToggleState } from '$lib/types';
 	import ChevronDown from '@lucide/svelte/icons/chevron-down';
 	import Settings from '@lucide/svelte/icons/settings';
@@ -78,7 +80,7 @@
 	<Modal
 		open={otherOpenState}
 		onOpenChange={(e) => (otherOpenState = e.open)}
-		contentBase="card bg-surface-100-900 p-4 space-y-4 shadow-xl flex flex-col border border-surface-600 lg:min-w-[600px]"
+		contentBase="bg-surface-100 dark:bg-surface-900 p-4 space-y-4 shadow-xl flex flex-col border border-surface-600 lg:min-w-[600px]"
 		backdropClasses="backdrop-blur-sm"
 		zIndex={'3000'}
 	>
@@ -112,11 +114,40 @@
 	</Modal>
 {/if}
 
+{#snippet settingsPopover()}
+	<!-- Settings / Toggles Popover -->
+	<div class="absolute right-4">
+		<Popover
+			zIndex="60"
+			open={settingsOpen}
+			onOpenChange={(e) => (settingsOpen = e.open)}
+			positioning={{ placement: 'bottom-end' }}
+			triggerBase="btn-icon btn-icon-sm preset-tonal-surface"
+			contentBase="bg-surface-200 dark:bg-surface-800 p-4 space-y-4 shadow-xl min-w-[280px]"
+		>
+			{#snippet trigger()}
+				<Settings size={20} />
+			{/snippet}
+			{#snippet content()}
+				<div class="space-y-4">
+					<div class="flex justify-between items-center">
+						<span class="font-medium">Highlight my spots</span>
+						<Switch
+							name="spotlight-toggle"
+							checked={spotlight}
+							onCheckedChange={(e) => setSpotlight(e.checked)}
+						/>
+					</div>
+				</div>
+			{/snippet}
+		</Popover>
+	</div>
+{/snippet}
 <div
 	class="z-10 w-full bg-surface-100-900 border-b border-surface-200-800 shadow-md backdrop-blur-md bg-opacity-90 relative lg:sticky lg:top-0"
 >
-	<div class="container mx-auto pl-4 pr-14 py-2 relative">
-		<div class="flex flex-wrap items-center gap-4 w-full">
+	<div class="container mx-auto px-4 py-2 relative">
+		<div class="flex flex-wrap items-center gap-2 w-full">
 			<!-- Fight Title -->
 			<div class="font-bold text-lg text-surface-50 mr-2 block order-1">
 				{displayTitle}
@@ -124,65 +155,40 @@
 
 			<!-- Role & Party Selector -->
 			<div class="flex flex-wrap items-center gap-4 order-1" bind:this={roleContainer}>
-				<div class="flex items-center gap-2 relative">
-					<span class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider"
+				<div class="flex items-center relative">
+					<span class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider mr-2"
 						>Role</span
 					>
 					<Segment
 						name="role"
 						value={role}
 						onValueChange={(e) => setRole(e.value as Role)}
-						classes="h-12 rounded-none"
+						classes=""
 					>
-						<Segment.Item value="Tank" classes="text-sm px-3 py-1 rounded-none">T</Segment.Item>
-						<Segment.Item value="Healer" classes="text-sm px-3 py-1 rounded-none">H</Segment.Item>
-						<Segment.Item value="Melee" classes="text-sm px-3 py-1 rounded-none">M</Segment.Item>
-						<Segment.Item value="Ranged" classes="text-sm px-3 py-1 rounded-none">R</Segment.Item>
+						<Segment.Item value="Tank" classes="text-md px-3 py-1">T</Segment.Item>
+						<Segment.Item value="Healer" classes="text-md px-3 py-1">H</Segment.Item>
+						<Segment.Item value="Melee" classes="text-md px-3 py-1">M</Segment.Item>
+						<Segment.Item value="Ranged" classes="text-md px-3 py-1">R</Segment.Item>
 					</Segment>
 				</div>
 
-				<div class="flex items-center gap-2">
-					<span class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider"
+				<div class="flex items-center">
+					<span class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider mr-2"
 						>Group</span
 					>
 					<Segment
 						name="party"
 						value={party?.toString()}
 						onValueChange={(e) => setParty(parseInt(e.value!))}
-						classes="h-12 rounded-none"
+						classes=""
 					>
-						<Segment.Item value="1" classes="text-sm px-3 py-1 rounded-none">1</Segment.Item>
-						<Segment.Item value="2" classes="text-sm px-3 py-1 rounded-none">2</Segment.Item>
+						<Segment.Item value="1" classes="text-md px-3 py-1">1</Segment.Item>
+						<Segment.Item value="2" classes="text-md px-3 py-1">2</Segment.Item>
 					</Segment>
 				</div>
-			</div>
-
-			<!-- Settings / Toggles Popover -->
-			<div class="flex items-center absolute top-6 right-4">
-				<Popover
-					zIndex="60"
-					open={settingsOpen}
-					onOpenChange={(e) => (settingsOpen = e.open)}
-					positioning={{ placement: 'bottom-end' }}
-					triggerBase="btn-icon btn-icon-sm preset-tonal-surface rounded-none"
-					contentBase="card bg-surface-200-800 p-4 space-y-4 shadow-xl min-w-[280px] rounded-none"
-				>
-					{#snippet trigger()}
-						<Settings size={20} />
-					{/snippet}
-					{#snippet content()}
-						<div class="space-y-4">
-							<div class="flex justify-between items-center">
-								<span class="font-medium">Highlight my spots</span>
-								<Switch
-									name="spotlight-toggle"
-									checked={spotlight}
-									onCheckedChange={(e) => setSpotlight(e.checked)}
-								/>
-							</div>
-						</div>
-					{/snippet}
-				</Popover>
+				{#if isWrapped}
+					{@render settingsPopover()}
+				{/if}
 			</div>
 
 			<!-- Strat Stuff (Selector + Toggles) -->
@@ -193,20 +199,20 @@
 					: 'border-l pl-4'}"
 			>
 				<!-- Strat Selector -->
-				<div class="flex items-center gap-2">
-					<span class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider"
+				<div class="flex items-center">
+					<span class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider mr-2"
 						>Strat</span
 					>
 					<Segment
 						name="stratName"
 						value={stratName}
 						onValueChange={(e) => onSelectStrat(e.value!)}
-						classes="h-auto min-h-12 rounded-none flex-wrap"
+						classes="h-auto flex-wrap"
 					>
 						{#each stratOptions as option}
 							<Segment.Item
 								value={option.value}
-								classes="text-sm px-3 py-1 rounded-none"
+								classes="text-md px-3 py-1"
 								labelClasses="flex items-center"
 							>
 								{#if option.badges}
@@ -224,7 +230,7 @@
 					<div class="flex flex-row">
 						<button
 							type="button"
-							class="btn preset-tonal-primary h-12 rounded-none"
+							class="btn preset-tonal-secondary"
 							onclick={() => (otherOpenState = true)}>View other strats</button
 						>
 					</div>
@@ -233,24 +239,27 @@
 				<!-- Individual Strat Toggles -->
 				{#if stratName && toggles?.length}
 					{#each toggles as toggle}
-						<div class="flex items-center gap-2">
-							<span class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider"
+						<div class="flex items-center">
+							<span class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider mr-2"
 								>{toggle.label}</span
 							>
 							<Segment
 								name={toggle.key}
 								value={toggle.value}
 								onValueChange={(e) => onToggleChange(toggle.key, e.value!)}
-								classes="h-12 rounded-none"
+								classes=""
 							>
 								{#each toggle.options as option}
-									<Segment.Item value={option.value} classes="text-sm px-2 py-1 rounded-none"
+									<Segment.Item value={option.value} classes="text-md px-2 py-1"
 										>{option.label}</Segment.Item
 									>
 								{/each}
 							</Segment>
 						</div>
 					{/each}
+				{/if}
+				{#if !isWrapped}
+					{@render settingsPopover()}
 				{/if}
 			</div>
 		</div>

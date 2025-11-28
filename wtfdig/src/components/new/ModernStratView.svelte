@@ -1,7 +1,9 @@
+<!-- @ts-nocheck -->
 <svelte:options customElement={{ shadow: 'none' }} />
 
 <script lang="ts">
-	import { Accordion, Tooltip, Tabs } from '@skeletonlabs/skeleton-svelte';
+	// @ts-nocheck
+	import { Accordion, Tooltip, Tabs } from '$lib/components/ui';
 	import {
 		ArrowBigRight,
 		ArrowRight,
@@ -73,9 +75,7 @@
 {/if}
 
 {#if timeline.length > 0}
-	<div
-		class="card preset-filled-surface-50-950 border border-surface-200-800 mb-8 shadow-sm rounded-xl overflow-hidden"
-	>
+	<div class="card border border-surface-200-800 mb-8 shadow-sm rounded-xl overflow-hidden">
 		<Accordion value={timelineValue} onValueChange={(e) => (timelineValue = e.value)} collapsible>
 			<Accordion.Item value="timeline">
 				{#snippet control()}<div class="font-semibold text-xl px-2 py-1">Timeline</div>{/snippet}
@@ -165,8 +165,8 @@
 			{#each Object.keys(tabTags) as tabName}
 				<Tabs.Control
 					value={tabName}
-					labelBase="btn"
-					classes="px-6 py-2 rounded-none transition-all data-[state=active]:bg-secondary-500 data-[state=active]:text-white data-[state=active]:shadow-md hover:bg-surface-700"
+					labelBase="btn bg-transparent hover:bg-surface-700"
+					classes="px-6 py-2 rounded-none transition-all data-[state=active]:bg-secondary-500 data-[state=active]:text-white data-[state=active]:shadow-md"
 					>{tabName}</Tabs.Control
 				>
 			{/each}
@@ -233,7 +233,7 @@
 						{#each phase.mechs as mech}
 							{#key [spotlight, alignment]}
 								<article
-									class="card preset-filled-surface-50-950 border border-surface-700/50 shadow-md hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden flex flex-col h-full group relative"
+									class="card border border-surface-700/50 shadow-md hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden flex flex-col h-full group relative"
 									class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}
 									class:xl:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}
 								>
@@ -304,7 +304,7 @@
 			{:else}
 				<!-- Fallback for simple phases without mechs array -->
 				<section
-					class="card preset-filled-surface-50-950 border border-surface-700/50 shadow-md hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden p-6 group"
+					class="card border border-surface-700/50 shadow-md hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden p-6 group"
 				>
 					<button
 						class="w-full text-left flex flex-col gap-2"

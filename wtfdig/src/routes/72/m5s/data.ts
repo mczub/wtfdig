@@ -3777,14 +3777,14 @@ const m5sStratLabels: Record<string, string> = {
 
 const m5sStratBadges: Record<string, Badge[]> = {
     'hector': [
-        { text: 'NA', class: 'preset-filled-primary-500' },
-        { text: 'EU', class: 'preset-tonal-secondary' }
+        { text: 'NA', class: 'na-badge' },
+        { text: 'EU', class: 'eu-badge' }
     ],
     'game8': [
-        { text: 'JP', class: 'preset-tonal-error' }
+        { text: 'JP', class: 'jp-badge' }
     ],
     'mr': [
-        { text: 'OCE', class: 'preset-filled-success-500' }
+        { text: 'OCE', class: 'oce-badge' }
     ]
 };
 

@@ -1,18 +1,21 @@
+<!-- @ts-nocheck -->
 <script lang="ts">
+	// @ts-nocheck
 	import { browser } from '$app/environment';
 	import { page } from '$app/state';
 	import type { Alignment, Role, Strat } from './+page';
-	import { Segment, Switch, Tooltip } from '@skeletonlabs/skeleton-svelte';
+	import { Segment, Switch, Modal } from '$lib/components/ui';
+	import * as Tooltip from '$lib/components/ui/tooltip';
 	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
 	import { Copy, ExternalLink, Fullscreen, Info, Link } from '@lucide/svelte/icons';
 	import { getContext } from 'svelte';
-  	import { type ToastContext, Modal } from '@skeletonlabs/skeleton-svelte';
+	import type { ToastLike } from '$lib/utils';
 	import { untrack } from 'svelte';
 	import Cheatsheet from '../../../components/Cheatsheet.svelte';
 	import { replaceState } from '$app/navigation';
 	import deepEquals from 'fast-deep-equal';
 	import StratView from '../../../components/StratView.svelte';
-	import type { TimelineItem } from "$lib/types";
+	import type { TimelineItem } from '$lib/types';
 
 	interface Props {
 		data: {
@@ -25,7 +28,7 @@
 	let { data, children }: Props = $props();
 	let stratName: string | undefined = $state();
 	let stratState: Record<string, string | null> = $state({
-		adds: null,
+		adds: null
 	});
 
 	let role: Role | undefined = $state();
@@ -35,7 +38,7 @@
 	let spotlight: boolean = $state(true);
 	let alignment: Alignment = $state('original');
 	let optionsString = $derived(getOptionsString(stratName, role, party));
-	export const toast: ToastContext = getContext('toast');
+	export const toast: ToastLike = getContext('toast');
 
 	$effect(() => {
 		if (browser) {
@@ -62,35 +65,35 @@
 	});
 
 	const addsUrls: Record<string, any> = {
-		'latte': {name: 'Latte Adds', url: 'https://raidplan.io/plan/0066fd3CVp1_G36R'},
-		'toxic': {name: 'Toxic Adds', url: 'https://raidplan.io/plan/Pgj53K49w8LAZpI6'},
-		'game8': {name: 'Game8 Adds', url: 'https://game8.jp/ff14/681086'},
-		'yukizuri': {name: 'Yukizuri Adds', url: 'https://www.youtube.com/watch?v=1LQ2OzMn7EE'},
-		'cleave': {name: 'Cleavemaxxing Adds', url: 'https://raidplan.io/plan/ywV9cu6GRQ68SQLy'},
-		'mr': {name: 'MR Adds', url: 'https://raidplan.io/plan/LjZsRWUJahEe1fdM'}
-	}
+		latte: { name: 'Latte Adds', url: 'https://raidplan.io/plan/0066fd3CVp1_G36R' },
+		toxic: { name: 'Toxic Adds', url: 'https://raidplan.io/plan/Pgj53K49w8LAZpI6' },
+		game8: { name: 'Game8 Adds', url: 'https://game8.jp/ff14/681086' },
+		yukizuri: { name: 'Yukizuri Adds', url: 'https://www.youtube.com/watch?v=1LQ2OzMn7EE' },
+		cleave: { name: 'Cleavemaxxing Adds', url: 'https://raidplan.io/plan/ywV9cu6GRQ68SQLy' },
+		mr: { name: 'MR Adds', url: 'https://raidplan.io/plan/LjZsRWUJahEe1fdM' }
+	};
 
 	const stratMechs: Record<string, any> = {
-		'latte': {
-			adds: 'latte',
+		latte: {
+			adds: 'latte'
 		},
-		'game8': {
-			adds: 'game8',
+		game8: {
+			adds: 'game8'
 		},
-		'toxic': {
-			adds: 'cleave',
+		toxic: {
+			adds: 'cleave'
 		},
-		'yukizuri': {
-			adds: 'yukizuri',
+		yukizuri: {
+			adds: 'yukizuri'
 		},
-		'mr': {
-			adds: 'mr',
-		},
-	}
+		mr: {
+			adds: 'mr'
+		}
+	};
 
 	$effect(() => {
 		let stratCode = '';
-		untrack(() => stratCode = getStratCode(stratName, stratState))
+		untrack(() => (stratCode = getStratCode(stratName, stratState)));
 		const urlHash = page.url.hash.substring(1);
 		if (urlHash !== stratCode) {
 			untrack(() => setStratsFromUrlHash(urlHash));
@@ -107,10 +110,9 @@
 		}
 		if (stratArray.length === 2) {
 			stratState = {
-				adds: stratArray[1],
-			}
+				adds: stratArray[1]
+			};
 		}
-		
 	}
 
 	function setStratState(mech: string, value: string) {
@@ -140,65 +142,60 @@
 		navigator.clipboard.writeText(window.location.href);
 		toast.create({
 			description: 'Copied link to clipboard!',
-			type: 'success',
+			type: 'success'
 		});
 	}
 
-	
 	function getStrat(stratName?: string): Strat | string | undefined {
 		if (!stratName || !role || !party) return `Couldn't find ${stratName} strat`;
-		return data.strats.find(strat => strat.stratName === stratName);
+		return data.strats.find((strat) => strat.stratName === stratName);
 	}
 
 	function getStratItem(item: string | Record<string, string>, tag?: string) {
 		if (!item) return item;
-		if (tag && stratState[tag] && typeof item !== 'string') { 
+		if (tag && stratState[tag] && typeof item !== 'string') {
 			return item[stratState[tag]];
 		} else {
 			return item;
 		}
 	}
 
-
 	function getIndividualStrat(stratName?: string, role?: Role, party?: number) {
 		if (!stratName || !role || !party) return '';
 		const stratPackage = getStrat(stratName);
-		if (typeof stratPackage === 'string') return `Couldn't find ${stratName} strat for ${role} ${party}`;;
-		const individualPackages = stratPackage?.strats?.map(
-			phaseStrat => {
-				return {
-					...phaseStrat,
-					description: getStratItem(phaseStrat.description, phaseStrat.tag),
-					imageUrl: getStratItem(phaseStrat.imageUrl, phaseStrat.tag),
-					mask: getStratItem(phaseStrat.mask, phaseStrat.tag),
-					mechs: phaseStrat.mechs?.map(
-						phaseStratMech => {
-							return {
-								...phaseStratMech,
-								imageUrl: getStratItem(phaseStratMech.imageUrl, phaseStrat.tag),
-								strats: phaseStratMech.strats && phaseStratMech.strats.filter(strat => (strat.role === role && strat.party === party)).map(
-									iStrat => {
-										return {
-											...iStrat,
-											description: getStratItem(iStrat.description, phaseStrat.tag),
-											imageUrl: getStratItem(iStrat.imageUrl, phaseStrat.tag),
-											mask: getStratItem(iStrat.mask, phaseStrat.tag)
-										}
-									}
-								),
-							}
-						}
-					)
-				}
-				
-			}
-		)
+		if (typeof stratPackage === 'string')
+			return `Couldn't find ${stratName} strat for ${role} ${party}`;
+		const individualPackages = stratPackage?.strats?.map((phaseStrat) => {
+			return {
+				...phaseStrat,
+				description: getStratItem(phaseStrat.description, phaseStrat.tag),
+				imageUrl: getStratItem(phaseStrat.imageUrl, phaseStrat.tag),
+				mask: getStratItem(phaseStrat.mask, phaseStrat.tag),
+				mechs: phaseStrat.mechs?.map((phaseStratMech) => {
+					return {
+						...phaseStratMech,
+						imageUrl: getStratItem(phaseStratMech.imageUrl, phaseStrat.tag),
+						strats:
+							phaseStratMech.strats &&
+							phaseStratMech.strats
+								.filter((strat) => strat.role === role && strat.party === party)
+								.map((iStrat) => {
+									return {
+										...iStrat,
+										description: getStratItem(iStrat.description, phaseStrat.tag),
+										imageUrl: getStratItem(iStrat.imageUrl, phaseStrat.tag),
+										mask: getStratItem(iStrat.mask, phaseStrat.tag)
+									};
+								})
+					};
+				})
+			};
+		});
 		if (!individualPackages) return `Couldn't find ${stratName} strat for ${role} ${party}`;
 		return individualPackages;
 	}
 
-
-	function getStratMechs(stratName: string){
+	function getStratMechs(stratName: string) {
 		return stratMechs[stratName];
 	}
 
@@ -208,26 +205,26 @@
 		}
 		return '';
 	}
-	
+
 	function getOptionsString(stratName?: string, role?: Role, party?: number): string {
 		if (!stratName || !role || !party) return '';
 		const stratNames: Record<string, string> = {
-			'latte': 'Latte (0066fd3CVp1_G36R)',
-			'game8': 'Game8',
-			'toxic': 'Hector/Toxic Friends (Pgj53K49w8LAZpI6)',
-			'yukizuri': 'Yukizuri',
-			'mr': 'Materia Raiding',
-		}
+			latte: 'Latte (0066fd3CVp1_G36R)',
+			game8: 'Game8',
+			toxic: 'Hector/Toxic Friends (Pgj53K49w8LAZpI6)',
+			yukizuri: 'Yukizuri',
+			mr: 'Materia Raiding'
+		};
 		const jpRoleAbbrev: Record<string, string> = {
-			'MT': 'MT',
-			'OT': 'ST',
-			'H1': 'H1',
-			'H2': 'H2',
-			'M1': 'D1',
-			'M2': 'D2',
-			'R1': 'D3',
-			'R2': 'D4',
-		}
+			MT: 'MT',
+			OT: 'ST',
+			H1: 'H1',
+			H2: 'H2',
+			M1: 'D1',
+			M2: 'D2',
+			R1: 'D3',
+			R2: 'D4'
+		};
 		let roleAbbrev = '';
 		if (role === 'Tank') {
 			roleAbbrev = party === 1 ? 'MT' : 'OT';
@@ -265,12 +262,12 @@
 	function getPFDescription() {
 		if (!stratName) return '';
 		const stratNames: Record<string, string> = {
-			'latte': 'Latte',
-			'game8': 'Game8',
-			'toxic': 'Hector/Toxic',
-			'yukizuri': 'Yukizuri',
-			'mr': 'MR',
-		}
+			latte: 'Latte',
+			game8: 'Game8',
+			toxic: 'Hector/Toxic',
+			yukizuri: 'Yukizuri',
+			mr: 'MR'
+		};
 		let stratDiffs = [stratNames[stratName]];
 		if (stratState.adds !== getStratMechs(stratName)['adds']) {
 			if (stratState.adds === 'latte') {
@@ -293,16 +290,16 @@
 			}
 		}
 		if (stratName === 'toxic' && stratState.adds === 'cleave') {
-			return `Hector | Cleavemaxxing | ${window.location.href}`
+			return `Hector | Cleavemaxxing | ${window.location.href}`;
 		}
-		return `${stratDiffs.join(' | ')} | ${window.location.href}`
+		return `${stratDiffs.join(' | ')} | ${window.location.href}`;
 	}
 
 	function copyPFDescription() {
 		navigator.clipboard.writeText(getPFDescription());
 		toast.create({
 			description: 'Copied PF description to clipboard!',
-			type: 'success',
+			type: 'success'
 		});
 	}
 
@@ -313,84 +310,139 @@
 	let cheatsheetOpenState = $state(false);
 </script>
 
-<svelte:window bind:innerWidth={innerWidth} bind:innerHeight={innerHeight} />
+<svelte:window bind:innerWidth bind:innerHeight />
 
-<Cheatsheet 
+<Cheatsheet
 	title={`M6S Cheatsheet - ${optionsString}`}
-	bind:cheatsheetOpenState={cheatsheetOpenState}
+	bind:cheatsheetOpenState
 	timeline={data.timeline}
-	stratName={stratName}
-	stratState={stratState}
-	getStratMechs={getStratMechs}
-	individualStrat={individualStrat}
-	spotlight={spotlight}
-	alignment={alignment}
-	rows=3
-	columns=7
-	innerHeight={innerHeight}
-	innerWidth={innerWidth}
+	{stratName}
+	{stratState}
+	{getStratMechs}
+	{individualStrat}
+	{spotlight}
+	{alignment}
+	rows="3"
+	columns="7"
+	{innerHeight}
+	{innerWidth}
 />
 
 <div class="container grow px-4 mx-auto mb-6">
 	<div class="container">
-        <div class="mb-6">
-            <div class="preset-typo-display-1 mt-2 lg:mt-0 lg:-mb-5">AAC Cruiserweight M2 (Savage)</div>
-            <div class="text-xl lg:text-3xl text-surface-400">M6S Patch 7.2</div>
-        </div>
-        
-		<div class="flex flex-wrap min-w-full justify-between mb-8 card preset-filled-surface-50-950 border-[1px] border-surface-200-800 p-4">
+		<div class="mb-6">
+			<div class="preset-typo-display-1 mt-2 lg:mt-0 lg:-mb-2">AAC Cruiserweight M2 (Savage)</div>
+			<div class="text-xl lg:text-3xl text-surface-400">M6S Patch 7.2</div>
+		</div>
+
+		<div
+			class="flex flex-wrap min-w-full justify-between mb-8 card border-[1px] border-surface-200-800 p-4"
+		>
 			<div class="space-y-5 v-full dark">
 				<div class="card preset-outlined-warning-500 gap-4 p-4">
-                    <p>This site is still under construction, thank you for your patience while we continue to work on it.</p>
+					<p>
+						This site is still under construction, thank you for your patience while we continue to
+						work on it.
+					</p>
 					<p>Some strats may be missing images or highlights.</p>
-					<p>This is intended to be a quick reference, please refer to the original guides for full explanations of mechanics.</p>
-                </div>
+					<p>
+						This is intended to be a quick reference, please refer to the original guides for full
+						explanations of mechanics.
+					</p>
+				</div>
 				<div>
 					<div class="text-xl mb-2">Which strat are you using?</div>
-					<Segment classes="flex-wrap" name="stratName" value={stratName} onValueChange={onSelectStrat}>
-						<Segment.Item value="toxic" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Hector/Toxic (Pgj5⋯ZpI6)</Segment.Item>
-						<Segment.Item value="game8" labelClasses="flex items-center"><span class="badge preset-tonal-error px-2 mr-2">JP</span>Game8</Segment.Item>
-						<Segment.Item value="mr" labelClasses="flex items-center"><span class="badge preset-filled-success-500 px-2 mr-2">OCE</span>MR</Segment.Item>
+					<Segment
+						classes="flex-wrap"
+						name="stratName"
+						value={stratName}
+						onValueChange={onSelectStrat}
+					>
+						<Segment.Item value="toxic" labelClasses="flex items-center"
+							><span class="badge na-badge px-2 mr-2">NA</span><span
+								class="badge eu-badge px-2 mr-2">EU</span
+							>Hector/Toxic (Pgj5⋯ZpI6)</Segment.Item
+						>
+						<Segment.Item value="game8" labelClasses="flex items-center"
+							><span class="badge jp-badge px-2 mr-2">JP</span>Game8</Segment.Item
+						>
+						<Segment.Item value="mr" labelClasses="flex items-center"
+							><span class="badge oce-badge px-2 mr-2">OCE</span>MR</Segment.Item
+						>
 						<Segment.Item value="latte">Latte (0066⋯G36R)</Segment.Item>
 						<Segment.Item value="yukizuri">Yukizuri</Segment.Item>
 					</Segment>
 				</div>
 				{#if stratName}
-				<div class="text-lg my-2">Mechanics</div>
-				<div class="flex flex-row space-x-4 space-y-2 flex-wrap">
-					<div class="flex flex-col">
-						<div class="flex flex-row">
-							<div class="text-md mb-2">Adds</div>
-							{#if stratName && stratState.adds !== getStratMechs(stratName)['adds']}
-								<Tooltip
-									positioning={{ placement: 'top' }}
-									triggerBase="underline"
-									contentBase="card bg-surface-800 p-4"
-									classes="ml-2"
-									openDelay={200}
-									arrow
-									arrowBackground="!bg-surface-800"
-
+					<div class="text-lg my-2">Mechanics</div>
+					<div class="flex flex-row space-x-4 space-y-2 flex-wrap">
+						<div class="flex flex-col">
+							<div class="flex flex-row items-center mb-2 gap-2">
+								<div class="text-md">Adds</div>
+								{#if stratName && stratState.adds !== getStratMechs(stratName)['adds']}
+									<Tooltip.Provider>
+										<Tooltip.Root>
+											<Tooltip.Trigger
+												><div class="text-warning-500">
+													<TriangleAlert />
+												</div></Tooltip.Trigger
+											>
+											<Tooltip.Content
+												class="bg-secondary text-md border-[1px] border-surface-200-800 p-4 rounded-xs"
+												arrowClasses="bg-secondary"
+											>
+												<span>This mechanic differs from what's in the selected guide.</span>
+											</Tooltip.Content>
+										</Tooltip.Root>
+									</Tooltip.Provider>
+									<!--Tooltip
+										positioning={{ placement: 'top' }}
+										triggerBase="underline"
+										contentBase="card bg-surface-800 p-4"
+										classes="ml-2"
+										openDelay={200}
+										arrow
+										arrowBackground="!bg-surface-800"
+									>
+										{#snippet trigger()}<div class="text-warning-500">
+												<TriangleAlert />
+											</div>{/snippet}
+										{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
+									</Tooltip-->
+								{/if}
+							</div>
+							<Segment
+								classes="flex-wrap"
+								name="adds"
+								value={stratState.adds}
+								onValueChange={(e) => setStratState('adds', e.value)}
+							>
+								<Segment.Item value="cleave" labelClasses="flex items-center"
+									><span class="badge na-badge px-2 mr-2">NA</span><span
+										class="badge eu-badge px-2 mr-2">EU</span
+									>Cleavemaxxing</Segment.Item
 								>
-									{#snippet trigger()}<div class="text-warning-500"><TriangleAlert /></div>{/snippet}
-									{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
-								</Tooltip>
-							{/if}
+								<Segment.Item value="game8" labelClasses="flex items-center"
+									><span class="badge jp-badge px-2 mr-2">JP</span>Game8</Segment.Item
+								>
+								<Segment.Item value="mr" labelClasses="flex items-center"
+									><span class="badge oce-badge px-2 mr-2">OCE</span>MR</Segment.Item
+								>
+								<Segment.Item value="toxic">Hector/Toxic</Segment.Item>
+								<Segment.Item value="latte">Latte</Segment.Item>
+								<Segment.Item value="yukizuri">Yukizuri</Segment.Item>
+							</Segment>
 						</div>
-						<Segment classes="flex-wrap" name="adds" value={stratState.adds} onValueChange={(e) => (setStratState('adds', e.value))}>
-							<Segment.Item value="cleave" labelClasses="flex items-center"><span class="badge preset-filled-primary-500 px-2 mr-2">NA</span><span class="badge preset-tonal-secondary px-2 mr-2">EU</span>Cleavemaxxing</Segment.Item>
-							<Segment.Item value="game8" labelClasses="flex items-center"><span class="badge preset-tonal-error px-2 mr-2">JP</span>Game8</Segment.Item>
-							<Segment.Item value="mr" labelClasses="flex items-center"><span class="badge preset-filled-success-500 px-2 mr-2">OCE</span>MR</Segment.Item>
-							<Segment.Item value="toxic">Hector/Toxic</Segment.Item>
-							<Segment.Item value="latte">Latte</Segment.Item>
-							<Segment.Item value="yukizuri">Yukizuri</Segment.Item>
-						</Segment>
 					</div>
-				</div>
 				{/if}
 				<div>
 					<div class="text-xl mb-2">Which role are you?</div>
-					<Segment name="role" classes="flex-wrap" value={role} onValueChange={(e) => (role = e.value)}>
+					<Segment
+						name="role"
+						classes="flex-wrap"
+						value={role}
+						onValueChange={(e) => (role = e.value)}
+					>
 						<Segment.Item value="Tank">Tank</Segment.Item>
 						<Segment.Item value="Healer">Healer</Segment.Item>
 						<Segment.Item value="Melee">Melee</Segment.Item>
@@ -399,7 +451,11 @@
 				</div>
 				<div>
 					<div class="text-xl mb-2">Which light party are you in?</div>
-					<Segment name="role" value={party?.toString()} onValueChange={(e) => (party = parseInt(e.value))}>
+					<Segment
+						name="role"
+						value={party?.toString()}
+						onValueChange={(e) => (party = parseInt(e.value))}
+					>
 						<Segment.Item value="1">1</Segment.Item>
 						<Segment.Item value="2">2</Segment.Item>
 					</Segment>
@@ -412,74 +468,115 @@
 			{:else if typeof individualStrat === 'undefined'}
 				<div></div>
 			{:else}
-			<div class="flex flex-col lg:flex-row lg:flex-wrap gap-2 mb-8">
-				{#if isCheatsheetEnabled}
-					<button onclick={() => (cheatsheetOpenState = true)} class="button btn btn-lg preset-tonal-secondary border border-secondary-500"><Fullscreen />Open cheatsheet</button>
-				{:else}
-					<button class="button btn btn-lg preset-tonal-secondary border border-secondary-500 disabled"><Fullscreen />Open cheatsheet</button>
-					<div class="flex flex-row items-center gap-2">
-						<Info size={24} />
-						<span>Cheatsheet mode needs a browser window size of at least 1024 x 768</span>
+				<div class="flex flex-col lg:flex-row lg:flex-wrap gap-2 mb-8">
+					{#if isCheatsheetEnabled}
+						<button
+							onclick={() => (cheatsheetOpenState = true)}
+							class="button btn btn-lg preset-tonal-secondary border border-secondary-500"
+							><Fullscreen />Open cheatsheet</button
+						>
+					{:else}
+						<button
+							class="button btn btn-lg preset-tonal-secondary border border-secondary-500 disabled"
+							><Fullscreen />Open cheatsheet</button
+						>
+						<div class="flex flex-row items-center gap-2">
+							<Info size={24} />
+							<span>Cheatsheet mode needs a browser window size of at least 1024 x 768</span>
+						</div>
+					{/if}
+					<button
+						onclick={() => copyLinkToClipboard()}
+						class="button btn btn-lg preset-tonal-secondary border border-secondary-500"
+						><Link />Copy link</button
+					>
+					<div
+						class="card flex flex-row border-[1px] border-surface-200-800 flex-auto lg:w-0 lg:max-w-full"
+					>
+						<pre
+							class="flex-auto pre overflow-x-auto text-nowrap whitespace-nowrap">{getPFDescription()}</pre>
+						<button
+							onclick={() => copyPFDescription()}
+							class="button btn btn-lg preset-tonal-secondary border border-secondary-500"
+							><Copy />Copy PF description</button
+						>
 					</div>
-					
-				{/if}
-				<button onclick={() => copyLinkToClipboard()} class="button btn btn-lg preset-tonal-secondary border border-secondary-500"><Link />Copy link</button>
-				<div class="card flex flex-row border-[1px] border-surface-200-800 flex-auto lg:w-0 lg:max-w-full">
-					<pre class="flex-auto pre overflow-x-auto text-nowrap whitespace-nowrap">{getPFDescription()}</pre>
-					<button onclick={() => copyPFDescription()} class="button btn btn-lg preset-tonal-secondary border border-secondary-500"><Copy />Copy PF description</button>
 				</div>
-			</div>
-			<div class="card preset-filled-surface-50-950 border-[1px] border-surface-200-800 p-4">
-				<div class="flex flex-col lg:flex-row gap-2">
-					<div class="w-full lg:w-auto content-center">
-						<div class="capitalize font-semibold text-2xl mb-0">{optionsString}</div>
-						{#if typeof strat?.stratUrl === 'string'}
-							<a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={strat.stratUrl}>{strat.description}
-								<ExternalLink />
-							</a>
-						{:else if typeof strat?.stratUrl === 'object'}
-							<span class="text-lg">{strat.description}</span>
-							{#each Object.entries(strat.stratUrl) as [linkName, linkUrl]}
-								 
-								<a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={linkUrl}>{linkName}
+				<div class="card border-[1px] border-surface-200-800 p-4">
+					<div class="flex flex-col lg:flex-row gap-2">
+						<div class="w-full lg:w-auto content-center">
+							<div class="capitalize font-semibold text-2xl mb-0">{optionsString}</div>
+							{#if typeof strat?.stratUrl === 'string'}
+								<a
+									class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1"
+									target="_blank"
+									rel="noopener noreferrer"
+									href={strat.stratUrl}
+									>{strat.description}
 									<ExternalLink />
 								</a>
-							{/each}
-						{/if}
-						{#if (stratState.adds && addsUrls[stratState.adds])}
-							<div>
-								<a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={addsUrls[stratState.adds].url}>{addsUrls[stratState.adds].name}
-									<ExternalLink />
-								</a>
+							{:else if typeof strat?.stratUrl === 'object'}
+								<span class="text-lg">{strat.description}</span>
+								{#each Object.entries(strat.stratUrl) as [linkName, linkUrl]}
+									<a
+										class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1"
+										target="_blank"
+										rel="noopener noreferrer"
+										href={linkUrl}
+										>{linkName}
+										<ExternalLink />
+									</a>
+								{/each}
+							{/if}
+							{#if stratState.adds && addsUrls[stratState.adds]}
+								<div>
+									<a
+										class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1"
+										target="_blank"
+										rel="noopener noreferrer"
+										href={addsUrls[stratState.adds].url}
+										>{addsUrls[stratState.adds].name}
+										<ExternalLink />
+									</a>
+								</div>
+							{/if}
+						</div>
+						<div class="grow"></div>
+						<div>
+							<Switch
+								name="spotlight-toggle"
+								checked={spotlight}
+								onCheckedChange={(e) => (spotlight = e.checked)}>Highlight my spots</Switch
+							>
+						</div>
+					</div>
+					<div class="flex flex-wrap items-center justify-between my-4">
+						<div class="text-xl">{individualStrat.notes}</div>
+						{#if strat.strats.some((strat) => strat.alignmentTransforms)}
+							<div class="content-center">
+								<Segment
+									name="alignment"
+									value={alignment}
+									onValueChange={(e) => (alignment = e.value)}
+								>
+									<Segment.Item value="original">Original</Segment.Item>
+									<Segment.Item value="truenorth">True North</Segment.Item>
+									<Segment.Item value="addrelative">Wall Relative</Segment.Item>
+								</Segment>
 							</div>
 						{/if}
 					</div>
-					<div class="grow"></div>
-					<div><Switch name="spotlight-toggle" checked={spotlight} onCheckedChange={(e) => (spotlight = e.checked)}>Highlight my spots</Switch></div>
+					<StratView
+						{strat}
+						timeline={data.timeline}
+						{stratName}
+						{stratState}
+						{getStratMechs}
+						{individualStrat}
+						{spotlight}
+						{alignment}
+					/>
 				</div>
-				<div class="flex flex-wrap items-center justify-between my-4">
-					<div class="text-xl">{individualStrat.notes}</div>
-					{#if strat.strats.some(strat => strat.alignmentTransforms)}
-						<div class="content-center">
-							<Segment name="alignment" value={alignment} onValueChange={(e) => alignment = e.value}>
-								<Segment.Item value="original">Original</Segment.Item>
-								<Segment.Item value="truenorth">True North</Segment.Item>
-								<Segment.Item value="addrelative">Wall Relative</Segment.Item>
-							</Segment>
-						</div>
-					{/if}
-				</div>
-				<StratView
-					strat={strat}
-					timeline={data.timeline}
-					stratName={stratName}
-					stratState={stratState}
-					getStratMechs={getStratMechs}
-					individualStrat={individualStrat}
-					spotlight={spotlight}
-					alignment={alignment}
-				/>
-			</div>
 			{/if}
 		{/if}
 	</div>

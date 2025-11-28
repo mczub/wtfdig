@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { type ToastContext } from '@skeletonlabs/skeleton-svelte';
+	import type { ToastLike } from '$lib/utils';
 	import Cheatsheet from '../Cheatsheet.svelte';
 	import { Copy, ExternalLink, Fullscreen, Info, Link } from '@lucide/svelte';
 	import ModernStratView from './ModernStratView.svelte';
@@ -24,7 +24,7 @@
 
 	let spotlight: boolean = $state(true);
 	let alignment: Alignment = $state('original');
-	export const toast: ToastContext = getContext('toast');
+	export const toast: ToastLike = getContext('toast');
 
 	function getStratItem(
 		item?: string | Record<string, any>,
