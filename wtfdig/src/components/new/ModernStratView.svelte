@@ -287,7 +287,7 @@
 											{/if}
 
 											<div class="flex items-start gap-1.5 text-base text-surface-200">
-												{#if role && mech.strats && mech.strats.length > 0}
+												{#if role && mech.strats && mech.strats.length > 0 && mech.strats[0].description}
 													<img
 														src={`/icons/${role.toLowerCase()}.png`}
 														alt={role}
