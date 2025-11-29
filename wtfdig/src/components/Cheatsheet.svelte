@@ -169,17 +169,17 @@
 				>
 					<div class="flex mb-2 gap-1">
 						<button
-							class={`chip px-1 2xl:px-2 ${timelineFilters.mechs ? 'preset-outlined-warning-500 bg-warning-800' : 'preset-outlined-warning-500'}`}
+							class={`chip px-1 2xl:px-2 border-3 ${timelineFilters.mechs ? 'border-amber-900 bg-amber-700' : 'border-amber-900'}`}
 							onclick={() => (timelineFilters.mechs = !timelineFilters.mechs)}
 							><Wrench size={16} strokeWidth={2} />{showFilterCaptions ? 'Mech' : ''}</button
 						>
 						<button
-							class={`chip px-1 2xl:px-2 ${timelineFilters.raidwides ? 'preset-outlined-secondary-500 bg-secondary-500' : 'preset-outlined-secondary-500'}`}
+							class={`chip px-1 2xl:px-2 border-3 ${timelineFilters.raidwides ? 'border-purple-900 bg-purple-800' : 'border-purple-900'}`}
 							onclick={() => (timelineFilters.raidwides = !timelineFilters.raidwides)}
 							><Siren size={16} strokeWidth={2} />{showFilterCaptions ? 'Raidwide' : ''}</button
 						>
 						<button
-							class={`chip px-1 2xl:px-2 ${timelineFilters.tankbusters ? 'preset-outlined-primary-500 bg-primary-500' : 'preset-outlined-primary-500'}`}
+							class={`chip px-1 2xl:px-2 border-3 ${timelineFilters.tankbusters ? 'border-blue-900 bg-blue-700' : 'border-blue-900'}`}
 							onclick={() => (timelineFilters.tankbusters = !timelineFilters.tankbusters)}
 							><Shield size={16} strokeWidth={2} />{showFilterCaptions ? 'TB' : ''}</button
 						>
@@ -194,47 +194,47 @@
 									<div class="w-1/8">
 										{#if item.mechType === 'Start'}
 											<div
-												class="grid bg-success-700 rounded-sm h-[16px] w-[16px] p-auto place-content-center"
+												class="grid bg-green-700 rounded-xs h-[16px] w-[16px] p-auto place-content-center"
 											>
 												<Play size={14} strokeWidth={2} />
 											</div>
 										{/if}
 										{#if item.mechType === 'Phase'}
-											<div class="grid rounded-sm h-[16px] w-[16px] p-auto place-items-center">
+											<div class="grid rounded-xs h-[16px] w-[16px] p-auto place-items-center">
 												<ArrowRight size={14} strokeWidth={2} />
 											</div>
 										{/if}
 										{#if item.mechType === 'Raidwide'}
 											<div
-												class="grid bg-secondary-500 rounded-sm h-[16px] w-[16px] p-auto place-content-center"
+												class="grid bg-purple-800 rounded-xs h-[16px] w-[16px] p-auto place-content-center"
 											>
 												<Siren size={14} strokeWidth={2} />
 											</div>
 										{/if}
 										{#if item.mechType === 'Mechanic'}
 											<div
-												class="grid bg-warning-800 rounded-sm h-[16px] w-[16px] p-auto place-content-center"
+												class="grid bg-amber-700 rounded-xs h-[16px] w-[16px] p-auto place-content-center"
 											>
 												<Wrench size={14} strokeWidth={2} />
 											</div>
 										{/if}
 										{#if item.mechType === 'Tankbuster'}
 											<div
-												class="grid bg-primary-500 rounded-sm h-[16px] w-[16px] p-auto place-content-center"
+												class="grid bg-blue-700 rounded-xs h-[16px] w-[16px] p-auto place-content-center"
 											>
 												<Shield size={14} strokeWidth={2} />
 											</div>
 										{/if}
 										{#if item.mechType === 'StoredMechanic'}
 											<div
-												class="grid bg-warning-800 rounded-sm h-[16px] w-[16px] p-auto place-content-center"
+												class="grid bg-amber-600 rounded-xs h-[16px] w-[16px] p-auto place-content-center"
 											>
 												<Clock size={14} strokeWidth={2} />
 											</div>
 										{/if}
 										{#if item.mechType === 'Enrage'}
 											<div
-												class="grid bg-error-900 rounded-sm h-[16px] w-[16px] p-auto place-items-center"
+												class="grid bg-pink-800 rounded-xs h-[16px] w-[16px] p-auto place-items-center"
 											>
 												<Skull size={14} strokeWidth={2} />
 											</div>

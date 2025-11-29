@@ -7,6 +7,7 @@
 	import {
 		ArrowBigRight,
 		ArrowRight,
+		ChevronsUpDown,
 		CircleAlert,
 		Clock,
 		Divide,
@@ -80,10 +81,15 @@
 	<div class="card border border-surface-200-800 mb-8 shadow-sm rounded-xl overflow-hidden">
 		<Accordion value={timelineValue} onValueChange={(e) => (timelineValue = e.value)} collapsible>
 			<Accordion.Item value="timeline">
-				{#snippet control()}<div class="font-semibold text-xl px-2 py-1">Timeline</div>{/snippet}
+				{#snippet control()}
+					<div class="flex flex-row grow items-center justify-between">
+						<div class="font-semibold text-xl">Timeline</div>
+						<ChevronsUpDown size={24} />
+					</div>
+				{/snippet}
 				{#snippet panel()}
 					<div
-						class="grid lg:grid-flow-col grid-cols-1 lg:grid-cols-3 gap-x-8 gap-y-2 p-4"
+						class="grid lg:grid-flow-col grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-2 p-2"
 						style:grid-template-rows={`repeat(${Math.floor(timeline.length / 3) + 1}, minmax(0, 1fr))`}
 					>
 						{#each timeline as item, index}
@@ -93,49 +99,47 @@
 								<div class="w-5 shrink-0">
 									{#if item.mechType === 'Start'}
 										<div
-											class="grid bg-success-700 rounded-full h-5 w-5 place-content-center text-white shadow-sm"
+											class="grid bg-green-700 rounded-full h-5 w-5 place-content-center text-white shadow-sm"
 										>
 											<Play size={10} strokeWidth={3} />
 										</div>
 									{/if}
 									{#if item.mechType === 'Phase'}
-										<div
-											class="grid bg-surface-600 rounded-full h-5 w-5 place-items-center text-white shadow-sm"
-										>
+										<div class="grid rounded-full h-5 w-5 place-items-center text-white shadow-sm">
 											<ArrowRight size={12} strokeWidth={3} />
 										</div>
 									{/if}
 									{#if item.mechType === 'Raidwide'}
 										<div
-											class="grid bg-secondary-500 rounded-full h-5 w-5 place-content-center text-white shadow-sm"
+											class="grid bg-purple-800 rounded-full h-5 w-5 place-content-center text-white shadow-sm"
 										>
 											<Siren size={12} strokeWidth={2} />
 										</div>
 									{/if}
 									{#if item.mechType === 'Mechanic'}
 										<div
-											class="grid bg-warning-600 rounded-full h-5 w-5 place-content-center text-white shadow-sm"
+											class="grid bg-amber-700 rounded-full h-5 w-5 place-content-center text-white shadow-sm"
 										>
 											<Wrench size={10} strokeWidth={2} />
 										</div>
 									{/if}
 									{#if item.mechType === 'Tankbuster'}
 										<div
-											class="grid bg-primary-500 rounded-full h-5 w-5 place-content-center text-white shadow-sm"
+											class="grid bg-blue-700 rounded-full h-5 w-5 place-content-center text-white shadow-sm"
 										>
 											<Shield size={10} strokeWidth={2} />
 										</div>
 									{/if}
 									{#if item.mechType === 'StoredMechanic'}
 										<div
-											class="grid bg-warning-600 rounded-full h-5 w-5 place-content-center text-white shadow-sm"
+											class="grid bg-amber-600 rounded-full h-5 w-5 place-content-center text-white shadow-sm"
 										>
 											<Clock size={12} strokeWidth={2} />
 										</div>
 									{/if}
 									{#if item.mechType === 'Enrage'}
 										<div
-											class="grid bg-error-600 rounded-full h-5 w-5 place-items-center text-white shadow-sm"
+											class="grid bg-pink-800 rounded-full h-5 w-5 place-items-center text-white shadow-sm"
 										>
 											<Skull size={12} strokeWidth={2} />
 										</div>
