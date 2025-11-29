@@ -10,6 +10,7 @@
 	import AppSidebar from '$lib/components/app-sidebar.svelte';
 	import ChevronDown from '@lucide/svelte/icons/chevron-down';
 	import PanelLeftIcon from '@lucide/svelte/icons/panel-left';
+	import Separator from '$lib/components/ui/separator/separator.svelte';
 	import { base } from '$app/paths';
 
 	interface Props {
@@ -18,205 +19,6 @@
 	let { children }: Props = $props();
 	const sidebar = useSidebar();
 </script>
-
-<!--header class="w-full mx-auto px-6 py-6 border-b border-gray-600 flex-none z-50 relative">
-	<div class="grid grid-cols-1 md:grid-cols-3 justify-items-stretch items-center">
-		<a
-			href="{base}/"
-			class="flex flex-row items-center text-2xl font-semibold my-4 md:my-0 md:justify-self-start gap-1"
-			>WTFDIG<img width="32px" src="{base}/wtfdig-small-800.png" /></a
-		>
-		<div
-			class="card md:mx-auto preset-outlined-secondary-500 gap-4 p-4 lg:grid-cols-[auto_1fr_auto] md:text-center"
-		>
-			WTFDIG can now be found at <a
-				target="_blank"
-				rel="noopener noreferrer"
-				class="anchor"
-				href="https://wtfdig.info">WTFDIG.info</a
-			>
-		</div>
-		<div class="flex flex-wrap gap-2 md:justify-end my-4 md:ml-4 md:my-0">
-			<NavigationMenu.Root>
-				<NavigationMenu.List>
-					<NavigationMenu.Item>
-						<NavigationMenu.Trigger class="btn preset-tonal-secondary px-4"
-							>Patch 7.1 <ChevronDown size={16} /></NavigationMenu.Trigger
-						>
-						<NavigationMenu.Content class="bg-surface-200 dark:bg-surface-800 min-w-[240px] p-4">
-							<article>
-								<div
-									class="opacity-60 preset-outlined-surface-200-800 grid p-0 w-full divide-y divide-surface-800 rounded-md bg-surface-950"
-								>
-									<div class="px-4 py-2 hover:bg-surface-900">
-										<a
-											data-sveltekit-reload
-											href="{base}/71/chaotic"
-											class="flex flex-col w-full items-start"
-										>
-											<div class="text-lg -mb-2">Cloud of Darkness</div>
-											<div class="text-sm">Chaotic</div>
-										</a>
-									</div>
-								</div>
-							</article>
-						</NavigationMenu.Content>
-					</NavigationMenu.Item>
-					<NavigationMenu.Item>
-						<NavigationMenu.Trigger class="btn preset-tonal-secondary px-4"
-							>Patch 7.2 <ChevronDown size={16} /></NavigationMenu.Trigger
-						>
-						<NavigationMenu.Content class="bg-surface-200 dark:bg-surface-800 min-w-[240px] p-4">
-							<article>
-								<div
-									class="opacity-60 preset-outlined-surface-200-800 grid grid-rows-4 p-0 w-full divide-y divide-surface-800 rounded-md bg-surface-950"
-								>
-									<div class="px-4 py-2 hover:bg-surface-900">
-										<a
-											data-sveltekit-reload
-											href="{base}/72/ex4"
-											class="flex flex-col w-full items-start"
-										>
-											<div class="text-lg -mb-2">Recollection</div>
-											<div class="text-sm">Extreme</div>
-										</a>
-									</div>
-									<div class="px-4 py-2 hover:bg-surface-900">
-										<a
-											data-sveltekit-reload
-											href="{base}/72/m5s"
-											class="flex flex-col w-full items-start"
-										>
-											<div class="text-lg -mb-2">AAC Cruiserweight M1</div>
-											<div class="text-sm">Savage</div>
-										</a>
-									</div>
-									<div class="px-4 py-2 hover:bg-surface-900">
-										<a
-											data-sveltekit-reload
-											href="{base}/72/m6s"
-											class="flex flex-col w-full items-start"
-										>
-											<div class="text-lg -mb-2">AAC Cruiserweight M2</div>
-											<div class="text-sm">Savage</div>
-										</a>
-									</div>
-									<div class="px-4 py-2 hover:bg-surface-900">
-										<a
-											data-sveltekit-reload
-											href="{base}/72/m7s"
-											class="flex flex-col w-full items-start"
-										>
-											<div class="text-lg -mb-2">AAC Cruiserweight M3</div>
-											<div class="text-sm">Savage</div>
-										</a>
-									</div>
-									<div class="px-4 py-2 hover:bg-surface-900">
-										<a
-											data-sveltekit-reload
-											href="{base}/72/m8s"
-											class="flex flex-col w-full items-start"
-										>
-											<div class="text-lg -mb-2">AAC Cruiserweight M4</div>
-											<div class="text-sm">Savage</div>
-										</a>
-									</div>
-								</div>
-							</article>
-						</NavigationMenu.Content>
-					</NavigationMenu.Item>
-					<NavigationMenu.Item>
-						<NavigationMenu.Trigger class="btn preset-tonal-secondary px-4"
-							>Patch 7.3 <ChevronDown size={16} /></NavigationMenu.Trigger
-						>
-						<NavigationMenu.Content class="bg-surface-200 dark:bg-surface-800 min-w-[240px] p-4">
-							<article>
-								<div
-									class="opacity-60 preset-outlined-surface-200-800 grid p-0 w-full divide-y divide-surface-800 rounded-md bg-surface-950"
-								>
-									<div class="px-4 py-2 hover:bg-surface-900">
-										<a
-											data-sveltekit-reload
-											href="{base}/73/ex6"
-											class="flex flex-col w-full items-start"
-										>
-											<div class="text-lg -mb-2">Windward Wilds</div>
-											<div class="text-sm">Extreme</div>
-										</a>
-									</div>
-									<div class="px-4 py-2 hover:bg-surface-900">
-										<a
-											data-sveltekit-reload
-											href="{base}/73/ex5"
-											class="flex flex-col w-full items-start"
-										>
-											<div class="text-lg -mb-2">Necron's Embrace</div>
-											<div class="text-sm">Extreme</div>
-										</a>
-									</div>
-								</div>
-							</article>
-						</NavigationMenu.Content>
-					</NavigationMenu.Item>
-					<NavigationMenu.Item>
-						<NavigationMenu.Trigger class="btn preset-tonal-secondary px-4"
-							>Ultimates <ChevronDown size={16} /></NavigationMenu.Trigger
-						>
-						<NavigationMenu.Content class="bg-surface-200 dark:bg-surface-800 min-w-[240px] p-4">
-							<article>
-								<div
-									class="opacity-60 preset-outlined-surface-200-800 grid p-0 w-full divide-y divide-surface-800 rounded-md bg-surface-950"
-								>
-									<div class="px-4 py-2 hover:bg-surface-900">
-										<a
-											data-sveltekit-reload
-											href="{base}/ultimates/ucob"
-											class="flex flex-col w-full items-start"
-										>
-											<div class="text-lg -mb-2">The Unending Coil of Bahamut</div>
-											<div class="text-sm">Ultimate</div>
-										</a>
-									</div>
-									<div class="px-4 py-2">
-										<button class="flex flex-col w-full items-start disabled">
-											<div class="text-lg -mb-2">The Weapon's Refrain</div>
-											<div class="text-sm">Ultimate</div>
-										</button>
-									</div>
-									<div class="px-4 py-2">
-										<button class="flex flex-col w-full items-start disabled">
-											<div class="text-lg -mb-2">The Epic of Alexander</div>
-											<div class="text-sm">Ultimate</div>
-										</button>
-									</div>
-									<div class="px-4 py-2">
-										<button class="flex flex-col w-full items-start disabled">
-											<div class="text-lg -mb-2">Dragonsong's Reprise</div>
-											<div class="text-sm">Ultimate</div>
-										</button>
-									</div>
-									<div class="px-4 py-2">
-										<button class="flex flex-col w-full items-start disabled">
-											<div class="text-lg -mb-2">The Omega Protocol</div>
-											<div class="text-sm">Ultimate</div>
-										</button>
-									</div>
-									<div class="px-4 py-2">
-										<button class="flex flex-col w-full items-start disabled">
-											<div class="text-lg -mb-2">Futures Rewritten</div>
-											<div class="text-sm">Ultimate</div>
-										</button>
-									</div>
-								</div>
-							</article>
-						</NavigationMenu.Content>
-					</NavigationMenu.Item>
-				</NavigationMenu.List>
-			</NavigationMenu.Root>
-
-		</div>
-	</div>
-</header-->
 
 <ToastProvider>
 	<Sidebar.Provider>
@@ -245,12 +47,10 @@
 
 			{@render children?.()}
 
-			<footer
-				class="w-full p-4 border-t shadow-sm md:flex md:items-center md:justify-between md:p-6 bg-surface-1000 border-gray-600 mt-auto"
-			>
-				<div
-					class="flex flex-col lg:flex-row w-full max-w-(--breakpoint-xl) mx-auto justify-between"
-				>
+			<Separator />
+
+			<footer class="p-4 shadow-sm mt-auto container px-4 lg:px-8 mx-auto my-4">
+				<div class="grid grid-cols-1 lg:grid-cols-2 w-full justify-between">
 					<div class="text-sm text-gray-500 dark:text-gray-400">
 						<div>
 							Comments? Questions? Something incorrect? <a
@@ -266,7 +66,7 @@
 							FANTASY XIV © SQUARE ENIX
 						</div>
 					</div>
-					<div class="text-sm text-gray-500 dark:text-gray-400 md:text-end">
+					<div class="text-sm text-gray-500 dark:text-gray-400 lg:text-end mt-4 lg:mt-0">
 						<div>Made by Mara Kaminagi @ Adamantoise</div>
 						<div>
 							You can find me on <a

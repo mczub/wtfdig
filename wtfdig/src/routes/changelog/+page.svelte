@@ -8,7 +8,7 @@
 	</header>
 	<article class="prose dark:prose-invert max-w-none">
 		<div class="">
-			<div>11/28/2025: big boy UI rework</div>
+			<div>11/28/2025: big UI rework</div>
 			<div>11/16/2025: add ex6</div>
 			<div>7/8/2025: updated toxic lightning spreads for m6s</div>
 			<div>
