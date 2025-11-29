@@ -11,6 +11,7 @@
 	import ChevronDown from '@lucide/svelte/icons/chevron-down';
 	import PanelLeftIcon from '@lucide/svelte/icons/panel-left';
 	import { base } from '$app/paths';
+
 	interface Props {
 		children?: import('svelte').Snippet;
 	}
@@ -21,7 +22,6 @@
 	function changelogClose() {
 		changelogOpenState = false;
 	}
-
 	let { children }: Props = $props();
 	const sidebar = useSidebar();
 </script>

@@ -109,7 +109,7 @@
 												<Sidebar.MenuSubButton>
 													{#snippet child({ props })}
 														<a
-															data-sveltekit-reload
+															data-sveltekit-replacestate
 															href={subItem.url}
 															{...props}
 															class="flex flex-col w-full items-start"

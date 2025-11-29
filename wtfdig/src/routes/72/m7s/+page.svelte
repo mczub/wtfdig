@@ -623,7 +623,7 @@
 					<div class="flex flex-row">
 						<button
 							type="button"
-							class="btn preset-tonal-primary"
+							class="btn preset-tonal-secondary"
 							onclick={() => (otherOpenState = true)}>View other strats</button
 						>
 					</div>
@@ -709,17 +709,21 @@
 									<ExternalLink />
 								</a>
 							{:else if typeof strat?.stratUrl === 'object'}
-								{strat.description}
-								{#each Object.entries(strat.stratUrl) as [linkName, linkUrl]}
-									<a
-										class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1"
-										target="_blank"
-										rel="noopener noreferrer"
-										href={linkUrl}
-										>{linkName}
-										<ExternalLink />
-									</a>
-								{/each}
+								<div class="flex flex-col gap-x-4 gap-y-1">
+									<span class="text-lg">{strat.description}</span>
+									<div class="flex flex-wrap gap-x-4 gap-y-1">
+										{#each Object.entries(strat.stratUrl) as [linkName, linkUrl]}
+											<a
+												class="inline-flex items-center text-lg text-blue-400 hover:text-blue-300 hover:underline gap-1 transition-colors"
+												target="_blank"
+												rel="noopener noreferrer"
+												href={linkUrl}
+												>{linkName}
+												<ExternalLink size={16} />
+											</a>
+										{/each}
+									</div>
+								</div>
 							{/if}
 							{#if stratState.p2 && p2Urls[stratState.p2]}
 								<div>
