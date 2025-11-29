@@ -4,6 +4,7 @@
 	import { useSidebar } from '$lib/components/ui/sidebar';
 	import { base } from '$app/paths';
 	import { ArrowLeftFromLine, ChevronDown, ChevronRightIcon } from '@lucide/svelte';
+	import Separator from './ui/separator/separator.svelte';
 
 	const sidebar = useSidebar();
 
@@ -78,6 +79,12 @@
 			]
 		}
 	];
+
+	function handleLinkClick() {
+		if (sidebar.isMobile) {
+			sidebar.setOpenMobile(false);
+		}
+	}
 </script>
 
 <Sidebar.Root>
@@ -112,6 +119,7 @@
 															data-sveltekit-replacestate
 															href={subItem.url}
 															{...props}
+															onclick={handleLinkClick}
 															class="flex flex-col w-full items-start"
 														>
 															<div class="text-lg">{subItem.title}</div>
@@ -128,6 +136,17 @@
 							</Sidebar.MenuItem>
 						</Collapsible.Root>
 					{/each}
+					<Separator class="my-2" />
+					<Sidebar.MenuItem>
+						<a
+							data-sveltekit-replacestate
+							href="/changelog"
+							onclick={handleLinkClick}
+							class="flex flex-col w-full items-start mx-2"
+						>
+							<div class="text-lg">Changelog</div>
+						</a>
+					</Sidebar.MenuItem>
 				</Sidebar.Menu>
 			</Sidebar.GroupContent>
 		</Sidebar.Group>
