@@ -57,7 +57,7 @@
 			</div>
 			<X onclick={closeImage} class="cursor-pointer" />
 		</header>
-		<div class="flex-1 min-h-0 flex flex-col overflow-hidden">
+		<div class="min-h-0 flex flex-col overflow-hidden">
 			<div class="font-bold text-base lg:text-xl shrink-0">{mech ? mech?.mechanic : ''}</div>
 			<div class="whitespace-pre-wrap text-xs lg:text-lg shrink-0">
 				{mech ? mech?.description : ''}
