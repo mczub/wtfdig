@@ -7,7 +7,8 @@ import type {
 	Role,
 	Strat,
 	StratRecord,
-	FightOptionsContext
+	FightOptionsContext,
+	FightToggleUrl
 } from './types';
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -164,7 +165,7 @@ export function buildIndividualStratView({
 					?.filter((playerStrat) => playerStrat.role === role && playerStrat.party === party)
 					.map((playerStrat) => ({
 						...playerStrat,
-						description: resolveStratItem(playerStrat.description, phaseStrat.tag, stratState),
+						description: resolveStratItem(playerStrat.description, phaseStrat.tag, stratState) ?? '',
 						imageUrl: resolveStratItem(playerStrat.imageUrl, phaseStrat.tag, stratState),
 						mask: resolveStratItem(playerStrat.mask, phaseStrat.tag, stratState)
 					}))
@@ -213,6 +214,28 @@ function getToggleDiffDescriptions({
 			}
 		}
 		return descriptions;
+	}, []);
+}
+
+export function getToggleUrls({
+	stratName,
+	stratState,
+	toggles = [],
+	stratDefaults
+}: ToggleDiffArgs): FightToggleUrl[] {
+	if (!stratName || !toggles.length) return [];
+	const defaults = stratDefaults[stratName] ?? {};
+	return toggles.reduce<FightToggleUrl[]>((urls, toggle) => {
+		const defaultValue = defaults[toggle.key] ?? toggle.defaultValue ?? null;
+		const currentValue = stratState?.[toggle.key];
+		if (currentValue && currentValue !== defaultValue) {
+			const optionUrl =
+				toggle.options.find((option) => option.value === currentValue)?.url ?? null;
+			if (optionUrl) {
+				urls.push({ name: optionUrl.name, url: optionUrl.url });
+			}
+		}
+		return urls;
 	}, []);
 }
 

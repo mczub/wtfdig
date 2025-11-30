@@ -197,11 +197,13 @@
 				{#if phase?.description}<div class="text-lg whitespace-pre-wrap">
 						{phase.description}
 					</div>{/if}
-				{#if phase?.imageUrl}<img
+				{#if phase?.imageUrl}
+					<img
 						class="max-h-[400px] self-start rounded-md mt-4"
 						style:mask-image={spotlight && phase.mask}
 						src={phase.imageUrl}
-					/>{/if}
+					/>
+				{/if}
 				{#if phase?.mechs}
 					<div class="grid lg:grid-cols-2 grid-cols-1 gap-2 mt-4">
 						{#each phase.mechs as mech}
@@ -226,10 +228,9 @@
 									{#if mech?.description}<div class="whitespace-pre-wrap text-lg mb-0">
 											{mech.description}
 										</div>{/if}
-									{#if mech?.imageUrl}<img
-											class="max-h-[400px] self-start rounded-md mt-4"
-											src={mech.imageUrl}
-										/>{/if}
+									{#if mech?.imageUrl}
+										<img class="max-h-[400px] self-start rounded-md mt-4" src={mech.imageUrl} />
+									{/if}
 									<div class="flex items-start gap-1 text-lg mb-0">
 										{#if role && mech.strats && mech.strats.length > 0 && mech.strats[0].description}
 											<img
@@ -242,11 +243,13 @@
 											{mech?.strats && mech.strats[0].description}
 										</div>
 									</div>
-									{#if mech?.strats && mech.strats[0]?.imageUrl}<img
+									{#if mech?.strats && mech.strats[0]?.imageUrl}
+										<img
 											class="max-h-[400px] self-start rounded-md mt-4"
 											style:mask-image={spotlight && mech.strats[0]?.mask}
 											src={mech.strats[0].imageUrl}
-										/>{/if}
+										/>
+									{/if}
 								</button>
 							{/key}
 						{/each}
@@ -280,11 +283,13 @@
 					{#if phase?.description}<div class="text-lg whitespace-pre-wrap">
 							{phase.description}
 						</div>{/if}
-					{#if phase?.imageUrl}<img
+					{#if phase?.imageUrl}
+						<img
 							class="max-h-[400px] self-start rounded-md mt-4"
 							style:mask-image={spotlight && phase.mask}
 							src={phase.imageUrl}
-						/>{/if}
+						/>
+					{/if}
 				</button>
 			</div>
 		{/if}

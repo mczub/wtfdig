@@ -7,7 +7,7 @@
 	import ModernFightStratControls from './ModernFightStratControls.svelte';
 	import FightStratState from './FightStratState.svelte';
 	import type { Alignment, FightConfig, Role, Strat } from '$lib/types';
-	import { buildFightOptionsSummary, buildFightPFDescription } from '$lib/utils';
+	import { buildFightOptionsSummary, buildFightPFDescription, getToggleUrls } from '$lib/utils';
 
 	interface Props {
 		config: FightConfig;
@@ -180,6 +180,12 @@
 		stratState
 	})}
 	{@const pfDescription = getPFDescription({ stratName, stratState })}
+	{@const toggleUrls = getToggleUrls({
+		stratName,
+		toggles: config.toggles,
+		stratDefaults: config.stratDefaults,
+		stratState
+	})}
 
 	<Cheatsheet
 		title={`${config.cheatsheetTitle} - ${optionsString}`}
@@ -191,8 +197,8 @@
 		{individualStrat}
 		{spotlight}
 		{alignment}
-		rows="4"
-		columns="4"
+		rows={config.cheatsheetLayout?.rows ?? '4'}
+		columns={config.cheatsheetLayout?.columns ?? '4'}
 		{innerHeight}
 		{innerWidth}
 		tabTags={config.tabTags}
@@ -211,6 +217,7 @@
 			options: toggle.options
 		}))}
 		onToggleChange={setStratState}
+		currentStratDefaults={getStratMechs(stratName ?? '')}
 		role={normalizedRole}
 		{setRole}
 		{party}
@@ -261,7 +268,7 @@
 								</div>
 								{#if typeof selectedStrat?.stratUrl === 'string'}
 									<a
-										class="inline-flex items-center text-lg text-blue-400 hover:text-blue-300 hover:underline gap-1 transition-colors"
+										class="inline-flex items-center text-base lg:text-lg text-blue-400 hover:text-blue-300 hover:underline gap-1 transition-colors"
 										target="_blank"
 										rel="noopener noreferrer"
 										href={selectedStrat.stratUrl}
@@ -274,7 +281,7 @@
 										<div class="flex flex-wrap gap-x-4 gap-y-1">
 											{#each Object.entries(selectedStrat.stratUrl) as [linkName, linkUrl]}
 												<a
-													class="inline-flex items-center text-lg text-blue-400 hover:text-blue-300 hover:underline gap-1 transition-colors"
+													class="inline-flex items-center text-base lg:text-lg text-blue-400 hover:text-blue-300 hover:underline gap-1 transition-colors"
 													target="_blank"
 													rel="noopener noreferrer"
 													href={linkUrl}
@@ -283,6 +290,20 @@
 												</a>
 											{/each}
 										</div>
+										{#if toggleUrls.length > 0}
+											<div>
+												{#each toggleUrls as toggleUrl}
+													<a
+														class="inline-flex items-center text-base lg:text-lg text-blue-400 hover:text-blue-300 hover:underline gap-1 transition-colors"
+														target="_blank"
+														rel="noopener noreferrer"
+														href={toggleUrl.url}
+														>{toggleUrl.name}
+														<ExternalLink size={16} />
+													</a>
+												{/each}
+											</div>
+										{/if}
 									</div>
 								{/if}
 							</div>
@@ -324,7 +345,7 @@
 									class="card flex flex-row border border-surface-700/50 flex-auto items-center bg-surface-950/50 overflow-hidden"
 								>
 									<button
-										onclick={() => copyLinkToClipboard()}
+										onclick={() => copyPFDescription(pfDescription)}
 										class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none"
 										><Copy size={18} />Copy PF Description</button
 									>

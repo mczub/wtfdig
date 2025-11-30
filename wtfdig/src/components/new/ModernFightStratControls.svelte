@@ -4,10 +4,12 @@
 	import { onMount } from 'svelte';
 	import { Segment, Switch, Popover, Modal } from '$lib/components/ui';
 	import type { Role, StratOption, FightToggleState } from '$lib/types';
+	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
 	import ChevronDown from '@lucide/svelte/icons/chevron-down';
 	import Settings from '@lucide/svelte/icons/settings';
 	import X from '@lucide/svelte/icons/x';
 	import * as Select from '$lib/components/ui/select';
+	import * as Tooltip from '$lib/components/ui/tooltip';
 
 	interface Props {
 		title: string;
@@ -16,6 +18,7 @@
 		onSelectStrat: (value: string) => void;
 		toggles: FightToggleState[];
 		onToggleChange: (key: string, value: string) => void;
+		currentStratDefaults?: Record<string, string>;
 		role: Role | undefined;
 		setRole: (value: Role) => void;
 		party: number | undefined;
@@ -36,6 +39,7 @@
 		onSelectStrat,
 		toggles = [],
 		onToggleChange,
+		currentStratDefaults,
 		role,
 		setRole,
 		party,
@@ -52,7 +56,9 @@
 	let roleContainer: HTMLElement | undefined = $state();
 
 	let stratLabel = $derived(stratOptions.find((o) => o.value === stratName)?.label ?? stratName);
-	let selectedStratOption = $derived(stratOptions.find((o) => o.value === stratName) ?? { label: stratName });
+	let selectedStratOption = $derived(
+		stratOptions.find((o) => o.value === stratName) ?? { label: null }
+	);
 	let toggleLabels = $derived(
 		toggles
 			.map((t) => t.options.find((o) => o.value === t.value)?.label)
@@ -226,11 +232,11 @@
 							</Segment.Item>
 						{/each}
 					</Segment>
-					
+
 					<div class="block lg:hidden">
-						<Select.Root 
+						<Select.Root
 							type="single"
-							bind:value={stratName} 
+							bind:value={stratName}
 							onValueChange={(e) => onSelectStrat(e)}
 						>
 							<Select.Trigger size="lg">
@@ -240,14 +246,12 @@
 											<span class="badge {badge.class} px-2 mr-2">{badge.text}</span>
 										{/each}
 									{/if}
-									{selectedStratOption.label}
+									{selectedStratOption.label ?? 'Select a strat'}
 								</div>
 							</Select.Trigger>
 							<Select.Content>
 								{#each stratOptions as option}
-									<Select.Item
-										value={option.value}
-									>
+									<Select.Item value={option.value}>
 										<div class="text-base">
 											{#if option.badges}
 												{#each option.badges as badge}
@@ -277,9 +281,27 @@
 				{#if stratName && toggles?.length}
 					{#each toggles as toggle}
 						<div class="flex items-center gap-2 flex-wrap">
-							<span class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider mr-2"
-								>{toggle.label}</span
-							>
+							<div class="flex items-center gap-1">
+								<span class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider"
+									>{toggle.label}</span
+								>
+								{#if currentStratDefaults && currentStratDefaults[toggle.key] && toggle.value !== currentStratDefaults[toggle.key]}
+									<Tooltip.Provider>
+										<Tooltip.Root>
+											<Tooltip.Trigger>
+												<div class="text-warning-500">
+													<TriangleAlert size={16} />
+												</div>
+											</Tooltip.Trigger>
+											<Tooltip.Content
+												class="bg-surface-800 text-sm p-2 rounded shadow-lg border border-surface-700"
+											>
+												This mechanic differs from the selected guide.
+											</Tooltip.Content>
+										</Tooltip.Root>
+									</Tooltip.Provider>
+								{/if}
+							</div>
 							<Segment
 								name={toggle.key}
 								value={toggle.value}
@@ -287,8 +309,17 @@
 								classes="hidden lg:flex"
 							>
 								{#each toggle.options as option}
-									<Segment.Item value={option.value} classes="text-md px-2 py-1"
-										>{option.label}</Segment.Item
+									<Segment.Item
+										value={option.value}
+										classes="text-md px-2 py-1"
+										labelClasses="flex items-center"
+									>
+										{#if option.badges}
+											{#each option.badges as badge}
+												<span class="badge {badge.class} px-2 mr-2">{badge.text}</span>
+											{/each}
+										{/if}
+										{option.label}</Segment.Item
 									>
 								{/each}
 							</Segment>
@@ -301,13 +332,27 @@
 								>
 									<Select.Trigger size="lg">
 										<div class="w-full text-base text-left">
-											{toggle.options.find((o) => o.value === toggle.value)?.label ?? 'Select'}
+											<div class="flex items-center">
+												{#if toggle.options.find((o) => o.value === toggle.value)?.badges}
+													{#each toggle.options.find((o) => o.value === toggle.value)?.badges as badge}
+														<span class="badge {badge.class} px-2 mr-2">{badge.text}</span>
+													{/each}
+												{/if}
+												{toggle.options.find((o) => o.value === toggle.value)?.label ?? 'Select'}
+											</div>
 										</div>
 									</Select.Trigger>
 									<Select.Content>
 										{#each toggle.options as option}
 											<Select.Item value={option.value}>
-												<div class="text-base">{option.label}</div>
+												<div class="text-base flex items-center">
+													{#if option.badges}
+														{#each option.badges as badge}
+															<span class="badge {badge.class} px-2 mr-2">{badge.text}</span>
+														{/each}
+													{/if}
+													{option.label}
+												</div>
 											</Select.Item>
 										{/each}
 									</Select.Content>
@@ -328,7 +373,7 @@
 				<div
 					class="absolute -top-1.5 left-8 w-3 h-3 bg-surface-900 border-t border-l border-primary-500 transform rotate-45"
 				></div>
-				<span class="font-bold text-lg whitespace-nowrap">Select your Role, Group & Strat</span>
+				<span class="font-bold text-lg whitespace-nowrap">Select your role, group & strat</span>
 			</div>
 		{/if}
 	</div>

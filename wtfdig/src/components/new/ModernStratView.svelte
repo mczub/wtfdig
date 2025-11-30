@@ -208,7 +208,11 @@
 					</div>
 
 					{#if phase?.description}
-						<div class="text-base lg:text-lg text-surface-200 leading-relaxed max-w-4xl">{phase.description}</div>
+						<div
+							class="text-base lg:text-lg text-surface-200 leading-relaxed max-w-4xl whitespace-pre-wrap"
+						>
+							{phase.description}
+						</div>
 					{/if}
 
 					{#if phase?.imageUrl}
@@ -326,9 +330,7 @@
 						onclick={() => openImageModal(phase)}
 					>
 						<div class="flex justify-between items-center border-b border-surface-700/50 pb-2">
-							<h2
-								class="text-3xl font-bold tracking-tight text-surface-50 capitalize"
-							>
+							<h2 class="text-3xl font-bold tracking-tight text-surface-50 capitalize">
 								{phase.phaseName}
 							</h2>
 							<Expand

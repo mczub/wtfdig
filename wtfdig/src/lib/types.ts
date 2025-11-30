@@ -51,6 +51,13 @@ export interface TimelineItem {
 export interface FightToggleOption {
 	value: string;
 	label: string;
+	badges?: Badge[];
+	url?: FightToggleUrl;
+}
+
+export interface FightToggleUrl {
+	name: string;
+	url: string;
 }
 
 export interface FightToggleConfig {
@@ -84,6 +91,7 @@ export interface FightConfig {
 	abbreviatedTitle?: string;
 	subtitle: string;
 	cheatsheetTitle: string;
+	cheatsheetLayout?: { rows: number; columns: number };
 	stratLabels: Record<string, string>;
 	stratBadges?: Record<string, Badge[]>;
 	stratDefaults: Record<string, Record<string, string>>;
