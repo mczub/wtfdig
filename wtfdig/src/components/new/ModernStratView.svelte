@@ -208,7 +208,7 @@
 					</div>
 
 					{#if phase?.description}
-						<p class="text-lg text-surface-300 leading-relaxed max-w-4xl">{phase.description}</p>
+						<p class="text-lg text-surface-200 leading-relaxed max-w-4xl">{phase.description}</p>
 					{/if}
 
 					{#if phase?.imageUrl}
@@ -271,7 +271,7 @@
 											{/if}
 
 											{#if mech?.description}
-												<p class="text-surface-300 text-base leading-relaxed whitespace-pre-wrap">
+												<p class="text-surface-200 text-base leading-relaxed whitespace-pre-wrap">
 													{mech.description}
 												</p>
 											{/if}
@@ -286,7 +286,7 @@
 												</div>
 											{/if}
 
-											<div class="flex items-start gap-1.5 text-base text-surface-200">
+											<div class="flex items-start gap-1.5 text-base text-surface-100">
 												{#if role && mech.strats && mech.strats.length > 0 && mech.strats[0].description}
 													<img
 														src={`/icons/${role.toLowerCase()}.png`}
@@ -347,7 +347,7 @@
 						{/if}
 
 						{#if phase?.description}
-							<p class="text-lg text-surface-300 leading-relaxed whitespace-pre-wrap">
+							<p class="text-lg text-surface-200 leading-relaxed whitespace-pre-wrap">
 								{phase.description}
 							</p>
 						{/if}

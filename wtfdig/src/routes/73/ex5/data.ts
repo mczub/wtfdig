@@ -520,7 +520,7 @@ const hectorStrat: Strat = {
                         { role: 'Tank', party: 1, description: 'Go to dark side, avoid hands\nSpread towards left', imageUrl: './ex5/mm1.webp', },
                         { role: 'Tank', party: 2, description: 'Go to dark side, avoid hands\nSpread towards right', imageUrl: './ex5/mm1.webp', },
                         { role: 'Healer', party: 1, description: 'Go to light side, avoid hands\nSpread towards left middle', imageUrl: './ex5/mm1.webp', },
-                        { role: 'Healer', party: 2, description: 'Go to light side, avoid hands\nnSpread towards left middle', imageUrl: './ex5/mm1.webp', },
+                        { role: 'Healer', party: 2, description: 'Go to light side, avoid hands\nSpread towards left middle', imageUrl: './ex5/mm1.webp', },
                         { role: 'Melee', party: 1, description: 'Go to light side, avoid hands\nSpread towards left front', imageUrl: './ex5/mm1.webp', },
                         { role: 'Melee', party: 2, description: 'Go to light side, avoid hands\nSpread towards right front', imageUrl: './ex5/mm1.webp', },
                         { role: 'Ranged', party: 1, description: 'Go to light side, avoid hands\nSpread towards left back', imageUrl: './ex5/mm1.webp', },
