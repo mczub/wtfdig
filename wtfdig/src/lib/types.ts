@@ -85,6 +85,15 @@ export interface Badge {
 	class: string;
 }
 
+export interface FightStratConfig {
+	[stratName: string]: {
+		label: string;
+		badges?: Badge[];
+		jpRoles?: boolean;
+		defaults?: Record<string, string>;
+	};
+}
+
 export interface FightConfig {
 	fightKey: string;
 	title: string;
@@ -92,9 +101,7 @@ export interface FightConfig {
 	subtitle: string;
 	cheatsheetTitle: string;
 	cheatsheetLayout?: { rows: number; columns: number };
-	stratLabels: Record<string, string>;
-	stratBadges?: Record<string, Badge[]>;
-	stratDefaults: Record<string, Record<string, string>>;
+	strats: FightStratConfig;
 	toggles?: FightToggleConfig[];
 	tabTags?: Record<string, string[]>;
 	defaultStratName?: string;

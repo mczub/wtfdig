@@ -3765,28 +3765,6 @@ const mrStrat: Strat = {
 
 export const m5sStrats: Strat[] = [hectorStrat, game8Strat, mrStrat, latteStrat, toxicStrat];
 
-const m5sStratLabels: Record<string, string> = {
-    'latte': 'Latte',
-    'toxic': 'Toxic Friends',
-    'sun': 'Sun Strat (h-WjosHQoM7oJR0n)',
-    'evansith': 'Evansith',
-    'hector': 'Hector',
-    'game8': 'Game8/Nukemaru',
-    'mr': 'MR'
-};
-
-const m5sStratBadges: Record<string, Badge[]> = {
-    'hector': [
-        { text: 'NA', class: 'na-badge' },
-        { text: 'EU', class: 'eu-badge' }
-    ],
-    'game8': [
-        { text: 'JP', class: 'jp-badge' }
-    ],
-    'mr': [
-        { text: 'OCE', class: 'oce-badge' }
-    ]
-};
 
 export const m5sFightConfig: FightConfig = {
     fightKey: 'm5s',
@@ -3794,9 +3772,41 @@ export const m5sFightConfig: FightConfig = {
     abbreviatedTitle: 'M5S',
     subtitle: 'M5S Patch 7.2',
     cheatsheetTitle: 'M5S Cheatsheet',
-    stratLabels: m5sStratLabels,
-    stratBadges: m5sStratBadges,
-    stratDefaults: {},
+    strats: {
+        latte: {
+            label: 'Latte'
+        },
+        toxic: {
+            label: 'Toxic Friends'
+        },
+        sun: {
+            label: 'Sun Strat (h-WjosHQoM7oJR0n)'
+        },
+        evansith: {
+            label: 'Evansith'
+        },
+        hector: {
+            label: 'Hector',
+            badges: [
+                { text: 'NA', class: 'na-badge' },
+                { text: 'EU', class: 'eu-badge' }
+            ]
+        },
+        game8: {
+            label: 'Game8/Nukemaru',
+            badges: [
+                { text: 'JP', class: 'jp-badge' }
+            ],
+            jpRoles: true
+        },
+        mr: {
+            label: 'MR',
+            badges: [
+                { text: 'OCE', class: 'oce-badge' }
+            ],
+            jpRoles: true
+        }
+    },
     toggles: [],
     defaultStratName: 'hector',
     timeline: timeline,

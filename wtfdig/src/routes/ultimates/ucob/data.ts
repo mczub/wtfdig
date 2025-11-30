@@ -648,13 +648,6 @@ const naurStrat: Strat = {
 
 export const ucobStrats: Strat[] = [naurStrat];
 
-const ucobStratLabels: Record<string, string> = {
-    naur: 'NAUR'
-};
-
-const ucobStratDefaults: Record<string, Record<string, string>> = {
-    naur: {}
-};
 
 export const ucobFightConfig: FightConfig = {
     fightKey: 'ucob',
@@ -662,8 +655,11 @@ export const ucobFightConfig: FightConfig = {
     abbreviatedTitle: 'UCOB',
     subtitle: 'UCOB Patch 4.11',
     cheatsheetTitle: 'UCOB Cheatsheet',
-    stratLabels: ucobStratLabels,
-    stratDefaults: ucobStratDefaults,
+    strats: {
+        naur: {
+            label: 'NAUR'
+        }
+    },
     toggles: [],
     tabTags: {
         'P1: Twintania': ['setup', 'p1'],

@@ -67,6 +67,12 @@
 	);
 	let displayTitle = $derived(`${title}`);
 
+	$effect(() => {
+		stratName;
+		toggles;
+		checkWrap();
+	})
+
 	function closeOther() {
 		otherOpenState = false;
 	}
@@ -123,249 +129,244 @@
 {/if}
 
 {#snippet settingsPopover()}
-	<!-- Settings / Toggles Popover -->
-	<div class="absolute right-4">
-		<Popover
-			zIndex="60"
-			open={settingsOpen}
-			onOpenChange={(e) => (settingsOpen = e.open)}
-			positioning={{ placement: 'bottom-end' }}
-			triggerBase="btn-icon btn-icon-sm preset-tonal-surface"
-			contentBase="bg-surface-200 dark:bg-surface-800 p-4 space-y-4 shadow-xl min-w-[280px]"
-		>
-			{#snippet trigger()}
-				<Settings size={20} />
-			{/snippet}
-			{#snippet content()}
-				<div class="space-y-4">
-					<div class="flex justify-between items-center">
-						<span class="font-medium">Highlight my spots</span>
-						<Switch
-							name="spotlight-toggle"
-							checked={spotlight}
-							onCheckedChange={(e) => setSpotlight(e.checked)}
-						/>
-					</div>
-				</div>
-			{/snippet}
-		</Popover>
-	</div>
+	
 {/snippet}
 <div
 	class="z-10 w-full bg-surface-100-900 border-b border-surface-200-800 shadow-md backdrop-blur-md bg-opacity-90 relative lg:sticky lg:top-0"
 >
 	<div class="container mx-auto px-4 py-2 relative">
-		<div class="flex flex-wrap items-center gap-2 w-full">
+		<div class="w-full flex flex-row">
+			<div class="flex flex-wrap items-center gap-4 w-full">
 			<!-- Fight Title -->
-			<div class="font-bold text-lg text-surface-50 mr-2 block order-1">
-				{displayTitle}
-			</div>
-
-			<!-- Role & Party Selector -->
-			<div class="flex flex-wrap items-center gap-4 order-1" bind:this={roleContainer}>
-				<div class="flex items-center relative">
-					<span class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider mr-2"
-						>Role</span
-					>
-					<Segment
-						name="role"
-						value={role}
-						onValueChange={(e) => setRole(e.value as Role)}
-						classes=""
-					>
-						<Segment.Item value="Tank" classes="text-md px-3 py-1">T</Segment.Item>
-						<Segment.Item value="Healer" classes="text-md px-3 py-1">H</Segment.Item>
-						<Segment.Item value="Melee" classes="text-md px-3 py-1">M</Segment.Item>
-						<Segment.Item value="Ranged" classes="text-md px-3 py-1">R</Segment.Item>
-					</Segment>
+				<div class="font-bold text-lg text-surface-50 mr-2 block order-1">
+					{displayTitle}
 				</div>
 
-				<div class="flex items-center">
-					<span class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider mr-2"
-						>Group</span
-					>
-					<Segment
-						name="party"
-						value={party?.toString()}
-						onValueChange={(e) => setParty(parseInt(e.value!))}
-						classes=""
-					>
-						<Segment.Item value="1" classes="text-md px-3 py-1">1</Segment.Item>
-						<Segment.Item value="2" classes="text-md px-3 py-1">2</Segment.Item>
-					</Segment>
-				</div>
-				{#if isWrapped}
-					{@render settingsPopover()}
-				{/if}
-			</div>
-
-			<!-- Strat Stuff (Selector + Toggles) -->
-			<div
-				bind:this={stratContainer}
-				class="flex flex-wrap items-center gap-4 border-surface-600-400 w-full lg:w-auto order-3 lg:order-2 {isWrapped
-					? 'border-t pt-2'
-					: 'border-l pl-4'}"
-			>
-				<!-- Strat Selector -->
-				<div class="flex items-center">
-					<span class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider mr-2"
-						>Strat</span
-					>
-					<Segment
-						name="stratName"
-						value={stratName}
-						onValueChange={(e) => onSelectStrat(e.value!)}
-						classes="h-auto flex-wrap hidden lg:flex"
-					>
-						{#each stratOptions as option}
-							<Segment.Item
-								value={option.value}
-								classes="text-md px-3 py-1"
-								labelClasses="flex items-center"
-							>
-								{#if option.badges}
-									{#each option.badges as badge}
-										<span class="badge {badge.class} px-2 mr-2">{badge.text}</span>
-									{/each}
-								{/if}
-								{option.label}
-							</Segment.Item>
-						{/each}
-					</Segment>
-
-					<div class="block lg:hidden">
-						<Select.Root
-							type="single"
-							bind:value={stratName}
-							onValueChange={(e) => onSelectStrat(e)}
+				<!-- Role & Party Selector -->
+				<div class="flex flex-wrap items-center gap-4 order-1" bind:this={roleContainer}>
+					<div class="flex items-center relative">
+						<span class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider mr-2"
+							>Role</span
 						>
-							<Select.Trigger size="lg">
-								<div class="w-45 flex place-items-start text-base">
-									{#if selectedStratOption.badges}
-										{#each selectedStratOption.badges as badge}
+						<Segment
+							name="role"
+							value={role}
+							onValueChange={(e) => setRole(e.value as Role)}
+							classes=""
+						>
+							<Segment.Item value="Tank" classes="text-md px-3 py-1">T</Segment.Item>
+							<Segment.Item value="Healer" classes="text-md px-3 py-1">H</Segment.Item>
+							<Segment.Item value="Melee" classes="text-md px-3 py-1">M</Segment.Item>
+							<Segment.Item value="Ranged" classes="text-md px-3 py-1">R</Segment.Item>
+						</Segment>
+					</div>
+
+					<div class="flex items-center">
+						<span class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider mr-2"
+							>Group</span
+						>
+						<Segment
+							name="party"
+							value={party?.toString()}
+							onValueChange={(e) => setParty(parseInt(e.value!))}
+							classes=""
+						>
+							<Segment.Item value="1" classes="text-md px-3 py-1">1</Segment.Item>
+							<Segment.Item value="2" classes="text-md px-3 py-1">2</Segment.Item>
+						</Segment>
+					</div>
+				</div>
+
+				<!-- Strat Stuff (Selector + Toggles) -->
+				<div
+					bind:this={stratContainer}
+					class="flex flex-wrap items-center gap-4 border-surface-600-400 w-full lg:w-auto order-3 lg:order-2"
+				>
+					<!-- Strat Selector -->
+					<div class="flex items-center">
+						<span class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider mr-2"
+							>Strat</span
+						>
+						<Segment
+							name="stratName"
+							value={stratName}
+							onValueChange={(e) => onSelectStrat(e.value!)}
+							classes="h-auto flex-wrap hidden"
+						>
+							{#each stratOptions as option}
+								<Segment.Item
+									value={option.value}
+									classes="text-md px-3 py-1"
+									labelClasses="flex items-center"
+								>
+									{#if option.badges}
+										{#each option.badges as badge}
 											<span class="badge {badge.class} px-2 mr-2">{badge.text}</span>
 										{/each}
 									{/if}
-									{selectedStratOption.label ?? 'Select a strat'}
+									{option.label}
+								</Segment.Item>
+							{/each}
+						</Segment>
+
+						<div class="">
+							<Select.Root
+								type="single"
+								bind:value={stratName}
+								onValueChange={(e) => onSelectStrat(e)}
+							>
+								<Select.Trigger size="lg">
+									<div class="w-45 flex place-items-start text-base">
+										{#if selectedStratOption.badges}
+											{#each selectedStratOption.badges as badge}
+												<span class="badge {badge.class} px-2 mr-2">{badge.text}</span>
+											{/each}
+										{/if}
+										{selectedStratOption.label ?? 'Select a strat'}
+									</div>
+								</Select.Trigger>
+								<Select.Content>
+									{#each stratOptions as option}
+										<Select.Item value={option.value}>
+											<div class="text-base">
+												{#if option.badges}
+													{#each option.badges as badge}
+														<span class="badge {badge.class} px-2 mr-2">{badge.text}</span>
+													{/each}
+												{/if}
+												{option.label}
+											</div>
+										</Select.Item>
+									{/each}
+								</Select.Content>
+							</Select.Root>
+						</div>
+					</div>
+
+					<!-- Individual Strat Toggles -->
+					{#if stratName && toggles?.length}
+						{#each toggles as toggle}
+							<div class="flex items-center gap-2 flex-wrap">
+								<div class="flex items-center gap-1">
+									<span class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider"
+										>{toggle.label}</span
+									>
+									{#if currentStratDefaults && currentStratDefaults[toggle.key] && toggle.value !== currentStratDefaults[toggle.key]}
+										<Tooltip.Provider>
+											<Tooltip.Root>
+												<Tooltip.Trigger>
+													<div class="text-warning-500">
+														<TriangleAlert size={16} />
+													</div>
+												</Tooltip.Trigger>
+												<Tooltip.Content
+													class="bg-surface-800 text-sm p-2 rounded shadow-lg border border-surface-700"
+												>
+													This mechanic differs from the selected guide.
+												</Tooltip.Content>
+											</Tooltip.Root>
+										</Tooltip.Provider>
+									{/if}
 								</div>
-							</Select.Trigger>
-							<Select.Content>
-								{#each stratOptions as option}
-									<Select.Item value={option.value}>
-										<div class="text-base">
+								<Segment
+									name={toggle.key}
+									value={toggle.value}
+									onValueChange={(e) => onToggleChange(toggle.key, e.value!)}
+									classes="hidden"
+								>
+									{#each toggle.options as option}
+										<Segment.Item
+											value={option.value}
+											classes="text-md px-2 py-1"
+											labelClasses="flex items-center"
+										>
 											{#if option.badges}
 												{#each option.badges as badge}
 													<span class="badge {badge.class} px-2 mr-2">{badge.text}</span>
 												{/each}
 											{/if}
-											{option.label}
-										</div>
-									</Select.Item>
-								{/each}
-							</Select.Content>
-						</Select.Root>
-					</div>
-				</div>
+											{option.label}</Segment.Item
+										>
+									{/each}
+								</Segment>
 
-				{#if additionalResources}
-					<div class="flex flex-row">
-						<button
-							type="button"
-							class="btn preset-tonal-secondary"
-							onclick={() => (otherOpenState = true)}>View other strats</button
-						>
-					</div>
-				{/if}
-
-				<!-- Individual Strat Toggles -->
-				{#if stratName && toggles?.length}
-					{#each toggles as toggle}
-						<div class="flex items-center gap-2 flex-wrap">
-							<div class="flex items-center gap-1">
-								<span class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider"
-									>{toggle.label}</span
-								>
-								{#if currentStratDefaults && currentStratDefaults[toggle.key] && toggle.value !== currentStratDefaults[toggle.key]}
-									<Tooltip.Provider>
-										<Tooltip.Root>
-											<Tooltip.Trigger>
-												<div class="text-warning-500">
-													<TriangleAlert size={16} />
-												</div>
-											</Tooltip.Trigger>
-											<Tooltip.Content
-												class="bg-surface-800 text-sm p-2 rounded shadow-lg border border-surface-700"
-											>
-												This mechanic differs from the selected guide.
-											</Tooltip.Content>
-										</Tooltip.Root>
-									</Tooltip.Provider>
-								{/if}
-							</div>
-							<Segment
-								name={toggle.key}
-								value={toggle.value}
-								onValueChange={(e) => onToggleChange(toggle.key, e.value!)}
-								classes="hidden lg:flex"
-							>
-								{#each toggle.options as option}
-									<Segment.Item
-										value={option.value}
-										classes="text-md px-2 py-1"
-										labelClasses="flex items-center"
+								<div class="">
+									<Select.Root
+										type="single"
+										value={toggle.value}
+										onValueChange={(value) => onToggleChange(toggle.key, value)}
 									>
-										{#if option.badges}
-											{#each option.badges as badge}
-												<span class="badge {badge.class} px-2 mr-2">{badge.text}</span>
-											{/each}
-										{/if}
-										{option.label}</Segment.Item
-									>
-								{/each}
-							</Segment>
-
-							<div class="block lg:hidden min-w-[180px]">
-								<Select.Root
-									type="single"
-									value={toggle.value}
-									onValueChange={(value) => onToggleChange(toggle.key, value)}
-								>
-									<Select.Trigger size="lg">
-										<div class="w-full text-base text-left">
-											<div class="flex items-center">
-												{#if toggle.options.find((o) => o.value === toggle.value)?.badges}
-													{#each toggle.options.find((o) => o.value === toggle.value)?.badges as badge}
-														<span class="badge {badge.class} px-2 mr-2">{badge.text}</span>
-													{/each}
-												{/if}
-												{toggle.options.find((o) => o.value === toggle.value)?.label ?? 'Select'}
-											</div>
-										</div>
-									</Select.Trigger>
-									<Select.Content>
-										{#each toggle.options as option}
-											<Select.Item value={option.value}>
-												<div class="text-base flex items-center">
-													{#if option.badges}
-														{#each option.badges as badge}
+										<Select.Trigger size="lg">
+											<div class="w-full text-base text-left">
+												<div class="flex items-center">
+													{#if toggle.options.find((o) => o.value === toggle.value)?.badges}
+														{#each toggle.options.find((o) => o.value === toggle.value)?.badges as badge}
 															<span class="badge {badge.class} px-2 mr-2">{badge.text}</span>
 														{/each}
 													{/if}
-													{option.label}
+													{toggle.options.find((o) => o.value === toggle.value)?.label ?? 'Select'}
 												</div>
-											</Select.Item>
-										{/each}
-									</Select.Content>
-								</Select.Root>
+											</div>
+										</Select.Trigger>
+										<Select.Content>
+											{#each toggle.options as option}
+												<Select.Item value={option.value}>
+													<div class="text-base flex items-center">
+														{#if option.badges}
+															{#each option.badges as badge}
+																<span class="badge {badge.class} px-2 mr-2">{badge.text}</span>
+															{/each}
+														{/if}
+														{option.label}
+													</div>
+												</Select.Item>
+											{/each}
+										</Select.Content>
+									</Select.Root>
+								</div>
+							</div>
+						{/each}
+					{/if}
+					{#if additionalResources}
+						<div class="flex flex-row">
+							<button
+								type="button"
+								class="btn preset-tonal-secondary"
+								onclick={() => (otherOpenState = true)}>View other strats</button
+							>
+						</div>
+					{/if}
+				</div>
+			</div>
+			<!-- Settings / Toggles Popover -->
+			<div class="justify-self-end self-start items-center mt-1">
+				<Popover
+					zIndex="60"
+					open={settingsOpen}
+					onOpenChange={(e) => (settingsOpen = e.open)}
+					positioning={{ placement: 'bottom-end' }}
+					triggerBase="btn-icon btn-icon-sm preset-tonal-surface"
+					contentBase="bg-surface-200 dark:bg-surface-800 p-4 space-y-4 shadow-xl min-w-[280px]"
+				>
+					{#snippet trigger()}
+						<Settings size={20} />
+					{/snippet}
+					{#snippet content()}
+						<div class="space-y-4">
+							<div class="flex justify-between items-center">
+								<span class="font-medium">Highlight my spots</span>
+								<Switch
+									name="spotlight-toggle"
+									checked={spotlight}
+									onCheckedChange={(e) => setSpotlight(e.checked)}
+								/>
 							</div>
 						</div>
-					{/each}
-				{/if}
-				{#if !isWrapped}
-					{@render settingsPopover()}
-				{/if}
+					{/snippet}
+				</Popover>
 			</div>
 		</div>
+		
 		{#if !role || !party || !stratName}
 			<div
 				class="absolute -bottom-14 left-0 z-50 bg-surface-900 border border-primary-500 text-surface-50 px-4 py-2 rounded-xl shadow-xl"

@@ -3843,24 +3843,32 @@ export const m6sFightConfig: FightConfig = {
     subtitle: 'M6S Patch 7.2',
     cheatsheetTitle: 'M6S Cheatsheet',
     cheatsheetLayout: { rows: 3, columns: 7 },
-    stratLabels: {
-        latte: 'Latte',
-        yukizuri: 'Yukizuri',
-        toxic: 'Hector/Toxic',
-        game8: 'Game8',
-        mr: 'MR'
-    },
-    stratBadges: {
-        toxic: [{ text: 'NA', class: 'na-badge' }, { text: 'EU', class: 'eu-badge' }],
-        game8: [{ text: 'JP', class: 'jp-badge' }],
-        mr: [{ text: 'OCE', class: 'oce-badge' }],
-    },
-    stratDefaults: {
-        latte: { adds: 'latte' },
-        yukizuri: { adds: 'yukizuri' },
-        toxic: { adds: 'cleave' },
-        game8: { adds: 'game8' },
-        mr: { adds: 'mr' }
+    strats: {
+        latte: {
+            label: 'Latte',
+            defaults: { adds: 'latte' }
+        },
+        yukizuri: {
+            label: 'Yukizuri',
+            defaults: { adds: 'yukizuri' }
+        },
+        toxic: {
+            label: 'Hector/Toxic',
+            badges: [{ text: 'NA', class: 'na-badge' }, { text: 'EU', class: 'eu-badge' }],
+            defaults: { adds: 'cleave' }
+        },
+        game8: {
+            label: 'Game8',
+            badges: [{ text: 'JP', class: 'jp-badge' }],
+            jpRoles: true,
+            defaults: { adds: 'game8' }
+        },
+        mr: {
+            label: 'MR',
+            badges: [{ text: 'OCE', class: 'oce-badge' }],
+            jpRoles: true,
+            defaults: { adds: 'mr' }
+        }
     },
     toggles: [
         {

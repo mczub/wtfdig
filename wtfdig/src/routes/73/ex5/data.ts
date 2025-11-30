@@ -840,20 +840,10 @@ const hectorStrat: Strat = {
 
 export const ex5Strats: Strat[] = [hectorStrat];
 
-const ex5StratLabels: Record<string, string> = {
-    hector: 'Hector'
-};
-
 const mm2ToggleOptions = [
     { value: 'normal', label: 'Normal' },
     { value: 'uptime', label: 'Uptime' }
 ];
-
-const ex5StratDefaults: Record<string, Record<string, string>> = {
-    hector: {
-        mm2: 'normal'
-    }
-};
 
 const ex5ToggleConfigs = [
     {
@@ -870,8 +860,14 @@ export const ex5FightConfig: FightConfig = {
     abbreviatedTitle: 'EX5',
     subtitle: 'EX5 Patch 7.3',
     cheatsheetTitle: 'EX5 Cheatsheet',
-    stratLabels: ex5StratLabels,
-    stratDefaults: ex5StratDefaults,
+    strats: {
+        hector: {
+            label: 'Hector',
+            defaults: {
+                mm2: 'normal'
+            }
+        }
+    },
     toggles: ex5ToggleConfigs,
     tabTags: {
         P1: ['p1', 'adds'],

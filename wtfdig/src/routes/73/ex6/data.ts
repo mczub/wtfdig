@@ -337,17 +337,7 @@ const hectorStrat: Strat = {
 
 export const ex6Strats: Strat[] = [hectorStrat];
 
-const ex6StratLabels: Record<string, string> = {
-    hector: 'Hector'
-};
-
 const lcToggleOptions = [{ value: 'diamond', label: 'Diamond' }];
-
-const ex6StratDefaults: Record<string, Record<string, string>> = {
-    hector: {
-        lc: 'diamond'
-    }
-};
 
 const ex6ToggleConfigs = [
     {
@@ -364,8 +354,14 @@ export const ex6FightConfig: FightConfig = {
     abbreviatedTitle: 'EX6',
     subtitle: 'EX6 Patch 7.3',
     cheatsheetTitle: 'EX6 Cheatsheet',
-    stratLabels: ex6StratLabels,
-    stratDefaults: ex6StratDefaults,
+    strats: {
+        hector: {
+            label: 'Hector',
+            defaults: {
+                lc: 'diamond'
+            }
+        }
+    },
     toggles: ex6ToggleConfigs,
     tabTags: {
         P1: ['p1'],

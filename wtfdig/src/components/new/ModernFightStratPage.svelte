@@ -17,8 +17,8 @@
 	let { config, strats }: Props = $props();
 	const stratOptions = strats.map((strat) => ({
 		value: strat.stratName,
-		label: config.stratLabels[strat.stratName] ?? strat.stratName,
-		badges: config.stratBadges?.[strat.stratName]
+		label: config.strats[strat.stratName].label ?? strat.stratName,
+		badges: config.strats[strat.stratName].badges
 	}));
 	const stratKeys = (config.toggles ?? []).map((toggle) => toggle.key);
 
@@ -87,7 +87,7 @@
 	}
 
 	function getStratMechs(stratName: string) {
-		return config.stratDefaults[stratName] ?? {};
+		return config.strats[stratName]?.defaults ?? {};
 	}
 
 	function getOptionsString({
@@ -106,8 +106,7 @@
 			role,
 			party,
 			stratState,
-			stratLabels: config.stratLabels,
-			stratDefaults: config.stratDefaults,
+			strats: config.strats,
 			toggles: config.toggles
 		});
 	}
@@ -124,8 +123,7 @@
 			stratName,
 			stratState,
 			currentUrl,
-			stratLabels: config.stratLabels,
-			stratDefaults: config.stratDefaults,
+			strats: config.strats,
 			toggles: config.toggles
 		});
 	}
@@ -183,7 +181,7 @@
 	{@const toggleUrls = getToggleUrls({
 		stratName,
 		toggles: config.toggles,
-		stratDefaults: config.stratDefaults,
+		strats: config.strats,
 		stratState
 	})}
 
@@ -290,20 +288,20 @@
 												</a>
 											{/each}
 										</div>
-										{#if toggleUrls.length > 0}
-											<div>
-												{#each toggleUrls as toggleUrl}
-													<a
-														class="inline-flex items-center text-base lg:text-lg text-blue-400 hover:text-blue-300 hover:underline gap-1 transition-colors"
-														target="_blank"
-														rel="noopener noreferrer"
-														href={toggleUrl.url}
-														>{toggleUrl.name}
-														<ExternalLink size={16} />
-													</a>
-												{/each}
-											</div>
-										{/if}
+									</div>
+								{/if}
+								{#if toggleUrls.length > 0}
+									<div>
+										{#each toggleUrls as toggleUrl}
+											<a
+												class="inline-flex items-center text-base lg:text-lg text-blue-400 hover:text-blue-300 hover:underline gap-1 transition-colors"
+												target="_blank"
+												rel="noopener noreferrer"
+												href={toggleUrl.url}
+												>{toggleUrl.name}
+												<ExternalLink size={16} />
+											</a>
+										{/each}
 									</div>
 								{/if}
 							</div>

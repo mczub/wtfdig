@@ -8,7 +8,9 @@ import type {
 	Strat,
 	StratRecord,
 	FightOptionsContext,
-	FightToggleUrl
+	FightToggleUrl,
+	Badge,
+	FightStratConfig
 } from './types';
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -179,8 +181,14 @@ export function buildIndividualStratView({
 	return individualPackages;
 }
 
-export function formatRoleAbbreviation(role?: Role, party?: number): string {
+export function formatRoleAbbreviation(role?: Role, party?: number, useJpNaming = false): string {
 	if (!role || !party) return '';
+	if (useJpNaming) {
+		if (role === 'Tank') return party === 1 ? 'MT' : 'ST';
+		if (role === 'Healer') return party === 1 ? 'H1' : 'H2';
+		if (role === 'Melee') return party === 1 ? 'D1' : 'D2';
+		if (role === 'Ranged') return party === 1 ? 'D3' : 'D4';
+	}
 	if (role === 'Tank') {
 		return party === 1 ? 'MT' : 'OT';
 	}
@@ -191,17 +199,17 @@ interface ToggleDiffArgs {
 	stratName?: string;
 	stratState: Record<string, string | null>;
 	toggles?: FightToggleConfig[];
-	stratDefaults: Record<string, Record<string, string>>;
+	strats: FightStratConfig;
 }
 
 function getToggleDiffDescriptions({
 	stratName,
 	stratState,
 	toggles = [],
-	stratDefaults
+	strats
 }: ToggleDiffArgs): string[] {
 	if (!stratName || !toggles.length) return [];
-	const defaults = stratDefaults[stratName] ?? {};
+	const defaults = strats[stratName]?.defaults ?? {};
 	return toggles.reduce<string[]>((descriptions, toggle) => {
 		const defaultValue = defaults[toggle.key] ?? toggle.defaultValue ?? null;
 		const currentValue = stratState?.[toggle.key];
@@ -221,10 +229,10 @@ export function getToggleUrls({
 	stratName,
 	stratState,
 	toggles = [],
-	stratDefaults
+	strats
 }: ToggleDiffArgs): FightToggleUrl[] {
 	if (!stratName || !toggles.length) return [];
-	const defaults = stratDefaults[stratName] ?? {};
+	const defaults = strats[stratName]?.defaults ?? {};
 	return toggles.reduce<FightToggleUrl[]>((urls, toggle) => {
 		const defaultValue = defaults[toggle.key] ?? toggle.defaultValue ?? null;
 		const currentValue = stratState?.[toggle.key];
@@ -240,8 +248,7 @@ export function getToggleUrls({
 }
 
 interface FightSummaryArgs extends FightOptionsContext {
-	stratLabels: Record<string, string>;
-	stratDefaults: Record<string, Record<string, string>>;
+	strats: FightStratConfig;
 	toggles?: FightToggleConfig[];
 }
 
@@ -250,27 +257,28 @@ export function buildFightOptionsSummary({
 	role,
 	party,
 	stratState,
-	stratLabels,
-	stratDefaults,
+	strats,
 	toggles
 }: FightSummaryArgs): string {
 	if (!stratName || !role || !party) return '';
-	const roleAbbrev = formatRoleAbbreviation(role, party);
+
+	const useJpNaming = strats[stratName]?.jpRoles ?? false;
+
+	const roleAbbrev = formatRoleAbbreviation(role, party, useJpNaming);
 	if (!roleAbbrev) return '';
-	const baseName = stratLabels[stratName] ?? stratName;
+	const baseName = strats[stratName]?.label ?? stratName;
 	const diffDescriptions = getToggleDiffDescriptions({
 		stratName,
 		stratState,
 		toggles,
-		stratDefaults
+		strats
 	});
 	const parts = [baseName, ...diffDescriptions];
 	return `${parts.join(' | ')} - ${roleAbbrev}`;
 }
 
 interface FightPFDescriptionArgs extends FightPFContext {
-	stratLabels: Record<string, string>;
-	stratDefaults: Record<string, Record<string, string>>;
+	strats: FightStratConfig;
 	toggles?: FightToggleConfig[];
 }
 
@@ -278,17 +286,16 @@ export function buildFightPFDescription({
 	stratName,
 	stratState,
 	currentUrl,
-	stratLabels,
-	stratDefaults,
+	strats,
 	toggles
 }: FightPFDescriptionArgs): string {
 	if (!stratName) return '';
-	const baseName = stratLabels[stratName] ?? stratName;
+	const baseName = strats[stratName]?.label ?? stratName;
 	const diffDescriptions = getToggleDiffDescriptions({
 		stratName,
 		stratState,
 		toggles,
-		stratDefaults
+		strats
 	});
 	const parts = [baseName, ...diffDescriptions];
 	return `${parts.join(' | ')} | ${currentUrl ?? ''}`;
