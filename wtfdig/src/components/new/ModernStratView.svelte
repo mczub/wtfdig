@@ -330,7 +330,7 @@
 						onclick={() => openImageModal(phase)}
 					>
 						<div class="flex justify-between items-center border-b border-surface-700/50 pb-2">
-							<h2 class="text-3xl font-bold tracking-tight text-surface-50 capitalize">
+							<h2 class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize">
 								{phase.phaseName}
 							</h2>
 							<Expand
@@ -349,7 +349,7 @@
 						{/if}
 
 						{#if phase?.description}
-							<p class="text-lg text-surface-200 leading-relaxed whitespace-pre-wrap">
+							<p class="text-base lg:text-lg text-surface-200 leading-relaxed whitespace-pre-wrap">
 								{phase.description}
 							</p>
 						{/if}
