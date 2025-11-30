@@ -7,6 +7,7 @@
 	import ChevronDown from '@lucide/svelte/icons/chevron-down';
 	import Settings from '@lucide/svelte/icons/settings';
 	import X from '@lucide/svelte/icons/x';
+	import * as Select from '$lib/components/ui/select';
 
 	interface Props {
 		title: string;
@@ -51,6 +52,7 @@
 	let roleContainer: HTMLElement | undefined = $state();
 
 	let stratLabel = $derived(stratOptions.find((o) => o.value === stratName)?.label ?? stratName);
+	let selectedStratOption = $derived(stratOptions.find((o) => o.value === stratName) ?? { label: stratName });
 	let toggleLabels = $derived(
 		toggles
 			.map((t) => t.options.find((o) => o.value === t.value)?.label)
@@ -207,7 +209,7 @@
 						name="stratName"
 						value={stratName}
 						onValueChange={(e) => onSelectStrat(e.value!)}
-						classes="h-auto flex-wrap"
+						classes="h-auto flex-wrap hidden lg:flex"
 					>
 						{#each stratOptions as option}
 							<Segment.Item
@@ -220,10 +222,45 @@
 										<span class="badge {badge.class} px-2 mr-2">{badge.text}</span>
 									{/each}
 								{/if}
-								{option.label}</Segment.Item
-							>
+								{option.label}
+							</Segment.Item>
 						{/each}
 					</Segment>
+					
+					<div class="block lg:hidden">
+						<Select.Root 
+							type="single"
+							bind:value={stratName} 
+							onValueChange={(e) => onSelectStrat(e)}
+						>
+							<Select.Trigger size="lg">
+								<div class="w-42 flex place-items-start text-base">
+									{#if selectedStratOption.badges}
+										{#each selectedStratOption.badges as badge}
+											<span class="badge {badge.class} px-2 mr-2">{badge.text}</span>
+										{/each}
+									{/if}
+									{selectedStratOption.label}
+								</div>
+							</Select.Trigger>
+							<Select.Content>
+								{#each stratOptions as option}
+									<Select.Item
+										value={option.value}
+									>
+										<div class="text-base">
+											{#if option.badges}
+												{#each option.badges as badge}
+													<span class="badge {badge.class} px-2 mr-2">{badge.text}</span>
+												{/each}
+											{/if}
+											{option.label}
+										</div>
+									</Select.Item>
+								{/each}
+							</Select.Content>
+						</Select.Root>
+					</div>
 				</div>
 
 				{#if additionalResources}
@@ -239,7 +276,7 @@
 				<!-- Individual Strat Toggles -->
 				{#if stratName && toggles?.length}
 					{#each toggles as toggle}
-						<div class="flex items-center">
+						<div class="flex items-center gap-2 flex-wrap">
 							<span class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider mr-2"
 								>{toggle.label}</span
 							>
@@ -247,7 +284,7 @@
 								name={toggle.key}
 								value={toggle.value}
 								onValueChange={(e) => onToggleChange(toggle.key, e.value!)}
-								classes=""
+								classes="hidden lg:flex"
 							>
 								{#each toggle.options as option}
 									<Segment.Item value={option.value} classes="text-md px-2 py-1"
@@ -255,6 +292,27 @@
 									>
 								{/each}
 							</Segment>
+
+							<div class="block lg:hidden min-w-[180px]">
+								<Select.Root
+									type="single"
+									value={toggle.value}
+									onValueChange={(value) => onToggleChange(toggle.key, value)}
+								>
+									<Select.Trigger size="lg">
+										<div class="w-full text-base text-left">
+											{toggle.options.find((o) => o.value === toggle.value)?.label ?? 'Select'}
+										</div>
+									</Select.Trigger>
+									<Select.Content>
+										{#each toggle.options as option}
+											<Select.Item value={option.value}>
+												<div class="text-base">{option.label}</div>
+											</Select.Item>
+										{/each}
+									</Select.Content>
+								</Select.Root>
+							</div>
 						</div>
 					{/each}
 				{/if}

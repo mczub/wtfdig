@@ -70,10 +70,10 @@
 
 {#if strat?.notes}
 	<div
-		class="card preset-outlined-primary-500 p-4 flex flex-row gap-4 my-6 shadow-lg rounded-xl border-l-4 border-l-primary-500"
+		class="card preset-outlined-primary-500 p-4 flex flex-row gap-4 my-6 shadow-lg rounded-xl border-l-4 border-l-primary-500 items-center"
 	>
 		<CircleAlert size={32} class="text-primary-500 shrink-0" />
-		<div class="whitespace-pre-wrap text-lg">{strat.notes}</div>
+		<div class="whitespace-pre-wrap text-base lg:text-lg">{strat.notes}</div>
 	</div>
 {/if}
 
@@ -187,7 +187,7 @@
 				<section class="space-y-4">
 					<!-- Phase Header -->
 					<div class="flex items-center gap-3 border-b border-surface-700 pb-2">
-						<h2 class="text-3xl font-bold tracking-tight text-surface-50 capitalize">
+						<h2 class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize">
 							{phase.phaseName}
 						</h2>
 						{#if phase?.tag && stratState[phase.tag] !== getStratMechs(stratName)[phase.tag]}
@@ -208,7 +208,7 @@
 					</div>
 
 					{#if phase?.description}
-						<p class="text-lg text-surface-200 leading-relaxed max-w-4xl">{phase.description}</p>
+						<div class="text-base lg:text-lg text-surface-200 leading-relaxed max-w-4xl">{phase.description}</div>
 					{/if}
 
 					{#if phase?.imageUrl}
@@ -235,7 +235,7 @@
 						</div>
 					{/if}
 
-					<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+					<div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6">
 						{#each phase.mechs as mech}
 							{#key [spotlight, alignment]}
 								<article
@@ -248,10 +248,10 @@
 										type="button"
 										onclick={() => openImageModal(phase, mech)}
 									>
-										<div class="p-5 flex flex-col h-full gap-2">
+										<div class="p-4 flex flex-col h-full gap-1 lg:gap-2">
 											<div class="flex justify-between items-start">
 												<h3
-													class="text-xl font-bold capitalize text-surface-100 group-hover:text-secondary-400 transition-colors"
+													class="text-lg lg:text-xl font-bold capitalize text-surface-100 group-hover:text-secondary-400 transition-colors"
 												>
 													{mech.mechanic}
 												</h3>
@@ -319,15 +319,15 @@
 			{:else}
 				<!-- Fallback for simple phases without mechs array -->
 				<section
-					class="card border border-surface-700/50 shadow-md hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden p-6 group"
+					class="hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden group"
 				>
 					<button
-						class="w-full text-left flex flex-col gap-2"
+						class="w-full text-left flex flex-col gap-3"
 						onclick={() => openImageModal(phase)}
 					>
 						<div class="flex justify-between items-center border-b border-surface-700/50 pb-2">
 							<h2
-								class="text-2xl font-bold capitalize text-surface-100 group-hover:text-secondary-400 transition-colors"
+								class="text-3xl font-bold tracking-tight text-surface-50 capitalize"
 							>
 								{phase.phaseName}
 							</h2>

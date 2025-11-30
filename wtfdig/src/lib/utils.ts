@@ -271,7 +271,7 @@ export function buildFightPFDescription({
 	return `${parts.join(' | ')} | ${currentUrl ?? ''}`;
 }
 
-interface ToastLike {
+export interface ToastLike {
 	create: (args: { description: string; type?: string }) => void;
 }
 

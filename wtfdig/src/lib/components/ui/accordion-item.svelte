@@ -22,8 +22,8 @@
 			<slot name="control" />
 		</Accordion.Trigger>
 	</Accordion.Header>
-	<Accordion.Content class="mt-2 overflow-hidden">
-		<div class={cn('rounded-md border border-border/70 bg-surface-1000/70', panelPadding)}>
+	<Accordion.Content class="overflow-hidden">
+		<div class={cn('rounded-md bg-surface-1000/70', panelPadding)}>
 			<slot name="panel" />
 		</div>
 	</Accordion.Content>

@@ -3766,8 +3766,8 @@ const mrStrat: Strat = {
 export const m5sStrats: Strat[] = [hectorStrat, game8Strat, mrStrat, latteStrat, toxicStrat];
 
 const m5sStratLabels: Record<string, string> = {
-    'latte': 'Latte (X-fxE5sxTx2JXd5m)',
-    'toxic': 'Toxic Friends (pztjVHnzfhEkg6pH)',
+    'latte': 'Latte',
+    'toxic': 'Toxic Friends',
     'sun': 'Sun Strat (h-WjosHQoM7oJR0n)',
     'evansith': 'Evansith',
     'hector': 'Hector',
