@@ -172,7 +172,7 @@
 				<Tabs.Control
 					value={tabName}
 					labelBase="btn bg-transparent hover:bg-surface-700"
-					classes="px-6 py-2 rounded-none transition-all data-[state=active]:bg-secondary-500 data-[state=active]:text-white data-[state=active]:shadow-md"
+					classes="px-6 py-2 rounded-sm transition-all data-[state=active]:bg-surface-700 data-[state=active]:text-white data-[state=active]:border-surface-400 data-[state=active]:shadow-md"
 					>{tabName}</Tabs.Control
 				>
 			{/each}
@@ -329,7 +329,7 @@
 						class="w-full text-left flex flex-col gap-3"
 						onclick={() => openImageModal(phase)}
 					>
-						<div class="flex justify-between items-center border-b border-surface-700/50 pb-2">
+						<div class="flex justify-between items-center border-b border-surface-700 pb-2">
 							<h2 class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize">
 								{phase.phaseName}
 							</h2>

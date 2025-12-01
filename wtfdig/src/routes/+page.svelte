@@ -3,14 +3,14 @@
 </script>
 
 <div class="container grid grow mx-auto my-6">
-	<div class="grid place-content-center gap-4">
+	<div class="grid place-content-center">
 		<div class="flex justify-center lg:col-span-2">
 			<img width="300px" src="{base}/wtfdig-icon-1024.png" />
 		</div>
-		<div class="grid lg:grid-cols-2 gap-4">
+		<div class="grid lg:grid-cols-2 gap-4 max-w-full">
 			<div class="grid gap-4 content-start">
 				<div
-					class="card grid preset-filled-surface-100-900 border-[1px] border-surface-200-800 w-sm p-4 text-center gap-4"
+					class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
 				>
 					<div>Patch 7.3</div>
 					<a href="{base}/73/ex6" class="btn preset-tonal-secondary border border-secondary-500"
@@ -21,7 +21,7 @@
 					>
 				</div>
 				<div
-					class="card grid preset-filled-surface-100-900 border-[1px] border-surface-200-800 w-sm p-4 text-center gap-4"
+					class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
 				>
 					<div>Patch 7.2</div>
 					<a href="{base}/72/ex4" class="btn preset-tonal-secondary border border-secondary-500"
@@ -41,7 +41,7 @@
 					>
 				</div>
 				<div
-					class="card grid preset-filled-surface-100-900 border-[1px] border-surface-200-800 w-sm p-4 text-center gap-4"
+					class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
 				>
 					<div>Patch 7.1</div>
 					<a href="{base}/71/chaotic" class="btn preset-tonal-secondary border border-secondary-500"
@@ -51,7 +51,7 @@
 			</div>
 			<div class="grid gap-4 content-start">
 				<div
-					class="card grid preset-filled-surface-100-900 border-[1px] border-surface-200-800 w-sm p-4 text-center gap-4"
+					class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
 				>
 					<div>Ultimates</div>
 					<a
