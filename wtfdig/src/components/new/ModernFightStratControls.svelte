@@ -71,7 +71,7 @@
 		stratName;
 		toggles;
 		checkWrap();
-	})
+	});
 
 	function closeOther() {
 		otherOpenState = false;
@@ -128,16 +128,13 @@
 	</Modal>
 {/if}
 
-{#snippet settingsPopover()}
-	
-{/snippet}
 <div
 	class="z-10 w-full bg-surface-100-900 border-b border-surface-200-800 shadow-md backdrop-blur-md bg-opacity-90 relative lg:sticky lg:top-0"
 >
 	<div class="container mx-auto px-4 py-2 relative">
 		<div class="w-full flex flex-row">
 			<div class="flex flex-wrap items-center gap-4 w-full">
-			<!-- Fight Title -->
+				<!-- Fight Title -->
 				<div class="font-bold text-lg text-surface-50 mr-2 block order-1">
 					{displayTitle}
 				</div>
@@ -366,7 +363,7 @@
 				</Popover>
 			</div>
 		</div>
-		
+
 		{#if !role || !party || !stratName}
 			<div
 				class="absolute -bottom-14 left-0 z-50 bg-surface-900 border border-primary-500 text-surface-50 px-4 py-2 rounded-xl shadow-xl"

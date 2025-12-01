@@ -91,6 +91,7 @@ export interface FightStratConfig {
 		badges?: Badge[];
 		jpRoles?: boolean;
 		defaults?: Record<string, string>;
+		defaultPfDescription?: string;
 	};
 }
 
@@ -101,6 +102,7 @@ export interface FightConfig {
 	subtitle: string;
 	cheatsheetTitle: string;
 	cheatsheetLayout?: { rows: number; columns: number };
+	showAllToggleUrls?: boolean;
 	strats: FightStratConfig;
 	toggles?: FightToggleConfig[];
 	tabTags?: Record<string, string[]>;

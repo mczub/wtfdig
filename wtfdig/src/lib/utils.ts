@@ -200,6 +200,7 @@ interface ToggleDiffArgs {
 	stratState: Record<string, string | null>;
 	toggles?: FightToggleConfig[];
 	strats: FightStratConfig;
+	showAllToggleUrls?: boolean;
 }
 
 function getToggleDiffDescriptions({
@@ -229,14 +230,15 @@ export function getToggleUrls({
 	stratName,
 	stratState,
 	toggles = [],
-	strats
+	strats,
+	showAllToggleUrls = false
 }: ToggleDiffArgs): FightToggleUrl[] {
 	if (!stratName || !toggles.length) return [];
 	const defaults = strats[stratName]?.defaults ?? {};
 	return toggles.reduce<FightToggleUrl[]>((urls, toggle) => {
 		const defaultValue = defaults[toggle.key] ?? toggle.defaultValue ?? null;
 		const currentValue = stratState?.[toggle.key];
-		if (currentValue && currentValue !== defaultValue) {
+		if (showAllToggleUrls || (currentValue && currentValue !== defaultValue)) {
 			const optionUrl =
 				toggle.options.find((option) => option.value === currentValue)?.url ?? null;
 			if (optionUrl) {
@@ -298,6 +300,9 @@ export function buildFightPFDescription({
 		strats
 	});
 	const parts = [baseName, ...diffDescriptions];
+	if (diffDescriptions.length === 0) {
+		return `${strats[stratName]?.defaultPfDescription ?? baseName} | ${currentUrl ?? ''}`;
+	}
 	return `${parts.join(' | ')} | ${currentUrl ?? ''}`;
 }
 

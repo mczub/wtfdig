@@ -182,7 +182,8 @@
 		stratName,
 		toggles: config.toggles,
 		strats: config.strats,
-		stratState
+		stratState,
+		showAllToggleUrls: config.showAllToggleUrls
 	})}
 
 	<Cheatsheet
@@ -291,7 +292,7 @@
 									</div>
 								{/if}
 								{#if toggleUrls.length > 0}
-									<div>
+									<div class="flex flex-wrap gap-x-4 gap-y-1">
 										{#each toggleUrls as toggleUrl}
 											<a
 												class="inline-flex items-center text-base lg:text-lg text-blue-400 hover:text-blue-300 hover:underline gap-1 transition-colors"
@@ -338,16 +339,16 @@
 								>
 							</div>
 
-							<div class="flex flex-row gap-2 w-full lg:w-auto items-center">
-								<div
-									class="card flex flex-row border border-surface-700/50 flex-auto items-center bg-surface-950/50 overflow-hidden"
+							<div
+								class="card flex flex-row grow border border-surface-700/50 items-center bg-surface-950/50 overflow-hidden w-full lg:w-auto"
+							>
+								<pre
+									class="flex-auto pre overflow-x-auto text-nowrap whitespace-nowrap w-0 max-w-full self-center px-2">{pfDescription}</pre>
+								<button
+									onclick={() => copyPFDescription(pfDescription)}
+									class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors "
+									><Copy size={18} />Copy PF Description</button
 								>
-									<button
-										onclick={() => copyPFDescription(pfDescription)}
-										class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none"
-										><Copy size={18} />Copy PF Description</button
-									>
-								</div>
 							</div>
 						</div>
 
