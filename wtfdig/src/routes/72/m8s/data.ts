@@ -2619,7 +2619,7 @@ export const m8sFightConfig: FightConfig = {
     fightKey: 'm8s',
     title: 'AAC Cruiserweight M4 (Savage)',
     abbreviatedTitle: 'M8S',
-    subtitle: 'Patch 7.2',
+    subtitle: 'M8S Patch 7.2',
     cheatsheetTitle: 'M8S Cheatsheet',
     showAllToggleUrls: true,
     cheatsheetLayout: { rows: 3, columns: 6 },

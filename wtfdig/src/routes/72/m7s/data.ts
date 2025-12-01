@@ -8820,7 +8820,7 @@ export const m7sFightConfig: FightConfig = {
     fightKey: 'm7s',
     title: 'AAC Cruiserweight M3 (Savage)',
     abbreviatedTitle: 'M7S',
-    subtitle: 'Patch 7.2',
+    subtitle: 'M7S Patch 7.2',
     cheatsheetTitle: 'M7S Cheatsheet',
     cheatsheetLayout: { rows: 3, columns: 5 },
     strats: {
