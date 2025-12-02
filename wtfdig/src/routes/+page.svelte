@@ -24,9 +24,6 @@
 					class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
 				>
 					<div>Patch 7.2</div>
-					<a href="{base}/72/ex4" class="btn preset-tonal-secondary border border-secondary-500"
-						>Recollection (Extreme)</a
-					>
 					<a href="{base}/72/m5s" class="btn preset-tonal-secondary border border-secondary-500"
 						>AAC Cruiserweight M1 (Savage)</a
 					>
@@ -38,6 +35,9 @@
 					>
 					<a href="{base}/72/m8s" class="btn preset-tonal-secondary border border-secondary-500"
 						>AAC Cruiserweight M4 (Savage)</a
+					>
+					<a href="{base}/72/ex4" class="btn preset-tonal-secondary border border-secondary-500"
+						>Recollection (Extreme)</a
 					>
 				</div>
 				<div
