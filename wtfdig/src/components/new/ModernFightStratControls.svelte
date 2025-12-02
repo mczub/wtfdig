@@ -1,7 +1,6 @@
 <!-- @ts-nocheck -->
 <script lang="ts">
 	// @ts-nocheck
-	import { onMount } from 'svelte';
 	import { Segment, Switch, Popover, Modal } from '$lib/components/ui';
 	import type { Role, StratOption, FightToggleState } from '$lib/types';
 	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
@@ -51,7 +50,6 @@
 
 	let settingsOpen = $state(false);
 	let otherOpenState = $state(false);
-	let isWrapped = $state(false);
 	let stratContainer: HTMLElement | undefined = $state();
 	let roleContainer: HTMLElement | undefined = $state();
 
@@ -67,27 +65,9 @@
 	);
 	let displayTitle = $derived(`${title}`);
 
-	$effect(() => {
-		stratName;
-		toggles;
-		checkWrap();
-	});
-
 	function closeOther() {
 		otherOpenState = false;
 	}
-
-	function checkWrap() {
-		if (!stratContainer || !roleContainer) return;
-		// If strat container is significantly lower than role container, it's wrapped
-		isWrapped = stratContainer.offsetTop > roleContainer.offsetTop + 10;
-	}
-
-	onMount(() => {
-		checkWrap();
-		window.addEventListener('resize', checkWrap);
-		return () => window.removeEventListener('resize', checkWrap);
-	});
 </script>
 
 {#if additionalResources}

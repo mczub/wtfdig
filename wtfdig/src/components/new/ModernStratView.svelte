@@ -4,6 +4,7 @@
 <script lang="ts">
 	// @ts-nocheck
 	import { Accordion, Tooltip, Tabs } from '$lib/components/ui';
+	import { Button } from '$lib/components/ui/button';
 	import {
 		ArrowBigRight,
 		ArrowRight,
@@ -22,6 +23,7 @@
 	import ImagePreview from '../ImagePreview.svelte';
 	import type { TimelineItem } from '$lib/types';
 	import { msToTime } from '$lib/utils';
+	import * as Collapsible from '$lib/components/ui/collapsible';
 
 	interface Props {
 		timeline: TimelineItem[];
@@ -41,6 +43,23 @@
 		role = null
 	}: Props = $props();
 
+	function getDefaultCollapsibleState() {
+		const newState: Record<string, boolean> = {};
+		individualStrat.forEach((phase: any) => {
+			if (phase?.phaseName) {
+				newState[phase.phaseName] = true;
+			}
+		});
+		return newState;
+	}
+
+	let collapsibleState = $state<Record<string, boolean>>(getDefaultCollapsibleState());
+
+	$effect(() => {
+		individualStrat;
+		collapsibleState = getDefaultCollapsibleState();
+	});
+
 	let imageOpenState = $state(false);
 	let imageModalProps = $state({
 		phase: null,
@@ -58,6 +77,26 @@
 	let timelineValue = $state(['']);
 
 	let tab = $state(tabTags ? Object.keys(tabTags)[0] : '');
+
+	function isPhaseVisible(phase: any) {
+		if (tabTags && tabTags[tab]) {
+			return tabTags[tab].includes(phase.tag);
+		}
+		return true;
+	}
+
+	let isAllExpanded = $derived(
+		individualStrat.filter(isPhaseVisible).every((phase: any) => collapsibleState[phase.phaseName])
+	);
+
+	function toggleAll() {
+		const newState = !isAllExpanded;
+		individualStrat.filter(isPhaseVisible).forEach((phase: any) => {
+			if (phase?.phaseName) {
+				collapsibleState[phase.phaseName] = newState;
+			}
+		});
+	}
 </script>
 
 <ImagePreview
@@ -160,33 +199,38 @@
 	</div>
 {/if}
 
-{#if tabTags}
-	<Tabs
-		value={tab}
-		onValueChange={(e) => (tab = e.value)}
-		classes="mb-6"
-		listClasses="flex-wrap gap-2"
-	>
-		{#snippet list()}
-			{#each Object.keys(tabTags) as tabName}
-				<Tabs.Control
-					value={tabName}
-					labelBase="btn bg-transparent hover:bg-surface-700"
-					classes="px-6 py-2 rounded-sm transition-all data-[state=active]:bg-surface-700 data-[state=active]:text-white data-[state=active]:border-surface-400 data-[state=active]:shadow-md"
-					>{tabName}</Tabs.Control
-				>
-			{/each}
-		{/snippet}
-	</Tabs>
-{/if}
+<div class="flex w-full items-center flex-wrap lg:flex-nowrap">
+	{#if tabTags}
+		<Tabs value={tab} onValueChange={(e) => (tab = e.value)} listClasses="flex-wrap gap-2 ">
+			{#snippet list()}
+				{#each Object.keys(tabTags) as tabName}
+					<Tabs.Control
+						value={tabName}
+						labelBase="btn bg-transparent hover:bg-surface-700"
+						classes="px-6 py-2 rounded-sm transition-all data-[state=active]:bg-surface-700 data-[state=active]:text-white data-[state=active]:border-surface-400 data-[state=active]:shadow-md"
+						>{tabName}</Tabs.Control
+					>
+				{/each}
+			{/snippet}
+		</Tabs>
+	{/if}
 
-<div class="space-y-12">
+	<div class="flex justify-end lg:mb-4 w-full lg:w-auto">
+		<Button variant="outline" size="sm" onclick={toggleAll}>
+			{isAllExpanded ? 'Collapse All' : 'Expand All'}
+		</Button>
+	</div>
+</div>
+
+<div class="space-y-8 lg:space-y-12">
 	{#each individualStrat as phase}
 		{#if tabTags && tabTags[tab] ? tabTags[tab].includes(phase.tag) : true}
 			{#if phase?.mechs}
-				<section class="space-y-4">
+				<Collapsible.Root class="space-y-4 w-full" bind:open={collapsibleState[phase.phaseName]}>
 					<!-- Phase Header -->
-					<div class="flex items-center gap-3 border-b border-surface-700 pb-2">
+					<div
+						class="flex items-center gap-3 border-b border-surface-700 pb-2 w-full justify-between"
+					>
 						<h2 class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize">
 							{phase.phaseName}
 						</h2>
@@ -205,169 +249,188 @@
 								{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
 							</Tooltip>
 						{/if}
+						<Collapsible.Trigger
+							class="rounded-sm border border-border bg-surface-1000/60 p-1 shadow-sm hover:bg-muted/60 cursor-pointer"
+						>
+							<ChevronsUpDown class="size-4 lg:size-6" />
+						</Collapsible.Trigger>
 					</div>
 
-					{#if phase?.description}
-						<div
-							class="text-base lg:text-lg text-surface-200 leading-relaxed max-w-4xl whitespace-pre-wrap"
-						>
-							{phase.description}
-						</div>
-					{/if}
-
-					{#if phase?.imageUrl}
-						<div
-							class="rounded-xl overflow-hidden shadow-lg border border-surface-700/50 bg-surface-900/50 inline-block"
-						>
-							<button
-								type="button"
-								class="block cursor-zoom-in relative group"
-								onclick={() => openImageModal(phase)}
-							>
-								<img
-									class="max-h-[500px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
-									style:mask-image={spotlight && phase.mask}
-									src={phase.imageUrl}
-									alt={phase.phaseName}
-								/>
-								<div
-									class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100"
-								>
-									<Expand size={48} class="text-white drop-shadow-lg" />
-								</div>
-							</button>
-						</div>
-					{/if}
-
-					<div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6">
-						{#each phase.mechs as mech}
-							{#key [spotlight, alignment]}
-								<article
-									class="card border border-surface-700/50 shadow-md hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden flex flex-col h-full group relative"
-									class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}
-									class:xl:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}
-								>
-									<button
-										class="flex flex-col h-full text-left w-full"
-										type="button"
-										onclick={() => openImageModal(phase, mech)}
-									>
-										<div class="p-4 flex flex-col h-full gap-1 lg:gap-2">
-											<div class="flex justify-between items-start">
-												<h3
-													class="text-lg lg:text-xl font-bold capitalize text-surface-100 group-hover:text-secondary-400 transition-colors"
-												>
-													{mech.mechanic}
-												</h3>
-												<Expand
-													size={20}
-													class="text-surface-500 opacity-0 group-hover:opacity-100 transition-opacity"
-												/>
-											</div>
-
-											{#if mech?.notes}
-												<div
-													class="bg-primary-500/10 border border-primary-500/20 rounded-lg p-3 flex gap-3 text-sm text-primary-200"
-												>
-													<CircleAlert size={20} class="shrink-0 mt-0.5" />
-													<div class="whitespace-pre-wrap">{mech.notes}</div>
-												</div>
-											{/if}
-
-											{#if mech?.description}
-												<p class="text-surface-200 text-base leading-relaxed whitespace-pre-wrap">
-													{mech.description}
-												</p>
-											{/if}
-
-											{#if mech?.imageUrl}
-												<div class="mt-4 rounded-lg overflow-hidden">
-													<img
-														class="w-auto h-auto object-contain max-w-full max-h-[350px]"
-														src={mech.imageUrl}
-														alt={mech.mechanic}
-													/>
-												</div>
-											{/if}
-
-											<div class="flex items-start gap-1.5 text-base text-surface-100">
-												{#if role && mech.strats && mech.strats.length > 0 && mech.strats[0].description}
-													<img
-														src={`/icons/${role.toLowerCase()}.png`}
-														alt={role}
-														class="w-5 h-5 shrink-0 mt-0.5"
-													/>
-												{/if}
-												<div class="whitespace-pre-wrap">
-													{mech?.strats && mech.strats[0].description}
-												</div>
-											</div>
-
-											{#if mech?.strats && mech.strats[0]?.imageUrl}
-												<div class="mt-2 rounded-lg overflow-hidden relative">
-													<img
-														class="w-auto h-auto object-contain max-w-full max-h-[350px]"
-														style:mask-image={spotlight && mech.strats[0]?.mask}
-														src={mech.strats[0].imageUrl}
-														alt={`${mech.mechanic} strategy`}
-													/>
-												</div>
-											{/if}
-										</div>
-									</button>
-								</article>
-							{/key}
-						{/each}
-					</div>
-				</section>
-			{:else}
-				<!-- Fallback for simple phases without mechs array -->
-				<section
-					class="hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden group"
-				>
-					<button
-						class="w-full text-left flex flex-col gap-3"
-						onclick={() => openImageModal(phase)}
-					>
-						<div class="flex justify-between items-center border-b border-surface-700 pb-2">
-							<h2 class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize">
-								{phase.phaseName}
-							</h2>
-							<Expand
-								size={24}
-								class="text-surface-500 opacity-0 group-hover:opacity-100 transition-opacity"
-							/>
-						</div>
-
-						{#if phase?.tag && stratState[phase.tag] !== getStratMechs(stratName)[phase.tag]}
-							<div
-								class="flex items-center gap-2 text-warning-500 bg-warning-500/10 p-2 rounded-md w-fit"
-							>
-								<TriangleAlert size={20} />
-								<span class="text-sm font-medium">Variation from guide</span>
-							</div>
-						{/if}
-
+					<Collapsible.Content class="space-y-4">
 						{#if phase?.description}
-							<p class="text-base lg:text-lg text-surface-200 leading-relaxed whitespace-pre-wrap">
+							<div
+								class="text-base lg:text-lg text-surface-200 leading-relaxed max-w-4xl whitespace-pre-wrap"
+							>
 								{phase.description}
-							</p>
+							</div>
 						{/if}
 
 						{#if phase?.imageUrl}
 							<div
-								class="rounded-xl overflow-hidden shadow-lg border border-surface-700/50 bg-black/20 self-start"
+								class="rounded-xl overflow-hidden shadow-lg border border-surface-700/50 bg-surface-900/50 inline-block"
 							>
-								<img
-									class="max-h-[500px] w-auto object-contain"
-									style:mask-image={spotlight && phase.mask}
-									src={phase.imageUrl}
-									alt={phase.phaseName}
-								/>
+								<button
+									type="button"
+									class="block cursor-zoom-in relative group"
+									onclick={() => openImageModal(phase)}
+								>
+									<img
+										class="max-h-[500px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+										style:mask-image={spotlight && phase.mask}
+										src={phase.imageUrl}
+										alt={phase.phaseName}
+									/>
+									<div
+										class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100"
+									>
+										<Expand size={48} class="text-white drop-shadow-lg" />
+									</div>
+								</button>
 							</div>
 						{/if}
-					</button>
-				</section>
+
+						<div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6">
+							{#each phase.mechs as mech}
+								{#key [spotlight, alignment]}
+									<article
+										class="card border border-surface-700/50 shadow-md hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden flex flex-col h-full group relative"
+										class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}
+										class:xl:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}
+									>
+										<button
+											class="flex flex-col h-full text-left w-full"
+											type="button"
+											onclick={() => openImageModal(phase, mech)}
+										>
+											<div class="p-4 flex flex-col h-full gap-1 lg:gap-2">
+												<div class="flex justify-between items-start">
+													<h3
+														class="text-lg lg:text-xl font-bold capitalize text-surface-100 group-hover:text-secondary-400 transition-colors"
+													>
+														{mech.mechanic}
+													</h3>
+													<Expand
+														size={20}
+														class="text-surface-500 opacity-0 group-hover:opacity-100 transition-opacity"
+													/>
+												</div>
+
+												{#if mech?.notes}
+													<div
+														class="bg-primary-500/10 border border-primary-500/20 rounded-lg p-3 flex gap-3 text-sm text-primary-200"
+													>
+														<CircleAlert size={20} class="shrink-0 mt-0.5" />
+														<div class="whitespace-pre-wrap">{mech.notes}</div>
+													</div>
+												{/if}
+
+												{#if mech?.description}
+													<p class="text-surface-200 text-base leading-relaxed whitespace-pre-wrap">
+														{mech.description}
+													</p>
+												{/if}
+
+												{#if mech?.imageUrl}
+													<div class="mt-4 rounded-lg overflow-hidden">
+														<img
+															class="w-auto h-auto object-contain max-w-full max-h-[350px]"
+															src={mech.imageUrl}
+															alt={mech.mechanic}
+														/>
+													</div>
+												{/if}
+
+												<div class="flex items-start gap-1.5 text-base text-surface-100">
+													{#if role && mech.strats && mech.strats.length > 0 && mech.strats[0].description}
+														<img
+															src={`/icons/${role.toLowerCase()}.png`}
+															alt={role}
+															class="w-5 h-5 shrink-0 mt-0.5"
+														/>
+													{/if}
+													<div class="whitespace-pre-wrap">
+														{mech?.strats && mech.strats[0].description}
+													</div>
+												</div>
+
+												{#if mech?.strats && mech.strats[0]?.imageUrl}
+													<div class="mt-2 rounded-lg overflow-hidden relative">
+														<img
+															class="w-auto h-auto object-contain max-w-full max-h-[350px]"
+															style:mask-image={spotlight && mech.strats[0]?.mask}
+															src={mech.strats[0].imageUrl}
+															alt={`${mech.mechanic} strategy`}
+														/>
+													</div>
+												{/if}
+											</div>
+										</button>
+									</article>
+								{/key}
+							{/each}
+						</div>
+					</Collapsible.Content>
+				</Collapsible.Root>
+			{:else}
+				<!-- Fallback for simple phases without mechs array -->
+				<Collapsible.Root
+					class="hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden"
+					bind:open={collapsibleState[phase.phaseName]}
+				>
+					<div class="flex justify-between items-center border-b border-surface-700 pb-2">
+						<h2 class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize">
+							{phase.phaseName}
+						</h2>
+						<Collapsible.Trigger
+							class="rounded-sm border border-border bg-surface-1000/60 p-1 shadow-sm hover:bg-muted/60 cursor-pointer"
+						>
+							<ChevronsUpDown class="size-4 lg:size-6" />
+						</Collapsible.Trigger>
+					</div>
+					<Collapsible.Content class="space-y-4 group">
+						<button
+							class="w-full text-left flex flex-col gap-3"
+							onclick={() => openImageModal(phase)}
+						>
+							<div class="flex flex-row mt-4">
+								<div class="flex grow">
+									{#if phase?.tag && stratState[phase.tag] !== getStratMechs(stratName)[phase.tag]}
+										<div
+											class="flex items-center gap-2 text-warning-500 bg-warning-500/10 p-2 rounded-md w-fit"
+										>
+											<TriangleAlert size={20} />
+											<span class="text-sm font-medium">Variation from guide</span>
+										</div>
+									{/if}
+
+									{#if phase?.description}
+										<p
+											class="text-base lg:text-lg text-surface-200 leading-relaxed whitespace-pre-wrap"
+										>
+											{phase.description}
+										</p>
+									{/if}
+								</div>
+								<Expand
+									size={24}
+									class="text-surface-500 opacity-0 group-hover:opacity-100 transition-opacity justify-self-end"
+								/>
+							</div>
+							{#if phase?.imageUrl}
+								<div
+									class="rounded-xl overflow-hidden shadow-lg border border-surface-700/50 bg-black/20 self-start"
+								>
+									<img
+										class="max-h-[500px] w-auto object-contain"
+										style:mask-image={spotlight && phase.mask}
+										src={phase.imageUrl}
+										alt={phase.phaseName}
+									/>
+								</div>
+							{/if}
+						</button>
+					</Collapsible.Content>
+				</Collapsible.Root>
 			{/if}
 		{/if}
 	{/each}

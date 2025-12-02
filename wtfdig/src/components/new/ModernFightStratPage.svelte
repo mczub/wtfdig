@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
+	import { fade } from 'svelte/transition';
 	import type { ToastLike } from '$lib/utils';
 	import Cheatsheet from '../Cheatsheet.svelte';
-	import { Copy, ExternalLink, Fullscreen, Info, Link } from '@lucide/svelte';
+	import { ChevronUp, Copy, ExternalLink, Fullscreen, Info, Link } from '@lucide/svelte';
 	import ModernStratView from './ModernStratView.svelte';
 	import ModernFightStratControls from './ModernFightStratControls.svelte';
 	import FightStratState from './FightStratState.svelte';
@@ -147,12 +148,17 @@
 
 	let innerWidth = $state(0);
 	let innerHeight = $state(0);
+	let scrollY = $state(0);
 	let isCheatsheetEnabled = $derived(innerWidth > 1024 && innerHeight > 768);
 
 	let cheatsheetOpenState = $state(false);
+
+	function scrollToTop() {
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	}
 </script>
 
-<svelte:window bind:innerWidth bind:innerHeight />
+<svelte:window bind:innerWidth bind:innerHeight bind:scrollY />
 <FightStratState
 	fightKey={config.fightKey}
 	{strats}
@@ -225,7 +231,17 @@
 		setSpotlight={(val) => (spotlight = val)}
 		additionalResources={config.additionalResources}
 	/>
-
+	{#if scrollY > 300}
+		<button
+			transition:fade={{ duration: 200 }}
+			onclick={scrollToTop}
+			id="btn-back-to-top"
+			class="fixed bottom-6 right-6 p-4 border text-white rounded-full shadow-lg z-200 bg-surface-1000 hover:bg-muted transition-colors"
+			aria-label="Back to top"
+		>
+			<ChevronUp size={24} />
+		</button>
+	{/if}
 	<div class="container grow px-4 mx-auto mb-6 pt-8">
 		<div class="container">
 			<div
@@ -346,7 +362,7 @@
 									class="flex-auto pre overflow-x-auto text-nowrap whitespace-nowrap w-0 max-w-full self-center px-2">{pfDescription}</pre>
 								<button
 									onclick={() => copyPFDescription(pfDescription)}
-									class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors "
+									class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors"
 									><Copy size={18} />Copy PF Description</button
 								>
 							</div>
@@ -363,6 +379,7 @@
 							{alignment}
 							tabTags={config.tabTags}
 							role={normalizedRole}
+							fightKey={config.fightKey}
 						/>
 					</div>
 				{/if}
