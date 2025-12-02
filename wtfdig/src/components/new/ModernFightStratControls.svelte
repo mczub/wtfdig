@@ -237,9 +237,12 @@
 													</div>
 												</Tooltip.Trigger>
 												<Tooltip.Content
-													class="bg-surface-800 text-sm p-2 rounded shadow-lg border border-surface-700"
+													class="bg-surface-800 text-sm p-2 rounded shadow-lg border border-surface-700 text-popover-foreground"
+													arrowClasses="bg-surface-800"
 												>
 													This mechanic differs from the selected guide.
+													<Tooltip.Arrow class={cn('fill-popover', )} />
+													
 												</Tooltip.Content>
 											</Tooltip.Root>
 										</Tooltip.Provider>

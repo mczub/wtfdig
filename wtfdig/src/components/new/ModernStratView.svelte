@@ -231,24 +231,26 @@
 					<div
 						class="flex items-center gap-3 border-b border-surface-700 pb-2 w-full justify-between"
 					>
-						<h2 class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize">
-							{phase.phaseName}
-						</h2>
-						{#if phase?.tag && stratState[phase.tag] !== getStratMechs(stratName)[phase.tag]}
-							<Tooltip
-								positioning={{ placement: 'top' }}
-								triggerBase="cursor-help"
-								contentBase="card bg-surface-800 p-3 text-sm shadow-xl"
-								openDelay={200}
-								arrow
-								arrowBackground="!bg-surface-800"
-							>
-								{#snippet trigger()}<div class="text-warning-500">
-										<TriangleAlert size={24} />
-									</div>{/snippet}
-								{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
-							</Tooltip>
-						{/if}
+						<div class="flex flex-row space-x-2">
+							<h2 class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize">
+								{phase.phaseName}
+							</h2>
+							{#if phase?.tag && stratState[phase.tag] !== getStratMechs(stratName)[phase.tag]}
+								<Tooltip
+									positioning={{ placement: 'top' }}
+									triggerBase="cursor-help"
+									contentBase="card bg-surface-800 p-3 text-sm"
+									openDelay={200}
+									arrow
+									arrowBackground="!text-surface-800"
+								>
+									{#snippet trigger()}<div class="text-warning-500">
+											<TriangleAlert size={24} />
+										</div>{/snippet}
+									{#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
+								</Tooltip>
+							{/if}
+						</div>
 						<Collapsible.Trigger
 							class="rounded-sm border border-border bg-surface-1000/60 p-1 shadow-sm hover:bg-muted/60 cursor-pointer"
 						>

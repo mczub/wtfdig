@@ -392,6 +392,10 @@
     color: hsl(var(--surface-400));
   }
 
+  .dark .text-surface-800 {
+    color: hsl(var(--surface-800));
+  }
+
   .disabled {
     @apply opacity-50 pointer-events-none;
   }
