@@ -374,7 +374,7 @@
 			{:else}
 				<!-- Fallback for simple phases without mechs array -->
 				<Collapsible.Root
-					class="hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden"
+					class="overflow-hidden"
 					bind:open={collapsibleState[phase.phaseName]}
 				>
 					<div class="flex justify-between items-center border-b border-surface-700 pb-2">
