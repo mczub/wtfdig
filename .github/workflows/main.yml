@@ -17,8 +17,8 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          cache-dependency-path: ./wtfdig/package-lock.json
-          node-version: 22
+          cache-dependency-path: ./wtfdig/bun.lockb
+          node-version: 24
           cache: 'npm'
 
       - name: Install bun
