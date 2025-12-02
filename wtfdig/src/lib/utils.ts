@@ -335,8 +335,7 @@ export function buildStratCode({
 		return stratName;
 	}
 	const serialized = keys
-		.map((key) => stratState[key])
-		.filter((value): value is string => Boolean(value && value.length > 0));
+		.map((key) => defaultState[key] === stratState[key] ? '' : stratState[key]);
 	return serialized.length ? `${stratName}:${serialized.join(':')}` : stratName;
 }
 
