@@ -236,7 +236,7 @@
 			transition:fade={{ duration: 200 }}
 			onclick={scrollToTop}
 			id="btn-back-to-top"
-			class="fixed bottom-6 right-6 p-4 border text-white rounded-full shadow-lg z-200 bg-surface-1000 hover:bg-muted transition-colors"
+			class="fixed bottom-4 right-4 p-4 border text-white rounded-full shadow-lg z-200 bg-surface-1000 hover:bg-muted transition-colors"
 			aria-label="Back to top"
 		>
 			<ChevronUp size={24} />

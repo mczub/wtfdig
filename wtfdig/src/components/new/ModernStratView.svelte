@@ -201,7 +201,7 @@
 
 <div class="flex w-full items-center flex-wrap lg:flex-nowrap">
 	{#if tabTags}
-		<Tabs value={tab} onValueChange={(e) => (tab = e.value)} listClasses="flex-wrap gap-2 ">
+		<Tabs value={tab} onValueChange={(e) => (tab = e.value)} classes="mb-2" listClasses="flex-wrap gap-2">
 			{#snippet list()}
 				{#each Object.keys(tabTags) as tabName}
 					<Tabs.Control
@@ -216,7 +216,7 @@
 	{/if}
 
 	<div class="flex justify-end lg:mb-4 w-full lg:w-auto">
-		<Button variant="outline" size="sm" onclick={toggleAll}>
+		<Button class="border border-border bg-surface-1000/60 shadow-sm hover:bg-muted/60 cursor-pointer" size="sm" onclick={toggleAll}>
 			{isAllExpanded ? 'Collapse All' : 'Expand All'}
 		</Button>
 	</div>
