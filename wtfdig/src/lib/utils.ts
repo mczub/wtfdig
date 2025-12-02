@@ -7,28 +7,45 @@ import type {
 	Role,
 	Strat,
 	StratRecord,
-	FightOptionsContext
+	FightOptionsContext,
+	FightToggleUrl,
+	Badge,
+	FightStratConfig
 } from './types';
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
+export function cn(...inputs: ClassValue[]) {
+	return twMerge(clsx(inputs));
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type WithoutChild<T> = T extends { child?: any } ? Omit<T, "child"> : T;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type WithoutChildren<T> = T extends { children?: any } ? Omit<T, "children"> : T;
+export type WithoutChildrenOrChild<T> = WithoutChildren<WithoutChild<T>>;
+export type WithElementRef<T, U extends HTMLElement = HTMLElement> = T & {
+	ref?: U | null;
+};
 export function getCircleMaskUrl(xPercent: number, yPercent: number, size: number) {
-    const svg = `data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%"><rect width="100%" height="100%" fill-opacity="0.5"/><circle cx="${xPercent}%" cy="${yPercent}%" r="${size}%" fill="black" /></svg>`
-    return `url('${svg}')`;
+	const svg = `data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%"><rect width="100%" height="100%" fill-opacity="0.5"/><circle cx="${xPercent}%" cy="${yPercent}%" r="${size}%" fill="black" /></svg>`
+	return `url('${svg}')`;
 }
 
 export function getRectMaskUrl(xStart: number, xEnd: number, yStart: number, yEnd: number) {
-    const svg = `data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%"><rect width="100%" height="100%" fill-opacity="0.5"/><rect x="${xStart}%" y="${yStart}%" width="${xEnd - xStart}%" height="${yEnd - yStart}%" fill="black" /></svg>`
-    return `url('${svg}')`;
+	const svg = `data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%"><rect width="100%" height="100%" fill-opacity="0.5"/><rect x="${xStart}%" y="${yStart}%" width="${xEnd - xStart}%" height="${yEnd - yStart}%" fill="black" /></svg>`
+	return `url('${svg}')`;
 }
 
 export function getCircleMask(hPercent: number, vPercent: number, size: number) {
-    return `radial-gradient(circle at ${hPercent}% ${vPercent}%, black ${size - 0.1}%, rgba(0, 0, 0, 0.4)  ${size}%)`;
+	return `radial-gradient(circle at ${hPercent}% ${vPercent}%, black ${size - 0.1}%, rgba(0, 0, 0, 0.4)  ${size}%)`;
 }
 
 export function msToTime(timeInMs: number): string {
-    const seconds = (Math.floor(timeInMs / 1000) % 60).toString().padStart(2, '0');
-    const minutes = (Math.floor(timeInMs / 60000)).toString();
+	const seconds = (Math.floor(timeInMs / 1000) % 60).toString().padStart(2, '0');
+	const minutes = (Math.floor(timeInMs / 60000)).toString();
 
-    return `${minutes}:${seconds}`;
+	return `${minutes}:${seconds}`;
 }
 
 export function getStringObject(
@@ -150,7 +167,7 @@ export function buildIndividualStratView({
 					?.filter((playerStrat) => playerStrat.role === role && playerStrat.party === party)
 					.map((playerStrat) => ({
 						...playerStrat,
-						description: resolveStratItem(playerStrat.description, phaseStrat.tag, stratState),
+						description: resolveStratItem(playerStrat.description, phaseStrat.tag, stratState) ?? '',
 						imageUrl: resolveStratItem(playerStrat.imageUrl, phaseStrat.tag, stratState),
 						mask: resolveStratItem(playerStrat.mask, phaseStrat.tag, stratState)
 					}))
@@ -164,8 +181,14 @@ export function buildIndividualStratView({
 	return individualPackages;
 }
 
-export function formatRoleAbbreviation(role?: Role, party?: number): string {
+export function formatRoleAbbreviation(role?: Role, party?: number, useJpNaming = false): string {
 	if (!role || !party) return '';
+	if (useJpNaming) {
+		if (role === 'Tank') return party === 1 ? 'MT' : 'ST';
+		if (role === 'Healer') return party === 1 ? 'H1' : 'H2';
+		if (role === 'Melee') return party === 1 ? 'D1' : 'D2';
+		if (role === 'Ranged') return party === 1 ? 'D3' : 'D4';
+	}
 	if (role === 'Tank') {
 		return party === 1 ? 'MT' : 'OT';
 	}
@@ -176,17 +199,18 @@ interface ToggleDiffArgs {
 	stratName?: string;
 	stratState: Record<string, string | null>;
 	toggles?: FightToggleConfig[];
-	stratDefaults: Record<string, Record<string, string>>;
+	strats: FightStratConfig;
+	showAllToggleUrls?: boolean;
 }
 
 function getToggleDiffDescriptions({
 	stratName,
 	stratState,
 	toggles = [],
-	stratDefaults
+	strats
 }: ToggleDiffArgs): string[] {
 	if (!stratName || !toggles.length) return [];
-	const defaults = stratDefaults[stratName] ?? {};
+	const defaults = strats[stratName]?.defaults ?? {};
 	return toggles.reduce<string[]>((descriptions, toggle) => {
 		const defaultValue = defaults[toggle.key] ?? toggle.defaultValue ?? null;
 		const currentValue = stratState?.[toggle.key];
@@ -202,9 +226,31 @@ function getToggleDiffDescriptions({
 	}, []);
 }
 
+export function getToggleUrls({
+	stratName,
+	stratState,
+	toggles = [],
+	strats,
+	showAllToggleUrls = false
+}: ToggleDiffArgs): FightToggleUrl[] {
+	if (!stratName || !toggles.length) return [];
+	const defaults = strats[stratName]?.defaults ?? {};
+	return toggles.reduce<FightToggleUrl[]>((urls, toggle) => {
+		const defaultValue = defaults[toggle.key] ?? toggle.defaultValue ?? null;
+		const currentValue = stratState?.[toggle.key];
+		if (showAllToggleUrls || (currentValue && currentValue !== defaultValue)) {
+			const optionUrl =
+				toggle.options.find((option) => option.value === currentValue)?.url ?? null;
+			if (optionUrl) {
+				urls.push({ name: optionUrl.name, url: optionUrl.url });
+			}
+		}
+		return urls;
+	}, []);
+}
+
 interface FightSummaryArgs extends FightOptionsContext {
-	stratLabels: Record<string, string>;
-	stratDefaults: Record<string, Record<string, string>>;
+	strats: FightStratConfig;
 	toggles?: FightToggleConfig[];
 }
 
@@ -213,27 +259,28 @@ export function buildFightOptionsSummary({
 	role,
 	party,
 	stratState,
-	stratLabels,
-	stratDefaults,
+	strats,
 	toggles
 }: FightSummaryArgs): string {
 	if (!stratName || !role || !party) return '';
-	const roleAbbrev = formatRoleAbbreviation(role, party);
+
+	const useJpNaming = strats[stratName]?.jpRoles ?? false;
+
+	const roleAbbrev = formatRoleAbbreviation(role, party, useJpNaming);
 	if (!roleAbbrev) return '';
-	const baseName = stratLabels[stratName] ?? stratName;
+	const baseName = strats[stratName]?.label ?? stratName;
 	const diffDescriptions = getToggleDiffDescriptions({
 		stratName,
 		stratState,
 		toggles,
-		stratDefaults
+		strats
 	});
 	const parts = [baseName, ...diffDescriptions];
 	return `${parts.join(' | ')} - ${roleAbbrev}`;
 }
 
 interface FightPFDescriptionArgs extends FightPFContext {
-	stratLabels: Record<string, string>;
-	stratDefaults: Record<string, Record<string, string>>;
+	strats: FightStratConfig;
 	toggles?: FightToggleConfig[];
 }
 
@@ -241,23 +288,25 @@ export function buildFightPFDescription({
 	stratName,
 	stratState,
 	currentUrl,
-	stratLabels,
-	stratDefaults,
+	strats,
 	toggles
 }: FightPFDescriptionArgs): string {
 	if (!stratName) return '';
-	const baseName = stratLabels[stratName] ?? stratName;
+	const baseName = strats[stratName]?.label ?? stratName;
 	const diffDescriptions = getToggleDiffDescriptions({
 		stratName,
 		stratState,
 		toggles,
-		stratDefaults
+		strats
 	});
 	const parts = [baseName, ...diffDescriptions];
+	if (diffDescriptions.length === 0) {
+		return `${strats[stratName]?.defaultPfDescription ?? baseName} | ${currentUrl ?? ''}`;
+	}
 	return `${parts.join(' | ')} | ${currentUrl ?? ''}`;
 }
 
-interface ToastLike {
+export interface ToastLike {
 	create: (args: { description: string; type?: string }) => void;
 }
 
@@ -286,8 +335,7 @@ export function buildStratCode({
 		return stratName;
 	}
 	const serialized = keys
-		.map((key) => stratState[key])
-		.filter((value): value is string => Boolean(value && value.length > 0));
+		.map((key) => defaultState[key] === stratState[key] ? '' : stratState[key]);
 	return serialized.length ? `${stratName}:${serialized.join(':')}` : stratName;
 }
 

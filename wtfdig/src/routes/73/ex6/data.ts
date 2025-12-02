@@ -1,9 +1,9 @@
 import type {
-	Alignment,
-	FightConfig,
-	PlayerMechStrat,
-	Strat,
-	StratRecord
+    Alignment,
+    FightConfig,
+    PlayerMechStrat,
+    Strat,
+    StratRecord
 } from '$lib/types';
 import { getStratArray, getStringObject } from '$lib/utils';
 
@@ -98,7 +98,7 @@ const hectorStrat: Strat = {
         {
             phaseName: "Roar (Raidwide)",
             tag: "p1",
-             mechs: [
+            mechs: [
                 {
                     mechanic: "Telegraph",
                     description: "Arkveld crouches",
@@ -337,39 +337,36 @@ const hectorStrat: Strat = {
 
 export const ex6Strats: Strat[] = [hectorStrat];
 
-const ex6StratLabels: Record<string, string> = {
-	hector: 'Hector'
-};
-
 const lcToggleOptions = [{ value: 'diamond', label: 'Diamond' }];
 
-const ex6StratDefaults: Record<string, Record<string, string>> = {
-	hector: {
-		lc: 'diamond'
-	}
-};
-
 const ex6ToggleConfigs = [
-	{
-		key: 'lc',
-		label: 'Limit Cut',
-		defaultValue: 'diamond',
-		options: lcToggleOptions
-	}
+    {
+        key: 'lc',
+        label: 'Limit Cut',
+        defaultValue: 'diamond',
+        options: lcToggleOptions
+    }
 ];
 
 export const ex6FightConfig: FightConfig = {
-	fightKey: 'ex6',
-	title: "The Windward Wilds (Extreme)",
-	subtitle: 'EX6 Patch 7.3',
-	cheatsheetTitle: 'EX6 Cheatsheet',
-	stratLabels: ex6StratLabels,
-	stratDefaults: ex6StratDefaults,
-	toggles: ex6ToggleConfigs,
-	tabTags: {
-		P1: ['p1'],
-		P2: ['lc', 'p2']
-	},
-	defaultStratName: 'hector',
-	timeline: []
+    fightKey: 'ex6',
+    title: "The Windward Wilds (Extreme)",
+    abbreviatedTitle: 'EX6',
+    subtitle: 'EX6 Patch 7.3',
+    cheatsheetTitle: 'EX6 Cheatsheet',
+    strats: {
+        hector: {
+            label: 'Hector',
+            defaults: {
+                lc: 'diamond'
+            }
+        }
+    },
+    toggles: ex6ToggleConfigs,
+    tabTags: {
+        P1: ['p1'],
+        P2: ['lc', 'p2']
+    },
+    defaultStratName: 'hector',
+    timeline: []
 };

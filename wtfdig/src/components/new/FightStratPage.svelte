@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Segment, Switch } from '@skeletonlabs/skeleton-svelte';
+	import { Segment, Switch } from '$lib/components/ui';
 	import { getContext } from 'svelte';
-  	import { type ToastContext } from '@skeletonlabs/skeleton-svelte';
+	import type { ToastLike } from '$lib/utils';
 	import Cheatsheet from '../Cheatsheet.svelte';
 	import { Copy, ExternalLink, Fullscreen, Info, Link } from '@lucide/svelte';
 	import StratView from '../StratView.svelte';
@@ -24,7 +24,7 @@
 
 	let spotlight: boolean = $state(true);
 	let alignment: Alignment = $state('original');
-	export const toast: ToastContext = getContext('toast');
+	export const toast: ToastLike = getContext('toast');
 
 	function getStratItem(
 		item?: string | Record<string, any>,
@@ -154,12 +154,12 @@
 	let cheatsheetOpenState = $state(false);
 </script>
 
-<svelte:window bind:innerWidth={innerWidth} bind:innerHeight={innerHeight} />
+<svelte:window bind:innerWidth bind:innerHeight />
 <FightStratState
 	fightKey={config.fightKey}
-	strats={strats}
-	stratKeys={stratKeys}
-	getStratMechs={getStratMechs}
+	{strats}
+	{stratKeys}
+	{getStratMechs}
 	let:stratName
 	let:stratState
 	let:role
@@ -181,33 +181,34 @@
 	})}
 	{@const pfDescription = getPFDescription({ stratName, stratState })}
 
-	<Cheatsheet 
+	<Cheatsheet
 		title={`${config.cheatsheetTitle} - ${optionsString}`}
-		bind:cheatsheetOpenState={cheatsheetOpenState}
+		bind:cheatsheetOpenState
 		timeline={config.timeline ?? []}
-		stratName={stratName}
-		stratState={stratState}
-		getStratMechs={getStratMechs}
-		individualStrat={individualStrat}
-		spotlight={spotlight}
-		alignment={alignment}
-		rows=4
-		columns=4
-		innerHeight={innerHeight}
-		innerWidth={innerWidth}
+		{stratName}
+		{stratState}
+		{getStratMechs}
+		{individualStrat}
+		{spotlight}
+		{alignment}
+		rows="4"
+		columns="4"
+		{innerHeight}
+		{innerWidth}
 		tabTags={config.tabTags}
+		role={normalizedRole}
 	/>
 
 	<div class="container grow px-4 mx-auto mb-6">
 		<div class="container">
 			<div class="mb-6">
-				<div class="preset-typo-display-1 mt-2 lg:mt-0 lg:-mb-5">{config.title}</div>
+				<div class="preset-typo-display-1 mt-2 lg:mt-0 lg:-mb-2">{config.title}</div>
 				<div class="text-xl lg:text-3xl text-surface-400">{config.subtitle}</div>
 			</div>
-			
+
 			<FightStratControls
-				stratName={stratName}
-				stratOptions={stratOptions}
+				{stratName}
+				{stratOptions}
 				onSelectStrat={selectStrat}
 				toggles={(config.toggles ?? []).map((toggle) => ({
 					key: toggle.key,
@@ -217,9 +218,9 @@
 				}))}
 				onToggleChange={setStratState}
 				role={normalizedRole}
-				setRole={setRole}
-				party={party}
-				setParty={setParty}
+				{setRole}
+				{party}
+				{setParty}
 			/>
 
 			{#if stratName && normalizedRole && party}
@@ -230,75 +231,113 @@
 				{:else if !strat}
 					<div></div>
 				{:else}
-				{@const selectedStrat = strat}
-				{@const hasAlignmentTransforms =
-					selectedStrat?.strats?.some((phase) =>
-						phase.mechs?.some((mech) =>
-							mech.strats?.some((playerStrat) => playerStrat.alignmentTransforms)
-						)
-					) ?? false}
-				<div class="flex flex-col lg:flex-row gap-2 mb-8">
-					{#if isCheatsheetEnabled}
-						<button onclick={() => (cheatsheetOpenState = true)} class="button btn btn-lg preset-tonal-secondary border border-secondary-500"><Fullscreen />Open cheatsheet</button>
-					{:else}
-						<button class="button btn btn-lg preset-tonal-secondary border border-secondary-500 disabled"><Fullscreen />Open cheatsheet</button>
-						<div class="flex flex-row items-center gap-2">
-							<Info size={24} />
-							<span>Cheatsheet mode needs a browser window size of at least 1024 x 768</span>
-						</div>
-						
-					{/if}
-					<button onclick={() => copyLinkToClipboard()} class="button btn btn-lg preset-tonal-secondary border border-secondary-500"><Link />Copy link</button>
-					<div class="card flex flex-row border-[1px] border-surface-200-800 flex-auto lg:w-0 lg:max-w-full">
-						<pre class="flex-auto pre overflow-x-auto text-nowrap whitespace-nowrap">{pfDescription}</pre>
-						<button onclick={() => copyPFDescription(pfDescription)} class="button btn btn-lg preset-tonal-secondary border border-secondary-500"><Copy />Copy PF description</button>
-					</div>
-				</div>
-				<div class="card preset-filled-surface-50-950 border-[1px] border-surface-200-800 p-4">
-					<div class="flex flex-col lg:flex-row gap-2">
-						<div class="w-full lg:w-auto content-center">
-							<div class="capitalize font-semibold text-2xl mb-0">{optionsString}</div>
-							{#if typeof selectedStrat?.stratUrl === 'string'}
-								<a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={selectedStrat.stratUrl}>{selectedStrat.description}
-									<ExternalLink />
-								</a>
-							{:else if typeof selectedStrat?.stratUrl === 'object'}
-								{selectedStrat.description}
-								{#each Object.entries(selectedStrat.stratUrl) as [linkName, linkUrl]}
-									&nbsp;
-									<a class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1" target="_blank" rel="noopener noreferrer" href={linkUrl}>{linkName}
-										<ExternalLink />
-									</a>
-								{/each}
-							{/if}
-						</div>
-						<div class="grow"></div>
-						<div><Switch name="spotlight-toggle" checked={spotlight} onCheckedChange={(e) => (spotlight = e.checked)}>Highlight my spots</Switch></div>
-					</div>
-					<div class="flex flex-wrap items-center justify-between my-4">
-						<div class="text-xl">{selectedStrat?.notes}</div>
-						{#if hasAlignmentTransforms}
-							<div class="content-center">
-								<Segment name="alignment" value={alignment} onValueChange={(e) => (alignment = e.value as Alignment)}>
-									<Segment.Item value="original">Original</Segment.Item>
-									<Segment.Item value="truenorth">True North</Segment.Item>
-									<Segment.Item value="addrelative">Wall Relative</Segment.Item>
-								</Segment>
+					{@const selectedStrat = strat}
+					{@const hasAlignmentTransforms =
+						selectedStrat?.strats?.some((phase) =>
+							phase.mechs?.some((mech) =>
+								mech.strats?.some((playerStrat) => playerStrat.alignmentTransforms)
+							)
+						) ?? false}
+					<div class="flex flex-col lg:flex-row gap-2 mb-8">
+						{#if isCheatsheetEnabled}
+							<button
+								onclick={() => (cheatsheetOpenState = true)}
+								class="button btn btn-lg preset-tonal-secondary border border-secondary-500"
+								><Fullscreen />Open cheatsheet</button
+							>
+						{:else}
+							<button
+								class="button btn btn-lg preset-tonal-secondary border border-secondary-500 disabled"
+								><Fullscreen />Open cheatsheet</button
+							>
+							<div class="flex flex-row items-center gap-2">
+								<Info size={24} />
+								<span>Cheatsheet mode needs a browser window size of at least 1024 x 768</span>
 							</div>
 						{/if}
+						<button
+							onclick={() => copyLinkToClipboard()}
+							class="button btn btn-lg preset-tonal-secondary border border-secondary-500"
+							><Link />Copy link</button
+						>
+						<div
+							class="card flex flex-row border-[1px] border-surface-200-800 flex-auto lg:w-0 lg:max-w-full"
+						>
+							<pre
+								class="flex-auto pre overflow-x-auto text-nowrap whitespace-nowrap">{pfDescription}</pre>
+							<button
+								onclick={() => copyPFDescription(pfDescription)}
+								class="button btn btn-lg preset-tonal-secondary border border-secondary-500"
+								><Copy />Copy PF description</button
+							>
+						</div>
 					</div>
+					<div class="card border-[1px] border-surface-200-800 p-4">
+						<div class="flex flex-col lg:flex-row gap-2">
+							<div class="w-full lg:w-auto content-center">
+								<div class="capitalize font-semibold text-2xl mb-0">{optionsString}</div>
+								{#if typeof selectedStrat?.stratUrl === 'string'}
+									<a
+										class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1"
+										target="_blank"
+										rel="noopener noreferrer"
+										href={selectedStrat.stratUrl}
+										>{selectedStrat.description}
+										<ExternalLink />
+									</a>
+								{:else if typeof selectedStrat?.stratUrl === 'object'}
+									{selectedStrat.description}
+									{#each Object.entries(selectedStrat.stratUrl) as [linkName, linkUrl]}
+										&nbsp;
+										<a
+											class="inline-flex items-center text-lg text-blue-600 dark:text-blue-500 hover:underline gap-1"
+											target="_blank"
+											rel="noopener noreferrer"
+											href={linkUrl}
+											>{linkName}
+											<ExternalLink />
+										</a>
+									{/each}
+								{/if}
+							</div>
+							<div class="grow"></div>
+							<div>
+								<Switch
+									name="spotlight-toggle"
+									checked={spotlight}
+									onCheckedChange={(e) => (spotlight = e.checked)}>Highlight my spots</Switch
+								>
+							</div>
+						</div>
+						<div class="flex flex-wrap items-center justify-between my-4">
+							<div class="text-xl">{selectedStrat?.notes}</div>
+							{#if hasAlignmentTransforms}
+								<div class="content-center">
+									<Segment
+										name="alignment"
+										value={alignment}
+										onValueChange={(e) => (alignment = e.value as Alignment)}
+									>
+										<Segment.Item value="original">Original</Segment.Item>
+										<Segment.Item value="truenorth">True North</Segment.Item>
+										<Segment.Item value="addrelative">Wall Relative</Segment.Item>
+									</Segment>
+								</div>
+							{/if}
+						</div>
 
-					<StratView
-						strat={selectedStrat}
-						timeline={config.timeline ?? []}
-						stratName={stratName}
-						stratState={stratState}
-						getStratMechs={getStratMechs}
-						individualStrat={individualStrat}
-						spotlight={spotlight}
-						alignment={alignment}
-					/>
-				</div>
+						<StratView
+							strat={selectedStrat}
+							timeline={config.timeline ?? []}
+							{stratName}
+							{stratState}
+							{getStratMechs}
+							{individualStrat}
+							{spotlight}
+							{alignment}
+							role={normalizedRole}
+						/>
+					</div>
 				{/if}
 			{/if}
 		</div>

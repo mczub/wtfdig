@@ -51,6 +51,13 @@ export interface TimelineItem {
 export interface FightToggleOption {
 	value: string;
 	label: string;
+	badges?: Badge[];
+	url?: FightToggleUrl;
+}
+
+export interface FightToggleUrl {
+	name: string;
+	url: string;
 }
 
 export interface FightToggleConfig {
@@ -73,22 +80,45 @@ export interface FightPFContext {
 	currentUrl?: string;
 }
 
+export interface Badge {
+	text: string;
+	class: string;
+}
+
+export interface FightStratConfig {
+	[stratName: string]: {
+		label: string;
+		badges?: Badge[];
+		jpRoles?: boolean;
+		defaults?: Record<string, string>;
+		defaultPfDescription?: string;
+	};
+}
+
 export interface FightConfig {
 	fightKey: string;
 	title: string;
+	abbreviatedTitle?: string;
 	subtitle: string;
 	cheatsheetTitle: string;
-	stratLabels: Record<string, string>;
-	stratDefaults: Record<string, Record<string, string>>;
+	cheatsheetLayout?: { rows: number; columns: number };
+	showAllToggleUrls?: boolean;
+	strats: FightStratConfig;
 	toggles?: FightToggleConfig[];
 	tabTags?: Record<string, string[]>;
 	defaultStratName?: string;
 	timeline?: TimelineItem[];
+	additionalResources?: {
+		title: string;
+		description?: string;
+		links: { text: string; url: string }[];
+	};
 }
 
 export interface StratOption {
 	value: string;
 	label: string;
+	badges?: Badge[];
 }
 
 export interface FightToggleState {
