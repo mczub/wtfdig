@@ -1,4 +1,5 @@
 import type { FightConfig, Strat, TimelineItem, Role, Alignment, StratRecord, PlayerMechStrat, MechanicStrat, PhaseStrats } from "$lib/types";
+import { getCircleMaskUrl, getMultiCircleMaskUrl } from "$lib/utils";
 
 function getStringObject(stratRecord: Record<string, StratRecord>, mechanic: string, property: string, role?: string): Record<string, string> {
     let stringObject: Record<string, string> = {};
@@ -2124,49 +2125,57 @@ const toxicStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Left',
-                            imageUrl: './m6s/toxic/double-lps.webp'
+                            imageUrl: './m6s/toxic/double-lps.webp',
+                            mask: getCircleMaskUrl(31.40, 13.14, 8.8)
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Right',
-                            imageUrl: './m6s/toxic/double-lps.webp'
+                            imageUrl: './m6s/toxic/double-lps.webp',
+                            mask: getCircleMaskUrl(13.02, 28.94, 8.8)
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Left',
-                            imageUrl: './m6s/toxic/double-lps.webp'
+                            imageUrl: './m6s/toxic/double-lps.webp',
+                            mask: getCircleMaskUrl(31.40, 13.14, 8.8)
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'Right',
-                            imageUrl: './m6s/toxic/double-lps.webp'
+                            imageUrl: './m6s/toxic/double-lps.webp',
+                            mask: getCircleMaskUrl(13.02, 28.94, 8.8)
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Left',
-                            imageUrl: './m6s/toxic/double-lps.webp'
+                            imageUrl: './m6s/toxic/double-lps.webp',
+                            mask: getCircleMaskUrl(31.40, 13.14, 8.8)
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Right',
-                            imageUrl: './m6s/toxic/double-lps.webp'
+                            imageUrl: './m6s/toxic/double-lps.webp',
+                            mask: getCircleMaskUrl(13.02, 28.94, 8.8)
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Left',
-                            imageUrl: './m6s/toxic/double-lps.webp'
+                            imageUrl: './m6s/toxic/double-lps.webp',
+                            mask: getCircleMaskUrl(31.40, 13.14, 8.8)
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'Right',
-                            imageUrl: './m6s/toxic/double-lps.webp'
+                            imageUrl: './m6s/toxic/double-lps.webp',
+                            mask: getCircleMaskUrl(13.02, 28.94, 8.8)
                         },
                     ]
                 }, {
@@ -2176,49 +2185,57 @@ const toxicStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Front with M1',
-                            imageUrl: './m6s/toxic/double-partners.webp'
+                            imageUrl: './m6s/toxic/double-partners.webp',
+                            mask: getCircleMaskUrl(24.62, 24.35, 8.8)
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Back with M2',
-                            imageUrl: './m6s/toxic/double-partners.webp'
+                            imageUrl: './m6s/toxic/double-partners.webp',
+                            mask: getCircleMaskUrl(11.36, 11.35, 8.8)
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Left with R1',
-                            imageUrl: './m6s/toxic/double-partners.webp'
+                            imageUrl: './m6s/toxic/double-partners.webp',
+                            mask: getCircleMaskUrl(41.09, 9.32, 8.8)
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'Right with R2',
-                            imageUrl: './m6s/toxic/double-partners.webp'
+                            imageUrl: './m6s/toxic/double-partners.webp',
+                            mask: getCircleMaskUrl(9.19, 38.89, 8.8)
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Front with MT',
-                            imageUrl: './m6s/toxic/double-partners.webp'
+                            imageUrl: './m6s/toxic/double-partners.webp',
+                            mask: getCircleMaskUrl(24.62, 24.35, 8.8)
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Back with OT',
-                            imageUrl: './m6s/toxic/double-partners.webp'
+                            imageUrl: './m6s/toxic/double-partners.webp',
+                            mask: getCircleMaskUrl(11.36, 11.35, 8.8)
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Left with H1',
-                            imageUrl: './m6s/toxic/double-partners.webp'
+                            imageUrl: './m6s/toxic/double-partners.webp',
+                            mask: getCircleMaskUrl(41.09, 9.32, 8.8)
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'Right with H2',
-                            imageUrl: './m6s/toxic/double-partners.webp'
+                            imageUrl: './m6s/toxic/double-partners.webp',
+                            mask: getCircleMaskUrl(9.19, 38.89, 8.8)
                         },
                     ]
                 },
@@ -2315,49 +2332,57 @@ const toxicStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'West close to boss',
-                            imageUrl: './m6s/toxic/desert-bombs.webp'
+                            imageUrl: './m6s/toxic/desert-bombs.webp',
+                            mask: getCircleMaskUrl(41.45, 54.71, 6)
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'East close to boss',
-                            imageUrl: './m6s/toxic/desert-bombs.webp'
+                            imageUrl: './m6s/toxic/desert-bombs.webp',
+                            mask: getCircleMaskUrl(59.69, 54.58, 6)
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'West far from boss',
-                            imageUrl: './m6s/toxic/desert-bombs.webp'
+                            imageUrl: './m6s/toxic/desert-bombs.webp',
+                            mask: getCircleMaskUrl(23.35, 56.49, 6)
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'East far from boss',
-                            imageUrl: './m6s/toxic/desert-bombs.webp'
+                            imageUrl: './m6s/toxic/desert-bombs.webp',
+                            mask: getCircleMaskUrl(79.97, 57.90, 6)
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'West close to boss',
-                            imageUrl: './m6s/toxic/desert-bombs.webp'
+                            imageUrl: './m6s/toxic/desert-bombs.webp',
+                            mask: getCircleMaskUrl(40.69, 36.60, 6)
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'East close to boss',
-                            imageUrl: './m6s/toxic/desert-bombs.webp'
+                            imageUrl: './m6s/toxic/desert-bombs.webp',
+                            mask: getCircleMaskUrl(60.07, 36.48, 6)
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'West far from boss',
-                            imageUrl: './m6s/toxic/desert-bombs.webp'
+                            imageUrl: './m6s/toxic/desert-bombs.webp',
+                            mask: getCircleMaskUrl(19.90, 37.12, 6)
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'East far from boss',
-                            imageUrl: './m6s/toxic/desert-bombs.webp'
+                            imageUrl: './m6s/toxic/desert-bombs.webp',
+                            mask: getCircleMaskUrl(80.23, 38.01, 6)
                         },
                     ]
                 },
@@ -2398,49 +2423,57 @@ const toxicStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Northwest',
-                            imageUrl: './m6s/toxic/river-lightning.webp'
+                            imageUrl: './m6s/toxic/river-lightning.webp',
+                            mask: getMultiCircleMaskUrl([16.39, 51.39, 7.000], [69.71, 42.47, 7.000])
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Northwest',
-                            imageUrl: './m6s/toxic/river-lightning.webp'
+                            imageUrl: './m6s/toxic/river-lightning.webp',
+                            mask: getMultiCircleMaskUrl([10.72, 21.81, 7.000], [59.63, 19.26, 7.000])
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Northeast',
-                            imageUrl: './m6s/toxic/river-lightning.webp'
+                            imageUrl: './m6s/toxic/river-lightning.webp',
+                            mask: getMultiCircleMaskUrl([42.66, 29.21, 7.000], [86.29, 15.31, 7.000])
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'South',
-                            imageUrl: './m6s/toxic/river-lightning.webp'
+                            imageUrl: './m6s/toxic/river-lightning.webp',
+                            mask: getMultiCircleMaskUrl([13.91, 83.91, 7.000], [70.03, 75.24, 7.000])
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Northwest',
-                            imageUrl: './m6s/toxic/river-lightning.webp'
+                            imageUrl: './m6s/toxic/river-lightning.webp',
+                            mask: getMultiCircleMaskUrl([17.35, 34.05, 7.000], [59.82, 42.09, 7.000])
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Northwest',
-                            imageUrl: './m6s/toxic/river-lightning.webp'
+                            imageUrl: './m6s/toxic/river-lightning.webp',
+                            mask: getMultiCircleMaskUrl([26.47, 32.78, 7.000], [69.52, 19.01, 7.000])
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Northeast',
-                            imageUrl: './m6s/toxic/river-lightning.webp'
+                            imageUrl: './m6s/toxic/river-lightning.webp',
+                            mask: getMultiCircleMaskUrl([42.44, 53.31, 7.000], [85.71, 45.53, 7.000])
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'South',
-                            imageUrl: './m6s/toxic/river-lightning.webp'
+                            imageUrl: './m6s/toxic/river-lightning.webp',
+                            mask: getMultiCircleMaskUrl([28.12, 84.17, 7.000], [83.93, 76.77, 7.000])
                         },
                     ]
                 },
@@ -2452,49 +2485,57 @@ const toxicStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Middle',
-                            imageUrl: './m6s/toxic/river-fire.webp'
+                            imageUrl: './m6s/toxic/river-fire.webp',
+                            mask: getMultiCircleMaskUrl([28.32, 54.57, 10.000], [74.4, 46.3, 10.000])
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Far behind safe bridge',
-                            imageUrl: './m6s/toxic/river-fire.webp'
+                            imageUrl: './m6s/toxic/river-fire.webp',
+                            mask: getMultiCircleMaskUrl([11.54, 59.80, 10.000], [57.90, 68.37, 10.000])
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Middle',
-                            imageUrl: './m6s/toxic/river-fire.webp'
+                            imageUrl: './m6s/toxic/river-fire.webp',
+                            mask: getMultiCircleMaskUrl([28.32, 54.57, 10.000], [74.4, 46.3, 10.000])
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'Far behind safe bridge',
-                            imageUrl: './m6s/toxic/river-fire.webp'
+                            imageUrl: './m6s/toxic/river-fire.webp',
+                            mask: getMultiCircleMaskUrl([11.54, 59.80, 10.000], [57.90, 68.37, 10.000])
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Middle',
-                            imageUrl: './m6s/toxic/river-fire.webp'
+                            imageUrl: './m6s/toxic/river-fire.webp',
+                            mask: getMultiCircleMaskUrl([28.32, 54.57, 10.000], [74.4, 46.3, 10.000])
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Middle',
-                            imageUrl: './m6s/toxic/river-fire.webp'
+                            imageUrl: './m6s/toxic/river-fire.webp',
+                            mask: getMultiCircleMaskUrl([28.32, 54.57, 10.000], [74.4, 46.3, 10.000])
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Far behind safe bridge',
-                            imageUrl: './m6s/toxic/river-fire.webp'
+                            imageUrl: './m6s/toxic/river-fire.webp',
+                            mask: getMultiCircleMaskUrl([11.54, 59.80, 10.000], [57.90, 68.37, 10.000])
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'Far behind safe bridge',
-                            imageUrl: './m6s/toxic/river-fire.webp'
+                            imageUrl: './m6s/toxic/river-fire.webp',
+                            mask: getMultiCircleMaskUrl([11.54, 59.80, 10.000], [57.90, 68.37, 10.000])
                         },
                     ]
                 },
@@ -2517,49 +2558,57 @@ const toxicStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Bait proteans\nTake West tower closest to wall',
-                            imageUrl: './m6s/toxic/pudding-towers.webp'
+                            imageUrl: './m6s/toxic/pudding-towers.webp',
+                            mask: getCircleMaskUrl(33.2, 85.1, 8.000)
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Bait proteans\nTake East tower closest to wall',
-                            imageUrl: './m6s/toxic/pudding-towers.webp'
+                            imageUrl: './m6s/toxic/pudding-towers.webp',
+                            mask: getCircleMaskUrl(62.9, 86.0, 8.000)
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'West platform\nTake the tower closer to the middle',
-                            imageUrl: './m6s/toxic/pudding-towers.webp'
+                            imageUrl: './m6s/toxic/pudding-towers.webp',
+                            mask: getCircleMaskUrl(34.8, 39.6, 8.000)
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'East platform\nTake the tower closer to the middle',
-                            imageUrl: './m6s/toxic/pudding-towers.webp'
+                            imageUrl: './m6s/toxic/pudding-towers.webp',
+                            mask: getCircleMaskUrl(69.9, 38.7, 8.000)
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Bait proteans\nTake West tower near marker',
-                            imageUrl: './m6s/toxic/pudding-towers.webp'
+                            imageUrl: './m6s/toxic/pudding-towers.webp',
+                            mask: getCircleMaskUrl(35.0, 69.4, 8.000)
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Bait proteans\nTake East tower near marker',
-                            imageUrl: './m6s/toxic/pudding-towers.webp'
+                            imageUrl: './m6s/toxic/pudding-towers.webp',
+                            mask: getCircleMaskUrl(62.3, 70.9, 8.000)
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'West platform\nTake the tower further from the middle',
-                            imageUrl: './m6s/toxic/pudding-towers.webp'
+                            imageUrl: './m6s/toxic/pudding-towers.webp',
+                            mask: getCircleMaskUrl(16.1, 52.9, 8.000)
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'East platform\nTake the tower further from the middle',
-                            imageUrl: './m6s/toxic/pudding-towers.webp'
+                            imageUrl: './m6s/toxic/pudding-towers.webp',
+                            mask: getCircleMaskUrl(85.9, 33.9, 8.000)
                         },
                     ]
                 },
@@ -2577,49 +2626,57 @@ const toxicStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Take Left tower furthest from river',
-                            imageUrl: './m6s/toxic/pudding-422.webp'
+                            imageUrl: './m6s/toxic/pudding-422.webp',
+                            mask: getCircleMaskUrl(85.8, 15.2, 8.000)
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Take Right tower furthest from river',
-                            imageUrl: './m6s/toxic/pudding-422.webp'
+                            imageUrl: './m6s/toxic/pudding-422.webp',
+                            mask: getCircleMaskUrl(87.6, 59.6, 8.000)
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Left platform\nTake the tower closest to river',
-                            imageUrl: './m6s/toxic/pudding-422.webp'
+                            imageUrl: './m6s/toxic/pudding-422.webp',
+                            mask: getCircleMaskUrl(59.6, 72.3, 8.000)
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'Right platform\nTake the tower closest to river',
-                            imageUrl: './m6s/toxic/pudding-422.webp'
+                            imageUrl: './m6s/toxic/pudding-422.webp',
+                            mask: getCircleMaskUrl(28.2, 43.8, 8.000)
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Take Left tower closest to river',
-                            imageUrl: './m6s/toxic/pudding-422.webp'
+                            imageUrl: './m6s/toxic/pudding-422.webp',
+                            mask: getCircleMaskUrl(71.6, 26.6, 8.000)
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Take Right tower closest to river',
-                            imageUrl: './m6s/toxic/pudding-422.webp'
+                            imageUrl: './m6s/toxic/pudding-422.webp',
+                            mask: getCircleMaskUrl(72.4, 44.6, 8.000)
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Left platform\nTake the tower furthest from river',
-                            imageUrl: './m6s/toxic/pudding-422.webp'
+                            imageUrl: './m6s/toxic/pudding-422.webp',
+                            mask: getCircleMaskUrl(29.5, 86.1, 8.000)
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'Right platform\nTake the tower furthest from river',
-                            imageUrl: './m6s/toxic/pudding-422.webp'
+                            imageUrl: './m6s/toxic/pudding-422.webp',
+                            mask: getCircleMaskUrl(16.6, 22.9, 8.000)
                         },
                     ]
                 },
@@ -2631,49 +2688,57 @@ const toxicStrat: Strat = {
                             role: 'Tank',
                             party: 1,
                             description: 'Far West',
-                            imageUrl: './m6s/toxic/pudding-800.webp'
+                            imageUrl: './m6s/toxic/pudding-800.webp',
+                            mask: getCircleMaskUrl(12.6, 83.7, 8.000)
                         },
                         {
                             role: 'Tank',
                             party: 2,
                             description: 'Center South',
-                            imageUrl: './m6s/toxic/pudding-800.webp'
+                            imageUrl: './m6s/toxic/pudding-800.webp',
+                            mask: getCircleMaskUrl(46.3, 84.8, 8.000)
                         },
                         {
                             role: 'Healer',
                             party: 1,
                             description: 'Close Southeast',
-                            imageUrl: './m6s/toxic/pudding-800.webp'
+                            imageUrl: './m6s/toxic/pudding-800.webp',
+                            mask: getCircleMaskUrl(63.3, 86.2, 8.000)
                         },
                         {
                             role: 'Healer',
                             party: 2,
                             description: 'Center North',
-                            imageUrl: './m6s/toxic/pudding-800.webp'
+                            imageUrl: './m6s/toxic/pudding-800.webp',
+                            mask: getCircleMaskUrl(46.7, 68.6, 8.000)
                         },
                         {
                             role: 'Melee',
                             party: 1,
                             description: 'Close Southwest',
-                            imageUrl: './m6s/toxic/pudding-800.webp'
+                            imageUrl: './m6s/toxic/pudding-800.webp',
+                            mask: getCircleMaskUrl(29.5, 86.1, 8.000)
                         },
                         {
                             role: 'Melee',
                             party: 2,
                             description: 'Close Northwest (near 4 marker)',
-                            imageUrl: './m6s/toxic/pudding-800.webp'
+                            imageUrl: './m6s/toxic/pudding-800.webp',
+                            mask: getCircleMaskUrl(28.0, 70.0, 8.000)
                         },
                         {
                             role: 'Ranged',
                             party: 1,
                             description: 'Far East',
-                            imageUrl: './m6s/toxic/pudding-800.webp'
+                            imageUrl: './m6s/toxic/pudding-800.webp',
+                            mask: getCircleMaskUrl(79.3, 83.9, 8.000)
                         },
                         {
                             role: 'Ranged',
                             party: 2,
                             description: 'Close Northeast (near 3 marker)',
-                            imageUrl: './m6s/toxic/pudding-800.webp'
+                            imageUrl: './m6s/toxic/pudding-800.webp',
+                            mask: getCircleMaskUrl(66.1, 69.9, 8.000)
                         },
                     ]
                 },

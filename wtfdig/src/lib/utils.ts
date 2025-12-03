@@ -32,6 +32,12 @@ export function getCircleMaskUrl(xPercent: number, yPercent: number, size: numbe
 	return `url('${svg}')`;
 }
 
+export function getMultiCircleMaskUrl(...circles: [number, number, number][]) {
+	const circlesSvg = circles.map(([x, y, r]) => `<circle cx="${x}%" cy="${y}%" r="${r}%" fill="black" />`).join('');
+	const svg = `data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%"><rect width="100%" height="100%" fill-opacity="0.5"/>${circlesSvg}</svg>`
+	return `url('${svg}')`;
+}
+
 export function getRectMaskUrl(xStart: number, xEnd: number, yStart: number, yEnd: number) {
 	const svg = `data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%"><rect width="100%" height="100%" fill-opacity="0.5"/><rect x="${xStart}%" y="${yStart}%" width="${xEnd - xStart}%" height="${yEnd - yStart}%" fill="black" /></svg>`
 	return `url('${svg}')`;
