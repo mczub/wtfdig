@@ -40,7 +40,8 @@
 		spotlight,
 		alignment,
 		tabTags = null,
-		role = null
+		useMainPageTabs = false,
+		role = null,
 	}: Props = $props();
 
 	function getDefaultCollapsibleState() {
@@ -200,7 +201,7 @@
 {/if}
 
 <div class="flex w-full items-center flex-wrap lg:flex-nowrap">
-	{#if tabTags}
+	{#if tabTags && useMainPageTabs}
 		<Tabs value={tab} onValueChange={(e) => (tab = e.value)} classes="mb-2" listClasses="flex-wrap gap-2">
 			{#snippet list()}
 				{#each Object.keys(tabTags) as tabName}
@@ -213,6 +214,8 @@
 				{/each}
 			{/snippet}
 		</Tabs>
+	{:else}
+		<div class="flex grow"></div>
 	{/if}
 
 	<div class="flex justify-end lg:mb-4 w-full lg:w-auto">
@@ -224,7 +227,7 @@
 
 <div class="space-y-8 lg:space-y-12">
 	{#each individualStrat as phase}
-		{#if tabTags && tabTags[tab] ? tabTags[tab].includes(phase.tag) : true}
+		{#if tabTags && tabTags[tab] && useMainPageTabs ? tabTags[tab].includes(phase.tag) : true}
 			{#if phase?.mechs}
 				<Collapsible.Root class="space-y-4 w-full" bind:open={collapsibleState[phase.phaseName]}>
 					<!-- Phase Header -->

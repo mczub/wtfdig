@@ -380,6 +380,7 @@
 							tabTags={config.tabTags}
 							role={normalizedRole}
 							fightKey={config.fightKey}
+							useMainPageTabs={config.useMainPageTabs}
 						/>
 					</div>
 				{/if}

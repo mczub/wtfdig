@@ -8940,6 +8940,7 @@ export const m7sFightConfig: FightConfig = {
         P2: ['p2'],
         P3: ['p3']
     },
+    useMainPageTabs: false,
     additionalResources: {
         title: 'Additional or Outdated Strats',
         description:

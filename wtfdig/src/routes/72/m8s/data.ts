@@ -2747,5 +2747,6 @@ export const m8sFightConfig: FightConfig = {
         },
     ],
     tabTags: { "P1": ['p1', 'decay', 'terrestrial', 'moonlight'], "P2": ['p2', 'twofold', 'lament', 'uv4'] },
+    useMainPageTabs: false,
 }
 

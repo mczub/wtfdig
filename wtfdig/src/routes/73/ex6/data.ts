@@ -367,6 +367,7 @@ export const ex6FightConfig: FightConfig = {
         P1: ['p1'],
         P2: ['lc', 'p2']
     },
+    useMainPageTabs: false,
     defaultStratName: 'hector',
     timeline: []
 };

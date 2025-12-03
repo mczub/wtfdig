@@ -668,6 +668,7 @@ export const ucobFightConfig: FightConfig = {
         'P4: Adds': ['p4'],
         'P5: Golden': ['p5']
     },
+    useMainPageTabs: true,
     defaultStratName: 'naur',
     timeline: []
 };

@@ -873,6 +873,7 @@ export const ex5FightConfig: FightConfig = {
         P1: ['p1', 'adds'],
         P2: ['p2', 'mm2']
     },
+    useMainPageTabs: false,
     defaultStratName: 'hector',
     timeline: []
 };
