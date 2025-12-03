@@ -80,7 +80,7 @@
 	let tab = $state(tabTags ? Object.keys(tabTags)[0] : '');
 
 	function isPhaseVisible(phase: any) {
-		if (tabTags && tabTags[tab]) {
+		if (tabTags && tabTags[tab] && useMainPageTabs) {
 			return tabTags[tab].includes(phase.tag);
 		}
 		return true;
