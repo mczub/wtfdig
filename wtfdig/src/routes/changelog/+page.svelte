@@ -8,6 +8,7 @@
 	</header>
 	<article class="prose dark:prose-invert max-w-none">
 		<div class="">
+			<div>12/2/2025: only use phase tabs for ultis</div>
 			<div>12/1/2025: v2 launch</div>
 			<div>11/16/2025: add ex6</div>
 			<div>7/8/2025: updated toxic lightning spreads for m6s</div>
