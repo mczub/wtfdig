@@ -68,6 +68,17 @@
 			]
 		},
 		{
+			title: 'Patch 7.0',
+			url: '#',
+			items: [
+				{
+					title: 'AAC Light-Heavyweight M4 (M4S)',
+					subtitle: 'Savage',
+					url: '/70/m4s'
+				}
+			]
+		},
+		{
 			title: 'Ultimates',
 			url: '#',
 			items: [

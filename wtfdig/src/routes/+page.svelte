@@ -48,6 +48,14 @@
 						>The Cloud of Darkness (Chaotic)</a
 					>
 				</div>
+				<div
+					class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
+				>
+					<div>Patch 7.0</div>
+					<a href="{base}/70/m4s" class="btn preset-tonal-secondary border border-secondary-500"
+						>AAC Light-Heavyweight M4 (Savage)</a
+					>
+				</div>
 			</div>
 			<div class="grid gap-4 content-start">
 				<div
