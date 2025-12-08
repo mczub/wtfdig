@@ -2263,62 +2263,70 @@ const toxicStrat: Strat = {
             ]
         },
         {
-            phaseName: 'Quicksand + Healer Defamations',
-            description: 'H1 CW, H2 CCW from cactus',
-            mechs: [
+            "phaseName": "Quicksand + Healer Defamations",
+            "description": "H1 CW, H2 CCW from cactus",
+            "mechs": [
                 {
-                    mechanic: 'Party + Healer Defamations',
-                    strats: [
+                    "mechanic": "Party + Healer Defamations",
+                    "strats": [
                         {
-                            role: 'Tank',
-                            party: 1,
-                            description: 'Across from unsafe corner',
-                            imageUrl: './m6s/toxic/desert-healers.webp'
+                            "role": "Tank",
+                            "party": 1,
+                            "description": "Across from unsafe corner",
+                            "imageUrl": "./m6s/toxic/desert-healers.webp",
+                            "mask": getCircleMaskUrl(89.8, 13.2, 8)
                         },
                         {
-                            role: 'Tank',
-                            party: 2,
-                            description: 'Across from unsafe corner',
-                            imageUrl: './m6s/toxic/desert-healers.webp'
+                            "role": "Tank",
+                            "party": 2,
+                            "description": "Across from unsafe corner",
+                            "imageUrl": "./m6s/toxic/desert-healers.webp",
+                            "mask": getCircleMaskUrl(89.8, 13.2, 8)
                         },
                         {
-                            role: 'Healer',
-                            party: 1,
-                            description: 'Clockwise from cactus corner',
-                            imageUrl: './m6s/toxic/desert-healers.webp'
+                            "role": "Healer",
+                            "party": 1,
+                            "description": "Clockwise from cactus corner",
+                            "imageUrl": "./m6s/toxic/desert-healers.webp",
+                            "mask": getCircleMaskUrl(11.7, 11.7, 6)
                         },
                         {
-                            role: 'Healer',
-                            party: 2,
-                            description: 'Counter-Clockwise from cactus corner',
-                            imageUrl: './m6s/toxic/desert-healers.webp'
+                            "role": "Healer",
+                            "party": 2,
+                            "description": "Counter-Clockwise from cactus corner",
+                            "imageUrl": "./m6s/toxic/desert-healers.webp",
+                            "mask": getCircleMaskUrl(88.5, 87.4, 6)
                         },
                         {
-                            role: 'Melee',
-                            party: 1,
-                            description: 'Across from unsafe corner',
-                            imageUrl: './m6s/toxic/desert-healers.webp'
+                            "role": "Melee",
+                            "party": 1,
+                            "description": "Across from unsafe corner",
+                            "imageUrl": "./m6s/toxic/desert-healers.webp",
+                            "mask": getCircleMaskUrl(89.8, 13.2, 8)
                         },
                         {
-                            role: 'Melee',
-                            party: 2,
-                            description: 'Across from unsafe corner',
-                            imageUrl: './m6s/toxic/desert-healers.webp'
+                            "role": "Melee",
+                            "party": 2,
+                            "description": "Across from unsafe corner",
+                            "imageUrl": "./m6s/toxic/desert-healers.webp",
+                            "mask": getCircleMaskUrl(89.8, 13.2, 8)
                         },
                         {
-                            role: 'Ranged',
-                            party: 1,
-                            description: 'Across from unsafe corner',
-                            imageUrl: './m6s/toxic/desert-healers.webp'
+                            "role": "Ranged",
+                            "party": 1,
+                            "description": "Across from unsafe corner",
+                            "imageUrl": "./m6s/toxic/desert-healers.webp",
+                            "mask": getCircleMaskUrl(89.8, 13.2, 8)
                         },
                         {
-                            role: 'Ranged',
-                            party: 2,
-                            description: 'Across from unsafe corner',
-                            imageUrl: './m6s/toxic/desert-healers.webp'
-                        },
+                            "role": "Ranged",
+                            "party": 2,
+                            "description": "Across from unsafe corner",
+                            "imageUrl": "./m6s/toxic/desert-healers.webp",
+                            "mask": getCircleMaskUrl(89.8, 13.2, 8)
+                        }
                     ]
-                },
+                }
             ]
         },
         {

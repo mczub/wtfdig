@@ -1937,6 +1937,7 @@ const hectorStrat: Strat = {
                             party: 2,
                             description: 'E/W',
                             imageUrl: './m5s/hector/twist-aside.webp',
+                            mask: getRectMaskUrl(30, 70, 44, 58)
                         },
                         {
                             role: 'Melee',
