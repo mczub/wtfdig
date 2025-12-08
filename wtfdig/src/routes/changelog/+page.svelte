@@ -8,6 +8,7 @@
 	</header>
 	<article class="prose dark:prose-invert max-w-none">
 		<div class="">
+			<div>12/7/2025: add m4s, make frontpage blocks collapsible</div>
 			<div>12/2/2025: only use phase tabs for ultis, added some highlights for m6s hector</div>
 			<div>12/1/2025: v2 launch</div>
 			<div>11/16/2025: add ex6</div>
