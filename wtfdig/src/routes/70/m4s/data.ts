@@ -1058,13 +1058,13 @@ export const shabin: Strat = {
                         {
                             role: "Ranged",
                             party: 1,
-                            description: "SW or S with R1\nRight facing center if spread",
+                            description: "SW or S with H1\nRight facing center if spread",
                             imageUrl: "./m4s/midnight.webp"
                         },
                         {
                             role: "Ranged",
                             party: 2,
-                            description: "SE or E with R2\nRight facing center if spread",
+                            description: "SE or E with H2\nRight facing center if spread",
                             imageUrl: "./m4s/midnight.webp"
                         }
                     ]
