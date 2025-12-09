@@ -104,7 +104,7 @@
 		// since the collapsed view is useful even on wide screens for cleaner look
 		//isMultiRow = true; // Always collapse when sticky - user can expand if needed
 		if (!isCollapsed) {
-			isMultiRow = navElement.getBoundingClientRect().height > 50;
+			isMultiRow = navElement.getBoundingClientRect().height > 60;
 		}
 	}
 
@@ -115,12 +115,17 @@
 		let stickyThreshold = 0;
 		let initialized = false;
 
+		function setStickyThreshold() {
+			const headerHeight = navElement.previousElementSibling?.getBoundingClientRect().height ?? 0;
+			const rect = navElement.getBoundingClientRect();
+			stickyThreshold = headerHeight + rect.height;
+		}
+
 		// Wait for layout to settle, then calculate threshold
 		requestAnimationFrame(() => {
 			requestAnimationFrame(() => {
 				if (navElement) {
-					const rect = navElement.getBoundingClientRect();
-					stickyThreshold = rect.top + window.scrollY + rect.height;
+					setStickyThreshold();
 					initialized = true;
 					checkMultiRow();
 				}
@@ -158,13 +163,23 @@
 				}
 			} else {
 				// Currently collapsed - check if we should expand
-				if (scrollY < 20) {
+				if (scrollY < headerHeight / 2) {
 					isSticky = false;
 					isCollapsed = false;
 					userExpandedManually = false;
 				}
 			}
 		}
+
+		$effect(() => {
+			role;
+			party;
+			stratName;
+			stratOptions;
+			checkMultiRow();
+			setStickyThreshold();
+			checkIfSticky();
+		});
 
 		// Throttled scroll handler
 		let ticking = false;
