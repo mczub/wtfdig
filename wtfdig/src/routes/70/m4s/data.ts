@@ -1,5 +1,5 @@
 import type { Strat, FightConfig, StratRecord, PlayerMechStrat } from '$lib/types';
-import { getStringObject, getStratArray } from '$lib/utils';
+import { getStringObject, getStratArray, getCircleMaskUrl, getMultiCircleMaskUrl, getRectMaskUrl } from '$lib/utils';
 
 const autocadSunrise: StratRecord = {
     cannonbaits: {
@@ -303,49 +303,57 @@ export const shabin: Strat = {
                             role: "Tank",
                             party: 1,
                             description: "Northwest, close to boss",
-                            imageUrl: "./m4s/witch-hunt-spreads.webp"
+                            imageUrl: "./m4s/witch-hunt-spreads.webp",
+                            mask: getCircleMaskUrl(42.1, 36.7, 5)
                         },
                         {
                             role: "Tank",
                             party: 2,
                             description: "Northeast, close to boss",
-                            imageUrl: "./m4s/witch-hunt-spreads.webp"
+                            imageUrl: "./m4s/witch-hunt-spreads.webp",
+                            mask: getCircleMaskUrl(54.9, 36.1, 5)
                         },
                         {
                             role: "Healer",
                             party: 1,
                             description: "Southwest, far from boss",
-                            imageUrl: "./m4s/witch-hunt-spreads.webp"
+                            imageUrl: "./m4s/witch-hunt-spreads.webp",
+                            mask: getCircleMaskUrl(40.7, 75.7, 5)
                         },
                         {
                             role: "Healer",
                             party: 2,
                             description: "Southeast, far from boss",
-                            imageUrl: "./m4s/witch-hunt-spreads.webp"
+                            imageUrl: "./m4s/witch-hunt-spreads.webp",
+                            mask: getCircleMaskUrl(55.3, 75, 5)
                         },
                         {
                             role: "Melee",
                             party: 1,
                             description: "Southwest, close to boss",
-                            imageUrl: "./m4s/witch-hunt-spreads.webp"
+                            imageUrl: "./m4s/witch-hunt-spreads.webp",
+                            mask: getCircleMaskUrl(41.5, 56.3, 5)
                         },
                         {
                             role: "Melee",
                             party: 2,
                             description: "Southeast, close to boss",
-                            imageUrl: "./m4s/witch-hunt-spreads.webp"
+                            imageUrl: "./m4s/witch-hunt-spreads.webp",
+                            mask: getCircleMaskUrl(56, 56.5, 5)
                         },
                         {
                             role: "Ranged",
                             party: 1,
                             description: "Northwest, far from boss",
-                            imageUrl: "./m4s/witch-hunt-spreads.webp"
+                            imageUrl: "./m4s/witch-hunt-spreads.webp",
+                            mask: getCircleMaskUrl(40.5, 12.6, 5)
                         },
                         {
                             role: "Ranged",
                             party: 2,
                             description: "Northeast, far from boss",
-                            imageUrl: "./m4s/witch-hunt-spreads.webp"
+                            imageUrl: "./m4s/witch-hunt-spreads.webp",
+                            mask: getCircleMaskUrl(55.3, 12, 5)
                         }
                     ]
                 },
@@ -368,49 +376,57 @@ export const shabin: Strat = {
                             role: "Tank",
                             party: 1,
                             description: "North",
-                            imageUrl: "./m4s/witch-hunt-clocks.webp"
+                            imageUrl: "./m4s/witch-hunt-clocks.webp",
+                            mask: getCircleMaskUrl(50, 29.9, 4)
                         },
                         {
                             role: "Tank",
                             party: 2,
                             description: "South",
-                            imageUrl: "./m4s/witch-hunt-clocks.webp"
+                            imageUrl: "./m4s/witch-hunt-clocks.webp",
+                            mask: getCircleMaskUrl(50, 70.1, 4)
                         },
                         {
                             role: "Healer",
                             party: 1,
                             description: "Southwest",
-                            imageUrl: "./m4s/witch-hunt-clocks.webp"
+                            imageUrl: "./m4s/witch-hunt-clocks.webp",
+                            mask: getCircleMaskUrl(42.5, 63.9, 4)
                         },
                         {
                             role: "Healer",
                             party: 2,
                             description: "Southeast",
-                            imageUrl: "./m4s/witch-hunt-clocks.webp"
+                            imageUrl: "./m4s/witch-hunt-clocks.webp",
+                            mask: getCircleMaskUrl(57.3, 64, 4)
                         },
                         {
                             role: "Melee",
                             party: 1,
                             description: "West",
-                            imageUrl: "./m4s/witch-hunt-clocks.webp"
+                            imageUrl: "./m4s/witch-hunt-clocks.webp",
+                            mask: getCircleMaskUrl(39.6, 50, 4)
                         },
                         {
                             role: "Melee",
                             party: 2,
                             description: "East",
-                            imageUrl: "./m4s/witch-hunt-clocks.webp"
+                            imageUrl: "./m4s/witch-hunt-clocks.webp",
+                            mask: getCircleMaskUrl(59.2, 50.1, 4)
                         },
                         {
                             role: "Ranged",
                             party: 1,
                             description: "Northwest",
-                            imageUrl: "./m4s/witch-hunt-clocks.webp"
+                            imageUrl: "./m4s/witch-hunt-clocks.webp",
+                            mask: getCircleMaskUrl(42.6, 33.9, 4)
                         },
                         {
                             role: "Ranged",
                             party: 2,
                             description: "Northeast",
-                            imageUrl: "./m4s/witch-hunt-clocks.webp"
+                            imageUrl: "./m4s/witch-hunt-clocks.webp",
+                            mask: getCircleMaskUrl(57.7, 34, 4)
                         }
                     ]
                 },
@@ -422,49 +438,57 @@ export const shabin: Strat = {
                             role: "Tank",
                             party: 1,
                             description: "First close bait",
-                            imageUrl: "./m4s/narrowing-widening.webp"
+                            imageUrl: "./m4s/narrowing-widening.webp",
+                            mask: getCircleMaskUrl(50, 27.6, 5)
                         },
                         {
                             role: "Tank",
                             party: 2,
                             description: "First close bait",
-                            imageUrl: "./m4s/narrowing-widening.webp"
+                            imageUrl: "./m4s/narrowing-widening.webp",
+                            mask: getCircleMaskUrl(49.9, 73.2, 5)
                         },
                         {
                             role: "Healer",
                             party: 1,
                             description: "First far bait",
-                            imageUrl: "./m4s/narrowing-widening.webp"
+                            imageUrl: "./m4s/narrowing-widening.webp",
+                            mask: getCircleMaskUrl(37.9, 71, 5)
                         },
                         {
                             role: "Healer",
                             party: 2,
                             description: "First far bait",
-                            imageUrl: "./m4s/narrowing-widening.webp"
+                            imageUrl: "./m4s/narrowing-widening.webp",
+                            mask: getCircleMaskUrl(62.6, 71, 5)
                         },
                         {
                             role: "Melee",
                             party: 1,
                             description: "Second close bait",
-                            imageUrl: "./m4s/narrowing-widening.webp"
+                            imageUrl: "./m4s/narrowing-widening.webp",
+                            mask: getCircleMaskUrl(36.9, 50, 5)
                         },
                         {
                             role: "Melee",
                             party: 2,
                             description: "Second close bait",
-                            imageUrl: "./m4s/narrowing-widening.webp"
+                            imageUrl: "./m4s/narrowing-widening.webp",
+                            mask: getCircleMaskUrl(62.7, 50, 5)
                         },
                         {
                             role: "Ranged",
                             party: 1,
                             description: "Second far bait",
-                            imageUrl: "./m4s/narrowing-widening.webp"
+                            imageUrl: "./m4s/narrowing-widening.webp",
+                            mask: getCircleMaskUrl(40.5, 33.6, 5)
                         },
                         {
                             role: "Ranged",
                             party: 2,
                             description: "Second far bait",
-                            imageUrl: "./m4s/narrowing-widening.webp"
+                            imageUrl: "./m4s/narrowing-widening.webp",
+                            mask: getCircleMaskUrl(59.5, 32.8, 5)
                         }
                     ]
                 }
@@ -487,49 +511,57 @@ export const shabin: Strat = {
                             role: "Tank",
                             party: 1,
                             description: "Under boss",
-                            imageUrl: "./m4s/ee1-spread.webp"
+                            imageUrl: "./m4s/ee1-spread.webp",
+                            mask: getCircleMaskUrl(48.9, 51.2, 5)
                         },
                         {
                             role: "Tank",
                             party: 2,
                             description: "Corner between melees",
-                            imageUrl: "./m4s/ee1-spread.webp"
+                            imageUrl: "./m4s/ee1-spread.webp",
+                            mask: getCircleMaskUrl(40.6, 67.2, 5)
                         },
                         {
                             role: "Healer",
                             party: 1,
                             description: "Near cube, left facing boss",
-                            imageUrl: "./m4s/ee1-spread.webp"
+                            imageUrl: "./m4s/ee1-spread.webp",
+                            mask: getCircleMaskUrl(27.7, 68.6, 5)
                         },
                         {
                             role: "Healer",
                             party: 2,
                             description: "Near cube, right facing boss",
-                            imageUrl: "./m4s/ee1-spread.webp"
+                            imageUrl: "./m4s/ee1-spread.webp",
+                            mask: getCircleMaskUrl(39.4, 89.5, 5)
                         },
                         {
                             role: "Melee",
                             party: 1,
                             description: "Max melee, left facing boss",
-                            imageUrl: "./m4s/ee1-spread.webp"
+                            imageUrl: "./m4s/ee1-spread.webp",
+                            mask: getCircleMaskUrl(39.5, 51.1, 5)
                         },
                         {
                             role: "Melee",
                             party: 2,
                             description: "Max melee, right facing boss",
-                            imageUrl: "./m4s/ee1-spread.webp"
+                            imageUrl: "./m4s/ee1-spread.webp",
+                            mask: getCircleMaskUrl(49.3, 68.9, 5)
                         },
                         {
                             role: "Ranged",
                             party: 1,
                             description: "Far corner, left facing boss",
-                            imageUrl: "./m4s/ee1-spread.webp"
+                            imageUrl: "./m4s/ee1-spread.webp",
+                            mask: getCircleMaskUrl(27.7, 51.5, 5)
                         },
                         {
                             role: "Ranged",
                             party: 2,
                             description: "Far corner, right facing boss",
-                            imageUrl: "./m4s/ee1-spread.webp"
+                            imageUrl: "./m4s/ee1-spread.webp",
+                            mask: getCircleMaskUrl(49.2, 89.1, 5)
                         }
                     ]
                 },
@@ -1052,49 +1084,57 @@ export const shabin: Strat = {
                             role: "Tank",
                             party: 1,
                             description: "G1 West\nSoak 1st tower (North)",
-                            imageUrl: "./m4s/chain-lightning.webp"
+                            imageUrl: "./m4s/chain-lightning.webp",
+                            mask: getCircleMaskUrl(26, 28.5, 5)
                         },
                         {
                             role: "Tank",
                             party: 2,
                             description: "G2 East\nSoak 1st tower (North)",
-                            imageUrl: "./m4s/chain-lightning.webp"
+                            imageUrl: "./m4s/chain-lightning.webp",
+                            mask: getCircleMaskUrl(72, 28.2, 5)
                         },
                         {
                             role: "Healer",
                             party: 1,
                             description: "G1 West\nSoak 4th tower (South)",
-                            imageUrl: "./m4s/chain-lightning.webp"
+                            imageUrl: "./m4s/chain-lightning.webp",
+                            mask: getCircleMaskUrl(26, 69.4, 5)
                         },
                         {
                             role: "Healer",
                             party: 2,
                             description: "G2 East\nSoak 4th tower (South)",
-                            imageUrl: "./m4s/chain-lightning.webp"
+                            imageUrl: "./m4s/chain-lightning.webp",
+                            mask: getCircleMaskUrl(72.1, 69.3, 5)
                         },
                         {
                             role: "Melee",
                             party: 1,
                             description: "G1 West\nSoak 2nd tower",
-                            imageUrl: "./m4s/chain-lightning.webp"
+                            imageUrl: "./m4s/chain-lightning.webp",
+                            mask: getCircleMaskUrl(25.7, 49.3, 5)
                         },
                         {
                             role: "Melee",
                             party: 2,
                             description: "G2 East\nSoak 2nd tower",
-                            imageUrl: "./m4s/chain-lightning.webp"
+                            imageUrl: "./m4s/chain-lightning.webp",
+                            mask: getCircleMaskUrl(72, 49.3, 5)
                         },
                         {
                             role: "Ranged",
                             party: 1,
                             description: "G1 West\nSoak 3rd tower",
-                            imageUrl: "./m4s/chain-lightning.webp"
+                            imageUrl: "./m4s/chain-lightning.webp",
+                            mask: getCircleMaskUrl(26, 89.7, 5)
                         },
                         {
                             role: "Ranged",
                             party: 2,
                             description: "G2 East\nSoak 3rd tower",
-                            imageUrl: "./m4s/chain-lightning.webp"
+                            imageUrl: "./m4s/chain-lightning.webp",
+                            mask: getCircleMaskUrl(72.3, 89.5, 5)
                         }
                     ]
                 }
