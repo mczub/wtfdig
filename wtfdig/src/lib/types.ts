@@ -19,7 +19,7 @@ export type StratRecord = Record<string, string | Record<string, string | Player
 export interface MechanicStrat {
 	mechanic: string;
 	description?: string | Record<string, string>;
-	notes?: string;
+	notes?: string | Record<string, string>;
 	strats?: PlayerMechStrat[];
 	imageUrl?: string | Record<string, string>;
 }
@@ -106,6 +106,7 @@ export interface FightConfig {
 	strats: FightStratConfig;
 	toggles?: FightToggleConfig[];
 	tabTags?: Record<string, string[]>;
+	useMainPageTabs?: boolean;
 	defaultStratName?: string;
 	timeline?: TimelineItem[];
 	additionalResources?: {

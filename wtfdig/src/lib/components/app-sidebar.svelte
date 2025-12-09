@@ -12,6 +12,7 @@
 		{
 			title: 'Patch 7.3',
 			url: '#',
+			defaultOpen: true,
 			items: [
 				{
 					title: 'Windward Wilds (EX6)',
@@ -28,6 +29,7 @@
 		{
 			title: 'Patch 7.2',
 			url: '#',
+			defaultOpen: true,
 			items: [
 				{
 					title: 'AAC Cruiserweight M1 (M5S)',
@@ -59,6 +61,7 @@
 		{
 			title: 'Patch 7.1',
 			url: '#',
+			defaultOpen: true,
 			items: [
 				{
 					title: 'Cloud of Darkness',
@@ -70,11 +73,24 @@
 		{
 			title: 'Ultimates',
 			url: '#',
+			defaultOpen: true,
 			items: [
 				{
 					title: 'The Unending Coil of Bahamut',
 					subtitle: 'Ultimate',
 					url: '/ultimates/ucob'
+				}
+			]
+		},
+		{
+			title: 'Patch 7.0',
+			url: '#',
+			defaultOpen: false,
+			items: [
+				{
+					title: 'AAC LHW M4 (M4S)',
+					subtitle: 'Savage',
+					url: '/70/m4s'
 				}
 			]
 		}
@@ -97,7 +113,7 @@
 			<Sidebar.GroupContent>
 				<Sidebar.Menu>
 					{#each navItems as item, index (index)}
-						<Collapsible.Root class="group/collapsible" open>
+						<Collapsible.Root class="group/collapsible" open={item.defaultOpen}>
 							<Sidebar.MenuItem>
 								<Collapsible.Trigger>
 									{#snippet child({ props })}
@@ -123,7 +139,7 @@
 															class="flex flex-col w-full items-start"
 														>
 															<div class="text-lg">{subItem.title}</div>
-															<div class="text-md text-surface-400">
+															<div class="text-base text-surface-400">
 																{subItem.subtitle}
 															</div>
 														</a>

@@ -66,6 +66,7 @@
 					return {
 						...phaseStratMech,
 						description: getStratItem(phaseStratMech.description, phaseStrat.tag, stratState),
+						notes: getStratItem(phaseStratMech.notes, phaseStrat.tag, stratState),
 						imageUrl: getStratItem(phaseStratMech.imageUrl, phaseStrat.tag, stratState),
 						strats:
 							phaseStratMech.strats &&
