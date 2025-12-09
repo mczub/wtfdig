@@ -224,7 +224,7 @@ export const m4sFightConfig: FightConfig = {
         shabin: {
             label: "Shabin/Hector",
             defaults: {
-                sunrise: "autocad"
+                sunrise: "normal"
             },
             badges: [
                 {
@@ -238,22 +238,22 @@ export const m4sFightConfig: FightConfig = {
         {
             key: "sunrise",
             label: "Sunrise",
-            defaultValue: "autocad",
+            defaultValue: "normal",
             options: [
-                {
-                    value: "autocad",
-                    label: "AutoCAD",
-                    url: {
-                        name: "AutoCAD Sunrise",
-                        url: "https://raidplan.io/plan/OnQXobwatopL1G8u"
-                    }
-                },
                 {
                     value: "normal",
                     label: "Normal",
                     url: {
                         name: "Normal Sunrise",
                         url: "https://raidplan.io/plan/DGafL6v7CUTkx_5c"
+                    }
+                },
+                {
+                    value: "autocad",
+                    label: "AutoCAD",
+                    url: {
+                        name: "AutoCAD Sunrise",
+                        url: "https://raidplan.io/plan/OnQXobwatopL1G8u"
                     }
                 }
             ]
