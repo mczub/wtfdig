@@ -238,7 +238,7 @@
 	<div class="container mx-auto px-4 py-2 relative">
 		<!-- Collapsed View (shown when sticky and collapsed) -->
 		{#if isCollapsed}
-			<div class="w-full flex flex-row items-center justify-between gap-4">
+			<div class="w-full flex flex-row items-center justify-between gap-4 py-1">
 				<div class="flex items-center gap-4 flex-wrap">
 					<!-- Title -->
 					<div class="font-bold text-lg text-surface-50">
