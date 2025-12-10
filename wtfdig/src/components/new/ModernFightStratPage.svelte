@@ -330,10 +330,10 @@
 							class="flex flex-col lg:flex-row gap-4 mb-8 items-center justify-between bg-surface-900/30 p-4 rounded-xl border border-surface-800/50 backdrop-blur-sm min-w-0 w-full"
 						>
 							<div
-								class="card flex flex-col lg:flex-row grow border border-surface-700/50 items-center bg-surface-950/50 overflow-hidden w-full lg:w-auto min-w-0 order-first lg:order-none"
+								class="card flex flex-col lg:flex-row grow border border-surface-700/50 items-center bg-surface-950/50 overflow-hidden w-full lg:w-auto min-w-0 order-first lg:order-last"
 							>
 								<div
-									class="self-start lg:self-center overflow-x-auto max-w-[calc(100vw-5rem)] lg:max-w-none lg:w-0 lg:flex-1 px-2 py-2"
+									class="self-start lg:self-center overflow-x-auto max-w-[calc(100vw-5rem)] lg:max-w-none lg:w-0 lg:flex-1 px-2 py-2 [&::-webkit-scrollbar]:hidden"
 								>
 									<span class="whitespace-nowrap font-mono text-sm">{pfDescription}</span>
 								</div>
@@ -345,7 +345,7 @@
 							</div>
 
 							<!-- Action Buttons -->
-							<div class="gap-2 w-full flex lg:w-auto shrink-0">
+							<div class="gap-2 w-full flex flex-col lg:flex-row lg:w-auto shrink-0">
 								<button
 									onclick={() => (cheatsheetOpenState = true)}
 									class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 hidden lg:flex lg:flex-none"
