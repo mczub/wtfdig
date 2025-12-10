@@ -24,7 +24,7 @@
 	<Sidebar.Provider>
 		<AppSidebar />
 		<main class="grow flex flex-col">
-			<header class="container px-4 mx-auto md:my-4">
+			<header class="container px-4 mx-auto md:py-4">
 				<div class="container grid grid-cols-3 items-center justify-between">
 					<Sidebar.Trigger />
 					<a

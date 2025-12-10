@@ -327,43 +327,38 @@
 
 						<!-- Action Bar -->
 						<div
-							class="flex flex-col lg:flex-row gap-4 mb-8 items-center justify-between bg-surface-900/30 p-4 rounded-xl border border-surface-800/50 backdrop-blur-sm"
+							class="flex flex-col lg:flex-row gap-4 mb-8 items-center justify-between bg-surface-900/30 p-4 rounded-xl border border-surface-800/50 backdrop-blur-sm min-w-0 w-full"
 						>
-							<div class="flex gap-2 w-full lg:w-auto">
-								{#if isCheatsheetEnabled}
-									<button
-										onclick={() => (cheatsheetOpenState = true)}
-										class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none"
-										><Fullscreen size={18} />Cheatsheet</button
-									>
-								{:else}
-									<div class="relative group flex-1 lg:flex-none">
-										<button
-											class="btn preset-tonal-secondary border border-secondary-500/50 opacity-50 cursor-not-allowed w-full"
-											><Fullscreen size={18} />Cheatsheet</button
-										>
-										<div
-											class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2 bg-surface-800 text-xs rounded shadow-lg hidden group-hover:block text-center"
-										>
-											Requires window size > 1024x768
-										</div>
-									</div>
-								{/if}
+							<div
+								class="card flex flex-col lg:flex-row grow border border-surface-700/50 items-center bg-surface-950/50 overflow-hidden w-full lg:w-auto min-w-0 order-first lg:order-last"
+							>
+								<div
+									class="self-start lg:self-center overflow-x-auto max-w-[calc(100vw-5rem)] lg:max-w-none lg:w-0 lg:flex-1 px-2 py-2 [&::-webkit-scrollbar]:hidden"
+								>
+									<span class="whitespace-nowrap font-mono text-sm">{pfDescription}</span>
+								</div>
+								<button
+									onclick={() => copyPFDescription(pfDescription)}
+									class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors hidden lg:flex shrink-0"
+									><Copy size={18} />Copy PF Description</button
+								>
+							</div>
+
+							<!-- Action Buttons -->
+							<div class="gap-2 w-full flex flex-col lg:flex-row lg:w-auto shrink-0">
+								<button
+									onclick={() => (cheatsheetOpenState = true)}
+									class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 hidden lg:flex lg:flex-none"
+									><Fullscreen size={18} />Cheatsheet</button
+								>
 								<button
 									onclick={() => copyLinkToClipboard()}
 									class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none"
 									><Link size={18} />Copy Link</button
 								>
-							</div>
-
-							<div
-								class="card flex flex-row grow border border-surface-700/50 items-center bg-surface-950/50 overflow-hidden w-full lg:w-auto"
-							>
-								<pre
-									class="flex-auto pre overflow-x-auto text-nowrap whitespace-nowrap w-0 max-w-full self-center px-2">{pfDescription}</pre>
 								<button
 									onclick={() => copyPFDescription(pfDescription)}
-									class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors"
+									class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:hidden"
 									><Copy size={18} />Copy PF Description</button
 								>
 							</div>

@@ -8826,6 +8826,7 @@ export const m7sFightConfig: FightConfig = {
     strats: {
         toxic: {
             label: 'Toxic',
+            defaultPfDescription: 'Toxic | Locked | Toxic',
             badges: [{ text: 'NA', class: 'na-badge' }, { text: 'EU', class: 'eu-badge' }],
             defaults: {
                 p2: 'locked',
