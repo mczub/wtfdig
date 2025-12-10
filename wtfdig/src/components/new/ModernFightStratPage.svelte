@@ -330,13 +330,22 @@
 							class="flex flex-col lg:flex-row gap-4 mb-8 items-center justify-between bg-surface-900/30 p-4 rounded-xl border border-surface-800/50 backdrop-blur-sm min-w-0 w-full"
 						>
 							<div
-								class="card flex flex-col lg:hidden grow border border-surface-700/50 items-center bg-surface-950/50 overflow-hidden w-full min-w-0"
+								class="card flex flex-col lg:flex-row grow border border-surface-700/50 items-center bg-surface-950/50 overflow-hidden w-full lg:w-auto min-w-0 order-first lg:order-none"
 							>
-								<div class="self-start overflow-x-auto max-w-[calc(100vw-5rem)] px-2 py-2">
+								<div
+									class="self-start lg:self-center overflow-x-auto max-w-[calc(100vw-5rem)] lg:max-w-none lg:w-0 lg:flex-1 px-2 py-2"
+								>
 									<span class="whitespace-nowrap font-mono text-sm">{pfDescription}</span>
 								</div>
+								<button
+									onclick={() => copyPFDescription(pfDescription)}
+									class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors hidden lg:flex shrink-0"
+									><Copy size={18} />Copy PF Description</button
+								>
 							</div>
-							<div class="gap-2 w-full flex lg:w-auto">
+
+							<!-- Action Buttons -->
+							<div class="gap-2 w-full flex lg:w-auto shrink-0">
 								<button
 									onclick={() => (cheatsheetOpenState = true)}
 									class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 hidden lg:flex lg:flex-none"
@@ -347,25 +356,10 @@
 									class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none"
 									><Link size={18} />Copy Link</button
 								>
-							</div>
-
-							<div
-								class="card hidden lg:flex flex-col lg:flex-row grow border border-surface-700/50 items-center bg-surface-950/50 overflow-hidden w-full lg:w-auto"
-							>
-								<pre
-									class="flex-auto pre overflow-x-auto text-nowrap whitespace-nowrap w-full lg:w-0 max-w-full self-center px-2 py-2">{pfDescription}</pre>
 								<button
 									onclick={() => copyPFDescription(pfDescription)}
-									class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors hidden lg:flex"
-									><Copy size={18} class="" />Copy PF Description</button
-								>
-							</div>
-
-							<div class="gap-2 w-full flex lg:hidden">
-								<button
-									onclick={() => copyPFDescription(pfDescription)}
-									class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none"
-									><Copy size={18} class="" />Copy PF Description</button
+									class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:hidden"
+									><Copy size={18} />Copy PF Description</button
 								>
 							</div>
 						</div>
