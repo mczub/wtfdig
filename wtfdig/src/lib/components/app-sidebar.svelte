@@ -10,6 +10,18 @@
 
 	const navItems = [
 		{
+			title: 'Patch 7.4',
+			url: '#',
+			defaultOpen: true,
+			items: [
+				{
+					title: 'Hell on Rails (EX7)',
+					subtitle: 'Extreme',
+					url: '/74/ex7'
+				}
+			]
+		},
+		{
 			title: 'Patch 7.3',
 			url: '#',
 			defaultOpen: true,
@@ -27,9 +39,21 @@
 			]
 		},
 		{
-			title: 'Patch 7.2',
+			title: 'Ultimates',
 			url: '#',
 			defaultOpen: true,
+			items: [
+				{
+					title: 'The Unending Coil of Bahamut',
+					subtitle: 'Ultimate',
+					url: '/ultimates/ucob'
+				}
+			]
+		},
+		{
+			title: 'Patch 7.2',
+			url: '#',
+			defaultOpen: false,
 			items: [
 				{
 					title: 'AAC Cruiserweight M1 (M5S)',
@@ -61,24 +85,12 @@
 		{
 			title: 'Patch 7.1',
 			url: '#',
-			defaultOpen: true,
+			defaultOpen: false,
 			items: [
 				{
 					title: 'Cloud of Darkness',
 					subtitle: 'Chaotic',
 					url: '/71/chaotic'
-				}
-			]
-		},
-		{
-			title: 'Ultimates',
-			url: '#',
-			defaultOpen: true,
-			items: [
-				{
-					title: 'The Unending Coil of Bahamut',
-					subtitle: 'Ultimate',
-					url: '/ultimates/ucob'
 				}
 			]
 		},
