@@ -5,10 +5,11 @@
 	import { Separator } from '$lib/components/ui/separator';
 
 	let openState = $state({
+		'74': true,
 		'73': true,
-		'72': true,
-		'71': true,
 		ultimates: true,
+		'72': false,
+		'71': true,
 		'70': false
 	});
 
@@ -24,6 +25,32 @@
 		</div>
 		<div class="grid lg:grid-cols-2 gap-4 max-w-full">
 			<div class="grid gap-4 content-start min-w-[330px]">
+				<div
+					class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
+				>
+					<button class="flex w-full items-center justify-between" onclick={() => toggle('74')}>
+						<div class="text-lg font-bold">Patch 7.4</div>
+						<ChevronDown
+							class="h-4 w-4 opacity-50 transition-transform duration-200 {openState['74']
+								? 'rotate-180'
+								: ''}"
+						/>
+					</button>
+					{#if openState['74']}
+						<div transition:slide class="flex flex-col gap-4">
+							<div class="flex flex-col">
+								<div class="text-left text-sm font-semibold mb-3">Extreme</div>
+								<div class="flex flex-col gap-4">
+									<a
+										href="{base}/74/ex7"
+										class="btn preset-tonal-secondary border border-secondary-500"
+										>Hell on Rails (Extreme)</a
+									>
+								</div>
+							</div>
+						</div>
+					{/if}
+				</div>
 				<div
 					class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
 				>
@@ -55,6 +82,32 @@
 						</div>
 					{/if}
 				</div>
+				<div
+					class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
+				>
+					<button
+						class="flex w-full items-center justify-between"
+						onclick={() => toggle('ultimates')}
+					>
+						<div class="text-lg font-bold">Ultimates</div>
+						<ChevronDown
+							class="h-4 w-4 opacity-50 transition-transform duration-200 {openState['ultimates']
+								? 'rotate-180'
+								: ''}"
+						/>
+					</button>
+					{#if openState['ultimates']}
+						<div transition:slide class="flex flex-col gap-4">
+							<a
+								href="{base}/ultimates/ucob"
+								class="btn preset-tonal-secondary border border-secondary-500"
+								>The Unending Coil of Bahamut (Ultimate)</a
+							>
+						</div>
+					{/if}
+				</div>
+			</div>
+			<div class="grid gap-4 content-start min-w-[330px]">
 				<div
 					class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
 				>
@@ -129,32 +182,6 @@
 									>
 								</div>
 							</div>
-						</div>
-					{/if}
-				</div>
-			</div>
-			<div class="grid gap-4 content-start min-w-[330px]">
-				<div
-					class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
-				>
-					<button
-						class="flex w-full items-center justify-between"
-						onclick={() => toggle('ultimates')}
-					>
-						<div class="text-lg font-bold">Ultimates</div>
-						<ChevronDown
-							class="h-4 w-4 opacity-50 transition-transform duration-200 {openState['ultimates']
-								? 'rotate-180'
-								: ''}"
-						/>
-					</button>
-					{#if openState['ultimates']}
-						<div transition:slide class="flex flex-col gap-4">
-							<a
-								href="{base}/ultimates/ucob"
-								class="btn preset-tonal-secondary border border-secondary-500"
-								>The Unending Coil of Bahamut (Ultimate)</a
-							>
 						</div>
 					{/if}
 				</div>
