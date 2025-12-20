@@ -306,7 +306,161 @@ const raidplanRunaway: StratRecord = {
     }
 };
 
-const runawayStrats: Record<string, StratRecord> = { alt: altRunaway, raidplan: raidplanRunaway };
+const staticRunaway: StratRecord = {
+    ghosttraintb: {
+        MT: {
+            role: "Tank",
+            party: 1,
+            description: "Take TB Left towards Ghost Train",
+            imageUrl: "./ex7/p3-ghost-train.webp"
+        },
+        OT: {
+            role: "Tank",
+            party: 2,
+            description: "Take TB Right towards Ghost Train",
+            imageUrl: "./ex7/p3-ghost-train.webp"
+        },
+        H1: {
+            role: "Healer",
+            party: 1,
+            description: "Center, avoid tankbusters",
+            imageUrl: "./ex7/p3-ghost-train.webp"
+        },
+        H2: {
+            role: "Healer",
+            party: 2,
+            description: "Center, avoid tankbusters",
+            imageUrl: "./ex7/p3-ghost-train.webp"
+        },
+        M1: {
+            role: "Melee",
+            party: 1,
+            description: "Center, avoid tankbusters",
+            imageUrl: "./ex7/p3-ghost-train.webp"
+        },
+        M2: {
+            role: "Melee",
+            party: 2,
+            description: "Center, avoid tankbusters",
+            imageUrl: "./ex7/p3-ghost-train.webp"
+        },
+        R1: {
+            role: "Ranged",
+            party: 1,
+            description: "Center, avoid tankbusters",
+            imageUrl: "./ex7/p3-ghost-train.webp"
+        },
+        R2: {
+            role: "Ranged",
+            party: 2,
+            description: "Center, avoid tankbusters",
+            imageUrl: "./ex7/p3-ghost-train.webp"
+        }
+    },
+    stacks: {
+        MT: {
+            role: "Tank",
+            party: 1,
+            description: "TB Left towards Ghost Train",
+            imageUrl: "./ex7/p3-static-stacks.webp"
+        },
+        OT: {
+            role: "Tank",
+            party: 2,
+            description: "TB Right towards Ghost Train",
+            imageUrl: "./ex7/p3-static-stacks.webp"
+        },
+        H1: {
+            role: "Healer",
+            party: 1,
+            description: "❗STATIC North Max Melee",
+            imageUrl: "./ex7/p3-static-stacks.webp"
+        },
+        H2: {
+            role: "Healer",
+            party: 2,
+            description: "❗STATIC South Max Melee",
+            imageUrl: "./ex7/p3-static-stacks.webp"
+        },
+        M1: {
+            role: "Melee",
+            party: 1,
+            description: "❗STATIC North Max Melee",
+            imageUrl: "./ex7/p3-static-stacks.webp"
+        },
+        M2: {
+            role: "Melee",
+            party: 2,
+            description: "❗STATIC South Max Melee",
+            imageUrl: "./ex7/p3-static-stacks.webp"
+        },
+        R1: {
+            role: "Ranged",
+            party: 1,
+            description: "❗STATIC North Max Melee",
+            imageUrl: "./ex7/p3-static-stacks.webp"
+        },
+        R2: {
+            role: "Ranged",
+            party: 2,
+            description: "❗STATIC South Max Melee",
+            imageUrl: "./ex7/p3-static-stacks.webp"
+        }
+    },
+    spreads: {
+        MT: {
+            role: "Tank",
+            party: 1,
+            description: "TB Left towards Ghost Train",
+            imageUrl: "./ex7/p3-static-spread.webp"
+        },
+        OT: {
+            role: "Tank",
+            party: 2,
+            description: "TB Right towards Ghost Train",
+            imageUrl: "./ex7/p3-static-spread.webp"
+        },
+        H1: {
+            role: "Healer",
+            party: 1,
+            description: "❗STATIC North Max Melee",
+            imageUrl: "./ex7/p3-static-spread.webp"
+        },
+        H2: {
+            role: "Healer",
+            party: 2,
+            description: "❗STATIC South Max Melee",
+            imageUrl: "./ex7/p3-static-spread.webp"
+        },
+        M1: {
+            role: "Melee",
+            party: 1,
+            description: "❗STATIC West Max Melee",
+            imageUrl: "./ex7/p3-static-spread.webp"
+        },
+        M2: {
+            role: "Melee",
+            party: 2,
+            description: "❗STATIC East Max Melee",
+            imageUrl: "./ex7/p3-static-spread.webp"
+        },
+        R1: {
+            role: "Ranged",
+            party: 1,
+            description: "Front close to Ghost Train",
+            imageUrl: "./ex7/p3-static-spread.webp"
+        },
+        R2: {
+            role: "Ranged",
+            party: 2,
+            description: "Back far from Ghost Train",
+            imageUrl: "./ex7/p3-static-spread.webp"
+        },
+        description: "Healers and Melee are static, ignore train direction\nRanged and Tanks will rotate"
+    }
+};
+
+const runawayStrats: Record<string, StratRecord> = { alt: altRunaway, raidplan: raidplanRunaway, static: staticRunaway };
 
 export const ex7FightConfig: FightConfig = {
     fightKey: "ex7",
@@ -336,7 +490,7 @@ export const ex7FightConfig: FightConfig = {
             options: [
                 {
                     value: "alt",
-                    label: "Alt/Hector",
+                    label: "Alt/Hector (Slide 30)",
                     badges: [
                         {
                             text: "NA",
@@ -350,10 +504,18 @@ export const ex7FightConfig: FightConfig = {
                 },
                 {
                     value: "raidplan",
-                    label: "Raidplan",
+                    label: "Slide 6",
                     url: {
                         name: "Raidplan by Kroxy Cat (pg. 6)",
                         url: "https://raidplan.io/plan/5yf4k7f25gcptpc7"
+                    }
+                },
+                {
+                    value: "static",
+                    label: "Static",
+                    url: {
+                        name: "Raidplan by Aetherbound",
+                        url: "https://raidplan.io/plan/ufh89gdss7gkkttq"
                     }
                 }
             ]
@@ -611,12 +773,21 @@ export const hector: Strat = {
                 },
                 {
                     mechanic: "Stacks",
-                    description: "G1 towards Ghost Train\nG2 away from Ghost Train",
+                    description: {
+                        alt: "G1 towards Ghost Train\nG2 away from Ghost Train",
+                        raidplan: "G1 towards Ghost Train\nG2 away from Ghost Train",
+                        static: "Static stacks, G1 North G2 South"
+                    },
                     strats: getStratArray(runawayStrats, 'stacks')
                 },
                 {
                     mechanic: "Spreads",
-                    strats: getStratArray(runawayStrats, 'spreads')
+                    strats: getStratArray(runawayStrats, 'spreads'),
+                    description: {
+                        alt: "",
+                        raidplan: "",
+                        static: "Healers and Melee are static, ignore train direction\nRanged and Tanks will rotate"
+                    }
                 },
                 {
                     mechanic: "Tower + Derail",
