@@ -526,6 +526,7 @@ export const ex7FightConfig: FightConfig = {
     abbreviatedTitle: "EX7",
     subtitle: "EX7 Patch 7.4",
     cheatsheetTitle: "EX7 Cheatsheet",
+    cheatsheetLayout: { rows: 4, columns: 6 },
     strats: {
         hector: {
             label: "Hector",
