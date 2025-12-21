@@ -8,6 +8,7 @@
 	</header>
 	<article class="prose dark:prose-invert max-w-none">
 		<div class="">
+			<div>12/20/2025: improved spotlight readability</div>
 			<div>12/19/2025: add static stack/spreads for ex7</div>
 			<div>12/18/2025: 7.4 release, add ex7</div>
 			<div>12/7/2025: add m4s, make frontpage blocks collapsible</div>
