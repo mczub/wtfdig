@@ -5,6 +5,7 @@
 	// @ts-nocheck
 	import { Modal } from '$lib/components/ui';
 	import { X } from '@lucide/svelte/icons';
+	import SpotlightOverlay from './SpotlightOverlay.svelte';
 
 	let { phase, mech = null, spotlight, imageOpenState = $bindable(), role = null } = $props();
 
@@ -36,7 +37,7 @@
 		if (mech?.strats) {
 			return mech.strats[0]?.mask;
 		}
-		return '';
+		return null;
 	}
 </script>
 
@@ -74,11 +75,18 @@
 					{mech ? mech?.strats && mech.strats[0].description : ''}
 				</div>
 			</div>
-			<img
-				class="rounded-md mt-4 flex-1 min-h-0 object-contain mx-auto max-w-full max-h-full"
-				src={getImageModalUrl()}
-				style:mask-image={spotlight && getImageMask()}
-			/>
+			<div class="relative mt-4 flex-1 min-h-0 flex justify-center items-start">
+				<div class="relative w-fit h-fit max-h-full">
+					<img
+						class="rounded-md block max-w-full max-h-full"
+						src={getImageModalUrl()}
+						alt={mech?.mechanic || phase?.phaseName || 'Strategy image'}
+					/>
+					{#if spotlight && getImageMask()}
+						<SpotlightOverlay mask={getImageMask()} />
+					{/if}
+				</div>
+			</div>
 		</div>
 	{/snippet}
 </Modal>

@@ -21,7 +21,8 @@
 		Wrench
 	} from '@lucide/svelte/icons';
 	import ImagePreview from '../ImagePreview.svelte';
-	import type { TimelineItem } from '$lib/types';
+	import SpotlightOverlay from '../SpotlightOverlay.svelte';
+	import type { TimelineItem, SpotlightMask } from '$lib/types';
 	import { msToTime } from '$lib/utils';
 	import * as Collapsible from '$lib/components/ui/collapsible';
 
@@ -41,7 +42,7 @@
 		alignment,
 		tabTags = null,
 		useMainPageTabs = false,
-		role = null,
+		role = null
 	}: Props = $props();
 
 	function getDefaultCollapsibleState() {
@@ -202,7 +203,12 @@
 
 <div class="flex w-full items-center flex-wrap lg:flex-nowrap">
 	{#if tabTags && useMainPageTabs}
-		<Tabs value={tab} onValueChange={(e) => (tab = e.value)} classes="mb-2" listClasses="flex-wrap gap-2">
+		<Tabs
+			value={tab}
+			onValueChange={(e) => (tab = e.value)}
+			classes="mb-2"
+			listClasses="flex-wrap gap-2"
+		>
 			{#snippet list()}
 				{#each Object.keys(tabTags) as tabName}
 					<Tabs.Control
@@ -219,7 +225,11 @@
 	{/if}
 
 	<div class="flex justify-end lg:mb-4 w-full lg:w-auto">
-		<Button class="border border-border bg-surface-1000/60 shadow-sm hover:bg-muted/60 cursor-pointer" size="sm" onclick={toggleAll}>
+		<Button
+			class="border border-border bg-surface-1000/60 shadow-sm hover:bg-muted/60 cursor-pointer"
+			size="sm"
+			onclick={toggleAll}
+		>
 			{isAllExpanded ? 'Collapse All' : 'Expand All'}
 		</Button>
 	</div>
@@ -359,13 +369,15 @@
 												</div>
 
 												{#if mech?.strats && mech.strats[0]?.imageUrl}
-													<div class="mt-2 rounded-lg overflow-hidden relative">
+													<div class="mt-2 rounded-lg overflow-hidden relative w-fit h-fit">
 														<img
-															class="w-auto h-auto object-contain max-w-full max-h-[350px]"
-															style:mask-image={spotlight && mech.strats[0]?.mask}
+															class="block max-w-full max-h-[350px]"
 															src={mech.strats[0].imageUrl}
 															alt={`${mech.mechanic} strategy`}
 														/>
+														{#if spotlight && mech.strats[0]?.mask}
+															<SpotlightOverlay mask={mech.strats[0].mask} />
+														{/if}
 													</div>
 												{/if}
 											</div>
@@ -378,10 +390,7 @@
 				</Collapsible.Root>
 			{:else}
 				<!-- Fallback for simple phases without mechs array -->
-				<Collapsible.Root
-					class="overflow-hidden"
-					bind:open={collapsibleState[phase.phaseName]}
-				>
+				<Collapsible.Root class="overflow-hidden" bind:open={collapsibleState[phase.phaseName]}>
 					<div class="flex justify-between items-center border-b border-surface-700 pb-2">
 						<h2 class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize">
 							{phase.phaseName}
@@ -425,12 +434,12 @@
 								<div
 									class="rounded-xl overflow-hidden shadow-lg border border-surface-700/50 bg-black/20 self-start"
 								>
-									<img
-										class="max-h-[500px] w-auto object-contain"
-										style:mask-image={spotlight && phase.mask}
-										src={phase.imageUrl}
-										alt={phase.phaseName}
-									/>
+									<div class="relative w-fit h-fit">
+										<img class="max-h-[500px] block" src={phase.imageUrl} alt={phase.phaseName} />
+										{#if spotlight && phase.mask}
+											<SpotlightOverlay mask={phase.mask} />
+										{/if}
+									</div>
 								</div>
 							{/if}
 						</button>

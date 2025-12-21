@@ -10,7 +10,8 @@ import type {
 	FightOptionsContext,
 	FightToggleUrl,
 	Badge,
-	FightStratConfig
+	FightStratConfig,
+	SpotlightMask
 } from './types';
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -27,14 +28,16 @@ export type WithoutChildrenOrChild<T> = WithoutChildren<WithoutChild<T>>;
 export type WithElementRef<T, U extends HTMLElement = HTMLElement> = T & {
 	ref?: U | null;
 };
-export function getCircleMaskUrl(xPercent: number, yPercent: number, size: number) {
-	const svg = `data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%"><rect width="100%" height="100%" fill-opacity="0.5"/><circle cx="${xPercent}%" cy="${yPercent}%" r="${size}%" fill="black" /></svg>`
+export function getCircleMaskUrl(xPercent: number, yPercent: number, size: number, borderWidth = 4) {
+	const svg = `data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%"><rect width="100%" height="100%" fill-opacity="0.5"/><circle cx="${xPercent}%" cy="${yPercent}%" r="${size}%" fill="black" /><circle cx="${xPercent}%" cy="${yPercent}%" r="${size}%" fill="none" stroke="white" stroke-width="${borderWidth}" /></svg>`;
 	return `url('${svg}')`;
 }
 
 export function getMultiCircleMaskUrl(...circles: [number, number, number][]) {
-	const circlesSvg = circles.map(([x, y, r]) => `<circle cx="${x}%" cy="${y}%" r="${r}%" fill="black" />`).join('');
-	const svg = `data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%"><rect width="100%" height="100%" fill-opacity="0.5"/>${circlesSvg}</svg>`
+	const borderWidth = 4;
+	const circlesFillSvg = circles.map(([x, y, r]) => `<circle cx="${x}%" cy="${y}%" r="${r}%" fill="black" />`).join('');
+	const circlesStrokeSvg = circles.map(([x, y, r]) => `<circle cx="${x}%" cy="${y}%" r="${r}%" fill="none" stroke="white" stroke-width="${borderWidth}" />`).join('');
+	const svg = `data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" height="100%" width="100%"><rect width="100%" height="100%" fill-opacity="0.5"/>${circlesFillSvg}${circlesStrokeSvg}</svg>`;
 	return `url('${svg}')`;
 }
 
@@ -45,6 +48,28 @@ export function getRectMaskUrl(xStart: number, xEnd: number, yStart: number, yEn
 
 export function getCircleMask(hPercent: number, vPercent: number, size: number) {
 	return `radial-gradient(circle at ${hPercent}% ${vPercent}%, black ${size - 0.1}%, rgba(0, 0, 0, 0.4)  ${size}%)`;
+}
+
+// New spotlight functions that return structured data for SVG overlay rendering
+export function spotlight(xPercent: number, yPercent: number, size: number): SpotlightMask {
+	return { type: 'circle', x: xPercent, y: yPercent, r: size };
+}
+
+export function spotlightMulti(...circles: [number, number, number][]): SpotlightMask {
+	return {
+		type: 'circles',
+		circles: circles.map(([x, y, r]) => ({ x, y, r }))
+	};
+}
+
+export function spotlightRect(xStart: number, xEnd: number, yStart: number, yEnd: number): SpotlightMask {
+	return {
+		type: 'rect',
+		x: xStart,
+		y: yStart,
+		width: xEnd - xStart,
+		height: yEnd - yStart
+	};
 }
 
 export function msToTime(timeInMs: number): string {
@@ -79,49 +104,57 @@ export function getStratArray(stratRecord: Record<string, StratRecord>, mechanic
 			role: 'Tank',
 			party: 1,
 			description: getStringObject(stratRecord, mechanic, 'description', 'MT'),
-			imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'MT')
+			imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'MT'),
+			mask: getStringObject(stratRecord, mechanic, 'mask', 'MT')
 		},
 		{
 			role: 'Tank',
 			party: 2,
 			description: getStringObject(stratRecord, mechanic, 'description', 'OT'),
-			imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'OT')
+			imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'OT'),
+			mask: getStringObject(stratRecord, mechanic, 'mask', 'OT')
 		},
 		{
 			role: 'Healer',
 			party: 1,
 			description: getStringObject(stratRecord, mechanic, 'description', 'H1'),
-			imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'H1')
+			imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'H1'),
+			mask: getStringObject(stratRecord, mechanic, 'mask', 'H1')
 		},
 		{
 			role: 'Healer',
 			party: 2,
 			description: getStringObject(stratRecord, mechanic, 'description', 'H2'),
-			imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'H2')
+			imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'H2'),
+			mask: getStringObject(stratRecord, mechanic, 'mask', 'H2')
 		},
 		{
 			role: 'Melee',
 			party: 1,
 			description: getStringObject(stratRecord, mechanic, 'description', 'M1'),
-			imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'M1')
+			imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'M1'),
+			mask: getStringObject(stratRecord, mechanic, 'mask', 'M1')
 		},
 		{
 			role: 'Melee',
 			party: 2,
 			description: getStringObject(stratRecord, mechanic, 'description', 'M2'),
-			imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'M2')
+			imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'M2'),
+			mask: getStringObject(stratRecord, mechanic, 'mask', 'M2')
 		},
 		{
 			role: 'Ranged',
 			party: 1,
 			description: getStringObject(stratRecord, mechanic, 'description', 'R1'),
-			imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'R1')
+			imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'R1'),
+			mask: getStringObject(stratRecord, mechanic, 'mask', 'R1')
 		},
 		{
 			role: 'Ranged',
 			party: 2,
 			description: getStringObject(stratRecord, mechanic, 'description', 'R2'),
-			imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'R2')
+			imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'R2'),
+			mask: getStringObject(stratRecord, mechanic, 'mask', 'R2')
 		}
 	];
 }

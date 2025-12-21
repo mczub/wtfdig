@@ -128,3 +128,26 @@ export interface FightToggleState {
 	value: string | null | undefined;
 	options: FightToggleOption[];
 }
+
+// Spotlight mask types for SVG overlay
+export interface CircleSpotlight {
+	type: 'circle';
+	x: number;
+	y: number;
+	r: number;
+}
+
+export interface MultiCircleSpotlight {
+	type: 'circles';
+	circles: { x: number; y: number; r: number }[];
+}
+
+export interface RectSpotlight {
+	type: 'rect';
+	x: number;
+	y: number;
+	width: number;
+	height: number;
+}
+
+export type SpotlightMask = CircleSpotlight | MultiCircleSpotlight | RectSpotlight;

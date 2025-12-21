@@ -7,13 +7,15 @@ const altRunaway: StratRecord = {
             role: "Tank",
             party: 1,
             description: "Take TB Left towards Ghost Train",
-            imageUrl: "./ex7/p3-ghost-train.webp"
+            imageUrl: "./ex7/p3-ghost-train.webp",
+            mask: getCircleMaskUrl(35.4, 30.5, 5)
         },
         OT: {
             role: "Tank",
             party: 2,
             description: "Take TB Right towards Ghost Train",
-            imageUrl: "./ex7/p3-ghost-train.webp"
+            imageUrl: "./ex7/p3-ghost-train.webp",
+            mask: getCircleMaskUrl(64.2, 29.9, 5)
         },
         H1: {
             role: "Healer",
@@ -57,99 +59,116 @@ const altRunaway: StratRecord = {
             role: "Tank",
             party: 1,
             description: "TB Left towards Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp"
+            imageUrl: "./ex7/p3-stacks.webp",
+            mask: getCircleMaskUrl(36.7, 27.1, 5)
         },
         OT: {
             role: "Tank",
             party: 2,
             description: "TB Right towards Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp"
+            imageUrl: "./ex7/p3-stacks.webp",
+            mask: getCircleMaskUrl(64.6, 30.1, 5)
         },
         H1: {
             role: "Healer",
             party: 1,
             description: "Center towards Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp"
+            imageUrl: "./ex7/p3-stacks.webp",
+            mask: getCircleMaskUrl(49.9, 32.3, 7.5)
         },
         H2: {
             role: "Healer",
             party: 2,
             description: "Center away from Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp"
+            imageUrl: "./ex7/p3-stacks.webp",
+            mask: getCircleMaskUrl(49.9, 65.6, 7.5)
         },
         M1: {
             role: "Melee",
             party: 1,
             description: "Center towards Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp"
+            imageUrl: "./ex7/p3-stacks.webp",
+            mask: getCircleMaskUrl(49.9, 32.6, 7.5)
         },
         M2: {
             role: "Melee",
             party: 2,
             description: "Center away from Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp"
+            imageUrl: "./ex7/p3-stacks.webp",
+            mask: getCircleMaskUrl(50, 65.7, 7.5)
         },
         R1: {
             role: "Ranged",
             party: 1,
             description: "Center towards Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp"
+            imageUrl: "./ex7/p3-stacks.webp",
+            mask: getCircleMaskUrl(49.9, 32.5, 7.5)
         },
         R2: {
             role: "Ranged",
             party: 2,
             description: "Center away from Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp"
-        }
+            imageUrl: "./ex7/p3-stacks.webp",
+            mask: getCircleMaskUrl(49.9, 65.8, 7.5)
+        },
+        description: "G1 towards Ghost Train\nG2 away from Ghost Train"
     },
     spreads: {
         MT: {
             role: "Tank",
             party: 1,
             description: "TB Left towards Ghost Train",
-            imageUrl: "./ex7/p3-spread.webp"
+            imageUrl: "./ex7/p3-spread.webp",
+            mask: getCircleMaskUrl(36.6, 27.3, 5)
         },
         OT: {
             role: "Tank",
             party: 2,
             description: "TB Right towards Ghost Train",
-            imageUrl: "./ex7/p3-spread.webp"
+            imageUrl: "./ex7/p3-spread.webp",
+            mask: getCircleMaskUrl(64.6, 30.3, 5)
         },
         H1: {
             role: "Healer",
             party: 1,
             description: "Center close to Ghost Train",
-            imageUrl: "./ex7/p3-spread.webp"
+            imageUrl: "./ex7/p3-spread.webp",
+            mask: getCircleMaskUrl(50.1, 18.2, 5)
         },
         H2: {
             role: "Healer",
             party: 2,
             description: "Center far from Ghost Train",
-            imageUrl: "./ex7/p3-spread.webp"
+            imageUrl: "./ex7/p3-spread.webp",
+            mask: getCircleMaskUrl(50, 80, 5)
         },
         M1: {
             role: "Melee",
             party: 1,
             description: "Center slightly towards Ghost Train",
-            imageUrl: "./ex7/p3-spread.webp"
+            imageUrl: "./ex7/p3-spread.webp",
+            mask: getCircleMaskUrl(50, 38.8, 5)
         },
         M2: {
             role: "Melee",
             party: 2,
             description: "Center slightly away from Ghost Train",
-            imageUrl: "./ex7/p3-spread.webp"
+            imageUrl: "./ex7/p3-spread.webp",
+            mask: getCircleMaskUrl(50, 60.5, 5)
         },
         R1: {
             role: "Ranged",
             party: 1,
             description: "Back Left facing Ghost Train",
-            imageUrl: "./ex7/p3-spread.webp"
+            imageUrl: "./ex7/p3-spread.webp",
+            mask: getCircleMaskUrl(36.9, 68.4, 5)
         },
         R2: {
             role: "Ranged",
             party: 2,
             description: "Back Right facing Ghost Train",
-            imageUrl: "./ex7/p3-spread.webp"
+            imageUrl: "./ex7/p3-spread.webp",
+            mask: getCircleMaskUrl(63.7, 68.2, 5)
         }
     }
 };
@@ -160,12 +179,15 @@ const raidplanRunaway: StratRecord = {
             role: "Tank",
             party: 1,
             description: "Take TB Left towards Ghost Train",
-            imageUrl: "./ex7/p3-ghost-train.webp"
+            imageUrl: "./ex7/p3-ghost-train.webp",
+            mask: getCircleMaskUrl(35.5, 30.5, 5)
         },
         OT: {
             role: "Tank",
             party: 2,
-            description: "Take TB Right towards Ghost Train"
+            description: "Take TB Right towards Ghost Train",
+            imageUrl: "./ex7/p3-ghost-train.webp",
+            mask: getCircleMaskUrl(64.2, 30, 5)
         },
         H1: {
             role: "Healer",
@@ -209,99 +231,116 @@ const raidplanRunaway: StratRecord = {
             role: "Tank",
             party: 1,
             description: "TB Left towards Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp"
+            imageUrl: "./ex7/p3-stacks.webp",
+            mask: getCircleMaskUrl(36.7, 27.1, 5)
         },
         OT: {
             role: "Tank",
             party: 2,
             description: "TB Right towards Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp"
+            imageUrl: "./ex7/p3-stacks.webp",
+            mask: getCircleMaskUrl(64.7, 30.2, 5)
         },
         H1: {
             role: "Healer",
             party: 1,
             description: "Center towards Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp"
+            imageUrl: "./ex7/p3-stacks.webp",
+            mask: getCircleMaskUrl(50, 32.5, 7.5)
         },
         H2: {
             role: "Healer",
             party: 2,
             description: "Center away from Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp"
+            imageUrl: "./ex7/p3-stacks.webp",
+            mask: getCircleMaskUrl(49.9, 65.6, 7.5)
         },
         M1: {
             role: "Melee",
             party: 1,
             description: "Center towards Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp"
+            imageUrl: "./ex7/p3-stacks.webp",
+            mask: getCircleMaskUrl(50, 32.5, 7.5)
         },
         M2: {
             role: "Melee",
             party: 2,
             description: "Center away from Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp"
+            imageUrl: "./ex7/p3-stacks.webp",
+            mask: getCircleMaskUrl(50, 65.8, 7.5)
         },
         R1: {
             role: "Ranged",
             party: 1,
             description: "Center towards Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp"
+            imageUrl: "./ex7/p3-stacks.webp",
+            mask: getCircleMaskUrl(49.9, 32.1, 7.5)
         },
         R2: {
             role: "Ranged",
             party: 2,
             description: "Center away from Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp"
-        }
+            imageUrl: "./ex7/p3-stacks.webp",
+            mask: getCircleMaskUrl(50, 65.6, 7.5)
+        },
+        description: "G1 towards Ghost Train\nG2 away from Ghost Train"
     },
     spreads: {
         MT: {
             role: "Tank",
             party: 1,
             description: "TB Left towards Ghost Train",
-            imageUrl: "./ex7/p3-raidplan-spread.webp"
+            imageUrl: "./ex7/p3-raidplan-spread.webp",
+            mask: getCircleMaskUrl(26.6, 29.8, 5)
         },
         OT: {
             role: "Tank",
             party: 2,
             description: "TB Right towards Ghost Train",
-            imageUrl: "./ex7/p3-raidplan-spread.webp"
+            imageUrl: "./ex7/p3-raidplan-spread.webp",
+            mask: getCircleMaskUrl(73, 30, 5)
         },
         H1: {
             role: "Healer",
             party: 1,
             description: "Center close to Ghost Train",
-            imageUrl: "./ex7/p3-raidplan-spread.webp"
+            imageUrl: "./ex7/p3-raidplan-spread.webp",
+            mask: getCircleMaskUrl(49.5, 12.6, 5)
         },
         H2: {
             role: "Healer",
             party: 2,
             description: "Back Left facing Ghost Train",
-            imageUrl: "./ex7/p3-raidplan-spread.webp"
+            imageUrl: "./ex7/p3-raidplan-spread.webp",
+            mask: getCircleMaskUrl(39.3, 89.2, 5)
         },
         M1: {
             role: "Melee",
             party: 1,
             description: "Max Melee Left of Orb",
-            imageUrl: "./ex7/p3-raidplan-spread.webp"
+            imageUrl: "./ex7/p3-raidplan-spread.webp",
+            mask: getCircleMaskUrl(42.6, 50.1, 5)
         },
         M2: {
             role: "Melee",
             party: 2,
             description: "Max Melee Right of Orb",
-            imageUrl: "./ex7/p3-raidplan-spread.webp"
+            imageUrl: "./ex7/p3-raidplan-spread.webp",
+            mask: getCircleMaskUrl(56.6, 50.3, 5)
         },
         R1: {
             role: "Ranged",
             party: 1,
             description: "Center slightly towards Ghost Train",
-            imageUrl: "./ex7/p3-raidplan-spread.webp"
+            imageUrl: "./ex7/p3-raidplan-spread.webp",
+            mask: getCircleMaskUrl(49.1, 29.9, 5)
         },
         R2: {
             role: "Ranged",
             party: 2,
             description: "Back Right facing Ghost Train",
-            imageUrl: "./ex7/p3-raidplan-spread.webp"
+            imageUrl: "./ex7/p3-raidplan-spread.webp",
+            mask: getCircleMaskUrl(59.6, 88.9, 5)
         }
     }
 };
@@ -312,13 +351,15 @@ const staticRunaway: StratRecord = {
             role: "Tank",
             party: 1,
             description: "Take TB Left towards Ghost Train",
-            imageUrl: "./ex7/p3-ghost-train.webp"
+            imageUrl: "./ex7/p3-ghost-train.webp",
+            mask: getCircleMaskUrl(35.4, 30.5, 5)
         },
         OT: {
             role: "Tank",
             party: 2,
             description: "Take TB Right towards Ghost Train",
-            imageUrl: "./ex7/p3-ghost-train.webp"
+            imageUrl: "./ex7/p3-ghost-train.webp",
+            mask: getCircleMaskUrl(64.2, 30, 5)
         },
         H1: {
             role: "Healer",
@@ -362,99 +403,116 @@ const staticRunaway: StratRecord = {
             role: "Tank",
             party: 1,
             description: "TB Left towards Ghost Train",
-            imageUrl: "./ex7/p3-static-stacks.webp"
+            imageUrl: "./ex7/p3-static-stacks.webp",
+            mask: getCircleMaskUrl(43, 19.5, 5)
         },
         OT: {
             role: "Tank",
             party: 2,
             description: "TB Right towards Ghost Train",
-            imageUrl: "./ex7/p3-static-stacks.webp"
+            imageUrl: "./ex7/p3-static-stacks.webp",
+            mask: getCircleMaskUrl(67.8, 41.3, 5)
         },
         H1: {
             role: "Healer",
             party: 1,
             description: "❗STATIC North Max Melee",
-            imageUrl: "./ex7/p3-static-stacks.webp"
+            imageUrl: "./ex7/p3-static-stacks.webp",
+            mask: getCircleMaskUrl(50.1, 36.7, 7.5)
         },
         H2: {
             role: "Healer",
             party: 2,
             description: "❗STATIC South Max Melee",
-            imageUrl: "./ex7/p3-static-stacks.webp"
+            imageUrl: "./ex7/p3-static-stacks.webp",
+            mask: getCircleMaskUrl(50.1, 62.3, 7.5)
         },
         M1: {
             role: "Melee",
             party: 1,
             description: "❗STATIC North Max Melee",
-            imageUrl: "./ex7/p3-static-stacks.webp"
+            imageUrl: "./ex7/p3-static-stacks.webp",
+            mask: getCircleMaskUrl(50, 36.7, 7.5)
         },
         M2: {
             role: "Melee",
             party: 2,
             description: "❗STATIC South Max Melee",
-            imageUrl: "./ex7/p3-static-stacks.webp"
+            imageUrl: "./ex7/p3-static-stacks.webp",
+            mask: getCircleMaskUrl(50.1, 62.7, 7.5)
         },
         R1: {
             role: "Ranged",
             party: 1,
             description: "❗STATIC North Max Melee",
-            imageUrl: "./ex7/p3-static-stacks.webp"
+            imageUrl: "./ex7/p3-static-stacks.webp",
+            mask: getCircleMaskUrl(50, 36.4, 7.5)
         },
         R2: {
             role: "Ranged",
             party: 2,
             description: "❗STATIC South Max Melee",
-            imageUrl: "./ex7/p3-static-stacks.webp"
-        }
+            imageUrl: "./ex7/p3-static-stacks.webp",
+            mask: getCircleMaskUrl(50.2, 62.3, 7.5)
+        },
+        description: "Static stacks, G1 North G2 South"
     },
     spreads: {
         MT: {
             role: "Tank",
             party: 1,
             description: "TB Left towards Ghost Train",
-            imageUrl: "./ex7/p3-static-spread.webp"
+            imageUrl: "./ex7/p3-static-spread.webp",
+            mask: getCircleMaskUrl(36.7, 27, 5)
         },
         OT: {
             role: "Tank",
             party: 2,
             description: "TB Right towards Ghost Train",
-            imageUrl: "./ex7/p3-static-spread.webp"
+            imageUrl: "./ex7/p3-static-spread.webp",
+            mask: getCircleMaskUrl(64.7, 30.3, 5)
         },
         H1: {
             role: "Healer",
             party: 1,
             description: "❗STATIC North Max Melee",
-            imageUrl: "./ex7/p3-static-spread.webp"
+            imageUrl: "./ex7/p3-static-spread.webp",
+            mask: getCircleMaskUrl(50, 36.7, 5)
         },
         H2: {
             role: "Healer",
             party: 2,
             description: "❗STATIC South Max Melee",
-            imageUrl: "./ex7/p3-static-spread.webp"
+            imageUrl: "./ex7/p3-static-spread.webp",
+            mask: getCircleMaskUrl(50.1, 62.5, 5)
         },
         M1: {
             role: "Melee",
             party: 1,
             description: "❗STATIC West Max Melee",
-            imageUrl: "./ex7/p3-static-spread.webp"
+            imageUrl: "./ex7/p3-static-spread.webp",
+            mask: getCircleMaskUrl(43.6, 50.1, 5)
         },
         M2: {
             role: "Melee",
             party: 2,
             description: "❗STATIC East Max Melee",
-            imageUrl: "./ex7/p3-static-spread.webp"
+            imageUrl: "./ex7/p3-static-spread.webp",
+            mask: getCircleMaskUrl(56.9, 49.8, 5)
         },
         R1: {
             role: "Ranged",
             party: 1,
             description: "Front close to Ghost Train",
-            imageUrl: "./ex7/p3-static-spread.webp"
+            imageUrl: "./ex7/p3-static-spread.webp",
+            mask: getCircleMaskUrl(49.9, 17.9, 5)
         },
         R2: {
             role: "Ranged",
             party: 2,
             description: "Back far from Ghost Train",
-            imageUrl: "./ex7/p3-static-spread.webp"
+            imageUrl: "./ex7/p3-static-spread.webp",
+            mask: getCircleMaskUrl(50.1, 81.9, 5)
         },
         description: "Healers and Melee are static, ignore train direction\nRanged and Tanks will rotate"
     }
@@ -773,19 +831,13 @@ export const hector: Strat = {
                 },
                 {
                     mechanic: "Stacks",
-                    description: {
-                        alt: "G1 towards Ghost Train\nG2 away from Ghost Train",
-                        raidplan: "G1 towards Ghost Train\nG2 away from Ghost Train",
-                        static: "Static stacks, G1 North G2 South"
-                    },
+                    description: getStringObject(runawayStrats, 'stacks', 'description'),
                     strats: getStratArray(runawayStrats, 'stacks')
                 },
                 {
                     mechanic: "Spreads",
                     strats: getStratArray(runawayStrats, 'spreads'),
                     description: {
-                        alt: "",
-                        raidplan: "",
                         static: "Healers and Melee are static, ignore train direction\nRanged and Tanks will rotate"
                     }
                 },
