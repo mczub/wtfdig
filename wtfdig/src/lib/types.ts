@@ -36,6 +36,7 @@ export interface PhaseStrats {
 export interface Strat {
 	stratName: string;
 	stratUrl: string | Record<string, string>;
+	bundleUrls?: ToggledUrl[];
 	description: string | Record<string, string>;
 	notes?: string;
 	strats: PhaseStrats[];
@@ -78,6 +79,11 @@ export interface FightPFContext {
 	stratName?: string;
 	stratState: Record<string, string | null>;
 	currentUrl?: string;
+}
+
+export interface ToggledUrl {
+	toggles: Record<string, string>,
+	url: string;
 }
 
 export interface Badge {

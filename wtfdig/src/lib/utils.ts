@@ -288,6 +288,34 @@ export function getToggleUrls({
 	}, []);
 }
 
+export interface BundleUrlArgs {
+	strat: Strat;
+	stratState: Record<string, string | null>;
+	toggles?: FightToggleConfig[];
+	stratConfig: FightStratConfig;
+}
+
+export function getBundleUrl({
+	strat,
+	stratState,
+}: BundleUrlArgs): string | null {
+	if (!strat || !strat.bundleUrls) return null;
+	const urls = strat.bundleUrls.reduce<string[]>((urls, bundleUrl) => {
+		if (Object.entries(bundleUrl.toggles).every(([key, condValue]) => {
+			// TODO: Do I need default values?
+			const actualValue = stratState?.[key] ?? null;
+			return condValue === actualValue;
+		})) {
+			urls.push(bundleUrl.url);
+		}
+		return urls;
+	}, []);
+	if (urls.length > 1) {
+		console.warn("Multiple bundle URLs found, returning first one.")
+	}
+	return urls[0] ?? null;
+}
+
 interface FightSummaryArgs extends FightOptionsContext {
 	strats: FightStratConfig;
 	toggles?: FightToggleConfig[];
