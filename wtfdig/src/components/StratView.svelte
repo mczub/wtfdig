@@ -226,7 +226,7 @@
 										</div>
 									{/if}
 									{#if mech?.description}<div class="whitespace-pre-wrap text-lg mb-0">
-											{mech.description}
+											{@html mech.description}
 										</div>{/if}
 									{#if mech?.imageUrl}
 										<img class="max-h-[400px] self-start rounded-md mt-4" src={mech.imageUrl} />

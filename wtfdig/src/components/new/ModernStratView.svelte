@@ -341,7 +341,7 @@
 
 												{#if mech?.description}
 													<p class="text-surface-200 text-base leading-relaxed whitespace-pre-wrap">
-														{mech.description}
+														{@html mech.description}
 													</p>
 												{/if}
 

@@ -61,7 +61,7 @@
 		<div class="min-h-0 flex flex-col overflow-hidden">
 			<div class="font-bold text-base lg:text-xl shrink-0">{mech ? mech?.mechanic : ''}</div>
 			<div class="whitespace-pre-wrap text-xs lg:text-lg shrink-0">
-				{mech ? mech?.description : ''}
+				{@html mech ? mech?.description : ''}
 			</div>
 			<div class="flex items-center gap-1 text-xs lg:text-lg mb-0 shrink-0">
 				{#if role && mech?.strats && mech.strats.length > 0}

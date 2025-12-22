@@ -785,8 +785,16 @@ export const hector: Strat = {
             tag: "p1",
             mechs: [
                 {
-                    mechanic: "Order",
-                    description: "Overdraught (stored stack/spread)\nExpress (KB + lasers)\nStack/spread goes off\nOverdraught (stored stack/spread)\nWindpipe (Suck)\nStack/spread goes off"
+                    mechanic: "Overview",
+                    description: `<ul class="overview">
+                        <li><strong>Overdraught</strong> (stored stack/spread)</li>
+                        <li><strong>Express</strong> (KB + lasers)</li>
+                        <li>Stack/spread goes off</li>
+                        <br>
+                        <li><strong>Overdraught</strong> (stored opposite stack/spread)</li>
+                        <li><strong>Windpipe</strong> (Suck)</li>
+                        <li>Stack/spread goes off</li>
+                    </ul>`
                 },
                 {
                     mechanic: "Overdraught",
@@ -810,8 +818,20 @@ export const hector: Strat = {
             tag: "p2",
             mechs: [
                 {
-                    mechanic: "Order",
-                    description: "Overdraught (stored stack/spread)\nTurrets\nExpress (KB + lasers)\nStack/spread goes off\nOverdraught (stored stack/spread)\nTurrets\nLightning Burst (tankbusters)\nTurrets\nWindpipe (Suck)\nStack/spread goes off"
+                    mechanic: "Overview",
+                    description: `<ul class="overview">
+                        <li><strong>Overdraught</strong> (stored stack/spread)</li>
+                        <li>Turrets</li>
+                        <li><strong>Express</strong> (KB + lasers) OR <strong>Windpipe</strong> (Suck)</li>
+                        <li>Stack/spread goes off</li>
+                        <br>
+                        <li><strong>Overdraught</strong> (stored opposite stack/spread)</li>
+                        <li>Turrets</li>
+                        <li><strong>Lightning Burst</strong> (tankbusters)</li>
+                        <li>Turrets</li>
+                        <li><strong>Windpipe</strong> OR <strong>Express</strong> (opposite)</li>
+                        <li>Stack/spread goes off</li>
+                    </ul>`
                 }
             ]
         },
@@ -855,8 +875,19 @@ export const hector: Strat = {
             tag: "p4",
             mechs: [
                 {
-                    mechanic: "Order",
-                    description: "Twisters\nHigh/Low\nArcane Revelation x3\nHigh/Low + Twisters\nTower (MT Invuln)\nTeleport"
+                    mechanic: "Overview",
+                    description: `<ul class="overview">
+                        <li>Twisters</li>
+                        <li>High/Low</li>
+                        <br>
+                        <li><strong>Arcane Revelation</strong> x3 (total of 8 circle moves)</li>
+                        <br>
+                        <li>High/Low</li>
+                        <li>Twisters</li>
+                        <br>
+                        <li><strong>Derailment Siege</strong> (4x tower; MT Invuln)</li>
+                        <li><strong>Derail</strong></li>
+                    </ul>`
                 },
                 {
                     mechanic: "Twisters",
@@ -1013,8 +1044,23 @@ export const hector: Strat = {
             tag: "p5",
             mechs: [
                 {
-                    mechanic: "Order",
-                    description: "Boxes removed\n2x AOEs\nTwisters\nBoxes removed\n3x AOEs\nLightning Burst (tankbusters)\nBoxes removed\n5x AOEs (Big Spread)\nTwisters\nTower (OT Invuln)\nTeleport"
+                    mechanic: "Overview",
+                    description: `<ul class="overview">
+                        <li>Boxes removed</li>
+                        <li><strong>Psychokinesis</strong> (2x big AoEs)</li>
+                        <li>Twisters</li>
+                        <br>
+                        <li>Boxes removed</li>
+                        <li><strong>Psychokinesis</strong> (3x big AoEs)</li>
+                        <li><strong>Lightning Burst</strong> (tankbusters)</li>
+                        <br>
+                        <li>Boxes removed</li>
+                        <li><strong>Psychokinesis</strong> (5x AoEs (Big Spread/YOLO))</li>
+                        <li>Twisters</li>
+                        <br>
+                        <li><strong>Derailment Siege</strong> (5x tower; OT Invuln)</li>
+                        <li><strong>Derail</li>
+                    </ul>`
                 },
                 {
                     mechanic: "5x AOE (Big Spread)",
@@ -1085,8 +1131,26 @@ export const hector: Strat = {
             tag: "p6",
             mechs: [
                 {
-                    mechanic: "Order",
-                    description: "Overdraught (stored stack/spread)\nTurrets\nHigh/Low\nTurrets (BOXES GO AWAY)\n4x AOEs (Big Spread or YOLO)\nTwisters\nTurrets\nWindpipe (Suck) or Express (KB + lasers)\nStack/spread goes off\nLightning Burst (tankbusters)\nOverdraught (stored stack/spread)\nArcane Revelation 2 x2\nTwisters\nExpress (KB + lasers) or Windpipe (Suck)\nStack/spread goes off"
+                    mechanic: "Overview",
+                    description: `<ul class="overview">
+                        <li><strong>Overdraught</strong> (stored stack/spread)</li>
+                        <li>Turrets</li>
+                        <li>High/Low</li>
+                        <li>Turrets (BOXES GO AWAY)</li>
+                        <li><strong>Psychokinesis</strong> (4x big AoEs (Big Spread/YOLO))</li>
+                        <li>Twisters</li>
+                        <li>Turrets</li>
+                        <li><strong>Windpipe</strong> (Suck) OR <strong>Express</strong> (KB + lasers)</li>
+                        <li>Stack/spread goes off</li>
+                        <br>
+                        <li><strong>Lightning Burst</strong> (tankbusters)</li>
+                        <br>
+                        <li><strong>Overdraught</strong> (stored opposite stack/spread)</li>
+                        <li><strong>Arcane Revelation</strong> x2 (total of 5 circle moves)</li>
+                        <li>Twisters</li>
+                        <li><strong>Express</strong> OR <strong>Windpipe</strong> (opposite)</li>
+                        <li>Stack/spread goes off</li>
+                    </ul>`
                 },
                 {
                     mechanic: "Arcane Revelation 2 (East/West)",
@@ -1213,8 +1277,14 @@ export const hector: Strat = {
                     ]
                 },
                 {
-                    mechanic: "More Repeated Mechs",
-                    description: "High/Low\nLightning Burst (tankbusters)\nTwisters\nTower (6x hits)"
+                    mechanic: "Final Sequence",
+                    description: `<ul class="overview">
+                        <li>High/Low</li>
+                        <li><strong>Lightning Burst</strong> (tankbusters)</li>
+                        <li>Twisters</li>
+                        <li><strong>Derailment Siege</strong> (6x tower)</li>
+                        <li><strong>Derail</strong> (hard enrage)</li>
+                    </ul>`
                 }
             ]
         }
