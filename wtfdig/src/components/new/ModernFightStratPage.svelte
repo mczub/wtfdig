@@ -197,6 +197,8 @@
 		title={`${config.cheatsheetTitle} - ${optionsString}`}
 		bind:cheatsheetOpenState
 		timeline={config.timeline ?? []}
+		splitTimeline={config.splitTimeline ?? false}
+		useEvenTimelineSpacing={config.useEvenTimelineSpacing ?? false}
 		{stratName}
 		{stratState}
 		{getStratMechs}

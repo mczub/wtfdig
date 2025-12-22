@@ -42,11 +42,22 @@
 		columns,
 		tabTags = null,
 		splitTimeline = false,
+		useEvenTimelineSpacing: useEvenTimelineSpacingProp = false,
 		role = null
 	}: Props = $props();
 
 	function getFightPercentClass(timeInMs: number, index: number): string {
 		if (useEvenTimelineSpacing) {
+			// When splitTimeline is active, use the filtered timeline length for spacing
+			if (tab && splitTimeline) {
+				const filteredTimeline = timeline.filter(
+					(item) => item.mechTag && tabTags[tab].includes(item.mechTag)
+				);
+				const filteredIndex = filteredTimeline.findIndex((item) => item.startTimeMs === timeInMs);
+				if (filteredIndex >= 0) {
+					return `${(Math.floor((filteredIndex * 980) / filteredTimeline.length) / 10).toString()}%`;
+				}
+			}
 			return `${(Math.floor((index * 980) / timeline.length) / 10).toString()}%`;
 		}
 		let enrageTime;
@@ -88,7 +99,8 @@
 
 	let showTimeline = $state(true);
 
-	let useEvenTimelineSpacing = $derived(innerHeight <= 1024);
+	// innerHeight <= 1024 forces even spacing, otherwise use the prop value
+	let useEvenTimelineSpacing = $derived(innerHeight <= 1024 || useEvenTimelineSpacingProp);
 	let showFilterCaptions = $derived(innerWidth > 1280);
 
 	let timelineFilters = $state({

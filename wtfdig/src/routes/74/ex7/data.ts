@@ -1,5 +1,105 @@
-import type { Strat, FightConfig, StratRecord, PlayerMechStrat } from '$lib/types';
+import type { Strat, FightConfig, StratRecord, PlayerMechStrat, TimelineItem } from '$lib/types';
 import { getStringObject, getStratArray, getCircleMaskUrl, getMultiCircleMaskUrl, getRectMaskUrl } from '$lib/utils';
+
+const timeline: TimelineItem[] = [
+    // Car 1
+    { mechName: 'Start', mechType: 'Start', mechTag: 'pre', startTimeMs: 0 },
+    { mechName: "Store Stack/Spread", mechType: 'StoredMechanic', mechTag: 'pre', startTimeMs: 9000 },
+    { mechName: "Express (KB)", mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 15000 },
+    { mechName: 'Stack/Spread', mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 27000 },
+    { mechName: "Store Stack/Spread", mechType: 'StoredMechanic', mechTag: 'pre', startTimeMs: 28000 },
+    { mechName: "Windpipe (Suck)", mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 34000 },
+    { mechName: "Stack/Spread", mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 46000 },
+    { mechName: 'Raidwide -> Car 2', mechType: 'Raidwide', mechTag: 'pre', startTimeMs: 53000 },
+
+    // Car 2
+    { mechName: "Store Stack/Spread", mechType: 'StoredMechanic', mechTag: 'pre', startTimeMs: 61000 },
+    { mechName: 'Turret Lasers', mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 78000 },
+    { mechName: "Express/Windpipe", mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 75000 },
+    { mechName: 'Stack/Spread', mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 86000 },
+    { mechName: "Store Stack/Spread", mechType: 'StoredMechanic', mechTag: 'pre', startTimeMs: 88000 },
+    { mechName: 'Turret Lasers', mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 95000 },
+    { mechName: 'Lightning Burst', mechType: 'Tankbuster', mechTag: 'pre', startTimeMs: 99000 },
+    { mechName: 'Turret Lasers', mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 105000 },
+    { mechName: "Express/Windpipe", mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 108000 },
+    { mechName: 'Stack/Spread', mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 114000 },
+    { mechName: 'Raidwide -> Car 3', mechType: 'Raidwide', mechTag: 'pre', startTimeMs: 122000 },
+
+    // Car 3
+    { mechName: 'Lightning Burst', mechType: 'Tankbuster', mechTag: 'pre', startTimeMs: 137000 },
+
+    // Runaway Train (Intermission)
+    { mechName: 'Runaway Train', mechType: 'Raidwide', mechTag: 'pre', startTimeMs: 150000 },
+    { mechName: 'Aether Targetable', mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 161000 },
+    { mechName: 'Train AoEs 1', mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 177000 },
+    { mechName: 'Train AoEs 2', mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 193000 },
+    { mechName: 'Train AoEs 3', mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 205000 },
+    { mechName: 'Train AoEs 4', mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 219000 },
+    { mechName: 'Train AoEs 5', mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 233000 },
+    { mechName: 'Enrage??', mechType: 'Enrage', mechTag: 'pre', startTimeMs: 240000 },
+
+    // Car 3 continued
+    { mechName: 'Runaway Train', mechType: 'Start', mechTag: 'post', startTimeMs: 0 },
+    { mechName: 'Targetable', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 11000 },
+    { mechName: 'Shockwave', mechType: 'Raidwide', mechTag: 'post', startTimeMs: 18000 },
+    { mechName: 'Lightning Burst', mechType: 'Tankbuster', mechTag: 'post', startTimeMs: 28000 },
+    { mechName: 'Tower x3', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 30000 },
+    { mechName: 'Derail -> Car 4', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 40000 },
+
+    // Car 4
+    { mechName: 'Twisters Snap', mechType: 'StoredMechanic', mechTag: 'post', startTimeMs: 56000 },
+    { mechName: 'Twisters Hit', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 60000 },
+    { mechName: 'High/Low', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 69000 },
+    { mechName: 'Arcane Revelation', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 78000 },
+    { mechName: 'Arcane 1', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 90000 },
+    { mechName: 'Arcane 2', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 104000 },
+    { mechName: 'Arcane 3', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 118000 },
+    { mechName: 'High/Low', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 130000 },
+    { mechName: 'Twisters Snap', mechType: 'StoredMechanic', mechTag: 'post', startTimeMs: 136000 },
+    { mechName: 'Twisters Hit', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 140000 },
+    { mechName: 'Lightning Burst', mechType: 'Tankbuster', mechTag: 'post', startTimeMs: 148000 },
+    { mechName: 'Tower x4', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 152000 },
+    { mechName: 'Derail -> Car 5', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 164000 },
+
+    // Card 5
+    { mechName: '2x AOEs', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 187000 },
+    { mechName: 'Twisters Snap', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 188000 },
+    { mechName: 'Twisters Hit', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 192000 },
+    { mechName: '3x AOEs', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 202000 },
+    { mechName: 'Lightning Burst', mechType: 'Tankbuster', mechTag: 'post', startTimeMs: 208000 },
+    { mechName: '5x AOEs', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 219000 },
+    { mechName: 'Twisters Snap', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 220000 },
+    { mechName: 'Twisters HF', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 224000 },
+    { mechName: 'Tower x5', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 229000 },
+    { mechName: 'Derail -> Car 6', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 231000 },
+
+    // Card 6
+    { mechName: "Store Stack/Spread", mechType: 'StoredMechanic', mechTag: 'post', startTimeMs: 257000 },
+    { mechName: 'Turret Lasers', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 275000 },
+    { mechName: 'High/Low', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 278000 },
+    { mechName: 'Turret Lasers', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 286000 },
+    { mechName: '4x AOEs', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 295000 },
+    { mechName: 'Twisters Snap', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 296000 },
+    { mechName: 'Twisters Hit', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 300000 },
+    { mechName: 'Turret Lasers', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 308000 },
+    { mechName: "Express/Windpipe", mechType: 'Mechanic', mechTag: 'post', startTimeMs: 310000 },
+    { mechName: 'Stack/Spread', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 315000 },
+    { mechName: 'Lightning Burst', mechType: 'Tankbuster', mechTag: 'post', startTimeMs: 322000 },
+    { mechName: "Store Stack/Spread", mechType: 'StoredMechanic', mechTag: 'post', startTimeMs: 326000 },
+    { mechName: 'Arcane Revelation', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 332000 },
+    { mechName: 'Arcane 1', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 346000 },
+    { mechName: 'Arcane 2', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 360000 },
+    { mechName: 'Twisters Snap', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 362000 },
+    { mechName: 'Twisters Hit', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 366000 },
+    { mechName: "Express/Windpipe", mechType: 'Mechanic', mechTag: 'post', startTimeMs: 376000 },
+    { mechName: 'Stack/Spread', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 382000 },
+    { mechName: 'High/Low', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 390000 },
+    { mechName: 'Lightning Burst', mechType: 'Tankbuster', mechTag: 'post', startTimeMs: 400000 },
+    { mechName: 'Twisters Snap', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 403000 },
+    { mechName: 'Twisters Hit', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 407000 },
+    { mechName: 'Tower x6', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 418000 },
+    { mechName: 'Enrage', mechType: 'Enrage', mechTag: 'post', startTimeMs: 440000 },
+];
 
 const altRunaway: StratRecord = {
     ghosttraintb: {
@@ -526,7 +626,7 @@ export const ex7FightConfig: FightConfig = {
     abbreviatedTitle: "EX7",
     subtitle: "EX7 Patch 7.4",
     cheatsheetTitle: "EX7 Cheatsheet",
-    cheatsheetLayout: { rows: 4, columns: 6 },
+    cheatsheetLayout: { rows: 3, columns: 6 },
     strats: {
         hector: {
             label: "Hector",
@@ -544,7 +644,7 @@ export const ex7FightConfig: FightConfig = {
     toggles: [
         {
             key: "runaway",
-            label: "Spreads",
+            label: "Intermission",
             defaultValue: "alt",
             options: [
                 {
@@ -580,8 +680,15 @@ export const ex7FightConfig: FightConfig = {
             ]
         }
     ],
+    tabTags: {
+        'Pre-Intermission': ['setup', 'p1', 'p2', 'runaway', 'pre'],
+        'Post-Intermission': ['p4', 'p5', 'p6', 'post'],
+    },
     useMainPageTabs: false,
-    defaultStratName: "hector"
+    defaultStratName: "hector",
+    timeline: timeline,
+    splitTimeline: true,
+    useEvenTimelineSpacing: true,
 };
 
 export const hector: Strat = {
@@ -594,6 +701,7 @@ export const hector: Strat = {
     strats: [
         {
             phaseName: "Setup",
+            tag: 'setup',
             mechs: [
                 {
                     mechanic: "Spreads",
@@ -781,7 +889,7 @@ export const hector: Strat = {
             ]
         },
         {
-            phaseName: "Phase 1",
+            phaseName: "Car 1",
             tag: "p1",
             mechs: [
                 {
@@ -814,7 +922,7 @@ export const hector: Strat = {
             ]
         },
         {
-            phaseName: "Phase 2",
+            phaseName: "Car 2",
             tag: "p2",
             mechs: [
                 {
@@ -848,7 +956,6 @@ export const hector: Strat = {
                     mechanic: "Doom Train (Stack/Spread)",
                     description: "2 puffs = LP stacks\n3 puffs = spread",
                     imageUrl: "./ex7/p3-stack-spread-audio.webp",
-                    strats: getStratArray(runawayStrats, 'doomtrainstackspread')
                 },
                 {
                     mechanic: "Stacks",
@@ -859,19 +966,20 @@ export const hector: Strat = {
                     mechanic: "Spreads",
                     strats: getStratArray(runawayStrats, 'spreads'),
                     description: {
-                        static: "Healers and Melee are static, ignore train direction\nRanged and Tanks will rotate"
+                        alt: '',
+                        static: "Healers and Melee are static, ignore train direction\nRanged and Tanks will rotate",
+                        raidplan: '',
                     }
                 },
                 {
                     mechanic: "Tower + Derail",
                     description: "3-hit group stack, then run south to teleporter",
                     imageUrl: "./ex7/p3-tower.webp",
-                    strats: getStratArray(runawayStrats, 'towerderail')
                 }
             ]
         },
         {
-            phaseName: "Phase 4",
+            phaseName: "Car 4",
             tag: "p4",
             mechs: [
                 {
@@ -1040,7 +1148,7 @@ export const hector: Strat = {
             ]
         },
         {
-            phaseName: "Phase 5",
+            phaseName: "Car 5",
             tag: "p5",
             mechs: [
                 {
@@ -1127,7 +1235,7 @@ export const hector: Strat = {
             ]
         },
         {
-            phaseName: "Phase 6",
+            phaseName: "Car 6",
             tag: "p6",
             mechs: [
                 {

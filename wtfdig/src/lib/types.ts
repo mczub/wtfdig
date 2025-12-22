@@ -109,6 +109,8 @@ export interface FightConfig {
 	useMainPageTabs?: boolean;
 	defaultStratName?: string;
 	timeline?: TimelineItem[];
+	splitTimeline?: boolean;
+	useEvenTimelineSpacing?: boolean;
 	additionalResources?: {
 		title: string;
 		description?: string;
