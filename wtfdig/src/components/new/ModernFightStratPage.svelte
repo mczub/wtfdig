@@ -3,12 +3,12 @@
 	import { fade } from 'svelte/transition';
 	import type { ToastLike } from '$lib/utils';
 	import Cheatsheet from '../Cheatsheet.svelte';
-	import { ChevronUp, Copy, ExternalLink, Fullscreen, Info, Link } from '@lucide/svelte';
+	import { ChevronUp, Copy, ExternalLink, Fullscreen, Grid3x3, Info, Link } from '@lucide/svelte';
 	import ModernStratView from './ModernStratView.svelte';
 	import ModernFightStratControls from './ModernFightStratControls.svelte';
 	import FightStratState from './FightStratState.svelte';
 	import type { Alignment, FightConfig, Role, Strat } from '$lib/types';
-	import { buildFightOptionsSummary, buildFightPFDescription, getToggleUrls } from '$lib/utils';
+	import { buildFightOptionsSummary, buildFightPFDescription, getBundleUrl, getToggleUrls } from '$lib/utils';
 
 	interface Props {
 		config: FightConfig;
@@ -192,6 +192,10 @@
 		stratState,
 		showAllToggleUrls: config.showAllToggleUrls
 	})}
+	{@const bundleUrl = getBundleUrl({
+		strat,
+		stratState,
+	})}
 
 	<Cheatsheet
 		title={`${config.cheatsheetTitle} - ${optionsString}`}
@@ -348,6 +352,13 @@
 
 							<!-- Action Buttons -->
 							<div class="gap-2 w-full flex flex-col lg:flex-row lg:w-auto shrink-0">
+								{#if bundleUrl}
+									<button
+										onclick={() => window.open(bundleUrl)}
+										class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none cursor-pointer"
+										><Grid3x3 size={18} />Strategy Board<ExternalLink size={16} /></button
+									>
+								{/if}
 								<button
 									onclick={() => (cheatsheetOpenState = true)}
 									class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 hidden lg:flex lg:flex-none"

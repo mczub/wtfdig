@@ -698,6 +698,26 @@ export const hector: Strat = {
         "Video by Hector Hectorson": "https://www.youtube.com/watch?v=fGGI8MM-wKM",
         "Raidplan by Kroxy Cat": "https://raidplan.io/plan/5yf4k7f25gcptpc7"
     },
+    bundleUrls: [
+        {
+            toggles: {
+                "runaway": "alt",
+            },
+            url: "https://board.wtfdig.info/b/K-TRZpPubFvbN",
+        },
+        {
+            toggles: {
+                "runaway": "raidplan",
+            },
+            url: "https://board.wtfdig.info/b/qp8E9TA-sA4cr",
+        },
+        {
+            toggles: {
+                "runaway": "static",
+            },
+            url: "https://board.wtfdig.info/b/cXD_iRyznwmWF",
+        }
+    ],
     strats: [
         {
             phaseName: "Setup",
