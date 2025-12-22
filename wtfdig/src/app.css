@@ -557,15 +557,28 @@
   .preset-typo-button {
     font-weight: 700;
   }
+
+  ul.overview {
+    white-space: normal;
+    list-style: disc;
+    padding-left: 1.2em;
+
+    &>br {
+      margin: 0.4em 0;
+      display: list-item;
+    }
+
+    &>li {
+      white-space: pre-wrap;
+    }
+  }
 }
 
-@layer utilities {
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+@layer utilities .scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

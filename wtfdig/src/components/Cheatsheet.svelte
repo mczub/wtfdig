@@ -292,7 +292,7 @@
 									<span class="not-group-hover:hidden"><Expand size={16} /></span>
 								</div>
 								{#if mech?.description}<div class="whitespace-pre-wrap text-xs 3xl:text-base mb-0">
-										{mech.description}
+										{@html mech.description}
 									</div>{/if}
 								{#if mech?.imageUrl}
 									<div class="mt-1 min-h-0 h-full">
