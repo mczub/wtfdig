@@ -3,6 +3,7 @@
 	import { slide } from 'svelte/transition';
 	import ChevronDown from '@lucide/svelte/icons/chevron-down';
 	import { Separator } from '$lib/components/ui/separator';
+	import { Grid3x3 } from '@lucide/svelte';
 
 	let openState = $state({
 		'74': true,
@@ -24,6 +25,19 @@
 			<img width="300px" src="{base}/wtfdig-icon-1024.png" alt="WTFDIG Icon" />
 		</div>
 		<div class="grid lg:grid-cols-2 gap-4 max-w-full">
+			<div class="card preset-outlined-secondary-500 gap-4 p-4 mt-4 justify-center lg:col-span-2">
+				<a
+					target="_blank"
+					rel="noopener noreferrer"
+					href="https://board.wtfdig.info"
+					class="flex flex-col items-start mx-2"
+				>
+					<div class="flex flex-row items-center gap-2 text-lg">
+						<Grid3x3 class="size-6 text-primary " /><span class="font-semibold">board</span>
+					</div>
+					<div class="text-base text-surface-400">view + bundle strategy boards</div>
+				</a>
+			</div>
 			<div class="grid gap-4 content-start min-w-[330px]">
 				<div
 					class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
