@@ -698,26 +698,6 @@ export const hector: Strat = {
         "Video by Hector Hectorson": "https://www.youtube.com/watch?v=fGGI8MM-wKM",
         "Raidplan by Kroxy Cat": "https://raidplan.io/plan/5yf4k7f25gcptpc7"
     },
-    bundleUrls: [
-        {
-            toggles: {
-                "runaway": "alt",
-            },
-            url: "https://board.wtfdig.info/b/K-TRZpPubFvbN",
-        },
-        {
-            toggles: {
-                "runaway": "raidplan",
-            },
-            url: "https://board.wtfdig.info/b/qp8E9TA-sA4cr",
-        },
-        {
-            toggles: {
-                "runaway": "static",
-            },
-            url: "https://board.wtfdig.info/b/cXD_iRyznwmWF",
-        }
-    ],
     strats: [
         {
             phaseName: "Setup",
@@ -911,6 +891,7 @@ export const hector: Strat = {
         {
             phaseName: "Car 1",
             tag: "p1",
+            boardCode: 'YJJzg701CLDgj',
             mechs: [
                 {
                     mechanic: "Overview",
@@ -966,6 +947,11 @@ export const hector: Strat = {
         {
             phaseName: "Runaway Train",
             tag: "runaway",
+            boardCode: {
+                'alt': 'esjq9TWtfvc_U',
+                'static': 'p1EfvtcHTHBAj',
+                'raidplan': 'SeqxDs6FKT7kK',
+            },
             mechs: [
                 {
                     mechanic: "Ghost Train (TB)",
@@ -1032,6 +1018,7 @@ export const hector: Strat = {
         {
             phaseName: "Arcane Revelation",
             tag: "arcane",
+            boardCode: 'DXHyZygbWxTfc',
             mechs: [
                 {
                     mechanic: "Diamond",
@@ -1170,6 +1157,7 @@ export const hector: Strat = {
         {
             phaseName: "Car 5",
             tag: "p5",
+            boardCode: 'nptkmmB60ixvD',
             mechs: [
                 {
                     mechanic: "Overview",
