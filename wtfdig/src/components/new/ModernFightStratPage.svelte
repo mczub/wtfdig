@@ -261,6 +261,7 @@
 		setSpotlight={(val) => (spotlight = val)}
 		additionalResources={config.additionalResources}
 	/>
+
 	{#if scrollY > 300}
 		<button
 			transition:fade={{ duration: 200 }}
@@ -272,26 +273,22 @@
 			<ChevronUp size={24} />
 		</button>
 	{/if}
-	<div class="container grow px-4 mx-auto mb-6 pt-8">
-		<div class="container">
+	<div class="container grow px-4 mx-auto mb-6 pt-6">
+		{#if !role || !party || !stratName}
 			<div
-				class="card preset-outlined-warning-500 p-4 mb-6 flex flex-row gap-4 items-center bg-warning-500/10 border-warning-500/20"
+				class="relative w-fit -mt-5 mb-2 z-10 bg-surface-900 border border-primary-500 text-surface-50 px-4 py-2 rounded-xl shadow-xl"
 			>
-				<Info size={24} class="text-warning-500 shrink-0" />
-				<div class="text-sm md:text-base text-warning-200">
-					<p class="font-semibold">This site is still under construction.</p>
-					<p>
-						Some strats may be missing images or highlights. Please refer to original guides for
-						full details.
-					</p>
-				</div>
+				<div
+					class="absolute -top-1.5 left-8 w-3 h-3 bg-surface-900 border-t border-l border-primary-500 transform rotate-45"
+				></div>
+				<span class="font-bold text-lg whitespace-nowrap">Select your role, group & strat</span>
 			</div>
-
+		{/if}
+		<div class="container">
 			<div class="mb-4 text-left border-b border-surface-700/50 pb-4">
 				<div class="preset-typo-headline font-bold tracking-tight">{config.title}</div>
 				<div class="text-lg lg:text-2xl text-surface-400 font-light">{config.subtitle}</div>
 			</div>
-
 			{#if stratName && normalizedRole && party}
 				{#if typeof individualStrat === 'string'}
 					{strat}
@@ -353,10 +350,21 @@
 								{/if}
 							</div>
 						</div>
+						<div
+							class="card preset-outlined-primary-500 p-4 mb-6 w-fit flex flex-row gap-4 items-center"
+						>
+							<Info size={24} class="shrink-0" />
+							<div class="text-sm md:text-base text-warning-200">
+								<p>
+									Some strats may be missing images or highlights. Please refer to original guides
+									for full details.
+								</p>
+							</div>
+						</div>
 
 						<!-- Action Bar -->
 						<div
-							class="flex flex-col lg:flex-row gap-4 mb-8 items-center justify-between bg-surface-900/30 p-4 rounded-xl border border-surface-800/50 backdrop-blur-sm min-w-0 w-full"
+							class="flex flex-col lg:flex-row gap-4 mb-6 items-center justify-between bg-surface-900/30 p-4 rounded-xl border border-surface-800/50 backdrop-blur-sm min-w-0 w-full"
 						>
 							<div
 								class="card flex flex-col lg:flex-row grow border border-surface-700/50 items-center bg-surface-950/50 overflow-hidden w-full lg:w-auto min-w-0 order-first lg:order-last"
