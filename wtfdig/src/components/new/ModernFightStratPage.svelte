@@ -240,9 +240,11 @@
 
 	<ModernFightStratControls
 		title={config.abbreviatedTitle ?? config.title}
+		strats={config.strats}
 		{stratName}
 		{stratOptions}
 		onSelectStrat={selectStrat}
+		{stratState}
 		toggles={(config.toggles ?? []).map((toggle) => ({
 			key: toggle.key,
 			label: toggle.label,

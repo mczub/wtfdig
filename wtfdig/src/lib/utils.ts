@@ -331,6 +331,33 @@ export function getBoardUrl({
 interface FightSummaryArgs extends FightOptionsContext {
 	strats: FightStratConfig;
 	toggles?: FightToggleConfig[];
+	separator?: string;
+}
+
+export function buildFightOptionsString({
+	stratName,
+	stratState,
+	toggles,
+	strats,
+	separator = ' | ',
+}: FightSummaryArgs): string {
+	if (!stratName) return '';
+	const baseName = strats[stratName]?.label ?? stratName;
+	const diffDescriptions = getToggleDiffDescriptions({
+		stratName,
+		stratState,
+		toggles,
+		strats
+	});
+	const parts = [baseName, ...diffDescriptions];
+	console.log('args', stratName,
+		stratState,
+		toggles,
+		strats)
+	if (diffDescriptions.length === 0) {
+		return `${strats[stratName]?.defaultPfDescription ?? baseName}`;
+	}
+	return parts.join(separator);
 }
 
 export function buildFightOptionsSummary({
@@ -347,15 +374,14 @@ export function buildFightOptionsSummary({
 
 	const roleAbbrev = formatRoleAbbreviation(role, party, useJpNaming);
 	if (!roleAbbrev) return '';
-	const baseName = strats[stratName]?.label ?? stratName;
-	const diffDescriptions = getToggleDiffDescriptions({
+	const fightOptions = buildFightOptionsString({
 		stratName,
 		stratState,
 		toggles,
-		strats
+		strats,
+		separator: ' | '
 	});
-	const parts = [baseName, ...diffDescriptions];
-	return `${parts.join(' | ')} - ${roleAbbrev}`;
+	return `${fightOptions} - ${roleAbbrev}`;
 }
 
 interface FightPFDescriptionArgs extends FightPFContext {
@@ -371,18 +397,14 @@ export function buildFightPFDescription({
 	toggles
 }: FightPFDescriptionArgs): string {
 	if (!stratName) return '';
-	const baseName = strats[stratName]?.label ?? stratName;
-	const diffDescriptions = getToggleDiffDescriptions({
+	const fightOptions = buildFightOptionsString({
 		stratName,
 		stratState,
 		toggles,
-		strats
+		strats,
+		separator: ' | '
 	});
-	const parts = [baseName, ...diffDescriptions];
-	if (diffDescriptions.length === 0) {
-		return `${strats[stratName]?.defaultPfDescription ?? baseName} | ${currentUrl ?? ''}`;
-	}
-	return `${parts.join(' | ')} | ${currentUrl ?? ''}`;
+	return `${fightOptions} | ${currentUrl ?? ''}`;
 }
 
 export interface ToastLike {

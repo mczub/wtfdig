@@ -8,6 +8,7 @@
 	</header>
 	<article class="prose dark:prose-invert max-w-none">
 		<div class="">
+			<div>12/24/2025: add ex7 cheese, allow toggles to switch out entire phases</div>
 			<div>12/23/2025: ex7 strategy board links, thanks to Tvnareia again</div>
 			<div>12/22/2025: lots of ex7 improvements, thank you Tvnareia Reksane@Seraph!</div>
 			<div>12/20/2025: improved spotlight readability</div>
