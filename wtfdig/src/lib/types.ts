@@ -30,7 +30,7 @@ export interface PhaseStrats {
 	description?: string | Record<string, string>;
 	imageUrl?: string | Record<string, string>;
 	mask?: string | Record<string, string>;
-	mechs?: MechanicStrat[];
+	mechs?: MechanicStrat[] | Record<string, MechanicStrat[]>;
 }
 
 export interface Strat {

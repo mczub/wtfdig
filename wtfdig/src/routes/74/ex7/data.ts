@@ -1,105 +1,5 @@
-import type { Strat, FightConfig, StratRecord, PlayerMechStrat, TimelineItem } from '$lib/types';
+import type { Strat, FightConfig, StratRecord, PlayerMechStrat, MechanicStrat } from '$lib/types';
 import { getStringObject, getStratArray, getCircleMaskUrl, getMultiCircleMaskUrl, getRectMaskUrl } from '$lib/utils';
-
-const timeline: TimelineItem[] = [
-    // Car 1
-    { mechName: 'Start', mechType: 'Start', mechTag: 'pre', startTimeMs: 0 },
-    { mechName: "Store Stack/Spread", mechType: 'StoredMechanic', mechTag: 'pre', startTimeMs: 9000 },
-    { mechName: "Express (KB)", mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 15000 },
-    { mechName: 'Stack/Spread', mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 27000 },
-    { mechName: "Store Stack/Spread", mechType: 'StoredMechanic', mechTag: 'pre', startTimeMs: 28000 },
-    { mechName: "Windpipe (Suck)", mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 34000 },
-    { mechName: "Stack/Spread", mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 46000 },
-    { mechName: 'Raidwide -> Car 2', mechType: 'Raidwide', mechTag: 'pre', startTimeMs: 53000 },
-
-    // Car 2
-    { mechName: "Store Stack/Spread", mechType: 'StoredMechanic', mechTag: 'pre', startTimeMs: 61000 },
-    { mechName: 'Turret Lasers', mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 78000 },
-    { mechName: "Express/Windpipe", mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 75000 },
-    { mechName: 'Stack/Spread', mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 86000 },
-    { mechName: "Store Stack/Spread", mechType: 'StoredMechanic', mechTag: 'pre', startTimeMs: 88000 },
-    { mechName: 'Turret Lasers', mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 95000 },
-    { mechName: 'Lightning Burst', mechType: 'Tankbuster', mechTag: 'pre', startTimeMs: 99000 },
-    { mechName: 'Turret Lasers', mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 105000 },
-    { mechName: "Express/Windpipe", mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 108000 },
-    { mechName: 'Stack/Spread', mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 114000 },
-    { mechName: 'Raidwide -> Car 3', mechType: 'Raidwide', mechTag: 'pre', startTimeMs: 122000 },
-
-    // Car 3
-    { mechName: 'Lightning Burst', mechType: 'Tankbuster', mechTag: 'pre', startTimeMs: 137000 },
-
-    // Runaway Train (Intermission)
-    { mechName: 'Runaway Train', mechType: 'Raidwide', mechTag: 'pre', startTimeMs: 150000 },
-    { mechName: 'Aether Targetable', mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 161000 },
-    { mechName: 'Train AoEs 1', mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 177000 },
-    { mechName: 'Train AoEs 2', mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 193000 },
-    { mechName: 'Train AoEs 3', mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 205000 },
-    { mechName: 'Train AoEs 4', mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 219000 },
-    { mechName: 'Train AoEs 5', mechType: 'Mechanic', mechTag: 'pre', startTimeMs: 233000 },
-    { mechName: 'Enrage??', mechType: 'Enrage', mechTag: 'pre', startTimeMs: 240000 },
-
-    // Car 3 continued
-    { mechName: 'Runaway Train', mechType: 'Start', mechTag: 'post', startTimeMs: 0 },
-    { mechName: 'Targetable', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 11000 },
-    { mechName: 'Shockwave', mechType: 'Raidwide', mechTag: 'post', startTimeMs: 18000 },
-    { mechName: 'Lightning Burst', mechType: 'Tankbuster', mechTag: 'post', startTimeMs: 28000 },
-    { mechName: 'Tower x3', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 30000 },
-    { mechName: 'Derail -> Car 4', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 40000 },
-
-    // Car 4
-    { mechName: 'Twisters Snap', mechType: 'StoredMechanic', mechTag: 'post', startTimeMs: 56000 },
-    { mechName: 'Twisters Hit', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 60000 },
-    { mechName: 'High/Low', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 69000 },
-    { mechName: 'Arcane Revelation', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 78000 },
-    { mechName: 'Arcane 1', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 90000 },
-    { mechName: 'Arcane 2', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 104000 },
-    { mechName: 'Arcane 3', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 118000 },
-    { mechName: 'High/Low', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 130000 },
-    { mechName: 'Twisters Snap', mechType: 'StoredMechanic', mechTag: 'post', startTimeMs: 136000 },
-    { mechName: 'Twisters Hit', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 140000 },
-    { mechName: 'Lightning Burst', mechType: 'Tankbuster', mechTag: 'post', startTimeMs: 148000 },
-    { mechName: 'Tower x4', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 152000 },
-    { mechName: 'Derail -> Car 5', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 164000 },
-
-    // Card 5
-    { mechName: '2x AOEs', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 187000 },
-    { mechName: 'Twisters Snap', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 188000 },
-    { mechName: 'Twisters Hit', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 192000 },
-    { mechName: '3x AOEs', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 202000 },
-    { mechName: 'Lightning Burst', mechType: 'Tankbuster', mechTag: 'post', startTimeMs: 208000 },
-    { mechName: '5x AOEs', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 219000 },
-    { mechName: 'Twisters Snap', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 220000 },
-    { mechName: 'Twisters HF', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 224000 },
-    { mechName: 'Tower x5', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 229000 },
-    { mechName: 'Derail -> Car 6', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 231000 },
-
-    // Card 6
-    { mechName: "Store Stack/Spread", mechType: 'StoredMechanic', mechTag: 'post', startTimeMs: 257000 },
-    { mechName: 'Turret Lasers', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 275000 },
-    { mechName: 'High/Low', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 278000 },
-    { mechName: 'Turret Lasers', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 286000 },
-    { mechName: '4x AOEs', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 295000 },
-    { mechName: 'Twisters Snap', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 296000 },
-    { mechName: 'Twisters Hit', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 300000 },
-    { mechName: 'Turret Lasers', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 308000 },
-    { mechName: "Express/Windpipe", mechType: 'Mechanic', mechTag: 'post', startTimeMs: 310000 },
-    { mechName: 'Stack/Spread', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 315000 },
-    { mechName: 'Lightning Burst', mechType: 'Tankbuster', mechTag: 'post', startTimeMs: 322000 },
-    { mechName: "Store Stack/Spread", mechType: 'StoredMechanic', mechTag: 'post', startTimeMs: 326000 },
-    { mechName: 'Arcane Revelation', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 332000 },
-    { mechName: 'Arcane 1', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 346000 },
-    { mechName: 'Arcane 2', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 360000 },
-    { mechName: 'Twisters Snap', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 362000 },
-    { mechName: 'Twisters Hit', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 366000 },
-    { mechName: "Express/Windpipe", mechType: 'Mechanic', mechTag: 'post', startTimeMs: 376000 },
-    { mechName: 'Stack/Spread', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 382000 },
-    { mechName: 'High/Low', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 390000 },
-    { mechName: 'Lightning Burst', mechType: 'Tankbuster', mechTag: 'post', startTimeMs: 400000 },
-    { mechName: 'Twisters Snap', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 403000 },
-    { mechName: 'Twisters Hit', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 407000 },
-    { mechName: 'Tower x6', mechType: 'Mechanic', mechTag: 'post', startTimeMs: 418000 },
-    { mechName: 'Enrage', mechType: 'Enrage', mechTag: 'post', startTimeMs: 440000 },
-];
 
 const altRunaway: StratRecord = {
     ghosttraintb: {
@@ -107,15 +7,13 @@ const altRunaway: StratRecord = {
             role: "Tank",
             party: 1,
             description: "Take TB Left towards Ghost Train",
-            imageUrl: "./ex7/p3-ghost-train.webp",
-            mask: getCircleMaskUrl(35.4, 30.5, 5)
+            imageUrl: "./ex7/p3-ghost-train.webp"
         },
         OT: {
             role: "Tank",
             party: 2,
             description: "Take TB Right towards Ghost Train",
-            imageUrl: "./ex7/p3-ghost-train.webp",
-            mask: getCircleMaskUrl(64.2, 29.9, 5)
+            imageUrl: "./ex7/p3-ghost-train.webp"
         },
         H1: {
             role: "Healer",
@@ -159,57 +57,49 @@ const altRunaway: StratRecord = {
             role: "Tank",
             party: 1,
             description: "TB Left towards Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp",
-            mask: getCircleMaskUrl(36.7, 27.1, 5)
+            imageUrl: "./ex7/p3-stacks.webp"
         },
         OT: {
             role: "Tank",
             party: 2,
             description: "TB Right towards Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp",
-            mask: getCircleMaskUrl(64.6, 30.1, 5)
+            imageUrl: "./ex7/p3-stacks.webp"
         },
         H1: {
             role: "Healer",
             party: 1,
             description: "Center towards Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp",
-            mask: getCircleMaskUrl(49.9, 32.3, 7.5)
+            imageUrl: "./ex7/p3-stacks.webp"
         },
         H2: {
             role: "Healer",
             party: 2,
             description: "Center away from Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp",
-            mask: getCircleMaskUrl(49.9, 65.6, 7.5)
+            imageUrl: "./ex7/p3-stacks.webp"
         },
         M1: {
             role: "Melee",
             party: 1,
             description: "Center towards Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp",
-            mask: getCircleMaskUrl(49.9, 32.6, 7.5)
+            imageUrl: "./ex7/p3-stacks.webp"
         },
         M2: {
             role: "Melee",
             party: 2,
             description: "Center away from Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp",
-            mask: getCircleMaskUrl(50, 65.7, 7.5)
+            imageUrl: "./ex7/p3-stacks.webp"
         },
         R1: {
             role: "Ranged",
             party: 1,
             description: "Center towards Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp",
-            mask: getCircleMaskUrl(49.9, 32.5, 7.5)
+            imageUrl: "./ex7/p3-stacks.webp"
         },
         R2: {
             role: "Ranged",
             party: 2,
             description: "Center away from Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp",
-            mask: getCircleMaskUrl(49.9, 65.8, 7.5)
+            imageUrl: "./ex7/p3-stacks.webp"
         },
         description: "G1 towards Ghost Train\nG2 away from Ghost Train"
     },
@@ -218,57 +108,49 @@ const altRunaway: StratRecord = {
             role: "Tank",
             party: 1,
             description: "TB Left towards Ghost Train",
-            imageUrl: "./ex7/p3-spread.webp",
-            mask: getCircleMaskUrl(36.6, 27.3, 5)
+            imageUrl: "./ex7/p3-spread.webp"
         },
         OT: {
             role: "Tank",
             party: 2,
             description: "TB Right towards Ghost Train",
-            imageUrl: "./ex7/p3-spread.webp",
-            mask: getCircleMaskUrl(64.6, 30.3, 5)
+            imageUrl: "./ex7/p3-spread.webp"
         },
         H1: {
             role: "Healer",
             party: 1,
             description: "Center close to Ghost Train",
-            imageUrl: "./ex7/p3-spread.webp",
-            mask: getCircleMaskUrl(50.1, 18.2, 5)
+            imageUrl: "./ex7/p3-spread.webp"
         },
         H2: {
             role: "Healer",
             party: 2,
             description: "Center far from Ghost Train",
-            imageUrl: "./ex7/p3-spread.webp",
-            mask: getCircleMaskUrl(50, 80, 5)
+            imageUrl: "./ex7/p3-spread.webp"
         },
         M1: {
             role: "Melee",
             party: 1,
             description: "Center slightly towards Ghost Train",
-            imageUrl: "./ex7/p3-spread.webp",
-            mask: getCircleMaskUrl(50, 38.8, 5)
+            imageUrl: "./ex7/p3-spread.webp"
         },
         M2: {
             role: "Melee",
             party: 2,
             description: "Center slightly away from Ghost Train",
-            imageUrl: "./ex7/p3-spread.webp",
-            mask: getCircleMaskUrl(50, 60.5, 5)
+            imageUrl: "./ex7/p3-spread.webp"
         },
         R1: {
             role: "Ranged",
             party: 1,
             description: "Back Left facing Ghost Train",
-            imageUrl: "./ex7/p3-spread.webp",
-            mask: getCircleMaskUrl(36.9, 68.4, 5)
+            imageUrl: "./ex7/p3-spread.webp"
         },
         R2: {
             role: "Ranged",
             party: 2,
             description: "Back Right facing Ghost Train",
-            imageUrl: "./ex7/p3-spread.webp",
-            mask: getCircleMaskUrl(63.7, 68.2, 5)
+            imageUrl: "./ex7/p3-spread.webp"
         }
     }
 };
@@ -279,15 +161,13 @@ const raidplanRunaway: StratRecord = {
             role: "Tank",
             party: 1,
             description: "Take TB Left towards Ghost Train",
-            imageUrl: "./ex7/p3-ghost-train.webp",
-            mask: getCircleMaskUrl(35.5, 30.5, 5)
+            imageUrl: "./ex7/p3-ghost-train.webp"
         },
         OT: {
             role: "Tank",
             party: 2,
             description: "Take TB Right towards Ghost Train",
-            imageUrl: "./ex7/p3-ghost-train.webp",
-            mask: getCircleMaskUrl(64.2, 30, 5)
+            imageUrl: "./ex7/p3-ghost-train.webp"
         },
         H1: {
             role: "Healer",
@@ -331,57 +211,49 @@ const raidplanRunaway: StratRecord = {
             role: "Tank",
             party: 1,
             description: "TB Left towards Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp",
-            mask: getCircleMaskUrl(36.7, 27.1, 5)
+            imageUrl: "./ex7/p3-stacks.webp"
         },
         OT: {
             role: "Tank",
             party: 2,
             description: "TB Right towards Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp",
-            mask: getCircleMaskUrl(64.7, 30.2, 5)
+            imageUrl: "./ex7/p3-stacks.webp"
         },
         H1: {
             role: "Healer",
             party: 1,
             description: "Center towards Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp",
-            mask: getCircleMaskUrl(50, 32.5, 7.5)
+            imageUrl: "./ex7/p3-stacks.webp"
         },
         H2: {
             role: "Healer",
             party: 2,
             description: "Center away from Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp",
-            mask: getCircleMaskUrl(49.9, 65.6, 7.5)
+            imageUrl: "./ex7/p3-stacks.webp"
         },
         M1: {
             role: "Melee",
             party: 1,
             description: "Center towards Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp",
-            mask: getCircleMaskUrl(50, 32.5, 7.5)
+            imageUrl: "./ex7/p3-stacks.webp"
         },
         M2: {
             role: "Melee",
             party: 2,
             description: "Center away from Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp",
-            mask: getCircleMaskUrl(50, 65.8, 7.5)
+            imageUrl: "./ex7/p3-stacks.webp"
         },
         R1: {
             role: "Ranged",
             party: 1,
             description: "Center towards Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp",
-            mask: getCircleMaskUrl(49.9, 32.1, 7.5)
+            imageUrl: "./ex7/p3-stacks.webp"
         },
         R2: {
             role: "Ranged",
             party: 2,
             description: "Center away from Ghost Train",
-            imageUrl: "./ex7/p3-stacks.webp",
-            mask: getCircleMaskUrl(50, 65.6, 7.5)
+            imageUrl: "./ex7/p3-stacks.webp"
         },
         description: "G1 towards Ghost Train\nG2 away from Ghost Train"
     },
@@ -390,57 +262,49 @@ const raidplanRunaway: StratRecord = {
             role: "Tank",
             party: 1,
             description: "TB Left towards Ghost Train",
-            imageUrl: "./ex7/p3-raidplan-spread.webp",
-            mask: getCircleMaskUrl(26.6, 29.8, 5)
+            imageUrl: "./ex7/p3-raidplan-spread.webp"
         },
         OT: {
             role: "Tank",
             party: 2,
             description: "TB Right towards Ghost Train",
-            imageUrl: "./ex7/p3-raidplan-spread.webp",
-            mask: getCircleMaskUrl(73, 30, 5)
+            imageUrl: "./ex7/p3-raidplan-spread.webp"
         },
         H1: {
             role: "Healer",
             party: 1,
             description: "Center close to Ghost Train",
-            imageUrl: "./ex7/p3-raidplan-spread.webp",
-            mask: getCircleMaskUrl(49.5, 12.6, 5)
+            imageUrl: "./ex7/p3-raidplan-spread.webp"
         },
         H2: {
             role: "Healer",
             party: 2,
             description: "Back Left facing Ghost Train",
-            imageUrl: "./ex7/p3-raidplan-spread.webp",
-            mask: getCircleMaskUrl(39.3, 89.2, 5)
+            imageUrl: "./ex7/p3-raidplan-spread.webp"
         },
         M1: {
             role: "Melee",
             party: 1,
             description: "Max Melee Left of Orb",
-            imageUrl: "./ex7/p3-raidplan-spread.webp",
-            mask: getCircleMaskUrl(42.6, 50.1, 5)
+            imageUrl: "./ex7/p3-raidplan-spread.webp"
         },
         M2: {
             role: "Melee",
             party: 2,
             description: "Max Melee Right of Orb",
-            imageUrl: "./ex7/p3-raidplan-spread.webp",
-            mask: getCircleMaskUrl(56.6, 50.3, 5)
+            imageUrl: "./ex7/p3-raidplan-spread.webp"
         },
         R1: {
             role: "Ranged",
             party: 1,
             description: "Center slightly towards Ghost Train",
-            imageUrl: "./ex7/p3-raidplan-spread.webp",
-            mask: getCircleMaskUrl(49.1, 29.9, 5)
+            imageUrl: "./ex7/p3-raidplan-spread.webp"
         },
         R2: {
             role: "Ranged",
             party: 2,
             description: "Back Right facing Ghost Train",
-            imageUrl: "./ex7/p3-raidplan-spread.webp",
-            mask: getCircleMaskUrl(59.6, 88.9, 5)
+            imageUrl: "./ex7/p3-raidplan-spread.webp"
         }
     }
 };
@@ -451,15 +315,13 @@ const staticRunaway: StratRecord = {
             role: "Tank",
             party: 1,
             description: "Take TB Left towards Ghost Train",
-            imageUrl: "./ex7/p3-ghost-train.webp",
-            mask: getCircleMaskUrl(35.4, 30.5, 5)
+            imageUrl: "./ex7/p3-ghost-train.webp"
         },
         OT: {
             role: "Tank",
             party: 2,
             description: "Take TB Right towards Ghost Train",
-            imageUrl: "./ex7/p3-ghost-train.webp",
-            mask: getCircleMaskUrl(64.2, 30, 5)
+            imageUrl: "./ex7/p3-ghost-train.webp"
         },
         H1: {
             role: "Healer",
@@ -503,57 +365,49 @@ const staticRunaway: StratRecord = {
             role: "Tank",
             party: 1,
             description: "TB Left towards Ghost Train",
-            imageUrl: "./ex7/p3-static-stacks.webp",
-            mask: getCircleMaskUrl(43, 19.5, 5)
+            imageUrl: "./ex7/p3-static-stacks.webp"
         },
         OT: {
             role: "Tank",
             party: 2,
             description: "TB Right towards Ghost Train",
-            imageUrl: "./ex7/p3-static-stacks.webp",
-            mask: getCircleMaskUrl(67.8, 41.3, 5)
+            imageUrl: "./ex7/p3-static-stacks.webp"
         },
         H1: {
             role: "Healer",
             party: 1,
             description: "❗STATIC North Max Melee",
-            imageUrl: "./ex7/p3-static-stacks.webp",
-            mask: getCircleMaskUrl(50.1, 36.7, 7.5)
+            imageUrl: "./ex7/p3-static-stacks.webp"
         },
         H2: {
             role: "Healer",
             party: 2,
             description: "❗STATIC South Max Melee",
-            imageUrl: "./ex7/p3-static-stacks.webp",
-            mask: getCircleMaskUrl(50.1, 62.3, 7.5)
+            imageUrl: "./ex7/p3-static-stacks.webp"
         },
         M1: {
             role: "Melee",
             party: 1,
             description: "❗STATIC North Max Melee",
-            imageUrl: "./ex7/p3-static-stacks.webp",
-            mask: getCircleMaskUrl(50, 36.7, 7.5)
+            imageUrl: "./ex7/p3-static-stacks.webp"
         },
         M2: {
             role: "Melee",
             party: 2,
             description: "❗STATIC South Max Melee",
-            imageUrl: "./ex7/p3-static-stacks.webp",
-            mask: getCircleMaskUrl(50.1, 62.7, 7.5)
+            imageUrl: "./ex7/p3-static-stacks.webp"
         },
         R1: {
             role: "Ranged",
             party: 1,
             description: "❗STATIC North Max Melee",
-            imageUrl: "./ex7/p3-static-stacks.webp",
-            mask: getCircleMaskUrl(50, 36.4, 7.5)
+            imageUrl: "./ex7/p3-static-stacks.webp"
         },
         R2: {
             role: "Ranged",
             party: 2,
             description: "❗STATIC South Max Melee",
-            imageUrl: "./ex7/p3-static-stacks.webp",
-            mask: getCircleMaskUrl(50.2, 62.3, 7.5)
+            imageUrl: "./ex7/p3-static-stacks.webp"
         },
         description: "Static stacks, G1 North G2 South"
     },
@@ -562,57 +416,49 @@ const staticRunaway: StratRecord = {
             role: "Tank",
             party: 1,
             description: "TB Left towards Ghost Train",
-            imageUrl: "./ex7/p3-static-spread.webp",
-            mask: getCircleMaskUrl(36.7, 27, 5)
+            imageUrl: "./ex7/p3-static-spread.webp"
         },
         OT: {
             role: "Tank",
             party: 2,
             description: "TB Right towards Ghost Train",
-            imageUrl: "./ex7/p3-static-spread.webp",
-            mask: getCircleMaskUrl(64.7, 30.3, 5)
+            imageUrl: "./ex7/p3-static-spread.webp"
         },
         H1: {
             role: "Healer",
             party: 1,
             description: "❗STATIC North Max Melee",
-            imageUrl: "./ex7/p3-static-spread.webp",
-            mask: getCircleMaskUrl(50, 36.7, 5)
+            imageUrl: "./ex7/p3-static-spread.webp"
         },
         H2: {
             role: "Healer",
             party: 2,
             description: "❗STATIC South Max Melee",
-            imageUrl: "./ex7/p3-static-spread.webp",
-            mask: getCircleMaskUrl(50.1, 62.5, 5)
+            imageUrl: "./ex7/p3-static-spread.webp"
         },
         M1: {
             role: "Melee",
             party: 1,
             description: "❗STATIC West Max Melee",
-            imageUrl: "./ex7/p3-static-spread.webp",
-            mask: getCircleMaskUrl(43.6, 50.1, 5)
+            imageUrl: "./ex7/p3-static-spread.webp"
         },
         M2: {
             role: "Melee",
             party: 2,
             description: "❗STATIC East Max Melee",
-            imageUrl: "./ex7/p3-static-spread.webp",
-            mask: getCircleMaskUrl(56.9, 49.8, 5)
+            imageUrl: "./ex7/p3-static-spread.webp"
         },
         R1: {
             role: "Ranged",
             party: 1,
             description: "Front close to Ghost Train",
-            imageUrl: "./ex7/p3-static-spread.webp",
-            mask: getCircleMaskUrl(49.9, 17.9, 5)
+            imageUrl: "./ex7/p3-static-spread.webp"
         },
         R2: {
             role: "Ranged",
             party: 2,
             description: "Back far from Ghost Train",
-            imageUrl: "./ex7/p3-static-spread.webp",
-            mask: getCircleMaskUrl(50.1, 81.9, 5)
+            imageUrl: "./ex7/p3-static-spread.webp"
         },
         description: "Healers and Melee are static, ignore train direction\nRanged and Tanks will rotate"
     }
@@ -620,18 +466,172 @@ const staticRunaway: StratRecord = {
 
 const runawayStrats: Record<string, StratRecord> = { alt: altRunaway, raidplan: raidplanRunaway, static: staticRunaway };
 
+const normalArcane: MechanicStrat[] = [
+    {
+        mechanic: "Diamond",
+        description: "Big AOE moves in diamond pattern\nCan move 2, 3, or 4 spots\nWatch hands or listen for timing",
+        notes: "Stacks are REALLY BIG",
+        imageUrl: "./ex7/arcane-start.webp"
+    },
+    {
+        mechanic: "East/West",
+        description: "Tank/Melee North/East-ish\nHealer/Ranged South/West-ish",
+        strats: [
+            {
+                role: "Tank",
+                party: 1,
+                description: "North/East-ish",
+                imageUrl: "./ex7/arcane-stacks-ew.webp",
+                mask: getMultiCircleMaskUrl([35.2, 14.5, 5], [62.9, 15.8, 5])
+            },
+            {
+                role: "Tank",
+                party: 2,
+                description: "North/East-ish",
+                imageUrl: "./ex7/arcane-stacks-ew.webp",
+                mask: getMultiCircleMaskUrl([35.2, 14.5, 5], [62.9, 15.8, 5])
+            },
+            {
+                role: "Healer",
+                party: 1,
+                description: "South/West-ish",
+                imageUrl: "./ex7/arcane-stacks-ew.webp",
+                mask: getMultiCircleMaskUrl([35.4, 83.5, 5], [61.1, 87.3, 5])
+            },
+            {
+                role: "Healer",
+                party: 2,
+                description: "South/West-ish",
+                imageUrl: "./ex7/arcane-stacks-ew.webp",
+                mask: getMultiCircleMaskUrl([35.4, 83.5, 5], [61.1, 87.3, 5])
+            },
+            {
+                role: "Melee",
+                party: 1,
+                description: "North/East-ish",
+                imageUrl: "./ex7/arcane-stacks-ew.webp",
+                mask: getMultiCircleMaskUrl([35.2, 14.5, 5], [62.9, 15.8, 5])
+            },
+            {
+                role: "Melee",
+                party: 2,
+                description: "North/East-ish",
+                imageUrl: "./ex7/arcane-stacks-ew.webp",
+                mask: getMultiCircleMaskUrl([35.2, 14.5, 5], [62.9, 15.8, 5])
+            },
+            {
+                role: "Ranged",
+                party: 1,
+                description: "South/West-ish",
+                imageUrl: "./ex7/arcane-stacks-ew.webp",
+                mask: getMultiCircleMaskUrl([35.4, 83.5, 5], [61.1, 87.3, 5])
+            },
+            {
+                role: "Ranged",
+                party: 2,
+                description: "South/West-ish",
+                imageUrl: "./ex7/arcane-stacks-ew.webp",
+                mask: getMultiCircleMaskUrl([35.4, 83.5, 5], [61.1, 87.3, 5])
+            }
+        ],
+        notes: "Everyone in the stack must be on the same level (low or high)"
+    },
+    {
+        mechanic: "North/South",
+        description: "Tank/Melee North/East-ish\nHealer/Ranged South/West-ish",
+        strats: [
+            {
+                role: "Tank",
+                party: 1,
+                description: "North/East-ish",
+                imageUrl: "./ex7/arcane-stacks-ns.webp",
+                mask: getMultiCircleMaskUrl([38.2, 63.6, 5], [88.3, 15.1, 5])
+            },
+            {
+                role: "Tank",
+                party: 2,
+                description: "North/East-ish",
+                imageUrl: "./ex7/arcane-stacks-ns.webp",
+                mask: getMultiCircleMaskUrl([38.2, 63.6, 5], [88.3, 15.1, 5])
+            },
+            {
+                role: "Healer",
+                party: 1,
+                description: "South/West-ish",
+                imageUrl: "./ex7/arcane-stacks-ns.webp",
+                mask: getMultiCircleMaskUrl([8.7, 85.8, 5], [61.5, 20.6, 5])
+            },
+            {
+                role: "Healer",
+                party: 2,
+                description: "South/West-ish",
+                imageUrl: "./ex7/arcane-stacks-ns.webp",
+                mask: getMultiCircleMaskUrl([8.7, 85.8, 5], [61.5, 20.6, 5])
+            },
+            {
+                role: "Melee",
+                party: 1,
+                description: "North/East-ish",
+                imageUrl: "./ex7/arcane-stacks-ns.webp",
+                mask: getMultiCircleMaskUrl([38.2, 63.6, 5], [88.3, 15.1, 5])
+            },
+            {
+                role: "Melee",
+                party: 2,
+                description: "North/East-ish",
+                imageUrl: "./ex7/arcane-stacks-ns.webp",
+                mask: getMultiCircleMaskUrl([38.2, 63.6, 5], [88.3, 15.1, 5])
+            },
+            {
+                role: "Ranged",
+                party: 1,
+                description: "South/West-ish",
+                imageUrl: "./ex7/arcane-stacks-ns.webp",
+                mask: getMultiCircleMaskUrl([8.7, 85.8, 5], [61.5, 20.6, 5])
+            },
+            {
+                role: "Ranged",
+                party: 2,
+                description: "South/West-ish",
+                imageUrl: "./ex7/arcane-stacks-ns.webp",
+                mask: getMultiCircleMaskUrl([8.7, 85.8, 5], [61.5, 20.6, 5])
+            }
+        ],
+        notes: "Everyone in the stack must be on the same level (low or high)"
+    }
+];
+
+const cheeseArcane: MechanicStrat[] = [
+    {
+        mechanic: "2/6 Cheese",
+        description: "Completely ignore the big moving AOE\nTanks go NE, everyone else NW",
+        imageUrl: "./ex7/arcane-cheese.webp"
+    },
+    {
+        mechanic: "Mitigation",
+        description: "Stack 1: Group 1 mits\nStack 2: Group 2 mits\nStack 3: Tank LB",
+        notes: "Tanks invulning 2nd and 3rd towers is strongly recommended"
+    },
+];
+
+const arcaneStrats: Record<string, MechanicStrat[]> = { normal: normalArcane, cheese: cheeseArcane };
+
 export const ex7FightConfig: FightConfig = {
     fightKey: "ex7",
     title: "Hell on Rails (Extreme)",
     abbreviatedTitle: "EX7",
     subtitle: "EX7 Patch 7.4",
     cheatsheetTitle: "EX7 Cheatsheet",
-    cheatsheetLayout: { rows: 3, columns: 6 },
+    cheatsheetLayout: {
+        rows: 3,
+        columns: 6
+    },
     strats: {
         hector: {
             label: "Hector",
             defaults: {
-                runaway: "alt"
+                runaway: "alt",
+                arcane: "normal"
             },
             badges: [
                 {
@@ -678,17 +678,537 @@ export const ex7FightConfig: FightConfig = {
                     }
                 }
             ]
+        },
+        {
+            key: "arcane",
+            label: "Arcane",
+            defaultValue: "normal",
+            options: [
+                {
+                    value: "normal",
+                    label: "Normal"
+                },
+                {
+                    value: "cheese",
+                    label: "Cheese"
+                }
+            ]
         }
     ],
     tabTags: {
-        'Pre-Intermission': ['setup', 'p1', 'p2', 'runaway', 'pre'],
-        'Post-Intermission': ['p4', 'p5', 'p6', 'post'],
+        "Pre-Intermission": [
+            "setup",
+            "p1",
+            "p2",
+            "runaway",
+            "pre"
+        ],
+        "Post-Intermission": [
+            "p4",
+            "arcane",
+            "p5",
+            "p6",
+            "post"
+        ]
     },
     useMainPageTabs: false,
     defaultStratName: "hector",
-    timeline: timeline,
+    timeline: [
+        {
+            mechName: "Start",
+            mechType: "Start",
+            mechTag: "pre",
+            startTimeMs: 0
+        },
+        {
+            mechName: "Store Stack/Spread",
+            mechType: "StoredMechanic",
+            mechTag: "pre",
+            startTimeMs: 9000
+        },
+        {
+            mechName: "Express (KB)",
+            mechType: "Mechanic",
+            mechTag: "pre",
+            startTimeMs: 15000
+        },
+        {
+            mechName: "Stack/Spread",
+            mechType: "Mechanic",
+            mechTag: "pre",
+            startTimeMs: 27000
+        },
+        {
+            mechName: "Store Stack/Spread",
+            mechType: "StoredMechanic",
+            mechTag: "pre",
+            startTimeMs: 28000
+        },
+        {
+            mechName: "Windpipe (Suck)",
+            mechType: "Mechanic",
+            mechTag: "pre",
+            startTimeMs: 34000
+        },
+        {
+            mechName: "Stack/Spread",
+            mechType: "Mechanic",
+            mechTag: "pre",
+            startTimeMs: 46000
+        },
+        {
+            mechName: "Raidwide -> Car 2",
+            mechType: "Raidwide",
+            mechTag: "pre",
+            startTimeMs: 53000
+        },
+        {
+            mechName: "Store Stack/Spread",
+            mechType: "StoredMechanic",
+            mechTag: "pre",
+            startTimeMs: 61000
+        },
+        {
+            mechName: "Turret Lasers",
+            mechType: "Mechanic",
+            mechTag: "pre",
+            startTimeMs: 78000
+        },
+        {
+            mechName: "Express/Windpipe",
+            mechType: "Mechanic",
+            mechTag: "pre",
+            startTimeMs: 75000
+        },
+        {
+            mechName: "Stack/Spread",
+            mechType: "Mechanic",
+            mechTag: "pre",
+            startTimeMs: 86000
+        },
+        {
+            mechName: "Store Stack/Spread",
+            mechType: "StoredMechanic",
+            mechTag: "pre",
+            startTimeMs: 88000
+        },
+        {
+            mechName: "Turret Lasers",
+            mechType: "Mechanic",
+            mechTag: "pre",
+            startTimeMs: 95000
+        },
+        {
+            mechName: "Lightning Burst",
+            mechType: "Tankbuster",
+            mechTag: "pre",
+            startTimeMs: 99000
+        },
+        {
+            mechName: "Turret Lasers",
+            mechType: "Mechanic",
+            mechTag: "pre",
+            startTimeMs: 105000
+        },
+        {
+            mechName: "Express/Windpipe",
+            mechType: "Mechanic",
+            mechTag: "pre",
+            startTimeMs: 108000
+        },
+        {
+            mechName: "Stack/Spread",
+            mechType: "Mechanic",
+            mechTag: "pre",
+            startTimeMs: 114000
+        },
+        {
+            mechName: "Raidwide -> Car 3",
+            mechType: "Raidwide",
+            mechTag: "pre",
+            startTimeMs: 122000
+        },
+        {
+            mechName: "Lightning Burst",
+            mechType: "Tankbuster",
+            mechTag: "pre",
+            startTimeMs: 137000
+        },
+        {
+            mechName: "Runaway Train",
+            mechType: "Raidwide",
+            mechTag: "pre",
+            startTimeMs: 150000
+        },
+        {
+            mechName: "Aether Targetable",
+            mechType: "Mechanic",
+            mechTag: "pre",
+            startTimeMs: 161000
+        },
+        {
+            mechName: "Train AoEs 1",
+            mechType: "Mechanic",
+            mechTag: "pre",
+            startTimeMs: 177000
+        },
+        {
+            mechName: "Train AoEs 2",
+            mechType: "Mechanic",
+            mechTag: "pre",
+            startTimeMs: 193000
+        },
+        {
+            mechName: "Train AoEs 3",
+            mechType: "Mechanic",
+            mechTag: "pre",
+            startTimeMs: 205000
+        },
+        {
+            mechName: "Train AoEs 4",
+            mechType: "Mechanic",
+            mechTag: "pre",
+            startTimeMs: 219000
+        },
+        {
+            mechName: "Train AoEs 5",
+            mechType: "Mechanic",
+            mechTag: "pre",
+            startTimeMs: 233000
+        },
+        {
+            mechName: "Enrage??",
+            mechType: "Enrage",
+            mechTag: "pre",
+            startTimeMs: 240000
+        },
+        {
+            mechName: "Runaway Train",
+            mechType: "Start",
+            mechTag: "post",
+            startTimeMs: 0
+        },
+        {
+            mechName: "Targetable",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 11000
+        },
+        {
+            mechName: "Shockwave",
+            mechType: "Raidwide",
+            mechTag: "post",
+            startTimeMs: 18000
+        },
+        {
+            mechName: "Lightning Burst",
+            mechType: "Tankbuster",
+            mechTag: "post",
+            startTimeMs: 28000
+        },
+        {
+            mechName: "Tower x3",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 30000
+        },
+        {
+            mechName: "Derail -> Car 4",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 40000
+        },
+        {
+            mechName: "Twisters Snap",
+            mechType: "StoredMechanic",
+            mechTag: "post",
+            startTimeMs: 56000
+        },
+        {
+            mechName: "Twisters Hit",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 60000
+        },
+        {
+            mechName: "High/Low",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 69000
+        },
+        {
+            mechName: "Arcane Revelation",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 78000
+        },
+        {
+            mechName: "Arcane 1",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 90000
+        },
+        {
+            mechName: "Arcane 2",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 104000
+        },
+        {
+            mechName: "Arcane 3",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 118000
+        },
+        {
+            mechName: "High/Low",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 130000
+        },
+        {
+            mechName: "Twisters Snap",
+            mechType: "StoredMechanic",
+            mechTag: "post",
+            startTimeMs: 136000
+        },
+        {
+            mechName: "Twisters Hit",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 140000
+        },
+        {
+            mechName: "Lightning Burst",
+            mechType: "Tankbuster",
+            mechTag: "post",
+            startTimeMs: 148000
+        },
+        {
+            mechName: "Tower x4",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 152000
+        },
+        {
+            mechName: "Derail -> Car 5",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 164000
+        },
+        {
+            mechName: "2x AOEs",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 187000
+        },
+        {
+            mechName: "Twisters Snap",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 188000
+        },
+        {
+            mechName: "Twisters Hit",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 192000
+        },
+        {
+            mechName: "3x AOEs",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 202000
+        },
+        {
+            mechName: "Lightning Burst",
+            mechType: "Tankbuster",
+            mechTag: "post",
+            startTimeMs: 208000
+        },
+        {
+            mechName: "5x AOEs",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 219000
+        },
+        {
+            mechName: "Twisters Snap",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 220000
+        },
+        {
+            mechName: "Twisters HF",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 224000
+        },
+        {
+            mechName: "Tower x5",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 229000
+        },
+        {
+            mechName: "Derail -> Car 6",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 231000
+        },
+        {
+            mechName: "Store Stack/Spread",
+            mechType: "StoredMechanic",
+            mechTag: "post",
+            startTimeMs: 257000
+        },
+        {
+            mechName: "Turret Lasers",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 275000
+        },
+        {
+            mechName: "High/Low",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 278000
+        },
+        {
+            mechName: "Turret Lasers",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 286000
+        },
+        {
+            mechName: "4x AOEs",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 295000
+        },
+        {
+            mechName: "Twisters Snap",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 296000
+        },
+        {
+            mechName: "Twisters Hit",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 300000
+        },
+        {
+            mechName: "Turret Lasers",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 308000
+        },
+        {
+            mechName: "Express/Windpipe",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 310000
+        },
+        {
+            mechName: "Stack/Spread",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 315000
+        },
+        {
+            mechName: "Lightning Burst",
+            mechType: "Tankbuster",
+            mechTag: "post",
+            startTimeMs: 322000
+        },
+        {
+            mechName: "Store Stack/Spread",
+            mechType: "StoredMechanic",
+            mechTag: "post",
+            startTimeMs: 326000
+        },
+        {
+            mechName: "Arcane Revelation",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 332000
+        },
+        {
+            mechName: "Arcane 1",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 346000
+        },
+        {
+            mechName: "Arcane 2",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 360000
+        },
+        {
+            mechName: "Twisters Snap",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 362000
+        },
+        {
+            mechName: "Twisters Hit",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 366000
+        },
+        {
+            mechName: "Express/Windpipe",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 376000
+        },
+        {
+            mechName: "Stack/Spread",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 382000
+        },
+        {
+            mechName: "High/Low",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 390000
+        },
+        {
+            mechName: "Lightning Burst",
+            mechType: "Tankbuster",
+            mechTag: "post",
+            startTimeMs: 400000
+        },
+        {
+            mechName: "Twisters Snap",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 403000
+        },
+        {
+            mechName: "Twisters Hit",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 407000
+        },
+        {
+            mechName: "Tower x6",
+            mechType: "Mechanic",
+            mechTag: "post",
+            startTimeMs: 418000
+        },
+        {
+            mechName: "Enrage",
+            mechType: "Enrage",
+            mechTag: "post",
+            startTimeMs: 440000
+        }
+    ],
     splitTimeline: true,
-    useEvenTimelineSpacing: true,
+    useEvenTimelineSpacing: true
 };
 
 export const hector: Strat = {
@@ -701,27 +1221,27 @@ export const hector: Strat = {
     bundleUrls: [
         {
             toggles: {
-                "runaway": "alt",
+                runaway: "alt"
             },
-            url: "https://board.wtfdig.info/b/K-TRZpPubFvbN",
+            url: "https://board.wtfdig.info/b/K-TRZpPubFvbN"
         },
         {
             toggles: {
-                "runaway": "raidplan",
+                runaway: "raidplan"
             },
-            url: "https://board.wtfdig.info/b/qp8E9TA-sA4cr",
+            url: "https://board.wtfdig.info/b/qp8E9TA-sA4cr"
         },
         {
             toggles: {
-                "runaway": "static",
+                runaway: "static"
             },
-            url: "https://board.wtfdig.info/b/cXD_iRyznwmWF",
+            url: "https://board.wtfdig.info/b/cXD_iRyznwmWF"
         }
     ],
     strats: [
         {
             phaseName: "Setup",
-            tag: 'setup',
+            tag: "setup",
             mechs: [
                 {
                     mechanic: "Spreads",
@@ -914,15 +1434,7 @@ export const hector: Strat = {
             mechs: [
                 {
                     mechanic: "Overview",
-                    description: `<ul class="overview">
-                        <li><strong>Overdraught</strong> (stored stack/spread)</li>
-                        <li><strong>Express</strong> (KB + lasers)</li>
-                        <li>Stack/spread goes off</li>
-                        <br>
-                        <li><strong>Overdraught</strong> (stored opposite stack/spread)</li>
-                        <li><strong>Windpipe</strong> (Suck)</li>
-                        <li>Stack/spread goes off</li>
-                    </ul>`
+                    description: "<ul class=\"overview\">\n<li><strong>Overdraught</strong> (stored stack/spread)</li>\n<li><strong>Express</strong> (KB + lasers)</li>\n<li>Stack/spread goes off</li>\n<br>\n<li><strong>Overdraught</strong> (stored opposite stack/spread)</li>\n<li><strong>Windpipe</strong> (Suck)</li>\n<li>Stack/spread goes off</li>\n</ul>"
                 },
                 {
                     mechanic: "Overdraught",
@@ -947,19 +1459,7 @@ export const hector: Strat = {
             mechs: [
                 {
                     mechanic: "Overview",
-                    description: `<ul class="overview">
-                        <li><strong>Overdraught</strong> (stored stack/spread)</li>
-                        <li>Turrets</li>
-                        <li><strong>Express</strong> (KB + lasers) OR <strong>Windpipe</strong> (Suck)</li>
-                        <li>Stack/spread goes off</li>
-                        <br>
-                        <li><strong>Overdraught</strong> (stored opposite stack/spread)</li>
-                        <li>Turrets</li>
-                        <li><strong>Lightning Burst</strong> (tankbusters)</li>
-                        <li>Turrets</li>
-                        <li><strong>Windpipe</strong> OR <strong>Express</strong> (opposite)</li>
-                        <li>Stack/spread goes off</li>
-                    </ul>`
+                    description: "<ul class=\"overview\">\n<li><strong>Overdraught</strong> (stored stack/spread)</li>\n<li>Turrets</li>\n<li><strong>Express</strong> (KB + lasers) OR <strong>Windpipe</strong> (Suck)</li>\n<li>Stack/spread goes off</li>\n<br>\n<li><strong>Overdraught</strong> (stored opposite stack/spread)</li>\n<li>Turrets</li>\n<li><strong>Lightning Burst</strong> (tankbusters)</li>\n<li>Turrets</li>\n<li><strong>Windpipe</strong> OR <strong>Express</strong> (opposite)</li>\n<li>Stack/spread goes off</li>\n</ul>"
                 }
             ]
         },
@@ -976,6 +1476,7 @@ export const hector: Strat = {
                     mechanic: "Doom Train (Stack/Spread)",
                     description: "2 puffs = LP stacks\n3 puffs = spread",
                     imageUrl: "./ex7/p3-stack-spread-audio.webp",
+                    strats: getStratArray(runawayStrats, 'doomtrainstackspread')
                 },
                 {
                     mechanic: "Stacks",
@@ -986,15 +1487,14 @@ export const hector: Strat = {
                     mechanic: "Spreads",
                     strats: getStratArray(runawayStrats, 'spreads'),
                     description: {
-                        alt: '',
-                        static: "Healers and Melee are static, ignore train direction\nRanged and Tanks will rotate",
-                        raidplan: '',
+                        static: "Healers and Melee are static, ignore train direction\nRanged and Tanks will rotate"
                     }
                 },
                 {
                     mechanic: "Tower + Derail",
                     description: "3-hit group stack, then run south to teleporter",
                     imageUrl: "./ex7/p3-tower.webp",
+                    strats: getStratArray(runawayStrats, 'towerderail')
                 }
             ]
         },
@@ -1004,18 +1504,7 @@ export const hector: Strat = {
             mechs: [
                 {
                     mechanic: "Overview",
-                    description: `<ul class="overview">
-                        <li>Twisters</li>
-                        <li>High/Low</li>
-                        <br>
-                        <li><strong>Arcane Revelation</strong> x3 (total of 8 circle moves)</li>
-                        <br>
-                        <li>High/Low</li>
-                        <li>Twisters</li>
-                        <br>
-                        <li><strong>Derailment Siege</strong> (4x tower; MT Invuln)</li>
-                        <li><strong>Derail</strong></li>
-                    </ul>`
+                    description: "<ul class=\"overview\">\n<li>Twisters</li>\n<li>High/Low</li>\n<br>\n<li><strong>Arcane Revelation</strong> x3 (total of 8 circle moves)</li>\n<br>\n<li>High/Low</li>\n<li>Twisters</li>\n<br>\n<li><strong>Derailment Siege</strong> (4x tower; MT Invuln)</li>\n<li><strong>Derail</strong></li>\n</ul>"
                 },
                 {
                     mechanic: "Twisters",
@@ -1032,140 +1521,10 @@ export const hector: Strat = {
         {
             phaseName: "Arcane Revelation",
             tag: "arcane",
-            mechs: [
-                {
-                    mechanic: "Diamond",
-                    description: "Big AOE moves in diamond pattern\nCan move 2, 3, or 4 spots\nWatch hands or listen for timing",
-                    notes: "Stacks are REALLY BIG",
-                    imageUrl: "./ex7/arcane-start.webp"
-                },
-                {
-                    mechanic: "East/West",
-                    description: "Tank/Melee North/East-ish\nHealer/Ranged South/West-ish",
-                    strats: [
-                        {
-                            role: "Tank",
-                            party: 1,
-                            description: "North/East-ish",
-                            imageUrl: "./ex7/arcane-stacks-ew.webp",
-                            mask: getMultiCircleMaskUrl([35.2, 14.5, 5], [62.9, 15.8, 5])
-                        },
-                        {
-                            role: "Tank",
-                            party: 2,
-                            description: "North/East-ish",
-                            imageUrl: "./ex7/arcane-stacks-ew.webp",
-                            mask: getMultiCircleMaskUrl([35.2, 14.5, 5], [62.9, 15.8, 5])
-                        },
-                        {
-                            role: "Healer",
-                            party: 1,
-                            description: "South/West-ish",
-                            imageUrl: "./ex7/arcane-stacks-ew.webp",
-                            mask: getMultiCircleMaskUrl([35.4, 83.5, 5], [61.1, 87.3, 5])
-                        },
-                        {
-                            role: "Healer",
-                            party: 2,
-                            description: "South/West-ish",
-                            imageUrl: "./ex7/arcane-stacks-ew.webp",
-                            mask: getMultiCircleMaskUrl([35.4, 83.5, 5], [61.1, 87.3, 5])
-                        },
-                        {
-                            role: "Melee",
-                            party: 1,
-                            description: "North/East-ish",
-                            imageUrl: "./ex7/arcane-stacks-ew.webp",
-                            mask: getMultiCircleMaskUrl([35.2, 14.5, 5], [62.9, 15.8, 5])
-                        },
-                        {
-                            role: "Melee",
-                            party: 2,
-                            description: "North/East-ish",
-                            imageUrl: "./ex7/arcane-stacks-ew.webp",
-                            mask: getMultiCircleMaskUrl([35.2, 14.5, 5], [62.9, 15.8, 5])
-                        },
-                        {
-                            role: "Ranged",
-                            party: 1,
-                            description: "South/West-ish",
-                            imageUrl: "./ex7/arcane-stacks-ew.webp",
-                            mask: getMultiCircleMaskUrl([35.4, 83.5, 5], [61.1, 87.3, 5])
-                        },
-                        {
-                            role: "Ranged",
-                            party: 2,
-                            description: "South/West-ish",
-                            imageUrl: "./ex7/arcane-stacks-ew.webp",
-                            mask: getMultiCircleMaskUrl([35.4, 83.5, 5], [61.1, 87.3, 5])
-                        }
-                    ],
-                    notes: "Everyone in the stack must be on the same level (low or high)"
-                },
-                {
-                    mechanic: "North/South",
-                    description: "Tank/Melee North/East-ish\nHealer/Ranged South/West-ish",
-                    strats: [
-                        {
-                            role: "Tank",
-                            party: 1,
-                            description: "North/East-ish",
-                            imageUrl: "./ex7/arcane-stacks-ns.webp",
-                            mask: getMultiCircleMaskUrl([38.2, 63.6, 5], [88.3, 15.1, 5])
-                        },
-                        {
-                            role: "Tank",
-                            party: 2,
-                            description: "North/East-ish",
-                            imageUrl: "./ex7/arcane-stacks-ns.webp",
-                            mask: getMultiCircleMaskUrl([38.2, 63.6, 5], [88.3, 15.1, 5])
-                        },
-                        {
-                            role: "Healer",
-                            party: 1,
-                            description: "South/West-ish",
-                            imageUrl: "./ex7/arcane-stacks-ns.webp",
-                            mask: getMultiCircleMaskUrl([8.7, 85.8, 5], [61.5, 20.6, 5])
-                        },
-                        {
-                            role: "Healer",
-                            party: 2,
-                            description: "South/West-ish",
-                            imageUrl: "./ex7/arcane-stacks-ns.webp",
-                            mask: getMultiCircleMaskUrl([8.7, 85.8, 5], [61.5, 20.6, 5])
-                        },
-                        {
-                            role: "Melee",
-                            party: 1,
-                            description: "North/East-ish",
-                            imageUrl: "./ex7/arcane-stacks-ns.webp",
-                            mask: getMultiCircleMaskUrl([38.2, 63.6, 5], [88.3, 15.1, 5])
-                        },
-                        {
-                            role: "Melee",
-                            party: 2,
-                            description: "North/East-ish",
-                            imageUrl: "./ex7/arcane-stacks-ns.webp",
-                            mask: getMultiCircleMaskUrl([38.2, 63.6, 5], [88.3, 15.1, 5])
-                        },
-                        {
-                            role: "Ranged",
-                            party: 1,
-                            description: "South/West-ish",
-                            imageUrl: "./ex7/arcane-stacks-ns.webp",
-                            mask: getMultiCircleMaskUrl([8.7, 85.8, 5], [61.5, 20.6, 5])
-                        },
-                        {
-                            role: "Ranged",
-                            party: 2,
-                            description: "South/West-ish",
-                            imageUrl: "./ex7/arcane-stacks-ns.webp",
-                            mask: getMultiCircleMaskUrl([8.7, 85.8, 5], [61.5, 20.6, 5])
-                        }
-                    ],
-                    notes: "Everyone in the stack must be on the same level (low or high)"
-                }
-            ]
+            mechs: {
+                normal: normalArcane,
+                cheese: cheeseArcane
+            }
         },
         {
             phaseName: "Car 5",
@@ -1173,22 +1532,7 @@ export const hector: Strat = {
             mechs: [
                 {
                     mechanic: "Overview",
-                    description: `<ul class="overview">
-                        <li>Boxes removed</li>
-                        <li><strong>Psychokinesis</strong> (2x big AoEs)</li>
-                        <li>Twisters</li>
-                        <br>
-                        <li>Boxes removed</li>
-                        <li><strong>Psychokinesis</strong> (3x big AoEs)</li>
-                        <li><strong>Lightning Burst</strong> (tankbusters)</li>
-                        <br>
-                        <li>Boxes removed</li>
-                        <li><strong>Psychokinesis</strong> (5x AoEs (Big Spread/YOLO))</li>
-                        <li>Twisters</li>
-                        <br>
-                        <li><strong>Derailment Siege</strong> (5x tower; OT Invuln)</li>
-                        <li><strong>Derail</li>
-                    </ul>`
+                    description: "<ul class=\"overview\">\n<li>Boxes removed</li>\n<li><strong>Psychokinesis</strong> (2x big AoEs)</li>\n<li>Twisters</li>\n<br>\n<li>Boxes removed</li>\n<li><strong>Psychokinesis</strong> (3x big AoEs)</li>\n<li><strong>Lightning Burst</strong> (tankbusters)</li>\n<br>\n<li>Boxes removed</li>\n<li><strong>Psychokinesis</strong> (5x AoEs (Big Spread/YOLO))</li>\n<li>Twisters</li>\n<br>\n<li><strong>Derailment Siege</strong> (5x tower; OT Invuln)</li>\n<li><strong>Derail</li>\n</ul>"
                 },
                 {
                     mechanic: "5x AOE (Big Spread)",
@@ -1260,25 +1604,7 @@ export const hector: Strat = {
             mechs: [
                 {
                     mechanic: "Overview",
-                    description: `<ul class="overview">
-                        <li><strong>Overdraught</strong> (stored stack/spread)</li>
-                        <li>Turrets</li>
-                        <li>High/Low</li>
-                        <li>Turrets (BOXES GO AWAY)</li>
-                        <li><strong>Psychokinesis</strong> (4x big AoEs (Big Spread/YOLO))</li>
-                        <li>Twisters</li>
-                        <li>Turrets</li>
-                        <li><strong>Windpipe</strong> (Suck) OR <strong>Express</strong> (KB + lasers)</li>
-                        <li>Stack/spread goes off</li>
-                        <br>
-                        <li><strong>Lightning Burst</strong> (tankbusters)</li>
-                        <br>
-                        <li><strong>Overdraught</strong> (stored opposite stack/spread)</li>
-                        <li><strong>Arcane Revelation</strong> x2 (total of 5 circle moves)</li>
-                        <li>Twisters</li>
-                        <li><strong>Express</strong> OR <strong>Windpipe</strong> (opposite)</li>
-                        <li>Stack/spread goes off</li>
-                    </ul>`
+                    description: "<ul class=\"overview\">\n<li><strong>Overdraught</strong> (stored stack/spread)</li>\n<li>Turrets</li>\n<li>High/Low</li>\n<li>Turrets (BOXES GO AWAY)</li>\n<li><strong>Psychokinesis</strong> (4x big AoEs (Big Spread/YOLO))</li>\n<li>Twisters</li>\n<li>Turrets</li>\n<li><strong>Windpipe</strong> (Suck) OR <strong>Express</strong> (KB + lasers)</li>\n<li>Stack/spread goes off</li>\n<br>\n<li><strong>Lightning Burst</strong> (tankbusters)</li>\n<br>\n<li><strong>Overdraught</strong> (stored opposite stack/spread)</li>\n<li><strong>Arcane Revelation</strong> x2 (total of 5 circle moves)</li>\n<li>Twisters</li>\n<li><strong>Express</strong> OR <strong>Windpipe</strong> (opposite)</li>\n<li>Stack/spread goes off</li>\n</ul>"
                 },
                 {
                     mechanic: "Arcane Revelation 2 (East/West)",
@@ -1406,13 +1732,7 @@ export const hector: Strat = {
                 },
                 {
                     mechanic: "Final Sequence",
-                    description: `<ul class="overview">
-                        <li>High/Low</li>
-                        <li><strong>Lightning Burst</strong> (tankbusters)</li>
-                        <li>Twisters</li>
-                        <li><strong>Derailment Siege</strong> (6x tower)</li>
-                        <li><strong>Derail</strong> (hard enrage)</li>
-                    </ul>`
+                    description: "<ul class=\"overview\">\n<li>High/Low</li>\n<li><strong>Lightning Burst</strong> (tankbusters)</li>\n<li>Twisters</li>\n<li><strong>Derailment Siege</strong> (6x tower)</li>\n<li><strong>Derail</strong> (hard enrage)</li>\n</ul>"
                 }
             ]
         }

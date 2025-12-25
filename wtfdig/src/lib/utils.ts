@@ -173,6 +173,20 @@ export function resolveStratItem<T>(
 	return item as T;
 }
 
+export function resolveMechs<T>(
+	mechs: T[] | Record<string, T[]> | undefined,
+	tag: string | undefined,
+	stratState: Record<string, string | null>
+): T[] | undefined {
+	if (!mechs) return undefined;
+	if (Array.isArray(mechs)) return mechs;
+	if (tag && stratState?.[tag]) {
+		const stateKey = stratState[tag] as string;
+		return (mechs as Record<string, T[]>)[stateKey] ?? Object.values(mechs)[0];
+	}
+	return Object.values(mechs)[0];
+}
+
 interface BuildIndividualParams {
 	strat?: Strat | string;
 	stratName?: string;
@@ -192,26 +206,29 @@ export function buildIndividualStratView({
 	if (!strat) return `Couldn't find ${stratName} strat`;
 	if (typeof strat === 'string') return strat;
 
-	const individualPackages = strat.strats?.map((phaseStrat) => ({
-		...phaseStrat,
-		description: resolveStratItem(phaseStrat.description, phaseStrat.tag, stratState),
-		imageUrl: resolveStratItem(phaseStrat.imageUrl, phaseStrat.tag, stratState),
-		mask: resolveStratItem(phaseStrat.mask, phaseStrat.tag, stratState),
-		mechs: phaseStrat.mechs?.map((phaseStratMech) => ({
-			...phaseStratMech,
-			description: resolveStratItem(phaseStratMech.description, phaseStrat.tag, stratState),
-			imageUrl: resolveStratItem(phaseStratMech.imageUrl, phaseStrat.tag, stratState),
-			strats:
-				phaseStratMech.strats
-					?.filter((playerStrat) => playerStrat.role === role && playerStrat.party === party)
-					.map((playerStrat) => ({
-						...playerStrat,
-						description: resolveStratItem(playerStrat.description, phaseStrat.tag, stratState) ?? '',
-						imageUrl: resolveStratItem(playerStrat.imageUrl, phaseStrat.tag, stratState),
-						mask: resolveStratItem(playerStrat.mask, phaseStrat.tag, stratState)
-					}))
-		}))
-	}));
+	const individualPackages = strat.strats?.map((phaseStrat) => {
+		const resolvedMechs = resolveMechs(phaseStrat.mechs, phaseStrat.tag, stratState);
+		return {
+			...phaseStrat,
+			description: resolveStratItem(phaseStrat.description, phaseStrat.tag, stratState),
+			imageUrl: resolveStratItem(phaseStrat.imageUrl, phaseStrat.tag, stratState),
+			mask: resolveStratItem(phaseStrat.mask, phaseStrat.tag, stratState),
+			mechs: resolvedMechs?.map((phaseStratMech) => ({
+				...phaseStratMech,
+				description: resolveStratItem(phaseStratMech.description, phaseStrat.tag, stratState),
+				imageUrl: resolveStratItem(phaseStratMech.imageUrl, phaseStrat.tag, stratState),
+				strats:
+					phaseStratMech.strats
+						?.filter((playerStrat) => playerStrat.role === role && playerStrat.party === party)
+						.map((playerStrat) => ({
+							...playerStrat,
+							description: resolveStratItem(playerStrat.description, phaseStrat.tag, stratState) ?? '',
+							imageUrl: resolveStratItem(playerStrat.imageUrl, phaseStrat.tag, stratState),
+							mask: resolveStratItem(playerStrat.mask, phaseStrat.tag, stratState)
+						}))
+			}))
+		};
+	});
 
 	if (!individualPackages) {
 		return `Couldn't find ${stratName} strat for ${role} ${party}`;
