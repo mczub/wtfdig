@@ -30,13 +30,13 @@ export interface PhaseStrats {
 	description?: string | Record<string, string>;
 	imageUrl?: string | Record<string, string>;
 	mask?: string | Record<string, string>;
+	boardCode?: string | string[] | Record<string, string | string[]>;
 	mechs?: MechanicStrat[] | Record<string, MechanicStrat[]>;
 }
 
 export interface Strat {
 	stratName: string;
 	stratUrl: string | Record<string, string>;
-	bundleUrls?: ToggledUrl[];
 	description: string | Record<string, string>;
 	notes?: string;
 	strats: PhaseStrats[];

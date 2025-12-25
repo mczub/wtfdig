@@ -305,32 +305,27 @@ export function getToggleUrls({
 	}, []);
 }
 
-export interface BundleUrlArgs {
+export interface BoardUrlArgs {
 	strat: Strat;
 	stratState: Record<string, string | null>;
-	toggles?: FightToggleConfig[];
-	stratConfig: FightStratConfig;
 }
 
-export function getBundleUrl({
+function getBoardCodes({
 	strat,
 	stratState,
-}: BundleUrlArgs): string | null {
-	if (!strat || !strat.bundleUrls) return null;
-	const urls = strat.bundleUrls.reduce<string[]>((urls, bundleUrl) => {
-		if (Object.entries(bundleUrl.toggles).every(([key, condValue]) => {
-			// TODO: Do I need default values?
-			const actualValue = stratState?.[key] ?? null;
-			return condValue === actualValue;
-		})) {
-			urls.push(bundleUrl.url);
-		}
-		return urls;
-	}, []);
-	if (urls.length > 1) {
-		console.warn("Multiple bundle URLs found, returning first one.")
-	}
-	return urls[0] ?? null;
+}: BoardUrlArgs): string[] {
+	return (strat?.strats ?? []).flatMap((phaseStrat) => {
+		return resolveStratItem(phaseStrat.boardCode, phaseStrat.tag, stratState) ?? [];
+	});
+}
+
+export function getBoardUrl({
+	strat,
+	stratState,
+}: BoardUrlArgs): string | null {
+	const boardCodes = getBoardCodes({ strat, stratState });
+	if (!boardCodes.length) return null;
+	return "https://board.wtfdig.info/b/" + boardCodes.join(",");
 }
 
 interface FightSummaryArgs extends FightOptionsContext {

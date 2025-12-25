@@ -11,7 +11,7 @@
 	import {
 		buildFightOptionsSummary,
 		buildFightPFDescription,
-		getBundleUrl,
+		getBoardUrl,
 		getToggleUrls
 	} from '$lib/utils';
 
@@ -213,7 +213,7 @@
 		stratState,
 		showAllToggleUrls: config.showAllToggleUrls
 	})}
-	{@const bundleUrl = getBundleUrl({
+	{@const boardUrl = getBoardUrl({
 		strat,
 		stratState
 	})}
@@ -373,9 +373,9 @@
 
 							<!-- Action Buttons -->
 							<div class="gap-2 w-full flex flex-col lg:flex-row lg:w-auto shrink-0">
-								{#if bundleUrl}
+								{#if boardUrl}
 									<button
-										onclick={() => window.open(bundleUrl)}
+										onclick={() => window.open(boardUrl)}
 										class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none cursor-pointer"
 										><Grid3x3 size={18} />Strategy Board<ExternalLink size={16} /></button
 									>
