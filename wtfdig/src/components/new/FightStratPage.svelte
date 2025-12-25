@@ -55,13 +55,29 @@
 		stratState: Record<string, string | null>;
 	}) {
 		if (!stratName || !role || !party || !strat) return '';
+
+		// Helper to resolve toggle-dependent mechs
+		function resolveMechs<T>(
+			mechs: T[] | Record<string, T[]> | undefined,
+			tag: string | undefined
+		): T[] | undefined {
+			if (!mechs) return undefined;
+			if (Array.isArray(mechs)) return mechs;
+			if (tag && stratState?.[tag]) {
+				const stateKey = stratState[tag] as string;
+				return (mechs as Record<string, T[]>)[stateKey] ?? Object.values(mechs)[0];
+			}
+			return Object.values(mechs)[0];
+		}
+
 		const individualPackages = strat.strats?.map((phaseStrat) => {
+			const resolvedMechs = resolveMechs(phaseStrat.mechs, phaseStrat.tag);
 			return {
 				...phaseStrat,
 				description: getStratItem(phaseStrat.description, phaseStrat.tag, stratState),
 				imageUrl: getStratItem(phaseStrat.imageUrl, phaseStrat.tag, stratState),
 				mask: getStratItem(phaseStrat.mask, phaseStrat.tag, stratState),
-				mechs: phaseStrat.mechs?.map((phaseStratMech) => {
+				mechs: resolvedMechs?.map((phaseStratMech) => {
 					return {
 						...phaseStratMech,
 						description: getStratItem(phaseStratMech.description, phaseStrat.tag, stratState),
@@ -233,11 +249,14 @@
 				{:else}
 					{@const selectedStrat = strat}
 					{@const hasAlignmentTransforms =
-						selectedStrat?.strats?.some((phase) =>
-							phase.mechs?.some((mech) =>
+						selectedStrat?.strats?.some((phase) => {
+							const mechs = Array.isArray(phase.mechs)
+								? phase.mechs
+								: Object.values(phase.mechs ?? {})[0];
+							return mechs?.some((mech) =>
 								mech.strats?.some((playerStrat) => playerStrat.alignmentTransforms)
-							)
-						) ?? false}
+							);
+						}) ?? false}
 					<div class="flex flex-col lg:flex-row gap-2 mb-8">
 						{#if isCheatsheetEnabled}
 							<button

@@ -31,7 +31,7 @@ export interface PhaseStrats {
 	imageUrl?: string | Record<string, string>;
 	mask?: string | Record<string, string>;
 	boardCode?: string | string[] | Record<string, string | string[]>;
-	mechs?: MechanicStrat[];
+	mechs?: MechanicStrat[] | Record<string, MechanicStrat[]>;
 }
 
 export interface Strat {

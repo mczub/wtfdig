@@ -8,7 +8,12 @@
 	import ModernFightStratControls from './ModernFightStratControls.svelte';
 	import FightStratState from './FightStratState.svelte';
 	import type { Alignment, FightConfig, Role, Strat } from '$lib/types';
-	import { buildFightOptionsSummary, buildFightPFDescription, getBoardUrl, getToggleUrls } from '$lib/utils';
+	import {
+		buildFightOptionsSummary,
+		buildFightPFDescription,
+		getBoardUrl,
+		getToggleUrls
+	} from '$lib/utils';
 
 	interface Props {
 		config: FightConfig;
@@ -56,13 +61,29 @@
 		stratState: Record<string, string | null>;
 	}) {
 		if (!stratName || !role || !party || !strat) return '';
+
+		// Helper to resolve toggle-dependent mechs
+		function resolveMechs<T>(
+			mechs: T[] | Record<string, T[]> | undefined,
+			tag: string | undefined
+		): T[] | undefined {
+			if (!mechs) return undefined;
+			if (Array.isArray(mechs)) return mechs;
+			if (tag && stratState?.[tag]) {
+				const stateKey = stratState[tag] as string;
+				return (mechs as Record<string, T[]>)[stateKey] ?? Object.values(mechs)[0];
+			}
+			return Object.values(mechs)[0];
+		}
+
 		const individualPackages = strat.strats?.map((phaseStrat) => {
+			const resolvedMechs = resolveMechs(phaseStrat.mechs, phaseStrat.tag);
 			return {
 				...phaseStrat,
 				description: getStratItem(phaseStrat.description, phaseStrat.tag, stratState),
 				imageUrl: getStratItem(phaseStrat.imageUrl, phaseStrat.tag, stratState),
 				mask: getStratItem(phaseStrat.mask, phaseStrat.tag, stratState),
-				mechs: phaseStrat.mechs?.map((phaseStratMech) => {
+				mechs: resolvedMechs?.map((phaseStratMech) => {
 					return {
 						...phaseStratMech,
 						description: getStratItem(phaseStratMech.description, phaseStrat.tag, stratState),
@@ -194,7 +215,7 @@
 	})}
 	{@const boardUrl = getBoardUrl({
 		strat,
-		stratState,
+		stratState
 	})}
 
 	<Cheatsheet
@@ -219,9 +240,11 @@
 
 	<ModernFightStratControls
 		title={config.abbreviatedTitle ?? config.title}
+		strats={config.strats}
 		{stratName}
 		{stratOptions}
 		onSelectStrat={selectStrat}
+		{stratState}
 		toggles={(config.toggles ?? []).map((toggle) => ({
 			key: toggle.key,
 			label: toggle.label,

@@ -3,7 +3,7 @@
 	// @ts-nocheck
 	import { Segment, Switch, Popover, Modal } from '$lib/components/ui';
 	import type { Role, StratOption, FightToggleState } from '$lib/types';
-	import { formatRoleAbbreviation } from '$lib/utils';
+	import { formatRoleAbbreviation, buildFightOptionsString } from '$lib/utils';
 	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
 	import ChevronDown from '@lucide/svelte/icons/chevron-down';
 	import ChevronUp from '@lucide/svelte/icons/chevron-up';
@@ -16,9 +16,11 @@
 
 	interface Props {
 		title: string;
+		strats: Strat[];
 		stratName: string | undefined;
 		stratOptions: StratOption[];
 		onSelectStrat: (value: string) => void;
+		stratState: Record<string, string | null>;
 		toggles: FightToggleState[];
 		onToggleChange: (key: string, value: string) => void;
 		currentStratDefaults?: Record<string, string>;
@@ -37,9 +39,11 @@
 
 	let {
 		title,
+		strats,
 		stratName,
 		stratOptions = [],
 		onSelectStrat,
+		stratState,
 		toggles = [],
 		onToggleChange,
 		currentStratDefaults,
@@ -74,6 +78,9 @@
 	);
 
 	let stratLabel = $derived(stratOptions.find((o) => o.value === stratName)?.label ?? stratName);
+	let fightOptionsString = $derived(
+		buildFightOptionsString({ stratName, stratState, toggles, strats })
+	);
 	let selectedStratOption = $derived(
 		stratOptions.find((o) => o.value === stratName) ?? { label: null }
 	);
@@ -262,8 +269,8 @@
 
 					<!-- Compact summary: Role, Group, Strat -->
 					<div class="flex items-center gap-2 text-surface-200">
-						{#if stratLabel}
-							<span class="text-lg font-medium text-surface-200">{stratLabel}</span>
+						{#if fightOptionsString}
+							<span class="text-lg font-medium text-surface-200">{fightOptionsString}</span>
 						{/if}
 						{#if hasAnyWarning}
 							<Tooltip.Provider>
