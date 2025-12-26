@@ -618,7 +618,7 @@
 				<!-- Timeline Column (optional) -->
 				{#if timeline.length > 0 && showTimeline}
 					<div
-						class="card border shrink-0 w-48 border-surface-800 p-2 flex flex-col bg-surface-100-900 overflow-hidden"
+						class="card border shrink-0 w-64 border-surface-800 p-2 flex flex-col bg-surface-100-900 overflow-hidden"
 					>
 						<div class="flex mb-2 gap-1 shrink-0">
 							<button
