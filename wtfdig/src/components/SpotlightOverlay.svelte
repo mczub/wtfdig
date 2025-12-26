@@ -8,9 +8,15 @@
 		mask: SpotlightMask | string | null | undefined;
 		borderWidth?: number;
 		overlayOpacity?: number;
+		// When used with object-contain, pass the image's natural dimensions
+		imageWidth?: number;
+		imageHeight?: number;
 	}
 
-	let { mask, borderWidth = 4, overlayOpacity = 0.5 }: Props = $props();
+	let { mask, borderWidth = 4, overlayOpacity = 0.5, imageWidth, imageHeight }: Props = $props();
+
+	// Determine if we should use viewBox-based positioning (for object-contain scenarios)
+	let useViewBox = $derived(imageWidth && imageHeight);
 
 	// Generate a unique ID for this mask instance
 	const maskId = `spotlight-mask-${Math.random().toString(36).substring(2, 9)}`;
@@ -69,7 +75,11 @@
 </script>
 
 {#if parsedMask}
-	<svg class="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none">
+	<svg
+		class="absolute inset-0 w-full h-full pointer-events-none"
+		viewBox={useViewBox ? `0 0 ${imageWidth} ${imageHeight}` : undefined}
+		preserveAspectRatio={useViewBox ? 'xMidYMid meet' : 'none'}
+	>
 		<defs>
 			<mask id={maskId}>
 				<!-- White background = visible -->

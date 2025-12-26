@@ -15,6 +15,7 @@
 		Grid2x2,
 		Grid3x3,
 		Play,
+		RectangleVertical,
 		Settings,
 		Shield,
 		Siren,
@@ -29,6 +30,7 @@
 	import type { TimelineItem, SpotlightMask, Role, Alignment, PhaseStrats } from '$lib/types';
 	import { msToTime } from '$lib/utils';
 	import { browser } from '$app/environment';
+	import Separator from '$lib/components/ui/separator/separator.svelte';
 
 	interface Props {
 		title: string;
@@ -91,7 +93,9 @@
 			showText,
 			cellSizes: Object.fromEntries(cellSizes),
 			hiddenMechanics: Array.from(hiddenMechanics),
-			sidebarOpen
+			sidebarOpen,
+			splitPhases,
+			showSpotlight
 		};
 		localStorage.setItem(storageKey, JSON.stringify(state));
 	}
@@ -102,6 +106,22 @@
 	let showTimeline = $state(savedState?.showTimeline ?? true);
 	let showText = $state(savedState?.showText ?? true);
 	let sidebarOpen = $state(savedState?.sidebarOpen ?? true);
+	let splitPhases = $state(savedState?.splitPhases ?? true); // true = split into tabs, false = show all
+	let showSpotlight = $state(savedState?.showSpotlight ?? true); // local override for spotlight visibility
+
+	// Confirmation dialog state
+	let resetConfirmOpen = $state(false);
+
+	// Reset all settings to defaults
+	function resetSettings() {
+		showTimeline = true;
+		showText = true;
+		splitPhases = true;
+		showSpotlight = true;
+		cellSizes = new Map();
+		hiddenMechanics = new Set();
+		resetConfirmOpen = false;
+	}
 
 	// Map of mechanic keys to their sizes: 'small' (1x1) or 'large' (2x2)
 	let cellSizes = $state<Map<string, 'small' | 'large'>>(
@@ -111,11 +131,28 @@
 	// Set of hidden mechanic keys
 	let hiddenMechanics = $state<Set<string>>(new Set(savedState?.hiddenMechanics ?? []));
 
+	// Track image dimensions for SpotlightOverlay alignment with object-contain
+	let imageDimensions = $state<Map<string, { width: number; height: number }>>(new Map());
+
+	function handleImageLoad(event: Event, imageUrl: string) {
+		const img = event.target as HTMLImageElement;
+		if (img.naturalWidth && img.naturalHeight) {
+			imageDimensions.set(imageUrl, { width: img.naturalWidth, height: img.naturalHeight });
+			imageDimensions = new Map(imageDimensions); // Trigger reactivity
+		}
+	}
+
+	function getImageDimensions(imageUrl: string) {
+		return imageDimensions.get(imageUrl);
+	}
+
 	// Save state when relevant values change
 	$effect(() => {
 		showTimeline;
 		showText;
 		sidebarOpen;
+		splitPhases;
+		showSpotlight;
 		cellSizes;
 		hiddenMechanics;
 		saveState();
@@ -140,6 +177,17 @@
 		const current = getCellSize(key);
 		cellSizes.set(key, current === 'small' ? 'large' : 'small');
 		cellSizes = new Map(cellSizes); // Trigger reactivity
+	}
+
+	// Check if a card has any images
+	function hasImage(phase: any, mech?: any): boolean {
+		// Check for role-based strat image
+		if (mech?.strats && mech.strats[0]?.imageUrl) return true;
+		// Check for mech-level image
+		if (mech?.imageUrl) return true;
+		// Check for phase-level image
+		if (phase?.imageUrl) return true;
+		return false;
 	}
 
 	// Check if a mechanic is visible
@@ -206,11 +254,13 @@
 		}
 	});
 
-	let useEvenTimelineSpacing = $derived(innerHeight <= 1024 || useEvenTimelineSpacingProp);
+	let useEvenTimelineSpacing = $derived(
+		innerHeight <= 1024 || useEvenTimelineSpacingProp || !splitPhases
+	);
 
 	function getFightPercentClass(timeInMs: number, index: number): string {
 		if (useEvenTimelineSpacing) {
-			if (tab && splitTimeline) {
+			if (tab && splitTimeline && splitPhases) {
 				const filteredTimeline = timeline.filter(
 					(item) => item.mechTag && tabTags?.[tab]?.includes(item.mechTag)
 				);
@@ -256,6 +306,7 @@
 
 	function showMechTag(mechTag: string): boolean {
 		if (splitTimeline === false) return true;
+		if (!splitPhases) return true; // Show all timeline items when phases aren't split
 		if (tab) {
 			return tabTags?.[tab]?.includes(mechTag) ?? true;
 		}
@@ -286,20 +337,24 @@
 		typeof individualStrat === 'string' ? [] : individualStrat
 	);
 
+	let visiblePhases = $derived(
+		stratPhases.filter((phase) =>
+			splitPhases && tabTags && tabTags[tab] ? tabTags[tab].includes(phase.tag) : true
+		)
+	);
+
 	// Get visible mechanics count
 	let visibleMechCount = $derived(() => {
 		let count = 0;
-		stratPhases.forEach((phase: any) => {
-			if (tabTags && tabTags[tab] ? tabTags[tab].includes(phase.tag) : true) {
-				if (phase.mechs) {
-					phase.mechs.forEach((mech: any, index: number) => {
-						const key = getMechKey(phase, mech, index);
-						if (!hiddenMechanics.has(key)) count++;
-					});
-				} else {
-					const key = getMechKey(phase);
+		visiblePhases.forEach((phase: any) => {
+			if (phase.mechs) {
+				phase.mechs.forEach((mech: any, index: number) => {
+					const key = getMechKey(phase, mech, index);
 					if (!hiddenMechanics.has(key)) count++;
-				}
+				});
+			} else {
+				const key = getMechKey(phase);
+				if (!hiddenMechanics.has(key)) count++;
 			}
 		});
 		return count;
@@ -373,10 +428,62 @@
 							onCheckedChange={(e) => (showText = e.checked)}
 						/>
 					</div>
+
+					{#if tabTags && Object.keys(tabTags).length > 1}
+						<div class="flex items-center justify-between">
+							<span class="text-sm">Split Phases</span>
+							<Switch
+								name="splitPhases"
+								checked={splitPhases}
+								onCheckedChange={(e) => (splitPhases = e.checked)}
+							/>
+						</div>
+					{/if}
+
+					<div class="flex items-center justify-between">
+						<span class="text-sm">Spotlight</span>
+						<Switch
+							name="showSpotlight"
+							checked={showSpotlight}
+							onCheckedChange={(e) => (showSpotlight = e.checked)}
+						/>
+					</div>
+
+					<!-- Reset Button -->
+					<button
+						class="w-full mt-2 px-3 py-1.5 text-sm bg-surface-800 hover:bg-surface-700 text-surface-300 rounded transition-colors"
+						onclick={() => (resetConfirmOpen = true)}
+					>
+						Reset Settings
+					</button>
+
+					<!-- Reset Confirmation Dialog -->
+					<Modal bind:open={resetConfirmOpen} contentClasses="!max-w-sm !w-auto">
+						<div slot="content" class="p-4">
+							<h3 class="text-lg font-semibold mb-2">Reset Cheatsheet Settings?</h3>
+							<p class="text-sm text-surface-400 mb-4">
+								This will reset all visibility, cell sizes, and display options to their defaults.
+							</p>
+							<div class="flex gap-2 justify-end">
+								<button
+									class="px-3 py-1.5 text-sm bg-surface-800 hover:bg-surface-700 rounded transition-colors"
+									onclick={() => (resetConfirmOpen = false)}
+								>
+									Cancel
+								</button>
+								<button
+									class="px-3 py-1.5 text-sm bg-error-500 hover:bg-error-600 text-white rounded transition-colors"
+									onclick={() => resetSettings()}
+								>
+									Reset
+								</button>
+							</div>
+						</div>
+					</Modal>
 				</div>
 
-				<!-- Phase Tabs (if applicable) -->
-				{#if tabTags}
+				<!-- Phase Tabs (if applicable and splitPhases is enabled) -->
+				{#if tabTags && splitPhases}
 					<div class="p-3 border-b border-surface-700">
 						<div class="text-xs font-semibold text-surface-400 uppercase tracking-wide mb-2">
 							Phase
@@ -400,78 +507,92 @@
 						Mechanics
 					</div>
 
-					{#each stratPhases as phase}
-						{#if tabTags && tabTags[tab] ? tabTags[tab].includes(phase.tag) : true}
-							<div class="mb-3">
-								<div class="flex items-center justify-between mb-1">
-									<span class="text-sm font-medium capitalize truncate">{phase.phaseName}</span>
-									<div class="flex gap-1">
-										<button
-											class="p-1 hover:bg-surface-700 rounded text-surface-400 hover:text-white transition-colors"
-											onclick={() => showAllInPhase(phase)}
-											title="Show all"
-										>
-											<Eye size={14} />
-										</button>
-										<button
-											class="p-1 hover:bg-surface-700 rounded text-surface-400 hover:text-white transition-colors"
-											onclick={() => hideAllInPhase(phase)}
-											title="Hide all"
-										>
-											<EyeOff size={14} />
-										</button>
-									</div>
+					{#each visiblePhases as phase}
+						<div class="mb-3">
+							<div class="flex items-center justify-between mb-1">
+								<span class="text-sm font-medium capitalize truncate">{phase.phaseName}</span>
+								<div class="flex gap-1">
+									<button
+										class="p-1 hover:bg-surface-700 rounded text-surface-400 hover:text-white transition-colors"
+										onclick={() => showAllInPhase(phase)}
+										title="Show all"
+									>
+										<Eye size={14} />
+									</button>
+									<button
+										class="p-1 hover:bg-surface-700 rounded text-surface-400 hover:text-white transition-colors"
+										onclick={() => hideAllInPhase(phase)}
+										title="Hide all"
+									>
+										<EyeOff size={14} />
+									</button>
 								</div>
+							</div>
 
-								{#if phase.mechs}
-									<div class="space-y-1 pl-2">
-										{#each phase.mechs as mech, index}
-											{@const mechKey = getMechKey(phase, mech, index)}
-											<div class="flex items-center gap-2">
-												<button
-													class={`flex-1 text-left text-xs px-2 py-1 rounded transition-colors truncate ${isMechVisible(mechKey) ? 'bg-surface-800 text-surface-100' : 'bg-surface-900 text-surface-500 line-through'}`}
-													onclick={() => toggleMechVisibility(mechKey)}
-												>
-													{mech.mechanic}
-												</button>
-												<button
-													class={`p-1 rounded text-xs transition-colors ${getCellSize(mechKey) === 'large' ? 'bg-primary-500 text-white' : 'bg-surface-800 text-surface-400 hover:text-white'}`}
-													onclick={() => toggleCellSize(mechKey)}
-													title={getCellSize(mechKey) === 'large' ? '2x2' : '1x1'}
-												>
-													{#if getCellSize(mechKey) === 'large'}
+							{#if phase.mechs}
+								<div class="space-y-1 pl-2">
+									{#each phase.mechs as mech, index}
+										{@const mechKey = getMechKey(phase, mech, index)}
+										<div class="flex items-center gap-2">
+											<button
+												class={`flex-1 text-left text-xs px-2 py-1 rounded transition-colors truncate ${isMechVisible(mechKey) ? 'bg-surface-800 text-surface-100' : 'bg-surface-900 text-surface-500 line-through'}`}
+												onclick={() => toggleMechVisibility(mechKey)}
+											>
+												{mech.mechanic}
+											</button>
+											<button
+												class={`p-1 rounded text-xs transition-colors ${getCellSize(mechKey) === 'large' ? 'bg-primary-500 text-white' : 'bg-surface-800 text-surface-400 hover:text-white'}`}
+												onclick={() => toggleCellSize(mechKey)}
+												title={getCellSize(mechKey) === 'large'
+													? hasImage(phase, mech)
+														? '2x2'
+														: '1x2'
+													: '1x1'}
+											>
+												{#if getCellSize(mechKey) === 'large'}
+													{#if hasImage(phase, mech)}
 														<Grid2x2 size={12} />
 													{:else}
-														<Grid3x3 size={12} />
+														<RectangleVertical size={12} />
 													{/if}
-												</button>
-											</div>
-										{/each}
-									</div>
-								{:else}
-									{@const phaseKey = getMechKey(phase)}
-									<div class="flex items-center gap-2 pl-2">
-										<button
-											class={`flex-1 text-left text-xs px-2 py-1 rounded transition-colors ${isMechVisible(phaseKey) ? 'bg-surface-800 text-surface-100' : 'bg-surface-900 text-surface-500 line-through'}`}
-											onclick={() => toggleMechVisibility(phaseKey)}
-										>
-											{phase.phaseName}
-										</button>
-										<button
-											class={`p-1 rounded text-xs transition-colors ${getCellSize(phaseKey) === 'large' ? 'bg-primary-500 text-white' : 'bg-surface-800 text-surface-400 hover:text-white'}`}
-											onclick={() => toggleCellSize(phaseKey)}
-											title={getCellSize(phaseKey) === 'large' ? '2x2' : '1x1'}
-										>
-											{#if getCellSize(phaseKey) === 'large'}
+												{:else}
+													<Grid3x3 size={12} />
+												{/if}
+											</button>
+										</div>
+									{/each}
+								</div>
+							{:else}
+								{@const phaseKey = getMechKey(phase)}
+								<div class="flex items-center gap-2 pl-2">
+									<button
+										class={`flex-1 text-left text-xs px-2 py-1 rounded transition-colors ${isMechVisible(phaseKey) ? 'bg-surface-800 text-surface-100' : 'bg-surface-900 text-surface-500 line-through'}`}
+										onclick={() => toggleMechVisibility(phaseKey)}
+									>
+										{phase.phaseName}
+									</button>
+									<button
+										class={`p-1 rounded text-xs transition-colors ${getCellSize(phaseKey) === 'large' ? 'bg-primary-500 text-white' : 'bg-surface-800 text-surface-400 hover:text-white'}`}
+										onclick={() => toggleCellSize(phaseKey)}
+										title={getCellSize(phaseKey) === 'large'
+											? hasImage(phase)
+												? '2x2'
+												: '1x2'
+											: '1x1'}
+									>
+										{#if getCellSize(phaseKey) === 'large'}
+											{#if hasImage(phase)}
 												<Grid2x2 size={12} />
 											{:else}
-												<Grid3x3 size={12} />
+												<RectangleVertical size={12} />
 											{/if}
-										</button>
-									</div>
-								{/if}
-							</div>
-						{/if}
+										{:else}
+											<Grid3x3 size={12} />
+										{/if}
+									</button>
+								</div>
+							{/if}
+						</div>
 					{/each}
 				</div>
 			{/if}
@@ -521,7 +642,7 @@
 								{#if showMechType(item.mechType) && (item.mechTag ? showMechTag(item.mechTag) : true)}
 									<div
 										style:top={getFightPercentClass(item.startTimeMs, index)}
-										class="absolute flex text-xs w-full items-center"
+										class="absolute flex text-sm w-full items-center"
 									>
 										<div class="w-5 shrink-0">
 											{#if item.mechType === 'Start'}
@@ -573,7 +694,7 @@
 										<div class="w-10 text-[10px] text-surface-400">
 											{msToTime(item.startTimeMs)}
 										</div>
-										<div class="flex-1 overflow-hidden text-nowrap text-[10px]">
+										<div class="flex-1 overflow-hidden text-nowrap text-[12px]">
 											{item.mechName}
 										</div>
 									</div>
@@ -587,117 +708,29 @@
 				<div
 					class="flex-1 grid gap-3 overflow-y-auto content-start"
 					style:grid-template-columns={`repeat(${gridColumns()}, minmax(0, 1fr))`}
-					style:grid-auto-rows="minmax(200px, auto)"
+					style:grid-auto-rows="minmax(180px, 1fr)"
 				>
-					{#each stratPhases as phase}
-						{#if tabTags && tabTags[tab] ? tabTags[tab].includes(phase.tag) : true}
-							{#if phase.mechs}
-								{#each phase.mechs as mech, i}
-									{@const mechKey = getMechKey(phase, mech, i)}
-									{#if isMechVisible(mechKey)}
-										{@const isLarge = getCellSize(mechKey) === 'large'}
-										<button
-											class="card border border-surface-700 p-2 flex flex-col text-start group overflow-hidden bg-surface-900/80 hover:bg-surface-800/80 transition-colors cursor-pointer"
-											class:col-span-2={isLarge}
-											class:row-span-2={isLarge}
-											onclick={() => openImageModal(phase, mech)}
-										>
-											<!-- Header -->
-											<div class="flex items-start justify-between mb-1 shrink-0">
-												<div>
-													<div class="capitalize font-bold text-base text-surface-200">
-														{phase.phaseName}
-													</div>
-													<div class="capitalize font-semibold text-lg">
-														{mech.mechanic}
-													</div>
-												</div>
-												<div class="flex items-center gap-1">
-													{#if phase?.tag && stratState[phase.tag] !== getStratMechs(stratName ?? '')[phase.tag]}
-														<Tooltip
-															positioning={{ placement: 'top' }}
-															triggerBase="flex"
-															contentBase="card bg-surface-800 p-2 text-xs"
-															openDelay={200}
-															arrow
-															arrowBackground="!bg-surface-800"
-														>
-															{#snippet trigger()}<div class="text-warning-500">
-																	<TriangleAlert size={16} />
-																</div>{/snippet}
-															{#snippet content()}Differs from guide{/snippet}
-														</Tooltip>
-													{/if}
-													<Expand
-														size={14}
-														class="opacity-0 group-hover:opacity-100 transition-opacity text-surface-400"
-													/>
-												</div>
-											</div>
-
-											<!-- Description (if showText) -->
-											{#if showText && mech?.description}
-												<div class="text-base text-surface-100 whitespace-pre-wrap mb-1 shrink-0">
-													{@html mech.description}
-												</div>
-											{/if}
-
-											<!-- Player strat (if showText) -->
-											{#if showText && role && mech?.strats && mech.strats[0]?.description}
-												<div class="flex items-start gap-2 text-base mb-2 shrink-0">
-													<img
-														src={`/icons/${role.toLowerCase()}.png`}
-														alt={role}
-														class="w-6 h-6 shrink-0"
-													/>
-													<div class="whitespace-pre-wrap">
-														{mech.strats[0].description}
-													</div>
-												</div>
-											{/if}
-
-											<!-- Image -->
-											{#if mech?.strats && mech.strats[0]?.imageUrl}
-												<div
-													class="flex-1 min-h-0 flex items-center justify-center overflow-hidden"
-												>
-													<div class="relative inline-block overflow-hidden rounded">
-														<img
-															class="block max-w-full max-h-[300px]"
-															src={mech.strats[0].imageUrl}
-															alt={mech.mechanic}
-														/>
-														{#if spotlight && mech.strats[0]?.mask}
-															<SpotlightOverlay mask={mech.strats[0].mask} />
-														{/if}
-													</div>
-												</div>
-											{:else if mech?.imageUrl}
-												<div class="flex-1 min-h-0 flex items-center justify-center">
-													<img
-														class="max-h-full max-w-full object-contain rounded"
-														src={mech.imageUrl}
-														alt={mech.mechanic}
-													/>
-												</div>
-											{/if}
-										</button>
-									{/if}
-								{/each}
-							{:else}
-								{@const phaseKey = getMechKey(phase)}
-								{#if isMechVisible(phaseKey)}
-									{@const isLarge = getCellSize(phaseKey) === 'large'}
+					{#each visiblePhases as phase, i}
+						{#if phase.mechs}
+							{#each phase.mechs as mech, i}
+								{@const mechKey = getMechKey(phase, mech, i)}
+								{#if isMechVisible(mechKey)}
+									{@const isLarge = getCellSize(mechKey) === 'large'}
 									<button
-										class="card border border-surface-700 p-2 flex flex-col text-start group bg-surface-900/80 hover:bg-surface-800/80 transition-colors cursor-pointer"
-										class:col-span-2={isLarge}
+										class="card border border-surface-700 p-2 h-0 min-h-full flex flex-col text-start group overflow-hidden bg-surface-900/80 hover:bg-surface-800/80 transition-colors cursor-pointer"
+										class:col-span-2={isLarge && hasImage(phase, mech)}
 										class:row-span-2={isLarge}
-										onclick={() => openImageModal(phase)}
+										onclick={() => openImageModal(phase, mech)}
 									>
 										<!-- Header -->
 										<div class="flex items-start justify-between mb-1 shrink-0">
-											<div class="capitalize font-semibold text-lg">
-												{phase.phaseName}
+											<div>
+												<div class="capitalize font-bold text-base text-surface-200">
+													{phase.phaseName}
+												</div>
+												<div class="capitalize font-semibold text-lg">
+													{mech.mechanic}
+												</div>
 											</div>
 											<div class="flex items-center gap-1">
 												{#if phase?.tag && stratState[phase.tag] !== getStratMechs(stratName ?? '')[phase.tag]}
@@ -723,29 +756,123 @@
 										</div>
 
 										<!-- Description (if showText) -->
-										{#if showText && phase?.description}
-											<div class="text-base text-surface-300 whitespace-pre-wrap mb-1 shrink-0">
-												{phase.description}
+										{#if showText && mech?.description}
+											<div class="text-base text-surface-100 whitespace-pre-wrap mb-1 shrink-0">
+												{@html mech.description}
+											</div>
+										{/if}
+
+										<!-- Player strat (if showText) -->
+										{#if showText && role && mech?.strats && mech.strats[0]?.description}
+											<div class="flex items-start gap-2 text-base mb-2 shrink-0">
+												<img
+													src={`/icons/${role.toLowerCase()}.png`}
+													alt={role}
+													class="w-6 h-6 shrink-0"
+												/>
+												<div class="whitespace-pre-wrap">
+													{mech.strats[0].description}
+												</div>
 											</div>
 										{/if}
 
 										<!-- Image -->
-										{#if phase?.imageUrl}
-											<div class="flex-1 min-h-0 flex items-center justify-center overflow-hidden">
-												<div class="relative inline-block overflow-hidden rounded">
-													<img
-														class="block max-w-full max-h-[300px]"
-														src={phase.imageUrl}
-														alt={phase.phaseName}
+										{#if mech?.strats && mech.strats[0]?.imageUrl}
+											{@const imgUrl = mech.strats[0].imageUrl}
+											{@const dims = getImageDimensions(imgUrl)}
+											<div class="min-h-0 h-full relative">
+												<img
+													class="rounded w-full h-full object-contain"
+													src={imgUrl}
+													alt={mech.mechanic}
+													onload={(e) => handleImageLoad(e, imgUrl)}
+												/>
+												{#if spotlight && showSpotlight && mech.strats[0]?.mask}
+													<SpotlightOverlay
+														mask={mech.strats[0].mask}
+														imageWidth={dims?.width}
+														imageHeight={dims?.height}
 													/>
-													{#if spotlight && phase.mask}
-														<SpotlightOverlay mask={phase.mask} />
-													{/if}
-												</div>
+												{/if}
+											</div>
+										{:else if mech?.imageUrl}
+											<div class="min-h-0 h-full flex items-center justify-center">
+												<img
+													class="rounded h-auto w-auto max-h-full max-w-full"
+													src={mech.imageUrl}
+													alt={mech.mechanic}
+												/>
 											</div>
 										{/if}
 									</button>
 								{/if}
+							{/each}
+						{:else}
+							{@const phaseKey = getMechKey(phase)}
+							{#if isMechVisible(phaseKey)}
+								{@const isLarge = getCellSize(phaseKey) === 'large'}
+								<button
+									class="card border border-surface-700 p-2 h-0 min-h-full flex flex-col text-start group overflow-hidden bg-surface-900/80 hover:bg-surface-800/80 transition-colors cursor-pointer"
+									class:col-span-2={isLarge}
+									class:row-span-2={isLarge}
+									onclick={() => openImageModal(phase)}
+								>
+									<!-- Header -->
+									<div class="flex items-start justify-between mb-1 shrink-0">
+										<div class="capitalize font-semibold text-lg">
+											{phase.phaseName}
+										</div>
+										<div class="flex items-center gap-1">
+											{#if phase?.tag && stratState[phase.tag] !== getStratMechs(stratName ?? '')[phase.tag]}
+												<Tooltip
+													positioning={{ placement: 'top' }}
+													triggerBase="flex"
+													contentBase="card bg-surface-800 p-2 text-xs"
+													openDelay={200}
+													arrow
+													arrowBackground="!bg-surface-800"
+												>
+													{#snippet trigger()}<div class="text-warning-500">
+															<TriangleAlert size={16} />
+														</div>{/snippet}
+													{#snippet content()}Differs from guide{/snippet}
+												</Tooltip>
+											{/if}
+											<Expand
+												size={14}
+												class="opacity-0 group-hover:opacity-100 transition-opacity text-surface-400"
+											/>
+										</div>
+									</div>
+
+									<!-- Description (if showText) -->
+									{#if showText && phase?.description}
+										<div class="text-base text-surface-300 whitespace-pre-wrap mb-1 shrink-0">
+											{phase.description}
+										</div>
+									{/if}
+
+									<!-- Image -->
+									{#if phase?.imageUrl}
+										{@const imgUrl = phase.imageUrl}
+										{@const dims = getImageDimensions(imgUrl)}
+										<div class="min-h-0 h-full relative">
+											<img
+												class="rounded w-full h-full object-contain"
+												src={imgUrl}
+												alt={phase.phaseName}
+												onload={(e) => handleImageLoad(e, imgUrl)}
+											/>
+											{#if spotlight && showSpotlight && phase.mask}
+												<SpotlightOverlay
+													mask={phase.mask}
+													imageWidth={dims?.width}
+													imageHeight={dims?.height}
+												/>
+											{/if}
+										</div>
+									{/if}
+								</button>
 							{/if}
 						{/if}
 					{/each}

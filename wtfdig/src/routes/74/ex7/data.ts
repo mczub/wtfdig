@@ -849,31 +849,31 @@ export const ex7FightConfig: FightConfig = {
         },
         {
             mechName: "Train AoEs 1",
-            mechType: "Mechanic",
+            mechType: "Tankbuster",
             mechTag: "pre",
             startTimeMs: 177000
         },
         {
             mechName: "Train AoEs 2",
-            mechType: "Mechanic",
+            mechType: "Tankbuster",
             mechTag: "pre",
             startTimeMs: 193000
         },
         {
             mechName: "Train AoEs 3",
-            mechType: "Mechanic",
+            mechType: "Tankbuster",
             mechTag: "pre",
             startTimeMs: 205000
         },
         {
             mechName: "Train AoEs 4",
-            mechType: "Mechanic",
+            mechType: "Tankbuster",
             mechTag: "pre",
             startTimeMs: 219000
         },
         {
             mechName: "Train AoEs 5",
-            mechType: "Mechanic",
+            mechType: "Tankbuster",
             mechTag: "pre",
             startTimeMs: 233000
         },
@@ -909,7 +909,7 @@ export const ex7FightConfig: FightConfig = {
         },
         {
             mechName: "Tower x3",
-            mechType: "Mechanic",
+            mechType: "Raidwide",
             mechTag: "post",
             startTimeMs: 30000
         },
@@ -987,7 +987,7 @@ export const ex7FightConfig: FightConfig = {
         },
         {
             mechName: "Tower x4",
-            mechType: "Mechanic",
+            mechType: "Raidwide",
             mechTag: "post",
             startTimeMs: 152000
         },
@@ -1005,7 +1005,7 @@ export const ex7FightConfig: FightConfig = {
         },
         {
             mechName: "Twisters Snap",
-            mechType: "Mechanic",
+            mechType: "StoredMechanic",
             mechTag: "post",
             startTimeMs: 188000
         },
@@ -1035,7 +1035,7 @@ export const ex7FightConfig: FightConfig = {
         },
         {
             mechName: "Twisters Snap",
-            mechType: "Mechanic",
+            mechType: "StoredMechanic",
             mechTag: "post",
             startTimeMs: 220000
         },
@@ -1047,7 +1047,7 @@ export const ex7FightConfig: FightConfig = {
         },
         {
             mechName: "Tower x5",
-            mechType: "Mechanic",
+            mechType: "Raidwide",
             mechTag: "post",
             startTimeMs: 229000
         },
@@ -1089,7 +1089,7 @@ export const ex7FightConfig: FightConfig = {
         },
         {
             mechName: "Twisters Snap",
-            mechType: "Mechanic",
+            mechType: "StoredMechanic",
             mechTag: "post",
             startTimeMs: 296000
         },
@@ -1149,7 +1149,7 @@ export const ex7FightConfig: FightConfig = {
         },
         {
             mechName: "Twisters Snap",
-            mechType: "Mechanic",
+            mechType: "StoredMechanic",
             mechTag: "post",
             startTimeMs: 362000
         },
@@ -1185,7 +1185,7 @@ export const ex7FightConfig: FightConfig = {
         },
         {
             mechName: "Twisters Snap",
-            mechType: "Mechanic",
+            mechType: "StoredMechanic",
             mechTag: "post",
             startTimeMs: 403000
         },
@@ -1197,7 +1197,7 @@ export const ex7FightConfig: FightConfig = {
         },
         {
             mechName: "Tower x6",
-            mechType: "Mechanic",
+            mechType: "Raidwide",
             mechTag: "post",
             startTimeMs: 418000
         },
