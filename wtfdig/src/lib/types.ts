@@ -117,6 +117,7 @@ export interface FightConfig {
 	timeline?: TimelineItem[];
 	splitTimeline?: boolean;
 	useEvenTimelineSpacing?: boolean;
+	useModernCheatsheet?: boolean;
 	additionalResources?: {
 		title: string;
 		description?: string;

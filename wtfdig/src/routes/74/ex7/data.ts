@@ -712,6 +712,7 @@ export const ex7FightConfig: FightConfig = {
         ]
     },
     useMainPageTabs: false,
+    useModernCheatsheet: true,
     defaultStratName: "hector",
     timeline: [
         {
@@ -1462,7 +1463,6 @@ export const hector: Strat = {
                     mechanic: "Doom Train (Stack/Spread)",
                     description: "2 puffs = LP stacks\n3 puffs = spread",
                     imageUrl: "./ex7/p3-stack-spread-audio.webp",
-                    strats: getStratArray(runawayStrats, 'doomtrainstackspread')
                 },
                 {
                     mechanic: "Stacks",
@@ -1482,7 +1482,6 @@ export const hector: Strat = {
                     mechanic: "Tower + Derail",
                     description: "3-hit group stack, then run south to teleporter",
                     imageUrl: "./ex7/p3-tower.webp",
-                    strats: getStratArray(runawayStrats, 'towerderail')
                 }
             ]
         },

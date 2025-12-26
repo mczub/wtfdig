@@ -560,14 +560,4 @@
 			</div>
 		{/if}
 	</div>
-	{#if !role || !party || !stratName}
-		<div
-			class="absolute -bottom-14 left-0 z-100 bg-surface-900 border border-primary-500 text-surface-50 px-4 py-2 rounded-xl shadow-xl"
-		>
-			<div
-				class="absolute -top-1.5 left-8 w-3 h-3 bg-surface-900 border-t border-l border-primary-500 transform rotate-45"
-			></div>
-			<span class="font-bold text-lg whitespace-nowrap">Select your role, group & strat</span>
-		</div>
-	{/if}
 </div>
