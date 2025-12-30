@@ -90,7 +90,7 @@
 		if (!browser) return;
 		const state = {
 			showTimeline,
-			showText,
+			textMode,
 			cellSizes: Object.fromEntries(cellSizes),
 			hiddenMechanics: Array.from(hiddenMechanics),
 			sidebarOpen,
@@ -104,7 +104,8 @@
 	const savedState = loadSavedState();
 
 	let showTimeline = $state(savedState?.showTimeline ?? true);
-	let showText = $state(savedState?.showText ?? true);
+	// Text display mode: 'all' = show all text, 'role' = only role-based text, 'image' = no text
+	let textMode = $state<'all' | 'role' | 'image'>(savedState?.textMode ?? 'all');
 	let sidebarOpen = $state(savedState?.sidebarOpen ?? true);
 	let splitPhases = $state(savedState?.splitPhases ?? true); // true = split into tabs, false = show all
 	let showSpotlight = $state(savedState?.showSpotlight ?? true); // local override for spotlight visibility
@@ -115,7 +116,7 @@
 	// Reset all settings to defaults
 	function resetSettings() {
 		showTimeline = true;
-		showText = true;
+		textMode = 'all';
 		splitPhases = true;
 		showSpotlight = true;
 		cellSizes = new Map();
@@ -149,7 +150,7 @@
 	// Save state when relevant values change
 	$effect(() => {
 		showTimeline;
-		showText;
+		textMode;
 		sidebarOpen;
 		splitPhases;
 		showSpotlight;
@@ -420,13 +421,28 @@
 						</div>
 					{/if}
 
-					<div class="flex items-center justify-between">
-						<span class="text-sm">Show Text</span>
-						<Switch
-							name="showText"
-							checked={showText}
-							onCheckedChange={(e) => (showText = e.checked)}
-						/>
+					<div class="space-y-1">
+						<span class="text-sm">Text Display</span>
+						<div class="flex gap-1">
+							<button
+								class={`flex-1 px-2 py-1 text-xs rounded transition-colors ${textMode === 'all' ? 'bg-primary-500 text-white' : 'bg-surface-800 hover:bg-surface-700'}`}
+								onclick={() => (textMode = 'all')}
+							>
+								All
+							</button>
+							<button
+								class={`flex-1 px-2 py-1 text-xs rounded transition-colors ${textMode === 'role' ? 'bg-primary-500 text-white' : 'bg-surface-800 hover:bg-surface-700'}`}
+								onclick={() => (textMode = 'role')}
+							>
+								Role
+							</button>
+							<button
+								class={`flex-1 px-2 py-1 text-xs rounded transition-colors ${textMode === 'image' ? 'bg-primary-500 text-white' : 'bg-surface-800 hover:bg-surface-700'}`}
+								onclick={() => (textMode = 'image')}
+							>
+								Image
+							</button>
+						</div>
 					</div>
 
 					{#if tabTags && Object.keys(tabTags).length > 1}
@@ -722,48 +738,50 @@
 										class:row-span-2={isLarge}
 										onclick={() => openImageModal(phase, mech)}
 									>
-										<!-- Header -->
-										<div class="flex items-start justify-between mb-1 shrink-0">
-											<div>
-												<div class="capitalize font-bold text-base text-surface-200">
-													{phase.phaseName}
+										<!-- Header (hide in image-only mode) -->
+										{#if textMode !== 'image'}
+											<div class="flex items-start justify-between mb-1 shrink-0">
+												<div>
+													<div class="capitalize font-bold text-base text-surface-200">
+														{phase.phaseName}
+													</div>
+													<div class="capitalize font-semibold text-lg">
+														{mech.mechanic}
+													</div>
 												</div>
-												<div class="capitalize font-semibold text-lg">
-													{mech.mechanic}
+												<div class="flex items-center gap-1">
+													{#if phase?.tag && stratState[phase.tag] !== getStratMechs(stratName ?? '')[phase.tag]}
+														<Tooltip
+															positioning={{ placement: 'top' }}
+															triggerBase="flex"
+															contentBase="card bg-surface-800 p-2 text-xs"
+															openDelay={200}
+															arrow
+															arrowBackground="!bg-surface-800"
+														>
+															{#snippet trigger()}<div class="text-warning-500">
+																	<TriangleAlert size={16} />
+																</div>{/snippet}
+															{#snippet content()}Differs from guide{/snippet}
+														</Tooltip>
+													{/if}
+													<Expand
+														size={14}
+														class="opacity-0 group-hover:opacity-100 transition-opacity text-surface-400"
+													/>
 												</div>
 											</div>
-											<div class="flex items-center gap-1">
-												{#if phase?.tag && stratState[phase.tag] !== getStratMechs(stratName ?? '')[phase.tag]}
-													<Tooltip
-														positioning={{ placement: 'top' }}
-														triggerBase="flex"
-														contentBase="card bg-surface-800 p-2 text-xs"
-														openDelay={200}
-														arrow
-														arrowBackground="!bg-surface-800"
-													>
-														{#snippet trigger()}<div class="text-warning-500">
-																<TriangleAlert size={16} />
-															</div>{/snippet}
-														{#snippet content()}Differs from guide{/snippet}
-													</Tooltip>
-												{/if}
-												<Expand
-													size={14}
-													class="opacity-0 group-hover:opacity-100 transition-opacity text-surface-400"
-												/>
-											</div>
-										</div>
+										{/if}
 
-										<!-- Description (if showText) -->
-										{#if showText && mech?.description}
+										<!-- Description (if textMode is 'all') -->
+										{#if textMode === 'all' && mech?.description}
 											<div class="text-base text-surface-100 whitespace-pre-wrap mb-1 shrink-0">
 												{@html mech.description}
 											</div>
 										{/if}
 
-										<!-- Player strat (if showText) -->
-										{#if showText && role && mech?.strats && mech.strats[0]?.description}
+										<!-- Player strat (if textMode is 'all' or 'role') -->
+										{#if (textMode === 'all' || textMode === 'role') && role && mech?.strats && mech.strats[0]?.description}
 											<div class="flex items-start gap-2 text-base mb-2 shrink-0">
 												<img
 													src={`/icons/${role.toLowerCase()}.png`}
@@ -817,36 +835,38 @@
 									class:row-span-2={isLarge}
 									onclick={() => openImageModal(phase)}
 								>
-									<!-- Header -->
-									<div class="flex items-start justify-between mb-1 shrink-0">
-										<div class="capitalize font-semibold text-lg">
-											{phase.phaseName}
+									<!-- Header (hide in image-only mode) -->
+									{#if textMode !== 'image'}
+										<div class="flex items-start justify-between mb-1 shrink-0">
+											<div class="capitalize font-semibold text-lg">
+												{phase.phaseName}
+											</div>
+											<div class="flex items-center gap-1">
+												{#if phase?.tag && stratState[phase.tag] !== getStratMechs(stratName ?? '')[phase.tag]}
+													<Tooltip
+														positioning={{ placement: 'top' }}
+														triggerBase="flex"
+														contentBase="card bg-surface-800 p-2 text-xs"
+														openDelay={200}
+														arrow
+														arrowBackground="!bg-surface-800"
+													>
+														{#snippet trigger()}<div class="text-warning-500">
+																<TriangleAlert size={16} />
+															</div>{/snippet}
+														{#snippet content()}Differs from guide{/snippet}
+													</Tooltip>
+												{/if}
+												<Expand
+													size={14}
+													class="opacity-0 group-hover:opacity-100 transition-opacity text-surface-400"
+												/>
+											</div>
 										</div>
-										<div class="flex items-center gap-1">
-											{#if phase?.tag && stratState[phase.tag] !== getStratMechs(stratName ?? '')[phase.tag]}
-												<Tooltip
-													positioning={{ placement: 'top' }}
-													triggerBase="flex"
-													contentBase="card bg-surface-800 p-2 text-xs"
-													openDelay={200}
-													arrow
-													arrowBackground="!bg-surface-800"
-												>
-													{#snippet trigger()}<div class="text-warning-500">
-															<TriangleAlert size={16} />
-														</div>{/snippet}
-													{#snippet content()}Differs from guide{/snippet}
-												</Tooltip>
-											{/if}
-											<Expand
-												size={14}
-												class="opacity-0 group-hover:opacity-100 transition-opacity text-surface-400"
-											/>
-										</div>
-									</div>
+									{/if}
 
-									<!-- Description (if showText) -->
-									{#if showText && phase?.description}
+									<!-- Description (if textMode is 'all') -->
+									{#if textMode === 'all' && phase?.description}
 										<div class="text-base text-surface-300 whitespace-pre-wrap mb-1 shrink-0">
 											{phase.description}
 										</div>
