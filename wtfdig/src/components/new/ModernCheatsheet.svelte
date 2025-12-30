@@ -363,11 +363,197 @@
 
 	// Calculate grid columns based on visible count and sizes
 	let gridColumns = $derived(() => {
-		const count = visibleMechCount();
-		if (count <= 4) return 2;
-		if (count <= 9) return 3;
-		if (count <= 16) return 4;
-		return Math.min(5, Math.ceil(Math.sqrt(count)));
+		return 2;
+	});
+
+	// Auto-fit columns action: adjusts column count to fit all cards on screen
+	const MIN_COL_WIDTH = 280; // Minimum column width in px
+	const GAP = 12; // Gap between columns in px
+	const ROW_HEIGHT = 10; // Base row height for masonry
+	let dynamicColumns = $state<number | null>(null); // null = use gridColumns(), otherwise override
+
+	function autoFitColumns(node: HTMLElement) {
+		let timeoutId: number;
+		let isCalculating = false;
+
+		function calculateOptimalColumns() {
+			if (isCalculating) return;
+			isCalculating = true;
+
+			// Start from base column count
+			let testCols = dynamicColumns ?? 2;
+			const containerWidth = node.clientWidth;
+			const containerHeight = node.clientHeight;
+
+			console.log(
+				`[autoFitColumns] Starting. containerH=${containerHeight}, containerW=${containerWidth}`
+			);
+
+			function tryColumns(cols: number) {
+				// Check if this column count can fit
+				const colWidth = (containerWidth - (cols - 1) * GAP) / cols;
+
+				// If columns would be too narrow, we can't add more
+				if (colWidth < MIN_COL_WIDTH) {
+					console.log(
+						`[autoFitColumns] cols=${cols} would be too narrow (${colWidth}px), using ${cols - 1}`
+					);
+					dynamicColumns = cols > 1 ? cols - 1 : 1;
+					isCalculating = false;
+					return;
+				}
+
+				// Set the columns and wait for layout update
+				dynamicColumns = cols;
+
+				setTimeout(() => {
+					const scrollHeight = node.scrollHeight;
+					console.log(
+						`[autoFitColumns] cols=${cols}, scrollH=${scrollHeight}, containerH=${containerHeight}`
+					);
+
+					if (scrollHeight <= containerHeight + 5) {
+						// Content fits! We found our minimum columns
+						console.log(`[autoFitColumns] Content fits with ${cols} columns!`);
+						isCalculating = false;
+					} else {
+						// Still overflows, try more columns
+						tryColumns(cols + 1);
+					}
+				}, 10); // Wait for Svelte to update and masonry to recalculate
+			}
+
+			tryColumns(testCols);
+		}
+
+		// Initial calculation after masonry has time to measure
+		timeoutId = setTimeout(calculateOptimalColumns, 20) as unknown as number;
+
+		// Watch for significant size changes (window resize)
+		let lastWidth = node.clientWidth;
+		let lastHeight = node.clientHeight;
+		const observer = new ResizeObserver((entries) => {
+			const newWidth = entries[0].contentRect.width;
+			const newHeight = entries[0].contentRect.height;
+
+			// Only recalculate on significant changes (not just from column adjustments)
+			if (Math.abs(newWidth - lastWidth) > 50) {
+				console.log(
+					`[autoFitColumns] Grow detected: ${lastWidth}x${lastHeight} -> ${newWidth}x${newHeight}`
+				);
+				lastWidth = newWidth;
+				lastHeight = newHeight;
+				clearTimeout(timeoutId);
+				isCalculating = false;
+				timeoutId = setTimeout(calculateOptimalColumns, 20) as unknown as number;
+			} else if (Math.abs(newHeight - lastHeight) > 50) {
+				console.log(
+					`[autoFitColumns] Shrink detected: ${lastWidth}x${lastHeight} -> ${newWidth}x${newHeight}`
+				);
+				lastWidth = newWidth;
+				lastHeight = newHeight;
+				clearTimeout(timeoutId);
+				isCalculating = false;
+				dynamicColumns = dynamicColumns - 1;
+				timeoutId = setTimeout(calculateOptimalColumns, 20) as unknown as number;
+			}
+		});
+		observer.observe(node);
+
+		// Listen for recalc events from state changes
+		function handleRecalc() {
+			console.log('[autoFitColumns] Recalc event received');
+			clearTimeout(timeoutId);
+			isCalculating = false;
+			timeoutId = setTimeout(calculateOptimalColumns, 20) as unknown as number;
+		}
+		node.addEventListener('recalc', handleRecalc);
+
+		return {
+			destroy() {
+				clearTimeout(timeoutId);
+				observer.disconnect();
+				node.removeEventListener('recalc', handleRecalc);
+			}
+		};
+	}
+
+	// Masonry action: measures element height and sets grid-row-end dynamically
+	function masonry(node: HTMLElement) {
+		function updateRowSpan() {
+			// Get current width before changing position
+			const currentWidth = node.offsetWidth;
+
+			// Temporarily remove from grid flow to measure natural height
+			const originalPosition = node.style.position;
+			const originalVisibility = node.style.visibility;
+			const originalWidth = node.style.width;
+			node.style.position = 'absolute';
+			node.style.visibility = 'hidden';
+			node.style.width = `${currentWidth}px`;
+			node.style.gridRowEnd = '';
+
+			// Force reflow and measure
+			const height = node.offsetHeight;
+
+			// Restore original styles
+			node.style.position = originalPosition;
+			node.style.visibility = originalVisibility;
+			node.style.width = originalWidth;
+
+			// Calculate and set row span
+			const rowSpan = Math.max(1, Math.ceil((height + GAP) / (ROW_HEIGHT + GAP)));
+			node.style.gridRowEnd = `span ${rowSpan}`;
+		}
+
+		// Initial calculation after content loads
+		requestAnimationFrame(updateRowSpan);
+
+		// Watch for size changes (images loading, content changes)
+		const observer = new ResizeObserver(() => {
+			requestAnimationFrame(updateRowSpan);
+		});
+		observer.observe(node);
+
+		return {
+			destroy() {
+				observer.disconnect();
+			}
+		};
+	}
+
+	// Effective column count (dynamic override or calculated)
+	let effectiveColumns = $derived(() => dynamicColumns ?? gridColumns());
+
+	// Trigger recalculation when relevant state changes
+	let gridContainer: HTMLElement | null = null;
+	let recalcTimeoutId: number;
+
+	function triggerColumnRecalc() {
+		if (!gridContainer) return;
+		clearTimeout(recalcTimeoutId);
+		dynamicColumns = null;
+		// Dispatch a custom event that autoFitColumns can listen for
+		recalcTimeoutId = setTimeout(() => {
+			gridContainer?.dispatchEvent(new CustomEvent('recalc'));
+		}, 50) as unknown as number;
+	}
+
+	// Watch for state changes that affect layout
+	$effect(() => {
+		// Touch these values to create dependencies
+		textMode;
+		hiddenMechanics;
+		cellSizes;
+		splitPhases;
+		tab;
+		visiblePhases;
+
+		// Trigger recalculation (skip on first run)
+		if (browser && gridContainer) {
+			console.log('[effect] State changed, triggering column recalc');
+			triggerColumnRecalc();
+		}
 	});
 </script>
 
@@ -722,9 +908,11 @@
 
 				<!-- Mechanic Cards Grid -->
 				<div
+					bind:this={gridContainer}
+					use:autoFitColumns
 					class="flex-1 grid gap-3 overflow-y-auto content-start"
-					style:grid-template-columns={`repeat(${gridColumns()}, minmax(0, 1fr))`}
-					style:grid-auto-rows="minmax(180px, 1fr)"
+					style:grid-template-columns={`repeat(${effectiveColumns()}, minmax(0, 1fr))`}
+					style:grid-auto-rows="10px"
 				>
 					{#each visiblePhases as phase, i}
 						{#if phase.mechs}
@@ -733,9 +921,9 @@
 								{#if isMechVisible(mechKey)}
 									{@const isLarge = getCellSize(mechKey) === 'large'}
 									<button
-										class="card border border-surface-700 p-2 h-0 min-h-full flex flex-col text-start group overflow-hidden bg-surface-900/80 hover:bg-surface-800/80 transition-colors cursor-pointer"
+										use:masonry
+										class="card border border-surface-700 p-2 flex flex-col text-start group overflow-hidden bg-surface-900/80 hover:bg-surface-800/80 transition-all duration-300 ease-in-out cursor-pointer"
 										class:col-span-2={isLarge && hasImage(phase, mech)}
-										class:row-span-2={isLarge}
 										onclick={() => openImageModal(phase, mech)}
 									>
 										<!-- Header (hide in image-only mode) -->
@@ -830,9 +1018,9 @@
 							{#if isMechVisible(phaseKey)}
 								{@const isLarge = getCellSize(phaseKey) === 'large'}
 								<button
-									class="card border border-surface-700 p-2 h-0 min-h-full flex flex-col text-start group overflow-hidden bg-surface-900/80 hover:bg-surface-800/80 transition-colors cursor-pointer"
-									class:col-span-2={isLarge}
-									class:row-span-2={isLarge}
+									use:masonry
+									class="card border border-surface-700 p-2 flex flex-col text-start group overflow-hidden bg-surface-900/80 hover:bg-surface-800/80 transition-all duration-300 ease-in-out cursor-pointer"
+									class:col-span-2={isLarge && hasImage(phase)}
 									onclick={() => openImageModal(phase)}
 								>
 									<!-- Header (hide in image-only mode) -->
