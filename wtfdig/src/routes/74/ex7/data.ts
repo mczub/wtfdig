@@ -662,6 +662,7 @@ export const ex7FightConfig: FightConfig = {
                 runaway: "game8",
                 arcane: "game8"
             },
+            jpRoles: true,
             badges: [
                 {
                     text: "JP",
@@ -1502,7 +1503,6 @@ export const hector: Strat = {
                     mechanic: "Doom Train (Stack/Spread)",
                     description: "2 puffs = LP stacks\n3 puffs = spread",
                     imageUrl: "./ex7/p3-stack-spread-audio.webp",
-                    strats: getStratArray(runawayStrats, 'doomtrainstackspread')
                 },
                 {
                     mechanic: "Stacks",
@@ -1513,7 +1513,10 @@ export const hector: Strat = {
                     mechanic: "Spreads",
                     strats: getStratArray(runawayStrats, 'spreads'),
                     description: {
-                        static: "Healers and Melee are static, ignore train direction\nRanged and Tanks will rotate"
+                        alt: '',
+                        slide6: '',
+                        static: "Healers and Melee are static, ignore train direction\nRanged and Tanks will rotate",
+                        game8: '',
                     }
                 },
                 {
@@ -1786,57 +1789,49 @@ export const game8: Strat = {
                             role: "Tank",
                             party: 1,
                             description: "Northwest corner",
-                            imageUrl: "./ex7/game8-spreads.webp",
-                            mask: getCircleMaskUrl(36.7, 24.4, 5)
+                            imageUrl: "./ex7/game8-spreads.webp"
                         },
                         {
                             role: "Tank",
                             party: 2,
                             description: "Northeast corner",
                             imageUrl: "./ex7/game8-spreads.webp",
-                            mask: getCircleMaskUrl(64.1, 24, 5)
                         },
                         {
                             role: "Healer",
                             party: 1,
                             description: "Southwest corner",
                             imageUrl: "./ex7/game8-spreads.webp",
-                            mask: getCircleMaskUrl(36.5, 97.5, 5)
                         },
                         {
                             role: "Healer",
                             party: 2,
                             description: "Southeast corner",
                             imageUrl: "./ex7/game8-spreads.webp",
-                            mask: getCircleMaskUrl(64, 97.6, 5)
                         },
                         {
                             role: "Melee",
                             party: 1,
                             description: "Middle northwest",
                             imageUrl: "./ex7/game8-spreads.webp",
-                            mask: getCircleMaskUrl(44.1, 42.4, 5)
                         },
                         {
                             role: "Melee",
                             party: 2,
                             description: "Middle northeast",
                             imageUrl: "./ex7/game8-spreads.webp",
-                            mask: getCircleMaskUrl(55.7, 42.6, 5)
                         },
                         {
                             role: "Ranged",
                             party: 1,
                             description: "South center",
                             imageUrl: "./ex7/game8-spreads.webp",
-                            mask: getCircleMaskUrl(48.9, 97.6, 5)
                         },
                         {
                             role: "Ranged",
                             party: 2,
                             description: "Middle south-ish",
                             imageUrl: "./ex7/game8-spreads.webp",
-                            mask: getCircleMaskUrl(53.9, 65.3, 5)
                         }
                     ]
                 },
@@ -1846,58 +1841,50 @@ export const game8: Strat = {
                         {
                             role: "Tank",
                             party: 1,
-                            description: "Northwest with M1",
+                            description: "Northwest with D1",
                             imageUrl: "./ex7/game8-pairs.webp",
-                            mask: getCircleMaskUrl(40.1, 35.4, 5)
                         },
                         {
                             role: "Tank",
                             party: 2,
-                            description: "Northeast with M2",
+                            description: "Northeast with D2",
                             imageUrl: "./ex7/game8-pairs.webp",
-                            mask: getCircleMaskUrl(60.3, 35.3, 5)
                         },
                         {
                             role: "Healer",
                             party: 1,
-                            description: "Southwest with R1",
+                            description: "Southwest with D3",
                             imageUrl: "./ex7/game8-pairs.webp",
-                            mask: getCircleMaskUrl(38.6, 74.6, 5)
                         },
                         {
                             role: "Healer",
                             party: 2,
-                            description: "Southeast with R2",
+                            description: "Southeast with D4",
                             imageUrl: "./ex7/game8-pairs.webp",
-                            mask: getCircleMaskUrl(60.2, 73.2, 5)
                         },
                         {
                             role: "Melee",
                             party: 1,
                             description: "Northwest with MT",
                             imageUrl: "./ex7/game8-pairs.webp",
-                            mask: getCircleMaskUrl(40.1, 35.5, 5)
                         },
                         {
                             role: "Melee",
                             party: 2,
-                            description: "Northeast with OT",
+                            description: "Northeast with ST",
                             imageUrl: "./ex7/game8-pairs.webp",
-                            mask: getCircleMaskUrl(60.3, 35.1, 5)
                         },
                         {
                             role: "Ranged",
                             party: 1,
                             description: "Southwest with H1",
                             imageUrl: "./ex7/game8-pairs.webp",
-                            mask: getCircleMaskUrl(38.6, 74.5, 5)
                         },
                         {
                             role: "Ranged",
                             party: 2,
-                            description: "Southeast H2",
+                            description: "Southeast with H2",
                             imageUrl: "./ex7/game8-pairs.webp",
-                            mask: getCircleMaskUrl(60.1, 73, 5)
                         }
                     ]
                 }
@@ -1906,7 +1893,7 @@ export const game8: Strat = {
         {
             phaseName: "Car 1",
             tag: "p1",
-            boardCode: "YJJzg701CLDgj",
+            boardCode: "O_TCKILw_tHiW",
             mechs: [
                 {
                     mechanic: "Overview",
@@ -1940,14 +1927,10 @@ export const game8: Strat = {
             boardCode: {
                 alt: "esjq9TWtfvc_U",
                 static: "p1EfvtcHTHBAj",
-                raidplan: "SeqxDs6FKT7kK"
+                raidplan: "SeqxDs6FKT7kK",
+                game8: "LoVvDGQTEZ823"
             },
             mechs: [
-                {
-                    mechanic: "Ghost Train (TB)",
-                    description: "Targets both tanks with conal tankbusters\nTanks go towards train, MT left OT right",
-                    strats: getStratArray(runawayStrats, 'ghosttraintb')
-                },
                 {
                     mechanic: "Doom Train (Stack/Spread)",
                     description: "2 puffs = LP stacks\n3 puffs = spread",
@@ -1961,10 +1944,8 @@ export const game8: Strat = {
                 },
                 {
                     mechanic: "Spreads",
-                    strats: getStratArray(runawayStrats, 'spreads'),
-                    description: {
-                        static: "Healers and Melee are static, ignore train direction\nRanged and Tanks will rotate"
-                    }
+                    description: getStringObject(runawayStrats, 'spreads', 'description'),
+                    strats: getStratArray(runawayStrats, 'spreads')
                 }
             ]
         },
@@ -1993,14 +1974,15 @@ export const game8: Strat = {
             tag: "arcane",
             boardCode: {
                 normal: "DXHyZygbWxTfc",
-                cheese: "uGQUkbYLsH-hJ"
+                cheese: "uGQUkbYLsH-hJ",
+                game8: "L5LXsKW6DU0DO"
             },
             mechs: arcanerevelationMechs
         },
         {
             phaseName: "Car 5",
             tag: "p5",
-            boardCode: "nptkmmB60ixvD",
+            boardCode: "sGuVi43udKUIx",
             mechs: [
                 {
                     mechanic: "Overview",
