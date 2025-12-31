@@ -691,8 +691,8 @@
 						{/if}
 					{/if}
 
-					<div class="space-y-1">
-						<span class="text-sm">Text Display</span>
+					<div class="flex flex-col space-y-2">
+						<span class="text-sm mb-2">Text Display</span>
 						<div class="flex gap-1">
 							<button
 								class={`flex-1 px-2 py-1 text-xs rounded transition-colors ${textMode === 'all' ? 'bg-primary-500 text-white' : 'bg-surface-800 hover:bg-surface-700'}`}
@@ -704,13 +704,13 @@
 								class={`flex-1 px-2 py-1 text-xs rounded transition-colors ${textMode === 'role' ? 'bg-primary-500 text-white' : 'bg-surface-800 hover:bg-surface-700'}`}
 								onclick={() => (textMode = 'role')}
 							>
-								Role
+								Role Only
 							</button>
 							<button
 								class={`flex-1 px-2 py-1 text-xs rounded transition-colors ${textMode === 'image' ? 'bg-primary-500 text-white' : 'bg-surface-800 hover:bg-surface-700'}`}
 								onclick={() => (textMode = 'image')}
 							>
-								Image
+								Image Only
 							</button>
 						</div>
 					</div>
