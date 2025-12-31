@@ -3,6 +3,7 @@
 	import { fade } from 'svelte/transition';
 	import type { ToastLike } from '$lib/utils';
 	import Cheatsheet from '../Cheatsheet.svelte';
+	import ModernCheatsheet from './ModernCheatsheet.svelte';
 	import { ChevronUp, Copy, ExternalLink, Fullscreen, Grid3x3, Info, Link } from '@lucide/svelte';
 	import ModernStratView from './ModernStratView.svelte';
 	import ModernFightStratControls from './ModernFightStratControls.svelte';
@@ -218,25 +219,46 @@
 		stratState
 	})}
 
-	<Cheatsheet
-		title={`${config.cheatsheetTitle} - ${optionsString}`}
-		bind:cheatsheetOpenState
-		timeline={config.timeline ?? []}
-		splitTimeline={config.splitTimeline ?? false}
-		useEvenTimelineSpacing={config.useEvenTimelineSpacing ?? false}
-		{stratName}
-		{stratState}
-		{getStratMechs}
-		{individualStrat}
-		{spotlight}
-		{alignment}
-		rows={config.cheatsheetLayout?.rows ?? '4'}
-		columns={config.cheatsheetLayout?.columns ?? '4'}
-		{innerHeight}
-		{innerWidth}
-		tabTags={config.tabTags}
-		role={normalizedRole}
-	/>
+	{#if config.useModernCheatsheet}
+		<ModernCheatsheet
+			title={`${config.cheatsheetTitle} - ${optionsString}`}
+			bind:cheatsheetOpenState
+			timeline={config.timeline ?? []}
+			splitTimeline={config.splitTimeline ?? false}
+			useEvenTimelineSpacing={config.useEvenTimelineSpacing ?? false}
+			{stratName}
+			{stratState}
+			{getStratMechs}
+			{individualStrat}
+			{spotlight}
+			{alignment}
+			{innerHeight}
+			{innerWidth}
+			tabTags={config.tabTags}
+			role={normalizedRole}
+			fightKey={config.fightKey}
+		/>
+	{:else}
+		<Cheatsheet
+			title={`${config.cheatsheetTitle} - ${optionsString}`}
+			bind:cheatsheetOpenState
+			timeline={config.timeline ?? []}
+			splitTimeline={config.splitTimeline ?? false}
+			useEvenTimelineSpacing={config.useEvenTimelineSpacing ?? false}
+			{stratName}
+			{stratState}
+			{getStratMechs}
+			{individualStrat}
+			{spotlight}
+			{alignment}
+			rows={config.cheatsheetLayout?.rows ?? '4'}
+			columns={config.cheatsheetLayout?.columns ?? '4'}
+			{innerHeight}
+			{innerWidth}
+			tabTags={config.tabTags}
+			role={normalizedRole}
+		/>
+	{/if}
 
 	<ModernFightStratControls
 		title={config.abbreviatedTitle ?? config.title}
