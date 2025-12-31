@@ -139,7 +139,7 @@ const normalArcane: MechanicStrat[] = [
 const cheeseArcane: MechanicStrat[] = [
     {
         mechanic: "2/6 Cheese",
-        description: "Completely ignore the big moving AOE\nTanks go NE, everyone else NW",
+        description: "Completely ignore the big moving AOE\nETanks go NW, everyone else NE",
         imageUrl: "./ex7/arcane-cheese.webp"
     },
     {
@@ -152,7 +152,7 @@ const cheeseArcane: MechanicStrat[] = [
 const game8Arcane: MechanicStrat[] = [
     {
         mechanic: "2/6 Cheese",
-        description: "Completely ignore the big moving AOE\nTanks go NE, everyone else NW",
+        description: "Completely ignore the big moving AOE\nTanks go NW, everyone else NE",
         imageUrl: "./ex7/arcane-cheese.webp"
     },
     {
@@ -529,69 +529,101 @@ const game8Runaway: StratRecord = {
     stacks: {
         MT: {
             role: "Tank",
-            party: 1
+            party: 1,
+            description: '',
+            imageUrl: "./ex7/game8-p3-stacks.webp",
         },
         OT: {
             role: "Tank",
-            party: 2
+            party: 2,
+            description: '',
+            imageUrl: "./ex7/game8-p3-stacks.webp",
         },
         H1: {
             role: "Healer",
-            party: 1
+            party: 1,
+            description: '',
+            imageUrl: "./ex7/game8-p3-stacks.webp",
         },
         H2: {
             role: "Healer",
-            party: 2
+            party: 2,
+            description: '',
+            imageUrl: "./ex7/game8-p3-stacks.webp",
         },
         M1: {
             role: "Melee",
-            party: 1
+            party: 1,
+            description: '',
+            imageUrl: "./ex7/game8-p3-stacks.webp",
         },
         M2: {
             role: "Melee",
-            party: 2
+            party: 2,
+            description: '',
+            imageUrl: "./ex7/game8-p3-stacks.webp",
         },
         R1: {
             role: "Ranged",
-            party: 1
+            party: 1,
+            description: '',
+            imageUrl: "./ex7/game8-p3-stacks.webp",
         },
         R2: {
             role: "Ranged",
-            party: 2
+            party: 2,
+            description: '',
+            imageUrl: "./ex7/game8-p3-stacks.webp",
         }
     },
     spreads: {
         MT: {
             role: "Tank",
-            party: 1
+            party: 1,
+            description: '',
+            imageUrl: "./ex7/game8-p3-spread.webp",
         },
         OT: {
             role: "Tank",
-            party: 2
+            party: 2,
+            description: '',
+            imageUrl: "./ex7/game8-p3-spread.webp",
         },
         H1: {
             role: "Healer",
-            party: 1
+            party: 1,
+            description: '',
+            imageUrl: "./ex7/game8-p3-spread.webp",
         },
         H2: {
             role: "Healer",
-            party: 2
+            party: 2,
+            description: '',
+            imageUrl: "./ex7/game8-p3-spread.webp",
         },
         M1: {
             role: "Melee",
-            party: 1
+            party: 1,
+            description: '',
+            imageUrl: "./ex7/game8-p3-spread.webp",
         },
         M2: {
             role: "Melee",
-            party: 2
+            party: 2,
+            description: '',
+            imageUrl: "./ex7/game8-p3-spread.webp",
         },
         R1: {
             role: "Ranged",
-            party: 1
+            party: 1,
+            description: '',
+            imageUrl: "./ex7/game8-p3-spread.webp",
         },
         R2: {
             role: "Ranged",
-            party: 2
+            party: 2,
+            description: '',
+            imageUrl: "./ex7/game8-p3-spread.webp",
         }
     }
 };
@@ -1754,56 +1786,56 @@ export const game8: Strat = {
                             role: "Tank",
                             party: 1,
                             description: "Northwest corner",
-                            imageUrl: "./ex7/spreads.webp",
+                            imageUrl: "./ex7/game8-spreads.webp",
                             mask: getCircleMaskUrl(36.7, 24.4, 5)
                         },
                         {
                             role: "Tank",
                             party: 2,
                             description: "Northeast corner",
-                            imageUrl: "./ex7/spreads.webp",
+                            imageUrl: "./ex7/game8-spreads.webp",
                             mask: getCircleMaskUrl(64.1, 24, 5)
                         },
                         {
                             role: "Healer",
                             party: 1,
                             description: "Southwest corner",
-                            imageUrl: "./ex7/spreads.webp",
+                            imageUrl: "./ex7/game8-spreads.webp",
                             mask: getCircleMaskUrl(36.5, 97.5, 5)
                         },
                         {
                             role: "Healer",
                             party: 2,
                             description: "Southeast corner",
-                            imageUrl: "./ex7/spreads.webp",
+                            imageUrl: "./ex7/game8-spreads.webp",
                             mask: getCircleMaskUrl(64, 97.6, 5)
                         },
                         {
                             role: "Melee",
                             party: 1,
                             description: "Middle northwest",
-                            imageUrl: "./ex7/spreads.webp",
+                            imageUrl: "./ex7/game8-spreads.webp",
                             mask: getCircleMaskUrl(44.1, 42.4, 5)
                         },
                         {
                             role: "Melee",
                             party: 2,
                             description: "Middle northeast",
-                            imageUrl: "./ex7/spreads.webp",
+                            imageUrl: "./ex7/game8-spreads.webp",
                             mask: getCircleMaskUrl(55.7, 42.6, 5)
                         },
                         {
                             role: "Ranged",
                             party: 1,
                             description: "South center",
-                            imageUrl: "./ex7/spreads.webp",
+                            imageUrl: "./ex7/game8-spreads.webp",
                             mask: getCircleMaskUrl(48.9, 97.6, 5)
                         },
                         {
                             role: "Ranged",
                             party: 2,
                             description: "Middle south-ish",
-                            imageUrl: "./ex7/spreads.webp",
+                            imageUrl: "./ex7/game8-spreads.webp",
                             mask: getCircleMaskUrl(53.9, 65.3, 5)
                         }
                     ]
@@ -1815,118 +1847,57 @@ export const game8: Strat = {
                             role: "Tank",
                             party: 1,
                             description: "Northwest with M1",
-                            imageUrl: "./ex7/pairs.webp",
+                            imageUrl: "./ex7/game8-pairs.webp",
                             mask: getCircleMaskUrl(40.1, 35.4, 5)
                         },
                         {
                             role: "Tank",
                             party: 2,
                             description: "Northeast with M2",
-                            imageUrl: "./ex7/pairs.webp",
+                            imageUrl: "./ex7/game8-pairs.webp",
                             mask: getCircleMaskUrl(60.3, 35.3, 5)
                         },
                         {
                             role: "Healer",
                             party: 1,
                             description: "Southwest with R1",
-                            imageUrl: "./ex7/pairs.webp",
+                            imageUrl: "./ex7/game8-pairs.webp",
                             mask: getCircleMaskUrl(38.6, 74.6, 5)
                         },
                         {
                             role: "Healer",
                             party: 2,
                             description: "Southeast with R2",
-                            imageUrl: "./ex7/pairs.webp",
+                            imageUrl: "./ex7/game8-pairs.webp",
                             mask: getCircleMaskUrl(60.2, 73.2, 5)
                         },
                         {
                             role: "Melee",
                             party: 1,
                             description: "Northwest with MT",
-                            imageUrl: "./ex7/pairs.webp",
+                            imageUrl: "./ex7/game8-pairs.webp",
                             mask: getCircleMaskUrl(40.1, 35.5, 5)
                         },
                         {
                             role: "Melee",
                             party: 2,
                             description: "Northeast with OT",
-                            imageUrl: "./ex7/pairs.webp",
+                            imageUrl: "./ex7/game8-pairs.webp",
                             mask: getCircleMaskUrl(60.3, 35.1, 5)
                         },
                         {
                             role: "Ranged",
                             party: 1,
                             description: "Southwest with H1",
-                            imageUrl: "./ex7/pairs.webp",
+                            imageUrl: "./ex7/game8-pairs.webp",
                             mask: getCircleMaskUrl(38.6, 74.5, 5)
                         },
                         {
                             role: "Ranged",
                             party: 2,
                             description: "Southeast H2",
-                            imageUrl: "./ex7/pairs.webp",
+                            imageUrl: "./ex7/game8-pairs.webp",
                             mask: getCircleMaskUrl(60.1, 73, 5)
-                        }
-                    ]
-                },
-                {
-                    mechanic: "Big Spreads",
-                    strats: [
-                        {
-                            role: "Tank",
-                            party: 1,
-                            description: "Northwest",
-                            imageUrl: "./ex7/big-spreads.webp",
-                            mask: getCircleMaskUrl(36.6, 24, 5)
-                        },
-                        {
-                            role: "Tank",
-                            party: 2,
-                            description: "Northeast",
-                            imageUrl: "./ex7/big-spreads.webp",
-                            mask: getCircleMaskUrl(64, 24, 5)
-                        },
-                        {
-                            role: "Healer",
-                            party: 1,
-                            description: "Southwest",
-                            imageUrl: "./ex7/big-spreads.webp",
-                            mask: getCircleMaskUrl(36.5, 71.7, 5)
-                        },
-                        {
-                            role: "Healer",
-                            party: 2,
-                            description: "Southeast",
-                            imageUrl: "./ex7/big-spreads.webp",
-                            mask: getCircleMaskUrl(64, 71.6, 5)
-                        },
-                        {
-                            role: "Melee",
-                            party: 1,
-                            description: "North",
-                            imageUrl: "./ex7/big-spreads.webp",
-                            mask: getCircleMaskUrl(50.3, 23.8, 5)
-                        },
-                        {
-                            role: "Melee",
-                            party: 2,
-                            description: "Center",
-                            imageUrl: "./ex7/big-spreads.webp",
-                            mask: getCircleMaskUrl(50.4, 46.5, 5)
-                        },
-                        {
-                            role: "Ranged",
-                            party: 1,
-                            description: "West",
-                            imageUrl: "./ex7/big-spreads.webp",
-                            mask: getCircleMaskUrl(36.5, 47.9, 5)
-                        },
-                        {
-                            role: "Ranged",
-                            party: 2,
-                            description: "East",
-                            imageUrl: "./ex7/big-spreads.webp",
-                            mask: getCircleMaskUrl(64, 47.8, 5)
                         }
                     ]
                 }
@@ -1942,19 +1913,14 @@ export const game8: Strat = {
                     description: "<ul class=\"overview\">\n<li><strong>Overdraught</strong> (stored stack/spread)</li>\n<li><strong>Express</strong> (KB + lasers)</li>\n<li>Stack/spread goes off</li>\n<br>\n<li><strong>Overdraught</strong> (stored opposite stack/spread)</li>\n<li><strong>Windpipe</strong> (Suck)</li>\n<li>Stack/spread goes off</li>\n</ul>"
                 },
                 {
-                    mechanic: "Overdraught",
-                    description: "Stores stack/spread that fires later",
-                    imageUrl: "./ex7/p1-orbs.webp"
-                },
-                {
                     mechanic: "Express",
                     description: "KB + stand in high laser lane",
-                    imageUrl: "./ex7/p1-express.webp"
+                    imageUrl: "./ex7/game8-p1-express.webp"
                 },
                 {
                     mechanic: "Windpipe",
                     description: "Suck, first 2 rows are unsafe",
-                    imageUrl: "./ex7/p1-windpipe.webp"
+                    imageUrl: "./ex7/game8-p1-windpipe.webp"
                 }
             ]
         },
@@ -1999,12 +1965,6 @@ export const game8: Strat = {
                     description: {
                         static: "Healers and Melee are static, ignore train direction\nRanged and Tanks will rotate"
                     }
-                },
-                {
-                    mechanic: "Tower + Derail",
-                    description: "3-hit group stack, then run south to teleporter",
-                    imageUrl: "./ex7/p3-tower.webp",
-                    strats: getStratArray(runawayStrats, 'towerderail')
                 }
             ]
         },
@@ -2019,12 +1979,12 @@ export const game8: Strat = {
                 {
                     mechanic: "Twisters",
                     description: "Wait for sound, then move out of puddle baits",
-                    imageUrl: "./ex7/p4-twisters.webp"
+                    imageUrl: "./ex7/game8-p4-twisters.webp"
                 },
                 {
                     mechanic: "High/Low",
                     description: "Cleave will hit High/Low or Low/High",
-                    imageUrl: "./ex7/p4-levels.webp"
+                    imageUrl: "./ex7/game8-p4-levels.webp"
                 }
             ]
         },
@@ -2047,66 +2007,19 @@ export const game8: Strat = {
                     description: "<ul class=\"overview\">\n<li>Boxes removed</li>\n<li><strong>Psychokinesis</strong> (2x big AoEs)</li>\n<li>Twisters</li>\n<br>\n<li>Boxes removed</li>\n<li><strong>Psychokinesis</strong> (3x big AoEs)</li>\n<li><strong>Lightning Burst</strong> (tankbusters)</li>\n<br>\n<li>Boxes removed</li>\n<li><strong>Psychokinesis</strong> (5x AoEs (Big Spread/YOLO))</li>\n<li>Twisters</li>\n<br>\n<li><strong>Derailment Siege</strong> (5x tower; OT Invuln)</li>\n<li><strong>Derail</li>\n</ul>"
                 },
                 {
-                    mechanic: "5x AOE (Big Spread)",
-                    description: "Use big spread positions from setup",
-                    strats: [
-                        {
-                            role: "Tank",
-                            party: 1,
-                            description: "Northwest",
-                            imageUrl: "./ex7/p5-big-spread.webp",
-                            mask: getCircleMaskUrl(36, 22.9, 5)
-                        },
-                        {
-                            role: "Tank",
-                            party: 2,
-                            description: "Northeast",
-                            imageUrl: "./ex7/p5-big-spread.webp",
-                            mask: getCircleMaskUrl(63.9, 22.8, 5)
-                        },
-                        {
-                            role: "Healer",
-                            party: 1,
-                            description: "Southwest",
-                            imageUrl: "./ex7/p5-big-spread.webp",
-                            mask: getCircleMaskUrl(41.3, 70.3, 5)
-                        },
-                        {
-                            role: "Healer",
-                            party: 2,
-                            description: "Southeast",
-                            imageUrl: "./ex7/p5-big-spread.webp",
-                            mask: getCircleMaskUrl(62.6, 69.9, 5)
-                        },
-                        {
-                            role: "Melee",
-                            party: 1,
-                            description: "North",
-                            imageUrl: "./ex7/p5-big-spread.webp",
-                            mask: getCircleMaskUrl(50.3, 22.9, 5)
-                        },
-                        {
-                            role: "Melee",
-                            party: 2,
-                            description: "Center",
-                            imageUrl: "./ex7/p5-big-spread.webp",
-                            mask: getCircleMaskUrl(49.8, 46.9, 5)
-                        },
-                        {
-                            role: "Ranged",
-                            party: 1,
-                            description: "West",
-                            imageUrl: "./ex7/p5-big-spread.webp",
-                            mask: getCircleMaskUrl(36.1, 49.4, 5)
-                        },
-                        {
-                            role: "Ranged",
-                            party: 2,
-                            description: "East",
-                            imageUrl: "./ex7/p5-big-spread.webp",
-                            mask: getCircleMaskUrl(63.9, 46.8, 5)
-                        }
-                    ]
+                    mechanic: "2x AOE",
+                    description: "G1 NW, G2 NE",
+                    imageUrl: "./ex7/game8-p5-2aoe.webp"
+                },
+                {
+                    mechanic: "3x AOE",
+                    description: "",
+                    imageUrl: "./ex7/game8-p5-3aoe.webp"
+                },
+                {
+                    mechanic: "5x AOE",
+                    description: "",
+                    imageUrl: "./ex7/game8-p5-5aoe.webp"
                 }
             ]
         },
@@ -2119,128 +2032,9 @@ export const game8: Strat = {
                     description: "<ul class=\"overview\">\n<li><strong>Overdraught</strong> (stored stack/spread)</li>\n<li>Turrets</li>\n<li>High/Low</li>\n<li>Turrets (BOXES GO AWAY)</li>\n<li><strong>Psychokinesis</strong> (4x big AoEs (Big Spread/YOLO))</li>\n<li>Twisters</li>\n<li>Turrets</li>\n<li><strong>Windpipe</strong> (Suck) OR <strong>Express</strong> (KB + lasers)</li>\n<li>Stack/spread goes off</li>\n<br>\n<li><strong>Lightning Burst</strong> (tankbusters)</li>\n<br>\n<li><strong>Overdraught</strong> (stored opposite stack/spread)</li>\n<li><strong>Arcane Revelation</strong> x2 (total of 5 circle moves)</li>\n<li>Twisters</li>\n<li><strong>Express</strong> OR <strong>Windpipe</strong> (opposite)</li>\n<li>Stack/spread goes off</li>\n</ul>"
                 },
                 {
-                    mechanic: "Arcane Revelation 2 (East/West)",
-                    description: "Ranged/Healers can stay on platform",
-                    strats: [
-                        {
-                            role: "Tank",
-                            party: 1,
-                            description: "North/East-ish",
-                            imageUrl: "./ex7/p6-arcane-ew.webp",
-                            mask: getMultiCircleMaskUrl([35.1, 14.4, 5], [63, 15.9, 5])
-                        },
-                        {
-                            role: "Tank",
-                            party: 2,
-                            description: "North/East-ish",
-                            imageUrl: "./ex7/p6-arcane-ew.webp",
-                            mask: getMultiCircleMaskUrl([35.1, 14.4, 5], [63, 15.9, 5])
-                        },
-                        {
-                            role: "Healer",
-                            party: 1,
-                            description: "Stay on platform",
-                            imageUrl: "./ex7/p6-arcane-ew.webp",
-                            mask: getMultiCircleMaskUrl([35.4, 83.6, 5], [61, 87.4, 5])
-                        },
-                        {
-                            role: "Healer",
-                            party: 2,
-                            description: "Stay on platform",
-                            imageUrl: "./ex7/p6-arcane-ew.webp",
-                            mask: getMultiCircleMaskUrl([35.4, 83.6, 5], [61, 87.4, 5])
-                        },
-                        {
-                            role: "Melee",
-                            party: 1,
-                            description: "North/East-ish",
-                            imageUrl: "./ex7/p6-arcane-ew.webp",
-                            mask: getMultiCircleMaskUrl([35.1, 14.4, 5], [63, 15.9, 5])
-                        },
-                        {
-                            role: "Melee",
-                            party: 2,
-                            description: "North/East-ish",
-                            imageUrl: "./ex7/p6-arcane-ew.webp",
-                            mask: getMultiCircleMaskUrl([35.1, 14.4, 5], [63, 15.9, 5])
-                        },
-                        {
-                            role: "Ranged",
-                            party: 1,
-                            description: "Stay on platform",
-                            imageUrl: "./ex7/p6-arcane-ew.webp",
-                            mask: getMultiCircleMaskUrl([35.4, 83.6, 5], [61, 87.4, 5])
-                        },
-                        {
-                            role: "Ranged",
-                            party: 2,
-                            description: "Stay on platform",
-                            imageUrl: "./ex7/p6-arcane-ew.webp",
-                            mask: getMultiCircleMaskUrl([35.4, 83.6, 5], [61, 87.4, 5])
-                        }
-                    ]
-                },
-                {
-                    mechanic: "Arcane Revelation 2 (North/South)",
-                    description: "Ranged/Healers can stay on platform\nTank/Melees stay low",
-                    strats: [
-                        {
-                            role: "Tank",
-                            party: 1,
-                            description: "North/East-ish",
-                            imageUrl: "./ex7/p6-arcane-ns.webp",
-                            mask: getMultiCircleMaskUrl([36.6, 87.2, 5], [88.6, 18.2, 5])
-                        },
-                        {
-                            role: "Tank",
-                            party: 2,
-                            description: "North/East-ish",
-                            imageUrl: "./ex7/p6-arcane-ns.webp",
-                            mask: getMultiCircleMaskUrl([36.6, 87.2, 5], [88.6, 18.2, 5])
-                        },
-                        {
-                            role: "Healer",
-                            party: 1,
-                            description: "Stay on platform",
-                            imageUrl: "./ex7/p6-arcane-ns.webp",
-                            mask: getMultiCircleMaskUrl([8.9, 87.2, 5], [59.6, 38.6, 5])
-                        },
-                        {
-                            role: "Healer",
-                            party: 2,
-                            description: "Stay on platform",
-                            imageUrl: "./ex7/p6-arcane-ns.webp",
-                            mask: getMultiCircleMaskUrl([8.9, 87.2, 5], [59.6, 38.6, 5])
-                        },
-                        {
-                            role: "Melee",
-                            party: 1,
-                            description: "North/East-ish",
-                            imageUrl: "./ex7/p6-arcane-ns.webp",
-                            mask: getMultiCircleMaskUrl([36.6, 87.2, 5], [88.6, 18.2, 5])
-                        },
-                        {
-                            role: "Melee",
-                            party: 2,
-                            description: "North/East-ish",
-                            imageUrl: "./ex7/p6-arcane-ns.webp",
-                            mask: getMultiCircleMaskUrl([36.6, 87.2, 5], [88.6, 18.2, 5])
-                        },
-                        {
-                            role: "Ranged",
-                            party: 1,
-                            description: "Stay on platform",
-                            imageUrl: "./ex7/p6-arcane-ns.webp",
-                            mask: getMultiCircleMaskUrl([8.9, 87.2, 5], [59.6, 38.6, 5])
-                        },
-                        {
-                            role: "Ranged",
-                            party: 2,
-                            description: "Stay on platform",
-                            imageUrl: "./ex7/p6-arcane-ns.webp",
-                            mask: getMultiCircleMaskUrl([8.9, 87.2, 5], [59.6, 38.6, 5])
-                        }
-                    ]
+                    mechanic: "Arcane Revelation 2",
+                    description: "Cheese it again\nTanks NW, Party NE",
+                    imageUrl: "./ex7/game8-p6-arcane2.webp"
                 },
                 {
                     mechanic: "Final Sequence",

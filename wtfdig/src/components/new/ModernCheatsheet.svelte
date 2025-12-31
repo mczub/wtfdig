@@ -191,9 +191,26 @@
 		return false;
 	}
 
-	// Check if a mechanic is visible
-	function isMechVisible(key: string): boolean {
-		return !hiddenMechanics.has(key);
+	// Check if a card has role-based strats
+	function hasRoleStrats(mech?: any): boolean {
+		return !!(mech?.strats && mech.strats.length > 0);
+	}
+
+	// Check if a mechanic is explicitly hidden by user (for sidebar display)
+	function isMechHidden(key: string): boolean {
+		return hiddenMechanics.has(key);
+	}
+
+	// Check if a card should be shown in the grid (considering hiddenMechanics and textMode filters)
+	function shouldShowCard(key: string, phase: any, mech?: any): boolean {
+		// First check if explicitly hidden
+		if (hiddenMechanics.has(key)) return false;
+
+		// Filter by textMode
+		if (textMode === 'role' && !hasRoleStrats(mech)) return false;
+		if (textMode === 'image' && !hasImage(phase, mech)) return false;
+
+		return true;
 	}
 
 	// Toggle mechanic visibility
@@ -255,36 +272,7 @@
 		}
 	});
 
-	let useEvenTimelineSpacing = $derived(
-		innerHeight <= 1024 || useEvenTimelineSpacingProp || !splitPhases
-	);
-
-	function getFightPercentClass(timeInMs: number, index: number): string {
-		if (useEvenTimelineSpacing) {
-			if (tab && splitTimeline && splitPhases) {
-				const filteredTimeline = timeline.filter(
-					(item) => item.mechTag && tabTags?.[tab]?.includes(item.mechTag)
-				);
-				const filteredIndex = filteredTimeline.findIndex((item) => item.startTimeMs === timeInMs);
-				if (filteredIndex >= 0) {
-					return `${(Math.floor((filteredIndex * 980) / filteredTimeline.length) / 10).toString()}%`;
-				}
-			}
-			return `${(Math.floor((index * 980) / timeline.length) / 10).toString()}%`;
-		}
-		let enrageTime;
-		if (tab && splitTimeline) {
-			enrageTime = timeline.find((item) => {
-				return item.mechType === 'Enrage' && tabTags?.[tab]?.includes(item.mechTag ?? '');
-			})?.startTimeMs;
-		} else {
-			enrageTime = timeline.find((item) => {
-				return item.mechType === 'Enrage';
-			})?.startTimeMs;
-		}
-		if (!enrageTime) return '0';
-		return `${(Math.floor((timeInMs * 980) / enrageTime) / 10).toString()}%`;
-	}
+	const TIMELINE_ITEM_HEIGHT = 20;
 
 	let timelineFilters = $state({
 		mechs: true,
@@ -307,12 +295,98 @@
 
 	function showMechTag(mechTag: string): boolean {
 		if (splitTimeline === false) return true;
-		if (!splitPhases) return true; // Show all timeline items when phases aren't split
+		if (!splitPhases) return true;
 		if (tab) {
 			return tabTags?.[tab]?.includes(mechTag) ?? true;
 		}
 		return true;
 	}
+
+	let visibleTimelineItems = $derived(
+		timeline.filter(
+			(item) => showMechType(item.mechType) && (item.mechTag ? showMechTag(item.mechTag) : true)
+		)
+	);
+
+	let timelineContainerHeight = $state(0);
+	let timelineScrollTop = $state(0);
+	let timelineScrollHeight = $state(0);
+
+	let timelineMinGapPercent = $derived(
+		timelineContainerHeight > 0 ? (TIMELINE_ITEM_HEIGHT / timelineContainerHeight) * 100 : 3
+	);
+
+	let timelineNeedsScroll = $derived(() => {
+		const items = visibleTimelineItems;
+		if (items.length === 0) return false;
+		const requiredHeight = items.length * TIMELINE_ITEM_HEIGHT;
+		return requiredHeight > timelineContainerHeight;
+	});
+
+	let timelineContentHeight = $derived(() => {
+		const items = visibleTimelineItems;
+		if (items.length === 0) return 0;
+		if (timelineNeedsScroll()) {
+			return items.length * TIMELINE_ITEM_HEIGHT;
+		}
+		return timelineContainerHeight;
+	});
+
+	let timelinePositions = $derived(() => {
+		const items = visibleTimelineItems;
+		if (items.length === 0) return new Map<number, string>();
+
+		const positions = new Map<number, string>();
+		const needsScroll = timelineNeedsScroll();
+
+		if (!splitPhases) {
+			items.forEach((item, index) => {
+				if (needsScroll) {
+					const position = index * TIMELINE_ITEM_HEIGHT;
+					positions.set(index, `${position}px`);
+				} else {
+					const position = (index * 98) / items.length;
+					positions.set(index, `${position}%`);
+				}
+			});
+			return positions;
+		}
+
+		const enrageItem = items.find((item) => item.mechType === 'Enrage');
+		const startTime = items[0]?.startTimeMs || 0;
+		const endTime =
+			enrageItem?.startTimeMs || items[items.length - 1]?.startTimeMs || startTime + 1;
+		const duration = endTime - startTime || 1;
+
+		if (needsScroll) {
+			const totalHeight = items.length * TIMELINE_ITEM_HEIGHT;
+			items.forEach((item, index) => {
+				const relativeTime = item.startTimeMs - startTime;
+				const position = (relativeTime / duration) * (totalHeight - TIMELINE_ITEM_HEIGHT);
+				positions.set(index, `${position}px`);
+			});
+		} else {
+			let lastPosition = 0;
+			items.forEach((item, index) => {
+				const relativeTime = item.startTimeMs - startTime;
+				const idealPercent = (relativeTime / duration) * 98;
+				const minPercent = index === 0 ? 0 : lastPosition + timelineMinGapPercent;
+				const position = Math.max(idealPercent, minPercent);
+				positions.set(index, `${position}%`);
+				lastPosition = position;
+			});
+		}
+
+		return positions;
+	});
+
+	function getTimelinePosition(index: number): string {
+		return timelinePositions().get(index) ?? '0%';
+	}
+
+	let showTimelineScrollIndicator = $derived(
+		timelineNeedsScroll() && timelineScrollTop + timelineContainerHeight < timelineScrollHeight - 10
+	);
 
 	function closeCheatsheet() {
 		cheatsheetOpenState = false;
@@ -728,19 +802,20 @@
 										{@const mechKey = getMechKey(phase, mech, index)}
 										<div class="flex items-center gap-2">
 											<button
-												class={`flex-1 text-left text-xs px-2 py-1 rounded transition-colors truncate ${isMechVisible(mechKey) ? 'bg-surface-800 text-surface-100' : 'bg-surface-900 text-surface-500 line-through'}`}
+												class={`flex-1 text-left text-xs px-2 py-1 rounded transition-colors truncate ${!isMechHidden(mechKey) ? 'bg-surface-800 text-surface-100' : 'bg-surface-900 text-surface-500 line-through'}`}
 												onclick={() => toggleMechVisibility(mechKey)}
 											>
 												{mech.mechanic}
 											</button>
 											<button
-												class={`p-1 rounded text-xs transition-colors ${getCellSize(mechKey) === 'large' ? 'bg-primary-500 text-white' : 'bg-surface-800 text-surface-400 hover:text-white'}`}
+												disabled={!hasImage(phase, mech)}
+												class={`p-1 rounded text-xs transition-colors ${!hasImage(phase, mech) ? 'opacity-30 cursor-not-allowed text-surface-600' : getCellSize(mechKey) === 'large' ? 'bg-primary-500 text-white' : 'bg-surface-800 text-surface-400 hover:text-white'}`}
 												onclick={() => toggleCellSize(mechKey)}
-												title={getCellSize(mechKey) === 'large'
-													? hasImage(phase, mech)
+												title={!hasImage(phase, mech)
+													? 'No image available'
+													: getCellSize(mechKey) === 'large'
 														? '2x2'
-														: '1x2'
-													: '1x1'}
+														: '1x2'}
 											>
 												{#if getCellSize(mechKey) === 'large'}
 													{#if hasImage(phase, mech)}
@@ -759,19 +834,20 @@
 								{@const phaseKey = getMechKey(phase)}
 								<div class="flex items-center gap-2 pl-2">
 									<button
-										class={`flex-1 text-left text-xs px-2 py-1 rounded transition-colors ${isMechVisible(phaseKey) ? 'bg-surface-800 text-surface-100' : 'bg-surface-900 text-surface-500 line-through'}`}
+										class={`flex-1 text-left text-xs px-2 py-1 rounded transition-colors ${!isMechHidden(phaseKey) ? 'bg-surface-800 text-surface-100' : 'bg-surface-900 text-surface-500 line-through'}`}
 										onclick={() => toggleMechVisibility(phaseKey)}
 									>
 										{phase.phaseName}
 									</button>
 									<button
-										class={`p-1 rounded text-xs transition-colors ${getCellSize(phaseKey) === 'large' ? 'bg-primary-500 text-white' : 'bg-surface-800 text-surface-400 hover:text-white'}`}
+										disabled={!hasImage(phase)}
+										class={`p-1 rounded text-xs transition-colors ${!hasImage(phase) ? 'opacity-30 cursor-not-allowed text-surface-600' : getCellSize(phaseKey) === 'large' ? 'bg-primary-500 text-white' : 'bg-surface-800 text-surface-400 hover:text-white'}`}
 										onclick={() => toggleCellSize(phaseKey)}
-										title={getCellSize(phaseKey) === 'large'
-											? hasImage(phase)
+										title={!hasImage(phase)
+											? 'No image available'
+											: getCellSize(phaseKey) === 'large'
 												? '2x2'
-												: '1x2'
-											: '1x1'}
+												: '1x2'}
 									>
 										{#if getCellSize(phaseKey) === 'large'}
 											{#if hasImage(phase)}
@@ -823,13 +899,26 @@
 				<!-- Timeline Column (optional) -->
 				{#if timeline.length > 0 && showTimeline}
 					<div
-						class="card border shrink-0 w-64 border-surface-800 p-2 flex flex-col bg-surface-100-900 overflow-hidden"
+						class="card border shrink-0 w-64 border-surface-800 p-2 flex flex-col bg-surface-100-900 overflow-hidden relative"
 					>
-						<div class="grow relative overflow-hidden">
-							{#each timeline as item, index}
-								{#if showMechType(item.mechType) && (item.mechTag ? showMechTag(item.mechTag) : true)}
+						<div
+							class="grow relative"
+							class:overflow-hidden={!timelineNeedsScroll()}
+							class:overflow-y-auto={timelineNeedsScroll()}
+							bind:clientHeight={timelineContainerHeight}
+							onscroll={(e) => {
+								const target = e.currentTarget as HTMLElement;
+								timelineScrollTop = target.scrollTop;
+								timelineScrollHeight = target.scrollHeight;
+							}}
+						>
+							<div
+								class="relative"
+								style:height={timelineNeedsScroll() ? `${timelineContentHeight()}px` : '100%'}
+							>
+								{#each visibleTimelineItems as item, index}
 									<div
-										style:top={getFightPercentClass(item.startTimeMs, index)}
+										style:top={getTimelinePosition(index)}
 										class="absolute flex text-sm w-full items-center"
 									>
 										<div class="w-5 shrink-0">
@@ -886,9 +975,16 @@
 											{item.mechName}
 										</div>
 									</div>
-								{/if}
-							{/each}
+								{/each}
+							</div>
 						</div>
+						{#if showTimelineScrollIndicator}
+							<div
+								class="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-surface-900 to-transparent pointer-events-none flex items-end justify-center pb-1"
+							>
+								<div class="text-[10px] text-surface-400 animate-pulse">scroll for more</div>
+							</div>
+						{/if}
 					</div>
 				{/if}
 
@@ -903,7 +999,7 @@
 						{#if phase.mechs}
 							{#each phase.mechs as mech, i}
 								{@const mechKey = getMechKey(phase, mech, i)}
-								{#if isMechVisible(mechKey)}
+								{#if shouldShowCard(mechKey, phase, mech)}
 									{@const isLarge = getCellSize(mechKey) === 'large'}
 									<button
 										data-masonry-card
@@ -1001,7 +1097,7 @@
 							{/each}
 						{:else}
 							{@const phaseKey = getMechKey(phase)}
-							{#if isMechVisible(phaseKey)}
+							{#if shouldShowCard(phaseKey, phase)}
 								{@const isLarge = getCellSize(phaseKey) === 'large'}
 								<button
 									data-masonry-card
