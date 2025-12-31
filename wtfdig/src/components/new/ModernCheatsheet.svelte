@@ -3,6 +3,7 @@
 <script lang="ts">
 	// @ts-nocheck
 	import { Modal, Switch, Tabs, Tooltip } from '$lib/components/ui';
+	import { fade } from 'svelte/transition';
 	import {
 		ArrowRight,
 		Check,
@@ -23,7 +24,8 @@
 		TriangleAlert,
 		Type,
 		Wrench,
-		X
+		X,
+		Loader2
 	} from '@lucide/svelte/icons';
 	import ImagePreview from '../ImagePreview.svelte';
 	import SpotlightOverlay from '../SpotlightOverlay.svelte';
@@ -146,6 +148,9 @@
 	function getImageDimensions(imageUrl: string) {
 		return imageDimensions.get(imageUrl);
 	}
+
+	// Layout calculation state
+	let isLayoutCalculating = $state(false);
 
 	// Save state when relevant values change
 	$effect(() => {
@@ -376,14 +381,11 @@
 		let timeoutId: number;
 		let isCalculating = false;
 
-		function calculateOptimalColumns() {
-			if (isCalculating) return;
-			isCalculating = true;
-
+		function calculateOptimalColumns(direction: number = 1) {
 			// Start from base column count
 			let testCols = dynamicColumns ?? 2;
-			const containerWidth = node.clientWidth;
-			const containerHeight = node.clientHeight;
+			const containerWidth = node.parentNode.clientWidth;
+			const containerHeight = node.parentNode.clientHeight;
 
 			console.log(
 				`[autoFitColumns] Starting. containerH=${containerHeight}, containerW=${containerWidth}`
@@ -399,7 +401,7 @@
 						`[autoFitColumns] cols=${cols} would be too narrow (${colWidth}px), using ${cols - 1}`
 					);
 					dynamicColumns = cols > 1 ? cols - 1 : 1;
-					isCalculating = false;
+
 					return;
 				}
 
@@ -411,14 +413,21 @@
 					console.log(
 						`[autoFitColumns] cols=${cols}, scrollH=${scrollHeight}, containerH=${containerHeight}`
 					);
-
-					if (scrollHeight <= containerHeight + 5) {
-						// Content fits! We found our minimum columns
-						console.log(`[autoFitColumns] Content fits with ${cols} columns!`);
-						isCalculating = false;
+					if (direction === 1) {
+						if (scrollHeight <= containerHeight + 5) {
+							// Content fits! We found our minimum columns
+							console.log(`[autoFitColumns] Content fits (+1) with ${cols} columns!`);
+						} else {
+							// Still overflows, try more columns
+							tryColumns(cols + 1);
+						}
 					} else {
-						// Still overflows, try more columns
-						tryColumns(cols + 1);
+						if (scrollHeight <= containerHeight / (cols - 1 / (cols - 2))) {
+							// go smaller
+							tryColumns(cols - 1);
+						} else {
+							console.log(`[autoFitColumns] Content fits (-1) with ${cols} columns!`);
+						}
 					}
 				}, 10); // Wait for Svelte to update and masonry to recalculate
 			}
@@ -430,32 +439,30 @@
 		timeoutId = setTimeout(calculateOptimalColumns, 20) as unknown as number;
 
 		// Watch for significant size changes (window resize)
-		let lastWidth = node.clientWidth;
-		let lastHeight = node.clientHeight;
+		let lastWidth = node.parentNode.clientWidth;
+		let lastHeight = node.parentNode.clientHeight;
 		const observer = new ResizeObserver((entries) => {
-			const newWidth = entries[0].contentRect.width;
-			const newHeight = entries[0].contentRect.height;
+			const newWidth = entries[0].target.parentNode.clientWidth;
+			const newHeight = entries[0].target.parentNode.clientHeight;
 
 			// Only recalculate on significant changes (not just from column adjustments)
-			if (Math.abs(newWidth - lastWidth) > 50) {
+			if (newWidth - lastWidth > 50 || lastHeight - newHeight > 50) {
 				console.log(
-					`[autoFitColumns] Grow detected: ${lastWidth}x${lastHeight} -> ${newWidth}x${newHeight}`
+					`[autoFitColumns] Potential col increase detected: ${lastWidth}x${lastHeight} -> ${newWidth}x${newHeight}`
 				);
 				lastWidth = newWidth;
 				lastHeight = newHeight;
 				clearTimeout(timeoutId);
-				isCalculating = false;
-				timeoutId = setTimeout(calculateOptimalColumns, 20) as unknown as number;
-			} else if (Math.abs(newHeight - lastHeight) > 50) {
+				timeoutId = setTimeout(calculateOptimalColumns(1), 20) as unknown as number;
+			} else if (newHeight - lastHeight > 50 || lastWidth - newWidth > 50) {
 				console.log(
-					`[autoFitColumns] Shrink detected: ${lastWidth}x${lastHeight} -> ${newWidth}x${newHeight}`
+					`[autoFitColumns] Potential col decrease detected: ${lastWidth}x${lastHeight} -> ${newWidth}x${newHeight}`
 				);
 				lastWidth = newWidth;
 				lastHeight = newHeight;
 				clearTimeout(timeoutId);
-				isCalculating = false;
-				dynamicColumns = dynamicColumns - 1;
-				timeoutId = setTimeout(calculateOptimalColumns, 20) as unknown as number;
+				//dynamicColumns = (dynamicColumns ?? 3) - 1;
+				timeoutId = setTimeout(calculateOptimalColumns(-1), 20) as unknown as number;
 			}
 		});
 		observer.observe(node);
@@ -464,8 +471,8 @@
 		function handleRecalc() {
 			console.log('[autoFitColumns] Recalc event received');
 			clearTimeout(timeoutId);
-			isCalculating = false;
-			timeoutId = setTimeout(calculateOptimalColumns, 20) as unknown as number;
+			//dynamicColumns = (dynamicColumns ?? 3) - 1;
+			timeoutId = setTimeout(calculateOptimalColumns, 50) as unknown as number;
 		}
 		node.addEventListener('recalc', handleRecalc);
 
@@ -910,10 +917,19 @@
 				<div
 					bind:this={gridContainer}
 					use:autoFitColumns
-					class="flex-1 grid gap-3 overflow-y-auto content-start"
+					oncalculating={(e) => (isLayoutCalculating = e.detail.isCalculating)}
+					class="flex-1 grid gap-3 overflow-y-auto content-start transition-all duration-300 ease-in-out relative h-fit"
 					style:grid-template-columns={`repeat(${effectiveColumns()}, minmax(0, 1fr))`}
 					style:grid-auto-rows="10px"
 				>
+					{#if isLayoutCalculating}
+						<div
+							class="absolute inset-0 z-50 bg-surface-900/60 flex items-center justify-center backdrop-blur-xs transition-opacity duration-200 pointer-events-none"
+							transition:fade={{ duration: 100 }}
+						>
+							<Loader2 class="w-10 h-10 animate-spin text-primary-500" />
+						</div>
+					{/if}
 					{#each visiblePhases as phase, i}
 						{#if phase.mechs}
 							{#each phase.mechs as mech, i}
