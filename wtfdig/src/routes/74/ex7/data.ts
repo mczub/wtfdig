@@ -658,7 +658,7 @@ const normalArcane: MechanicStrat[] = [
 const cheeseArcane: MechanicStrat[] = [
     {
         mechanic: "2/6 Cheese",
-        description: "Completely ignore the big moving AOE\nTanks go NE, everyone else NW",
+        description: "Completely ignore the big moving AOE\nTanks go NW, everyone else NE",
         imageUrl: "./ex7/arcane-cheese.webp"
     },
     {
