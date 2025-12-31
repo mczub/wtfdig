@@ -530,100 +530,116 @@ const game8Runaway: StratRecord = {
         MT: {
             role: "Tank",
             party: 1,
-            description: '',
+            description: "TB Left facing Ghost Train",
             imageUrl: "./ex7/game8-p3-stacks.webp",
+            mask: getCircleMaskUrl(28.6, 22.9, 8)
         },
         OT: {
             role: "Tank",
             party: 2,
-            description: '',
+            description: "TB Right facing Ghost Train",
             imageUrl: "./ex7/game8-p3-stacks.webp",
+            mask: getCircleMaskUrl(71.4, 22.7, 8)
         },
         H1: {
             role: "Healer",
             party: 1,
-            description: '',
+            description: "Center melee range towards Ghost Train",
             imageUrl: "./ex7/game8-p3-stacks.webp",
+            mask: getCircleMaskUrl(50.2, 39.8, 8)
         },
         H2: {
             role: "Healer",
             party: 2,
-            description: '',
+            description: "Away from Ghost Train",
             imageUrl: "./ex7/game8-p3-stacks.webp",
+            mask: getCircleMaskUrl(51, 72.3, 8)
         },
         M1: {
             role: "Melee",
             party: 1,
-            description: '',
+            description: "Center melee range towards Ghost Train",
             imageUrl: "./ex7/game8-p3-stacks.webp",
+            mask: getCircleMaskUrl(50.2, 40.3, 8)
         },
         M2: {
             role: "Melee",
             party: 2,
-            description: '',
+            description: "Center melee range towards Ghost Train",
             imageUrl: "./ex7/game8-p3-stacks.webp",
+            mask: getCircleMaskUrl(50.2, 40.3, 8)
         },
         R1: {
             role: "Ranged",
             party: 1,
-            description: '',
+            description: "Away from Ghost Train",
             imageUrl: "./ex7/game8-p3-stacks.webp",
+            mask: getCircleMaskUrl(51, 72.3, 8)
         },
         R2: {
             role: "Ranged",
             party: 2,
-            description: '',
+            description: "Away from Ghost Train",
             imageUrl: "./ex7/game8-p3-stacks.webp",
+            mask: getCircleMaskUrl(51, 72.3, 8)
         }
     },
     spreads: {
         MT: {
             role: "Tank",
             party: 1,
-            description: '',
+            description: "TB Left facing Ghost Train",
             imageUrl: "./ex7/game8-p3-spread.webp",
+            mask: getCircleMaskUrl(28.7, 22.8, 7)
         },
         OT: {
             role: "Tank",
             party: 2,
-            description: '',
+            description: "TB Right facing Ghost Train",
             imageUrl: "./ex7/game8-p3-spread.webp",
+            mask: getCircleMaskUrl(71.4, 22.5, 7)
         },
         H1: {
             role: "Healer",
             party: 1,
-            description: '',
+            description: "Close to Ghost Train",
             imageUrl: "./ex7/game8-p3-spread.webp",
+            mask: getCircleMaskUrl(50.1, 18.3, 7)
         },
         H2: {
             role: "Healer",
             party: 2,
-            description: '',
+            description: "Center away from Ghost Train",
             imageUrl: "./ex7/game8-p3-spread.webp",
+            mask: getCircleMaskUrl(49.9, 69.5, 7)
         },
         M1: {
             role: "Melee",
             party: 1,
-            description: '',
+            description: "Max melee left facing Ghost Train",
             imageUrl: "./ex7/game8-p3-spread.webp",
+            mask: getCircleMaskUrl(37.1, 47.8, 7)
         },
         M2: {
             role: "Melee",
             party: 2,
-            description: '',
+            description: "Max melee right facing Ghost Train",
             imageUrl: "./ex7/game8-p3-spread.webp",
+            mask: getCircleMaskUrl(63.3, 49.7, 7)
         },
         R1: {
             role: "Ranged",
             party: 1,
-            description: '',
+            description: "Far left facing Ghost Train",
             imageUrl: "./ex7/game8-p3-spread.webp",
+            mask: getCircleMaskUrl(35.3, 82.3, 7)
         },
         R2: {
             role: "Ranged",
             party: 2,
-            description: '',
+            description: "Far right facing Ghost Train",
             imageUrl: "./ex7/game8-p3-spread.webp",
+            mask: getCircleMaskUrl(64.9, 83.2, 7)
         }
     }
 };
@@ -1789,49 +1805,57 @@ export const game8: Strat = {
                             role: "Tank",
                             party: 1,
                             description: "Northwest corner",
-                            imageUrl: "./ex7/game8-spreads.webp"
+                            imageUrl: "./ex7/game8-spreads.webp",
+                            mask: getCircleMaskUrl(31.7, 7.1, 7)
                         },
                         {
                             role: "Tank",
                             party: 2,
                             description: "Northeast corner",
                             imageUrl: "./ex7/game8-spreads.webp",
+                            mask: getCircleMaskUrl(69.5, 7.3, 7)
                         },
                         {
                             role: "Healer",
+                            party: 1,
+                            description: "Southwest",
+                            imageUrl: "./ex7/game8-spreads.webp",
+                            mask: getCircleMaskUrl(33, 61.7, 7)
+                        },
+                        {
+                            role: "Healer",
+                            party: 2,
+                            description: "Southeast",
+                            imageUrl: "./ex7/game8-spreads.webp",
+                            mask: getCircleMaskUrl(64.5, 64.3, 7)
+                        },
+                        {
+                            role: "Melee",
+                            party: 1,
+                            description: "Northwest",
+                            imageUrl: "./ex7/game8-spreads.webp",
+                            mask: getCircleMaskUrl(37.8, 35.5, 7)
+                        },
+                        {
+                            role: "Melee",
+                            party: 2,
+                            description: "Northeast",
+                            imageUrl: "./ex7/game8-spreads.webp",
+                            mask: getCircleMaskUrl(67.1, 37.7, 7)
+                        },
+                        {
+                            role: "Ranged",
                             party: 1,
                             description: "Southwest corner",
                             imageUrl: "./ex7/game8-spreads.webp",
+                            mask: getCircleMaskUrl(37.3, 92.9, 7)
                         },
                         {
-                            role: "Healer",
+                            role: "Ranged",
                             party: 2,
                             description: "Southeast corner",
                             imageUrl: "./ex7/game8-spreads.webp",
-                        },
-                        {
-                            role: "Melee",
-                            party: 1,
-                            description: "Middle northwest",
-                            imageUrl: "./ex7/game8-spreads.webp",
-                        },
-                        {
-                            role: "Melee",
-                            party: 2,
-                            description: "Middle northeast",
-                            imageUrl: "./ex7/game8-spreads.webp",
-                        },
-                        {
-                            role: "Ranged",
-                            party: 1,
-                            description: "South center",
-                            imageUrl: "./ex7/game8-spreads.webp",
-                        },
-                        {
-                            role: "Ranged",
-                            party: 2,
-                            description: "Middle south-ish",
-                            imageUrl: "./ex7/game8-spreads.webp",
+                            mask: getCircleMaskUrl(64.4, 92.9, 7)
                         }
                     ]
                 },
@@ -1843,48 +1867,56 @@ export const game8: Strat = {
                             party: 1,
                             description: "Northwest with D1",
                             imageUrl: "./ex7/game8-pairs.webp",
+                            mask: getCircleMaskUrl(33.2, 24.6, 8)
                         },
                         {
                             role: "Tank",
                             party: 2,
                             description: "Northeast with D2",
                             imageUrl: "./ex7/game8-pairs.webp",
+                            mask: getCircleMaskUrl(60.8, 24.3, 8)
                         },
                         {
                             role: "Healer",
                             party: 1,
                             description: "Southwest with D3",
                             imageUrl: "./ex7/game8-pairs.webp",
+                            mask: getCircleMaskUrl(33.5, 87, 8)
                         },
                         {
                             role: "Healer",
                             party: 2,
                             description: "Southeast with D4",
                             imageUrl: "./ex7/game8-pairs.webp",
+                            mask: getCircleMaskUrl(62.9, 85, 8)
                         },
                         {
                             role: "Melee",
                             party: 1,
                             description: "Northwest with MT",
                             imageUrl: "./ex7/game8-pairs.webp",
+                            mask: getCircleMaskUrl(33.1, 24.6, 8)
                         },
                         {
                             role: "Melee",
                             party: 2,
                             description: "Northeast with ST",
                             imageUrl: "./ex7/game8-pairs.webp",
+                            mask: getCircleMaskUrl(60.8, 24.1, 8)
                         },
                         {
                             role: "Ranged",
                             party: 1,
                             description: "Southwest with H1",
                             imageUrl: "./ex7/game8-pairs.webp",
+                            mask: getCircleMaskUrl(33.5, 86.6, 8)
                         },
                         {
                             role: "Ranged",
                             party: 2,
                             description: "Southeast with H2",
                             imageUrl: "./ex7/game8-pairs.webp",
+                            mask: getCircleMaskUrl(62.9, 84.3, 8)
                         }
                     ]
                 }
