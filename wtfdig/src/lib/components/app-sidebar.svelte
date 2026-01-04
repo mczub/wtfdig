@@ -15,26 +15,33 @@
 			defaultOpen: true,
 			items: [
 				{
+					title: 'AAC Heavyweight M1 (M9S)',
+					subtitle: 'Savage • Coming Soon',
+					url: '/74/m9s',
+					disabled: true
+				},
+				{
+					title: 'AAC Heavyweight M2 (M10S)',
+					subtitle: 'Savage • Coming Soon',
+					url: '/74/m10s',
+					disabled: true
+				},
+				{
+					title: 'AAC Heavyweight M3 (M11S)',
+					subtitle: 'Savage • Coming Soon',
+					url: '/74/m11s',
+					disabled: true
+				},
+				{
+					title: 'AAC Heavyweight M4 (M12S)',
+					subtitle: 'Savage • Coming Soon',
+					url: '/74/m12s',
+					disabled: true
+				},
+				{
 					title: 'Hell on Rails (EX7)',
 					subtitle: 'Extreme',
 					url: '/74/ex7'
-				}
-			]
-		},
-		{
-			title: 'Patch 7.3',
-			url: '#',
-			defaultOpen: true,
-			items: [
-				{
-					title: 'Windward Wilds (EX6)',
-					subtitle: 'Extreme',
-					url: '/73/ex6'
-				},
-				{
-					title: "Necron's Embrace (EX5)",
-					subtitle: 'Extreme',
-					url: '/73/ex5'
 				}
 			]
 		},
@@ -47,6 +54,23 @@
 					title: 'The Unending Coil of Bahamut',
 					subtitle: 'Ultimate',
 					url: '/ultimates/ucob'
+				}
+			]
+		},
+		{
+			title: 'Patch 7.3',
+			url: '#',
+			defaultOpen: false,
+			items: [
+				{
+					title: 'Windward Wilds (EX6)',
+					subtitle: 'Extreme',
+					url: '/73/ex6'
+				},
+				{
+					title: "Necron's Embrace (EX5)",
+					subtitle: 'Extreme',
+					url: '/73/ex5'
 				}
 			]
 		},
@@ -85,7 +109,7 @@
 		{
 			title: 'Patch 7.1',
 			url: '#',
-			defaultOpen: false,
+			defaultOpen: true,
 			items: [
 				{
 					title: 'Cloud of Darkness',
@@ -148,10 +172,16 @@
 															href={subItem.url}
 															{...props}
 															onclick={handleLinkClick}
-															class="flex flex-col w-full items-start"
+															class="flex flex-col w-full items-start {subItem.disabled
+																? 'opacity-60'
+																: ''}"
 														>
 															<div class="text-lg">{subItem.title}</div>
-															<div class="text-base text-surface-400">
+															<div
+																class="text-base {subItem.disabled
+																	? 'text-warning-500'
+																	: 'text-surface-400'}"
+															>
 																{subItem.subtitle}
 															</div>
 														</a>

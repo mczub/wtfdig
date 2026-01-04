@@ -3,12 +3,12 @@
 	import { slide } from 'svelte/transition';
 	import ChevronDown from '@lucide/svelte/icons/chevron-down';
 	import { Separator } from '$lib/components/ui/separator';
-	import { Grid3x3 } from '@lucide/svelte';
+	import { Grid3x3, Construction } from '@lucide/svelte';
 
 	let openState = $state({
 		'74': true,
-		'73': true,
 		ultimates: true,
+		'73': false,
 		'72': false,
 		'71': true,
 		'70': false
@@ -38,6 +38,7 @@
 					<div class="text-base text-surface-400">view + bundle strategy boards</div>
 				</a>
 			</div>
+			<!-- Left Column: Patch 7.4 + Ultimates -->
 			<div class="grid gap-4 content-start min-w-[330px]">
 				<div
 					class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
@@ -53,43 +54,45 @@
 					{#if openState['74']}
 						<div transition:slide class="flex flex-col gap-4">
 							<div class="flex flex-col">
+								<div class="text-left text-sm font-semibold mb-3">Savage</div>
+								<div class="flex flex-col gap-4">
+									<a
+										href="{base}/74/m9s"
+										class="btn preset-tonal-surface border border-surface-500 opacity-60"
+									>
+										<span>AAC Heavyweight M1 (M9S)</span>
+										<Construction class="size-4 text-warning-500 ml-2" />
+									</a>
+									<a
+										href="{base}/74/m10s"
+										class="btn preset-tonal-surface border border-surface-500 opacity-60"
+									>
+										<span>AAC Heavyweight M2 (M10S)</span>
+										<Construction class="size-4 text-warning-500 ml-2" />
+									</a>
+									<a
+										href="{base}/74/m11s"
+										class="btn preset-tonal-surface border border-surface-500 opacity-60"
+									>
+										<span>AAC Heavyweight M3 (M11S)</span>
+										<Construction class="size-4 text-warning-500 ml-2" />
+									</a>
+									<a
+										href="{base}/74/m12s"
+										class="btn preset-tonal-surface border border-surface-500 opacity-60"
+									>
+										<span>AAC Heavyweight M4 (M12S)</span>
+										<Construction class="size-4 text-warning-500 ml-2" />
+									</a>
+								</div>
+							</div>
+							<div class="flex flex-col">
 								<div class="text-left text-sm font-semibold mb-3">Extreme</div>
 								<div class="flex flex-col gap-4">
 									<a
 										href="{base}/74/ex7"
 										class="btn preset-tonal-secondary border border-secondary-500"
-										>Hell on Rails (Extreme)</a
-									>
-								</div>
-							</div>
-						</div>
-					{/if}
-				</div>
-				<div
-					class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
-				>
-					<button class="flex w-full items-center justify-between" onclick={() => toggle('73')}>
-						<div class="text-lg font-bold">Patch 7.3</div>
-						<ChevronDown
-							class="h-4 w-4 opacity-50 transition-transform duration-200 {openState['73']
-								? 'rotate-180'
-								: ''}"
-						/>
-					</button>
-					{#if openState['73']}
-						<div transition:slide class="flex flex-col gap-4">
-							<div class="flex flex-col">
-								<div class="text-left text-sm font-semibold mb-3">Extreme</div>
-								<div class="flex flex-col gap-4">
-									<a
-										href="{base}/73/ex6"
-										class="btn preset-tonal-secondary border border-secondary-500"
-										>Windward Wilds (Extreme)</a
-									>
-									<a
-										href="{base}/73/ex5"
-										class="btn preset-tonal-secondary border border-secondary-500"
-										>Necron's Embrace (Extreme)</a
+										>Hell on Rails (EX7)</a
 									>
 								</div>
 							</div>
@@ -121,7 +124,39 @@
 					{/if}
 				</div>
 			</div>
+			<!-- Right Column: Patch 7.3, 7.2, 7.1, 7.0 -->
 			<div class="grid gap-4 content-start min-w-[330px]">
+				<div
+					class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
+				>
+					<button class="flex w-full items-center justify-between" onclick={() => toggle('73')}>
+						<div class="text-lg font-bold">Patch 7.3</div>
+						<ChevronDown
+							class="h-4 w-4 opacity-50 transition-transform duration-200 {openState['73']
+								? 'rotate-180'
+								: ''}"
+						/>
+					</button>
+					{#if openState['73']}
+						<div transition:slide class="flex flex-col gap-4">
+							<div class="flex flex-col">
+								<div class="text-left text-sm font-semibold mb-3">Extreme</div>
+								<div class="flex flex-col gap-4">
+									<a
+										href="{base}/73/ex6"
+										class="btn preset-tonal-secondary border border-secondary-500"
+										>Windward Wilds (EX6)</a
+									>
+									<a
+										href="{base}/73/ex5"
+										class="btn preset-tonal-secondary border border-secondary-500"
+										>Necron's Embrace (EX5)</a
+									>
+								</div>
+							</div>
+						</div>
+					{/if}
+				</div>
 				<div
 					class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
 				>
@@ -141,22 +176,22 @@
 									<a
 										href="{base}/72/m5s"
 										class="btn preset-tonal-secondary border border-secondary-500"
-										>AAC Cruiserweight M1 (Savage)</a
+										>AAC Cruiserweight M1 (M5S)</a
 									>
 									<a
 										href="{base}/72/m6s"
 										class="btn preset-tonal-secondary border border-secondary-500"
-										>AAC Cruiserweight M2 (Savage)</a
+										>AAC Cruiserweight M2 (M6S)</a
 									>
 									<a
 										href="{base}/72/m7s"
 										class="btn preset-tonal-secondary border border-secondary-500"
-										>AAC Cruiserweight M3 (Savage)</a
+										>AAC Cruiserweight M3 (M7S)</a
 									>
 									<a
 										href="{base}/72/m8s"
 										class="btn preset-tonal-secondary border border-secondary-500"
-										>AAC Cruiserweight M4 (Savage)</a
+										>AAC Cruiserweight M4 (M8S)</a
 									>
 								</div>
 							</div>
@@ -166,7 +201,7 @@
 									<a
 										href="{base}/72/ex4"
 										class="btn preset-tonal-secondary border border-secondary-500"
-										>Recollection (Extreme)</a
+										>Recollection (EX4)</a
 									>
 								</div>
 							</div>

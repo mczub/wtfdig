@@ -350,10 +350,6 @@ export function buildFightOptionsString({
 		strats
 	});
 	const parts = [baseName, ...diffDescriptions];
-	console.log('args', stratName,
-		stratState,
-		toggles,
-		strats)
 	if (diffDescriptions.length === 0) {
 		return `${strats[stratName]?.defaultPfDescription ?? baseName}`;
 	}
