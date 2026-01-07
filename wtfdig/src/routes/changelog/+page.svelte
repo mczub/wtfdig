@@ -8,6 +8,7 @@
 	</header>
 	<article class="prose dark:prose-invert max-w-none">
 		<div class="">
+			<div>1/6/2026: M9S</div>
 			<div>1/4/2026: getting ready for 7.4 savage</div>
 			<div>12/31/2025: game8 ex7, new cheatsheet for ex7 and ucob!</div>
 			<div>12/24/2025: add ex7 cheese, allow toggles to switch out entire phases</div>
