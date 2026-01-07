@@ -19,7 +19,284 @@ export const m9sFightConfig: FightConfig = {
             ]
         }
     },
-    defaultStratName: "toxic"
+    defaultStratName: "toxic",
+    timeline: [
+        {
+            mechName: "Start",
+            mechType: "Start",
+            startTimeMs: 0
+        },
+        {
+            mechName: "Killer Voice",
+            mechType: "Raidwide",
+            startTimeMs: 10000
+        },
+        {
+            mechName: "Hardcore",
+            mechType: "Tankbuster",
+            startTimeMs: 20000
+        },
+        {
+            mechName: "Vamp Stomp",
+            mechType: "Mechanic",
+            startTimeMs: 30000
+        },
+        {
+            mechName: "Brutal Rain",
+            mechType: "Raidwide",
+            startTimeMs: 46000
+        },
+        {
+            mechName: "Sadistic Screech",
+            mechType: "Raidwide",
+            startTimeMs: 61000
+        },
+        {
+            mechName: "1st Cleaves",
+            mechType: "Mechanic",
+            startTimeMs: 68000
+        },
+        {
+            mechName: "2nd Cleaves",
+            mechType: "Mechanic",
+            startTimeMs: 86000
+        },
+        {
+            mechName: "3rd Cleaves",
+            mechType: "Mechanic",
+            startTimeMs: 103000
+        },
+        {
+            mechName: "Sadistic Screech",
+            mechType: "Raidwide",
+            startTimeMs: 138000
+        },
+        {
+            mechName: "Crowd Kill",
+            mechType: "Raidwide",
+            startTimeMs: 153000
+        },
+        {
+            mechName: "Finale Fatale",
+            mechType: "Raidwide",
+            startTimeMs: 171000
+        },
+        {
+            mechName: "Pulping Pulse",
+            mechType: "Mechanic",
+            startTimeMs: 177000
+        },
+        {
+            mechName: "Aetherletting",
+            mechType: "Mechanic",
+            startTimeMs: 178000
+        },
+        {
+            mechName: "1st Spreads",
+            mechType: "Mechanic",
+            startTimeMs: 193000
+        },
+        {
+            mechName: "2nd Spreads",
+            mechType: "Mechanic",
+            startTimeMs: 195000
+        },
+        {
+            mechName: "3rd Spreads",
+            mechType: "Mechanic",
+            startTimeMs: 197000
+        },
+        {
+            mechName: "4th Spreads",
+            mechType: "Mechanic",
+            startTimeMs: 199000
+        },
+        {
+            mechName: "Plus/Cross",
+            mechType: "Mechanic",
+            startTimeMs: 207000
+        },
+        {
+            mechName: "Hardcore",
+            mechType: "Tankbuster",
+            startTimeMs: 220000
+        },
+        {
+            mechName: "Pulping Pulse",
+            mechType: "Mechanic",
+            startTimeMs: 225000
+        },
+        {
+            mechName: "Vamp Stomp",
+            mechType: "Mechanic",
+            startTimeMs: 231000
+        },
+        {
+            mechName: "Half Moon",
+            mechType: "Mechanic",
+            startTimeMs: 247000
+        },
+        {
+            mechName: "Brutal Rain",
+            mechType: "Raidwide",
+            startTimeMs: 257000
+        },
+        {
+            mechName: "Insatiable Thirst",
+            mechType: "Raidwide",
+            startTimeMs: 271000
+        },
+        {
+            mechName: "Sadistic Screech 2",
+            mechType: "Raidwide",
+            startTimeMs: 284000
+        },
+        {
+            mechName: "1st Towers",
+            mechType: "Mechanic",
+            startTimeMs: 296000
+        },
+        {
+            mechName: "Killer Voice",
+            mechType: "Raidwide",
+            startTimeMs: 305000
+        },
+        {
+            mechName: "2nd Towers",
+            mechType: "Mechanic",
+            startTimeMs: 315000
+        },
+        {
+            mechName: "Killer Voice",
+            mechType: "Raidwide",
+            startTimeMs: 324000
+        },
+        {
+            mechName: "3rd Towers",
+            mechType: "Mechanic",
+            startTimeMs: 333000
+        },
+        {
+            mechName: "Sadistic Screech",
+            mechType: "Raidwide",
+            startTimeMs: 357000
+        },
+        {
+            mechName: "Crowd Kill",
+            mechType: "Raidwide",
+            startTimeMs: 371000
+        },
+        {
+            mechName: "Finale Fatale",
+            mechType: "Raidwide",
+            startTimeMs: 389000
+        },
+        {
+            mechName: "Pulping Pulse",
+            mechType: "Mechanic",
+            startTimeMs: 395000
+        },
+        {
+            mechName: "Hell in a Cell 1",
+            mechType: "Mechanic",
+            startTimeMs: 401000
+        },
+        {
+            mechName: "Ultrasonic Spread/Amp",
+            mechType: "Mechanic",
+            startTimeMs: 409000
+        },
+        {
+            mechName: "Ultrasonic Spread/Amp",
+            mechType: "Mechanic",
+            startTimeMs: 416000
+        },
+        {
+            mechName: "Hell in a Cell 2",
+            mechType: "Mechanic",
+            startTimeMs: 423000
+        },
+        {
+            mechName: "Ultrasonic Spread/Amp",
+            mechType: "Mechanic",
+            startTimeMs: 431000
+        },
+        {
+            mechName: "Ultrasonic Spread/Amp",
+            mechType: "Mechanic",
+            startTimeMs: 438000
+        },
+        {
+            mechName: "Pulping Pulse",
+            mechType: "Mechanic",
+            startTimeMs: 444000
+        },
+        {
+            mechName: "Pulping Pulse",
+            mechType: "Mechanic",
+            startTimeMs: 448000
+        },
+        {
+            mechName: "Undead Deathmatch",
+            mechType: "Mechanic",
+            startTimeMs: 454000
+        },
+        {
+            mechName: "Sanguine Scratch",
+            mechType: "Mechanic",
+            startTimeMs: 461000
+        },
+        {
+            mechName: "Sanguine Scratch",
+            mechType: "Mechanic",
+            startTimeMs: 479000
+        },
+        {
+            mechName: "Brutal Rain",
+            mechType: "Raidwide",
+            startTimeMs: 499000
+        },
+        {
+            mechName: "Vamp Stomp",
+            mechType: "Mechanic",
+            startTimeMs: 512000
+        },
+        {
+            mechName: "Half Moon",
+            mechType: "Mechanic",
+            startTimeMs: 528000
+        },
+        {
+            mechName: "Hardcore",
+            mechType: "Tankbuster",
+            startTimeMs: 538000
+        },
+        {
+            mechName: "Pulping Pulse",
+            mechType: "Mechanic",
+            startTimeMs: 543000
+        },
+        {
+            mechName: "Sanguine Scratch 2",
+            mechType: "Mechanic",
+            startTimeMs: 551000
+        },
+        {
+            mechName: "Insatiable Thirst",
+            mechType: "Raidwide",
+            startTimeMs: 571000
+        },
+        {
+            mechName: "Crowd Kill",
+            mechType: "Raidwide",
+            startTimeMs: 585000
+        },
+        {
+            mechName: "Enrage",
+            mechType: "Enrage",
+            startTimeMs: 605000
+        },
+    ]
 };
 
 export const toxic: Strat = {
