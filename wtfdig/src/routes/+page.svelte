@@ -58,11 +58,9 @@
 								<div class="flex flex-col gap-4">
 									<a
 										href="{base}/74/m9s"
-										class="btn preset-tonal-surface border border-surface-500 opacity-60"
+										class="btn preset-tonal-secondary border border-secondary-500"
+										>AAC Heavyweight M1 (M9S)</a
 									>
-										<span>AAC Heavyweight M1 (M9S)</span>
-										<Construction class="size-4 text-warning-500 ml-2" />
-									</a>
 									<a
 										href="{base}/74/m10s"
 										class="btn preset-tonal-surface border border-surface-500 opacity-60"
