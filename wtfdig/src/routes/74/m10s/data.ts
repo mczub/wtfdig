@@ -103,7 +103,7 @@ export const m10sFightConfig: FightConfig = {
         {
           value: "nomnom",
           label: "nomnom",
-          url: { name: 'nomnom/Better Snaking', url: 'https://raidplan.io/plan/ywV9cu6GRQ68SQLy' }
+          url: { name: 'nomnom/Better Snaking', url: 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c' }
         }
       ]
     }
