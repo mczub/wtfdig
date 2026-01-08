@@ -21,9 +21,8 @@
 				},
 				{
 					title: 'AAC Heavyweight M2 (M10S)',
-					subtitle: 'Savage • Coming Soon',
-					url: '/74/m10s',
-					disabled: true
+					subtitle: 'Savage',
+					url: '/74/m10s'
 				},
 				{
 					title: 'AAC Heavyweight M3 (M11S)',

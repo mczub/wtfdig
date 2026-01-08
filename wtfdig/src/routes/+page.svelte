@@ -63,11 +63,9 @@
 									>
 									<a
 										href="{base}/74/m10s"
-										class="btn preset-tonal-surface border border-surface-500 opacity-60"
+										class="btn preset-tonal-secondary border border-secondary-500"
+										>AAC Heavyweight M2 (M10S)</a
 									>
-										<span>AAC Heavyweight M2 (M10S)</span>
-										<Construction class="size-4 text-warning-500 ml-2" />
-									</a>
 									<a
 										href="{base}/74/m11s"
 										class="btn preset-tonal-surface border border-surface-500 opacity-60"
