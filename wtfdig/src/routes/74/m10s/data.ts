@@ -43,7 +43,7 @@ const nomnomFirewatersnaking: MechanicStrat[] = [
   {
     mechanic: "Wide Cleave",
     description: "Blue jumps to N or S and does wide cleave\n💦 1 ball = Stack, 4 balls = spread\nTrue North, 🔥 East, 💦 West",
-    imageUrl: "./m10s/nomnom-snaking-wide.webp"
+    imageUrl: "./m10s/nomnom-snaking-cleave.webp"
   },
   {
     mechanic: "Far Jumps",
