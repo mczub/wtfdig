@@ -11,12 +11,7 @@ export const m9sFightConfig: FightConfig = {
     strats: {
         toxic: {
             label: "Toxic Friends",
-            badges: [
-                {
-                    text: "NA",
-                    class: "bg-blue-600 text-white"
-                }
-            ]
+            badges: [{ text: 'NA', class: 'na-badge' }, { text: 'EU', class: 'eu-badge' }],
         }
     },
     defaultStratName: "toxic",

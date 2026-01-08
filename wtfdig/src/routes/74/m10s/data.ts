@@ -82,12 +82,7 @@ export const m10sFightConfig: FightConfig = {
       defaults: {
         snaking: "toxic"
       },
-      badges: [
-        {
-          text: "NA",
-          class: "bg-blue-600 text-white"
-        }
-      ]
+      badges: [{ text: 'NA', class: 'na-badge' }, { text: 'EU', class: 'eu-badge' }],
     }
   },
   toggles: [
