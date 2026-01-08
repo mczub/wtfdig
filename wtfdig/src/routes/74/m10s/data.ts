@@ -4,17 +4,17 @@ import { getStringObject, getStratArray, getCircleMaskUrl, getMultiCircleMaskUrl
 const toxicFirewatersnaking: MechanicStrat[] = [
   {
     mechanic: "Debuffs",
-    description: "Proximity bait debuff\nG1 near Blue, G2 near Red\nSwap to boss that matches your color",
+    description: "Proximity bait debuff\nG1 near Blue, G2 near Red\nWatch debuff and swap to boss that matches your color",
     imageUrl: "./m10s/toxic-snaking-debuffs.webp"
   },
   {
     mechanic: "Puddles + Proteans",
-    description: "🔥 Place puddles on east wall in box shape\n💦 Giga tight spread in SW corner",
+    description: "🔥 Place puddles on east wall in box shape\n💦 Giga tight spread in NW/SW corner with Tank towards middle",
     imageUrl: "./m10s/toxic-snaking-pp.webp"
   },
   {
     mechanic: "Wide Cleave",
-    description: "Blue jumps to N or S and does wide cleave\n💦 1 ball = Stack, 4 balls = spread\nTrue North, 🔥 East, 💦 West",
+    description: "Blue jumps to N or S and does wide cleave\nTrue North\n💦 West, 1 ball = Stack, 4 balls = spread 🔥 East (near fire puddles)",
     imageUrl: "./m10s/toxic-snaking-cleave.webp"
   },
   {
@@ -24,7 +24,7 @@ const toxicFirewatersnaking: MechanicStrat[] = [
   },
   {
     mechanic: "Cutback Blaze + TB",
-    description: "Pull Fire mid\nParty stack South to bait Cutback Blaze\nParty stay under boss\nTank run North to bait TB",
+    description: "Pull Red Hot mid\n🔥 Stack South to bait Cutback Blaze\nParty stay under boss\n💦 Tank run North to bait TB",
     imageUrl: "./m10s/toxic-snaking-cb.webp"
   }
 ];
@@ -32,7 +32,7 @@ const toxicFirewatersnaking: MechanicStrat[] = [
 const nomnomFirewatersnaking: MechanicStrat[] = [
   {
     mechanic: "Debuffs",
-    description: "Proximity bait debuff\nG1 near Blue, G2 near Red\nSwap to boss that matches your color",
+    description: "Proximity bait debuff\nG1 near Blue, G2 near Red\nWatch debuff and swap to boss that matches your color",
     imageUrl: "./m10s/nomnom-snaking-debuffs.webp"
   },
   {
@@ -42,7 +42,7 @@ const nomnomFirewatersnaking: MechanicStrat[] = [
   },
   {
     mechanic: "Wide Cleave",
-    description: "Blue jumps to N or S and does wide cleave\n💦 1 ball = Stack, 4 balls = spread\nTrue North, 🔥 East, 💦 West",
+    description: "Blue jumps to N or S and does wide cleave\nTrue North\n💦 West, 1 ball = Stack, 4 balls = spread 🔥 East (near fire puddles)",
     imageUrl: "./m10s/nomnom-snaking-cleave.webp"
   },
   {
@@ -62,7 +62,7 @@ const nomnomFirewatersnaking: MechanicStrat[] = [
   },
   {
     mechanic: "Cutback Blaze + TB",
-    description: "Move into safespot\nBlue tank bait TB far from Deep Blue",
+    description: "Move into safespot\n💦 tank bait TB far from Deep Blue",
     imageUrl: "./m10s/nomnom-snaking-tb.webp"
   }
 ];
@@ -435,27 +435,27 @@ export const toxic: Strat = {
         },
         {
           mechanic: "Surfboards",
-          description: "Down-left: Proteans\nLeft: Light party stack\nUp-left: Tankbuster on closest\n🔥 Fire leaves stuff on the ground",
+          description: "Up: Tankbuster AoE on closest\nSide: Light party stack\nDown: Proteans\n🔥 Fire leaves stuff on the ground\nOnly 1 of 4 can be a TB",
           imageUrl: "./m10s/natus-surfboards.webp"
         },
         {
           mechanic: "1st Hit",
-          description: "Can be any of the 3",
+          description: "MTHR clockwise for proteans",
           imageUrl: "./m10s/toxic-insane1-1.webp"
         },
         {
           mechanic: "2nd Hit",
-          description: "Can be any of the 3",
+          description: "MTHR clockwise for proteans",
           imageUrl: "./m10s/toxic-insane1-2.webp"
         },
         {
           mechanic: "3rd Hit",
-          description: "Can be any of the 3",
+          description: "MTHR clockwise for proteans",
           imageUrl: "./m10s/toxic-insane1-3.webp"
         },
         {
           mechanic: "4th Hit",
-          description: "Can be any of the 3",
+          description: "MTHR clockwise for proteans",
           imageUrl: "./m10s/toxic-insane1-4.webp"
         }
       ]
@@ -470,7 +470,7 @@ export const toxic: Strat = {
       mechs: [
         {
           mechanic: "Tethers",
-          description: "Healers take ball\n🔥 Fire tether hit the ball\n💦 Water tether don't hit the ball",
+          description: "Healers take ball\n🔥 Fire tether hit the ball\n💦 Water tether don't hit the ball\nTether line is wide so be careful",
           imageUrl: "./m10s/toxic-deep.webp"
         }
       ]
@@ -760,7 +760,7 @@ export const toxic: Strat = {
       mechs: [
         {
           mechanic: "Proteans + Puddles",
-          description: "Clock spots\nProteans first, then drop puddles at wall during 2nd hit\nDouble-dip = rotate clockwise\nReverse = Stay",
+          description: "Clock spots\nProteans first, then drop puddles at wall during 2nd hit\nDouble-dip = Dodge clockwise\nReverse = Stay",
           strats: [
             {
               role: "Tank",
