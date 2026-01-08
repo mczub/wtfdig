@@ -37,7 +37,7 @@ const nomnomFirewatersnaking: MechanicStrat[] = [
   },
   {
     mechanic: "Puddles + Proteans",
-    description: "🔥 Place puddles on east wall in box shape\n💦 Protean spread in SW corner",
+    description: "🔥 Place puddles on east wall in box shape\n💦 Protean spread in SW corner, dodge 2nd hit",
     imageUrl: "./m10s/nomnom-snaking-pp.webp"
   },
   {
@@ -62,7 +62,7 @@ const nomnomFirewatersnaking: MechanicStrat[] = [
   },
   {
     mechanic: "Cutback Blaze + TB",
-    description: "Move into safespot\nBlue tank bait TB far",
+    description: "Move into safespot\nBlue tank bait TB far from Deep Blue",
     imageUrl: "./m10s/nomnom-snaking-tb.webp"
   }
 ];
@@ -93,7 +93,7 @@ export const m10sFightConfig: FightConfig = {
   toggles: [
     {
       key: "snaking",
-      label: "Fire/Watersnaking",
+      label: "Snaking",
       defaultValue: "toxic",
       options: [
         {
@@ -102,7 +102,8 @@ export const m10sFightConfig: FightConfig = {
         },
         {
           value: "nomnom",
-          label: "nomnom"
+          label: "nomnom",
+          url: { name: 'nomnom/Better Snaking', url: 'https://raidplan.io/plan/ywV9cu6GRQ68SQLy' }
         }
       ]
     }

@@ -441,127 +441,13 @@ export const toxic: Strat = {
             mechs: [
                 {
                     mechanic: "First Cleave",
-                    description: "Dodge into non-glowing area\nBoss will cleave N or S\nG1 W, G2 E",
-                    strats: [
-                        {
-                            role: "Tank",
-                            party: 1,
-                            description: "West",
-                            imageUrl: "./m9s/toxic-sadistic-1.webp",
-                            mask: getRectMaskUrl(44.1, 49.8, 30.2, 49.9)
-                        },
-                        {
-                            role: "Tank",
-                            party: 2,
-                            description: "East",
-                            imageUrl: "./m9s/toxic-sadistic-1.webp",
-                            mask: getRectMaskUrl(55.3, 61.2, 30.2, 49.9)
-                        },
-                        {
-                            role: "Healer",
-                            party: 1,
-                            description: "West",
-                            imageUrl: "./m9s/toxic-sadistic-1.webp",
-                            mask: getRectMaskUrl(44.1, 49.8, 30.2, 49.9)
-                        },
-                        {
-                            role: "Healer",
-                            party: 2,
-                            description: "East",
-                            imageUrl: "./m9s/toxic-sadistic-1.webp",
-                            mask: getRectMaskUrl(55.3, 61.2, 30.2, 49.9)
-                        },
-                        {
-                            role: "Melee",
-                            party: 1,
-                            description: "West",
-                            imageUrl: "./m9s/toxic-sadistic-1.webp",
-                            mask: getRectMaskUrl(44.1, 49.8, 30.2, 49.9)
-                        },
-                        {
-                            role: "Melee",
-                            party: 2,
-                            description: "East",
-                            imageUrl: "./m9s/toxic-sadistic-1.webp",
-                            mask: getRectMaskUrl(55.3, 61.2, 30.2, 49.9)
-                        },
-                        {
-                            role: "Ranged",
-                            party: 1,
-                            description: "West",
-                            imageUrl: "./m9s/toxic-sadistic-1.webp",
-                            mask: getRectMaskUrl(44.1, 49.8, 30.2, 49.9)
-                        },
-                        {
-                            role: "Ranged",
-                            party: 2,
-                            description: "East",
-                            imageUrl: "./m9s/toxic-sadistic-1.webp",
-                            mask: getRectMaskUrl(55.3, 61.2, 30.2, 49.9)
-                        }
-                    ]
+                    description: "Dodge into non-glowing area\nBoss will cleave N or S",
+                    imageUrl: "./m9s/toxic-sadistic-1.webp",
                 },
                 {
                     mechanic: "Second Cleave",
-                    description: "Boss will cleave other half\nDodge into non-glowing lane\nG1 W, G2 E",
-                    strats: [
-                        {
-                            role: "Tank",
-                            party: 1,
-                            description: "West",
-                            imageUrl: "./m9s/toxic-sadistic-2.webp",
-                            mask: getRectMaskUrl(38.8, 44.5, 50.4, 89.9)
-                        },
-                        {
-                            role: "Tank",
-                            party: 2,
-                            description: "East",
-                            imageUrl: "./m9s/toxic-sadistic-2.webp",
-                            mask: getRectMaskUrl(50, 55.9, 50.4, 89.8)
-                        },
-                        {
-                            role: "Healer",
-                            party: 1,
-                            description: "West",
-                            imageUrl: "./m9s/toxic-sadistic-2.webp",
-                            mask: getRectMaskUrl(38.8, 44.5, 50.4, 89.9)
-                        },
-                        {
-                            role: "Healer",
-                            party: 2,
-                            description: "East",
-                            imageUrl: "./m9s/toxic-sadistic-2.webp",
-                            mask: getRectMaskUrl(50, 55.9, 50.4, 89.8)
-                        },
-                        {
-                            role: "Melee",
-                            party: 1,
-                            description: "West",
-                            imageUrl: "./m9s/toxic-sadistic-2.webp",
-                            mask: getRectMaskUrl(38.8, 44.5, 50.4, 89.9)
-                        },
-                        {
-                            role: "Melee",
-                            party: 2,
-                            description: "East",
-                            imageUrl: "./m9s/toxic-sadistic-2.webp",
-                            mask: getRectMaskUrl(50, 55.9, 50.4, 89.8)
-                        },
-                        {
-                            role: "Ranged",
-                            party: 1,
-                            description: "West",
-                            imageUrl: "./m9s/toxic-sadistic-2.webp",
-                            mask: getRectMaskUrl(38.8, 44.5, 50.4, 89.9)
-                        },
-                        {
-                            role: "Ranged",
-                            party: 2,
-                            description: "East",
-                            imageUrl: "./m9s/toxic-sadistic-2.webp",
-                            mask: getRectMaskUrl(50, 55.9, 50.4, 89.8)
-                        }
-                    ]
+                    description: "Boss will cleave other half\nDodge into non-glowing lane",
+                    imageUrl: "./m9s/toxic-sadistic-2.webp",
                 },
                 {
                     mechanic: "Third Cleave",
