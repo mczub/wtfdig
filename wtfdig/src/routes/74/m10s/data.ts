@@ -69,6 +69,34 @@ const nomnomFirewatersnaking: MechanicStrat[] = [
 
 const firewatersnakingMechs: Record<string, MechanicStrat[]> = { toxic: toxicFirewatersnaking, nomnom: nomnomFirewatersnaking };
 
+const toxicDeepaerial: MechanicStrat[] = [
+  {
+    mechanic: "Tethers",
+    description: "Healers take ball\n🔥 Fire tether hit the ball\n💦 Water tether don't hit the ball\nTether line is wide so be careful",
+    imageUrl: "./m10s/toxic-deep.webp"
+  }
+];
+
+const parallelDeepaerial: MechanicStrat[] = [
+  {
+    mechanic: "1st Tether",
+    description: "Healers take ball\n🔥 Fire tether directly to A or C\n💦 Water tether straight north or south\nTether line is wide so be careful",
+    imageUrl: "./m10s/parallel-aerial-1.webp"
+  },
+  {
+    mechanic: "2nd Tether",
+    description: "🔥 Fire tether directly through the ball\n💦 Water tether back to first corner parallel to fire",
+    imageUrl: "./m10s/parallel-aerial-2.webp"
+  },
+  {
+    mechanic: "All Other Tethers",
+    description: "🔥 Fire tether directly through the ball\n💦 Water tether parallel to fire",
+    imageUrl: "./m10s/parallel-aerial-3.webp"
+  }
+];
+
+const deepaerialMechs: Record<string, MechanicStrat[]> = { toxic: toxicDeepaerial, parallel: parallelDeepaerial };
+
 export const m10sFightConfig: FightConfig = {
   fightKey: "m10s",
   title: "AAC Heavyweight M2 (Savage)",
@@ -80,9 +108,19 @@ export const m10sFightConfig: FightConfig = {
     toxic: {
       label: "Toxic Friends",
       defaults: {
-        snaking: "toxic"
+        snaking: "toxic",
+        aerial: "toxic",
       },
-      badges: [{ text: 'NA', class: 'na-badge' }, { text: 'EU', class: 'eu-badge' }],
+      badges: [
+        {
+          text: "NA",
+          class: "na-badge"
+        },
+        {
+          text: "EU",
+          class: "eu-badge"
+        }
+      ]
     }
   },
   toggles: [
@@ -98,7 +136,29 @@ export const m10sFightConfig: FightConfig = {
         {
           value: "nomnom",
           label: "nomnom",
-          url: { name: 'nomnom/Better Snaking', url: 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c' }
+          url: {
+            name: "nomnom/Better Snaking",
+            url: "https://raidplan.io/plan/Cmo_RpCDbsUSMV5c"
+          }
+        }
+      ]
+    },
+    {
+      key: "aerial",
+      label: "Aerial",
+      defaultValue: "toxic",
+      options: [
+        {
+          value: "toxic",
+          label: "Normal"
+        },
+        {
+          value: "parallel",
+          label: "Parallel",
+          url: {
+            name: "Raidplan",
+            url: "https://raidplan.io/plan/qWue79_md0YHCrnW"
+          }
         }
       ]
     }
@@ -180,7 +240,6 @@ export const toxic: Strat = {
           mechanic: "Cutback Blaze",
           description: "Stack between boss and fire\nBait narrow slice behind boss",
           imageUrl: "./m10s/toxic-cutback1.webp"
-
         },
         {
           mechanic: "Pyrotation",
@@ -462,13 +521,8 @@ export const toxic: Strat = {
     },
     {
       phaseName: "Deep Aerial",
-      mechs: [
-        {
-          mechanic: "Tethers",
-          description: "Healers take ball\n🔥 Fire tether hit the ball\n💦 Water tether don't hit the ball\nTether line is wide so be careful",
-          imageUrl: "./m10s/toxic-deep.webp"
-        }
-      ]
+      mechs: deepaerialMechs,
+      tag: "aerial"
     },
     {
       phaseName: "Arena Split",
