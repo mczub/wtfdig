@@ -42,7 +42,7 @@ const toxicArenaSplit: MechanicStrat[] = [
 const buddiesArenaSplit: MechanicStrat[] = [
   {
     mechanic: 'Split + Conga',
-    description: '4 players get tethered, 2 on each side\nG1 West, G2 East',
+    description: '4 players get tethered, 2 on each side\nG1 West, G2 East\nSupports NW/SE, DPS SW/NE',
     imageUrl: "./m11s/kindred-split-conga.webp"
   },
   {
@@ -52,27 +52,27 @@ const buddiesArenaSplit: MechanicStrat[] = [
   },
   {
     mechanic: 'Fire Breath Baits',
-    description: 'Non-tethered buddies close to boss to bait fire breaths',
+    description: 'Non-tethered buddies close to boss to bait fire breaths\nStack center E/W after for puddles',
     imageUrl: "./m11s/kindred-buddies-baits.webp"
   },
   {
     mechanic: 'Puddles',
-    description: 'TBD',
+    description: 'Everyone go center E/W to bait puddles, one pair North one pair South',
     imageUrl: "./m11s/kindred-buddies-puddles-2.webp"
   },
   {
     mechanic: 'Lineup + Portal',
-    description: 'TBD',
+    description: 'Tethers on edge, markers on inner marker corner',
     imageUrl: "./m11s/kindred-buddies-lineup.webp"
   },
   {
     mechanic: 'Towers 2',
-    description: 'TBD',
+    description: '‼️TAKE THE TOWER IN THE QUADRANT YOU RESOLVED TETHER/MARKERS',
     imageUrl: "./m11s/kindred-buddies-towers-2.webp"
   },
   {
     mechanic: 'Get Slabbed',
-    description: 'TBD',
+    description: 'KB to back of boss, then look at hitbox to dodge AOE',
     imageUrl: "./m11s/kindred-slab.webp"
   }
 ];
@@ -80,37 +80,37 @@ const buddiesArenaSplit: MechanicStrat[] = [
 const nobuddiesArenaSplit: MechanicStrat[] = [
   {
     mechanic: 'Split + Conga',
-    description: 'TBD',
+    description: '4 players get tethered, 2 on each side\nG1 West, G2 East',
     imageUrl: "./m11s/kindred-split-conga.webp"
   },
   {
     mechanic: 'Towers',
-    description: 'TBD',
+    description: 'EVERYONE take a tower\nKB to other side if you need to stretch tether\nOtherwise KB to same side',
     imageUrl: "./m11s/kindred-nobuddies-towers.webp"
   },
   {
     mechanic: 'Fire Breath Baits',
-    description: 'TBD',
+    description: 'Non-tethers close to boss to bait fire breaths\nUse body language to hint at N or S\nStack center E/W after for puddles',
     imageUrl: "./m11s/kindred-nobuddies-towers.webp"
   },
   {
     mechanic: 'Puddles',
-    description: 'TBD',
+    description: 'Everyone go center E/W to bait puddles, one pair North one pair South',
     imageUrl: "./m11s/kindred-nobuddies-puddles.webp"
   },
   {
     mechanic: 'Lineup + Portal',
-    description: 'TBD',
-    imageUrl: "./m11s/kindred-nobuddies-towers.webp"
+    description: 'Tethers on edge, markers on inner marker corner',
+    imageUrl: "./m11s/kindred-buddies-lineup.webp"
   },
   {
     mechanic: 'Towers 2',
-    description: 'TBD',
-    imageUrl: "./m11s/kindred-buddies-meteors.webp"
+    description: '‼️TAKE THE TOWER IN THE QUADRANT YOU RESOLVED TETHER/MARKERS',
+    imageUrl: "./m11s/kindred-buddies-towers-2.webp"
   },
   {
     mechanic: 'Get Slabbed',
-    description: 'TBD',
+    description: 'KB to back of boss, then look at hitbox to dodge AOE',
     imageUrl: "./m11s/kindred-slab.webp"
   }
 ];
@@ -137,49 +137,49 @@ const toxicStrat: Strat = {
             {
               role: "Tank",
               party: 1,
-              description: "",
+              description: "Stack for TB",
               imageUrl: "./m11s/toxic-raw-axe.webp"
             },
             {
               role: "Tank",
               party: 2,
-              description: "",
+              description: "Stack for TB",
               imageUrl: "./m11s/toxic-raw-axe.webp"
             },
             {
               role: "Healer",
               party: 1,
-              description: "",
+              description: "SSW far",
               imageUrl: "./m11s/toxic-raw-axe.webp"
             },
             {
               role: "Healer",
               party: 2,
-              description: "",
+              description: "SSE far",
               imageUrl: "./m11s/toxic-raw-axe.webp"
             },
             {
               role: "Melee",
               party: 1,
-              description: "",
+              description: "SW max melee",
               imageUrl: "./m11s/toxic-raw-axe.webp"
             },
             {
               role: "Melee",
               party: 2,
-              description: "",
+              description: "SE max melee",
               imageUrl: "./m11s/toxic-raw-axe.webp"
             },
             {
               role: "Ranged",
               party: 1,
-              description: "",
+              description: "WSW far",
               imageUrl: "./m11s/toxic-raw-axe.webp"
             },
             {
               role: "Ranged",
               party: 2,
-              description: "",
+              description: "ESE far",
               imageUrl: "./m11s/toxic-raw-axe.webp"
             }
           ]
@@ -191,49 +191,49 @@ const toxicStrat: Strat = {
             {
               role: "Tank",
               party: 1,
-              description: "",
+              description: "NW for split TB",
               imageUrl: "./m11s/toxic-raw-scythe.webp"
             },
             {
               role: "Tank",
               party: 2,
-              description: "",
+              description: "NE for split TB",
               imageUrl: "./m11s/toxic-raw-scythe.webp"
             },
             {
               role: "Healer",
               party: 1,
-              description: "",
+              description: "Stack South",
               imageUrl: "./m11s/toxic-raw-scythe.webp"
             },
             {
               role: "Healer",
               party: 2,
-              description: "",
+              description: "Stack South",
               imageUrl: "./m11s/toxic-raw-scythe.webp"
             },
             {
               role: "Melee",
               party: 1,
-              description: "",
+              description: "Stack South",
               imageUrl: "./m11s/toxic-raw-scythe.webp"
             },
             {
               role: "Melee",
               party: 2,
-              description: "",
+              description: "Stack South",
               imageUrl: "./m11s/toxic-raw-scythe.webp"
             },
             {
               role: "Ranged",
               party: 1,
-              description: "",
+              description: "Stack South",
               imageUrl: "./m11s/toxic-raw-scythe.webp"
             },
             {
               role: "Ranged",
               party: 2,
-              description: "",
+              description: "Stack South",
               imageUrl: "./m11s/toxic-raw-scythe.webp"
             }
           ]
@@ -247,56 +247,7 @@ const toxicStrat: Strat = {
         {
           mechanic: 'Axe',
           description: 'Party stack out of AOE',
-          strats: [
-            {
-              role: "Tank",
-              party: 1,
-              description: "",
-              imageUrl: "./m11s/toxic-assault-axe.webp"
-            },
-            {
-              role: "Tank",
-              party: 2,
-              description: "",
-              imageUrl: "./m11s/toxic-assault-axe.webp"
-            },
-            {
-              role: "Healer",
-              party: 1,
-              description: "",
-              imageUrl: "./m11s/toxic-assault-axe.webp"
-            },
-            {
-              role: "Healer",
-              party: 2,
-              description: "",
-              imageUrl: "./m11s/toxic-assault-axe.webp"
-            },
-            {
-              role: "Melee",
-              party: 1,
-              description: "",
-              imageUrl: "./m11s/toxic-assault-axe.webp"
-            },
-            {
-              role: "Melee",
-              party: 2,
-              description: "",
-              imageUrl: "./m11s/toxic-assault-axe.webp"
-            },
-            {
-              role: "Ranged",
-              party: 1,
-              description: "",
-              imageUrl: "./m11s/toxic-assault-axe.webp"
-            },
-            {
-              role: "Ranged",
-              party: 2,
-              description: "",
-              imageUrl: "./m11s/toxic-assault-axe.webp"
-            }
-          ]
+          imageUrl: "./m11s/toxic-assault-axe.webp",
         },
         {
           mechanic: 'Sword',
@@ -305,49 +256,49 @@ const toxicStrat: Strat = {
             {
               role: "Tank",
               party: 1,
-              description: "",
+              description: "Left facing boss",
               imageUrl: "./m11s/toxic-assault-sword.webp"
             },
             {
               role: "Tank",
               party: 2,
-              description: "",
+              description: "Right facing boss",
               imageUrl: "./m11s/toxic-assault-sword.webp"
             },
             {
               role: "Healer",
               party: 1,
-              description: "",
+              description: "Left facing boss",
               imageUrl: "./m11s/toxic-assault-sword.webp"
             },
             {
               role: "Healer",
               party: 2,
-              description: "",
+              description: "Right facing boss",
               imageUrl: "./m11s/toxic-assault-sword.webp"
             },
             {
               role: "Melee",
               party: 1,
-              description: "",
+              description: "Left facing boss",
               imageUrl: "./m11s/toxic-assault-sword.webp"
             },
             {
               role: "Melee",
               party: 2,
-              description: "",
+              description: "Right facing boss",
               imageUrl: "./m11s/toxic-assault-sword.webp"
             },
             {
               role: "Ranged",
               party: 1,
-              description: "",
+              description: "Left facing boss",
               imageUrl: "./m11s/toxic-assault-sword.webp"
             },
             {
               role: "Ranged",
               party: 2,
-              description: "",
+              description: "Right facing boss",
               imageUrl: "./m11s/toxic-assault-sword.webp"
             }
           ]
@@ -359,49 +310,49 @@ const toxicStrat: Strat = {
             {
               role: "Tank",
               party: 1,
-              description: "",
+              description: "Relative North",
               imageUrl: "./m11s/toxic-assault-scythe.webp"
             },
             {
               role: "Tank",
               party: 2,
-              description: "",
+              description: "Relative South",
               imageUrl: "./m11s/toxic-assault-scythe.webp"
             },
             {
               role: "Healer",
               party: 1,
-              description: "",
+              description: "Relative West",
               imageUrl: "./m11s/toxic-assault-scythe.webp"
             },
             {
               role: "Healer",
               party: 2,
-              description: "",
+              description: "Relative East",
               imageUrl: "./m11s/toxic-assault-scythe.webp"
             },
             {
               role: "Melee",
               party: 1,
-              description: "",
+              description: "Relative Southwest",
               imageUrl: "./m11s/toxic-assault-scythe.webp"
             },
             {
               role: "Melee",
               party: 2,
-              description: "",
+              description: "Relative Southeast",
               imageUrl: "./m11s/toxic-assault-scythe.webp"
             },
             {
               role: "Ranged",
               party: 1,
-              description: "",
+              description: "Relative Northwest",
               imageUrl: "./m11s/toxic-assault-scythe.webp"
             },
             {
               role: "Ranged",
               party: 2,
-              description: "",
+              description: "Relative Northeast",
               imageUrl: "./m11s/toxic-assault-scythe.webp"
             }
           ]
@@ -424,49 +375,49 @@ const toxicStrat: Strat = {
             {
               role: "Tank",
               party: 1,
-              description: "",
+              description: "Relative West with M1\nUse inner letter markers",
               imageUrl: "./m11s/toxic-dance.webp"
             },
             {
               role: "Tank",
               party: 2,
-              description: "",
+              description: "Relative East with M2\nUse inner letter markers",
               imageUrl: "./m11s/toxic-dance.webp"
             },
             {
               role: "Healer",
               party: 1,
-              description: "",
+              description: "Relative Southwest with R1",
               imageUrl: "./m11s/toxic-dance.webp"
             },
             {
               role: "Healer",
               party: 2,
-              description: "",
+              description: "Relative Southeast with R2",
               imageUrl: "./m11s/toxic-dance.webp"
             },
             {
               role: "Melee",
               party: 1,
-              description: "",
+              description: "Relative West with MT\nUse inner letter markers",
               imageUrl: "./m11s/toxic-dance.webp"
             },
             {
               role: "Melee",
               party: 2,
-              description: "",
+              description: "Relative West with OT\nUse inner letter markers",
               imageUrl: "./m11s/toxic-dance.webp"
             },
             {
               role: "Ranged",
               party: 1,
-              description: "",
+              description: "Relative Southwest with H1",
               imageUrl: "./m11s/toxic-dance.webp"
             },
             {
               role: "Ranged",
               party: 2,
-              description: "",
+              description: "Relative Southwest with H2",
               imageUrl: "./m11s/toxic-dance.webp"
             }
           ]
@@ -504,49 +455,49 @@ const toxicStrat: Strat = {
             {
               role: "Tank",
               party: 1,
-              description: "",
+              description: "Stand in front of NW line stack",
               imageUrl: "./m11s/toxic-meteorain-1.webp"
             },
             {
               role: "Tank",
               party: 2,
-              description: "",
+              description: "Stand in front of NW line stack",
               imageUrl: "./m11s/toxic-meteorain-1.webp"
             },
             {
               role: "Healer",
               party: 1,
-              description: "",
+              description: "Stand in NW line stack, then get ready to bait 2nd meteors",
               imageUrl: "./m11s/toxic-meteorain-1.webp"
             },
             {
               role: "Healer",
               party: 2,
-              description: "",
+              description: "Stand in NW line stack, then get ready to bait 2nd meteors",
               imageUrl: "./m11s/toxic-meteorain-1.webp"
             },
             {
               role: "Melee",
               party: 1,
-              description: "",
+              description: "Bait meteor close, then drop NE",
               imageUrl: "./m11s/toxic-meteorain-1.webp"
             },
             {
               role: "Melee",
               party: 2,
-              description: "",
+              description: "Bait meteor close, then drop SW",
               imageUrl: "./m11s/toxic-meteorain-1.webp"
             },
             {
               role: "Ranged",
               party: 1,
-              description: "",
+              description: "Stand in NW line stack",
               imageUrl: "./m11s/toxic-meteorain-1.webp"
             },
             {
               role: "Ranged",
               party: 2,
-              description: "",
+              description: "Stand in NW line stack",
               imageUrl: "./m11s/toxic-meteorain-1.webp"
             }
           ]
@@ -558,49 +509,49 @@ const toxicStrat: Strat = {
             {
               role: "Tank",
               party: 1,
-              description: "",
+              description: "Take NE tank tether",
               imageUrl: "./m11s/toxic-meteorain-2.webp"
             },
             {
               role: "Tank",
               party: 2,
-              description: "",
+              description: "Take SW tank tether",
               imageUrl: "./m11s/toxic-meteorain-2.webp"
             },
             {
               role: "Healer",
               party: 1,
-              description: "",
+              description: "Bait meteor close, then drop NW",
               imageUrl: "./m11s/toxic-meteorain-2.webp"
             },
             {
               role: "Healer",
               party: 2,
-              description: "",
+              description: "Bait meteor close, then drop SW in line with first meteor",
               imageUrl: "./m11s/toxic-meteorain-2.webp"
             },
             {
               role: "Melee",
               party: 1,
-              description: "",
+              description: "Stand in NE line stack behind meteor",
               imageUrl: "./m11s/toxic-meteorain-2.webp"
             },
             {
               role: "Melee",
               party: 2,
-              description: "",
+              description: "Stand in NE line stack behind meteor",
               imageUrl: "./m11s/toxic-meteorain-2.webp"
             },
             {
               role: "Ranged",
               party: 1,
-              description: "",
+              description: "Stand in NE line stack, then get ready to bait 3rd meteors",
               imageUrl: "./m11s/toxic-meteorain-2.webp"
             },
             {
               role: "Ranged",
               party: 2,
-              description: "",
+              description: "Stand in NE line stack, then get ready to bait 3rd meteors",
               imageUrl: "./m11s/toxic-meteorain-2.webp"
             }
           ]
@@ -612,49 +563,49 @@ const toxicStrat: Strat = {
             {
               role: "Tank",
               party: 1,
-              description: "",
+              description: "Take NW tank tether",
               imageUrl: "./m11s/toxic-meteorain-3.webp"
             },
             {
               role: "Tank",
               party: 2,
-              description: "",
+              description: "Take SW tank tether",
               imageUrl: "./m11s/toxic-meteorain-3.webp"
             },
             {
               role: "Healer",
               party: 1,
-              description: "",
+              description: "Stand in NW line stack behind meteor",
               imageUrl: "./m11s/toxic-meteorain-3.webp"
             },
             {
               role: "Healer",
               party: 2,
-              description: "",
+              description: "Stand in NW line stack behind meteor",
               imageUrl: "./m11s/toxic-meteorain-3.webp"
             },
             {
               role: "Melee",
               party: 1,
-              description: "",
+              description: "Stand in NW line stack behind meteor",
               imageUrl: "./m11s/toxic-meteorain-3.webp"
             },
             {
               role: "Melee",
               party: 2,
-              description: "",
+              description: "Stand in NW line stack behind meteor",
               imageUrl: "./m11s/toxic-meteorain-3.webp"
             },
             {
               role: "Ranged",
               party: 1,
-              description: "",
+              description: "Bait meteor close, then drop SW far in line with other two meteors",
               imageUrl: "./m11s/toxic-meteorain-3.webp"
             },
             {
               role: "Ranged",
               party: 2,
-              description: "",
+              description: "Bait meteor close, then drop SW far in line with other two meteors",
               imageUrl: "./m11s/toxic-meteorain-3.webp"
             }
           ]
@@ -662,56 +613,7 @@ const toxicStrat: Strat = {
         {
           mechanic: '4th Set',
           description: 'Party stack behind NE meteor to blow it up\nRun SW after to hide',
-          strats: [
-            {
-              role: "Tank",
-              party: 1,
-              description: "",
-              imageUrl: "./m11s/toxic-meteorain-4.webp"
-            },
-            {
-              role: "Tank",
-              party: 2,
-              description: "",
-              imageUrl: "./m11s/toxic-meteorain-4.webp"
-            },
-            {
-              role: "Healer",
-              party: 1,
-              description: "",
-              imageUrl: "./m11s/toxic-meteorain-4.webp"
-            },
-            {
-              role: "Healer",
-              party: 2,
-              description: "",
-              imageUrl: "./m11s/toxic-meteorain-4.webp"
-            },
-            {
-              role: "Melee",
-              party: 1,
-              description: "",
-              imageUrl: "./m11s/toxic-meteorain-4.webp"
-            },
-            {
-              role: "Melee",
-              party: 2,
-              description: "",
-              imageUrl: "./m11s/toxic-meteorain-4.webp"
-            },
-            {
-              role: "Ranged",
-              party: 1,
-              description: "",
-              imageUrl: "./m11s/toxic-meteorain-4.webp"
-            },
-            {
-              role: "Ranged",
-              party: 2,
-              description: "",
-              imageUrl: "./m11s/toxic-meteorain-4.webp"
-            }
-          ]
+          imageUrl: "./m11s/toxic-meteorain-4.webp"
         }
       ]
     },
@@ -730,49 +632,49 @@ const toxicStrat: Strat = {
             {
               role: "Tank",
               party: 1,
-              description: "",
+              description: "Stack middle under boss",
               imageUrl: "./m11s/toxic-ecliptic-start.webp"
             },
             {
               role: "Tank",
               party: 2,
-              description: "",
+              description: "Stack middle under boss",
               imageUrl: "./m11s/toxic-ecliptic-start.webp"
             },
             {
               role: "Healer",
               party: 1,
-              description: "",
+              description: "Southwest to bait markers",
               imageUrl: "./m11s/toxic-ecliptic-start.webp"
             },
             {
               role: "Healer",
               party: 2,
-              description: "",
+              description: "Southeast to bait markers",
               imageUrl: "./m11s/toxic-ecliptic-start.webp"
             },
             {
               role: "Melee",
               party: 1,
-              description: "",
+              description: "Stack middle under boss",
               imageUrl: "./m11s/toxic-ecliptic-start.webp"
             },
             {
               role: "Melee",
               party: 2,
-              description: "",
+              description: "Stack middle under boss",
               imageUrl: "./m11s/toxic-ecliptic-start.webp"
             },
             {
               role: "Ranged",
               party: 1,
-              description: "",
+              description: "Northwest to bait markers",
               imageUrl: "./m11s/toxic-ecliptic-start.webp"
             },
             {
               role: "Ranged",
               party: 2,
-              description: "",
+              description: "Northeast to bait markers",
               imageUrl: "./m11s/toxic-ecliptic-start.webp"
             }
           ]
@@ -784,49 +686,49 @@ const toxicStrat: Strat = {
             {
               role: "Tank",
               party: 1,
-              description: "",
+              description: "Stack middle under boss",
               imageUrl: "./m11s/toxic-ecliptic-corners.webp"
             },
             {
               role: "Tank",
               party: 2,
-              description: "",
+              description: "Stack middle under boss",
               imageUrl: "./m11s/toxic-ecliptic-corners.webp"
             },
             {
               role: "Healer",
               party: 1,
-              description: "",
+              description: "If marked, go to safe corner\nIf not, stack middle under boss",
               imageUrl: "./m11s/toxic-ecliptic-corners.webp"
             },
             {
               role: "Healer",
               party: 2,
-              description: "",
+              description: "If marked, go to safe corner\nIf not, stack middle under boss",
               imageUrl: "./m11s/toxic-ecliptic-corners.webp"
             },
             {
               role: "Melee",
               party: 1,
-              description: "",
+              description: "Stack middle under boss",
               imageUrl: "./m11s/toxic-ecliptic-corners.webp"
             },
             {
               role: "Melee",
               party: 2,
-              description: "",
+              description: "Stack middle under boss",
               imageUrl: "./m11s/toxic-ecliptic-corners.webp"
             },
             {
               role: "Ranged",
               party: 1,
-              description: "",
+              description: "If marked, go to safe corner\nIf not, stack middle under boss",
               imageUrl: "./m11s/toxic-ecliptic-corners.webp"
             },
             {
               role: "Ranged",
               party: 2,
-              description: "",
+              description: "If marked, go to safe corner\nIf not, stack middle under boss",
               imageUrl: "./m11s/toxic-ecliptic-corners.webp"
             }
           ]
@@ -838,49 +740,49 @@ const toxicStrat: Strat = {
             {
               role: "Tank",
               party: 1,
-              description: "",
+              description: "Drop puddles Middle, then North, then CW",
               imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
             },
             {
               role: "Tank",
               party: 2,
-              description: "",
+              description: "Drop puddles Middle, then North, then CW",
               imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
             },
             {
               role: "Healer",
               party: 1,
-              description: "",
+              description: "If marked, drop puddles at walls\nIf not, Drop puddles Middle, then North, then CW",
               imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
             },
             {
               role: "Healer",
               party: 2,
-              description: "",
+              description: "If marked, drop puddles at walls\nIf not, Drop puddles Middle, then North, then CW",
               imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
             },
             {
               role: "Melee",
               party: 1,
-              description: "",
+              description: "Drop puddles Middle, then North, then CW",
               imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
             },
             {
               role: "Melee",
               party: 2,
-              description: "",
+              description: "Drop puddles Middle, then North, then CW",
               imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
             },
             {
               role: "Ranged",
               party: 1,
-              description: "",
+              description: "If marked, drop puddles at walls\nIf not, Drop puddles Middle, then North, then CW",
               imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
             },
             {
               role: "Ranged",
               party: 2,
-              description: "",
+              description: "If marked, drop puddles at walls\nIf not, Drop puddles Middle, then North, then CW",
               imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
             }
           ]
@@ -892,49 +794,49 @@ const toxicStrat: Strat = {
             {
               role: "Tank",
               party: 1,
-              description: "",
+              description: "Take first tank tower Clockwise from North",
               imageUrl: "./m11s/toxic-ecliptic-towers.webp"
             },
             {
               role: "Tank",
               party: 2,
-              description: "",
+              description: "Take first tank tower Counterclockwise from North",
               imageUrl: "./m11s/toxic-ecliptic-towers.webp"
             },
             {
               role: "Healer",
               party: 1,
-              description: "",
+              description: "If not marked, take first pair tower Clockwise from North",
               imageUrl: "./m11s/toxic-ecliptic-towers.webp"
             },
             {
               role: "Healer",
               party: 2,
-              description: "",
+              description: "If not marked, take first pair tower Clockwise from North",
               imageUrl: "./m11s/toxic-ecliptic-towers.webp"
             },
             {
               role: "Melee",
               party: 1,
-              description: "",
+              description: "Take first pair tower Counterclockwise from North",
               imageUrl: "./m11s/toxic-ecliptic-towers.webp"
             },
             {
               role: "Melee",
               party: 2,
-              description: "",
+              description: "Take first pair tower Counterclockwise from North",
               imageUrl: "./m11s/toxic-ecliptic-towers.webp"
             },
             {
               role: "Ranged",
               party: 1,
-              description: "",
+              description: "If not marked, take first pair tower Clockwise from North",
               imageUrl: "./m11s/toxic-ecliptic-towers.webp"
             },
             {
               role: "Ranged",
               party: 2,
-              description: "",
+              description: "If not marked, take first pair tower Clockwise from North",
               imageUrl: "./m11s/toxic-ecliptic-towers.webp"
             }
           ]
