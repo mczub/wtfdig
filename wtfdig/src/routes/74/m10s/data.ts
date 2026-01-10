@@ -52,7 +52,7 @@ const nomnomFirewatersnaking: MechanicStrat[] = [
   },
   {
     mechanic: "Sickest Take-off",
-    description: "KB Immune + 💦 Watch Stack/Spread telegraph",
+    description: "💦 Watch Stack/Spread telegraph\nBlue tank save KBI for buster",
     imageUrl: "./m10s/nomnom-snaking-sickest.webp"
   },
   {
