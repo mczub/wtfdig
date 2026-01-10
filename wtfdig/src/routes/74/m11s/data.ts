@@ -28,7 +28,7 @@ const toxicArenaSplit: MechanicStrat[] = [
     imageUrl: "./m11s/toxic-split-portals.webp"
   },
   {
-    mechanic: 'Towers 2',
+    mechanic: 'Towers 2 + 3',
     description: '‼️TAKE THE TOWER IN THE QUADRANT YOU RESOLVED TETHER/MARKERS',
     imageUrl: "./m11s/toxic-split-towers-2.webp"
   },
@@ -66,8 +66,8 @@ const buddiesArenaSplit: MechanicStrat[] = [
     imageUrl: "./m11s/kindred-buddies-lineup.webp"
   },
   {
-    mechanic: 'Towers 2',
-    description: '‼️TAKE THE TOWER IN THE QUADRANT YOU RESOLVED TETHER/MARKERS',
+    mechanic: 'Towers 2 + 3',
+    description: 'Take the tower in the quadrant you resolved the last set of tethers/markers\n2nd towers, another tethers + markers, 3rd towers, then stack AOEs',
     imageUrl: "./m11s/kindred-buddies-towers-2.webp"
   },
   {
@@ -80,7 +80,7 @@ const buddiesArenaSplit: MechanicStrat[] = [
 const nobuddiesArenaSplit: MechanicStrat[] = [
   {
     mechanic: 'Split + Conga',
-    description: '4 players get tethered, 2 on each side\nG1 West, G2 East',
+    description: '4 players get tethered, 2 on each side\nG1 West, G2 East\nSupports NW/SE, DPS SW/NE',
     imageUrl: "./m11s/kindred-split-conga.webp"
   },
   {
@@ -90,12 +90,12 @@ const nobuddiesArenaSplit: MechanicStrat[] = [
   },
   {
     mechanic: 'Fire Breath Baits',
-    description: 'Non-tethers close to boss to bait fire breaths\nUse body language to hint at N or S\nStack center E/W after for puddles',
-    imageUrl: "./m11s/kindred-nobuddies-towers.webp"
+    description: 'Non-tethers close to boss to bait fire breaths\nStack center E/W after for puddles',
+    imageUrl: "./m11s/kindred-nobuddies-baits.webp"
   },
   {
     mechanic: 'Puddles',
-    description: 'Everyone go center E/W to bait puddles, one pair North one pair South',
+    description: 'Everyone go center E/W to bait puddles, one pair North one pair South\nTethers go to the side you need to stretch\nNon-tethers stay in your quadrant',
     imageUrl: "./m11s/kindred-nobuddies-puddles.webp"
   },
   {
@@ -104,8 +104,8 @@ const nobuddiesArenaSplit: MechanicStrat[] = [
     imageUrl: "./m11s/kindred-buddies-lineup.webp"
   },
   {
-    mechanic: 'Towers 2',
-    description: '‼️TAKE THE TOWER IN THE QUADRANT YOU RESOLVED TETHER/MARKERS',
+    mechanic: 'Towers 2 + 3',
+    description: 'Take the tower in the quadrant you resolved the last set of tethers/markers\n2nd towers, another tethers + markers, 3rd towers, then stack AOEs',
     imageUrl: "./m11s/kindred-buddies-towers-2.webp"
   },
   {
