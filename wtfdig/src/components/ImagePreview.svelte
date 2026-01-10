@@ -58,7 +58,7 @@
 			</div>
 			<X onclick={closeImage} class="cursor-pointer" />
 		</header>
-		<div class="min-h-0 flex flex-col overflow-hidden">
+		<div class="flex-1 min-h-0 flex flex-col">
 			<div class="font-bold text-base lg:text-xl shrink-0">{mech ? mech?.mechanic : ''}</div>
 			<div class="whitespace-pre-wrap text-xs lg:text-lg shrink-0">
 				{@html mech ? mech?.description : ''}
@@ -75,15 +75,18 @@
 					{mech ? mech?.strats && mech.strats[0].description : ''}
 				</div>
 			</div>
-			<div class="relative mt-4 flex-1 min-h-0 flex justify-center items-start">
-				<div class="relative w-fit h-fit max-h-full">
+			<div class="relative mt-4 flex-1 min-h-0 grid place-items-center" style="height: 100%;">
+				<div class="relative max-w-full max-h-full" style="display: grid; place-items: center;">
 					<img
-						class="rounded-md block max-w-full max-h-full"
+						class="rounded-md max-w-full max-h-full object-contain"
+						style="grid-area: 1/1;"
 						src={getImageModalUrl()}
 						alt={mech?.mechanic || phase?.phaseName || 'Strategy image'}
 					/>
 					{#if spotlight && getImageMask()}
-						<SpotlightOverlay mask={getImageMask()} />
+						<div class="pointer-events-none" style="grid-area: 1/1; width: 100%; height: 100%;">
+							<SpotlightOverlay mask={getImageMask()} />
+						</div>
 					{/if}
 				</div>
 			</div>
