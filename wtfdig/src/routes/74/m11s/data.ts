@@ -62,8 +62,8 @@ const buddiesArenaSplit: MechanicStrat[] = [
   },
   {
     mechanic: 'Lineup + Portal',
-    description: 'Tethers on edge, markers on outer corner of number markers',
-    imageUrl: "./m11s/kindred-buddies-lineup.webp"
+    description: 'Tethers on edge, markers on INNER corner of number markers',
+    imageUrl: "./m11s/kindred-lineup.webp"
   },
   {
     mechanic: 'Towers 2 + 3',
@@ -100,8 +100,8 @@ const nobuddiesArenaSplit: MechanicStrat[] = [
   },
   {
     mechanic: 'Lineup + Portal',
-    description: 'Tethers on edge, markers on outer corner of number markers',
-    imageUrl: "./m11s/kindred-buddies-lineup.webp"
+    description: 'Tethers on edge, markers on INNER corner of number markers',
+    imageUrl: "./m11s/kindred-lineup.webp"
   },
   {
     mechanic: 'Towers 2 + 3',

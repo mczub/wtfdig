@@ -8,7 +8,9 @@
 	</header>
 	<article class="prose dark:prose-invert max-w-none">
 		<div class="">
-			<div>1/10/2026: add m11s, add scrollbars to the image preview for now</div>
+			<div>
+				1/10/2026: add m11s, add scrollbars to the image preview for now, updated kindred lineup
+			</div>
 			<div>1/9/2026: added parallel + updated nomnom</div>
 			<div>1/7/2026: M10S</div>
 			<div>1/6/2026: M9S</div>
