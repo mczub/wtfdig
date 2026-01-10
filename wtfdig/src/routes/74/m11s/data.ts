@@ -62,7 +62,7 @@ const buddiesArenaSplit: MechanicStrat[] = [
   },
   {
     mechanic: 'Lineup + Portal',
-    description: 'Tethers on edge, markers on inner marker corner',
+    description: 'Tethers on edge, markers on outer corner of number markers',
     imageUrl: "./m11s/kindred-buddies-lineup.webp"
   },
   {
@@ -95,12 +95,12 @@ const nobuddiesArenaSplit: MechanicStrat[] = [
   },
   {
     mechanic: 'Puddles',
-    description: 'Everyone go center E/W to bait puddles, one pair North one pair South\nTethers go to the side you need to stretch\nNon-tethers stay in your quadrant',
+    description: 'Everyone go center E/W to bait puddles, one pair North one pair South\nTethers go to the side you need to stretch\nNon-tethers use body language/stay where you got knocked to',
     imageUrl: "./m11s/kindred-nobuddies-puddles.webp"
   },
   {
     mechanic: 'Lineup + Portal',
-    description: 'Tethers on edge, markers on inner marker corner',
+    description: 'Tethers on edge, markers on outer corner of number markers',
     imageUrl: "./m11s/kindred-buddies-lineup.webp"
   },
   {
@@ -896,11 +896,19 @@ export const m11sFightConfig: FightConfig = {
         },
         {
           value: "buddies",
-          label: "Kindred Buddies"
+          label: "Kindred Buddies",
+          url: {
+            name: "kindred flatliner raidplan (slides 1-14)",
+            url: "https://raidplan.io/plan/hvbysrfwvrc55ahz"
+          }
         },
         {
           value: "nobuddies",
-          label: "Kindred No Buddies"
+          label: "Kindred No Buddies",
+          url: {
+            name: "kindred flatliner raidplan (slides 1-2, 7-18)",
+            url: "https://raidplan.io/plan/hvbysrfwvrc55ahz"
+          }
         }
       ]
     }
