@@ -1,9 +1,10 @@
 <script lang="ts">
-	import type { FightConfig } from '$lib/types';
-	import ComingSoon from '../../../components/ComingSoon.svelte';
+	import type { FightConfig, Strat } from '$lib/types';
+	import ModernFightStratPage from '../../../components/new/ModernFightStratPage.svelte';
 
 	interface Props {
 		data: {
+			strats: Strat[];
 			config: FightConfig;
 		};
 	}
@@ -11,4 +12,4 @@
 	let { data }: Props = $props();
 </script>
 
-<ComingSoon config={data.config} />
+<ModernFightStratPage config={data.config} strats={data.strats} />
