@@ -4,17 +4,17 @@ import { getStringObject, getStratArray, getCircleMaskUrl, getMultiCircleMaskUrl
 const toxicFirewatersnaking: MechanicStrat[] = [
   {
     mechanic: "Debuffs",
-    description: "Proximity bait debuff\nG1 near Blue, G2 near Red\nWatch debuff and swap to boss that matches your color",
+    description: "Proximity bait debuff\nG1 near Blue, G2 near Red\nCan go on either closest or furthest players\nWatch debuff and swap to boss that matches your color",
     imageUrl: "./m10s/toxic-snaking-debuffs.webp"
   },
   {
     mechanic: "Puddles + Proteans",
-    description: "💦 Giga tight spread in NW/SW corner with Tank towards middle\n🔥 Place puddles on east wall in box shape",
+    description: "🔥 Place puddles on east wall in box shape\n💦 Giga tight spread in NW/SW corner with Tank towards middle",
     imageUrl: "./m10s/toxic-snaking-pp.webp"
   },
   {
     mechanic: "Wide Cleave",
-    description: "Blue jumps to N or S and does wide cleave\nTrue North\n💦 West, 1 ball = Stack, 4 balls = spread\n🔥 East (near fire puddles)",
+    description: "Blue jumps to N or S opposite of big wave and does wide cleave\nTrue North\n💦 West, 1 ball = Stack, 4 balls = spread\n🔥 East (near fire puddles)",
     imageUrl: "./m10s/toxic-snaking-cleave.webp"
   },
   {
@@ -32,7 +32,7 @@ const toxicFirewatersnaking: MechanicStrat[] = [
 const nomnomFirewatersnaking: MechanicStrat[] = [
   {
     mechanic: "Debuffs",
-    description: "Proximity bait debuff\nG1 near Blue, G2 near Red\nWatch debuff and swap to boss that matches your color",
+    description: "Proximity bait debuff\nG1 near Blue, G2 near Red\nCan go on either closest or furthest players\nWatch debuff and swap to boss that matches your color",
     imageUrl: "./m10s/nomnom-snaking-debuffs.webp"
   },
   {
@@ -42,7 +42,7 @@ const nomnomFirewatersnaking: MechanicStrat[] = [
   },
   {
     mechanic: "Wide Cleave",
-    description: "Blue jumps to N or S and does wide cleave\nTrue North\n💦 West, 1 ball = Stack, 4 balls = spread\n🔥 East (near fire puddles)",
+    description: "Blue jumps to N or S opposite of big wave and does wide cleave\nTrue North\n💦 West, 1 ball = Stack, 4 balls = spread\n🔥 East (near fire puddles)",
     imageUrl: "./m10s/nomnom-snaking-cleave.webp"
   },
   {
@@ -696,7 +696,7 @@ export const toxic: Strat = {
       mechs: [
         {
           mechanic: "Debuffs",
-          description: "Start at boss matching debuff color except Healers",
+          description: "Same proximity debuff bait as Snaking\nStart at boss matching debuff color except Healers",
           strats: [
             {
               role: "Tank",
