@@ -9,12 +9,12 @@ const toxicFirewatersnaking: MechanicStrat[] = [
   },
   {
     mechanic: "Puddles + Proteans",
-    description: "🔥 Place puddles on east wall in box shape\n💦 Giga tight spread in NW/SW corner with Tank towards middle",
+    description: "💦 Giga tight spread in NW/SW corner with Tank towards middle\n🔥 Place puddles on east wall in box shape",
     imageUrl: "./m10s/toxic-snaking-pp.webp"
   },
   {
     mechanic: "Wide Cleave",
-    description: "Blue jumps to N or S and does wide cleave\nTrue North\n💦 West, 1 ball = Stack, 4 balls = spread 🔥 East (near fire puddles)",
+    description: "Blue jumps to N or S and does wide cleave\nTrue North\n💦 West, 1 ball = Stack, 4 balls = spread\n🔥 East (near fire puddles)",
     imageUrl: "./m10s/toxic-snaking-cleave.webp"
   },
   {
@@ -37,17 +37,17 @@ const nomnomFirewatersnaking: MechanicStrat[] = [
   },
   {
     mechanic: "Puddles + Proteans",
-    description: "🔥 Place puddles on east wall in box shape\n💦 Protean spread in SW corner, dodge 2nd hit",
+    description: "🔥 Place puddles on east wall in box shape\n💦 Protean spread in NW/SW corner, dodge 2nd hit\nWill generally be relative (DPS towards corner) but check with party\nMake sure to leave room/dodge middle for 2nd hit to not cleave fires",
     imageUrl: "./m10s/nomnom-snaking-pp.webp"
   },
   {
     mechanic: "Wide Cleave",
-    description: "Blue jumps to N or S and does wide cleave\nTrue North\n💦 West, 1 ball = Stack, 4 balls = spread 🔥 East (near fire puddles)",
+    description: "Blue jumps to N or S and does wide cleave\nTrue North\n💦 West, 1 ball = Stack, 4 balls = spread\n🔥 East (near fire puddles)",
     imageUrl: "./m10s/nomnom-snaking-cleave.webp"
   },
   {
     mechanic: "Far Jumps",
-    description: "🔥 Boss jumps on furthest fire player 4x\nTHMR\n1/3 (T/M) North 2/4 (H/R) South\nStay near center if not baiting\nImmediately run mid after bait",
+    description: "🔥 Boss jumps on furthest fire player 4x\n1/3 (T/M) Far 2/4 (H/R) Close relative to corner fire puddles\nStay near original puddles if not baiting\nImmediately run mid after bait",
     imageUrl: "./m10s/nomnom-snaking-far.webp"
   },
   {
@@ -57,12 +57,12 @@ const nomnomFirewatersnaking: MechanicStrat[] = [
   },
   {
     mechanic: "Stacks/Spreads",
-    description: "Position Red near middle and Blue away from Take-off cleave lane\n💦 Resolve Stack/Spread\n🔥 Behind Red on unsafe side to bait pie slice E or W",
+    description: "Position Red near middle and Blue away from Take-off cleave lane\n💦 Resolve Stack/Spread\n🔥 Behind Red to bait pie slice towards safe side",
     imageUrl: "./m10s/nomnom-snaking-stacks.webp"
   },
   {
     mechanic: "Cutback Blaze + TB",
-    description: "Move into safespot\n💦 tank bait TB far from Deep Blue",
+    description: "Move into safespot\n💦 Tank bait TB far from Deep Blue\n🔥 Tank go far to bait the safe slice, aim it at D marker",
     imageUrl: "./m10s/nomnom-snaking-tb.webp"
   }
 ];
@@ -238,7 +238,7 @@ export const toxic: Strat = {
         },
         {
           mechanic: "Cutback Blaze",
-          description: "Stack between boss and fire\nBait narrow slice behind boss",
+          description: "Stack between boss and fire\nBait narrow slice behind boss\nSafe slice will bait opposite the furthest valid player",
           imageUrl: "./m10s/toxic-cutback1.webp"
         },
         {
