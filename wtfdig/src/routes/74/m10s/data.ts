@@ -172,7 +172,7 @@ export const toxic: Strat = {
     Raidplan: "https://raidplan.io/plan/syjvfhacdxz7awet",
     "Improved (by Cake Shake)": "https://raidplan.io/plan/uE1jm_M3oD-P6Ww8"
   },
-  description: "Last updated from Raidplan 1/7/2026 9pm PST",
+  description: "Last updated from Raidplan 1/9/2026 7pm PST",
   strats: [
     {
       phaseName: "Opening",
