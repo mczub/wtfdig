@@ -4,93 +4,114 @@ import type { FightConfig, Strat, MechanicStrat } from '$lib/types';
 const toxicArenaSplit: MechanicStrat[] = [
   {
     mechanic: 'Split + Conga',
-    description: 'TBD'
+    description: '4 players get tethered, 2 on each side\nG1 West, G2 East',
+    imageUrl: "./m11s/toxic-split.webp"
   },
   {
     mechanic: 'Towers',
-    description: 'TBD'
+    description: 'EVERYONE take a tower\nKB to other side if you need to stretch tether\nOtherwise KB to same side',
+    imageUrl: "./m11s/toxic-split-towers.webp"
   },
   {
     mechanic: 'Fire Breath Baits',
-    description: 'TBD'
+    description: 'Non-tethers close to boss to bait fire breaths\nUse body language to hint at N or S\nStack center E/W after for puddles',
+    imageUrl: "./m11s/toxic-split-baits.webp"
   },
   {
     mechanic: 'Puddles',
-    description: 'TBD'
+    description: 'Bait puddles along front wall, tethers stretch',
+    imageUrl: "./m11s/toxic-split-puddles.webp"
   },
   {
     mechanic: 'Lineup + Portal',
-    description: 'TBD'
+    description: 'Tethers on edge, markers on inner marker corner',
+    imageUrl: "./m11s/toxic-split-portals.webp"
   },
   {
     mechanic: 'Towers 2',
-    description: 'TBD'
+    description: '‼️TAKE THE TOWER IN THE QUADRANT YOU RESOLVED TETHER/MARKERS',
+    imageUrl: "./m11s/toxic-split-towers-2.webp"
   },
   {
     mechanic: 'Get Slabbed',
-    description: 'TBD'
+    description: 'KB to back of boss, then look at hitbox to dodge AOE',
+    imageUrl: "./m11s/toxic-slab.webp"
   }
 ];
 
 const buddiesArenaSplit: MechanicStrat[] = [
   {
     mechanic: 'Split + Conga',
-    description: 'TBD'
+    description: '4 players get tethered, 2 on each side\nG1 West, G2 East',
+    imageUrl: "./m11s/kindred-split-conga.webp"
   },
   {
     mechanic: 'Towers',
-    description: 'TBD'
+    description: 'EVERYONE take a tower\nKB to follow your buddy',
+    imageUrl: "./m11s/kindred-buddies-towers.webp"
   },
   {
     mechanic: 'Fire Breath Baits',
-    description: 'TBD'
+    description: 'Non-tethered buddies close to boss to bait fire breaths',
+    imageUrl: "./m11s/kindred-buddies-baits.webp"
   },
   {
     mechanic: 'Puddles',
-    description: 'TBD'
+    description: 'TBD',
+    imageUrl: "./m11s/kindred-buddies-puddles-2.webp"
   },
   {
     mechanic: 'Lineup + Portal',
-    description: 'TBD'
+    description: 'TBD',
+    imageUrl: "./m11s/kindred-buddies-lineup.webp"
   },
   {
     mechanic: 'Towers 2',
-    description: 'TBD'
+    description: 'TBD',
+    imageUrl: "./m11s/kindred-buddies-towers-2.webp"
   },
   {
     mechanic: 'Get Slabbed',
-    description: 'TBD'
+    description: 'TBD',
+    imageUrl: "./m11s/kindred-slab.webp"
   }
 ];
 
 const nobuddiesArenaSplit: MechanicStrat[] = [
   {
     mechanic: 'Split + Conga',
-    description: 'TBD'
+    description: 'TBD',
+    imageUrl: "./m11s/kindred-split-conga.webp"
   },
   {
     mechanic: 'Towers',
-    description: 'TBD'
+    description: 'TBD',
+    imageUrl: "./m11s/kindred-nobuddies-towers.webp"
   },
   {
     mechanic: 'Fire Breath Baits',
-    description: 'TBD'
+    description: 'TBD',
+    imageUrl: "./m11s/kindred-nobuddies-towers.webp"
   },
   {
     mechanic: 'Puddles',
-    description: 'TBD'
+    description: 'TBD',
+    imageUrl: "./m11s/kindred-nobuddies-puddles.webp"
   },
   {
     mechanic: 'Lineup + Portal',
-    description: 'TBD'
+    description: 'TBD',
+    imageUrl: "./m11s/kindred-nobuddies-towers.webp"
   },
   {
     mechanic: 'Towers 2',
-    description: 'TBD'
+    description: 'TBD',
+    imageUrl: "./m11s/kindred-buddies-meteors.webp"
   },
   {
     mechanic: 'Get Slabbed',
-    description: 'TBD'
+    description: 'TBD',
+    imageUrl: "./m11s/kindred-slab.webp"
   }
 ];
 
@@ -465,7 +486,7 @@ const toxicStrat: Strat = {
     {
       phaseName: 'Great Wall of Fire',
       description: 'Double hit double tankbuster that leaves a line\nIf not invulning, MT in front for first, then rotate 45 degrees CW for second',
-      imageUrl: "./m11s/toxic-ultimate.webp"
+      imageUrl: "./m11s/toxic-great-wall.webp"
     },
     {
       phaseName: 'Orbital Omen',
