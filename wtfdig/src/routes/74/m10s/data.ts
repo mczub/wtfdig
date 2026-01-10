@@ -37,7 +37,7 @@ const nomnomFirewatersnaking: MechanicStrat[] = [
   },
   {
     mechanic: "Puddles + Proteans",
-    description: "🔥 Place puddles on east wall in box shape\n💦 Protean spread in NW/SW corner, dodge 2nd hit\nWill generally be relative (DPS towards corner) but check with party\nMake sure to leave room/dodge middle for 2nd hit to not cleave fires",
+    description: "🔥 Place puddles on east wall in box shape\n💦 Protean spread in NW/SW corner, dodge 2nd hit\nDPS towards corner, Tank/Healer towards middle\nMake sure to leave room/dodge middle for 2nd hit to not cleave fires",
     imageUrl: "./m10s/nomnom-snaking-pp.webp"
   },
   {
