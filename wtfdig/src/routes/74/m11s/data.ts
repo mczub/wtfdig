@@ -100,7 +100,7 @@ const nobuddiesArenaSplit: MechanicStrat[] = [
   },
   {
     mechanic: 'Lineup + Portal',
-    description: 'Tethers on edge, markers on INNER corner of number markers',
+    description: 'Tethers on edge, markers on inner corner of number markers\nDouble check the markers, as a previous version of the guide/markers had them on the outer corners',
     imageUrl: "./m11s/kindred-lineup.webp"
   },
   {
