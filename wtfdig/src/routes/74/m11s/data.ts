@@ -405,7 +405,7 @@ const toxicStrat: Strat = {
             {
               role: "Melee",
               party: 2,
-              description: "Relative West with OT\nUse inner letter markers",
+              description: "Relative East with OT\nUse inner letter markers",
               imageUrl: "./m11s/toxic-dance.webp"
             },
             {
@@ -417,7 +417,7 @@ const toxicStrat: Strat = {
             {
               role: "Ranged",
               party: 2,
-              description: "Relative Southwest with H2",
+              description: "Relative Southeast with H2",
               imageUrl: "./m11s/toxic-dance.webp"
             }
           ]
@@ -605,7 +605,7 @@ const toxicStrat: Strat = {
             {
               role: "Ranged",
               party: 2,
-              description: "Bait meteor close, then drop SW far in line with other two meteors",
+              description: "Bait meteor close, then drop NE",
               imageUrl: "./m11s/toxic-meteorain-3.webp"
             }
           ]
