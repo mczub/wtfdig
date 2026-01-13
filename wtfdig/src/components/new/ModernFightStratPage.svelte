@@ -414,7 +414,7 @@
 								{/if}
 								<button
 									onclick={() => (cheatsheetOpenState = true)}
-									class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 hidden lg:flex lg:flex-none"
+									class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none"
 									><Fullscreen size={18} />Cheatsheet</button
 								>
 								<button
