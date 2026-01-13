@@ -392,7 +392,7 @@
 									onValueChange={(e) => onSelectStrat(e)}
 								>
 									<Select.Trigger size="lg">
-										<div class="w-45 flex place-items-start text-base">
+										<div class="w-52 flex place-items-start text-base overflow-hidden">
 											{#if selectedStratOption.badges}
 												{#each selectedStratOption.badges as badge}
 													<span class="badge {badge.class} px-2 mr-2">{badge.text}</span>
