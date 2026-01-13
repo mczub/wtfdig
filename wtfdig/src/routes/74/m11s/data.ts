@@ -405,7 +405,7 @@ const toxicStrat: Strat = {
             {
               role: "Melee",
               party: 2,
-              description: "Relative West with OT\nUse inner letter markers",
+              description: "Relative East with OT\nUse inner letter markers",
               imageUrl: "./m11s/toxic-dance.webp"
             },
             {
