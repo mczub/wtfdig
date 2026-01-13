@@ -883,7 +883,8 @@ export const hector: Strat = {
   stratUrl: {
     "Video by Hector Hectorson": "https://www.youtube.com/watch?v=17J1p4f2rIw",
     "Toxic Friends Raidplan": "https://raidplan.io/plan/syjvfhacdxz7awet",
-
+    "nomnom/Better Snaking Raidplan": "https://raidplan.io/plan/Cmo_RpCDbsUSMV5c",
+    "Parallel Aerial Raidplan": "https://raidplan.io/plan/qWue79_md0YHCrnW"
   },
   description: "",
   strats: [

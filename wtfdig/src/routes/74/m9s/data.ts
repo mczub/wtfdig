@@ -10,9 +10,9 @@ export const m9sFightConfig: FightConfig = {
     useModernCheatsheet: true,
     strats: {
         toxic: {
-            label: "Toxic Friends",
+            label: "Toxic/Hector",
             badges: [{ text: 'NA', class: 'na-badge' }, { text: 'EU', class: 'eu-badge' }],
-        }
+        },
     },
     defaultStratName: "toxic",
     timeline: [
