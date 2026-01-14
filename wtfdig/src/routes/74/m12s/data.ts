@@ -270,7 +270,7 @@ const modifiedStrat: Strat = {
         'Toxic Friends P1 Raidplan (minus Mortal Slayer)': 'https://raidplan.io/plan/m1AMDbG_jxkgkPRc',
         'P2: DN Replication Raidplan': 'https://raidplan.io/plan/9ncP6UIDURcWuRuO',
         'P2: Clone Zone': 'https://raidplan.io/plan/SFa6J6wDrU9PlCJ4',
-        'P2: Superstring Theory 3 Eletric Boogaloo (ST3EB?) black holes': 'https://raidplan.io/plan/OnhUS061LkI3xlmg',
+        'P2: Superchain Theory': 'https://raidplan.io/plan/OnhUS061LkI3xlmg',
         'P2: DN Idyllic Dream': 'https://raidplan.io/plan/zoeminUT6l2gaOWp'
     },
     strats: shabinStrat.strats,
