@@ -31,9 +31,8 @@
 				},
 				{
 					title: 'AAC Heavyweight M4 (M12S)',
-					subtitle: 'Savage • Coming Soon',
-					url: '/74/m12s',
-					disabled: true
+					subtitle: 'Savage',
+					url: '/74/m12s'
 				},
 				{
 					title: 'Hell on Rails (EX7)',
@@ -169,16 +168,10 @@
 															href={subItem.url}
 															{...props}
 															onclick={handleLinkClick}
-															class="flex flex-col w-full items-start {subItem.disabled
-																? 'opacity-60'
-																: ''}"
+															class="flex flex-col w-full items-start"
 														>
 															<div class="text-lg">{subItem.title}</div>
-															<div
-																class="text-base {subItem.disabled
-																	? 'text-warning-500'
-																	: 'text-surface-400'}"
-															>
+															<div class="text-base text-surface-400">
 																{subItem.subtitle}
 															</div>
 														</a>

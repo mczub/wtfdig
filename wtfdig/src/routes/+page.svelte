@@ -73,11 +73,9 @@
 									>
 									<a
 										href="{base}/74/m12s"
-										class="btn preset-tonal-surface border border-surface-500 opacity-60"
+										class="btn preset-tonal-secondary border border-secondary-500"
+										>AAC Heavyweight M4 (M12S)</a
 									>
-										<span>AAC Heavyweight M4 (M12S)</span>
-										<Construction class="size-4 text-warning-500 ml-2" />
-									</a>
 								</div>
 							</div>
 							<div class="flex flex-col">
