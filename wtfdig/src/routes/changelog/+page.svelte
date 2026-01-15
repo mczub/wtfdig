@@ -8,6 +8,7 @@
 	</header>
 	<article class="prose dark:prose-invert max-w-none">
 		<div class="">
+			<div>1/15/2026: m12s p1, adding links to individual raidplan slides</div>
 			<div>1/11/2026: fix some m11s typos</div>
 			<div>
 				1/10/2026: add m11s, add scrollbars to the image preview for now, updated kindred lineup

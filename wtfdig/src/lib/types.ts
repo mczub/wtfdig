@@ -22,6 +22,7 @@ export interface MechanicStrat {
 	notes?: string | Record<string, string>;
 	strats?: PlayerMechStrat[];
 	imageUrl?: string | Record<string, string>;
+	url?: string | Record<string, string>;
 }
 
 export interface PhaseStrats {
@@ -32,6 +33,7 @@ export interface PhaseStrats {
 	mask?: string | Record<string, string>;
 	boardCode?: string | string[] | Record<string, string | string[]>;
 	mechs?: MechanicStrat[] | Record<string, MechanicStrat[]>;
+	url?: string | Record<string, string>;
 }
 
 export interface Strat {

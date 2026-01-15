@@ -13,6 +13,7 @@
 		Clock,
 		Divide,
 		Expand,
+		ExternalLink,
 		Play,
 		Shield,
 		Siren,
@@ -244,10 +245,39 @@
 					<div
 						class="flex items-center gap-3 border-b border-surface-700 pb-2 w-full justify-between"
 					>
-						<div class="flex flex-row space-x-2">
-							<h2 class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize">
-								{phase.phaseName}
-							</h2>
+						<div class="flex flex-row space-x-2 items-center">
+							{#if typeof phase.url === 'string'}
+								<a
+									href={phase.url}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize hover:text-secondary-400 hover:bg-surface-800/50 rounded-sm px-1 -mx-1 transition-colors inline-flex items-center gap-2"
+									onclick={(e) => e.stopPropagation()}
+								>
+									{phase.phaseName}
+									<ExternalLink size={18} class="inline-block" />
+								</a>
+							{:else}
+								<h2
+									class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize"
+								>
+									{phase.phaseName}
+								</h2>
+								{#if typeof phase.url === 'object'}
+									{#each Object.entries(phase.url) as [linkName, linkUrl]}
+										<a
+											href={linkUrl}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="text-sm text-blue-400 hover:text-blue-300 hover:underline inline-flex items-center gap-1"
+											onclick={(e) => e.stopPropagation()}
+										>
+											{linkName}
+											<ExternalLink size={12} />
+										</a>
+									{/each}
+								{/if}
+							{/if}
 							{#if phase?.tag && stratState[phase.tag] !== getStratMechs(stratName)[phase.tag]}
 								<Tooltip
 									positioning={{ placement: 'top' }}
@@ -319,11 +349,40 @@
 										>
 											<div class="p-4 flex flex-col h-full gap-1 lg:gap-2">
 												<div class="flex justify-between items-start">
-													<h3
-														class="text-lg lg:text-xl font-bold capitalize text-surface-100 group-hover:text-secondary-400 transition-colors"
-													>
-														{mech.mechanic}
-													</h3>
+													{#if typeof mech.url === 'string'}
+														<a
+															href={mech.url}
+															target="_blank"
+															rel="noopener noreferrer"
+															class="text-lg lg:text-xl font-bold capitalize text-surface-100 hover:text-secondary-400 hover:bg-surface-800/50 rounded-sm px-1 -mx-1 transition-colors inline-flex items-center gap-2"
+															onclick={(e) => e.stopPropagation()}
+														>
+															{mech.mechanic}
+															<ExternalLink size={16} class="inline-block" />
+														</a>
+													{:else}
+														<div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+															<h3
+																class="text-lg lg:text-xl font-bold capitalize text-surface-100 group-hover:text-secondary-400 transition-colors"
+															>
+																{mech.mechanic}
+															</h3>
+															{#if typeof mech.url === 'object'}
+																{#each Object.entries(mech.url) as [linkName, linkUrl]}
+																	<a
+																		href={linkUrl}
+																		target="_blank"
+																		rel="noopener noreferrer"
+																		class="text-sm text-blue-400 hover:text-blue-300 hover:underline inline-flex items-center gap-1"
+																		onclick={(e) => e.stopPropagation()}
+																	>
+																		{linkName}
+																		<ExternalLink size={12} />
+																	</a>
+																{/each}
+															{/if}
+														</div>
+													{/if}
 													<Expand
 														size={20}
 														class="text-surface-500 opacity-0 group-hover:opacity-100 transition-opacity"
@@ -392,9 +451,40 @@
 				<!-- Fallback for simple phases without mechs array -->
 				<Collapsible.Root class="overflow-hidden" bind:open={collapsibleState[phase.phaseName]}>
 					<div class="flex justify-between items-center border-b border-surface-700 pb-2">
-						<h2 class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize">
-							{phase.phaseName}
-						</h2>
+						<div class="flex flex-row space-x-2 items-center">
+							{#if typeof phase.url === 'string'}
+								<a
+									href={phase.url}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize hover:text-secondary-400 hover:bg-surface-800/50 rounded-sm px-1 -mx-1 transition-colors inline-flex items-center gap-2"
+									onclick={(e) => e.stopPropagation()}
+								>
+									{phase.phaseName}
+									<ExternalLink size={18} class="inline-block" />
+								</a>
+							{:else}
+								<h2
+									class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize"
+								>
+									{phase.phaseName}
+								</h2>
+								{#if typeof phase.url === 'object'}
+									{#each Object.entries(phase.url) as [linkName, linkUrl]}
+										<a
+											href={linkUrl}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="text-sm text-blue-400 hover:text-blue-300 hover:underline inline-flex items-center gap-1"
+											onclick={(e) => e.stopPropagation()}
+										>
+											{linkName}
+											<ExternalLink size={12} />
+										</a>
+									{/each}
+								{/if}
+							{/if}
+						</div>
 						<Collapsible.Trigger
 							class="rounded-sm border border-border bg-surface-1000/60 p-1 shadow-sm hover:bg-muted/60 cursor-pointer"
 						>
