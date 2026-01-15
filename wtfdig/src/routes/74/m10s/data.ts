@@ -5,27 +5,32 @@ const toxicFirewatersnaking: MechanicStrat[] = [
   {
     mechanic: "Debuffs",
     description: "Proximity bait debuff\nG1 near Blue, G2 near Red\nCan go on either closest or furthest players\nWatch debuff and swap to boss that matches your color",
-    imageUrl: "./m10s/toxic-snaking-debuffs.webp"
+    imageUrl: "./m10s/toxic-snaking-debuffs.webp",
+    url: "https://raidplan.io/plan/syjvfhacdxz7awet#14"
   },
   {
     mechanic: "Puddles + Proteans",
     description: "🔥 Place puddles on east wall in box shape\n💦 Giga tight spread in NW/SW corner with Tank towards middle",
-    imageUrl: "./m10s/toxic-snaking-pp.webp"
+    imageUrl: "./m10s/toxic-snaking-pp.webp",
+    url: "https://raidplan.io/plan/syjvfhacdxz7awet#15"
   },
   {
     mechanic: "Wide Cleave",
     description: "Blue jumps to N or S opposite of big wave and does wide cleave\nTrue North\n💦 West, 1 ball = Stack, 4 balls = spread\n🔥 East (near fire puddles)",
-    imageUrl: "./m10s/toxic-snaking-cleave.webp"
+    imageUrl: "./m10s/toxic-snaking-cleave.webp",
+    url: "https://raidplan.io/plan/syjvfhacdxz7awet#16"
   },
   {
     mechanic: "Far Jumps",
     description: "🔥 Boss jumps on furthest fire player 4x\nIntercard markers for bait\n1 = Tank, 2 = Healer, 3 = Melee, 4 = Ranged\nMove to middle after bait\nKB + 💦 Stack/Spread after Fire baits",
-    imageUrl: "./m10s/toxic-snaking-far.webp"
+    imageUrl: "./m10s/toxic-snaking-far.webp",
+    url: "https://raidplan.io/plan/syjvfhacdxz7awet#17"
   },
   {
     mechanic: "Cutback Blaze + TB",
     description: "Pull Red Hot mid\n🔥 Stack South to bait Cutback Blaze\nParty stay under boss\n💦 Tank run North to bait TB",
-    imageUrl: "./m10s/toxic-snaking-cb.webp"
+    imageUrl: "./m10s/toxic-snaking-cb.webp",
+    url: "https://raidplan.io/plan/syjvfhacdxz7awet#18"
   }
 ];
 
@@ -33,37 +38,47 @@ const nomnomFirewatersnaking: MechanicStrat[] = [
   {
     mechanic: "Debuffs",
     description: "Proximity bait debuff\nG1 near Blue, G2 near Red\nCan go on either closest or furthest players\nWatch debuff and swap to boss that matches your color",
-    imageUrl: "./m10s/nomnom-snaking-debuffs.webp"
+    imageUrl: "./m10s/nomnom-snaking-debuffs.webp",
+    url: "https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#1"
   },
   {
     mechanic: "Puddles + Proteans",
     description: "🔥 Place puddles on east wall in box shape\n💦 Protean spread in NW/SW corner, dodge 2nd hit\nDPS towards corner, Tank/Healer towards middle\nMake sure to leave room/dodge middle for 2nd hit to not cleave fires",
-    imageUrl: "./m10s/nomnom-snaking-pp.webp"
+    imageUrl: "./m10s/nomnom-snaking-pp.webp",
+    url: {
+      "Boss SW": "https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#2",
+      "Boss NW": "https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#3"
+    }
   },
   {
     mechanic: "Wide Cleave",
     description: "Blue jumps to N or S opposite of big wave and does wide cleave\nTrue North\n💦 West, 1 ball = Stack, 4 balls = spread\n🔥 East (near fire puddles)",
-    imageUrl: "./m10s/nomnom-snaking-cleave.webp"
+    imageUrl: "./m10s/nomnom-snaking-cleave.webp",
+    url: "https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#5"
   },
   {
     mechanic: "Far Jumps",
     description: "🔥 Boss jumps on furthest fire player 4x\n1/3 (T/M) Far 2/4 (H/R) Close relative to corner fire puddles\nStay near original puddles if not baiting\nImmediately run mid after bait",
-    imageUrl: "./m10s/nomnom-snaking-far.webp"
+    imageUrl: "./m10s/nomnom-snaking-far.webp",
+    url: "https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#6"
   },
   {
     mechanic: "Sickest Take-off",
     description: "💦 Watch Stack/Spread telegraph\nBlue tank save KBI for buster",
-    imageUrl: "./m10s/nomnom-snaking-sickest.webp"
+    imageUrl: "./m10s/nomnom-snaking-sickest.webp",
+    url: "https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#8"
   },
   {
     mechanic: "Stacks/Spreads",
     description: "Position Red near middle and Blue away from Take-off cleave lane\n💦 Resolve Stack/Spread\n🔥 Behind Red to bait pie slice towards safe side",
-    imageUrl: "./m10s/nomnom-snaking-stacks.webp"
+    imageUrl: "./m10s/nomnom-snaking-stacks.webp",
+    url: "https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#9"
   },
   {
     mechanic: "Cutback Blaze + TB",
     description: "Move into safespot\n💦 Tank bait TB far from Deep Blue\n🔥 Tank go far to bait the safe slice, aim it at D marker",
-    imageUrl: "./m10s/nomnom-snaking-tb.webp"
+    imageUrl: "./m10s/nomnom-snaking-tb.webp",
+    url: "https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#10"
   }
 ];
 
@@ -81,17 +96,20 @@ const parallelDeepaerial: MechanicStrat[] = [
   {
     mechanic: "1st Tether",
     description: "Healers take ball\n🔥 Fire tether directly to A or C\n💦 Water tether straight north or south\nTether line is wide so be careful",
-    imageUrl: "./m10s/parallel-aerial-1.webp"
+    imageUrl: "./m10s/parallel-aerial-1.webp",
+    url: "https://raidplan.io/plan/qWue79_md0YHCrnW#1"
   },
   {
     mechanic: "2nd Tether",
     description: "🔥 Fire tether directly through the ball\n💦 Water tether back to first corner parallel to fire",
-    imageUrl: "./m10s/parallel-aerial-2.webp"
+    imageUrl: "./m10s/parallel-aerial-2.webp",
+    url: "https://raidplan.io/plan/qWue79_md0YHCrnW#2"
   },
   {
     mechanic: "All Other Tethers",
     description: "🔥 Fire tether directly through the ball\n💦 Water tether parallel to fire",
-    imageUrl: "./m10s/parallel-aerial-3.webp"
+    imageUrl: "./m10s/parallel-aerial-3.webp",
+    url: "https://raidplan.io/plan/qWue79_md0YHCrnW#3"
   }
 ];
 
@@ -187,11 +205,13 @@ export const toxic: Strat = {
         {
           mechanic: "Flame Floater",
           description: "1st: CCW corner\n2nd: CCW wall\n3rd: Back in corner\n4th: Back at start",
-          imageUrl: "./m10s/toxic-floater.webp"
+          imageUrl: "./m10s/toxic-floater.webp",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#1"
         },
         {
           mechanic: "Alley-oop Inferno",
           description: "Melee close, ranged far/yolo\nPull enemy back to mid ASAP after",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#2",
           strats: [
             {
               role: "Tank",
@@ -246,12 +266,14 @@ export const toxic: Strat = {
         {
           mechanic: "Cutback Blaze",
           description: "Stack between boss and fire\nBait narrow slice behind boss\nSafe slice will bait opposite the furthest valid player",
-          imageUrl: "./m10s/toxic-cutback1.webp"
+          imageUrl: "./m10s/toxic-cutback1.webp",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#3",
         },
         {
           mechanic: "Pyrotation",
           description: "3 hit party stack\nEach stack leaves a puddle",
-          imageUrl: "./m10s/toxic-pyrotation.webp"
+          imageUrl: "./m10s/toxic-pyrotation.webp",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#4",
         }
       ]
     },
@@ -261,6 +283,7 @@ export const toxic: Strat = {
         {
           mechanic: "2 Balls",
           description: "Light parties\nG1 Left, G2 Right facing boss",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#5",
           strats: [
             {
               role: "Tank",
@@ -315,6 +338,7 @@ export const toxic: Strat = {
         {
           mechanic: "8 Balls",
           description: "Spread\nG1 Left, G2 Right facing boss",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#6",
           strats: [
             {
               role: "Tank",
@@ -374,6 +398,7 @@ export const toxic: Strat = {
         {
           mechanic: "Proteans",
           description: "‼️BOSS RELATIVE CLOCK SPOTS",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#7",
           strats: [
             {
               role: "Tank",
@@ -428,14 +453,16 @@ export const toxic: Strat = {
         {
           mechanic: "2nd Hit",
           description: "Double-dip = Dodge into empty slice\nReverse = Stay",
-          imageUrl: "./m10s/toxic-protean1.webp"
+          imageUrl: "./m10s/toxic-protean1.webp",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#7",
         }
       ]
     },
     {
       phaseName: "Deep Impact",
       description: "Tankbuster baited on furthest player\nDoes a small KB",
-      imageUrl: "./m10s/toxic-impact.webp"
+      imageUrl: "./m10s/toxic-impact.webp",
+      url: "https://raidplan.io/plan/syjvfhacdxz7awet#8",
     },
     {
       phaseName: "Insane Air 1",
@@ -443,6 +470,7 @@ export const toxic: Strat = {
         {
           mechanic: "Start",
           description: "G1 Northwest, G2 Southeast",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#9",
           strats: [
             {
               role: "Tank",
@@ -497,27 +525,31 @@ export const toxic: Strat = {
         {
           mechanic: "Surfboards",
           description: "Up: Tankbuster AoE on closest\nSide: Light party stack\nDown: Proteans\n🔥 Fire leaves stuff on the ground\nOnly 1 of 4 can be a TB",
-          imageUrl: "./m10s/natus-surfboards.webp"
+          imageUrl: "./m10s/natus-surfboards.webp",
         },
         {
           mechanic: "1st Hit",
           description: "MTHR clockwise for proteans",
-          imageUrl: "./m10s/toxic-insane1-1.webp"
+          imageUrl: "./m10s/toxic-insane1-1.webp",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#10",
         },
         {
           mechanic: "2nd Hit",
           description: "MTHR clockwise for proteans",
-          imageUrl: "./m10s/toxic-insane1-2.webp"
+          imageUrl: "./m10s/toxic-insane1-2.webp",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#11",
         },
         {
           mechanic: "3rd Hit",
           description: "MTHR clockwise for proteans",
-          imageUrl: "./m10s/toxic-insane1-3.webp"
+          imageUrl: "./m10s/toxic-insane1-3.webp",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#12",
         },
         {
           mechanic: "4th Hit",
           description: "MTHR clockwise for proteans",
-          imageUrl: "./m10s/toxic-insane1-4.webp"
+          imageUrl: "./m10s/toxic-insane1-4.webp",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#13",
         }
       ]
     },
@@ -537,6 +569,7 @@ export const toxic: Strat = {
         {
           mechanic: "Start + Puddles",
           description: "G1 West\nG2 East",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#20",
           strats: [
             {
               role: "Tank",
@@ -591,6 +624,7 @@ export const toxic: Strat = {
         {
           mechanic: "Proteans",
           description: "Deep Blue jumps to one side\nBait proteans\nDouble-dip = dodge into intercard\nReverse = dodge to cardinal",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#21",
           strats: [
             {
               role: "Tank",
@@ -645,6 +679,7 @@ export const toxic: Strat = {
         {
           mechanic: "Stacks",
           description: "Pair stacks, then resolve KB + Stack/Spread",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#22",
           strats: [
             {
               role: "Tank",
@@ -704,6 +739,7 @@ export const toxic: Strat = {
         {
           mechanic: "Debuffs",
           description: "Same proximity debuff bait as Snaking\nStart at boss matching debuff color except Healers",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#23",
           strats: [
             {
               role: "Tank",
@@ -758,6 +794,7 @@ export const toxic: Strat = {
         {
           mechanic: "Cleanses + Swaps",
           description: "Cleanse order: H > M > R\nSwap order: M > R\nTanks will swap if it's tankbuster\nM/R swap after mech if next is non-tankbuster\nStay after you cleanse",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#23",
           strats: [
             {
               role: "Tank",
@@ -817,6 +854,7 @@ export const toxic: Strat = {
         {
           mechanic: "Proteans + Puddles",
           description: "Clock spots\nProteans first, then drop puddles at wall during 2nd hit\nDouble-dip = Dodge clockwise\nReverse = Stay",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#24",
           strats: [
             {
               role: "Tank",
@@ -871,7 +909,8 @@ export const toxic: Strat = {
         {
           mechanic: "TB + Party Stacks",
           description: "Tank bait TB far\nPuddles will explode, stay center\nStack under Deep Blue, rotate CW around Red Hot",
-          imageUrl: "./m10s/toxic-alley2-tb.webp"
+          imageUrl: "./m10s/toxic-alley2-tb.webp",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#25",
         }
       ]
     }
@@ -894,11 +933,13 @@ export const hector: Strat = {
         {
           mechanic: "Flame Floater",
           description: "1st: CCW corner\n2nd: CCW wall\n3rd: Back in corner\n4th: Back at start",
-          imageUrl: "./m10s/toxic-floater.webp"
+          imageUrl: "./m10s/toxic-floater.webp",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#1"
         },
         {
           mechanic: "Alley-oop Inferno",
           description: "Melee close, ranged far/yolo\nPull enemy back to mid ASAP after",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#2",
           strats: [
             {
               role: "Tank",
@@ -953,12 +994,14 @@ export const hector: Strat = {
         {
           mechanic: "Cutback Blaze",
           description: "Stack between boss and fire\nBait narrow slice behind boss\nSafe slice will bait opposite the furthest valid player",
-          imageUrl: "./m10s/toxic-cutback1.webp"
+          imageUrl: "./m10s/toxic-cutback1.webp",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#3",
         },
         {
           mechanic: "Pyrotation",
           description: "3 hit party stack\nEach stack leaves a puddle",
-          imageUrl: "./m10s/toxic-pyrotation.webp"
+          imageUrl: "./m10s/toxic-pyrotation.webp",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#4",
         }
       ]
     },
@@ -968,6 +1011,7 @@ export const hector: Strat = {
         {
           mechanic: "2 Balls",
           description: "Light parties\nG1 Left, G2 Right facing boss",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#5",
           strats: [
             {
               role: "Tank",
@@ -1022,6 +1066,7 @@ export const hector: Strat = {
         {
           mechanic: "8 Balls",
           description: "Spread\nG1 Left, G2 Right facing boss",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#6",
           strats: [
             {
               role: "Tank",
@@ -1081,6 +1126,7 @@ export const hector: Strat = {
         {
           mechanic: "Proteans",
           description: "‼️BOSS RELATIVE CLOCK SPOTS",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#7",
           strats: [
             {
               role: "Tank",
@@ -1135,14 +1181,16 @@ export const hector: Strat = {
         {
           mechanic: "2nd Hit",
           description: "Double-dip = Dodge into empty slice\nReverse = Stay",
-          imageUrl: "./m10s/toxic-protean1.webp"
+          imageUrl: "./m10s/toxic-protean1.webp",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#7",
         }
       ]
     },
     {
       phaseName: "Deep Impact",
       description: "Tankbuster baited on furthest player\nDoes a small KB",
-      imageUrl: "./m10s/toxic-impact.webp"
+      imageUrl: "./m10s/toxic-impact.webp",
+      url: "https://raidplan.io/plan/syjvfhacdxz7awet#8",
     },
     {
       phaseName: "Insane Air 1",
@@ -1150,6 +1198,7 @@ export const hector: Strat = {
         {
           mechanic: "Start",
           description: "G1 Northwest, G2 Southeast",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#9",
           strats: [
             {
               role: "Tank",
@@ -1204,27 +1253,31 @@ export const hector: Strat = {
         {
           mechanic: "Surfboards",
           description: "Up: Tankbuster AoE on closest\nSide: Light party stack\nDown: Proteans\n🔥 Fire leaves stuff on the ground\nOnly 1 of 4 can be a TB",
-          imageUrl: "./m10s/natus-surfboards.webp"
+          imageUrl: "./m10s/natus-surfboards.webp",
         },
         {
           mechanic: "1st Hit",
           description: "MTHR clockwise for proteans",
-          imageUrl: "./m10s/toxic-insane1-1.webp"
+          imageUrl: "./m10s/toxic-insane1-1.webp",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#10",
         },
         {
           mechanic: "2nd Hit",
           description: "MTHR clockwise for proteans",
-          imageUrl: "./m10s/toxic-insane1-2.webp"
+          imageUrl: "./m10s/toxic-insane1-2.webp",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#11",
         },
         {
           mechanic: "3rd Hit",
           description: "MTHR clockwise for proteans",
-          imageUrl: "./m10s/toxic-insane1-3.webp"
+          imageUrl: "./m10s/toxic-insane1-3.webp",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#12",
         },
         {
           mechanic: "4th Hit",
           description: "MTHR clockwise for proteans",
-          imageUrl: "./m10s/toxic-insane1-4.webp"
+          imageUrl: "./m10s/toxic-insane1-4.webp",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#13",
         }
       ]
     },
@@ -1244,6 +1297,7 @@ export const hector: Strat = {
         {
           mechanic: "Start + Puddles",
           description: "G1 West\nG2 East",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#20",
           strats: [
             {
               role: "Tank",
@@ -1298,6 +1352,7 @@ export const hector: Strat = {
         {
           mechanic: "Proteans",
           description: "Deep Blue jumps to one side\nBait proteans\nDouble-dip = dodge into intercard\nReverse = dodge to cardinal",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#21",
           strats: [
             {
               role: "Tank",
@@ -1352,6 +1407,7 @@ export const hector: Strat = {
         {
           mechanic: "Stacks",
           description: "Pair stacks, then resolve KB + Stack/Spread",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#22",
           strats: [
             {
               role: "Tank",
@@ -1411,6 +1467,7 @@ export const hector: Strat = {
         {
           mechanic: "Debuffs",
           description: "Same proximity debuff bait as Snaking\nStart at boss matching debuff color except Healers",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#23",
           strats: [
             {
               role: "Tank",
@@ -1465,6 +1522,7 @@ export const hector: Strat = {
         {
           mechanic: "Cleanses + Swaps",
           description: "Cleanse order: H > M > R\nSwap order: M > R\nTanks will swap if it's tankbuster\nM/R swap after mech if next is non-tankbuster\nStay after you cleanse",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#23",
           strats: [
             {
               role: "Tank",
@@ -1524,6 +1582,7 @@ export const hector: Strat = {
         {
           mechanic: "Proteans + Puddles",
           description: "Clock spots\nProteans first, then drop puddles at wall during 2nd hit\nDouble-dip = Dodge clockwise\nReverse = Stay",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#24",
           strats: [
             {
               role: "Tank",
@@ -1578,7 +1637,8 @@ export const hector: Strat = {
         {
           mechanic: "TB + Party Stacks",
           description: "Tank bait TB far\nPuddles will explode, stay center\nStack under Deep Blue, rotate CW around Red Hot",
-          imageUrl: "./m10s/toxic-alley2-tb.webp"
+          imageUrl: "./m10s/toxic-alley2-tb.webp",
+          url: "https://raidplan.io/plan/syjvfhacdxz7awet#25",
         }
       ]
     }

@@ -10,6 +10,7 @@
 		ChevronRight,
 		Clock,
 		Expand,
+		ExternalLink,
 		Eye,
 		EyeOff,
 		Grid2x2,
@@ -1015,9 +1016,38 @@
 													<div class="capitalize font-bold text-base text-surface-200">
 														{phase.phaseName}
 													</div>
-													<div class="capitalize font-semibold text-lg">
-														{mech.mechanic}
-													</div>
+													{#if typeof mech.url === 'string'}
+														<a
+															href={mech.url}
+															target="_blank"
+															rel="noopener noreferrer"
+															class="capitalize font-semibold text-lg hover:text-secondary-400 hover:bg-surface-700/50 rounded-sm px-1 -mx-1 transition-colors inline-flex items-center gap-1"
+															onclick={(e) => e.stopPropagation()}
+														>
+															{mech.mechanic}
+															<ExternalLink size={14} class="inline-block" />
+														</a>
+													{:else}
+														<div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+															<div class="capitalize font-semibold text-lg">
+																{mech.mechanic}
+															</div>
+															{#if typeof mech.url === 'object'}
+																{#each Object.entries(mech.url) as [linkName, linkUrl]}
+																	<a
+																		href={linkUrl}
+																		target="_blank"
+																		rel="noopener noreferrer"
+																		class="text-xs text-blue-400 hover:text-blue-300 hover:underline inline-flex items-center gap-0.5"
+																		onclick={(e) => e.stopPropagation()}
+																	>
+																		{linkName}
+																		<ExternalLink size={10} />
+																	</a>
+																{/each}
+															{/if}
+														</div>
+													{/if}
 												</div>
 												<div class="flex items-center gap-1">
 													{#if phase?.tag && stratState[phase.tag] !== getStratMechs(stratName ?? '')[phase.tag]}
@@ -1109,9 +1139,38 @@
 									<!-- Header (hide in image-only mode) -->
 									{#if textMode !== 'image'}
 										<div class="flex items-start justify-between mb-1 shrink-0">
-											<div class="capitalize font-semibold text-lg">
-												{phase.phaseName}
-											</div>
+											{#if typeof phase.url === 'string'}
+												<a
+													href={phase.url}
+													target="_blank"
+													rel="noopener noreferrer"
+													class="capitalize font-semibold text-lg hover:text-secondary-400 hover:bg-surface-700/50 rounded-sm px-1 -mx-1 transition-colors inline-flex items-center gap-1"
+													onclick={(e) => e.stopPropagation()}
+												>
+													{phase.phaseName}
+													<ExternalLink size={14} class="inline-block" />
+												</a>
+											{:else}
+												<div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+													<div class="capitalize font-semibold text-lg">
+														{phase.phaseName}
+													</div>
+													{#if typeof phase.url === 'object'}
+														{#each Object.entries(phase.url) as [linkName, linkUrl]}
+															<a
+																href={linkUrl}
+																target="_blank"
+																rel="noopener noreferrer"
+																class="text-xs text-blue-400 hover:text-blue-300 hover:underline inline-flex items-center gap-0.5"
+																onclick={(e) => e.stopPropagation()}
+															>
+																{linkName}
+																<ExternalLink size={10} />
+															</a>
+														{/each}
+													{/if}
+												</div>
+											{/if}
 											<div class="flex items-center gap-1">
 												{#if phase?.tag && stratState[phase.tag] !== getStratMechs(stratName ?? '')[phase.tag]}
 													<Tooltip

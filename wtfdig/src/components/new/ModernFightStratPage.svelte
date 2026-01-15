@@ -84,12 +84,14 @@
 				description: getStratItem(phaseStrat.description, phaseStrat.tag, stratState),
 				imageUrl: getStratItem(phaseStrat.imageUrl, phaseStrat.tag, stratState),
 				mask: getStratItem(phaseStrat.mask, phaseStrat.tag, stratState),
+				url: getStratItem(phaseStrat.url, phaseStrat.tag, stratState),
 				mechs: resolvedMechs?.map((phaseStratMech) => {
 					return {
 						...phaseStratMech,
 						description: getStratItem(phaseStratMech.description, phaseStrat.tag, stratState),
 						notes: getStratItem(phaseStratMech.notes, phaseStrat.tag, stratState),
 						imageUrl: getStratItem(phaseStratMech.imageUrl, phaseStrat.tag, stratState),
+						url: getStratItem(phaseStratMech.url, phaseStrat.tag, stratState),
 						strats:
 							phaseStratMech.strats &&
 							phaseStratMech.strats
