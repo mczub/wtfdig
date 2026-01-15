@@ -43,37 +43,50 @@ const nobuddiesArenaSplit: MechanicStrat[] = [
   {
     mechanic: 'Split + Conga',
     description: '4 players get tethered, 2 on each side\nG1 West, G2 East\nSupports NW/SE, DPS SW/NE\nℹ️ Hector has Tank/Ranged North and Healers/Melee South',
-    imageUrl: "./m11s/kindred-split-conga.webp"
+    imageUrl: "./m11s/kindred-split-conga.webp",
+    url: "https://raidplan.io/plan/hvbysrfwvrc55ahz#1"
   },
   {
     mechanic: 'Towers',
     description: 'EVERYONE take a tower\nKB to other side if you need to stretch tether\nOtherwise KB to same side',
-    imageUrl: "./m11s/kindred-nobuddies-towers.webp"
+    imageUrl: "./m11s/kindred-nobuddies-towers.webp",
+    url: "https://raidplan.io/plan/hvbysrfwvrc55ahz#15"
   },
   {
     mechanic: 'Fire Breath Baits',
     description: 'Non-tethers close to boss to bait fire breaths\nStack center E/W after for puddles',
-    imageUrl: "./m11s/kindred-nobuddies-baits.webp"
+    imageUrl: "./m11s/kindred-nobuddies-baits.webp",
+    url: "https://raidplan.io/plan/hvbysrfwvrc55ahz#16"
   },
   {
     mechanic: 'Puddles',
     description: 'Everyone go center E/W to bait puddles, one pair go North, one pair go South\nTethers go to the side you need to stretch\nNon-tethers use body language/stay where you got knocked to',
-    imageUrl: "./m11s/kindred-nobuddies-puddles.webp"
+    imageUrl: "./m11s/kindred-nobuddies-puddles.webp",
+    url: {
+      "Start": "https://raidplan.io/plan/hvbysrfwvrc55ahz#17",
+      "Puddle baits": "https://raidplan.io/plan/hvbysrfwvrc55ahz#18"
+    }
   },
   {
     mechanic: 'Lineup + Portal',
     description: 'Tethers on edge, markers on inner or outer safe corner of number markers depending on which markers are used\nℹ️ Original raidplan and Hector use outer corner markers, newer version of the raidplan uses inner corner markers',
-    imageUrl: "./m11s/kindred-lineup.webp"
+    imageUrl: "./m11s/kindred-lineup.webp",
+    url: {
+      "Inner corner": "https://raidplan.io/plan/hvbysrfwvrc55ahz#8",
+      "Outer corner": "https://raidplan.io/plan/hvbysrfwvrc55ahz#9"
+    }
   },
   {
     mechanic: 'Towers 2 + 3',
     description: 'Take the tower in the quadrant you resolved the last set of tethers/markers\n2nd towers, another tethers + markers, 3rd towers, then stack AOEs',
-    imageUrl: "./m11s/kindred-buddies-towers-2.webp"
+    imageUrl: "./m11s/kindred-buddies-towers-2.webp",
+    url: "https://raidplan.io/plan/hvbysrfwvrc55ahz#12"
   },
   {
     mechanic: 'Get Slabbed',
     description: 'KB to back of boss, then look at hitbox to dodge AOE',
-    imageUrl: "./m11s/kindred-slab.webp"
+    imageUrl: "./m11s/kindred-slab.webp",
+    url: "https://raidplan.io/plan/hvbysrfwvrc55ahz#14"
   }
 ];
 
@@ -94,6 +107,7 @@ const toxicStrat: Strat = {
         {
           mechanic: 'Axe',
           description: 'Tanks stack, Party spread',
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#1",
           strats: [
             {
               role: "Tank",
@@ -148,6 +162,7 @@ const toxicStrat: Strat = {
         {
           mechanic: 'Scythe',
           description: 'Tanks spread, Party stack',
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#2",
           strats: [
             {
               role: "Tank",
@@ -209,10 +224,12 @@ const toxicStrat: Strat = {
           mechanic: 'Axe',
           description: 'Party stack out of AOE',
           imageUrl: "./m11s/toxic-assault-axe.webp",
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#3",
         },
         {
           mechanic: 'Sword',
           description: 'Light Party stacks\nG1 Left, G2 Right',
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#4",
           strats: [
             {
               role: "Tank",
@@ -267,6 +284,7 @@ const toxicStrat: Strat = {
         {
           mechanic: 'Scythe',
           description: 'Boss relative Proteans',
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#5",
           strats: [
             {
               role: "Tank",
@@ -323,11 +341,13 @@ const toxicStrat: Strat = {
     {
       phaseName: 'Void Stardust',
       description: '3 baited AOEs\nStart North and bait clockwise\nStack or spread after 3rd bait',
-      imageUrl: "./m11s/toxic-void.webp"
+      imageUrl: "./m11s/toxic-void.webp",
+      url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#6",
     },
     {
       phaseName: 'Dance of Domination Trophy',
       description: 'Open side is new South',
+      url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#7",
       mechs: [
         {
           mechanic: 'Pairs',
@@ -391,19 +411,22 @@ const toxicStrat: Strat = {
         {
           mechanic: 'Weapons + Tornadoes',
           description: '6 weapons, resolve in the order they spawn\nBait tornadoes after last weapon',
-          imageUrl: "./m11s/toxic-ultimate.webp"
+          imageUrl: "./m11s/toxic-ultimate.webp",
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#8",
         }
       ]
     },
     {
       phaseName: 'Great Wall of Fire',
       description: 'Double hit double tankbuster that leaves a line\nIf not invulning, MT in front for first, then rotate 45 degrees CW for second',
-      imageUrl: "./m11s/toxic-great-wall.webp"
+      imageUrl: "./m11s/toxic-great-wall.webp",
+      url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#9",
     },
     {
       phaseName: 'Orbital Omen',
       description: 'Tanks point boss North\n4 pairs of portals spawn North and East and fire lines\nBoss flanks are safe, dodge into intersecting lines after they go off',
-      imageUrl: "./m11s/toxic-orbital.webp"
+      imageUrl: "./m11s/toxic-orbital.webp",
+      url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#10",
     },
     {
       phaseName: 'Meteorain',
@@ -412,6 +435,7 @@ const toxicStrat: Strat = {
         {
           mechanic: '1st Set',
           description: 'Melees close to bait meteors, then go NE/SW\nParty stack NW\nTanks in front for the first line stack',
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#11",
           strats: [
             {
               role: "Tank",
@@ -466,6 +490,7 @@ const toxicStrat: Strat = {
         {
           mechanic: '2nd Set',
           description: 'Healers close to bait meteors, then go NW/SW\nParty stack behind NE meteor to blow it up\nMT take NE tether, OT take SW tether',
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#12",
           strats: [
             {
               role: "Tank",
@@ -520,6 +545,7 @@ const toxicStrat: Strat = {
         {
           mechanic: '3rd Set',
           description: 'Ranged close to bait meteors, then go NE/SW\nParty stack behind NW meteor to blow it up\nMT take NW tether, OT take SW tether',
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#13",
           strats: [
             {
               role: "Tank",
@@ -574,7 +600,8 @@ const toxicStrat: Strat = {
         {
           mechanic: '4th Set',
           description: 'Party stack behind NE meteor to blow it up\nRun SW after to hide',
-          imageUrl: "./m11s/toxic-meteorain-4.webp"
+          imageUrl: "./m11s/toxic-meteorain-4.webp",
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#14",
         }
       ]
     },
@@ -589,6 +616,7 @@ const toxicStrat: Strat = {
         {
           mechanic: 'Start',
           description: 'Melees + Tanks stack under boss\nRanged + Healers stay out to bait 2 markers\nIf 2 on the same side get marked, the one closer to the proximity AOE will adjust',
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#16",
           strats: [
             {
               role: "Tank",
@@ -643,6 +671,7 @@ const toxicStrat: Strat = {
         {
           mechanic: 'Safe Corners',
           description: 'Marked players go to safe corners\nNon-marked players stack under boss',
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#17",
           strats: [
             {
               role: "Tank",
@@ -697,6 +726,7 @@ const toxicStrat: Strat = {
         {
           mechanic: 'Puddles',
           description: 'Marked players drop 6 puddles at walls\nBoss group drops 6 puddles: Middle, then North, then CW',
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#18",
           strats: [
             {
               role: "Tank",
@@ -751,6 +781,7 @@ const toxicStrat: Strat = {
         {
           mechanic: 'Towers',
           description: '2 tank and 2 pair towers spawn randomly\nMT + H+R CW, OT + Melees CCW from North',
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#19",
           strats: [
             {
               role: "Tank",
@@ -805,17 +836,20 @@ const toxicStrat: Strat = {
         {
           mechanic: 'Tethers',
           description: 'One player from each tower gets tethered\nStretch across + CW to corner\nUntethered players under boss',
-          imageUrl: "./m11s/toxic-ecliptic-tethers.webp"
+          imageUrl: "./m11s/toxic-ecliptic-tethers.webp",
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#20",
         },
         {
           mechanic: 'Two-way Fireball',
           description: '2 proximity-baited line AOEs\nE/W pairs, one person close, one person further to not double up\nTethers run behind to get in the line stacks',
-          imageUrl: "./m11s/toxic-2way.webp"
+          imageUrl: "./m11s/toxic-2way.webp",
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#21",
         },
         {
           mechanic: 'Four-way Fireball',
           description: '4 proximity-baited line AOEs\nBait intercard towards tether players in corners\nUse eyes',
-          imageUrl: "./m11s/toxic-4way.webp"
+          imageUrl: "./m11s/toxic-4way.webp",
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#22",
         },
         {
           mechanic: 'Hearbreak Kicks',
@@ -843,6 +877,7 @@ const hectorStrat: Strat = {
         {
           mechanic: 'Axe',
           description: 'Tanks stack, Party spread',
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#1",
           strats: [
             {
               role: "Tank",
@@ -897,6 +932,7 @@ const hectorStrat: Strat = {
         {
           mechanic: 'Scythe',
           description: 'Tanks spread, Party stack',
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#2",
           strats: [
             {
               role: "Tank",
@@ -958,10 +994,12 @@ const hectorStrat: Strat = {
           mechanic: 'Axe',
           description: 'Party stack out of AOE',
           imageUrl: "./m11s/toxic-assault-axe.webp",
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#3",
         },
         {
           mechanic: 'Sword',
           description: 'Light Party stacks\nG1 Left, G2 Right',
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#4",
           strats: [
             {
               role: "Tank",
@@ -1016,6 +1054,7 @@ const hectorStrat: Strat = {
         {
           mechanic: 'Scythe',
           description: 'Boss relative Proteans',
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#5",
           strats: [
             {
               role: "Tank",
@@ -1072,11 +1111,13 @@ const hectorStrat: Strat = {
     {
       phaseName: 'Void Stardust',
       description: '3 baited AOEs\nStart North and bait clockwise\nStack or spread after 3rd bait',
-      imageUrl: "./m11s/toxic-void.webp"
+      imageUrl: "./m11s/toxic-void.webp",
+      url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#6",
     },
     {
       phaseName: 'Dance of Domination Trophy',
       description: 'Open side is new South',
+      url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#7",
       mechs: [
         {
           mechanic: 'Pairs',
@@ -1140,19 +1181,22 @@ const hectorStrat: Strat = {
         {
           mechanic: 'Weapons + Tornadoes',
           description: '6 weapons, resolve in the order they spawn\nBait tornadoes after last weapon',
-          imageUrl: "./m11s/toxic-ultimate.webp"
+          imageUrl: "./m11s/toxic-ultimate.webp",
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#8",
         }
       ]
     },
     {
       phaseName: 'Great Wall of Fire',
       description: 'Double hit double tankbuster that leaves a line\nIf not invulning, MT in front for first, then rotate 45 degrees CW for second',
-      imageUrl: "./m11s/toxic-great-wall.webp"
+      imageUrl: "./m11s/toxic-great-wall.webp",
+      url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#9",
     },
     {
       phaseName: 'Orbital Omen',
       description: 'Tanks point boss North\n4 pairs of portals spawn North and East and fire lines\nBoss flanks are safe, dodge into intersecting lines after they go off',
-      imageUrl: "./m11s/toxic-orbital.webp"
+      imageUrl: "./m11s/toxic-orbital.webp",
+      url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#10",
     },
     {
       phaseName: 'Meteorain',
@@ -1161,6 +1205,7 @@ const hectorStrat: Strat = {
         {
           mechanic: '1st Set',
           description: 'Melees close to bait meteors, then go NE/SW\nParty stack NW\nTanks in front for the first line stack',
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#11",
           strats: [
             {
               role: "Tank",
@@ -1215,6 +1260,7 @@ const hectorStrat: Strat = {
         {
           mechanic: '2nd Set',
           description: 'Healers close to bait meteors, then go NW/SW\nParty stack behind NE meteor to blow it up\nMT take NE tether, OT take SW tether',
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#12",
           strats: [
             {
               role: "Tank",
@@ -1269,6 +1315,7 @@ const hectorStrat: Strat = {
         {
           mechanic: '3rd Set',
           description: 'Ranged close to bait meteors, then go NE/SW\nParty stack behind NW meteor to blow it up\nMT take NW tether, OT take SW tether',
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#13",
           strats: [
             {
               role: "Tank",
@@ -1323,7 +1370,8 @@ const hectorStrat: Strat = {
         {
           mechanic: '4th Set',
           description: 'Party stack behind NE meteor to blow it up\nRun SW after to hide',
-          imageUrl: "./m11s/toxic-meteorain-4.webp"
+          imageUrl: "./m11s/toxic-meteorain-4.webp",
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#14",
         }
       ]
     },
@@ -1338,6 +1386,7 @@ const hectorStrat: Strat = {
         {
           mechanic: 'Start',
           description: 'Melees + Tanks stack under boss\nRanged + Healers stay out to bait 2 markers\nIf 2 on the same side get marked, the one closer to the proximity AOE will adjust',
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#16",
           strats: [
             {
               role: "Tank",
@@ -1392,6 +1441,7 @@ const hectorStrat: Strat = {
         {
           mechanic: 'Safe Corners',
           description: 'Marked players go to safe corners\nNon-marked players stack under boss',
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#17",
           strats: [
             {
               role: "Tank",
@@ -1446,6 +1496,7 @@ const hectorStrat: Strat = {
         {
           mechanic: 'Puddles',
           description: 'Marked players drop 6 puddles at walls\nBoss group drops 6 puddles: Middle, then North, then CW',
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#18",
           strats: [
             {
               role: "Tank",
@@ -1500,6 +1551,7 @@ const hectorStrat: Strat = {
         {
           mechanic: 'Towers',
           description: '2 tank and 2 pair towers spawn randomly\nMT + H+R CW, OT + Melees CCW from North',
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#19",
           strats: [
             {
               role: "Tank",
@@ -1554,17 +1606,20 @@ const hectorStrat: Strat = {
         {
           mechanic: 'Tethers',
           description: 'One player from each tower gets tethered\nStretch across + CW to corner\nUntethered players under boss',
-          imageUrl: "./m11s/toxic-ecliptic-tethers.webp"
+          imageUrl: "./m11s/toxic-ecliptic-tethers.webp",
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#20",
         },
         {
           mechanic: 'Two-way Fireball',
-          description: '2 proximity-baited line AOEs\nE/W pairs, one person inside hitbox, one person outside of hitbox on each side\nTethers run behind to get in the line stacks',
-          imageUrl: "./m11s/toxic-2way.webp"
+          description: '2 proximity-baited line AOEs\nE/W pairs, one person close, one person further to not double up\nTethers run behind to get in the line stacks',
+          imageUrl: "./m11s/toxic-2way.webp",
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#21",
         },
         {
           mechanic: 'Four-way Fireball',
           description: '4 proximity-baited line AOEs\nBait intercard towards tether players in corners\nUse eyes',
-          imageUrl: "./m11s/toxic-4way.webp"
+          imageUrl: "./m11s/toxic-4way.webp",
+          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#22",
         },
         {
           mechanic: 'Hearbreak Kicks',

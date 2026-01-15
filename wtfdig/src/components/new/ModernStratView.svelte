@@ -451,9 +451,40 @@
 				<!-- Fallback for simple phases without mechs array -->
 				<Collapsible.Root class="overflow-hidden" bind:open={collapsibleState[phase.phaseName]}>
 					<div class="flex justify-between items-center border-b border-surface-700 pb-2">
-						<h2 class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize">
-							{phase.phaseName}
-						</h2>
+						<div class="flex flex-row space-x-2 items-center">
+							{#if typeof phase.url === 'string'}
+								<a
+									href={phase.url}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize hover:text-secondary-400 hover:bg-surface-800/50 rounded-sm px-1 -mx-1 transition-colors inline-flex items-center gap-2"
+									onclick={(e) => e.stopPropagation()}
+								>
+									{phase.phaseName}
+									<ExternalLink size={18} class="inline-block" />
+								</a>
+							{:else}
+								<h2
+									class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize"
+								>
+									{phase.phaseName}
+								</h2>
+								{#if typeof phase.url === 'object'}
+									{#each Object.entries(phase.url) as [linkName, linkUrl]}
+										<a
+											href={linkUrl}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="text-sm text-blue-400 hover:text-blue-300 hover:underline inline-flex items-center gap-1"
+											onclick={(e) => e.stopPropagation()}
+										>
+											{linkName}
+											<ExternalLink size={12} />
+										</a>
+									{/each}
+								{/if}
+							{/if}
+						</div>
 						<Collapsible.Trigger
 							class="rounded-sm border border-border bg-surface-1000/60 p-1 shadow-sm hover:bg-muted/60 cursor-pointer"
 						>
