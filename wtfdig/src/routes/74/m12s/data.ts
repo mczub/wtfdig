@@ -65,13 +65,13 @@ const shabinStrat: Strat = {
                 {
                     mechanic: 'Stack/Spread (DPS spread)',
                     description: 'If DPS spread, M1-M2-R1-R2 roughly North to South\nSupports on 1 or 2 marker, Tanks on North side, Supports on East/West\nPoint cleaves out of arena',
-                    imageUrl: './m12s/p1-toxic-act1-dps.webp',
+                    imageUrl: './m12s/p1-toxic-act1-dps-zoomed.webp',
                     url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#8'
                 },
                 {
                     mechanic: 'Stack/Spread (Support spread)',
                     description: 'If Support spread, MT-OT-H1-H2 roughly North to South\nDPS on 1 or 2 marker, Melees on North side, Ranged on East/West\nPoint cleaves out of arena',
-                    imageUrl: './m12s/p1-toxic-act1-supports.webp',
+                    imageUrl: './m12s/p1-toxic-act1-supports-zoomed.webp',
                     url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#9'
                 },
                 {

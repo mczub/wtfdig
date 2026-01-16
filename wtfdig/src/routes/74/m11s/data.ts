@@ -1,4 +1,5 @@
 import type { FightConfig, Strat, MechanicStrat } from '$lib/types';
+import { getCircleMaskUrl } from '$lib/utils';
 
 // Toggle-dependent mechs for Arena Split
 const toxicArenaSplit: MechanicStrat[] = [
@@ -113,49 +114,57 @@ const toxicStrat: Strat = {
               role: "Tank",
               party: 1,
               description: "Stack for TB",
-              imageUrl: "./m11s/toxic-raw-axe.webp"
+              imageUrl: "./m11s/toxic-raw-axe.webp",
+              mask: getCircleMaskUrl(50, 36.4, 7.5)
             },
             {
               role: "Tank",
               party: 2,
               description: "Stack for TB",
-              imageUrl: "./m11s/toxic-raw-axe.webp"
+              imageUrl: "./m11s/toxic-raw-axe.webp",
+              mask: getCircleMaskUrl(50, 36.4, 7.5)
             },
             {
               role: "Healer",
               party: 1,
               description: "SSW far",
-              imageUrl: "./m11s/toxic-raw-axe.webp"
+              imageUrl: "./m11s/toxic-raw-axe.webp",
+              mask: getCircleMaskUrl(41.1, 84.8, 7.5)
             },
             {
               role: "Healer",
               party: 2,
               description: "SSE far",
-              imageUrl: "./m11s/toxic-raw-axe.webp"
+              imageUrl: "./m11s/toxic-raw-axe.webp",
+              mask: getCircleMaskUrl(59.1, 84.9, 7.5)
             },
             {
               role: "Melee",
               party: 1,
               description: "SW max melee",
-              imageUrl: "./m11s/toxic-raw-axe.webp"
+              imageUrl: "./m11s/toxic-raw-axe.webp",
+              mask: getCircleMaskUrl(43, 62.4, 7.5)
             },
             {
               role: "Melee",
               party: 2,
               description: "SE max melee",
-              imageUrl: "./m11s/toxic-raw-axe.webp"
+              imageUrl: "./m11s/toxic-raw-axe.webp",
+              mask: getCircleMaskUrl(57.1, 62.7, 7.5)
             },
             {
               role: "Ranged",
               party: 1,
               description: "WSW far",
-              imageUrl: "./m11s/toxic-raw-axe.webp"
+              imageUrl: "./m11s/toxic-raw-axe.webp",
+              mask: getCircleMaskUrl(26.7, 69.1, 7.5)
             },
             {
               role: "Ranged",
               party: 2,
               description: "ESE far",
-              imageUrl: "./m11s/toxic-raw-axe.webp"
+              imageUrl: "./m11s/toxic-raw-axe.webp",
+              mask: getCircleMaskUrl(72.7, 69.1, 7.5)
             }
           ]
         },
@@ -168,49 +177,57 @@ const toxicStrat: Strat = {
               role: "Tank",
               party: 1,
               description: "NW for split TB",
-              imageUrl: "./m11s/toxic-raw-scythe.webp"
+              imageUrl: "./m11s/toxic-raw-scythe.webp",
+              mask: getCircleMaskUrl(42.9, 37.6, 7.5)
             },
             {
               role: "Tank",
               party: 2,
               description: "NE for split TB",
-              imageUrl: "./m11s/toxic-raw-scythe.webp"
+              imageUrl: "./m11s/toxic-raw-scythe.webp",
+              mask: getCircleMaskUrl(57, 38, 7.5)
             },
             {
               role: "Healer",
               party: 1,
               description: "Stack South",
-              imageUrl: "./m11s/toxic-raw-scythe.webp"
+              imageUrl: "./m11s/toxic-raw-scythe.webp",
+              mask: getCircleMaskUrl(49.9, 67.1, 7.5)
             },
             {
               role: "Healer",
               party: 2,
               description: "Stack South",
-              imageUrl: "./m11s/toxic-raw-scythe.webp"
+              imageUrl: "./m11s/toxic-raw-scythe.webp",
+              mask: getCircleMaskUrl(49.9, 67.1, 7.5)
             },
             {
               role: "Melee",
               party: 1,
               description: "Stack South",
-              imageUrl: "./m11s/toxic-raw-scythe.webp"
+              imageUrl: "./m11s/toxic-raw-scythe.webp",
+              mask: getCircleMaskUrl(49.9, 67.1, 7.5)
             },
             {
               role: "Melee",
               party: 2,
               description: "Stack South",
-              imageUrl: "./m11s/toxic-raw-scythe.webp"
+              imageUrl: "./m11s/toxic-raw-scythe.webp",
+              mask: getCircleMaskUrl(49.9, 67.1, 7.5)
             },
             {
               role: "Ranged",
               party: 1,
               description: "Stack South",
-              imageUrl: "./m11s/toxic-raw-scythe.webp"
+              imageUrl: "./m11s/toxic-raw-scythe.webp",
+              mask: getCircleMaskUrl(49.9, 67.1, 7.5)
             },
             {
               role: "Ranged",
               party: 2,
               description: "Stack South",
-              imageUrl: "./m11s/toxic-raw-scythe.webp"
+              imageUrl: "./m11s/toxic-raw-scythe.webp",
+              mask: getCircleMaskUrl(49.9, 67.1, 7.5)
             }
           ]
         }
@@ -235,49 +252,57 @@ const toxicStrat: Strat = {
               role: "Tank",
               party: 1,
               description: "Left facing boss",
-              imageUrl: "./m11s/toxic-assault-sword.webp"
+              imageUrl: "./m11s/toxic-assault-sword.webp",
+              mask: getCircleMaskUrl(34.2, 70.8, 5)
             },
             {
               role: "Tank",
               party: 2,
               description: "Right facing boss",
-              imageUrl: "./m11s/toxic-assault-sword.webp"
+              imageUrl: "./m11s/toxic-assault-sword.webp",
+              mask: getCircleMaskUrl(48.2, 46.7, 5)
             },
             {
               role: "Healer",
               party: 1,
               description: "Left facing boss",
-              imageUrl: "./m11s/toxic-assault-sword.webp"
+              imageUrl: "./m11s/toxic-assault-sword.webp",
+              mask: getCircleMaskUrl(34.2, 70.8, 5)
             },
             {
               role: "Healer",
               party: 2,
               description: "Right facing boss",
-              imageUrl: "./m11s/toxic-assault-sword.webp"
+              imageUrl: "./m11s/toxic-assault-sword.webp",
+              mask: getCircleMaskUrl(48.2, 46.7, 5)
             },
             {
               role: "Melee",
               party: 1,
               description: "Left facing boss",
-              imageUrl: "./m11s/toxic-assault-sword.webp"
+              imageUrl: "./m11s/toxic-assault-sword.webp",
+              mask: getCircleMaskUrl(34.2, 70.8, 5)
             },
             {
               role: "Melee",
               party: 2,
               description: "Right facing boss",
-              imageUrl: "./m11s/toxic-assault-sword.webp"
+              imageUrl: "./m11s/toxic-assault-sword.webp",
+              mask: getCircleMaskUrl(48.2, 46.7, 5)
             },
             {
               role: "Ranged",
               party: 1,
               description: "Left facing boss",
-              imageUrl: "./m11s/toxic-assault-sword.webp"
+              imageUrl: "./m11s/toxic-assault-sword.webp",
+              mask: getCircleMaskUrl(34.2, 70.8, 5)
             },
             {
               role: "Ranged",
               party: 2,
               description: "Right facing boss",
-              imageUrl: "./m11s/toxic-assault-sword.webp"
+              imageUrl: "./m11s/toxic-assault-sword.webp",
+              mask: getCircleMaskUrl(48.2, 46.7, 5)
             }
           ]
         },
@@ -357,49 +382,57 @@ const toxicStrat: Strat = {
               role: "Tank",
               party: 1,
               description: "Relative West with M1\nUse inner letter markers",
-              imageUrl: "./m11s/toxic-dance.webp"
+              imageUrl: "./m11s/toxic-dance.webp",
+              mask: getCircleMaskUrl(50.3, 72.1, 5)
             },
             {
               role: "Tank",
               party: 2,
               description: "Relative East with M2\nUse inner letter markers",
-              imageUrl: "./m11s/toxic-dance.webp"
+              imageUrl: "./m11s/toxic-dance.webp",
+              mask: getCircleMaskUrl(50, 27.8, 5)
             },
             {
               role: "Healer",
               party: 1,
               description: "Relative Southwest with R1",
-              imageUrl: "./m11s/toxic-dance.webp"
+              imageUrl: "./m11s/toxic-dance.webp",
+              mask: getCircleMaskUrl(74.8, 68.6, 5)
             },
             {
               role: "Healer",
               party: 2,
               description: "Relative Southeast with R2",
-              imageUrl: "./m11s/toxic-dance.webp"
+              imageUrl: "./m11s/toxic-dance.webp",
+              mask: getCircleMaskUrl(74.7, 31.2, 5)
             },
             {
               role: "Melee",
               party: 1,
               description: "Relative West with MT\nUse inner letter markers",
-              imageUrl: "./m11s/toxic-dance.webp"
+              imageUrl: "./m11s/toxic-dance.webp",
+              mask: getCircleMaskUrl(50.3, 72.1, 5)
             },
             {
               role: "Melee",
               party: 2,
               description: "Relative East with OT\nUse inner letter markers",
-              imageUrl: "./m11s/toxic-dance.webp"
+              imageUrl: "./m11s/toxic-dance.webp",
+              mask: getCircleMaskUrl(50, 27.8, 5)
             },
             {
               role: "Ranged",
               party: 1,
               description: "Relative Southwest with H1",
-              imageUrl: "./m11s/toxic-dance.webp"
+              imageUrl: "./m11s/toxic-dance.webp",
+              mask: getCircleMaskUrl(74.8, 68.6, 5)
             },
             {
               role: "Ranged",
               party: 2,
               description: "Relative Southeast with H2",
-              imageUrl: "./m11s/toxic-dance.webp"
+              imageUrl: "./m11s/toxic-dance.webp",
+              mask: getCircleMaskUrl(74.7, 31.2, 5)
             }
           ]
         }
@@ -441,49 +474,57 @@ const toxicStrat: Strat = {
               role: "Tank",
               party: 1,
               description: "Stand in front of NW line stack",
-              imageUrl: "./m11s/toxic-meteorain-1.webp"
+              imageUrl: "./m11s/toxic-meteorain-1.webp",
+              mask: getCircleMaskUrl(44.5, 43.5, 5)
             },
             {
               role: "Tank",
               party: 2,
               description: "Stand in front of NW line stack",
-              imageUrl: "./m11s/toxic-meteorain-1.webp"
+              imageUrl: "./m11s/toxic-meteorain-1.webp",
+              mask: getCircleMaskUrl(44.5, 43.5, 5)
             },
             {
               role: "Healer",
               party: 1,
               description: "Stand in NW line stack, then get ready to bait 2nd meteors",
-              imageUrl: "./m11s/toxic-meteorain-1.webp"
+              imageUrl: "./m11s/toxic-meteorain-1.webp",
+              mask: getCircleMaskUrl(41.8, 37.7, 5)
             },
             {
               role: "Healer",
               party: 2,
               description: "Stand in NW line stack, then get ready to bait 2nd meteors",
-              imageUrl: "./m11s/toxic-meteorain-1.webp"
+              imageUrl: "./m11s/toxic-meteorain-1.webp",
+              mask: getCircleMaskUrl(41.8, 37.7, 5)
             },
             {
               role: "Melee",
               party: 1,
               description: "Bait meteor close, then drop NE",
-              imageUrl: "./m11s/toxic-meteorain-1.webp"
+              imageUrl: "./m11s/toxic-meteorain-1.webp",
+              mask: getCircleMaskUrl(57.1, 38, 5)
             },
             {
               role: "Melee",
               party: 2,
               description: "Bait meteor close, then drop SW",
-              imageUrl: "./m11s/toxic-meteorain-1.webp"
+              imageUrl: "./m11s/toxic-meteorain-1.webp",
+              mask: getCircleMaskUrl(43, 62.9, 5)
             },
             {
               role: "Ranged",
               party: 1,
               description: "Stand in NW line stack",
-              imageUrl: "./m11s/toxic-meteorain-1.webp"
+              imageUrl: "./m11s/toxic-meteorain-1.webp",
+              mask: getCircleMaskUrl(41.8, 37.6, 5)
             },
             {
               role: "Ranged",
               party: 2,
               description: "Stand in NW line stack",
-              imageUrl: "./m11s/toxic-meteorain-1.webp"
+              imageUrl: "./m11s/toxic-meteorain-1.webp",
+              mask: getCircleMaskUrl(41.8, 37.6, 5)
             }
           ]
         },
@@ -496,49 +537,57 @@ const toxicStrat: Strat = {
               role: "Tank",
               party: 1,
               description: "Take NE tank tether",
-              imageUrl: "./m11s/toxic-meteorain-2.webp"
+              imageUrl: "./m11s/toxic-meteorain-2.webp",
+              mask: getCircleMaskUrl(52, 18.7, 5)
             },
             {
               role: "Tank",
               party: 2,
               description: "Take SW tank tether",
-              imageUrl: "./m11s/toxic-meteorain-2.webp"
+              imageUrl: "./m11s/toxic-meteorain-2.webp",
+              mask: getCircleMaskUrl(45.8, 72.3, 5)
             },
             {
               role: "Healer",
               party: 1,
               description: "Bait meteor close, then drop NW",
-              imageUrl: "./m11s/toxic-meteorain-2.webp"
+              imageUrl: "./m11s/toxic-meteorain-2.webp",
+              mask: getCircleMaskUrl(43, 38.1, 5)
             },
             {
               role: "Healer",
               party: 2,
               description: "Bait meteor close, then drop SW in line with first meteor",
-              imageUrl: "./m11s/toxic-meteorain-2.webp"
+              imageUrl: "./m11s/toxic-meteorain-2.webp",
+              mask: getCircleMaskUrl(36.1, 74.9, 5)
             },
             {
               role: "Melee",
               party: 1,
               description: "Stand in NE line stack behind meteor",
-              imageUrl: "./m11s/toxic-meteorain-2.webp"
+              imageUrl: "./m11s/toxic-meteorain-2.webp",
+              mask: getCircleMaskUrl(59.3, 33.9, 5)
             },
             {
               role: "Melee",
               party: 2,
               description: "Stand in NE line stack behind meteor",
-              imageUrl: "./m11s/toxic-meteorain-2.webp"
+              imageUrl: "./m11s/toxic-meteorain-2.webp",
+              mask: getCircleMaskUrl(59.3, 33.9, 5)
             },
             {
               role: "Ranged",
               party: 1,
               description: "Stand in NE line stack, then get ready to bait 3rd meteors",
-              imageUrl: "./m11s/toxic-meteorain-2.webp"
+              imageUrl: "./m11s/toxic-meteorain-2.webp",
+              mask: getCircleMaskUrl(59.3, 33.9, 5)
             },
             {
               role: "Ranged",
               party: 2,
               description: "Stand in NE line stack, then get ready to bait 3rd meteors",
-              imageUrl: "./m11s/toxic-meteorain-2.webp"
+              imageUrl: "./m11s/toxic-meteorain-2.webp",
+              mask: getCircleMaskUrl(59.3, 33.9, 5)
             }
           ]
         },
@@ -563,37 +612,43 @@ const toxicStrat: Strat = {
               role: "Healer",
               party: 1,
               description: "Stand in NW line stack behind meteor",
-              imageUrl: "./m11s/toxic-meteorain-3.webp"
+              imageUrl: "./m11s/toxic-meteorain-3.webp",
+              mask: getCircleMaskUrl(41, 33.3, 5)
             },
             {
               role: "Healer",
               party: 2,
               description: "Stand in NW line stack behind meteor",
-              imageUrl: "./m11s/toxic-meteorain-3.webp"
+              imageUrl: "./m11s/toxic-meteorain-3.webp",
+              mask: getCircleMaskUrl(41, 33.3, 5)
             },
             {
               role: "Melee",
               party: 1,
               description: "Stand in NW line stack behind meteor",
-              imageUrl: "./m11s/toxic-meteorain-3.webp"
+              imageUrl: "./m11s/toxic-meteorain-3.webp",
+              mask: getCircleMaskUrl(41, 33.3, 5)
             },
             {
               role: "Melee",
               party: 2,
               description: "Stand in NW line stack behind meteor",
-              imageUrl: "./m11s/toxic-meteorain-3.webp"
+              imageUrl: "./m11s/toxic-meteorain-3.webp",
+              mask: getCircleMaskUrl(41, 33.3, 5)
             },
             {
               role: "Ranged",
               party: 1,
               description: "Bait meteor close, then drop SW far in line with other two meteors",
-              imageUrl: "./m11s/toxic-meteorain-3.webp"
+              imageUrl: "./m11s/toxic-meteorain-3.webp",
+              mask: getCircleMaskUrl(28.8, 87.5, 5)
             },
             {
               role: "Ranged",
               party: 2,
               description: "Bait meteor close, then drop NE",
-              imageUrl: "./m11s/toxic-meteorain-3.webp"
+              imageUrl: "./m11s/toxic-meteorain-3.webp",
+              mask: getCircleMaskUrl(57, 37.6, 5)
             }
           ]
         },
@@ -622,49 +677,57 @@ const toxicStrat: Strat = {
               role: "Tank",
               party: 1,
               description: "Stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp"
+              imageUrl: "./m11s/toxic-ecliptic-start.webp",
+              mask: getCircleMaskUrl(49.8, 50, 5)
             },
             {
               role: "Tank",
               party: 2,
               description: "Stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp"
+              imageUrl: "./m11s/toxic-ecliptic-start.webp",
+              mask: getCircleMaskUrl(49.8, 50, 5)
             },
             {
               role: "Healer",
               party: 1,
               description: "Southwest to bait markers",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp"
+              imageUrl: "./m11s/toxic-ecliptic-start.webp",
+              mask: getCircleMaskUrl(35.7, 74.5, 5)
             },
             {
               role: "Healer",
               party: 2,
               description: "Southeast to bait markers",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp"
+              imageUrl: "./m11s/toxic-ecliptic-start.webp",
+              mask: getCircleMaskUrl(63.9, 74.3, 5)
             },
             {
               role: "Melee",
               party: 1,
               description: "Stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp"
+              imageUrl: "./m11s/toxic-ecliptic-start.webp",
+              mask: getCircleMaskUrl(50, 50.1, 5)
             },
             {
               role: "Melee",
               party: 2,
               description: "Stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp"
+              imageUrl: "./m11s/toxic-ecliptic-start.webp",
+              mask: getCircleMaskUrl(50, 50.1, 5)
             },
             {
               role: "Ranged",
               party: 1,
               description: "Northwest to bait markers",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp"
+              imageUrl: "./m11s/toxic-ecliptic-start.webp",
+              mask: getCircleMaskUrl(35.9, 25.9, 5)
             },
             {
               role: "Ranged",
               party: 2,
               description: "Northeast to bait markers",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp"
+              imageUrl: "./m11s/toxic-ecliptic-start.webp",
+              mask: getCircleMaskUrl(63.7, 25.7, 5)
             }
           ]
         },
@@ -883,49 +946,57 @@ const hectorStrat: Strat = {
               role: "Tank",
               party: 1,
               description: "Stack for TB",
-              imageUrl: "./m11s/toxic-raw-axe.webp"
+              imageUrl: "./m11s/toxic-raw-axe.webp",
+              mask: getCircleMaskUrl(50, 36.4, 7.5)
             },
             {
               role: "Tank",
               party: 2,
               description: "Stack for TB",
-              imageUrl: "./m11s/toxic-raw-axe.webp"
+              imageUrl: "./m11s/toxic-raw-axe.webp",
+              mask: getCircleMaskUrl(50, 36.4, 7.5)
             },
             {
               role: "Healer",
               party: 1,
               description: "SSW far",
-              imageUrl: "./m11s/toxic-raw-axe.webp"
+              imageUrl: "./m11s/toxic-raw-axe.webp",
+              mask: getCircleMaskUrl(41.1, 84.8, 7.5)
             },
             {
               role: "Healer",
               party: 2,
               description: "SSE far",
-              imageUrl: "./m11s/toxic-raw-axe.webp"
+              imageUrl: "./m11s/toxic-raw-axe.webp",
+              mask: getCircleMaskUrl(59.1, 84.9, 7.5)
             },
             {
               role: "Melee",
               party: 1,
               description: "SW max melee",
-              imageUrl: "./m11s/toxic-raw-axe.webp"
+              imageUrl: "./m11s/toxic-raw-axe.webp",
+              mask: getCircleMaskUrl(43, 62.4, 7.5)
             },
             {
               role: "Melee",
               party: 2,
               description: "SE max melee",
-              imageUrl: "./m11s/toxic-raw-axe.webp"
+              imageUrl: "./m11s/toxic-raw-axe.webp",
+              mask: getCircleMaskUrl(57.1, 62.7, 7.5)
             },
             {
               role: "Ranged",
               party: 1,
               description: "WSW far",
-              imageUrl: "./m11s/toxic-raw-axe.webp"
+              imageUrl: "./m11s/toxic-raw-axe.webp",
+              mask: getCircleMaskUrl(26.7, 69.1, 7.5)
             },
             {
               role: "Ranged",
               party: 2,
               description: "ESE far",
-              imageUrl: "./m11s/toxic-raw-axe.webp"
+              imageUrl: "./m11s/toxic-raw-axe.webp",
+              mask: getCircleMaskUrl(72.7, 69.1, 7.5)
             }
           ]
         },
@@ -938,49 +1009,57 @@ const hectorStrat: Strat = {
               role: "Tank",
               party: 1,
               description: "NW for split TB",
-              imageUrl: "./m11s/toxic-raw-scythe.webp"
+              imageUrl: "./m11s/toxic-raw-scythe.webp",
+              mask: getCircleMaskUrl(42.9, 37.6, 7.5)
             },
             {
               role: "Tank",
               party: 2,
               description: "NE for split TB",
-              imageUrl: "./m11s/toxic-raw-scythe.webp"
+              imageUrl: "./m11s/toxic-raw-scythe.webp",
+              mask: getCircleMaskUrl(57, 38, 7.5)
             },
             {
               role: "Healer",
               party: 1,
               description: "Stack South",
-              imageUrl: "./m11s/toxic-raw-scythe.webp"
+              imageUrl: "./m11s/toxic-raw-scythe.webp",
+              mask: getCircleMaskUrl(49.9, 67.1, 7.5)
             },
             {
               role: "Healer",
               party: 2,
               description: "Stack South",
-              imageUrl: "./m11s/toxic-raw-scythe.webp"
+              imageUrl: "./m11s/toxic-raw-scythe.webp",
+              mask: getCircleMaskUrl(49.9, 67.1, 7.5)
             },
             {
               role: "Melee",
               party: 1,
               description: "Stack South",
-              imageUrl: "./m11s/toxic-raw-scythe.webp"
+              imageUrl: "./m11s/toxic-raw-scythe.webp",
+              mask: getCircleMaskUrl(49.9, 67.1, 7.5)
             },
             {
               role: "Melee",
               party: 2,
               description: "Stack South",
-              imageUrl: "./m11s/toxic-raw-scythe.webp"
+              imageUrl: "./m11s/toxic-raw-scythe.webp",
+              mask: getCircleMaskUrl(49.9, 67.1, 7.5)
             },
             {
               role: "Ranged",
               party: 1,
               description: "Stack South",
-              imageUrl: "./m11s/toxic-raw-scythe.webp"
+              imageUrl: "./m11s/toxic-raw-scythe.webp",
+              mask: getCircleMaskUrl(49.9, 67.1, 7.5)
             },
             {
               role: "Ranged",
               party: 2,
               description: "Stack South",
-              imageUrl: "./m11s/toxic-raw-scythe.webp"
+              imageUrl: "./m11s/toxic-raw-scythe.webp",
+              mask: getCircleMaskUrl(49.9, 67.1, 7.5)
             }
           ]
         }
@@ -1005,49 +1084,57 @@ const hectorStrat: Strat = {
               role: "Tank",
               party: 1,
               description: "Left facing boss",
-              imageUrl: "./m11s/toxic-assault-sword.webp"
+              imageUrl: "./m11s/toxic-assault-sword.webp",
+              mask: getCircleMaskUrl(34.2, 70.8, 5)
             },
             {
               role: "Tank",
               party: 2,
               description: "Right facing boss",
-              imageUrl: "./m11s/toxic-assault-sword.webp"
+              imageUrl: "./m11s/toxic-assault-sword.webp",
+              mask: getCircleMaskUrl(48.2, 46.7, 5)
             },
             {
               role: "Healer",
               party: 1,
               description: "Left facing boss",
-              imageUrl: "./m11s/toxic-assault-sword.webp"
+              imageUrl: "./m11s/toxic-assault-sword.webp",
+              mask: getCircleMaskUrl(34.2, 70.8, 5)
             },
             {
               role: "Healer",
               party: 2,
               description: "Right facing boss",
-              imageUrl: "./m11s/toxic-assault-sword.webp"
+              imageUrl: "./m11s/toxic-assault-sword.webp",
+              mask: getCircleMaskUrl(48.2, 46.7, 5)
             },
             {
               role: "Melee",
               party: 1,
               description: "Left facing boss",
-              imageUrl: "./m11s/toxic-assault-sword.webp"
+              imageUrl: "./m11s/toxic-assault-sword.webp",
+              mask: getCircleMaskUrl(34.2, 70.8, 5)
             },
             {
               role: "Melee",
               party: 2,
               description: "Right facing boss",
-              imageUrl: "./m11s/toxic-assault-sword.webp"
+              imageUrl: "./m11s/toxic-assault-sword.webp",
+              mask: getCircleMaskUrl(48.2, 46.7, 5)
             },
             {
               role: "Ranged",
               party: 1,
               description: "Left facing boss",
-              imageUrl: "./m11s/toxic-assault-sword.webp"
+              imageUrl: "./m11s/toxic-assault-sword.webp",
+              mask: getCircleMaskUrl(34.2, 70.8, 5)
             },
             {
               role: "Ranged",
               party: 2,
               description: "Right facing boss",
-              imageUrl: "./m11s/toxic-assault-sword.webp"
+              imageUrl: "./m11s/toxic-assault-sword.webp",
+              mask: getCircleMaskUrl(48.2, 46.7, 5)
             }
           ]
         },
@@ -1127,49 +1214,57 @@ const hectorStrat: Strat = {
               role: "Tank",
               party: 1,
               description: "Relative West with M1\nUse inner letter markers",
-              imageUrl: "./m11s/toxic-dance.webp"
+              imageUrl: "./m11s/toxic-dance.webp",
+              mask: getCircleMaskUrl(50.3, 72.1, 5)
             },
             {
               role: "Tank",
               party: 2,
               description: "Relative East with M2\nUse inner letter markers",
-              imageUrl: "./m11s/toxic-dance.webp"
+              imageUrl: "./m11s/toxic-dance.webp",
+              mask: getCircleMaskUrl(50, 27.8, 5)
             },
             {
               role: "Healer",
               party: 1,
               description: "Relative Southwest with R1",
-              imageUrl: "./m11s/toxic-dance.webp"
+              imageUrl: "./m11s/toxic-dance.webp",
+              mask: getCircleMaskUrl(74.8, 68.6, 5)
             },
             {
               role: "Healer",
               party: 2,
               description: "Relative Southeast with R2",
-              imageUrl: "./m11s/toxic-dance.webp"
+              imageUrl: "./m11s/toxic-dance.webp",
+              mask: getCircleMaskUrl(74.7, 31.2, 5)
             },
             {
               role: "Melee",
               party: 1,
               description: "Relative West with MT\nUse inner letter markers",
-              imageUrl: "./m11s/toxic-dance.webp"
+              imageUrl: "./m11s/toxic-dance.webp",
+              mask: getCircleMaskUrl(50.3, 72.1, 5)
             },
             {
               role: "Melee",
               party: 2,
               description: "Relative East with OT\nUse inner letter markers",
-              imageUrl: "./m11s/toxic-dance.webp"
+              imageUrl: "./m11s/toxic-dance.webp",
+              mask: getCircleMaskUrl(50, 27.8, 5)
             },
             {
               role: "Ranged",
               party: 1,
               description: "Relative Southwest with H1",
-              imageUrl: "./m11s/toxic-dance.webp"
+              imageUrl: "./m11s/toxic-dance.webp",
+              mask: getCircleMaskUrl(74.8, 68.6, 5)
             },
             {
               role: "Ranged",
               party: 2,
               description: "Relative Southeast with H2",
-              imageUrl: "./m11s/toxic-dance.webp"
+              imageUrl: "./m11s/toxic-dance.webp",
+              mask: getCircleMaskUrl(74.7, 31.2, 5)
             }
           ]
         }
@@ -1211,49 +1306,57 @@ const hectorStrat: Strat = {
               role: "Tank",
               party: 1,
               description: "Stand in front of NW line stack",
-              imageUrl: "./m11s/toxic-meteorain-1.webp"
+              imageUrl: "./m11s/toxic-meteorain-1.webp",
+              mask: getCircleMaskUrl(44.5, 43.5, 5)
             },
             {
               role: "Tank",
               party: 2,
               description: "Stand in front of NW line stack",
-              imageUrl: "./m11s/toxic-meteorain-1.webp"
+              imageUrl: "./m11s/toxic-meteorain-1.webp",
+              mask: getCircleMaskUrl(44.5, 43.5, 5)
             },
             {
               role: "Healer",
               party: 1,
               description: "Stand in NW line stack, then get ready to bait 2nd meteors",
-              imageUrl: "./m11s/toxic-meteorain-1.webp"
+              imageUrl: "./m11s/toxic-meteorain-1.webp",
+              mask: getCircleMaskUrl(41.8, 37.7, 5)
             },
             {
               role: "Healer",
               party: 2,
               description: "Stand in NW line stack, then get ready to bait 2nd meteors",
-              imageUrl: "./m11s/toxic-meteorain-1.webp"
+              imageUrl: "./m11s/toxic-meteorain-1.webp",
+              mask: getCircleMaskUrl(41.8, 37.7, 5)
             },
             {
               role: "Melee",
               party: 1,
               description: "Bait meteor close, then drop NE",
-              imageUrl: "./m11s/toxic-meteorain-1.webp"
+              imageUrl: "./m11s/toxic-meteorain-1.webp",
+              mask: getCircleMaskUrl(57.1, 38, 5)
             },
             {
               role: "Melee",
               party: 2,
               description: "Bait meteor close, then drop SW",
-              imageUrl: "./m11s/toxic-meteorain-1.webp"
+              imageUrl: "./m11s/toxic-meteorain-1.webp",
+              mask: getCircleMaskUrl(43, 62.9, 5)
             },
             {
               role: "Ranged",
               party: 1,
               description: "Stand in NW line stack",
-              imageUrl: "./m11s/toxic-meteorain-1.webp"
+              imageUrl: "./m11s/toxic-meteorain-1.webp",
+              mask: getCircleMaskUrl(41.8, 37.6, 5)
             },
             {
               role: "Ranged",
               party: 2,
               description: "Stand in NW line stack",
-              imageUrl: "./m11s/toxic-meteorain-1.webp"
+              imageUrl: "./m11s/toxic-meteorain-1.webp",
+              mask: getCircleMaskUrl(41.8, 37.6, 5)
             }
           ]
         },
@@ -1266,49 +1369,57 @@ const hectorStrat: Strat = {
               role: "Tank",
               party: 1,
               description: "Take NE tank tether",
-              imageUrl: "./m11s/toxic-meteorain-2.webp"
+              imageUrl: "./m11s/toxic-meteorain-2.webp",
+              mask: getCircleMaskUrl(52, 18.7, 5)
             },
             {
               role: "Tank",
               party: 2,
               description: "Take SW tank tether",
-              imageUrl: "./m11s/toxic-meteorain-2.webp"
+              imageUrl: "./m11s/toxic-meteorain-2.webp",
+              mask: getCircleMaskUrl(45.8, 72.3, 5)
             },
             {
               role: "Healer",
               party: 1,
               description: "Bait meteor close, then drop NW",
-              imageUrl: "./m11s/toxic-meteorain-2.webp"
+              imageUrl: "./m11s/toxic-meteorain-2.webp",
+              mask: getCircleMaskUrl(43, 38.1, 5)
             },
             {
               role: "Healer",
               party: 2,
               description: "Bait meteor close, then drop SW in line with first meteor",
-              imageUrl: "./m11s/toxic-meteorain-2.webp"
+              imageUrl: "./m11s/toxic-meteorain-2.webp",
+              mask: getCircleMaskUrl(36.1, 74.9, 5)
             },
             {
               role: "Melee",
               party: 1,
               description: "Stand in NE line stack behind meteor",
-              imageUrl: "./m11s/toxic-meteorain-2.webp"
+              imageUrl: "./m11s/toxic-meteorain-2.webp",
+              mask: getCircleMaskUrl(59.3, 33.9, 5)
             },
             {
               role: "Melee",
               party: 2,
               description: "Stand in NE line stack behind meteor",
-              imageUrl: "./m11s/toxic-meteorain-2.webp"
+              imageUrl: "./m11s/toxic-meteorain-2.webp",
+              mask: getCircleMaskUrl(59.3, 33.9, 5)
             },
             {
               role: "Ranged",
               party: 1,
               description: "Stand in NE line stack, then get ready to bait 3rd meteors",
-              imageUrl: "./m11s/toxic-meteorain-2.webp"
+              imageUrl: "./m11s/toxic-meteorain-2.webp",
+              mask: getCircleMaskUrl(59.3, 33.9, 5)
             },
             {
               role: "Ranged",
               party: 2,
               description: "Stand in NE line stack, then get ready to bait 3rd meteors",
-              imageUrl: "./m11s/toxic-meteorain-2.webp"
+              imageUrl: "./m11s/toxic-meteorain-2.webp",
+              mask: getCircleMaskUrl(59.3, 33.9, 5)
             }
           ]
         },
@@ -1333,37 +1444,43 @@ const hectorStrat: Strat = {
               role: "Healer",
               party: 1,
               description: "Stand in NW line stack behind meteor",
-              imageUrl: "./m11s/toxic-meteorain-3.webp"
+              imageUrl: "./m11s/toxic-meteorain-3.webp",
+              mask: getCircleMaskUrl(41, 33.3, 5)
             },
             {
               role: "Healer",
               party: 2,
               description: "Stand in NW line stack behind meteor",
-              imageUrl: "./m11s/toxic-meteorain-3.webp"
+              imageUrl: "./m11s/toxic-meteorain-3.webp",
+              mask: getCircleMaskUrl(41, 33.3, 5)
             },
             {
               role: "Melee",
               party: 1,
               description: "Stand in NW line stack behind meteor",
-              imageUrl: "./m11s/toxic-meteorain-3.webp"
+              imageUrl: "./m11s/toxic-meteorain-3.webp",
+              mask: getCircleMaskUrl(41, 33.3, 5)
             },
             {
               role: "Melee",
               party: 2,
               description: "Stand in NW line stack behind meteor",
-              imageUrl: "./m11s/toxic-meteorain-3.webp"
+              imageUrl: "./m11s/toxic-meteorain-3.webp",
+              mask: getCircleMaskUrl(41, 33.3, 5)
             },
             {
               role: "Ranged",
               party: 1,
               description: "Bait meteor close, then drop SW far in line with other two meteors",
-              imageUrl: "./m11s/toxic-meteorain-3.webp"
+              imageUrl: "./m11s/toxic-meteorain-3.webp",
+              mask: getCircleMaskUrl(28.8, 87.5, 5)
             },
             {
               role: "Ranged",
               party: 2,
               description: "Bait meteor close, then drop NE",
-              imageUrl: "./m11s/toxic-meteorain-3.webp"
+              imageUrl: "./m11s/toxic-meteorain-3.webp",
+              mask: getCircleMaskUrl(57, 37.6, 5)
             }
           ]
         },
@@ -1392,49 +1509,57 @@ const hectorStrat: Strat = {
               role: "Tank",
               party: 1,
               description: "Stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp"
+              imageUrl: "./m11s/toxic-ecliptic-start.webp",
+              mask: getCircleMaskUrl(49.8, 50, 5)
             },
             {
               role: "Tank",
               party: 2,
               description: "Stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp"
+              imageUrl: "./m11s/toxic-ecliptic-start.webp",
+              mask: getCircleMaskUrl(49.8, 50, 5)
             },
             {
               role: "Healer",
               party: 1,
               description: "Southwest to bait markers",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp"
+              imageUrl: "./m11s/toxic-ecliptic-start.webp",
+              mask: getCircleMaskUrl(35.7, 74.5, 5)
             },
             {
               role: "Healer",
               party: 2,
               description: "Southeast to bait markers",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp"
+              imageUrl: "./m11s/toxic-ecliptic-start.webp",
+              mask: getCircleMaskUrl(63.9, 74.3, 5)
             },
             {
               role: "Melee",
               party: 1,
               description: "Stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp"
+              imageUrl: "./m11s/toxic-ecliptic-start.webp",
+              mask: getCircleMaskUrl(50, 50.1, 5)
             },
             {
               role: "Melee",
               party: 2,
               description: "Stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp"
+              imageUrl: "./m11s/toxic-ecliptic-start.webp",
+              mask: getCircleMaskUrl(50, 50.1, 5)
             },
             {
               role: "Ranged",
               party: 1,
               description: "Northwest to bait markers",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp"
+              imageUrl: "./m11s/toxic-ecliptic-start.webp",
+              mask: getCircleMaskUrl(35.9, 25.9, 5)
             },
             {
               role: "Ranged",
               party: 2,
               description: "Northeast to bait markers",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp"
+              imageUrl: "./m11s/toxic-ecliptic-start.webp",
+              mask: getCircleMaskUrl(63.7, 25.7, 5)
             }
           ]
         },
