@@ -91,9 +91,48 @@ const nobuddiesArenaSplit: MechanicStrat[] = [
   }
 ];
 
+const hectorArenaSplit: MechanicStrat[] = [
+  {
+    mechanic: 'Split + Conga',
+    description: '4 players get tethered, 2 on each side\nG1 West, G2 East\nHector has Tank/Ranged North and Healers/Melee South\nℹ️ Original raidplan has supports NW/SE, DPS SW/NE',
+    imageUrl: "./m11s/hector-split-start.webp",
+  },
+  {
+    mechanic: 'Towers',
+    description: 'EVERYONE take a tower\nKB to other side if you need to stretch tether\nOtherwise KB to same side',
+    imageUrl: "./m11s/hector-split-towers.webp",
+  },
+  {
+    mechanic: 'Fire Breath Baits',
+    description: 'Non-tethers close to boss to bait fire breaths\nStack center E/W after for puddles',
+    imageUrl: "./m11s/hector-split-baits.webp",
+  },
+  {
+    mechanic: 'Puddles',
+    description: 'Everyone go center E/W to bait puddles, one pair go North, one pair go South\nTethers go to the side you need to stretch\nNon-tethers use body language/stay where you got knocked to',
+    imageUrl: "./m11s/hector-split-puddles.webp",
+  },
+  {
+    mechanic: 'Lineup + Portal',
+    description: 'Tethers on edge, markers on outer safe corner of number markers\nℹ️ Original raidplan and Hector use outer corner markers, newer version of the raidplan uses inner corner markers',
+    imageUrl: "./m11s/hector-split-tethers.webp",
+  },
+  {
+    mechanic: 'Towers 2 + 3',
+    description: 'Take the tower in the quadrant you resolved the last set of tethers/markers\n2nd towers, another tethers + markers, 3rd towers, then stack AOEs',
+    imageUrl: "./m11s/hector-split-towers-2.webp",
+  },
+  {
+    mechanic: 'Get Slabbed',
+    description: 'KB to back of boss, then look at hitbox to dodge AOE',
+    imageUrl: "./m11s/hector-slab.webp",
+  }
+];
+
 const arenaSplitMechs: Record<string, MechanicStrat[]> = {
   toxic: toxicArenaSplit,
-  nobuddies: nobuddiesArenaSplit
+  nobuddies: nobuddiesArenaSplit,
+  hector: hectorArenaSplit
 };
 
 const toxicStrat: Strat = {
@@ -926,8 +965,8 @@ const toxicStrat: Strat = {
 
 const hectorStrat: Strat = {
   stratName: 'hector',
-  description: 'Hector (Toxic/Kindred No Buddies)',
-  notes: '',
+  description: 'Hector (Toxic/No Buddies)',
+  notes: "Updated to use Hector video as source for Arena Split, select 'Kindred No Buddies' for raidplan version",
   stratUrl: {
     "Video by Hector Hectorson": "https://www.youtube.com/watch?v=w1uuwzhyf5A",
     "Toxic Friends Raidplan": "https://raidplan.io/plan/HJAbE7fuWodELUSB",
@@ -1767,9 +1806,9 @@ export const m11sFightConfig: FightConfig = {
   useModernCheatsheet: true,
   strats: {
     hector: {
-      label: "Hector (Toxic/Kindred No Buddies)",
+      label: "Hector (Toxic/No Buddies)",
       defaults: {
-        arenasplit: "nobuddies"
+        arenasplit: "hector"
       },
       badges: [
         {
@@ -1801,6 +1840,14 @@ export const m11sFightConfig: FightConfig = {
           url: {
             name: "kindred flatliner raidplan (slides 1-2, 7-18)",
             url: "https://raidplan.io/plan/hvbysrfwvrc55ahz"
+          }
+        },
+        {
+          value: "hector",
+          label: "Hector No Buddies",
+          url: {
+            name: "Video by Hector Hectorson",
+            url: "https://www.youtube.com/watch?v=w1uuwzhyf5A",
           }
         }
       ]
