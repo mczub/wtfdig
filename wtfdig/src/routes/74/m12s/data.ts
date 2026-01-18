@@ -523,39 +523,29 @@ const shabinStrat: Strat = {
       tag: 'p2',
       mechs: [
         {
-          mechanic: 'Debuffs',
-          description: 'Alpha: MUST NOT take damage\nBeta: MUST take damage',
-          imageUrl: "./m12s/superchain-0.webp",
-        },
-        {
-          mechanic: 'Blood Mana',
-          description: 'Spawns 2 black holes with Donut, PBAOE, Vertical cleave, and Horizontal cleave on each side',
+          mechanic: 'Alpha Debuffs',
+          description: 'Chill mid while Betas pop objects\nDo both dodges while debuff switches to Beta\nBait Netherwar Near/Far',
           imageUrl: "./m12s/superchain-1.webp",
         },
         {
-          mechanic: 'Black Holes',
-          description: 'Look at side with with 2 objects closer to the hole\nBeta debuffs go to the OTHER side\nTank North, DPS + Healer South',
-          imageUrl: "./m12s/superchain-2.webp",
-        },
-        {
-          mechanic: 'Beta Soaks',
-          description: 'Beta debuffs soak the objects that match the 2 close objects on the other side',
+          mechanic: 'Beta Debuffs',
+          description: 'Go to side with all objects far\nTank N, Others S to pop 2 close objects\nDo both dodges while debuff switches to Alpha\nAvoid Netherwar Near/Far',
           imageUrl: "./m12s/superchain-3.webp",
         },
         {
-          mechanic: 'First Hole',
-          description: 'Move to the hole that sucked in Green + Red first and dodge cleaves N/S\nAlpha/Beta debuffs will swap',
-          imageUrl: "./m12s/superchain-5.webp",
-        },
+          mechanic: 'Dodges',
+          description: 'If Purple and Blue were popped, stay on Beta side for N/S dodges\nIf Red and Green were popped, go to other side for N/S dodges',
+          imageUrl: "./m12s/superchain-4.webp",
+        }
+      ]
+    },
+    {
+      phaseName: 'Idyllic Dream',
+      tag: 'p2',
+      mechs: [
         {
-          mechanic: 'Second Hole',
-          description: 'Move to the other hole and dodge cleaves N/S',
-          imageUrl: "./m12s/superchain-6.webp",
-        },
-        {
-          mechanic: 'Netherwar Far/Near',
-          description: '4 Beta debuffs bait Far or Near stack',
-          imageUrl: "./m12s/superchain-7.webp",
+          mechanic: 'Overview',
+          description: "<ul class=\"overview\">\n<li><strong>📌 Player clones spawn</strong></li>\n<li><strong>📌 Player clones tether</strong></li>\n<li><strong>📌 Cone telegraph</strong></li>\n<li><strong>📌 Boss clones spawn</strong></li>\n<li><strong>Take boss tethers (stack or defam)</strong></li>\n<li><strong>Cones resolve</strong></li>\n<br />\n<li><strong>Platforms and towers appear</strong></li>\n<li><strong>Light spreads go off, swap</strong></li>\n<li><strong>Remember tower spots</strong></li></ul>"
         }
       ]
     },
