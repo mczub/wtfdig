@@ -127,7 +127,7 @@ export const m10sFightConfig: FightConfig = {
       label: "Toxic Friends",
       defaults: {
         snaking: "toxic",
-        aerial: "toxic",
+        aerial: "parallel",
       },
     },
     hector: {
@@ -171,12 +171,8 @@ export const m10sFightConfig: FightConfig = {
     {
       key: "aerial",
       label: "Aerial",
-      defaultValue: "toxic",
+      defaultValue: "parallel",
       options: [
-        {
-          value: "toxic",
-          label: "Normal"
-        },
         {
           value: "parallel",
           label: "Parallel",
