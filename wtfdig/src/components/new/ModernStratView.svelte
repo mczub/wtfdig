@@ -221,7 +221,7 @@
 					<Tabs.Control
 						value={tabName}
 						labelBase="btn bg-transparent hover:bg-surface-700"
-						classes="px-6 py-2 rounded-sm transition-all data-[state=active]:bg-surface-700 data-[state=active]:text-white data-[state=active]:border-surface-400 data-[state=active]:shadow-md"
+						classes="px-6 py-2 text-lg rounded-sm transition-all border-surface-700 data-[state=active]:bg-surface-700 data-[state=active]:text-white data-[state=active]:border-surface-400 data-[state=active]:shadow-md"
 						>{tabName}</Tabs.Control
 					>
 				{/each}
