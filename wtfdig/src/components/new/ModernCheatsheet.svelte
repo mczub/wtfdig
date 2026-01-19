@@ -40,6 +40,7 @@
 		individualStrat: PhaseStrats[] | string;
 		stratName?: string;
 		stratState: Record<string, string | null>;
+		setStratState?: (key: string, value: string) => void;
 		getStratMechs: (stratName: string) => Record<string, any>;
 		spotlight: boolean;
 		alignment: Alignment;
@@ -50,6 +51,12 @@
 		innerWidth?: number;
 		innerHeight?: number;
 		fightKey?: string;
+		mechToggles?: {
+			key: string;
+			label: string;
+			defaultValue: string | null;
+			options: { value: string; label: string }[];
+		}[];
 	}
 
 	let {
@@ -59,6 +66,7 @@
 		individualStrat,
 		stratName,
 		stratState,
+		setStratState,
 		getStratMechs,
 		spotlight,
 		alignment,
@@ -68,7 +76,8 @@
 		useEvenTimelineSpacing: useEvenTimelineSpacingProp = false,
 		innerWidth = 1920,
 		innerHeight = 1080,
-		fightKey = 'default'
+		fightKey = 'default',
+		mechToggles = []
 	}: Props = $props();
 
 	// Computed storage key that reacts to fightKey changes
@@ -634,7 +643,7 @@
 	{#snippet content()}
 		<!-- Collapsible Sidebar -->
 		<div
-			class={`flex-shrink-0 h-full flex flex-col bg-surface-950 border-r border-surface-700 transition-all duration-300 ${sidebarOpen ? 'w-72' : 'w-12'}`}
+			class={`flex-shrink-0 h-full flex flex-col bg-surface-950 border-r border-surface-700 transition-all duration-300 ${sidebarOpen ? 'w-80' : 'w-12'}`}
 		>
 			<!-- Sidebar Toggle -->
 			<button
@@ -735,6 +744,28 @@
 							onCheckedChange={(e) => (showSpotlight = e.checked)}
 						/>
 					</div>
+
+					{#if mechToggles.length > 0}
+						<Separator class="my-3" />
+						<div class="text-xs font-semibold text-surface-400 uppercase tracking-wide mb-2">
+							Mech Toggles
+						</div>
+						{#each mechToggles as toggle}
+							<div class="mb-3">
+								<div class="text-sm mb-1.5">{toggle.label}</div>
+								<div class="flex flex-wrap gap-1">
+									{#each toggle.options as option}
+										<button
+											class={`px-2 py-1 text-xs rounded transition-colors ${(stratState[toggle.key] ?? toggle.defaultValue ?? '') === option.value ? 'bg-primary-500 text-white' : 'bg-surface-800 hover:bg-surface-700'}`}
+											onclick={() => setStratState?.(toggle.key, option.value)}
+										>
+											{option.label}
+										</button>
+									{/each}
+								</div>
+							</div>
+						{/each}
+					{/if}
 
 					<!-- Reset Button -->
 					<button
@@ -1081,15 +1112,19 @@
 										{/if}
 
 										<!-- Player strat (if textMode is 'all' or 'role') -->
-										{#if (textMode === 'all' || textMode === 'role') && role && mech?.strats && mech.strats[0]?.description}
+										{#if (textMode === 'all' || textMode === 'role') && mech?.strats && mech.strats[0]?.description}
 											<div class="flex items-start gap-2 text-base mb-2 shrink-0">
-												<img
-													src={`/icons/${role.toLowerCase()}.png`}
-													alt={role}
-													class="w-6 h-6 shrink-0"
-												/>
+												{#if mech.strats[0].toggleKey}
+													<span class="shrink-0">⏩</span>
+												{:else if role}
+													<img
+														src={`/icons/${role.toLowerCase()}.png`}
+														alt={role}
+														class="w-6 h-6 shrink-0"
+													/>
+												{/if}
 												<div class="whitespace-pre-wrap">
-													{mech.strats[0].description}
+													{@html mech.strats[0].description}
 												</div>
 											</div>
 										{/if}
@@ -1198,7 +1233,7 @@
 									<!-- Description (if textMode is 'all') -->
 									{#if textMode === 'all' && phase?.description}
 										<div class="text-base text-surface-300 whitespace-pre-wrap mb-1 shrink-0">
-											{phase.description}
+											{@html phase.description}
 										</div>
 									{/if}
 

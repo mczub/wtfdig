@@ -53,7 +53,7 @@
 			<div>
 				<div class="font-bold text-lg lg:text-2xl">{phase ? phase?.phaseName : ''}</div>
 				{#if phase?.description}<div class="text-xs lg:text-base whitespace-pre-wrap">
-						{phase.description}
+						{@html phase.description}
 					</div>{/if}
 			</div>
 			<X onclick={closeImage} class="cursor-pointer" />
@@ -64,32 +64,38 @@
 				{@html mech ? mech?.description : ''}
 			</div>
 			<div class="flex items-center gap-1 text-xs lg:text-lg mb-0 shrink-0">
-				{#if role && mech?.strats && mech.strats.length > 0}
-					<img
-						src={`/icons/${role.toLowerCase()}.png`}
-						alt={role}
-						class="w-4 h-4 lg:w-6 lg:h-6 shrink-0 mt-1"
-					/>
+				{#if mech?.strats && mech.strats.length > 0}
+					{#if mech.strats[0].toggleKey}
+						<span class="shrink-0">⏩</span>
+					{:else if role}
+						<img
+							src={`/icons/${role.toLowerCase()}.png`}
+							alt={role}
+							class="w-4 h-4 lg:w-6 lg:h-6 shrink-0 mt-1"
+						/>
+					{/if}
 				{/if}
 				<div class="whitespace-pre-wrap">
-					{mech ? mech?.strats && mech.strats[0].description : ''}
+					{@html mech ? mech?.strats && mech.strats[0].description : ''}
 				</div>
 			</div>
-			<div class="relative mt-4 flex-1 min-h-0 grid place-items-center" style="height: 100%;">
-				<div class="relative max-w-full max-h-full" style="display: grid; place-items: center;">
-					<img
-						class="rounded-md max-w-full max-h-full object-contain"
-						style="grid-area: 1/1;"
-						src={getImageModalUrl()}
-						alt={mech?.mechanic || phase?.phaseName || 'Strategy image'}
-					/>
-					{#if spotlight && getImageMask()}
-						<div class="pointer-events-none" style="grid-area: 1/1; width: 100%; height: 100%;">
-							<SpotlightOverlay mask={getImageMask()} />
-						</div>
-					{/if}
+			{#if getImageModalUrl()}
+				<div class="relative mt-4 flex-1 min-h-0 grid place-items-center" style="height: 100%;">
+					<div class="relative max-w-full max-h-full" style="display: grid; place-items: center;">
+						<img
+							class="rounded-md max-w-full max-h-full object-contain"
+							style="grid-area: 1/1;"
+							src={getImageModalUrl()}
+							alt={mech?.mechanic || phase?.phaseName || 'Strategy image'}
+						/>
+						{#if spotlight && getImageMask()}
+							<div class="pointer-events-none" style="grid-area: 1/1; width: 100%; height: 100%;">
+								<SpotlightOverlay mask={getImageMask()} />
+							</div>
+						{/if}
+					</div>
 				</div>
-			</div>
+			{/if}
 		</div>
 	{/snippet}
 </Modal>

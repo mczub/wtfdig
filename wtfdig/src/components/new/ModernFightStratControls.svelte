@@ -8,6 +8,7 @@
 	import ChevronDown from '@lucide/svelte/icons/chevron-down';
 	import ChevronUp from '@lucide/svelte/icons/chevron-up';
 	import Settings from '@lucide/svelte/icons/settings';
+	import Fullscreen from '@lucide/svelte/icons/fullscreen';
 	import X from '@lucide/svelte/icons/x';
 	import * as Select from '$lib/components/ui/select';
 	import * as Tooltip from '$lib/components/ui/tooltip';
@@ -35,6 +36,9 @@
 			description?: string;
 			links: { text: string; url: string }[];
 		};
+		onOpenCheatsheet?: () => void;
+		tabTags?: Record<string, string[]> | null;
+		currentTab?: string;
 	}
 
 	let {
@@ -53,7 +57,10 @@
 		setParty,
 		spotlight,
 		setSpotlight,
-		additionalResources
+		additionalResources,
+		onOpenCheatsheet,
+		tabTags = null,
+		currentTab
 	}: Props = $props();
 
 	let settingsOpen = $state(false);
@@ -299,15 +306,44 @@
 					</div>
 				</div>
 
-				<!-- Expand button -->
-				<button
-					type="button"
-					class="btn-icon btn-icon-sm preset-tonal-surface hover:preset-tonal-primary transition-colors"
-					onclick={toggleCollapsed}
-					aria-label="Expand navigation"
-				>
-					<ChevronDown size={20} />
-				</button>
+				<!-- Right side: Mech Toggles + Expand button -->
+				<div class="flex items-center gap-2">
+					<!-- Mech Toggles (compact dropdowns in collapsed view) -->
+					<!-- Only show mech toggles whose phaseTag is in the current tab's tags -->
+					{#each toggles.filter((t) => t.isMechToggle && (!t.phaseTag || !tabTags || !currentTab || tabTags[currentTab]?.includes(t.phaseTag))) as toggle}
+						<div class="flex items-center gap-1">
+							<span class="text-xs font-medium text-surface-400 uppercase">{toggle.label}</span>
+							<Select.Root
+								type="single"
+								value={toggle.value}
+								onValueChange={(value) => onToggleChange(toggle.key, value)}
+							>
+								<Select.Trigger size="sm" class="!py-0.5 !px-2 !min-w-0">
+									<span class="text-sm"
+										>{toggle.options.find((o) => o.value === toggle.value)?.label ?? 'All'}</span
+									>
+								</Select.Trigger>
+								<Select.Content>
+									{#each toggle.options as option}
+										<Select.Item value={option.value}>
+											<span class="text-sm">{option.label}</span>
+										</Select.Item>
+									{/each}
+								</Select.Content>
+							</Select.Root>
+						</div>
+					{/each}
+
+					<!-- Expand button -->
+					<button
+						type="button"
+						class="btn-icon btn-icon-sm preset-tonal-surface hover:preset-tonal-primary transition-colors"
+						onclick={toggleCollapsed}
+						aria-label="Expand navigation"
+					>
+						<ChevronDown size={20} />
+					</button>
+				</div>
 			</div>
 		{:else}
 			<!-- Expanded View (default) -->
@@ -420,8 +456,9 @@
 						</div>
 
 						<!-- Individual Strat Toggles -->
+						<!-- Filter mech toggles by phaseTag matching current tab's tags -->
 						{#if stratName && toggles?.length}
-							{#each toggles as toggle}
+							{#each toggles.filter((t) => !t.isMechToggle || !t.phaseTag || !tabTags || !currentTab || tabTags[currentTab]?.includes(t.phaseTag)) as toggle}
 								<div class="flex items-center gap-2 flex-wrap">
 									<div class="flex items-center gap-1">
 										<span
@@ -518,8 +555,18 @@
 						{/if}
 					</div>
 				</div>
-				<!-- Settings / Toggles Popover -->
-				<div class="justify-self-end self-start items-center mt-1">
+				<!-- Cheatsheet and Settings -->
+				<div class="justify-self-end self-start items-center mt-1 flex gap-1">
+					{#if onOpenCheatsheet}
+						<button
+							type="button"
+							class="btn-icon btn-icon-sm preset-tonal-surface"
+							onclick={onOpenCheatsheet}
+							aria-label="Open cheatsheet"
+						>
+							<Fullscreen size={20} />
+						</button>
+					{/if}
 					<Popover
 						zIndex="60"
 						open={settingsOpen}

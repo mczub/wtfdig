@@ -8,6 +8,7 @@
 	</header>
 	<article class="prose dark:prose-invert max-w-none">
 		<div class="">
+			<div>1/19/2026: m12s p2, special mech toggles, remove yolo aerial from 10</div>
 			<div>1/16/2026: updated m11s hector to use hector's split</div>
 			<div>
 				1/15/2026: m12s p1, adding links to individual raidplan slides, m10s + m11s spotlights

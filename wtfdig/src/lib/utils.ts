@@ -219,7 +219,18 @@ export function buildIndividualStratView({
 				imageUrl: resolveStratItem(phaseStratMech.imageUrl, phaseStrat.tag, stratState),
 				strats:
 					phaseStratMech.strats
-						?.filter((playerStrat) => playerStrat.role === role && playerStrat.party === party)
+						?.filter((playerStrat) => {
+							// Role filter: matches if undefined or equals selected role
+							const matchesRole = !playerStrat.role || playerStrat.role === role;
+							// Party filter: matches if undefined or equals selected party
+							const matchesParty = !playerStrat.party || playerStrat.party === party;
+							if (!matchesRole || !matchesParty) return false;
+
+							// Toggle filter: matches if no toggleKey or value matches current state
+							if (!playerStrat.toggleKey) return true;
+							const currentToggleValue = stratState[playerStrat.toggleKey] ?? '';
+							return playerStrat.toggleValue === currentToggleValue;
+						})
 						.map((playerStrat) => ({
 							...playerStrat,
 							description: resolveStratItem(playerStrat.description, phaseStrat.tag, stratState) ?? '',
@@ -267,7 +278,8 @@ function getToggleDiffDescriptions({
 }: ToggleDiffArgs): string[] {
 	if (!stratName || !toggles.length) return [];
 	const defaults = strats[stratName]?.defaults ?? {};
-	return toggles.reduce<string[]>((descriptions, toggle) => {
+	// Filter out mech toggles - they shouldn't appear in title string
+	return toggles.filter((toggle) => !toggle.isMechToggle).reduce<string[]>((descriptions, toggle) => {
 		const defaultValue = defaults[toggle.key] ?? toggle.defaultValue ?? null;
 		const currentValue = stratState?.[toggle.key];
 		if (currentValue && currentValue !== defaultValue) {
@@ -433,6 +445,10 @@ export function buildStratCode({
 	}
 	const serialized = keys
 		.map((key) => defaultState[key] === stratState[key] ? '' : stratState[key]);
+	// Filter out trailing empty strings and join
+	while (serialized.length > 0 && !serialized[serialized.length - 1]) {
+		serialized.pop();
+	}
 	return serialized.length ? `${stratName}:${serialized.join(':')}` : stratName;
 }
 
