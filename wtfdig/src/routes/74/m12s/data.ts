@@ -24,47 +24,137 @@ const mortalSlayerMechs: Record<string, MechanicStrat[]> = {
   role: roleMortalSlayer
 };
 
+const cloneZoneRep2Overview: MechanicStrat[] = [
+  {
+    mechanic: 'What does my tether do?',
+    strats: [
+      // Generic info - shows when 'All' is selected (or no selection)
+      { toggleKey: 'rep2tether', toggleValue: '', description: "Select 'Rep 2 Tether' to see your assignments" },
+      // Position-specific instructions
+      { toggleKey: 'rep2tether', toggleValue: 'N', description: '<strong>N Clone</strong>\nActing LP2\nBoss Tether\nStand on Diamond under A\nJoin LP2 stack\nDodge Snaking Kick\nTake LP2 Netherwrath with LP2 Defam' },
+      { toggleKey: 'rep2tether', toggleValue: 'NE', description: '<strong>NE Clone</strong>\nActing LP2\nCleave Tether N/CW\nBait protean inner East\nJoin LP2 stack\nPoint cleave out of arena\nDodge Snaking Kick\nBait protean inner East' },
+      { toggleKey: 'rep2tether', toggleValue: 'E', description: '<strong>E Clone</strong>\nActing LP2\nStack Tether N/CW\nBait protean outer East\nTake LP2 stack\nDodge Snaking Kick\nBait protean outer East' },
+      { toggleKey: 'rep2tether', toggleValue: 'SE', description: '<strong>SE Clone</strong>\nActing LP2\nDefam Tether N/CW\nTake Defam ESE\nJoin LP2 stack\nDodge Snaking Kick\nBait LP2 Netherwrath' },
+      { toggleKey: 'rep2tether', toggleValue: 'S', description: '<strong>S Clone</strong>\nActing LP1\nNo Tether\nTake Defam S\nJoin LP1 stack\nDodge Snaking Kick\nTake LP1 Netherwrath with LP1 Defam' },
+      { toggleKey: 'rep2tether', toggleValue: 'SW', description: '<strong>SW Clone</strong>\nActing LP1\nDefam Tether NW/CCW\nTake Defam WSW\nJoin LP1 stack\nDodge Snaking Kick\nBait LP1 Netherwrath' },
+      { toggleKey: 'rep2tether', toggleValue: 'W', description: '<strong>W Clone</strong>\nActing LP1\nStack Tether NW/CCW\nBait protean outer West\nTake LP1 stack\nDodge Snaking Kick\nBait protean outer West' },
+      { toggleKey: 'rep2tether', toggleValue: 'NW', description: '<strong>NW Clone</strong>\nActing LP1\nCleave Tether NW/CCW\nBait protean inner West\nJoin LP1 stack\nPoint cleave out of arena\nDodge Snaking Kick\nBait protean inner West' },
+    ]
+  },
+]
+
 // Toggle-dependent mechs for Replication 2
 const cloneZoneReplication2: MechanicStrat[] = [
+
   {
     mechanic: 'Acting Light Parties',
     description: 'South to NW: Acting LP1\nNorth to SE: Acting LP2',
-    imageUrl: './m12s/cz-rep2-2.webp'
+    strats: [
+      { toggleKey: 'rep2tether', toggleValue: '', description: "", imageUrl: './m12s/cz-rep2-2.webp', },
+      { toggleKey: 'rep2tether', toggleValue: 'N', description: 'Acting LP2', imageUrl: './m12s/cz-rep2-2.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NE', description: 'Acting LP2', imageUrl: './m12s/cz-rep2-2.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'E', description: 'Acting LP2', imageUrl: './m12s/cz-rep2-2.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SE', description: 'Acting LP2', imageUrl: './m12s/cz-rep2-2.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'S', description: 'Acting LP1', imageUrl: './m12s/cz-rep2-2.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SW', description: 'Acting LP1', imageUrl: './m12s/cz-rep2-2.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'W', description: 'Acting LP1', imageUrl: './m12s/cz-rep2-2.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NW', description: 'Acting LP1', imageUrl: './m12s/cz-rep2-2.webp' },
+    ]
   },
   {
     mechanic: 'Tether Assignments',
     description: 'Based on initial clone spawn, take a tether (1x Boss tether, 2x Cleaves, 2x Stacks, 2x Defamations)\nSouth clone will take nothing',
-    imageUrl: './m12s/cz-rep2-4.webp'
+    strats: [
+      { toggleKey: 'rep2tether', toggleValue: '', description: "", imageUrl: './m12s/cz-rep2-4.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'N', description: 'Boss tether', imageUrl: './m12s/cz-rep2-4.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NE', description: 'Cleave Tether N/CW', imageUrl: './m12s/cz-rep2-4.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'E', description: 'Stack Tether N/CW', imageUrl: './m12s/cz-rep2-4.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SE', description: 'Defam Tether N/CW', imageUrl: './m12s/cz-rep2-4.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'S', description: 'No Tether', imageUrl: './m12s/cz-rep2-4.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SW', description: 'Defam Tether NW/CCW', imageUrl: './m12s/cz-rep2-4.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'W', description: 'Stack Tether NW/CCW', imageUrl: './m12s/cz-rep2-4.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NW', description: 'Cleave Tether NW/CCW', imageUrl: './m12s/cz-rep2-4.webp' },
+    ]
   },
   {
     mechanic: 'Player Defamations',
     description: 'Defamations go ESE and WSW\nNothing player go South\nBoss tether goes on the diamond under A\nStacks and Cleaves go to North edge',
-    imageUrl: './m12s/cz-rep2-5.webp'
+    strats: [
+      { toggleKey: 'rep2tether', toggleValue: '', description: '', imageUrl: './m12s/cz-rep2-5.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'N', description: 'Stand on Diamond under A', imageUrl: './m12s/cz-rep2-5.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NE', description: 'Go inner East on North edge', imageUrl: './m12s/cz-rep2-5.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'E', description: 'Go outer East on North edge', imageUrl: './m12s/cz-rep2-5.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SE', description: 'Take Defam ESE', imageUrl: './m12s/cz-rep2-5.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'S', description: 'Take Defam S', imageUrl: './m12s/cz-rep2-5.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SW', description: 'Take Defam WSW', imageUrl: './m12s/cz-rep2-5.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'W', description: 'Go outer West on North edge', imageUrl: './m12s/cz-rep2-5.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NW', description: 'Go inner West on North edge', imageUrl: './m12s/cz-rep2-5.webp' },
+    ]
   },
   {
     mechanic: 'Player Stacks',
     description: 'Light party stacks on stack players NW and NE',
-    imageUrl: './m12s/cz-rep2-7.webp'
+    strats: [
+      { toggleKey: 'rep2tether', toggleValue: '', description: '', imageUrl: './m12s/cz-rep2-7.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'N', description: 'Join LP2 stack', imageUrl: './m12s/cz-rep2-7.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NE', description: 'Join LP2 stack', imageUrl: './m12s/cz-rep2-7.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'E', description: 'Take LP2 stack', imageUrl: './m12s/cz-rep2-7.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SE', description: 'Join LP2 stack', imageUrl: './m12s/cz-rep2-7.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'S', description: 'Join LP1 stack', imageUrl: './m12s/cz-rep2-7.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SW', description: 'Join LP1 stack', imageUrl: './m12s/cz-rep2-7.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'W', description: 'Take LP1 stack', imageUrl: './m12s/cz-rep2-7.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NW', description: 'Join LP1 stack', imageUrl: './m12s/cz-rep2-7.webp' },
+    ]
   },
   {
     mechanic: 'Player Cleaves',
     description: 'Cleave players go between party and boss to bait cleaves out of North of arena',
-    imageUrl: './m12s/cz-rep2-8.webp'
+    strats: [
+      { toggleKey: 'rep2tether', toggleValue: '', description: '', imageUrl: './m12s/cz-rep2-8.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'N', description: 'Stay in LP2 stack', imageUrl: './m12s/cz-rep2-8.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NE', description: 'Point cleave out of arena', imageUrl: './m12s/cz-rep2-8.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'E', description: 'Stay in LP2 stack', imageUrl: './m12s/cz-rep2-8.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SE', description: 'Stay in LP2 stack', imageUrl: './m12s/cz-rep2-8.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'S', description: 'Stay in LP1 stack', imageUrl: './m12s/cz-rep2-8.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SW', description: 'Stay in LP1 stack', imageUrl: './m12s/cz-rep2-8.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'W', description: 'Stay in LP1 stack', imageUrl: './m12s/cz-rep2-8.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NW', description: 'Point cleave out of arena', imageUrl: './m12s/cz-rep2-8.webp' },
+    ]
   },
   {
     mechanic: 'Snaking Kick',
     description: 'Dodge behind frontal cleave\nA marker always safe',
-    imageUrl: './m12s/cz-rep2-9.webp'
+    imageUrl: './m12s/cz-rep2-9.webp',
   },
   {
     mechanic: 'Netherwrath Far',
     description: 'Defamation players bait far pairs on NW/NE arena floor diamonds\nStack/Cleave players bait boss proteans North',
-    imageUrl: './m12s/cz-rep2-13.webp'
+    strats: [
+      { toggleKey: 'rep2tether', toggleValue: '', description: '', imageUrl: './m12s/cz-rep2-13.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'N', description: 'Take pair stack near 2 marker', imageUrl: './m12s/cz-rep2-13.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NE', description: 'Bait protean inner East', imageUrl: './m12s/cz-rep2-13.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'E', description: 'Bait protean outer East', imageUrl: './m12s/cz-rep2-13.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SE', description: 'Bait pair stack far on diamond around 2 marker', imageUrl: './m12s/cz-rep2-13.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'S', description: 'Take pair stack near 4 marker', imageUrl: './m12s/cz-rep2-13.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SW', description: 'Bait pair stack far on diamond around 4 marker', imageUrl: './m12s/cz-rep2-13.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'W', description: 'Bait protean outer West', imageUrl: './m12s/cz-rep2-13.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NW', description: 'Bait protean inner West', imageUrl: './m12s/cz-rep2-13.webp' },
+    ]
   },
   {
     mechanic: 'Netherwrath Near',
     description: 'Defamation players bait pairs on boss hitbox\nStack/Cleave players bait boss proteans North',
-    imageUrl: './m12s/cz-rep2-14.webp'
+    strats: [
+      { toggleKey: 'rep2tether', toggleValue: '', description: '', imageUrl: './m12s/cz-rep2-14.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'N', description: 'Take pair stack near 2 marker', imageUrl: './m12s/cz-rep2-14.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NE', description: 'Bait protean inner East', imageUrl: './m12s/cz-rep2-14.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'E', description: 'Bait protean outer East', imageUrl: './m12s/cz-rep2-14.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SE', description: 'Bait pair stack on boss hitbox', imageUrl: './m12s/cz-rep2-14.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'S', description: 'Take pair stack near 4 marker', imageUrl: './m12s/cz-rep2-14.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SW', description: 'Bait pair stack on boss hitbox', imageUrl: './m12s/cz-rep2-14.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'W', description: 'Bait protean outer West', imageUrl: './m12s/cz-rep2-14.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NW', description: 'Bait protean inner West', imageUrl: './m12s/cz-rep2-14.webp' },
+    ]
   },
   {
     mechanic: 'Clone First Defam + Cleave',
@@ -82,6 +172,25 @@ const cloneZoneReplication2: MechanicStrat[] = [
     imageUrl: './m12s/cz-rep2-18.webp'
   }
 ];
+
+const dnRep2Overview: MechanicStrat[] = [
+  {
+    mechanic: 'What does my tether do?',
+    strats: [
+      // Generic info - shows when 'All' is selected (or no selection)
+      { toggleKey: 'rep2tether', toggleValue: '', description: "Select 'Rep 2 Tether' to see your assignments" },
+      // Position-specific instructions
+      { toggleKey: 'rep2tether', toggleValue: 'N', description: '<strong>N Clone</strong>\nActing LP2\nBoss Tether\nBait boss jump between A and 1\nJoin LP2 stack\nDodge Snaking Kick\nTake SW Netherwrath with LP1 Defam' },
+      { toggleKey: 'rep2tether', toggleValue: 'NE', description: '<strong>NE Clone</strong>\nActing LP2\nCleave Tether N/CW\nBait protean outer East\nJoin LP2 stack\nPoint cleave out of arena\nDodge Snaking Kick\nBait protean outer East' },
+      { toggleKey: 'rep2tether', toggleValue: 'E', description: '<strong>E Clone</strong>\nActing LP2\nStack Tether N/CW\nBait protean inner East\nTake LP2 stack\nDodge Snaking Kick\nBait protean inner East' },
+      { toggleKey: 'rep2tether', toggleValue: 'SE', description: '<strong>SE Clone</strong>\nActing LP2\nDefam Tether N/CW\nTake Defam ESE\nJoin LP2 stack\nDodge Snaking Kick\nBait LP2 Netherwrath' },
+      { toggleKey: 'rep2tether', toggleValue: 'S', description: '<strong>S Clone</strong>\nActing LP1\nNo Tether\nTake Defam S\nJoin LP1 stack\nDodge Snaking Kick\nTake SE Netherwrath with LP2 Defam' },
+      { toggleKey: 'rep2tether', toggleValue: 'SW', description: '<strong>SW Clone</strong>\nActing LP1\nDefam Tether NW/CCW\nTake Defam WSW\nJoin LP1 stack\nDodge Snaking Kick\nBait LP1 Netherwrath' },
+      { toggleKey: 'rep2tether', toggleValue: 'W', description: '<strong>W Clone</strong>\nActing LP1\nStack Tether NW/CCW\nBait protean inner West\nTake LP1 stack\nDodge Snaking Kick\nBait protean inner West' },
+      { toggleKey: 'rep2tether', toggleValue: 'NW', description: '<strong>NW Clone</strong>\nActing LP1\nCleave Tether NW/CCW\nBait protean outer West\nJoin LP1 stack\nPoint cleave out of arena\nDodge Snaking Kick\nBait protean outer West' },
+    ]
+  },
+]
 
 const dnReplication2: MechanicStrat[] = [
   {
@@ -130,10 +239,18 @@ const dnReplication2: MechanicStrat[] = [
   }
 ];
 
+const rep2OverviewMechs: Record<string, MechanicStrat[]> = {
+  clonezone: cloneZoneRep2Overview,
+  dn: dnRep2Overview
+};
+
 const replication2Mechs: Record<string, MechanicStrat[]> = {
   clonezone: cloneZoneReplication2,
   dn: dnReplication2
 };
+
+const idyllicOverview: string = "<div class=\"flex flex-col\"><ul class=\"overview\">\n<li><strong>Player clones spawn</strong>\n<ul><li>📌🐦 Remember if Cardinals or Intercards first</li></ul></li>\n<li><strong>Player clones tether</strong>\n<ul><li>📌🧑‍🤝‍🧑 Remember your clone position</li></ul></li>\n<li><strong>Cone telegraphs</strong>\n<ul><li>📌🍦 Remember whether North or South is E/W safe</li></ul></li>\n<li><strong>Boss clones spawn</strong></li>\n<li><strong>Take boss tethers (stack or defam)</strong>\n<ul><li>📌🤔 Remember if North clone is Stack or Defam</li></ul></li>\n<li><strong>Cones resolve</strong><ul><li>💡🍦 Recall whether North or South was E/W safe</li></ul></li>\n</ul>\n\n<p class=\"arena-change\"><em>ARENA CHANGES TO PLATFORMS</em></p>\n<ul class=\"overview\">\n<li><strong>Platforms and towers appear</strong></li>\n<li><strong>Light spreads go off, swap if needed</strong></li>\n<li>📌🗼 Remember tower spots</li>\n</ul>\n\n<p class=\"arena-change\"><em>ARENA CHANGES BACK</em></p>\n<ul class=\"overview\">\n<li><strong>💡🤔🧑‍🤝‍🧑 Recall</strong>\n<ul class=\"flex flex-col\"><li>If North clone was Stack or Defam</li>\n<li>Your clone position (determines LP and Stack/Defam)</li></ul></li>\n<li><strong>Resolve Stacks and Defams</strong></li>\n</ul></div>"
+const idyllicOverview2: string = "<div class=\"flex flex-col\"><p class=\"arena-change\"><em>ARENA CHANGES TO PLATFORMS</em></p>\n<ul class=\"overview\">\n<li><strong>💡🗼 Recall tower spots</strong></li>\n<li><strong>Resolve tower elements</strong></li>\n<li><strong>Position for cleaves</strong></li>\n<li><strong>Boss clones spawn</strong>\n<ul><li>💡🍦 Recall whether North or South clone was E/W safe</li></ul></li>\n<li><strong>Boss clone jumps into black hole</strong>\n<ul><li>📌🍦🕳️ Remember whether N/S safe or E/W safe clone goes in</li></ul></li>\n<li><strong>Boss clones jump to platforms</strong>\n<ul><li>📌🍦🐇 Remember which platform is safe and whether it's N/S or E/W safe</li></ul></li>\n</ul>\n\n<p class=\"arena-change\"><em>ARENA CHANGES BACK</em></p>\n<ul class=\"overview\">\n<li><strong>1st Stacks/Defams</strong>\n<ul><li>💡🐦 Recall whether initial clones were Cardinals or Intercards first</li></ul></li>\n</ul>\n\n<p class=\"arena-change\"><em>ARENA CHANGES TO PLATFORMS</em></p>\n<ul class=\"overview\">\n<li><strong>Platform + clone cone resolves</strong>\n<ul><li>💡🍦🐇 Recall which platform was safe and whether it's N/S or E/W safe</li></ul></li>\n</ul>\n\n<p class=\"arena-change\"><em>ARENA CHANGES BACK</em></p>\n<ul class=\"overview\">\n<li><strong>2nd Stacks/Defams</strong></li>\n<li><strong>Black hole clone cone resolves</strong>\n<ul><li>💡🍦🕳️ Recall whether black hole clone was N/S or E/W safe</li></ul></li>\n</ul></div>"
 
 const shabinStrat: Strat = {
   stratName: 'shabin',
@@ -393,16 +510,6 @@ const shabinStrat: Strat = {
           imageUrl: "./m12s/dn-rep1-1.webp"
         },
         {
-          mechanic: 'First Clones',
-          description: '2 pairs get Dark, 1 pair gets Fire',
-          imageUrl: "./m12s/dn-rep1-5.webp"
-        },
-        {
-          mechanic: 'Second Clone Jump',
-          description: 'Clones jump to intercard, will be Dark/Fire/Dark/Fire or Fire/Dark/Fire/Dark',
-          imageUrl: "./m12s/dn-rep1-10.webp"
-        },
-        {
           mechanic: 'Dark Debuff',
           description: 'Dark Debuffs need to take pair Fire hits',
           strats: [
@@ -514,7 +621,12 @@ const shabinStrat: Strat = {
       ]
     },
     {
-      phaseName: 'Replication 2',
+      phaseName: 'Replication 2 Overview',
+      tag: 'replication2',
+      mechs: rep2OverviewMechs
+    },
+    {
+      phaseName: 'Replication 2 Details',
       tag: 'replication2',
       mechs: replication2Mechs
     },
@@ -535,17 +647,37 @@ const shabinStrat: Strat = {
         {
           mechanic: 'Dodges',
           description: 'If Purple and Blue were popped, stay on Beta side for N/S dodges\nIf Red and Green were popped, go to other side for N/S dodges',
-          imageUrl: "./m12s/superchain-4.webp",
+          imageUrl: "./m12s/superchain-5.webp",
         }
       ]
     },
     {
-      phaseName: 'Idyllic Dream',
+      phaseName: 'Idyllic Dream Overview',
       tag: 'p2',
       mechs: [
         {
-          mechanic: 'Overview',
-          description: "<ul class=\"overview\">\n<li><strong>📌 Player clones spawn</strong></li>\n<li><strong>📌 Player clones tether</strong></li>\n<li><strong>📌 Cone telegraph</strong></li>\n<li><strong>📌 Boss clones spawn</strong></li>\n<li><strong>Take boss tethers (stack or defam)</strong></li>\n<li><strong>Cones resolve</strong></li>\n<br />\n<li><strong>Platforms and towers appear</strong></li>\n<li><strong>Light spreads go off, swap</strong></li>\n<li><strong>Remember tower spots</strong></li></ul>"
+          mechanic: 'Overview (Start)',
+          description: idyllicOverview
+        },
+        {
+          mechanic: 'Overview (Post Stacks and Defams)',
+          description: idyllicOverview2
+        },
+        {
+          mechanic: 'What Does My Tether Do?',
+          strats: [
+            // Generic info - shows when 'All' is selected (or no selection)
+            { toggleKey: 'idyllictether', toggleValue: '', description: "Select 'Idyllic Tether' to see your assignments" },
+            // Position-specific instructions
+            { toggleKey: 'idyllictether', toggleValue: 'N', description: '<strong>N Clone</strong>\nTop Right Stack for boss tethers (A + CW)\nStack on A/1' },
+            { toggleKey: 'idyllictether', toggleValue: 'NE', description: '<strong>NE Clone</strong>\nBottom Right Stack for boss tethers (B + CW)\nStack on A/1' },
+            { toggleKey: 'idyllictether', toggleValue: 'E', description: '<strong>E Clone</strong>\nBottom Left Stack for boss tethers (C + CW)\nStack on C/3' },
+            { toggleKey: 'idyllictether', toggleValue: 'SE', description: '<strong>SE Clone</strong>\nBottom Right Stack for boss tethers (D + CW)\nStack on C/3' },
+            { toggleKey: 'idyllictether', toggleValue: 'S', description: '<strong>S Clone</strong>\nTop Right Defam for boss tethers (A + CW)\n1st Defam on B\nStack on A/1' },
+            { toggleKey: 'idyllictether', toggleValue: 'SW', description: '<strong>SW Clone</strong>\nBottom Right Defam for boss tethers (B + CW)\n2nd Defam on B\nStack on A/1' },
+            { toggleKey: 'idyllictether', toggleValue: 'W', description: '<strong>W Clone</strong>\nBottom Left Defam for boss tethers (C + CW)\n1st Defam on D\nStack on C/3' },
+            { toggleKey: 'idyllictether', toggleValue: 'NW', description: '<strong>NW Clone</strong>\nTop Left Defam for boss tethers (D + CW)\n2nd Defam on D\nStack on C/3' },
+          ]
         }
       ]
     },
@@ -554,32 +686,23 @@ const shabinStrat: Strat = {
       tag: 'p2',
       mechs: [
         {
-          mechanic: 'First Clone Spawn',
-          description: '📌🐦 REMEMBER: Whether initial clones spawned Cardinal or Intercardinal first'
-        },
-        {
           mechanic: 'Player Clones',
-          description: 'N to SE: will need to take Stacks from boss clones\nS to NW: will need to take Defamations from boss clones',
+          description: '📌🐦 REMEMBER: Whether initial clones spawned Cardinal or Intercardinal first\n📌🧑‍🤝‍🧑 REMEMBER: your clone position\nN to SE: will need to take Stacks from boss clones\nS to NW: will need to take Defamations from boss clones',
           imageUrl: "./m12s/dn-idyllic-3.webp",
         },
         {
           mechanic: 'Cone Zone',
-          description: '📌🍦 REMEMBER: whether South or North is safe from cones (E/W safe)',
+          description: '📌🍦 REMEMBER: whether North or South is safe from cones (E/W safe)',
           imageUrl: "./m12s/dn-idyllic-4.webp",
         },
         {
-          mechanic: 'Defamation/Stack Tethers',
-          description: 'Boss clones spawn alternating tethers\nPre-position based on player clone positions',
-          imageUrl: "./m12s/dn-idyllic-6.webp",
-        },
-        {
           mechanic: 'Tether Swaps',
-          description: 'Swap with your partner to get the tether you need',
+          description: 'Swap with your partner in your quadrant to get the tether you need',
           imageUrl: "./m12s/dn-idyllic-7.webp",
         },
         {
-          mechanic: 'Remember (Use Macro)',
-          description: '📌🤔 REMEMBER:\nWhether North clone was Stack or Defamation\nTemporary light parties\nIf you were 1st or 2nd Defamation or a Stack',
+          mechanic: 'Boss Clones Spawn + Take Tethers',
+          description: '📌🤔 REMEMBER: Whether North clone was Stack or Defamation',
           imageUrl: "./m12s/dn-idyllic-8.webp",
         },
         {
@@ -605,13 +728,8 @@ const shabinStrat: Strat = {
         },
         {
           mechanic: 'Swaps',
-          description: 'One role gets hit with light spreads, light must swap out of Wind or Doom\nRanged swap with Ranged, Melee swap with Melee',
+          description: 'One role gets hit with light spreads, light must swap out of Wind or Doom\nRanged swap with Ranged, Melee swap with Melee\n📌🗼 REMEMBER: your tower post-swap',
           imageUrl: "./m12s/dn-idyllic-13.webp",
-        },
-        {
-          mechanic: 'Remember Your Tower',
-          description: '📌🗼 REMEMBER: your tower post-swap',
-          imageUrl: "./m12s/dn-idyllic-14.webp",
         }
       ]
     },
@@ -621,7 +739,7 @@ const shabinStrat: Strat = {
       mechs: [
         {
           mechanic: 'Recall Clones and Tethers',
-          description: '💡🤔 RECALL:\nWhether North clone was Stack or Defamation\nTemporary light parties\nIf you were 1st or 2nd Defamation or a Stack',
+          description: '💡🤔🧑‍🤝‍🧑 RECALL:\nWhether North clone was Stack or Defamation\nTemporary light parties\nIf you were 1st or 2nd Defamation or a Stack',
           imageUrl: "./m12s/dn-idyllic-15.webp",
         },
         {
@@ -636,18 +754,13 @@ const shabinStrat: Strat = {
       tag: 'p2',
       mechs: [
         {
-          mechanic: 'Back to Platforms',
-          description: '💡🗼 RECALL: your tower assignments',
-          imageUrl: "./m12s/dn-idyllic-22.webp",
-        },
-        {
           mechanic: 'Elements',
-          description: "Wind: Get KB to the other platform\nDoom: Point line away\nFire: Don't move (can still attack)\nEarth: Move out of twister",
+          description: "💡🗼 RECALL: your tower assignments\nWind: Get KB to the other platform\nDoom: Point line away\nFire: Don't move (can still attack)\nEarth: Move out of twister",
           imageUrl: "./m12s/dn-idyllic-24.webp",
         },
         {
           mechanic: 'Setup for Cones',
-          description: 'Wind: E/W of boss touching hitbox\nDoom: North edge of platform touching hitbox\nRanged Fire/Earth: South edge of platform\nMelee Ranged/Earth: Center north of platform between Doom/Wind',
+          description: 'Wind: E/W of boss touching hitbox\nDoom: North edge of platform touching hitbox\nRanged Fire/Earth: South edge of platform\nMelee Fire/Earth: Center north of platform between Doom/Wind',
           imageUrl: "./m12s/dn-idyllic-26.webp",
         }
       ]
@@ -663,13 +776,8 @@ const shabinStrat: Strat = {
         },
         {
           mechanic: 'Black Hole Clone',
-          description: '📌🍦🕳️ REMEMBER: Whether clone that jumps into the black hole is N/S or E/W safe',
+          description: '📌🍦🕳️ REMEMBER: Whether clone that jumps into the black hole is N/S or E/W safe\n📌🍦🐇 REMEMBER: Which platform the remaining N/S clone jumps to and which direction is safe',
           imageUrl: "./m12s/dn-idyllic-30.webp",
-        },
-        {
-          mechanic: 'Clone Jumps',
-          description: '📌🍦🐇 REMEMBER: Which platform the remaining N/S clone jumps to and which direction is safe',
-          imageUrl: "./m12s/dn-idyllic-31.webp",
         },
         {
           mechanic: '1st Defamations/Stacks',
@@ -678,7 +786,7 @@ const shabinStrat: Strat = {
         },
         {
           mechanic: 'Platform + Cone',
-          description: '💡🍦🐇 REMEMBER: Which platform the remaining N/S clone jumps to and which direction is safe\nGo to the platform where clone jumped to and dodge cones',
+          description: '💡🍦🐇 RECALL: Which platform the remaining N/S clone jumps to and which direction is safe\nGo to the platform where clone jumped to and dodge cones',
           imageUrl: "./m12s/dn-idyllic-35.webp",
         },
         {
@@ -688,7 +796,7 @@ const shabinStrat: Strat = {
         },
         {
           mechanic: 'Black Hole Clone Resolves',
-          description: '💡🍦🕳️ RECALL: Whether clone that jumps into the black hole is N/S or E/W safe\nDodge black hole clone cleaves from North',
+          description: '💡🍦🕳️ RECALL: Whether clone that jumped into the black hole was N/S or E/W safe\nDodge black hole clone cleaves from North',
           imageUrl: "./m12s/dn-idyllic-37.webp",
         }
       ]
@@ -771,6 +879,44 @@ export const m12sFightConfig: FightConfig = {
           value: "clonezone",
           label: "Clone Zone"
         }
+      ]
+    },
+    {
+      key: "rep2tether",
+      label: "Rep 2 Tether",
+      defaultValue: "",
+      excludeFromUrl: true,
+      isMechToggle: true,
+      phaseTag: "p2",
+      options: [
+        { value: "", label: "All" },
+        { value: "N", label: "N" },
+        { value: "NE", label: "NE" },
+        { value: "E", label: "E" },
+        { value: "SE", label: "SE" },
+        { value: "S", label: "S" },
+        { value: "SW", label: "SW" },
+        { value: "W", label: "W" },
+        { value: "NW", label: "NW" }
+      ]
+    },
+    {
+      key: "idyllictether",
+      label: "Idyllic Tether",
+      defaultValue: "",
+      excludeFromUrl: true,
+      isMechToggle: true,
+      phaseTag: "p2",
+      options: [
+        { value: "", label: "All" },
+        { value: "N", label: "N" },
+        { value: "NE", label: "NE" },
+        { value: "E", label: "E" },
+        { value: "SE", label: "SE" },
+        { value: "S", label: "S" },
+        { value: "SW", label: "SW" },
+        { value: "W", label: "W" },
+        { value: "NW", label: "NW" }
       ]
     }
   ],

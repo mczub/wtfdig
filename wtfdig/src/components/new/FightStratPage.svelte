@@ -20,7 +20,9 @@
 		value: strat.stratName,
 		label: config.stratLabels[strat.stratName] ?? strat.stratName
 	}));
-	const stratKeys = (config.toggles ?? []).map((toggle) => toggle.key);
+	const stratKeys = (config.toggles ?? [])
+		.filter((toggle) => !toggle.excludeFromUrl)
+		.map((toggle) => toggle.key);
 
 	let spotlight: boolean = $state(true);
 	let alignment: Alignment = $state('original');
@@ -85,7 +87,18 @@
 						strats:
 							phaseStratMech.strats &&
 							phaseStratMech.strats
-								.filter((playerStrat) => playerStrat.role === role && playerStrat.party === party)
+								.filter((playerStrat) => {
+									// Role filter: matches if undefined or equals selected role
+									const matchesRole = !playerStrat.role || playerStrat.role === role;
+									// Party filter: matches if undefined or equals selected party
+									const matchesParty = !playerStrat.party || playerStrat.party === party;
+									if (!matchesRole || !matchesParty) return false;
+
+									// Toggle filter: matches if no toggleKey or value matches current state
+									if (!playerStrat.toggleKey) return true;
+									const currentToggleValue = stratState[playerStrat.toggleKey] ?? '';
+									return playerStrat.toggleValue === currentToggleValue;
+								})
 								.map((playerStrat) => {
 									return {
 										...playerStrat,

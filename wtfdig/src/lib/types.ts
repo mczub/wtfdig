@@ -2,8 +2,10 @@ export type Role = 'Tank' | 'Healer' | 'Melee' | 'Ranged';
 export type Alignment = 'original' | 'truenorth' | 'relative';
 
 export interface PlayerMechStrat {
-	role: Role;
-	party: number;
+	role?: Role;
+	party?: number;
+	toggleKey?: string;
+	toggleValue?: string;
 	description: string | Record<string, string>;
 	imageUrl?: string | Record<string, string>;
 	imageRotated?: string;
@@ -68,6 +70,9 @@ export interface FightToggleConfig {
 	label: string;
 	defaultValue: string | null;
 	options: FightToggleOption[];
+	excludeFromUrl?: boolean;
+	isMechToggle?: boolean;
+	phaseTag?: string;
 }
 
 export interface FightOptionsContext {
@@ -138,6 +143,8 @@ export interface FightToggleState {
 	label: string;
 	value: string | null | undefined;
 	options: FightToggleOption[];
+	isMechToggle?: boolean;
+	phaseTag?: string;
 }
 
 // Spotlight mask types for SVG overlay

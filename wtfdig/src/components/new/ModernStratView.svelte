@@ -43,7 +43,8 @@
 		alignment,
 		tabTags = null,
 		useMainPageTabs = false,
-		role = null
+		role = null,
+		currentTab = $bindable()
 	}: Props = $props();
 
 	function getDefaultCollapsibleState() {
@@ -80,6 +81,11 @@
 	let timelineValue = $state(['']);
 
 	let tab = $state(tabTags ? Object.keys(tabTags)[0] : '');
+
+	// Sync internal tab state with bindable currentTab
+	$effect(() => {
+		currentTab = tab;
+	});
 
 	function isPhaseVisible(phase: any) {
 		if (tabTags && tabTags[tab] && useMainPageTabs) {
@@ -306,7 +312,7 @@
 							<div
 								class="text-base lg:text-lg text-surface-200 leading-relaxed max-w-4xl whitespace-pre-wrap"
 							>
-								{phase.description}
+								{@html phase.description}
 							</div>
 						{/if}
 
@@ -415,15 +421,19 @@
 												{/if}
 
 												<div class="flex items-start gap-1.5 text-base text-surface-100">
-													{#if role && mech.strats && mech.strats.length > 0 && mech.strats[0].description}
-														<img
-															src={`/icons/${role.toLowerCase()}.png`}
-															alt={role}
-															class="w-5 h-5 shrink-0 mt-0.5"
-														/>
+													{#if mech.strats && mech.strats.length > 0 && mech.strats[0].description}
+														{#if mech.strats[0].toggleKey}
+															<span class="shrink-0">⏩</span>
+														{:else if role}
+															<img
+																src={`/icons/${role.toLowerCase()}.png`}
+																alt={role}
+																class="w-5 h-5 shrink-0 mt-0.5"
+															/>
+														{/if}
 													{/if}
 													<div class="whitespace-pre-wrap">
-														{mech?.strats && mech.strats[0].description}
+														{@html mech?.strats && mech.strats[0].description}
 													</div>
 												</div>
 
@@ -508,11 +518,11 @@
 									{/if}
 
 									{#if phase?.description}
-										<p
+										<div
 											class="text-base lg:text-lg text-surface-200 leading-relaxed whitespace-pre-wrap"
 										>
-											{phase.description}
-										</p>
+											{@html phase.description}
+										</div>
 									{/if}
 								</div>
 								<Expand

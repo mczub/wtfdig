@@ -27,7 +27,9 @@
 		label: config.strats[strat.stratName].label ?? strat.stratName,
 		badges: config.strats[strat.stratName].badges
 	}));
-	const stratKeys = (config.toggles ?? []).map((toggle) => toggle.key);
+	const stratKeys = (config.toggles ?? [])
+		.filter((toggle) => !toggle.excludeFromUrl)
+		.map((toggle) => toggle.key);
 
 	let spotlight: boolean = $state(true);
 	let alignment: Alignment = $state('original');
@@ -95,7 +97,18 @@
 						strats:
 							phaseStratMech.strats &&
 							phaseStratMech.strats
-								.filter((playerStrat) => playerStrat.role === role && playerStrat.party === party)
+								.filter((playerStrat) => {
+									// Role filter: matches if undefined or equals selected role
+									const matchesRole = !playerStrat.role || playerStrat.role === role;
+									// Party filter: matches if undefined or equals selected party
+									const matchesParty = !playerStrat.party || playerStrat.party === party;
+									if (!matchesRole || !matchesParty) return false;
+
+									// Toggle filter: matches if no toggleKey or value matches current state
+									if (!playerStrat.toggleKey) return true;
+									const currentToggleValue = stratState[playerStrat.toggleKey] ?? '';
+									return playerStrat.toggleValue === currentToggleValue;
+								})
 								.map((playerStrat) => {
 									return {
 										...playerStrat,
@@ -177,6 +190,7 @@
 	let isCheatsheetEnabled = $derived(innerWidth > 1024 && innerHeight > 768);
 
 	let cheatsheetOpenState = $state(false);
+	let currentTab = $state<string | undefined>(undefined);
 
 	function scrollToTop() {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -230,6 +244,7 @@
 			useEvenTimelineSpacing={config.useEvenTimelineSpacing ?? false}
 			{stratName}
 			{stratState}
+			{setStratState}
 			{getStratMechs}
 			{individualStrat}
 			{spotlight}
@@ -239,6 +254,7 @@
 			tabTags={config.tabTags}
 			role={normalizedRole}
 			fightKey={config.fightKey}
+			mechToggles={(config.toggles ?? []).filter((t) => t.isMechToggle)}
 		/>
 	{:else}
 		<Cheatsheet
@@ -273,7 +289,9 @@
 			key: toggle.key,
 			label: toggle.label,
 			value: stratState?.[toggle.key] ?? toggle.defaultValue ?? null,
-			options: toggle.options
+			options: toggle.options,
+			isMechToggle: toggle.isMechToggle,
+			phaseTag: toggle.phaseTag
 		}))}
 		onToggleChange={setStratState}
 		currentStratDefaults={getStratMechs(stratName ?? '')}
@@ -284,6 +302,9 @@
 		{spotlight}
 		setSpotlight={(val) => (spotlight = val)}
 		additionalResources={config.additionalResources}
+		onOpenCheatsheet={isCheatsheetEnabled ? () => (cheatsheetOpenState = true) : undefined}
+		tabTags={config.tabTags}
+		{currentTab}
 	/>
 
 	{#if scrollY > 300}
@@ -445,6 +466,7 @@
 							role={normalizedRole}
 							fightKey={config.fightKey}
 							useMainPageTabs={config.useMainPageTabs}
+							bind:currentTab
 						/>
 					</div>
 				{/if}
