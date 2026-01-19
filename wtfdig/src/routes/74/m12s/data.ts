@@ -776,8 +776,20 @@ const modifiedStrat: Strat = {
         {
           mechanic: 'Player Clones',
           description: '📌🐦 REMEMBER: Whether initial clones spawned Cardinal or Intercardinal first\n📌🧑‍🤝‍🧑 REMEMBER: your clone position\nN to SE: will need to take Stacks from boss clones\nS to NW: will need to take Defamations from boss clones',
-          imageUrl: "./m12s/dn-idyllic-3.webp",
-          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#4"
+          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#4",
+          strats: [
+            // Generic info - shows when 'All' is selected (or no selection)
+            { toggleKey: 'idyllictether', toggleValue: '', description: "", imageUrl: "./m12s/dn-idyllic-3.webp", },
+            // Position-specific instructions
+            { toggleKey: 'idyllictether', toggleValue: 'N', description: 'Take Stack from boss clone', imageUrl: "./m12s/dn-idyllic-3.webp", },
+            { toggleKey: 'idyllictether', toggleValue: 'NE', description: 'Take Stack from boss clone', imageUrl: "./m12s/dn-idyllic-3.webp", },
+            { toggleKey: 'idyllictether', toggleValue: 'E', description: 'Take Stack from boss clone', imageUrl: "./m12s/dn-idyllic-3.webp", },
+            { toggleKey: 'idyllictether', toggleValue: 'SE', description: 'Take Stack from boss clone', imageUrl: "./m12s/dn-idyllic-3.webp", },
+            { toggleKey: 'idyllictether', toggleValue: 'S', description: 'Take Defamation from boss clone', imageUrl: "./m12s/dn-idyllic-3.webp", },
+            { toggleKey: 'idyllictether', toggleValue: 'SW', description: 'Take Defamation from boss clone', imageUrl: "./m12s/dn-idyllic-3.webp", },
+            { toggleKey: 'idyllictether', toggleValue: 'W', description: 'Take Defamation from boss clone', imageUrl: "./m12s/dn-idyllic-3.webp", },
+            { toggleKey: 'idyllictether', toggleValue: 'NW', description: 'Take Defamation from boss clone', imageUrl: "./m12s/dn-idyllic-3.webp", },
+          ]
         },
         {
           mechanic: 'Cone Zone',
@@ -788,8 +800,20 @@ const modifiedStrat: Strat = {
         {
           mechanic: 'Tether Swaps',
           description: 'Swap with your partner in your quadrant to get the tether you need',
-          imageUrl: "./m12s/dn-idyllic-7.webp",
-          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#8"
+          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#8",
+          strats: [
+            // Generic info - shows when 'All' is selected (or no selection)
+            { toggleKey: 'idyllictether', toggleValue: '', description: "", imageUrl: "./m12s/dn-idyllic-7.webp", },
+            // Position-specific instructions
+            { toggleKey: 'idyllictether', toggleValue: 'N', description: 'Take Stack from Top Right (Red/A + CW)', imageUrl: "./m12s/dn-idyllic-7.webp", },
+            { toggleKey: 'idyllictether', toggleValue: 'NE', description: 'Take Stack from Bottom Right (Yellow/B + CW)', imageUrl: "./m12s/dn-idyllic-7.webp", },
+            { toggleKey: 'idyllictether', toggleValue: 'E', description: 'Take Stack from Bottom Left (Blue/C + CW)', imageUrl: "./m12s/dn-idyllic-7.webp", },
+            { toggleKey: 'idyllictether', toggleValue: 'SE', description: 'Take Stack from Top Left (Purple/D + CW)', imageUrl: "./m12s/dn-idyllic-7.webp", },
+            { toggleKey: 'idyllictether', toggleValue: 'S', description: 'Take Defamation from Top Right (Red/A + CW)', imageUrl: "./m12s/dn-idyllic-7.webp", },
+            { toggleKey: 'idyllictether', toggleValue: 'SW', description: 'Take Defamation from Bottom Right (Yellow/B + CW)', imageUrl: "./m12s/dn-idyllic-7.webp", },
+            { toggleKey: 'idyllictether', toggleValue: 'W', description: 'Take Defamation from Bottom Left (Blue/C + CW)', imageUrl: "./m12s/dn-idyllic-7.webp", },
+            { toggleKey: 'idyllictether', toggleValue: 'NW', description: 'Take Defamation from Top Left (Purple/D + CW)', imageUrl: "./m12s/dn-idyllic-7.webp", },
+          ]
         },
         {
           mechanic: 'Boss Clones Spawn + Take Tethers',
@@ -812,8 +836,57 @@ const modifiedStrat: Strat = {
         {
           mechanic: 'Platform Setup',
           description: 'True G1 West/G2 East\nSupports Left, DPS Right\nMelees close, Ranged far',
-          imageUrl: "./m12s/dn-idyllic-11.webp",
-          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#12"
+          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#12",
+          strats: [
+            {
+              role: "Tank",
+              party: 1,
+              description: "West platform (D marker)\nFront Left looking at boss",
+              imageUrl: "./m12s/dn-idyllic-11.webp",
+            },
+            {
+              role: "Tank",
+              party: 2,
+              description: "East platform (B marker)\nFront Left looking at boss",
+              imageUrl: "./m12s/dn-idyllic-11.webp",
+            },
+            {
+              role: "Healer",
+              party: 1,
+              description: "West platform (D marker)\nBack Left looking at boss",
+              imageUrl: "./m12s/dn-idyllic-11.webp",
+            },
+            {
+              role: "Healer",
+              party: 2,
+              description: "East platform (B marker)\nBack Left looking at boss",
+              imageUrl: "./m12s/dn-idyllic-11.webp",
+            },
+            {
+              role: "Melee",
+              party: 1,
+              description: "West platform (D marker)\nFront Right looking at boss",
+              imageUrl: "./m12s/dn-idyllic-11.webp",
+            },
+            {
+              role: "Melee",
+              party: 2,
+              description: "East platform (B marker)\nFront Right looking at boss",
+              imageUrl: "./m12s/dn-idyllic-11.webp",
+            },
+            {
+              role: "Ranged",
+              party: 1,
+              description: "West platform (D marker)\nBack Right looking at boss",
+              imageUrl: "./m12s/dn-idyllic-11.webp",
+            },
+            {
+              role: "Ranged",
+              party: 2,
+              description: "East platform (B marker)\nBack Right looking at boss",
+              imageUrl: "./m12s/dn-idyllic-11.webp",
+            }
+          ]
         },
         {
           mechanic: 'Towers',
@@ -842,8 +915,20 @@ const modifiedStrat: Strat = {
         {
           mechanic: 'Defamations/Stacks',
           description: 'Defamations will be on D and B\nStacks will be on 1 and 3',
-          imageUrl: "./m12s/dn-idyllic-17.webp",
-          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#18"
+          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#18",
+          strats: [
+            // Generic info - shows when 'All' is selected (or no selection)
+            { toggleKey: 'idyllictether', toggleValue: '', description: "", imageUrl: "./m12s/dn-idyllic-17.webp", },
+            // Position-specific instructions
+            { toggleKey: 'idyllictether', toggleValue: 'N', description: 'Take Stacks on 1', imageUrl: "./m12s/dn-idyllic-17.webp", },
+            { toggleKey: 'idyllictether', toggleValue: 'NE', description: 'Take Stacks on 1', imageUrl: "./m12s/dn-idyllic-17.webp", },
+            { toggleKey: 'idyllictether', toggleValue: 'E', description: 'Take Stacks on 3', imageUrl: "./m12s/dn-idyllic-17.webp", },
+            { toggleKey: 'idyllictether', toggleValue: 'SE', description: 'Take Stacks on 3', imageUrl: "./m12s/dn-idyllic-17.webp", },
+            { toggleKey: 'idyllictether', toggleValue: 'S', description: '1st Defamation on B\nTake Stacks on 1', imageUrl: "./m12s/dn-idyllic-17.webp", },
+            { toggleKey: 'idyllictether', toggleValue: 'SW', description: '2nd Defamation on B\nTake Stacks on 1', imageUrl: "./m12s/dn-idyllic-17.webp", },
+            { toggleKey: 'idyllictether', toggleValue: 'W', description: '1st Defamation on D\nTake Stacks on 3', imageUrl: "./m12s/dn-idyllic-17.webp", },
+            { toggleKey: 'idyllictether', toggleValue: 'NW', description: '2nd Defamation on D\nTake Stacks on 3', imageUrl: "./m12s/dn-idyllic-17.webp", },
+          ]
         },
       ]
     },
@@ -885,7 +970,57 @@ const modifiedStrat: Strat = {
           mechanic: '1st Defamations/Stacks',
           description: '💡🐦 RECALL: Whether initial clones spawned Cardinal or Intercardinal first\nCardinal: Party to A marker, Tanks to B marker, slightly towards NE\nIntercard: Party NE, Tanks SE, slightly towards B',
           imageUrl: "./m12s/dn-idyllic-34.webp",
-          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#35"
+          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#35",
+          strats: [
+            {
+              role: "Tank",
+              party: 1,
+              description: "Cardinal: B marker slightly towards NE\nIntercard: SE slightly towards B",
+              imageUrl: "./m12s/dn-idyllic-34.webp",
+            },
+            {
+              role: "Tank",
+              party: 2,
+              description: "Cardinal: B marker slightly towards NE\nIntercard: SE slightly towards B",
+              imageUrl: "./m12s/dn-idyllic-34.webp",
+            },
+            {
+              role: "Healer",
+              party: 1,
+              description: "Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B",
+              imageUrl: "./m12s/dn-idyllic-34.webp",
+            },
+            {
+              role: "Healer",
+              party: 2,
+              description: "Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B",
+              imageUrl: "./m12s/dn-idyllic-34.webp",
+            },
+            {
+              role: "Melee",
+              party: 1,
+              description: "Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B",
+              imageUrl: "./m12s/dn-idyllic-34.webp",
+            },
+            {
+              role: "Melee",
+              party: 2,
+              description: "Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B",
+              imageUrl: "./m12s/dn-idyllic-34.webp",
+            },
+            {
+              role: "Ranged",
+              party: 1,
+              description: "Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B",
+              imageUrl: "./m12s/dn-idyllic-34.webp",
+            },
+            {
+              role: "Ranged",
+              party: 2,
+              description: "Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B",
+              imageUrl: "./m12s/dn-idyllic-34.webp",
+            }
+          ]
         },
         {
           mechanic: 'Platform + Cone',
@@ -896,8 +1031,57 @@ const modifiedStrat: Strat = {
         {
           mechanic: '2nd Defamations/Stacks',
           description: 'Do the other variation from the 1st one\nCardinal: Party to A marker, Tanks to B marker, slightly towards NE\nIntercard: Party NE, Tanks SE, slightly towards B',
-          imageUrl: "./m12s/dn-idyllic-36.webp",
-          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#37"
+          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#37",
+          strats: [
+            {
+              role: "Tank",
+              party: 1,
+              description: "Cardinal: B marker slightly towards NE\nIntercard: SE slightly towards B",
+              imageUrl: "./m12s/dn-idyllic-36.webp",
+            },
+            {
+              role: "Tank",
+              party: 2,
+              description: "Cardinal: B marker slightly towards NE\nIntercard: SE slightly towards B",
+              imageUrl: "./m12s/dn-idyllic-36.webp",
+            },
+            {
+              role: "Healer",
+              party: 1,
+              description: "Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B",
+              imageUrl: "./m12s/dn-idyllic-36.webp",
+            },
+            {
+              role: "Healer",
+              party: 2,
+              description: "Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B",
+              imageUrl: "./m12s/dn-idyllic-36.webp",
+            },
+            {
+              role: "Melee",
+              party: 1,
+              description: "Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B",
+              imageUrl: "./m12s/dn-idyllic-36.webp",
+            },
+            {
+              role: "Melee",
+              party: 2,
+              description: "Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B",
+              imageUrl: "./m12s/dn-idyllic-36.webp",
+            },
+            {
+              role: "Ranged",
+              party: 1,
+              description: "Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B",
+              imageUrl: "./m12s/dn-idyllic-36.webp",
+            },
+            {
+              role: "Ranged",
+              party: 2,
+              description: "Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B",
+              imageUrl: "./m12s/dn-idyllic-36.webp",
+            }
+          ]
         },
         {
           mechanic: 'Black Hole Clone Resolves',
