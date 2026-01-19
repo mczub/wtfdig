@@ -45,10 +45,10 @@ const cloneZoneRep2Overview: MechanicStrat[] = [
 
 // Toggle-dependent mechs for Replication 2
 const cloneZoneReplication2: MechanicStrat[] = [
-
   {
     mechanic: 'Acting Light Parties',
     description: 'South to NW: Acting LP1\nNorth to SE: Acting LP2',
+    url: "https://raidplan.io/plan/SFa6J6wDrU9PlCJ4#3",
     strats: [
       { toggleKey: 'rep2tether', toggleValue: '', description: "", imageUrl: './m12s/cz-rep2-2.webp', },
       { toggleKey: 'rep2tether', toggleValue: 'N', description: 'Acting LP2', imageUrl: './m12s/cz-rep2-2.webp' },
@@ -64,6 +64,7 @@ const cloneZoneReplication2: MechanicStrat[] = [
   {
     mechanic: 'Tether Assignments',
     description: 'Based on initial clone spawn, take a tether (1x Boss tether, 2x Cleaves, 2x Stacks, 2x Defamations)\nSouth clone will take nothing',
+    url: "https://raidplan.io/plan/SFa6J6wDrU9PlCJ4#5",
     strats: [
       { toggleKey: 'rep2tether', toggleValue: '', description: "", imageUrl: './m12s/cz-rep2-4.webp' },
       { toggleKey: 'rep2tether', toggleValue: 'N', description: 'Boss tether', imageUrl: './m12s/cz-rep2-4.webp' },
@@ -79,6 +80,7 @@ const cloneZoneReplication2: MechanicStrat[] = [
   {
     mechanic: 'Player Defamations',
     description: 'Defamations go ESE and WSW\nNothing player go South\nBoss tether goes on the diamond under A\nStacks and Cleaves go to North edge',
+    url: "https://raidplan.io/plan/SFa6J6wDrU9PlCJ4#6",
     strats: [
       { toggleKey: 'rep2tether', toggleValue: '', description: '', imageUrl: './m12s/cz-rep2-5.webp' },
       { toggleKey: 'rep2tether', toggleValue: 'N', description: 'Stand on Diamond under A', imageUrl: './m12s/cz-rep2-5.webp' },
@@ -94,6 +96,7 @@ const cloneZoneReplication2: MechanicStrat[] = [
   {
     mechanic: 'Player Stacks',
     description: 'Light party stacks on stack players NW and NE',
+    url: "https://raidplan.io/plan/SFa6J6wDrU9PlCJ4#8",
     strats: [
       { toggleKey: 'rep2tether', toggleValue: '', description: '', imageUrl: './m12s/cz-rep2-7.webp' },
       { toggleKey: 'rep2tether', toggleValue: 'N', description: 'Join LP2 stack', imageUrl: './m12s/cz-rep2-7.webp' },
@@ -109,6 +112,7 @@ const cloneZoneReplication2: MechanicStrat[] = [
   {
     mechanic: 'Player Cleaves',
     description: 'Cleave players go between party and boss to bait cleaves out of North of arena',
+    url: "https://raidplan.io/plan/SFa6J6wDrU9PlCJ4#9",
     strats: [
       { toggleKey: 'rep2tether', toggleValue: '', description: '', imageUrl: './m12s/cz-rep2-8.webp' },
       { toggleKey: 'rep2tether', toggleValue: 'N', description: 'Stay in LP2 stack', imageUrl: './m12s/cz-rep2-8.webp' },
@@ -125,10 +129,12 @@ const cloneZoneReplication2: MechanicStrat[] = [
     mechanic: 'Snaking Kick',
     description: 'Dodge behind frontal cleave\nA marker always safe',
     imageUrl: './m12s/cz-rep2-9.webp',
+    url: "https://raidplan.io/plan/SFa6J6wDrU9PlCJ4#10"
   },
   {
     mechanic: 'Netherwrath Far',
     description: 'Defamation players bait far pairs on NW/NE arena floor diamonds\nStack/Cleave players bait boss proteans North',
+    url: "https://raidplan.io/plan/SFa6J6wDrU9PlCJ4#14",
     strats: [
       { toggleKey: 'rep2tether', toggleValue: '', description: '', imageUrl: './m12s/cz-rep2-13.webp' },
       { toggleKey: 'rep2tether', toggleValue: 'N', description: 'Take pair stack near 2 marker', imageUrl: './m12s/cz-rep2-13.webp' },
@@ -144,6 +150,7 @@ const cloneZoneReplication2: MechanicStrat[] = [
   {
     mechanic: 'Netherwrath Near',
     description: 'Defamation players bait pairs on boss hitbox\nStack/Cleave players bait boss proteans North',
+    url: "https://raidplan.io/plan/SFa6J6wDrU9PlCJ4#15",
     strats: [
       { toggleKey: 'rep2tether', toggleValue: '', description: '', imageUrl: './m12s/cz-rep2-14.webp' },
       { toggleKey: 'rep2tether', toggleValue: 'N', description: 'Take pair stack near 2 marker', imageUrl: './m12s/cz-rep2-14.webp' },
@@ -159,17 +166,20 @@ const cloneZoneReplication2: MechanicStrat[] = [
   {
     mechanic: 'Clone First Defam + Cleave',
     description: 'Ranged will end up West\nMelees will end up East\nRanged be careful of first Clone defamation',
-    imageUrl: './m12s/cz-rep2-16.webp'
+    imageUrl: './m12s/cz-rep2-16.webp',
+    url: "https://raidplan.io/plan/SFa6J6wDrU9PlCJ4#17"
   },
   {
     mechanic: 'Clone Stacks',
     description: 'Ranged stack West, Melee stack East',
-    imageUrl: './m12s/cz-rep2-17.webp'
+    imageUrl: './m12s/cz-rep2-17.webp',
+    url: "https://raidplan.io/plan/SFa6J6wDrU9PlCJ4#18"
   },
   {
     mechanic: 'Clone Second Defam + Cleave',
     description: 'Melees dodge back NE to avoid second Clone defamation',
-    imageUrl: './m12s/cz-rep2-18.webp'
+    imageUrl: './m12s/cz-rep2-18.webp',
+    url: "https://raidplan.io/plan/SFa6J6wDrU9PlCJ4#19"
   }
 ];
 
@@ -194,48 +204,124 @@ const dnRep2Overview: MechanicStrat[] = [
 
 const dnReplication2: MechanicStrat[] = [
   {
-    mechanic: 'Light Parties',
-    description: 'TBD'
+    mechanic: 'Acting Light Parties',
+    description: 'South to NW: Acting LP1\nNorth to SE: Acting LP2',
+    url: "https://raidplan.io/plan/ZacmNyJxptIVKNrK#4",
+    strats: [
+      { toggleKey: 'rep2tether', toggleValue: '', description: "", imageUrl: './m12s/dn-rep2-3.webp', },
+      { toggleKey: 'rep2tether', toggleValue: 'N', description: 'Acting LP2', imageUrl: './m12s/dn-rep2-3.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NE', description: 'Acting LP2', imageUrl: './m12s/dn-rep2-3.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'E', description: 'Acting LP2', imageUrl: './m12s/dn-rep2-3.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SE', description: 'Acting LP2', imageUrl: './m12s/dn-rep2-3.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'S', description: 'Acting LP1', imageUrl: './m12s/dn-rep2-3.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SW', description: 'Acting LP1', imageUrl: './m12s/dn-rep2-3.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'W', description: 'Acting LP1', imageUrl: './m12s/dn-rep2-3.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NW', description: 'Acting LP1', imageUrl: './m12s/dn-rep2-3.webp' },
+    ]
   },
   {
     mechanic: 'Tether Assignments',
-    description: 'TBD'
+    description: 'Based on initial clone spawn, take a tether (1x Boss tether, 2x Cleaves, 2x Stacks, 2x Defamations)\nSouth clone will take nothing',
+    url: "https://raidplan.io/plan/ZacmNyJxptIVKNrK#5",
+    strats: [
+      { toggleKey: 'rep2tether', toggleValue: '', description: "", imageUrl: './m12s/dn-rep2-4.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'N', description: 'Boss tether', imageUrl: './m12s/dn-rep2-4.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NE', description: 'Cleave Tether N/CW', imageUrl: './m12s/dn-rep2-4.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'E', description: 'Stack Tether N/CW', imageUrl: './m12s/dn-rep2-4.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SE', description: 'Defam Tether N/CW', imageUrl: './m12s/dn-rep2-4.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'S', description: 'No Tether', imageUrl: './m12s/dn-rep2-4.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SW', description: 'Defam Tether NW/CCW', imageUrl: './m12s/dn-rep2-4.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'W', description: 'Stack Tether NW/CCW', imageUrl: './m12s/dn-rep2-4.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NW', description: 'Cleave Tether NW/CCW', imageUrl: './m12s/dn-rep2-4.webp' },
+    ]
   },
   {
     mechanic: 'Player Defamations',
-    description: 'TBD'
+    description: 'Defamations go West and East\nNothing player go South\nBoss tether goes between A and 1\nStacks and Cleaves go to North edge',
+    url: "https://raidplan.io/plan/ZacmNyJxptIVKNrK#10",
+    strats: [
+      { toggleKey: 'rep2tether', toggleValue: '', description: '', imageUrl: './m12s/dn-rep2-9.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'N', description: 'Stand between A and 1', imageUrl: './m12s/dn-rep2-9.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NE', description: 'Go outer East on North edge', imageUrl: './m12s/dn-rep2-9.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'E', description: 'Go inner East on North edge', imageUrl: './m12s/dn-rep2-9.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SE', description: 'Take Defam East', imageUrl: './m12s/dn-rep2-9.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'S', description: 'Take Defam S', imageUrl: './m12s/dn-rep2-9.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SW', description: 'Take Defam West', imageUrl: './m12s/dn-rep2-9.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'W', description: 'Go inner West on North edge', imageUrl: './m12s/dn-rep2-9.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NW', description: 'Go outer West on North edge', imageUrl: './m12s/dn-rep2-9.webp' },
+    ]
   },
   {
     mechanic: 'Player Stacks',
-    description: 'TBD'
+    description: 'Light party stacks on stack players West and East of boss',
+    url: "https://raidplan.io/plan/ZacmNyJxptIVKNrK#14",
+    strats: [
+      { toggleKey: 'rep2tether', toggleValue: '', description: '', imageUrl: './m12s/dn-rep2-13.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'N', description: 'Join LP2 stack', imageUrl: './m12s/dn-rep2-13.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NE', description: 'Join LP2 stack', imageUrl: './m12s/dn-rep2-13.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'E', description: 'Take LP2 stack', imageUrl: './m12s/dn-rep2-13.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SE', description: 'Join LP2 stack', imageUrl: './m12s/dn-rep2-13.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'S', description: 'Join LP1 stack', imageUrl: './m12s/dn-rep2-13.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SW', description: 'Join LP1 stack', imageUrl: './m12s/dn-rep2-13.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'W', description: 'Take LP1 stack', imageUrl: './m12s/dn-rep2-13.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NW', description: 'Join LP1 stack', imageUrl: './m12s/dn-rep2-13.webp' },
+    ]
   },
   {
     mechanic: 'Player Cleaves',
-    description: 'TBD'
+    description: 'Cleave players be northmost and bait cleaves out of North out of arena',
+    url: "https://raidplan.io/plan/ZacmNyJxptIVKNrK#14",
+    strats: [
+      { toggleKey: 'rep2tether', toggleValue: '', description: '', imageUrl: './m12s/dn-rep2-13.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'N', description: 'Stay in LP2 stack', imageUrl: './m12s/dn-rep2-13.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NE', description: 'Point cleave out of arena', imageUrl: './m12s/dn-rep2-13.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'E', description: 'Stay in LP2 stack', imageUrl: './m12s/dn-rep2-13.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SE', description: 'Stay in LP2 stack', imageUrl: './m12s/dn-rep2-13.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'S', description: 'Stay in LP1 stack', imageUrl: './m12s/dn-rep2-13.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SW', description: 'Stay in LP1 stack', imageUrl: './m12s/dn-rep2-13.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'W', description: 'Stay in LP1 stack', imageUrl: './m12s/dn-rep2-13.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NW', description: 'Point cleave out of arena', imageUrl: './m12s/dn-rep2-13.webp' },
+    ]
   },
   {
     mechanic: 'Snaking Kick',
-    description: 'TBD'
+    description: 'Dodge behind frontal cleave',
+    imageUrl: './m12s/dn-rep2-14.webp',
+    url: "https://raidplan.io/plan/ZacmNyJxptIVKNrK#15"
   },
   {
-    mechanic: 'Netherwrath Far',
-    description: 'TBD'
-  },
-  {
-    mechanic: 'Netherwrath Near',
-    description: 'TBD'
+    mechanic: 'Netherwrath Far/Near',
+    description: 'Defamation players bait pairs\nStack/Cleave players bait boss proteans North',
+    url: "https://raidplan.io/plan/ZacmNyJxptIVKNrK#18",
+    strats: [
+      { toggleKey: 'rep2tether', toggleValue: '', description: '', imageUrl: './m12s/dn-rep2-17.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'N', description: 'Take pair stack SW of boss', imageUrl: './m12s/dn-rep2-17.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NE', description: 'Bait protean outer East', imageUrl: './m12s/dn-rep2-17.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'E', description: 'Bait protean inner East', imageUrl: './m12s/dn-rep2-17.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SE', description: 'Bait pair stack SW of boss', imageUrl: './m12s/dn-rep2-17.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'S', description: 'Take pair stack SE of boss', imageUrl: './m12s/dn-rep2-17.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'SW', description: 'Bait pair stack SE of boss', imageUrl: './m12s/dn-rep2-17.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'W', description: 'Bait protean inner West', imageUrl: './m12s/dn-rep2-17.webp' },
+      { toggleKey: 'rep2tether', toggleValue: 'NW', description: 'Bait protean outer West', imageUrl: './m12s/dn-rep2-17.webp' },
+    ]
   },
   {
     mechanic: 'Clone First Defam + Cleave',
-    description: 'TBD'
+    description: 'Chill North to dodge first cleave/defamation\nNote: original raidplan has these in opposite order',
+    imageUrl: './m12s/dn-rep2-21.webp',
+    url: "https://raidplan.io/plan/ZacmNyJxptIVKNrK#22"
   },
   {
     mechanic: 'Clone Stacks',
-    description: 'TBD'
+    description: 'Ranged stack West, Melee stack East',
+    imageUrl: './m12s/dn-rep2-19.webp',
+    url: "https://raidplan.io/plan/ZacmNyJxptIVKNrK#20"
   },
   {
     mechanic: 'Clone Second Defam + Cleave',
-    description: 'TBD'
+    description: 'Dodge back North to dodge second cleave/defamation',
+    imageUrl: './m12s/dn-rep2-18.webp',
+    url: "https://raidplan.io/plan/ZacmNyJxptIVKNrK#19"
   }
 ];
 
@@ -507,7 +593,8 @@ const shabinStrat: Strat = {
         {
           mechanic: 'Setup',
           description: 'G1 N, G2 S\nMelees NE/SW, Ranged NW/SE',
-          imageUrl: "./m12s/dn-rep1-1.webp"
+          imageUrl: "./m12s/dn-rep1-1.webp",
+          url: "https://raidplan.io/plan/9ncP6UIDURcWuRuO#2"
         },
         {
           mechanic: 'Dark Debuff',
@@ -638,16 +725,19 @@ const shabinStrat: Strat = {
           mechanic: 'Alpha Debuffs',
           description: 'Chill mid while Betas pop objects\nDo both dodges while debuff switches to Beta\nBait Netherwar Near/Far',
           imageUrl: "./m12s/superchain-1.webp",
+          url: "https://raidplan.io/plan/OnhUS061LkI3xlmg#2"
         },
         {
           mechanic: 'Beta Debuffs',
           description: 'Go to side with all objects far\nTank N, Others S to pop 2 close objects\nDo both dodges while debuff switches to Alpha\nAvoid Netherwar Near/Far',
           imageUrl: "./m12s/superchain-3.webp",
+          url: "https://raidplan.io/plan/OnhUS061LkI3xlmg#4"
         },
         {
           mechanic: 'Dodges',
           description: 'If Purple and Blue were popped, stay on Beta side for N/S dodges\nIf Red and Green were popped, go to other side for N/S dodges',
           imageUrl: "./m12s/superchain-5.webp",
+          url: "https://raidplan.io/plan/OnhUS061LkI3xlmg#6"
         }
       ]
     },
@@ -689,26 +779,31 @@ const shabinStrat: Strat = {
           mechanic: 'Player Clones',
           description: '📌🐦 REMEMBER: Whether initial clones spawned Cardinal or Intercardinal first\n📌🧑‍🤝‍🧑 REMEMBER: your clone position\nN to SE: will need to take Stacks from boss clones\nS to NW: will need to take Defamations from boss clones',
           imageUrl: "./m12s/dn-idyllic-3.webp",
+          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#4"
         },
         {
           mechanic: 'Cone Zone',
           description: '📌🍦 REMEMBER: whether North or South is safe from cones (E/W safe)',
           imageUrl: "./m12s/dn-idyllic-4.webp",
+          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#5"
         },
         {
           mechanic: 'Tether Swaps',
           description: 'Swap with your partner in your quadrant to get the tether you need',
           imageUrl: "./m12s/dn-idyllic-7.webp",
+          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#8"
         },
         {
           mechanic: 'Boss Clones Spawn + Take Tethers',
           description: '📌🤔 REMEMBER: Whether North clone was Stack or Defamation',
           imageUrl: "./m12s/dn-idyllic-8.webp",
+          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#9"
         },
         {
           mechanic: 'Cones Resolve',
           description: '💡🍦 RECALL: Whether South or North is safe from cones\nGo to Cone safespots (South or North) with True G1 West/G2 East\nMove to platforms right after',
           imageUrl: "./m12s/dn-idyllic-10.webp",
+          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#11"
         }
       ]
     },
@@ -720,16 +815,19 @@ const shabinStrat: Strat = {
           mechanic: 'Platform Setup',
           description: 'True G1 West/G2 East\nSupports Left, DPS Right\nMelees close, Ranged far',
           imageUrl: "./m12s/dn-idyllic-11.webp",
+          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#12"
         },
         {
           mechanic: 'Towers',
           description: 'Towers can be Earth (twister), Fire (pyretic), Wind (Light-aspected, knockback), Doom (Light-aspected, baited laser)',
           imageUrl: "./m12s/dn-idyllic-12.webp",
+          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#13"
         },
         {
           mechanic: 'Swaps',
           description: 'One role gets hit with light spreads, light must swap out of Wind or Doom\nRanged swap with Ranged, Melee swap with Melee\n📌🗼 REMEMBER: your tower post-swap',
           imageUrl: "./m12s/dn-idyllic-13.webp",
+          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#14"
         }
       ]
     },
@@ -741,11 +839,13 @@ const shabinStrat: Strat = {
           mechanic: 'Recall Clones and Tethers',
           description: '💡🤔🧑‍🤝‍🧑 RECALL:\nWhether North clone was Stack or Defamation\nTemporary light parties\nIf you were 1st or 2nd Defamation or a Stack',
           imageUrl: "./m12s/dn-idyllic-15.webp",
+          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#16"
         },
         {
           mechanic: 'Defamations/Stacks',
           description: 'Defamations will be on D and B\nStacks will be on 1 and 3',
           imageUrl: "./m12s/dn-idyllic-17.webp",
+          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#18"
         },
       ]
     },
@@ -757,11 +857,13 @@ const shabinStrat: Strat = {
           mechanic: 'Elements',
           description: "💡🗼 RECALL: your tower assignments\nWind: Get KB to the other platform\nDoom: Point line away\nFire: Don't move (can still attack)\nEarth: Move out of twister",
           imageUrl: "./m12s/dn-idyllic-24.webp",
+          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#25"
         },
         {
           mechanic: 'Setup for Cones',
           description: 'Wind: E/W of boss touching hitbox\nDoom: North edge of platform touching hitbox\nRanged Fire/Earth: South edge of platform\nMelee Fire/Earth: Center north of platform between Doom/Wind',
           imageUrl: "./m12s/dn-idyllic-26.webp",
+          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#27"
         }
       ]
     },
@@ -773,31 +875,37 @@ const shabinStrat: Strat = {
           mechanic: 'Clone Spawns',
           description: '💡🍦 RECALL: whether South or North is safe from cones (E/W safe) from beginning of the mech',
           imageUrl: "./m12s/dn-idyllic-29.webp",
+          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#30"
         },
         {
           mechanic: 'Black Hole Clone',
           description: '📌🍦🕳️ REMEMBER: Whether clone that jumps into the black hole is N/S or E/W safe\n📌🍦🐇 REMEMBER: Which platform the remaining N/S clone jumps to and which direction is safe',
           imageUrl: "./m12s/dn-idyllic-30.webp",
+          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#31"
         },
         {
           mechanic: '1st Defamations/Stacks',
           description: '💡🐦 RECALL: Whether initial clones spawned Cardinal or Intercardinal first\nCardinal: Party to A marker, Tanks to B marker, slightly towards NE\nIntercard: Party NE, Tanks SE, slightly towards B',
           imageUrl: "./m12s/dn-idyllic-34.webp",
+          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#35"
         },
         {
           mechanic: 'Platform + Cone',
           description: '💡🍦🐇 RECALL: Which platform the remaining N/S clone jumps to and which direction is safe\nGo to the platform where clone jumped to and dodge cones',
           imageUrl: "./m12s/dn-idyllic-35.webp",
+          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#36"
         },
         {
           mechanic: '2nd Defamations/Stacks',
           description: 'Do the other variation from the 1st one\nCardinal: Party to A marker, Tanks to B marker, slightly towards NE\nIntercard: Party NE, Tanks SE, slightly towards B',
           imageUrl: "./m12s/dn-idyllic-36.webp",
+          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#37"
         },
         {
           mechanic: 'Black Hole Clone Resolves',
           description: '💡🍦🕳️ RECALL: Whether clone that jumped into the black hole was N/S or E/W safe\nDodge black hole clone cleaves from North',
           imageUrl: "./m12s/dn-idyllic-37.webp",
+          url: "https://raidplan.io/plan/zoeminUT6l2gaOWp#38"
         }
       ]
     }
