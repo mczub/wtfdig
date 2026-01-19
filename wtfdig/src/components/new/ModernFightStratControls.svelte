@@ -456,8 +456,9 @@
 						</div>
 
 						<!-- Individual Strat Toggles -->
+						<!-- Filter mech toggles by phaseTag matching current tab's tags -->
 						{#if stratName && toggles?.length}
-							{#each toggles as toggle}
+							{#each toggles.filter((t) => !t.isMechToggle || !t.phaseTag || !tabTags || !currentTab || tabTags[currentTab]?.includes(t.phaseTag)) as toggle}
 								<div class="flex items-center gap-2 flex-wrap">
 									<div class="flex items-center gap-1">
 										<span

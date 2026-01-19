@@ -327,29 +327,27 @@ const dnReplication2: MechanicStrat[] = [
 
 const rep2OverviewMechs: Record<string, MechanicStrat[]> = {
   clonezone: cloneZoneRep2Overview,
-  dn: dnRep2Overview
 };
 
 const replication2Mechs: Record<string, MechanicStrat[]> = {
   clonezone: cloneZoneReplication2,
-  dn: dnReplication2
 };
 
 const idyllicOverview: string = "<div class=\"flex flex-col\"><ul class=\"overview\">\n<li><strong>Player clones spawn</strong>\n<ul><li>📌🐦 Remember if Cardinals or Intercards first</li></ul></li>\n<li><strong>Player clones tether</strong>\n<ul><li>📌🧑‍🤝‍🧑 Remember your clone position</li></ul></li>\n<li><strong>Cone telegraphs</strong>\n<ul><li>📌🍦 Remember whether North or South is E/W safe</li></ul></li>\n<li><strong>Boss clones spawn</strong></li>\n<li><strong>Take boss tethers (stack or defam)</strong>\n<ul><li>📌🤔 Remember if North clone is Stack or Defam</li></ul></li>\n<li><strong>Cones resolve</strong><ul><li>💡🍦 Recall whether North or South was E/W safe</li></ul></li>\n</ul>\n\n<p class=\"arena-change\"><em>ARENA CHANGES TO PLATFORMS</em></p>\n<ul class=\"overview\">\n<li><strong>Platforms and towers appear</strong></li>\n<li><strong>Light spreads go off, swap if needed</strong></li>\n<li>📌🗼 Remember tower spots</li>\n</ul>\n\n<p class=\"arena-change\"><em>ARENA CHANGES BACK</em></p>\n<ul class=\"overview\">\n<li><strong>💡🤔🧑‍🤝‍🧑 Recall</strong>\n<ul class=\"flex flex-col\"><li>If North clone was Stack or Defam</li>\n<li>Your clone position (determines LP and Stack/Defam)</li></ul></li>\n<li><strong>Resolve Stacks and Defams</strong></li>\n</ul></div>"
 const idyllicOverview2: string = "<div class=\"flex flex-col\"><p class=\"arena-change\"><em>ARENA CHANGES TO PLATFORMS</em></p>\n<ul class=\"overview\">\n<li><strong>💡🗼 Recall tower spots</strong></li>\n<li><strong>Resolve tower elements</strong></li>\n<li><strong>Position for cleaves</strong></li>\n<li><strong>Boss clones spawn</strong>\n<ul><li>💡🍦 Recall whether North or South clone was E/W safe</li></ul></li>\n<li><strong>Boss clone jumps into black hole</strong>\n<ul><li>📌🍦🕳️ Remember whether N/S safe or E/W safe clone goes in</li></ul></li>\n<li><strong>Boss clones jump to platforms</strong>\n<ul><li>📌🍦🐇 Remember which platform is safe and whether it's N/S or E/W safe</li></ul></li>\n</ul>\n\n<p class=\"arena-change\"><em>ARENA CHANGES BACK</em></p>\n<ul class=\"overview\">\n<li><strong>1st Stacks/Defams</strong>\n<ul><li>💡🐦 Recall whether initial clones were Cardinals or Intercards first</li></ul></li>\n</ul>\n\n<p class=\"arena-change\"><em>ARENA CHANGES TO PLATFORMS</em></p>\n<ul class=\"overview\">\n<li><strong>Platform + clone cone resolves</strong>\n<ul><li>💡🍦🐇 Recall which platform was safe and whether it's N/S or E/W safe</li></ul></li>\n</ul>\n\n<p class=\"arena-change\"><em>ARENA CHANGES BACK</em></p>\n<ul class=\"overview\">\n<li><strong>2nd Stacks/Defams</strong></li>\n<li><strong>Black hole clone cone resolves</strong>\n<ul><li>💡🍦🕳️ Recall whether black hole clone was N/S or E/W safe</li></ul></li>\n</ul></div>"
 
-const shabinStrat: Strat = {
-  stratName: 'shabin',
-  description: 'pastebin.com/HzCeD1y4 - Identical to Modified for P1 (Toxic/Role Mortal)',
+const modifiedStrat: Strat = {
+  stratName: 'modified',
+  description: 'pastebin.com/qXLm3VJ0 - Identical to Shabin for P1 (Toxic/Role Mortal)',
   notes: '',
   stratUrl: {
-    'Shabin Pastebin': 'https://pastebin.com/HzCeD1y4',
+    'Modified Pastebin': 'https://pastebin.com/qXLm3VJ0',
     'Role Mortal Slayer': 'https://raidplan.io/plan/KbxeCHoPkzWbt_HB',
     'Toxic Friends P1 Raidplan (original)': 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn',
     'Toxic Friends P1 Raidplan (minus Mortal Slayer)': 'https://raidplan.io/plan/m1AMDbG_jxkgkPRc',
     'P2: DN Replication Raidplan': 'https://raidplan.io/plan/9ncP6UIDURcWuRuO',
-    'P2: DN Staging/Reenactment 1': 'https://raidplan.io/plan/ZacmNyJxptIVKNrK',
-    'P2: Superstring Theory 3 Eletric Boogaloo': 'https://raidplan.io/plan/OnhUS061LkI3xlmg',
+    'P2: Clone Zone': 'https://raidplan.io/plan/SFa6J6wDrU9PlCJ4',
+    'P2: Superchain Theory': 'https://raidplan.io/plan/OnhUS061LkI3xlmg',
     'P2: DN Idyllic Dream': 'https://raidplan.io/plan/zoeminUT6l2gaOWp'
   },
   strats: [
@@ -912,24 +910,7 @@ const shabinStrat: Strat = {
   ]
 };
 
-const modifiedStrat: Strat = {
-  stratName: 'modified',
-  description: 'pastebin.com/qXLm3VJ0 - Identical to Shabin for P1 (Toxic/Role Mortal)',
-  notes: '',
-  stratUrl: {
-    'Modified Pastebin': 'https://pastebin.com/qXLm3VJ0',
-    'Role Mortal Slayer': 'https://raidplan.io/plan/KbxeCHoPkzWbt_HB',
-    'Toxic Friends P1 Raidplan (original)': 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn',
-    'Toxic Friends P1 Raidplan (minus Mortal Slayer)': 'https://raidplan.io/plan/m1AMDbG_jxkgkPRc',
-    'P2: DN Replication Raidplan': 'https://raidplan.io/plan/9ncP6UIDURcWuRuO',
-    'P2: Clone Zone': 'https://raidplan.io/plan/SFa6J6wDrU9PlCJ4',
-    'P2: Superchain Theory': 'https://raidplan.io/plan/OnhUS061LkI3xlmg',
-    'P2: DN Idyllic Dream': 'https://raidplan.io/plan/zoeminUT6l2gaOWp'
-  },
-  strats: shabinStrat.strats,
-};
-
-export const m12sStrats: Strat[] = [modifiedStrat, shabinStrat];
+export const m12sStrats: Strat[] = [modifiedStrat];
 
 export const m12sFightConfig: FightConfig = {
   fightKey: "m12s",
@@ -944,13 +925,6 @@ export const m12sFightConfig: FightConfig = {
       defaults: {
         mortalslayer: "role",
         replication2: "clonezone",
-      },
-    },
-    shabin: {
-      label: "Shabin (D1y4)",
-      defaults: {
-        mortalslayer: "role",
-        replication2: "dn",
       },
     },
   },
@@ -971,21 +945,6 @@ export const m12sFightConfig: FightConfig = {
         {
           value: "toxic",
           label: "Toxic"
-        }
-      ]
-    },
-    {
-      key: "replication2",
-      label: "Replication 2",
-      defaultValue: "dn",
-      options: [
-        {
-          value: "dn",
-          label: "DN"
-        },
-        {
-          value: "clonezone",
-          label: "Clone Zone"
         }
       ]
     },
