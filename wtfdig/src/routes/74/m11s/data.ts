@@ -135,6 +135,715 @@ const arenaSplitMechs: Record<string, MechanicStrat[]> = {
   hector: hectorArenaSplit
 };
 
+const uptimeEcliptic: MechanicStrat[] = [
+  {
+    mechanic: 'Start',
+    description: 'R1 R2 H1 H2 Conga North to South',
+    url: "https://raidplan.io/plan/pz_pT6oL7EgrTIEH#1",
+    strats: [
+      {
+        role: "Tank",
+        party: 1,
+        description: "Stack middle under boss",
+        imageUrl: "./m11s/uptime-ecliptic-0.webp",
+      },
+      {
+        role: "Tank",
+        party: 2,
+        description: "Stack middle under boss",
+        imageUrl: "./m11s/uptime-ecliptic-0.webp",
+      },
+      {
+        role: "Healer",
+        party: 1,
+        description: "Conga 3rd from North",
+        imageUrl: "./m11s/uptime-ecliptic-0.webp",
+      },
+      {
+        role: "Healer",
+        party: 2,
+        description: "Conga 4th from North",
+        imageUrl: "./m11s/uptime-ecliptic-0.webp",
+      },
+      {
+        role: "Melee",
+        party: 1,
+        description: "Stack middle under boss",
+        imageUrl: "./m11s/uptime-ecliptic-0.webp",
+      },
+      {
+        role: "Melee",
+        party: 2,
+        description: "Stack middle under boss",
+        imageUrl: "./m11s/uptime-ecliptic-0.webp",
+      },
+      {
+        role: "Ranged",
+        party: 1,
+        description: "Conga 1st from North",
+        imageUrl: "./m11s/uptime-ecliptic-0.webp",
+      },
+      {
+        role: "Ranged",
+        party: 2,
+        description: "Conga 2nd from North",
+        imageUrl: "./m11s/uptime-ecliptic-0.webp",
+      }
+    ]
+  },
+  {
+    mechanic: 'Puddles',
+    description: 'North marker drop puddles North, South marker drop puddles South\nNorth markerless CW tower from A, South markerless CCW tower from A',
+    url: "https://raidplan.io/plan/pz_pT6oL7EgrTIEH#2",
+    strats: [
+      {
+        role: "Tank",
+        party: 1,
+        description: "Stack middle under boss",
+        imageUrl: "./m11s/uptime-ecliptic-1.webp",
+      },
+      {
+        role: "Tank",
+        party: 2,
+        description: "Stack middle under boss",
+        imageUrl: "./m11s/uptime-ecliptic-1.webp",
+      },
+      {
+        role: "Healer",
+        party: 1,
+        description: "If marked, drop puddles\nIf not marked, take CW tower from A if Northmost, CCW tower from A if Southmost",
+        imageUrl: "./m11s/uptime-ecliptic-1.webp",
+      },
+      {
+        role: "Healer",
+        party: 2,
+        description: "If marked, drop puddles South\nIf not marked, take CCW tower from A",
+        imageUrl: "./m11s/uptime-ecliptic-1.webp",
+      },
+      {
+        role: "Melee",
+        party: 1,
+        description: "Stack middle under boss",
+        imageUrl: "./m11s/uptime-ecliptic-1.webp",
+      },
+      {
+        role: "Melee",
+        party: 2,
+        description: "Stack middle under boss",
+        imageUrl: "./m11s/uptime-ecliptic-1.webp",
+      },
+      {
+        role: "Ranged",
+        party: 1,
+        description: "If marked, drop puddles North\nIf not marked, take CW tower from A",
+        imageUrl: "./m11s/uptime-ecliptic-1.webp",
+      },
+      {
+        role: "Ranged",
+        party: 2,
+        description: "If marked, drop puddles\nIf not marked, take CW tower from A if Northmost, CCW tower from A if Southmost",
+        imageUrl: "./m11s/uptime-ecliptic-1.webp",
+      }
+    ]
+  },
+  {
+    mechanic: 'Towers',
+    description: 'Melees on edge of tower, Ranged dead center',
+    url: "https://raidplan.io/plan/pz_pT6oL7EgrTIEH#7",
+    strats: [
+      {
+        role: "Tank",
+        party: 1,
+        description: "Take CW solo tower from A\nTake tether opposite + CW",
+        imageUrl: "./m11s/uptime-ecliptic-6.webp",
+      },
+      {
+        role: "Tank",
+        party: 2,
+        description: "Take CCW solo tower from A\nTake tether opposite + CW",
+        imageUrl: "./m11s/uptime-ecliptic-6.webp",
+      },
+      {
+        role: "Healer",
+        party: 1,
+        description: "‼️ Stand dead center of tower\nIf not marked, take CW tower from A if Northmost, CCW tower from A if Southmost\nTake tether opposite + CW",
+        imageUrl: "./m11s/uptime-ecliptic-6.webp",
+      },
+      {
+        role: "Healer",
+        party: 2,
+        description: "‼️ Stand dead center of tower\nIf marked, drop puddles South\nIf not marked, take CCW tower from A\nTake tether opposite + CW",
+        imageUrl: "./m11s/uptime-ecliptic-6.webp",
+      },
+      {
+        role: "Melee",
+        party: 1,
+        description: "‼️ Stand on edge of tower\nTake CW pair tower from A",
+        imageUrl: "./m11s/uptime-ecliptic-6.webp",
+      },
+      {
+        role: "Melee",
+        party: 2,
+        description: "‼️ Stand on edge of tower\nTake CCW pair tower from A",
+        imageUrl: "./m11s/uptime-ecliptic-6.webp",
+      },
+      {
+        role: "Ranged",
+        party: 1,
+        description: "‼️ Stand dead center of tower\nIf marked, drop puddles North\nIf not marked, take CW tower from A\nTake tether opposite + CW",
+        imageUrl: "./m11s/uptime-ecliptic-6.webp",
+      },
+      {
+        role: "Ranged",
+        party: 2,
+        description: "‼️ Stand dead center of tower\nIf marked, drop puddles\nIf not marked, take CW tower from A if Northmost, CCW tower from A if Southmost\nTake tether opposite + CW",
+        imageUrl: "./m11s/uptime-ecliptic-6.webp",
+      }
+    ]
+  },
+  {
+    mechanic: 'Two-way Fireball',
+    description: '',
+    url: "https://raidplan.io/plan/pz_pT6oL7EgrTIEH#10",
+    strats: [
+      {
+        role: "Tank",
+        party: 1,
+        description: "Join line stack on East or West",
+        imageUrl: "./m11s/uptime-ecliptic-9.webp",
+      },
+      {
+        role: "Tank",
+        party: 2,
+        description: "Join line stack on East or West",
+        imageUrl: "./m11s/uptime-ecliptic-9.webp",
+      },
+      {
+        role: "Healer",
+        party: 1,
+        description: "If you baited puddles, bait inside hitbox ring\nNorth puddles = West, South puddles = East\nOtherwise join line stack East or West",
+        imageUrl: "./m11s/uptime-ecliptic-9.webp",
+      },
+      {
+        role: "Healer",
+        party: 2,
+        description: "If you baited puddles, bait inside hitbox ring East\nOtherwise join line stack East or West",
+        imageUrl: "./m11s/uptime-ecliptic-9.webp",
+      },
+      {
+        role: "Melee",
+        party: 1,
+        description: "‼️ Stand on edge of tower\nTake CW pair tower from A",
+        imageUrl: "./m11s/uptime-ecliptic-9.webp",
+      },
+      {
+        role: "Melee",
+        party: 2,
+        description: "‼️ Stand on edge of tower\nTake CCW pair tower from A",
+        imageUrl: "./m11s/uptime-ecliptic-9.webp",
+      },
+      {
+        role: "Ranged",
+        party: 1,
+        description: "If you baited puddles, bait inside hitbox ring West\nOtherwise join line stack East or West",
+        imageUrl: "./m11s/uptime-ecliptic-9.webp",
+      },
+      {
+        role: "Ranged",
+        party: 2,
+        description: "If you baited puddles, bait inside hitbox ring\nNorth puddles = West, South puddles = East\nOtherwise join line stack East or West",
+        imageUrl: "./m11s/uptime-ecliptic-9.webp",
+      }
+    ]
+  },
+  {
+    mechanic: 'Four-way Fireball',
+    description: '',
+    url: "https://raidplan.io/plan/pz_pT6oL7EgrTIEH#11",
+    strats: [
+      {
+        role: "Tank",
+        party: 1,
+        description: "Join line stack on intercard",
+        imageUrl: "./m11s/uptime-ecliptic-10.webp",
+      },
+      {
+        role: "Tank",
+        party: 2,
+        description: "Join line stack on intercard",
+        imageUrl: "./m11s/uptime-ecliptic-10.webp",
+      },
+      {
+        role: "Healer",
+        party: 1,
+        description: "If you baited puddles, bait just inside hitbox ring\nNorth puddles = Northwest, South puddles = Southeast\nOtherwise join line stack on intercard",
+        imageUrl: "./m11s/uptime-ecliptic-10.webp",
+      },
+      {
+        role: "Healer",
+        party: 2,
+        description: "If you baited puddles, bait just inside hitbox ring Southeast\nOtherwise join line stack on intercard",
+        imageUrl: "./m11s/uptime-ecliptic-10.webp",
+      },
+      {
+        role: "Melee",
+        party: 1,
+        description: "Bait just inside hitbox ring Northeast",
+        imageUrl: "./m11s/uptime-ecliptic-10.webp",
+      },
+      {
+        role: "Melee",
+        party: 2,
+        description: "Bait just inside hitbox ring Southwest",
+        imageUrl: "./m11s/uptime-ecliptic-10.webp",
+      },
+      {
+        role: "Ranged",
+        party: 1,
+        description: "If you baited puddles, bait just inside hitbox ring Northwest\nOtherwise join line stack on intercard",
+        imageUrl: "./m11s/uptime-ecliptic-10.webp",
+      },
+      {
+        role: "Ranged",
+        party: 2,
+        description: "If you baited puddles, bait just inside hitbox ring\nNorth puddles = Northwest, South puddles = Southeast\nOtherwise join line stack on intercard",
+        imageUrl: "./m11s/uptime-ecliptic-10.webp",
+      }
+    ]
+  },
+];
+
+const fixedEcliptic: MechanicStrat[] = [
+  {
+    mechanic: 'Start',
+    description: 'Ranged + Healers out, Melees + Tanks in\nIf 2 on the same side get marked, the one closer to the proximity AOE will adjust',
+    url: "https://raidplan.io/plan/KXVlSGwV3zqON3CJ#1",
+    strats: [
+      {
+        role: "Tank",
+        party: 1,
+        description: "Stack middle under boss",
+        imageUrl: "./m11s/toxic-ecliptic-start.webp",
+        mask: getCircleMaskUrl(49.8, 50, 5)
+      },
+      {
+        role: "Tank",
+        party: 2,
+        description: "Stack middle under boss",
+        imageUrl: "./m11s/toxic-ecliptic-start.webp",
+        mask: getCircleMaskUrl(49.8, 50, 5)
+      },
+      {
+        role: "Healer",
+        party: 1,
+        description: "Southwest to bait markers",
+        imageUrl: "./m11s/toxic-ecliptic-start.webp",
+        mask: getCircleMaskUrl(35.7, 74.5, 5)
+      },
+      {
+        role: "Healer",
+        party: 2,
+        description: "Southeast to bait markers",
+        imageUrl: "./m11s/toxic-ecliptic-start.webp",
+        mask: getCircleMaskUrl(63.9, 74.3, 5)
+      },
+      {
+        role: "Melee",
+        party: 1,
+        description: "Stack middle under boss",
+        imageUrl: "./m11s/toxic-ecliptic-start.webp",
+        mask: getCircleMaskUrl(50, 50.1, 5)
+      },
+      {
+        role: "Melee",
+        party: 2,
+        description: "Stack middle under boss",
+        imageUrl: "./m11s/toxic-ecliptic-start.webp",
+        mask: getCircleMaskUrl(50, 50.1, 5)
+      },
+      {
+        role: "Ranged",
+        party: 1,
+        description: "Northwest to bait markers",
+        imageUrl: "./m11s/toxic-ecliptic-start.webp",
+        mask: getCircleMaskUrl(35.9, 25.9, 5)
+      },
+      {
+        role: "Ranged",
+        party: 2,
+        description: "Northeast to bait markers",
+        imageUrl: "./m11s/toxic-ecliptic-start.webp",
+        mask: getCircleMaskUrl(63.7, 25.7, 5)
+      }
+    ]
+  },
+  {
+    mechanic: 'Towers',
+    description: 'Melees on edge of tower, Ranged dead center\nH1 > H2 > R1 > R2 Clockwise priority',
+    url: "https://raidplan.io/plan/KXVlSGwV3zqON3CJ#2",
+    strats: [
+      {
+        role: "Tank",
+        party: 1,
+        description: "Take CW solo tower from A\nTake tether opposite + CW",
+        imageUrl: "./m11s/fixed-ecliptic-1.webp",
+      },
+      {
+        role: "Tank",
+        party: 2,
+        description: "Take CCW solo tower from A\nTake tether opposite + CW",
+        imageUrl: "./m11s/fixed-ecliptic-1.webp",
+      },
+      {
+        role: "Healer",
+        party: 1,
+        description: "‼️ Stand dead center of tower\nIf not marked, take first tower Cw from A\nTake tether opposite + CW",
+        imageUrl: "./m11s/fixed-ecliptic-1.webp",
+      },
+      {
+        role: "Healer",
+        party: 2,
+        description: "‼️ Stand dead center of tower\nIf not marked, take tower H1 > H2 > R1 > R2 CW from A\nTake tether opposite + CW",
+        imageUrl: "./m11s/fixed-ecliptic-1.webp",
+      },
+      {
+        role: "Melee",
+        party: 1,
+        description: "‼️ Stand on edge of tower\nTake CW pair tower from A",
+        imageUrl: "./m11s/fixed-ecliptic-1.webp",
+      },
+      {
+        role: "Melee",
+        party: 2,
+        description: "‼️ Stand on edge of tower\nTake CCW pair tower from A",
+        imageUrl: "./m11s/fixed-ecliptic-1.webp",
+      },
+      {
+        role: "Ranged",
+        party: 1,
+        description: "‼️ Stand dead center of tower\nIf not marked, take tower H1 > H2 > R1 > R2 CW from A\nTake tether opposite + CW",
+        imageUrl: "./m11s/fixed-ecliptic-1.webp",
+      },
+      {
+        role: "Ranged",
+        party: 2,
+        description: "‼️ Stand dead center of tower\nIf not marked, take first tower CCw from A\nTake tether opposite + CW",
+        imageUrl: "./m11s/fixed-ecliptic-1.webp",
+      }
+    ]
+  },
+  {
+    mechanic: 'Two-way Fireball',
+    description: '',
+    url: "https://raidplan.io/plan/KXVlSGwV3zqON3CJ#5",
+    strats: [
+      {
+        role: "Tank",
+        party: 1,
+        description: "Join line stack on East or West",
+        imageUrl: "./m11s/fixed-ecliptic-4.webp",
+      },
+      {
+        role: "Tank",
+        party: 2,
+        description: "Join line stack on East or West",
+        imageUrl: "./m11s/fixed-ecliptic-4.webp",
+      },
+      {
+        role: "Healer",
+        party: 1,
+        description: "If you baited puddles, join line stack\nNorth puddles = West, South puddles = East\nOtherwise join line stack East or West",
+        imageUrl: "./m11s/fixed-ecliptic-4.webp",
+      },
+      {
+        role: "Healer",
+        party: 2,
+        description: "If you baited puddles, join line stack\nNorth puddles = West, South puddles = East\nOtherwise join line stack East or West",
+        imageUrl: "./m11s/fixed-ecliptic-4.webp",
+      },
+      {
+        role: "Melee",
+        party: 1,
+        description: "Bait on hitbox ring West",
+        imageUrl: "./m11s/fixed-ecliptic-4.webp",
+      },
+      {
+        role: "Melee",
+        party: 2,
+        description: "Bait on hitbox ring East",
+        imageUrl: "./m11s/fixed-ecliptic-4.webp",
+      },
+      {
+        role: "Ranged",
+        party: 1,
+        description: "If you baited puddles, join line stack\nNorth puddles = West, South puddles = East\nOtherwise join line stack East or West",
+        imageUrl: "./m11s/fixed-ecliptic-4.webp",
+      },
+      {
+        role: "Ranged",
+        party: 2,
+        description: "If you baited puddles, join line stack\nNorth puddles = West, South puddles = East\nOtherwise join line stack East or West",
+        imageUrl: "./m11s/fixed-ecliptic-4.webp",
+      }
+    ]
+  },
+  {
+    mechanic: 'Four-way Fireball',
+    description: '',
+    url: "https://raidplan.io/plan/KXVlSGwV3zqON3CJ#4",
+    strats: [
+      {
+        role: "Tank",
+        party: 1,
+        description: "Join line stack on intercard",
+        imageUrl: "./m11s/fixed-ecliptic-3.webp",
+      },
+      {
+        role: "Tank",
+        party: 2,
+        description: "Join line stack on intercard",
+        imageUrl: "./m11s/fixed-ecliptic-3.webp",
+      },
+      {
+        role: "Healer",
+        party: 1,
+        description: "If you baited puddles, bait on hitbox ring\nNorth puddles = Northwest, South puddles = Northeast\nOtherwise join line stack on intercard",
+        imageUrl: "./m11s/fixed-ecliptic-3.webp",
+      },
+      {
+        role: "Healer",
+        party: 2,
+        description: "If you baited puddles, bait on hitbox ring\nNorth puddles = Northwest, South puddles = Northeast\nOtherwise join line stack on intercard",
+        imageUrl: "./m11s/fixed-ecliptic-3.webp",
+      },
+      {
+        role: "Melee",
+        party: 1,
+        description: "Bait on hitbox ring Southwest",
+        imageUrl: "./m11s/fixed-ecliptic-3.webp",
+      },
+      {
+        role: "Melee",
+        party: 2,
+        description: "Bait on hitbox ring Southeast",
+        imageUrl: "./m11s/fixed-ecliptic-3.webp",
+      },
+      {
+        role: "Ranged",
+        party: 1,
+        description: "If you baited puddles, bait on hitbox ring\nNorth puddles = Northwest, South puddles = Northeast\nOtherwise join line stack on intercard",
+        imageUrl: "./m11s/fixed-ecliptic-3.webp",
+      },
+      {
+        role: "Ranged",
+        party: 2,
+        description: "If you baited puddles, bait on hitbox ring\nNorth puddles = Northwest, South puddles = Northeast\nOtherwise join line stack on intercard",
+        imageUrl: "./m11s/fixed-ecliptic-3.webp",
+      }
+    ]
+  },
+];
+
+const yoloEcliptic: MechanicStrat[] = [
+  {
+    mechanic: 'Start',
+    description: 'Melees + Tanks stack under boss\nRanged + Healers stay out to bait 2 markers\nIf 2 on the same side get marked, the one closer to the proximity AOE will adjust',
+    url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#16",
+    strats: [
+      {
+        role: "Tank",
+        party: 1,
+        description: "Stack middle under boss",
+        imageUrl: "./m11s/toxic-ecliptic-start.webp",
+        mask: getCircleMaskUrl(49.8, 50, 5)
+      },
+      {
+        role: "Tank",
+        party: 2,
+        description: "Stack middle under boss",
+        imageUrl: "./m11s/toxic-ecliptic-start.webp",
+        mask: getCircleMaskUrl(49.8, 50, 5)
+      },
+      {
+        role: "Healer",
+        party: 1,
+        description: "Southwest to bait markers",
+        imageUrl: "./m11s/toxic-ecliptic-start.webp",
+        mask: getCircleMaskUrl(35.7, 74.5, 5)
+      },
+      {
+        role: "Healer",
+        party: 2,
+        description: "Southeast to bait markers",
+        imageUrl: "./m11s/toxic-ecliptic-start.webp",
+        mask: getCircleMaskUrl(63.9, 74.3, 5)
+      },
+      {
+        role: "Melee",
+        party: 1,
+        description: "Stack middle under boss",
+        imageUrl: "./m11s/toxic-ecliptic-start.webp",
+        mask: getCircleMaskUrl(50, 50.1, 5)
+      },
+      {
+        role: "Melee",
+        party: 2,
+        description: "Stack middle under boss",
+        imageUrl: "./m11s/toxic-ecliptic-start.webp",
+        mask: getCircleMaskUrl(50, 50.1, 5)
+      },
+      {
+        role: "Ranged",
+        party: 1,
+        description: "Northwest to bait markers",
+        imageUrl: "./m11s/toxic-ecliptic-start.webp",
+        mask: getCircleMaskUrl(35.9, 25.9, 5)
+      },
+      {
+        role: "Ranged",
+        party: 2,
+        description: "Northeast to bait markers",
+        imageUrl: "./m11s/toxic-ecliptic-start.webp",
+        mask: getCircleMaskUrl(63.7, 25.7, 5)
+      }
+    ]
+  },
+  {
+    mechanic: 'Puddles',
+    description: 'Marked players drop 6 puddles at walls\nBoss group drops 6 puddles: Middle, then North, then CW',
+    url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#18",
+    strats: [
+      {
+        role: "Tank",
+        party: 1,
+        description: "Drop puddles Middle, then North, then CW",
+        imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
+      },
+      {
+        role: "Tank",
+        party: 2,
+        description: "Drop puddles Middle, then North, then CW",
+        imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
+      },
+      {
+        role: "Healer",
+        party: 1,
+        description: "If marked, drop puddles at walls\nIf not, Drop puddles Middle, then North, then CW",
+        imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
+      },
+      {
+        role: "Healer",
+        party: 2,
+        description: "If marked, drop puddles at walls\nIf not, Drop puddles Middle, then North, then CW",
+        imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
+      },
+      {
+        role: "Melee",
+        party: 1,
+        description: "Drop puddles Middle, then North, then CW",
+        imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
+      },
+      {
+        role: "Melee",
+        party: 2,
+        description: "Drop puddles Middle, then North, then CW",
+        imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
+      },
+      {
+        role: "Ranged",
+        party: 1,
+        description: "If marked, drop puddles at walls\nIf not, Drop puddles Middle, then North, then CW",
+        imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
+      },
+      {
+        role: "Ranged",
+        party: 2,
+        description: "If marked, drop puddles at walls\nIf not, Drop puddles Middle, then North, then CW",
+        imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
+      }
+    ]
+  },
+  {
+    mechanic: 'Towers',
+    description: '2 tank and 2 pair towers spawn randomly\nMT + H+R CW, OT + Melees CCW from North',
+    url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#19",
+    strats: [
+      {
+        role: "Tank",
+        party: 1,
+        description: "Take first tank tower Clockwise from North",
+        imageUrl: "./m11s/toxic-ecliptic-towers.webp"
+      },
+      {
+        role: "Tank",
+        party: 2,
+        description: "Take first tank tower Counterclockwise from North",
+        imageUrl: "./m11s/toxic-ecliptic-towers.webp"
+      },
+      {
+        role: "Healer",
+        party: 1,
+        description: "If not marked, take first pair tower Clockwise from North",
+        imageUrl: "./m11s/toxic-ecliptic-towers.webp"
+      },
+      {
+        role: "Healer",
+        party: 2,
+        description: "If not marked, take first pair tower Clockwise from North",
+        imageUrl: "./m11s/toxic-ecliptic-towers.webp"
+      },
+      {
+        role: "Melee",
+        party: 1,
+        description: "Take first pair tower Counterclockwise from North",
+        imageUrl: "./m11s/toxic-ecliptic-towers.webp"
+      },
+      {
+        role: "Melee",
+        party: 2,
+        description: "Take first pair tower Counterclockwise from North",
+        imageUrl: "./m11s/toxic-ecliptic-towers.webp"
+      },
+      {
+        role: "Ranged",
+        party: 1,
+        description: "If not marked, take first pair tower Clockwise from North",
+        imageUrl: "./m11s/toxic-ecliptic-towers.webp"
+      },
+      {
+        role: "Ranged",
+        party: 2,
+        description: "If not marked, take first pair tower Clockwise from North",
+        imageUrl: "./m11s/toxic-ecliptic-towers.webp"
+      }
+    ]
+  },
+  {
+    mechanic: 'Tethers',
+    description: 'One player from each tower gets tethered\nStretch across + CW to corner\nUntethered players under boss',
+    imageUrl: "./m11s/toxic-ecliptic-tethers.webp",
+    url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#20",
+  },
+  {
+    mechanic: 'Two-way Fireball',
+    description: '2 proximity-baited line AOEs\nE/W pairs, one person close, one person further to not double up\nTethers run behind to get in the line stacks',
+    imageUrl: "./m11s/toxic-2way.webp",
+    url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#21",
+  },
+  {
+    mechanic: 'Four-way Fireball',
+    description: '4 proximity-baited line AOEs\nBait intercard towards tether players in corners\nUse eyes',
+    imageUrl: "./m11s/toxic-4way.webp",
+    url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#22",
+  }
+];
+
+const eclipticMechs: Record<string, MechanicStrat[]> = {
+  toxic: yoloEcliptic,
+  uptime: uptimeEcliptic,
+  fixed: fixedEcliptic
+};
+
 const toxicStrat: Strat = {
   stratName: 'toxic',
   description: 'Toxic Friends',
@@ -706,259 +1415,8 @@ const toxicStrat: Strat = {
     },
     {
       phaseName: 'Ecliptic Stampede',
-      mechs: [
-        {
-          mechanic: 'Start',
-          description: 'Melees + Tanks stack under boss\nRanged + Healers stay out to bait 2 markers\nIf 2 on the same side get marked, the one closer to the proximity AOE will adjust',
-          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#16",
-          strats: [
-            {
-              role: "Tank",
-              party: 1,
-              description: "Stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp",
-              mask: getCircleMaskUrl(49.8, 50, 5)
-            },
-            {
-              role: "Tank",
-              party: 2,
-              description: "Stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp",
-              mask: getCircleMaskUrl(49.8, 50, 5)
-            },
-            {
-              role: "Healer",
-              party: 1,
-              description: "Southwest to bait markers",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp",
-              mask: getCircleMaskUrl(35.7, 74.5, 5)
-            },
-            {
-              role: "Healer",
-              party: 2,
-              description: "Southeast to bait markers",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp",
-              mask: getCircleMaskUrl(63.9, 74.3, 5)
-            },
-            {
-              role: "Melee",
-              party: 1,
-              description: "Stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp",
-              mask: getCircleMaskUrl(50, 50.1, 5)
-            },
-            {
-              role: "Melee",
-              party: 2,
-              description: "Stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp",
-              mask: getCircleMaskUrl(50, 50.1, 5)
-            },
-            {
-              role: "Ranged",
-              party: 1,
-              description: "Northwest to bait markers",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp",
-              mask: getCircleMaskUrl(35.9, 25.9, 5)
-            },
-            {
-              role: "Ranged",
-              party: 2,
-              description: "Northeast to bait markers",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp",
-              mask: getCircleMaskUrl(63.7, 25.7, 5)
-            }
-          ]
-        },
-        {
-          mechanic: 'Safe Corners',
-          description: 'Marked players go to safe corners\nNon-marked players stack under boss',
-          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#17",
-          strats: [
-            {
-              role: "Tank",
-              party: 1,
-              description: "Stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-corners.webp"
-            },
-            {
-              role: "Tank",
-              party: 2,
-              description: "Stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-corners.webp"
-            },
-            {
-              role: "Healer",
-              party: 1,
-              description: "If marked, go to safe corner\nIf not, stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-corners.webp"
-            },
-            {
-              role: "Healer",
-              party: 2,
-              description: "If marked, go to safe corner\nIf not, stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-corners.webp"
-            },
-            {
-              role: "Melee",
-              party: 1,
-              description: "Stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-corners.webp"
-            },
-            {
-              role: "Melee",
-              party: 2,
-              description: "Stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-corners.webp"
-            },
-            {
-              role: "Ranged",
-              party: 1,
-              description: "If marked, go to safe corner\nIf not, stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-corners.webp"
-            },
-            {
-              role: "Ranged",
-              party: 2,
-              description: "If marked, go to safe corner\nIf not, stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-corners.webp"
-            }
-          ]
-        },
-        {
-          mechanic: 'Puddles',
-          description: 'Marked players drop 6 puddles at walls\nBoss group drops 6 puddles: Middle, then North, then CW',
-          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#18",
-          strats: [
-            {
-              role: "Tank",
-              party: 1,
-              description: "Drop puddles Middle, then North, then CW",
-              imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
-            },
-            {
-              role: "Tank",
-              party: 2,
-              description: "Drop puddles Middle, then North, then CW",
-              imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
-            },
-            {
-              role: "Healer",
-              party: 1,
-              description: "If marked, drop puddles at walls\nIf not, Drop puddles Middle, then North, then CW",
-              imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
-            },
-            {
-              role: "Healer",
-              party: 2,
-              description: "If marked, drop puddles at walls\nIf not, Drop puddles Middle, then North, then CW",
-              imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
-            },
-            {
-              role: "Melee",
-              party: 1,
-              description: "Drop puddles Middle, then North, then CW",
-              imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
-            },
-            {
-              role: "Melee",
-              party: 2,
-              description: "Drop puddles Middle, then North, then CW",
-              imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
-            },
-            {
-              role: "Ranged",
-              party: 1,
-              description: "If marked, drop puddles at walls\nIf not, Drop puddles Middle, then North, then CW",
-              imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
-            },
-            {
-              role: "Ranged",
-              party: 2,
-              description: "If marked, drop puddles at walls\nIf not, Drop puddles Middle, then North, then CW",
-              imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
-            }
-          ]
-        },
-        {
-          mechanic: 'Towers',
-          description: '2 tank and 2 pair towers spawn randomly\nMT + H+R CW, OT + Melees CCW from North',
-          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#19",
-          strats: [
-            {
-              role: "Tank",
-              party: 1,
-              description: "Take first tank tower Clockwise from North",
-              imageUrl: "./m11s/toxic-ecliptic-towers.webp"
-            },
-            {
-              role: "Tank",
-              party: 2,
-              description: "Take first tank tower Counterclockwise from North",
-              imageUrl: "./m11s/toxic-ecliptic-towers.webp"
-            },
-            {
-              role: "Healer",
-              party: 1,
-              description: "If not marked, take first pair tower Clockwise from North",
-              imageUrl: "./m11s/toxic-ecliptic-towers.webp"
-            },
-            {
-              role: "Healer",
-              party: 2,
-              description: "If not marked, take first pair tower Clockwise from North",
-              imageUrl: "./m11s/toxic-ecliptic-towers.webp"
-            },
-            {
-              role: "Melee",
-              party: 1,
-              description: "Take first pair tower Counterclockwise from North",
-              imageUrl: "./m11s/toxic-ecliptic-towers.webp"
-            },
-            {
-              role: "Melee",
-              party: 2,
-              description: "Take first pair tower Counterclockwise from North",
-              imageUrl: "./m11s/toxic-ecliptic-towers.webp"
-            },
-            {
-              role: "Ranged",
-              party: 1,
-              description: "If not marked, take first pair tower Clockwise from North",
-              imageUrl: "./m11s/toxic-ecliptic-towers.webp"
-            },
-            {
-              role: "Ranged",
-              party: 2,
-              description: "If not marked, take first pair tower Clockwise from North",
-              imageUrl: "./m11s/toxic-ecliptic-towers.webp"
-            }
-          ]
-        },
-        {
-          mechanic: 'Tethers',
-          description: 'One player from each tower gets tethered\nStretch across + CW to corner\nUntethered players under boss',
-          imageUrl: "./m11s/toxic-ecliptic-tethers.webp",
-          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#20",
-        },
-        {
-          mechanic: 'Two-way Fireball',
-          description: '2 proximity-baited line AOEs\nE/W pairs, one person close, one person further to not double up\nTethers run behind to get in the line stacks',
-          imageUrl: "./m11s/toxic-2way.webp",
-          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#21",
-        },
-        {
-          mechanic: 'Four-way Fireball',
-          description: '4 proximity-baited line AOEs\nBait intercard towards tether players in corners\nUse eyes',
-          imageUrl: "./m11s/toxic-4way.webp",
-          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#22",
-        },
-        {
-          mechanic: 'Hearbreak Kicks',
-          description: 'Towers are 9s/11s/13s\nWill depend on tank comps and previous invuln usage, talk with your party',
-          imageUrl: "./m11s/toxic-4way.webp"
-        }
-      ]
+      tag: 'ecliptic',
+      mechs: eclipticMechs
     }
   ]
 };
@@ -1538,259 +1996,8 @@ const hectorStrat: Strat = {
     },
     {
       phaseName: 'Ecliptic Stampede',
-      mechs: [
-        {
-          mechanic: 'Start',
-          description: 'Melees + Tanks stack under boss\nRanged + Healers stay out to bait 2 markers\nIf 2 on the same side get marked, the one closer to the proximity AOE will adjust',
-          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#16",
-          strats: [
-            {
-              role: "Tank",
-              party: 1,
-              description: "Stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp",
-              mask: getCircleMaskUrl(49.8, 50, 5)
-            },
-            {
-              role: "Tank",
-              party: 2,
-              description: "Stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp",
-              mask: getCircleMaskUrl(49.8, 50, 5)
-            },
-            {
-              role: "Healer",
-              party: 1,
-              description: "Southwest to bait markers",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp",
-              mask: getCircleMaskUrl(35.7, 74.5, 5)
-            },
-            {
-              role: "Healer",
-              party: 2,
-              description: "Southeast to bait markers",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp",
-              mask: getCircleMaskUrl(63.9, 74.3, 5)
-            },
-            {
-              role: "Melee",
-              party: 1,
-              description: "Stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp",
-              mask: getCircleMaskUrl(50, 50.1, 5)
-            },
-            {
-              role: "Melee",
-              party: 2,
-              description: "Stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp",
-              mask: getCircleMaskUrl(50, 50.1, 5)
-            },
-            {
-              role: "Ranged",
-              party: 1,
-              description: "Northwest to bait markers",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp",
-              mask: getCircleMaskUrl(35.9, 25.9, 5)
-            },
-            {
-              role: "Ranged",
-              party: 2,
-              description: "Northeast to bait markers",
-              imageUrl: "./m11s/toxic-ecliptic-start.webp",
-              mask: getCircleMaskUrl(63.7, 25.7, 5)
-            }
-          ]
-        },
-        {
-          mechanic: 'Safe Corners',
-          description: 'Marked players go to safe corners\nNon-marked players stack under boss',
-          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#17",
-          strats: [
-            {
-              role: "Tank",
-              party: 1,
-              description: "Stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-corners.webp"
-            },
-            {
-              role: "Tank",
-              party: 2,
-              description: "Stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-corners.webp"
-            },
-            {
-              role: "Healer",
-              party: 1,
-              description: "If marked, go to safe corner\nIf not, stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-corners.webp"
-            },
-            {
-              role: "Healer",
-              party: 2,
-              description: "If marked, go to safe corner\nIf not, stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-corners.webp"
-            },
-            {
-              role: "Melee",
-              party: 1,
-              description: "Stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-corners.webp"
-            },
-            {
-              role: "Melee",
-              party: 2,
-              description: "Stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-corners.webp"
-            },
-            {
-              role: "Ranged",
-              party: 1,
-              description: "If marked, go to safe corner\nIf not, stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-corners.webp"
-            },
-            {
-              role: "Ranged",
-              party: 2,
-              description: "If marked, go to safe corner\nIf not, stack middle under boss",
-              imageUrl: "./m11s/toxic-ecliptic-corners.webp"
-            }
-          ]
-        },
-        {
-          mechanic: 'Puddles',
-          description: 'Marked players drop 6 puddles at walls\nBoss group drops 6 puddles: Middle, then North, then CW',
-          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#18",
-          strats: [
-            {
-              role: "Tank",
-              party: 1,
-              description: "Drop puddles Middle, then North, then CW",
-              imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
-            },
-            {
-              role: "Tank",
-              party: 2,
-              description: "Drop puddles Middle, then North, then CW",
-              imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
-            },
-            {
-              role: "Healer",
-              party: 1,
-              description: "If marked, drop puddles at walls\nIf not, Drop puddles Middle, then North, then CW",
-              imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
-            },
-            {
-              role: "Healer",
-              party: 2,
-              description: "If marked, drop puddles at walls\nIf not, Drop puddles Middle, then North, then CW",
-              imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
-            },
-            {
-              role: "Melee",
-              party: 1,
-              description: "Drop puddles Middle, then North, then CW",
-              imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
-            },
-            {
-              role: "Melee",
-              party: 2,
-              description: "Drop puddles Middle, then North, then CW",
-              imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
-            },
-            {
-              role: "Ranged",
-              party: 1,
-              description: "If marked, drop puddles at walls\nIf not, Drop puddles Middle, then North, then CW",
-              imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
-            },
-            {
-              role: "Ranged",
-              party: 2,
-              description: "If marked, drop puddles at walls\nIf not, Drop puddles Middle, then North, then CW",
-              imageUrl: "./m11s/toxic-ecliptic-puddles.webp"
-            }
-          ]
-        },
-        {
-          mechanic: 'Towers',
-          description: '2 tank and 2 pair towers spawn randomly\nMT + H+R CW, OT + Melees CCW from North',
-          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#19",
-          strats: [
-            {
-              role: "Tank",
-              party: 1,
-              description: "Take first tank tower Clockwise from North",
-              imageUrl: "./m11s/toxic-ecliptic-towers.webp"
-            },
-            {
-              role: "Tank",
-              party: 2,
-              description: "Take first tank tower Counterclockwise from North",
-              imageUrl: "./m11s/toxic-ecliptic-towers.webp"
-            },
-            {
-              role: "Healer",
-              party: 1,
-              description: "If not marked, take first pair tower Clockwise from North",
-              imageUrl: "./m11s/toxic-ecliptic-towers.webp"
-            },
-            {
-              role: "Healer",
-              party: 2,
-              description: "If not marked, take first pair tower Clockwise from North",
-              imageUrl: "./m11s/toxic-ecliptic-towers.webp"
-            },
-            {
-              role: "Melee",
-              party: 1,
-              description: "Take first pair tower Counterclockwise from North",
-              imageUrl: "./m11s/toxic-ecliptic-towers.webp"
-            },
-            {
-              role: "Melee",
-              party: 2,
-              description: "Take first pair tower Counterclockwise from North",
-              imageUrl: "./m11s/toxic-ecliptic-towers.webp"
-            },
-            {
-              role: "Ranged",
-              party: 1,
-              description: "If not marked, take first pair tower Clockwise from North",
-              imageUrl: "./m11s/toxic-ecliptic-towers.webp"
-            },
-            {
-              role: "Ranged",
-              party: 2,
-              description: "If not marked, take first pair tower Clockwise from North",
-              imageUrl: "./m11s/toxic-ecliptic-towers.webp"
-            }
-          ]
-        },
-        {
-          mechanic: 'Tethers',
-          description: 'One player from each tower gets tethered\nStretch across + CW to corner\nUntethered players under boss',
-          imageUrl: "./m11s/toxic-ecliptic-tethers.webp",
-          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#20",
-        },
-        {
-          mechanic: 'Two-way Fireball',
-          description: '2 proximity-baited line AOEs\nE/W pairs, one person close, one person further to not double up\nTethers run behind to get in the line stacks',
-          imageUrl: "./m11s/toxic-2way.webp",
-          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#21",
-        },
-        {
-          mechanic: 'Four-way Fireball',
-          description: '4 proximity-baited line AOEs\nBait intercard towards tether players in corners\nUse eyes',
-          imageUrl: "./m11s/toxic-4way.webp",
-          url: "https://raidplan.io/plan/HJAbE7fuWodELUSB#22",
-        },
-        {
-          mechanic: 'Hearbreak Kicks',
-          description: 'Towers are 9s/11s/13s\nWill depend on tank comps and previous invuln usage, talk with your party',
-          imageUrl: "./m11s/toxic-4way.webp"
-        }
-      ]
+      tag: 'ecliptic',
+      mechs: eclipticMechs
     }
   ]
 };
@@ -1808,7 +2015,8 @@ export const m11sFightConfig: FightConfig = {
     hector: {
       label: "Hector (Toxic/No Buddies)",
       defaults: {
-        arenasplit: "hector"
+        arenasplit: "hector",
+        ecliptic: "toxic"
       },
       badges: [
         {
@@ -1820,7 +2028,8 @@ export const m11sFightConfig: FightConfig = {
     toxic: {
       label: "Toxic Friends",
       defaults: {
-        arenasplit: "toxic"
+        arenasplit: "toxic",
+        ecliptic: "toxic"
       }
     }
   },
@@ -1848,6 +2057,33 @@ export const m11sFightConfig: FightConfig = {
           url: {
             name: "Video by Hector Hectorson",
             url: "https://www.youtube.com/watch?v=w1uuwzhyf5A",
+          }
+        }
+      ]
+    },
+    {
+      key: "ecliptic",
+      label: "Ecliptic",
+      defaultValue: "toxic",
+      options: [
+        {
+          value: "toxic",
+          label: "Toxic"
+        },
+        {
+          value: "uptime",
+          label: "Uptime (IEH)",
+          url: {
+            name: "Uptime Ecliptic Raidplan",
+            url: "https://raidplan.io/plan/pz_pT6oL7EgrTIEH"
+          }
+        },
+        {
+          value: "fixed",
+          label: "Fixed (3CJ)",
+          url: {
+            name: "M11S Fixed Stampede Raidplan",
+            url: "https://raidplan.io/plan/KXVlSGwV3zqON3CJ",
           }
         }
       ]
