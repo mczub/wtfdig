@@ -129,10 +129,56 @@ const hectorArenaSplit: MechanicStrat[] = [
   }
 ];
 
+const wdzArenaSplit: MechanicStrat[] = [
+  {
+    mechanic: 'Split + Conga',
+    description: 'G1 West, G2 East\nSupports NW/SE, DPS SW/NE',
+    imageUrl: "./m11s/wdz-split-2.webp",
+    url: "https://raidplan.io/plan/ZSaq60muZdIfJWdZ#3"
+  },
+  {
+    mechanic: 'Towers',
+    description: 'EVERYONE take a tower\nKB to other side if you need to stretch tether\nOtherwise KB to same side',
+    imageUrl: "./m11s/wdz-split-3.webp",
+    url: "https://raidplan.io/plan/ZSaq60muZdIfJWdZ#4"
+  },
+  {
+    mechanic: 'Fire Breath Baits',
+    description: 'Non-tethers close to boss to bait fire breaths\nStack center E/W after for puddles',
+    imageUrl: "./m11s/wdz-split-4.webp",
+    url: "https://raidplan.io/plan/ZSaq60muZdIfJWdZ#5"
+  },
+  {
+    mechanic: 'Puddles',
+    description: 'Everyone go center E/W to bait puddles, one pair go North, one pair go South\nTethers go to the side you need to stretch\nNon-tethers use body language/stay where you got knocked to',
+    imageUrl: "./m11s/wdz-split-6.webp",
+    url: "https://raidplan.io/plan/ZSaq60muZdIfJWdZ#7"
+  },
+  {
+    mechanic: 'Lineup + Portal',
+    description: 'Tethers on edge, markers on outer safe corner of number markers',
+    imageUrl: "./m11s/wdz-split-7.webp",
+    url: "https://raidplan.io/plan/ZSaq60muZdIfJWdZ#8"
+  },
+  {
+    mechanic: 'Towers 2 + 3',
+    description: 'Take the tower in the quadrant you resolved the last set of tethers/markers\n2nd towers, another tethers + markers, 3rd towers, then stack AOEs',
+    imageUrl: "./m11s/wdz-split-11.webp",
+    url: "https://raidplan.io/plan/ZSaq60muZdIfJWdZ#12"
+  },
+  {
+    mechanic: 'Get Slabbed',
+    description: 'KB to back of boss, then look at hitbox to dodge AOE',
+    imageUrl: "./m11s/wdz-split-13.webp",
+    url: "https://raidplan.io/plan/ZSaq60muZdIfJWdZ#14"
+  }
+];
+
 const arenaSplitMechs: Record<string, MechanicStrat[]> = {
   toxic: toxicArenaSplit,
   nobuddies: nobuddiesArenaSplit,
-  hector: hectorArenaSplit
+  hector: hectorArenaSplit,
+  wdz: wdzArenaSplit,
 };
 
 const uptimeEcliptic: MechanicStrat[] = [
@@ -2002,7 +2048,19 @@ const hectorStrat: Strat = {
   ]
 };
 
-export const m11sStrats: Strat[] = [hectorStrat, toxicStrat];
+const usbWdzStrat: Strat = {
+  stratName: 'usbwdz',
+  description: 'USB + WdZ + Fixed',
+  notes: '',
+  stratUrl: {
+    "USB (Toxic) Raidplan": "https://raidplan.io/plan/HJAbE7fuWodELUSB",
+    "WdZ (Honeyburger Static Split) Raidplan": "https://raidplan.io/plan/ZSaq60muZdIfJWdZ",
+    "Fixed (3CJ) Raidplan": "https://raidplan.io/plan/KXVlSGwV3zqON3CJ",
+  },
+  strats: toxicStrat.strats,
+}
+
+export const m11sStrats: Strat[] = [hectorStrat, usbWdzStrat, toxicStrat];
 
 export const m11sFightConfig: FightConfig = {
   fightKey: "m11s",
@@ -2021,7 +2079,20 @@ export const m11sFightConfig: FightConfig = {
       badges: [
         {
           text: "NA",
-          class: "bg-blue-600 text-white"
+          class: "na-badge"
+        }
+      ]
+    },
+    'usbwdz': {
+      label: "USB + WdZ + Fixed",
+      defaults: {
+        arenasplit: "wdz",
+        ecliptic: "fixed"
+      },
+      badges: [
+        {
+          text: "EU",
+          class: "eu-badge"
         }
       ]
     },
@@ -2057,6 +2128,14 @@ export const m11sFightConfig: FightConfig = {
           url: {
             name: "Video by Hector Hectorson",
             url: "https://www.youtube.com/watch?v=w1uuwzhyf5A",
+          }
+        },
+        {
+          value: "wdz",
+          label: "Honeyburger (WdZ)",
+          url: {
+            name: "Static Arena Split | Honeyburger Raidplan",
+            url: "https://raidplan.io/plan/ZSaq60muZdIfJWdZ",
           }
         }
       ]

@@ -10,7 +10,7 @@
 		<div class="">
 			<div>
 				1/19/2026: m12s p2, special mech toggles, remove yolo aerial from 10, add fixed and uptime
-				ecliptic to 11
+				ecliptic to 11, added wdz split and EU standard to 11
 			</div>
 			<div>1/16/2026: updated m11s hector to use hector's split</div>
 			<div>
