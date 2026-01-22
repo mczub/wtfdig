@@ -1,4 +1,3 @@
-
 import AccordionRoot from './accordion-root.svelte';
 import AccordionItem from './accordion-item.svelte';
 import Modal from './modal.svelte';

@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @config '../tailwind.config.ts';
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -45,7 +45,7 @@
 
   --heading-font-color: hsl(var(--foreground));
   --heading-font-color-dark: hsl(var(--foreground));
-  --heading-font-family: "Inter", system-ui, sans-serif;
+  --heading-font-family: 'Inter', system-ui, sans-serif;
   --heading-font-weight: 700;
 
   --text-xs: 0.75rem;
@@ -153,7 +153,11 @@
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
-    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    font-family:
+      'Inter',
+      system-ui,
+      -apple-system,
+      sans-serif;
   }
 }
 
@@ -563,12 +567,12 @@
     list-style: disc;
     padding-left: 1.2em;
 
-    &>br {
+    & > br {
       margin: 0.4em 0;
       display: list-item;
     }
 
-    &>li {
+    & > li {
       white-space: pre-wrap;
     }
   }

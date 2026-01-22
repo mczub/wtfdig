@@ -1,4 +1,4 @@
-# WTFDIG - Where The F*ck Do I Go?
+# WTFDIG - Where The F\*ck Do I Go?
 
 WTFDIG is a helper tool for Final Fantasy XIV players that enables them to view condensed strategy guides for various high-end duties. Users can select a fight, specific strategies, their role, and their light party to get customized, easy-to-read guides with visual aids.
 
