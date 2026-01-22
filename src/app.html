@@ -1,0 +1,23 @@
+<!doctype html>
+<script>
+  if (window.location.host === 'mczub.github.io') {
+    const url = window.location.href.replace('mczub.github.io/wtfdig', 'wtfdig.info');
+    window.location.replace(url);
+  }
+</script>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="180x180" href="%sveltekit.assets%/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="%sveltekit.assets%/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="%sveltekit.assets%/favicon-16x16.png" />
+    <link rel="manifest" href="%sveltekit.assets%/site.webmanifest" />
+    <meta name="viewport" content="width=device-width" />
+    <title>WTFDIG!?</title>
+    %sveltekit.head%
+  </head>
+
+  <body data-sveltekit-preload-data="hover" class="flex flex-col min-h-dvh overflow-auto">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>

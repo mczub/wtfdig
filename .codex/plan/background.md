@@ -1,0 +1,5 @@
+- Patch 7.3 fights live under `src/routes/73/ex5` and `src/routes/73/ex6`. Both routes define their own `+page.ts` (data, helper types) and `+page.svelte` (UI logic).
+- The two files are almost identical structurally: they each embed the same interfaces (`Role`, `Alignment`, `Strat`, etc.), helper functions for strat selection, and hundreds of lines of raw strat data.
+- UI logic duplication highlights several shared behaviors: role/party persistence via `localStorage`, URL hash synchronization for strat presets, and repeated layout sections (copy link, info cards, cheat sheet, toggles).
+- We must keep the refactor scoped to these directories, plus any brand-new components created under `src/components/new`.
+- Existing shared components used by both fights: `Cheatsheet.svelte`, `StratView.svelte`, lucide icons, and Skeleton UI primitives.

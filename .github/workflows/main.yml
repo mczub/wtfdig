@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: ["main"]
+    branches: ['main']
 
 jobs:
   build_site:
@@ -24,14 +24,14 @@ jobs:
 
       - name: build
         env:
-          BASE_PATH: "/${{ github.event.repository.name }}"
+          BASE_PATH: '/${{ github.event.repository.name }}'
         run: bun run build
 
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
           # this should match the `pages` option in your adapter-static options
-          path: "./wtfdig/build/"
+          path: './wtfdig/build/'
 
   deploy:
     needs: build_site

@@ -20,6 +20,7 @@ vite.config.js.timestamp-*
 symlink-from
 .idea/
 .vs/
+build
 
 # Cline
 .clinerules
