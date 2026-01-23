@@ -8,6 +8,7 @@
   </header>
   <article class="prose dark:prose-invert max-w-none">
     <div class="">
+      <div>1/22/2026: add game8 en/jp m9s, update some wording on m10s</div>
       <div>
         1/19/2026: m12s p2, special mech toggles, remove yolo aerial from 10, add fixed and uptime
         ecliptic to 11, added wdz split and EU standard to 11

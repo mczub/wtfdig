@@ -56,7 +56,7 @@ const nomnomFirewatersnaking: MechanicStrat[] = [
   {
     mechanic: 'Puddles + Proteans',
     description:
-      '🔥 Place puddles on east wall in box shape\n💦 Protean spread in NW/SW corner, dodge 2nd hit\nDPS towards corner, Tank/Healer towards middle\nMake sure to leave room/dodge middle for 2nd hit to not cleave fires',
+      '🔥 Place puddles on east wall in box shape\n💦 Tight protean spread in NW/SW corner, dodge 2nd hit\nDPS towards corner, Tank/Healer towards middle\nMake sure to leave room/dodge middle for 2nd hit to not cleave fires\n‼️ 2/2 proteans require extremely close positioning, consider 1/3 if you are having issues cleaving fires',
     imageUrl: './m10s/nomnom-snaking-pp.webp',
     url: {
       'Boss SW': 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#2',
