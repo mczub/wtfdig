@@ -1189,13 +1189,13 @@ export const game8: Strat = {
             {
               role: 'Healer',
               party: 1,
-              description: "Avoid circle, focus Doornail North",
+              description: "Avoid circle, focus Doornail",
               imageUrl: './m9s/game8-sadistic2.webp'
             },
             {
               role: 'Healer',
               party: 2,
-              description: "Avoid circle, focus Doornail South",
+              description: "Avoid circle, focus Doornail",
               imageUrl: './m9s/game8-sadistic2.webp'
             },
             {
@@ -1213,13 +1213,13 @@ export const game8: Strat = {
             {
               role: 'Ranged',
               party: 1,
-              description: "Avoid circle, focus Doornail North",
+              description: "Avoid circle, focus Doornail",
               imageUrl: './m9s/game8-sadistic2.webp'
             },
             {
               role: 'Ranged',
               party: 2,
-              description: "Avoid circle, focus Doornail South",
+              description: "Avoid circle, focus Doornail",
               imageUrl: './m9s/game8-sadistic2.webp'
             }
           ]
@@ -1768,13 +1768,13 @@ export const game8jp: Strat = {
             {
               role: 'Healer',
               party: 1,
-              description: 'ノコギリを回避→北の鉄塔(ロッド)を破壊',
+              description: 'ノコギリを回避→鉄塔(ロッド)を破壊',
               imageUrl: './m9s/game8-sadistic2.webp'
             },
             {
               role: 'Healer',
               party: 2,
-              description: 'ノコギリを回避→南の鉄塔(ロッド)を破壊',
+              description: 'ノコギリを回避→鉄塔(ロッド)を破壊',
               imageUrl: './m9s/game8-sadistic2.webp'
             },
             {
@@ -1792,13 +1792,13 @@ export const game8jp: Strat = {
             {
               role: 'Ranged',
               party: 1,
-              description: 'ノコギリを回避→北の鉄塔(ロッド)を破壊',
+              description: 'ノコギリを回避→鉄塔(ロッド)を破壊',
               imageUrl: './m9s/game8-sadistic2.webp'
             },
             {
               role: 'Ranged',
               party: 2,
-              description: 'ノコギリを回避→南の鉄塔(ロッド)を破壊',
+              description: 'ノコギリを回避→鉄塔(ロッド)を破壊',
               imageUrl: './m9s/game8-sadistic2.webp'
             }
           ]
@@ -1864,7 +1864,7 @@ export const game8jp: Strat = {
           ]
         },
         {
-          mechanic: '1回目の塔(ロール散開)',
+          mechanic: '1回目の塔(スプレッド散開)',
           description: 'MT組(G1)が塔を踏む\nST組(G2)は広い安置から時計回りでT＞D＞H',
           url: 'https://game8.jp/ff14/754895#hm_9',
           strats: [
@@ -1919,7 +1919,7 @@ export const game8jp: Strat = {
           ]
         },
         {
-          mechanic: '1回目の塔(頭割り)',
+          mechanic: '1回目の塔(アグリゲート散開)',
           description: 'MT組(G1)が塔を踏む\nST組(G2)は広い安置で頭割り',
           url: 'https://game8.jp/ff14/754895#hm_9',
           strats: [
@@ -1974,7 +1974,7 @@ export const game8jp: Strat = {
           ]
         },
         {
-          mechanic: '2回目の塔(ロール散開)',
+          mechanic: '2回目の塔(スプレッド散開)',
           description: 'ST組(G2)が塔を踏む\nMT組(G1)は広い安置から時計回りでT＞D＞H',
           url: 'https://game8.jp/ff14/754895#hm_9',
           strats: [
@@ -2029,7 +2029,7 @@ export const game8jp: Strat = {
           ]
         },
         {
-          mechanic: '2回目の塔(頭割り)',
+          mechanic: '2回目の塔(アグリゲート散開)',
           description: 'ST組(G2)が塔を踏む\nMT組(G1)は広い安置で頭割り',
           url: 'https://game8.jp/ff14/754895#hm_9',
           strats: [
