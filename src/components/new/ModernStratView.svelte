@@ -64,6 +64,15 @@
     collapsibleState = getDefaultCollapsibleState();
   });
 
+  // Helper to safely get/set collapsible state, ensuring we never pass undefined to bind:open
+  function getCollapsibleOpen(phaseName: string): boolean {
+    return collapsibleState[phaseName] ?? true;
+  }
+
+  function setCollapsibleOpen(phaseName: string, value: boolean) {
+    collapsibleState[phaseName] = value;
+  }
+
   let imageOpenState = $state(false);
   let imageModalProps = $state({
     phase: null,
@@ -246,7 +255,11 @@
   {#each individualStrat as phase}
     {#if tabTags && tabTags[tab] && useMainPageTabs ? tabTags[tab].includes(phase.tag) : true}
       {#if phase?.mechs}
-        <Collapsible.Root class="space-y-4 w-full" bind:open={collapsibleState[phase.phaseName]}>
+        <Collapsible.Root
+          class="space-y-4 w-full"
+          open={getCollapsibleOpen(phase.phaseName)}
+          onOpenChange={(open) => setCollapsibleOpen(phase.phaseName, open)}
+        >
           <!-- Phase Header -->
           <div
             class="flex items-center gap-3 border-b border-surface-700 pb-2 w-full justify-between"
@@ -459,7 +472,11 @@
         </Collapsible.Root>
       {:else}
         <!-- Fallback for simple phases without mechs array -->
-        <Collapsible.Root class="overflow-hidden" bind:open={collapsibleState[phase.phaseName]}>
+        <Collapsible.Root
+          class="overflow-hidden"
+          open={getCollapsibleOpen(phase.phaseName)}
+          onOpenChange={(open) => setCollapsibleOpen(phase.phaseName, open)}
+        >
           <div class="flex justify-between items-center border-b border-surface-700 pb-2">
             <div class="flex flex-row space-x-2 items-center">
               {#if typeof phase.url === 'string'}

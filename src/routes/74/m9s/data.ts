@@ -19,7 +19,22 @@ export const m9sFightConfig: FightConfig = {
       label: 'Toxic/Hector',
       badges: [
         { text: 'NA', class: 'na-badge' },
-        { text: 'EU', class: 'eu-badge' }
+        { text: 'EU', class: 'eu-badge' },
+        { text: 'OCE', class: 'oce-badge' }
+      ]
+    },
+    game8: {
+      label: 'Game8/ぬけまる (English)',
+      jpRoles: true,
+      badges: [
+        { text: 'JP', class: 'jp-badge' }
+      ]
+    },
+    game8jp: {
+      label: 'Game8/ぬけまる (日本語)',
+      jpRoles: true,
+      badges: [
+        { text: 'JP', class: 'jp-badge' }
       ]
     }
   },
@@ -308,12 +323,15 @@ export const toxic: Strat = {
   description: '',
   stratUrl: {
     'Video by Hector Hectorson': 'https://www.youtube.com/watch?v=cR3wuG8VQ0o',
-    'Toxic Friends Raidplan': 'https://raidplan.io/plan/c2L5iJfuYIWXk1v7'
+    'Toxic Friends Raidplan': 'https://raidplan.io/plan/c2L5iJfuYIWXk1v7',
+    'Detailed Visual Guide by Hyulia': 'https://raidplan.io/plan/D8fCeim7LDLuEFmu',
+    'Cheatsheet by Hyulia': 'https://drive.google.com/file/d/1AL0cGcu9b51u6AvWiyUxwyApQLzFrYlW/view?usp=sharing',
   },
   strats: [
     {
       phaseName: 'Vamp Stomp',
       description: 'Expanding ring + bats\nMelees E/W, Healers SE/SW',
+      boardCode: '0CLaPtcXk6NGi',
       mechs: [
         {
           mechanic: 'Start',
@@ -988,5 +1006,1163 @@ export const toxic: Strat = {
   ]
 };
 
+export const game8: Strat = {
+  stratName: 'game8',
+  description: '',
+  stratUrl: {
+    'Game8': 'https://game8.jp/ff14/754895',
+    'Video by ぬけまる': 'https://www.youtube.com/watch?v=m4_8a0N8GcM'
+  },
+  strats: [
+    {
+      phaseName: 'Markers Setup',
+      boardCode: 'vpvsEMAW6djuh',
+      description: 'Markers are set up for Aetherletting drops',
+      imageUrl: './m9s/game8-markers.webp'
+    },
+    {
+      phaseName: 'Vamp Stomp',
+      description: 'Expanding ring + bats\nMelees E/W, Healers SE/SW',
+      url: 'https://game8.jp/ff14/754895#hm_5',
+      mechs: [
+        {
+          mechanic: 'Start',
+          description: 'Dodge near your clock spot',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'Dodge close near North',
+              imageUrl: './m9s/game8-vamp.webp',
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'Dodge close near South',
+              imageUrl: './m9s/game8-vamp.webp',
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'Dodge far near Southwest (between D and 3)',
+              imageUrl: './m9s/game8-vamp.webp',
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'Dodge far near Southeast (between 2 and C)',
+              imageUrl: './m9s/game8-vamp.webp',
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'Dodge close near West',
+              imageUrl: './m9s/game8-vamp.webp',
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'Dodge cloes near East',
+              imageUrl: './m9s/game8-vamp.webp',
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'Dodge far near Northwest (between 4 and A)',
+              imageUrl: './m9s/game8-vamp.webp',
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'Dodge far near Northeast (between 1 and B)',
+              imageUrl: './m9s/game8-vamp.webp',
+            }
+          ]
+        },
+      ]
+    },
+    {
+      phaseName: 'Sadistic Screech',
+      mechs: [
+        {
+          mechanic: 'First Cleave',
+          description: 'Dodge into non-glowing area\nBoss will cleave N or S',
+          url: 'https://game8.jp/ff14/754895#hm_6',
+          imageUrl: './m9s/toxic-sadistic-1.webp',
+        },
+        {
+          mechanic: 'Second Cleave',
+          description: 'Boss will cleave other half\nDodge into non-glowing lane',
+          url: 'https://game8.jp/ff14/754895#hm_6',
+          imageUrl: './m9s/toxic-sadistic-2.webp',
+        },
+        {
+          mechanic: 'Third Cleave',
+          description: 'Boss will cleave from South side\nOne tile will be safe',
+          url: 'https://game8.jp/ff14/754895#hm_6',
+          imageUrl: './m9s/toxic-sadistic-3.webp',
+        }
+      ]
+    },
+    {
+      phaseName: 'Aetherletting',
+      mechs: [
+        {
+          mechanic: 'Start',
+          description:
+            "Static, start on marker CCW of your clock spot, drop AOE at edge of arena\nStack center to dodge crosses",
+          url: 'https://game8.jp/ff14/754895#hm_7',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'A marker',
+              imageUrl: './m9s/game8-aetherletting.webp',
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'C marker',
+              imageUrl: './m9s/game8-aetherletting.webp',
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'D marker',
+              imageUrl: './m9s/game8-aetherletting.webp',
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'B marker',
+              imageUrl: './m9s/game8-aetherletting.webp',
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: '3 Marker',
+              imageUrl: './m9s/game8-aetherletting.webp',
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: '2 Marker',
+              imageUrl: './m9s/game8-aetherletting.webp',
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: '4 Marker',
+              imageUrl: './m9s/game8-aetherletting.webp',
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: '1 Marker',
+              imageUrl: './m9s/game8-aetherletting.webp',
+            }
+          ]
+        },
+      ]
+    },
+    {
+      phaseName: 'Sadistic Screech 2',
+      description: 'Repeats 3x',
+      mechs: [
+        {
+          mechanic: 'Towers',
+          description: 'MT group (G1) take North, ST group (G2) take South',
+          url: 'https://game8.jp/ff14/754895#hm_8',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'Take North tower, then focus Flail',
+              imageUrl: './m9s/game8-sadistic2.webp',
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'Take South tower, then focus Flail',
+              imageUrl: './m9s/game8-sadistic2.webp',
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: "Avoid circle, focus Doornail North",
+              imageUrl: './m9s/game8-sadistic2.webp'
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: "Avoid circle, focus Doornail South",
+              imageUrl: './m9s/game8-sadistic2.webp'
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: "Avoid circle, focus Flail North",
+              imageUrl: './m9s/game8-sadistic2.webp'
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: "Avoid circle, focus Flail South",
+              imageUrl: './m9s/game8-sadistic2.webp'
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: "Avoid circle, focus Doornail North",
+              imageUrl: './m9s/game8-sadistic2.webp'
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: "Avoid circle, focus Doornail South",
+              imageUrl: './m9s/game8-sadistic2.webp'
+            }
+          ]
+        },
+      ]
+    },
+    {
+      phaseName: 'Hell in a Cell',
+      mechs: [
+        {
+          mechanic: 'Tower Priority',
+          description: 'CW Prio (from North) T-M-R-H',
+          url: 'https://game8.jp/ff14/754895#hm_9',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'Take 1st tower CW from N',
+              imageUrl: './m9s/game8-hell-towers.webp',
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: "Take 1st tower CW from N",
+              imageUrl: './m9s/game8-hell-towers.webp'
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'Take 4th tower CW from N',
+              imageUrl: './m9s/game8-hell-towers.webp',
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: "Take 4th tower CW from N",
+              imageUrl: './m9s/game8-hell-towers.webp'
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'Take 2nd tower CW from N',
+              imageUrl: './m9s/game8-hell-towers.webp',
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: "Take 2nd tower CW from N",
+              imageUrl: './m9s/game8-hell-towers.webp'
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'Take 3rd tower CW from N',
+              imageUrl: './m9s/game8-hell-towers.webp',
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: "Take 3rd tower CW from N",
+              imageUrl: './m9s/game8-hell-towers.webp'
+            }
+          ]
+        },
+        {
+          mechanic: '1st Towers (Spread)',
+          description: 'MT group (G1) takes first set of towers\nOT group (G2) Spread is T>D>H CW from wide (Tank) gap',
+          url: 'https://game8.jp/ff14/754895#hm_9',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'Take 1st tower CW from N',
+              imageUrl: './m9s/game8-hell-spread1.webp',
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: "Take cleave in wide gap",
+              imageUrl: './m9s/game8-hell-spread1.webp'
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'Take 4th tower CW from N',
+              imageUrl: './m9s/game8-hell-spread1.webp',
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: "Take cleave in 2nd gap CW of wide gap",
+              imageUrl: './m9s/game8-hell-spread1.webp'
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'Take 2nd tower CW from N',
+              imageUrl: './m9s/game8-hell-spread1.webp',
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: "Take cleave in 1st gap CW of wide gap",
+              imageUrl: './m9s/game8-hell-spread1.webp'
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'Take 3rd tower CW from N',
+              imageUrl: './m9s/game8-hell-spread1.webp',
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: "Take cleave in 1st gap CW of wide gap",
+              imageUrl: './m9s/game8-hell-spread1.webp'
+            }
+          ]
+        },
+        {
+          mechanic: '1st Towers (Stack)',
+          description: 'MT group (G1) takes first set of towers\nOT group (G2) Stack in wide gap',
+          url: 'https://game8.jp/ff14/754895#hm_9',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'Take 1st tower CW from N',
+              imageUrl: './m9s/game8-hell-stack1.webp',
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: "Stack in wide gap",
+              imageUrl: './m9s/game8-hell-stack1.webp'
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'Take 4th tower CW from N',
+              imageUrl: './m9s/game8-hell-stack1.webp',
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: "Stack in wide gap",
+              imageUrl: './m9s/game8-hell-stack1.webp'
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'Take 2nd tower CW from N',
+              imageUrl: './m9s/game8-hell-stack1.webp',
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: "Stack in wide gap",
+              imageUrl: './m9s/game8-hell-stack1.webp'
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'Take 3rd tower CW from N',
+              imageUrl: './m9s/game8-hell-stack1.webp',
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: "Stack in wide gap",
+              imageUrl: './m9s/game8-hell-stack1.webp'
+            }
+          ]
+        },
+        {
+          mechanic: '2nd Towers (Spread)',
+          description: 'OT group (G2) takes second set of towers\nMT group (G1) Spread is T>D>H CW from wide (Tank) gap',
+          url: 'https://game8.jp/ff14/754895#hm_9',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: "Take cleave in wide gap",
+              imageUrl: './m9s/game8-hell-spread2.webp',
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'Take 1st tower CW from N',
+              imageUrl: './m9s/game8-hell-spread2.webp'
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: "Take cleave in 2nd gap CW of wide gap",
+              imageUrl: './m9s/game8-hell-spread2.webp',
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'Take 4th tower CW from N',
+              imageUrl: './m9s/game8-hell-spread2.webp'
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: "Take cleave in 1st gap CW of wide gap",
+              imageUrl: './m9s/game8-hell-spread2.webp',
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'Take 2nd tower CW from N',
+              imageUrl: './m9s/game8-hell-spread2.webp'
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: "Take cleave in 1st gap CW of wide gap",
+              imageUrl: './m9s/game8-hell-spread2.webp',
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'Take 3rd tower CW from N',
+              imageUrl: './m9s/game8-hell-spread2.webp'
+            }
+          ]
+        },
+        {
+          mechanic: '2nd Towers (Stack)',
+          description: 'OT group (G2) takes second set of towers\nMT group (G1) Stack in wide gap',
+          url: 'https://game8.jp/ff14/754895#hm_9',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: "Stack in wide gap",
+              imageUrl: './m9s/game8-hell-stack2.webp',
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'Take 1st tower CW from N',
+              imageUrl: './m9s/game8-hell-stack2.webp'
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: "Stack in wide gap",
+              imageUrl: './m9s/game8-hell-stack2.webp',
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'Take 4th tower CW from N',
+              imageUrl: './m9s/game8-hell-stack2.webp'
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: "Stack in wide gap",
+              imageUrl: './m9s/game8-hell-stack2.webp',
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'Take 2nd tower CW from N',
+              imageUrl: './m9s/game8-hell-stack2.webp'
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: "Stack in wide gap",
+              imageUrl: './m9s/game8-hell-stack2.webp',
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'Take 3rd tower CW from N',
+              imageUrl: './m9s/game8-hell-stack2.webp'
+            }
+          ]
+        },
+      ]
+    },
+    {
+      phaseName: 'Undead Deathmatch',
+      mechs: [
+        {
+          mechanic: 'Towers',
+          description: 'MT group (G1) N/W, ST group (G2) S/E',
+          url: 'https://game8.jp/ff14/754895#hm_10',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'North/West',
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'South/East',
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'North/West',
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'South/East',
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'North/West',
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'South/East',
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'North/West',
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'South/East',
+            }
+          ]
+        }
+      ]
+    },
+    {
+      phaseName: 'Sanguine Scratch',
+      description: 'Repeats 2x',
+      mechs: [
+        {
+          mechanic: 'Cleaves + Tethers',
+          description:
+            'Boss will alternate cleaves\nFollow tether to Donut/Circle while dodging cleaves\nGraphic shows maximum tether range',
+          imageUrl: './m9s/game8-sanguine-range.webp',
+          url: 'https://game8.jp/ff14/754895#hm_10'
+        },
+        {
+          mechanic: 'Donut + Circle',
+          description: 'Donut or circle will resolve once you reach the other side',
+          imageUrl: './m9s/game8-sanguine-2.webp',
+          url: 'https://game8.jp/ff14/754895#hm_10'
+        }
+      ]
+    },
+    {
+      phaseName: 'Sanguine Scratch 2',
+      description: 'Dodge alternating cleaves',
+      url: 'https://game8.jp/ff14/754895#hm_11'
+    }
+  ]
+};
+
+export const game8jp: Strat = {
+  stratName: 'game8jp',
+  description: '',
+  stratUrl: {
+    'Game8': 'https://game8.jp/ff14/754895',
+    'ぬけまる様の解説動画': 'https://www.youtube.com/watch?v=m4_8a0N8GcM'
+  },
+  strats: [
+    {
+      phaseName: 'フィールドマーカー',
+      boardCode: 'vpvsEMAW6djuh',
+      description: 'エーテルレッティングの範囲を捨てる場所のマーカー',
+      imageUrl: './m9s/game8-markers.webp'
+    },
+    {
+      phaseName: 'ヴァンプストンプ',
+      description: 'コウモリが輪に当たると円範囲が発生\n重なると即死',
+      url: 'https://game8.jp/ff14/754895#hm_5',
+      mechs: [
+        {
+          mechanic: '散開',
+          description: '各自の散開位置で回避',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: '北(内側)',
+              imageUrl: './m9s/game8-vamp.webp',
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: '南(内側)',
+              imageUrl: './m9s/game8-vamp.webp',
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: '南西(外側、Dと3の間)',
+              imageUrl: './m9s/game8-vamp.webp',
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: '南東(外側、2とCの間)',
+              imageUrl: './m9s/game8-vamp.webp',
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: '西(内側)',
+              imageUrl: './m9s/game8-vamp.webp',
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: '東(内側)',
+              imageUrl: './m9s/game8-vamp.webp',
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: '北西(外側、4とAの間)',
+              imageUrl: './m9s/game8-vamp.webp',
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: '北東(外側、1とBの間)',
+              imageUrl: './m9s/game8-vamp.webp',
+            }
+          ]
+        },
+      ]
+    },
+    {
+      phaseName: 'サディスティック・スクリーチ',
+      mechs: [
+        {
+          mechanic: '1回目',
+          description: '光っていない方向へ回避\nボスから北か南への半面範囲',
+          url: 'https://game8.jp/ff14/754895#hm_6',
+          imageUrl: './m9s/toxic-sadistic-1.webp',
+        },
+        {
+          mechanic: '2回目',
+          description: 'ボスから逆の半面範囲\n光っていないレーンへ回避',
+          url: 'https://game8.jp/ff14/754895#hm_6',
+          imageUrl: './m9s/toxic-sadistic-2.webp',
+        },
+        {
+          mechanic: '3回目',
+          description: 'ボスから南側への半面範囲\n1マスのみ安置',
+          url: 'https://game8.jp/ff14/754895#hm_6',
+          imageUrl: './m9s/toxic-sadistic-3.webp',
+        }
+      ]
+    },
+    {
+      phaseName: 'エーテルレッティング',
+      mechs: [
+        {
+          mechanic: '範囲捨て',
+          description:
+            '指定マーカーへ扇範囲を避けつつ向かい、範囲を捨てる\n処理後、中央に集合',
+          url: 'https://game8.jp/ff14/754895#hm_7',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'Aマーカー',
+              imageUrl: './m9s/game8-aetherletting.webp',
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'Cマーカー',
+              imageUrl: './m9s/game8-aetherletting.webp',
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'Dマーカー',
+              imageUrl: './m9s/game8-aetherletting.webp',
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'Bマーカー',
+              imageUrl: './m9s/game8-aetherletting.webp',
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: '3マーカー',
+              imageUrl: './m9s/game8-aetherletting.webp',
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: '2マーカー',
+              imageUrl: './m9s/game8-aetherletting.webp',
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: '4マーカー',
+              imageUrl: './m9s/game8-aetherletting.webp',
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: '1マーカー',
+              imageUrl: './m9s/game8-aetherletting.webp',
+            }
+          ]
+        },
+      ]
+    },
+    {
+      phaseName: 'サディスティック・スクリーチ2回目',
+      description: '3セット繰り返す',
+      mechs: [
+        {
+          mechanic: '塔とノコギリ',
+          description: 'MT組(G1)は北、ST組(G2)は南',
+          url: 'https://game8.jp/ff14/754895#hm_8',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: '北の塔を踏む→鉄球を破壊',
+              imageUrl: './m9s/game8-sadistic2.webp',
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: '南の塔を踏む→鉄球を破壊',
+              imageUrl: './m9s/game8-sadistic2.webp',
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'ノコギリを回避→北の鉄塔(ロッド)を破壊',
+              imageUrl: './m9s/game8-sadistic2.webp'
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'ノコギリを回避→南の鉄塔(ロッド)を破壊',
+              imageUrl: './m9s/game8-sadistic2.webp'
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'ノコギリを回避→北の鉄球を破壊',
+              imageUrl: './m9s/game8-sadistic2.webp'
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'ノコギリを回避→南の鉄球を破壊',
+              imageUrl: './m9s/game8-sadistic2.webp'
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'ノコギリを回避→北の鉄塔(ロッド)を破壊',
+              imageUrl: './m9s/game8-sadistic2.webp'
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'ノコギリを回避→南の鉄塔(ロッド)を破壊',
+              imageUrl: './m9s/game8-sadistic2.webp'
+            }
+          ]
+        },
+      ]
+    },
+    {
+      phaseName: 'ヘル・イン・ア・セル',
+      mechs: [
+        {
+          mechanic: '塔優先度',
+          description: '12時から時計回りでT＞近接＞遠隔＞H',
+          url: 'https://game8.jp/ff14/754895#hm_9',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: '北から時計回り1番目の塔',
+              imageUrl: './m9s/game8-hell-towers.webp',
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: '北から時計回り1番目の塔',
+              imageUrl: './m9s/game8-hell-towers.webp'
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: '北から時計回り4番目の塔',
+              imageUrl: './m9s/game8-hell-towers.webp',
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: '北から時計回り4番目の塔',
+              imageUrl: './m9s/game8-hell-towers.webp'
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: '北から時計回り2番目の塔',
+              imageUrl: './m9s/game8-hell-towers.webp',
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: '北から時計回り2番目の塔',
+              imageUrl: './m9s/game8-hell-towers.webp'
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: '北から時計回り3番目の塔',
+              imageUrl: './m9s/game8-hell-towers.webp',
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: '北から時計回り3番目の塔',
+              imageUrl: './m9s/game8-hell-towers.webp'
+            }
+          ]
+        },
+        {
+          mechanic: '1回目の塔(ロール散開)',
+          description: 'MT組(G1)が塔を踏む\nST組(G2)は広い安置から時計回りでT＞D＞H',
+          url: 'https://game8.jp/ff14/754895#hm_9',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: '北から時計回り1番目の塔',
+              imageUrl: './m9s/game8-hell-spread1.webp',
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: '広い安置で散開',
+              imageUrl: './m9s/game8-hell-spread1.webp'
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: '北から時計回り4番目の塔',
+              imageUrl: './m9s/game8-hell-spread1.webp',
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: '広い安置から時計回り2番目で散開',
+              imageUrl: './m9s/game8-hell-spread1.webp'
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: '北から時計回り2番目の塔',
+              imageUrl: './m9s/game8-hell-spread1.webp',
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: '広い安置から時計回り1番目で散開',
+              imageUrl: './m9s/game8-hell-spread1.webp'
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: '北から時計回り3番目の塔',
+              imageUrl: './m9s/game8-hell-spread1.webp',
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: '広い安置から時計回り1番目で散開',
+              imageUrl: './m9s/game8-hell-spread1.webp'
+            }
+          ]
+        },
+        {
+          mechanic: '1回目の塔(頭割り)',
+          description: 'MT組(G1)が塔を踏む\nST組(G2)は広い安置で頭割り',
+          url: 'https://game8.jp/ff14/754895#hm_9',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: '北から時計回り1番目の塔',
+              imageUrl: './m9s/game8-hell-stack1.webp',
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: '広い安置で頭割り',
+              imageUrl: './m9s/game8-hell-stack1.webp'
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: '北から時計回り4番目の塔',
+              imageUrl: './m9s/game8-hell-stack1.webp',
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: '広い安置で頭割り',
+              imageUrl: './m9s/game8-hell-stack1.webp'
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: '北から時計回り2番目の塔',
+              imageUrl: './m9s/game8-hell-stack1.webp',
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: '広い安置で頭割り',
+              imageUrl: './m9s/game8-hell-stack1.webp'
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: '北から時計回り3番目の塔',
+              imageUrl: './m9s/game8-hell-stack1.webp',
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: '広い安置で頭割り',
+              imageUrl: './m9s/game8-hell-stack1.webp'
+            }
+          ]
+        },
+        {
+          mechanic: '2回目の塔(ロール散開)',
+          description: 'ST組(G2)が塔を踏む\nMT組(G1)は広い安置から時計回りでT＞D＞H',
+          url: 'https://game8.jp/ff14/754895#hm_9',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: '広い安置で散開',
+              imageUrl: './m9s/game8-hell-spread2.webp',
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: '北から時計回り1番目の塔',
+              imageUrl: './m9s/game8-hell-spread2.webp'
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: '広い安置から時計回り2番目で散開',
+              imageUrl: './m9s/game8-hell-spread2.webp',
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: '北から時計回り4番目の塔',
+              imageUrl: './m9s/game8-hell-spread2.webp'
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: '広い安置から時計回り1番目で散開',
+              imageUrl: './m9s/game8-hell-spread2.webp',
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: '北から時計回り2番目の塔',
+              imageUrl: './m9s/game8-hell-spread2.webp'
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: '広い安置から時計回り1番目で散開',
+              imageUrl: './m9s/game8-hell-spread2.webp',
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: '北から時計回り3番目の塔',
+              imageUrl: './m9s/game8-hell-spread2.webp'
+            }
+          ]
+        },
+        {
+          mechanic: '2回目の塔(頭割り)',
+          description: 'ST組(G2)が塔を踏む\nMT組(G1)は広い安置で頭割り',
+          url: 'https://game8.jp/ff14/754895#hm_9',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: '広い安置で頭割り',
+              imageUrl: './m9s/game8-hell-stack2.webp',
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: '北から時計回り1番目の塔',
+              imageUrl: './m9s/game8-hell-stack2.webp'
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: '広い安置で頭割り',
+              imageUrl: './m9s/game8-hell-stack2.webp',
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: '北から時計回り4番目の塔',
+              imageUrl: './m9s/game8-hell-stack2.webp'
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: '広い安置で頭割り',
+              imageUrl: './m9s/game8-hell-stack2.webp',
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: '北から時計回り2番目の塔',
+              imageUrl: './m9s/game8-hell-stack2.webp'
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: '広い安置で頭割り',
+              imageUrl: './m9s/game8-hell-stack2.webp',
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: '北から時計回り3番目の塔',
+              imageUrl: './m9s/game8-hell-stack2.webp'
+            }
+          ]
+        },
+      ]
+    },
+    {
+      phaseName: 'バット・デスマッチ',
+      mechs: [
+        {
+          mechanic: '塔踏み',
+          description: 'MT組(G1)は北/西、ST組(G2)は南/東\nコウモリとの線を離しすぎないように追従',
+          url: 'https://game8.jp/ff14/754895#hm_10',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: '北/西',
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: '南/東',
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: '北/西',
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: '南/東',
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: '北/西',
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: '南/東',
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: '北/西',
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: '南/東',
+            }
+          ]
+        }
+      ]
+    },
+    {
+      phaseName: 'サングインスクラッチ',
+      description: '2回繰り返す',
+      mechs: [
+        {
+          mechanic: '扇回避＋線追従',
+          description:
+            'ボスの扇範囲を交互に避けつつ、コウモリの線を追従\n画像は線の最大距離',
+          imageUrl: './m9s/game8-sanguine-range.webp',
+          url: 'https://game8.jp/ff14/754895#hm_10'
+        },
+        {
+          mechanic: 'ドーナツ/円範囲',
+          description: 'コウモリからのドーナツ範囲か円範囲が発動\n円範囲はボスに寄って回避、ドーナツはコウモリの足元',
+          imageUrl: './m9s/game8-sanguine-2.webp',
+          url: 'https://game8.jp/ff14/754895#hm_10'
+        }
+      ]
+    },
+    {
+      phaseName: 'サングインスクラッチ2回目',
+      description: '線がないため自由に移動可能\n扇範囲を避けるのみ',
+      url: 'https://game8.jp/ff14/754895#hm_11'
+    }
+  ]
+};
+
 // All strats as an array
-export const m9sStrats: Strat[] = [toxic];
+export const m9sStrats: Strat[] = [toxic, game8, game8jp];
