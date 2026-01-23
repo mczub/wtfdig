@@ -811,7 +811,7 @@ export const toxic: Strat = {
         },
         {
           mechanic: 'Stacks',
-          description: 'Pair stacks, then resolve KB + Stack/Spread',
+          description: 'Pair stacks, then resolve KB + LP stacks',
           url: 'https://raidplan.io/plan/syjvfhacdxz7awet#22',
           strats: [
             {
@@ -1611,7 +1611,7 @@ export const hector: Strat = {
         },
         {
           mechanic: 'Stacks',
-          description: 'Pair stacks, then resolve KB + Stack/Spread',
+          description: 'Pair stacks, then resolve KB + LP stacks',
           url: 'https://raidplan.io/plan/syjvfhacdxz7awet#22',
           strats: [
             {
