@@ -73,7 +73,7 @@ const nomnomFirewatersnaking: MechanicStrat[] = [
   {
     mechanic: 'Far Jumps',
     description:
-      '🔥 Boss jumps on furthest fire player 4x\n1/3 (T/M) Far 2/4 (H/R) Close relative to corner fire puddles\nStay near original puddles if not baiting\nImmediately run mid after bait',
+      '🔥 Boss jumps on furthest fire player 4x\n1st/3rd (T/M) Far 2nd/4th (H/R) Close relative to corner fire puddles\nStay near original puddles if not baiting\nImmediately run mid after bait',
     imageUrl: './m10s/nomnom-snaking-far.webp',
     url: 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#6'
   },
@@ -99,9 +99,48 @@ const nomnomFirewatersnaking: MechanicStrat[] = [
   }
 ];
 
+const oceFirewatersnaking: MechanicStrat[] = [
+  {
+    mechanic: 'Debuffs',
+    description:
+      'Proximity bait debuff\nG1 near Blue, G2 near Red\nCan go on either closest or furthest players\nWatch debuff and swap to boss that matches your color',
+    imageUrl: './m10s/oce-13.webp',
+    url: 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#1'
+  },
+  {
+    mechanic: 'Puddles + Proteans',
+    description:
+      '🔥 Place puddles on east wall in box shape\n💦 Giga tight spread in NW/SW corner with Tank towards middle',
+    imageUrl: './m10s/oce-14.webp',
+    url: 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#2',
+  },
+  {
+    mechanic: 'Wide Cleave',
+    description:
+      'Blue jumps to N or S opposite of big wave and does wide cleave\nTrue North\n💦 West, 1 ball = Stack, 4 balls = spread\n🔥 East (near fire puddles)',
+    imageUrl: './m10s/oce-15.webp',
+    url: 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#5'
+  },
+  {
+    mechanic: 'Far Jumps',
+    description:
+      '🔥 Boss jumps on furthest fire player 4x\n1st/3rd (T/M) Far 2nd/4th (H/R) Close relative to corner fire puddles\nStay near original puddles if not baiting\nImmediately run mid after bait',
+    imageUrl: './m10s/oce-16.webp',
+    url: 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#6'
+  },
+  {
+    mechanic: 'Cutback Blaze + TB',
+    description:
+      'Move into safespot\n💦 Tank bait TB far North\n🔥 Stack South to bait Cutback Blaze',
+    imageUrl: './m10s/oce-18.webp',
+    url: 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#10'
+  }
+];
+
 const firewatersnakingMechs: Record<string, MechanicStrat[]> = {
   toxic: toxicFirewatersnaking,
-  nomnom: nomnomFirewatersnaking
+  nomnom: nomnomFirewatersnaking,
+  oce: oceFirewatersnaking,
 };
 
 const toxicDeepaerial: MechanicStrat[] = [
@@ -172,6 +211,19 @@ export const m10sFightConfig: FightConfig = {
           class: 'eu-badge'
         }
       ]
+    },
+    oce: {
+      label: 'OCE (MR)',
+      defaults: {
+        snaking: 'oce',
+        aerial: 'parallel'
+      },
+      badges: [
+        {
+          text: 'OCE',
+          class: 'oce-badge'
+        },
+      ]
     }
   },
   toggles: [
@@ -191,6 +243,10 @@ export const m10sFightConfig: FightConfig = {
             name: 'nomnom/Better Snaking',
             url: 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c'
           }
+        },
+        {
+          value: 'oce',
+          label: 'OCE',
         }
       ]
     },
@@ -1811,5 +1867,778 @@ export const hector: Strat = {
   ]
 };
 
+export const oce: Strat = {
+  stratName: 'oce',
+  stratUrl: {
+    'M10S OCE V3 Raidplan by Valyntine Arkani@Ravana': 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl',
+    'Detailed Visual Guide by Hyulia': 'https://raidplan.io/plan/Qy730U_dC9zSjk0X',
+    'Cheatsheet by Hyulia': 'https://drive.google.com/file/d/1rBtN18jpOjTmPEun4NjuoCA4pzuo5ZRZ/view?usp=sharing',
+  },
+  description: '',
+  strats: [
+    {
+      phaseName: 'Opening',
+      mechs: [
+        {
+          mechanic: 'Flame Floater',
+          description: '1st: CCW corner\n2nd: Boss Start\n3rd: Next to Wall Fire\n4th: Back to Boss Start Next to Fire',
+          imageUrl: './m10s/oce-0.webp',
+          url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#1'
+        },
+        {
+          mechanic: 'Alley-oop Inferno',
+          description: "Melee close, ranged anywhere on the wall that isn't center\nPull enemy back to mid ASAP after puddle drop",
+          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#2',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'Pull CW from where boss finishes to the new corner',
+              imageUrl: './m10s/oce-1.webp',
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'Close to boss',
+              imageUrl: './m10s/oce-1.webp',
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'Far from boss',
+              imageUrl: './m10s/oce-1.webp',
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'Far from boss',
+              imageUrl: './m10s/oce-1.webp',
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'Close to boss',
+              imageUrl: './m10s/oce-1.webp',
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'Close to boss',
+              imageUrl: './m10s/oce-1.webp',
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'Far from boss',
+              imageUrl: './m10s/oce-1.webp',
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'Far from boss',
+              imageUrl: './m10s/oce-1.webp',
+            }
+          ]
+        },
+        {
+          mechanic: 'Cutback Blaze',
+          description:
+            'Stack between boss and fire\nBait narrow slice behind boss\nSafe slice will bait opposite the furthest valid player',
+          imageUrl: './m10s/oce-2.webp',
+          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#3'
+        },
+        {
+          mechanic: 'Pyrotation',
+          description: '3 hit party stack\nEach stack leaves a puddle',
+          imageUrl: './m10s/oce-3.webp',
+          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#4'
+        }
+      ]
+    },
+    {
+      phaseName: 'Sickest Take-off',
+      mechs: [
+        {
+          mechanic: '2 Balls',
+          description: 'Light parties\nG1 Left, G2 Right facing boss',
+          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#5',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'Left/Relative West',
+              imageUrl: './m10s/oce-4.webp',
+              mask: getCircleMaskUrl(43.3, 75.9, 8)
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'Right/Relative East',
+              imageUrl: './m10s/oce-4.webp',
+              mask: getCircleMaskUrl(41.9, 28.4, 8)
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'Left/Relative West',
+              imageUrl: './m10s/oce-4.webp',
+              mask: getCircleMaskUrl(43.3, 75.9, 8)
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'Right/Relative East',
+              imageUrl: './m10s/oce-4.webp',
+              mask: getCircleMaskUrl(41.9, 28.4, 8)
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'Left/Relative West',
+              imageUrl: './m10s/oce-4.webp',
+              mask: getCircleMaskUrl(43.3, 75.9, 8)
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'Right/Relative East',
+              imageUrl: './m10s/oce-4.webp',
+              mask: getCircleMaskUrl(41.9, 28.4, 8)
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'Left/Relative West',
+              imageUrl: './m10s/oce-4.webp',
+              mask: getCircleMaskUrl(43.3, 75.9, 8)
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'Right/Relative East',
+              imageUrl: './m10s/oce-4.webp',
+              mask: getCircleMaskUrl(41.9, 28.4, 8)
+            }
+          ]
+        },
+        {
+          mechanic: '8 Balls',
+          description: 'Spread\nG1 Left, G2 Right facing boss',
+          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#6',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'Left/Relative West',
+              imageUrl: './m10s/oce-5.webp',
+              mask: getCircleMaskUrl(30.3, 68.6, 5)
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'Right/Relative East',
+              imageUrl: './m10s/oce-5.webp',
+              mask: getCircleMaskUrl(30.9, 31.9, 5)
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'Left/Relative West',
+              imageUrl: './m10s/oce-5.webp',
+              mask: getCircleMaskUrl(45.7, 69.1, 5)
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'Right/Relative East',
+              imageUrl: './m10s/oce-5.webp',
+              mask: getCircleMaskUrl(47.1, 30.5, 5)
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'Left/Relative West',
+              imageUrl: './m10s/oce-5.webp',
+              mask: getCircleMaskUrl(37.6, 83.1, 5)
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'Right/Relative East',
+              imageUrl: './m10s/oce-5.webp',
+              mask: getCircleMaskUrl(37.2, 17.9, 5)
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'Left/Relative West',
+              imageUrl: './m10s/oce-5.webp',
+              mask: getCircleMaskUrl(54.7, 83.8, 5)
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'Right/Relative East',
+              imageUrl: './m10s/oce-5.webp',
+              mask: getCircleMaskUrl(56.6, 20, 5)
+            }
+          ]
+        }
+      ]
+    },
+    {
+      phaseName: 'Reverse/Double-dip',
+      mechs: [
+        {
+          mechanic: 'Proteans',
+          description: '‼️BOSS RELATIVE CLOCK SPOTS',
+          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#7',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'Relative North',
+              imageUrl: './m10s/oce-6.webp'
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'Relative South',
+              imageUrl: './m10s/oce-6.webp'
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'Relative West',
+              imageUrl: './m10s/oce-6.webp'
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'Relative East',
+              imageUrl: './m10s/oce-6.webp'
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'Relative Southwest',
+              imageUrl: './m10s/oce-6.webp'
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'Relative Southeast',
+              imageUrl: './m10s/oce-6.webp'
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'Relative Northwest',
+              imageUrl: './m10s/oce-6.webp'
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'Relative Northeast',
+              imageUrl: './m10s/oce-6.webp'
+            }
+          ]
+        },
+        {
+          mechanic: '2nd Hit',
+          description: 'Double-dip = Dodge into empty slice\nReverse = Stay',
+          imageUrl: './m10s/oce-6.webp',
+          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#7'
+        }
+      ]
+    },
+    {
+      phaseName: 'Deep Impact',
+      description: 'Tankbuster baited on furthest player\nDoes a small KB',
+      imageUrl: './m10s/oce-7.webp',
+      url: 'https://raidplan.io/plan/syjvfhacdxz7awet#8'
+    },
+    {
+      phaseName: 'Insane Air 1',
+      mechs: [
+        {
+          mechanic: 'Start',
+          description: 'G1 Northwest, G2 Southeast',
+          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#9',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'Northwest (Deep Blue)',
+              imageUrl: './m10s/oce-8.webp',
+              mask: getCircleMaskUrl(40, 23.3, 12)
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'Southeast (Red Hot)',
+              imageUrl: './m10s/oce-8.webp',
+              mask: getCircleMaskUrl(60.2, 75.5, 12)
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'Northwest (Deep Blue)',
+              imageUrl: './m10s/oce-8.webp',
+              mask: getCircleMaskUrl(40, 23.3, 12)
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'Southeast (Red Hot)',
+              imageUrl: './m10s/oce-8.webp',
+              mask: getCircleMaskUrl(60.2, 75.5, 12)
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'Northwest (Deep Blue)',
+              imageUrl: './m10s/oce-8.webp',
+              mask: getCircleMaskUrl(40, 23.3, 12)
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'Southeast (Red Hot)',
+              imageUrl: './m10s/oce-8.webp',
+              mask: getCircleMaskUrl(60.2, 75.5, 12)
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'Northwest (Deep Blue)',
+              imageUrl: './m10s/oce-8.webp',
+              mask: getCircleMaskUrl(40, 23.3, 12)
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'Southeast (Red Hot)',
+              imageUrl: './m10s/oce-8.webp',
+              mask: getCircleMaskUrl(60.2, 75.5, 12)
+            }
+          ]
+        },
+        {
+          mechanic: 'Surfboards',
+          description:
+            'Up: Tankbuster AoE on closest\nSide: Light party stack\nDown: Proteans\n🔥 Fire leaves stuff on the ground\nOnly 1 of 4 can be a TB',
+          imageUrl: './m10s/natus-surfboards.webp'
+        },
+        {
+          mechanic: 'Proteans',
+          description: 'MTHR clockwise for proteans',
+          imageUrl: './m10s/oce-9.webp',
+          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#10'
+        },
+      ]
+    },
+    {
+      phaseName: 'Fire/Watersnaking',
+      tag: 'snaking',
+      mechs: firewatersnakingMechs
+    },
+    {
+      phaseName: 'Deep Aerial',
+      mechs: deepaerialMechs,
+      tag: 'aerial'
+    },
+    {
+      phaseName: 'Arena Split',
+      mechs: [
+        {
+          mechanic: 'Start + Puddles',
+          description: 'G1 West\nG2 East',
+          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#20',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'Northwest corner, south of D3',
+              imageUrl: './m10s/oce-25.webp',
+              mask: getCircleMaskUrl(29.9, 26, 5)
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'Northeast corner, south of D4',
+              imageUrl: './m10s/oce-25.webp',
+              mask: getCircleMaskUrl(70.3, 25.4, 5)
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'Southwest corner',
+              imageUrl: './m10s/oce-25.webp',
+              mask: getCircleMaskUrl(29.9, 85.9, 5)
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'Southeast corner',
+              imageUrl: './m10s/oce-25.webp',
+              mask: getCircleMaskUrl(70.3, 86.1, 5)
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'Southwest corner, north of H1',
+              imageUrl: './m10s/oce-25.webp',
+              mask: getCircleMaskUrl(29.8, 74.8, 5)
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'Southeast corner, north of H2',
+              imageUrl: './m10s/oce-25.webp',
+              mask: getCircleMaskUrl(70.3, 74.4, 5)
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'Northwest corner',
+              imageUrl: './m10s/oce-25.webp',
+              mask: getCircleMaskUrl(29.9, 14.3, 5)
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'Northeast corner',
+              imageUrl: './m10s/oce-25.webp',
+              mask: getCircleMaskUrl(70.4, 14.1, 5)
+            }
+          ]
+        },
+        {
+          mechanic: 'Proteans',
+          description:
+            'Double-dip = Dodge (far melees dodge to intercard)\nReverse = Stay (far melees dodge to cardinal)',
+          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#21',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description:
+                'North of middle\nIf far, Double-dip = dodge to intercard, Reverse = dodge to cardinal',
+              imageUrl: './m10s/oce-26.webp',
+              mask: getMultiCircleMaskUrl([44.2, 44.9, 4], [69, 44.1, 4])
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description:
+                'North of middle\nIf far, Double-dip = dodge to intercard, Reverse = dodge to cardinal',
+              imageUrl: './m10s/oce-26.webp',
+              mask: getMultiCircleMaskUrl([44.2, 44.9, 4], [69, 44.1, 4])
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'South',
+              imageUrl: './m10s/oce-26.webp',
+              mask: getMultiCircleMaskUrl([44.9, 87.3, 4], [66.7, 63.9, 4])
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'South',
+              imageUrl: './m10s/oce-26.webp',
+              mask: getMultiCircleMaskUrl([44.9, 87.3, 4], [66.7, 63.9, 4])
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description:
+                'South of middle\nIf far, Double-dip = dodge to intercard, Reverse = dodge to cardinal',
+              imageUrl: './m10s/oce-26.webp',
+              mask: getMultiCircleMaskUrl([44.3, 54.9, 4], [69.2, 56, 4])
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description:
+                'South of middle\nIf far, Double-dip = dodge to intercard, Reverse = dodge to cardinal',
+              imageUrl: './m10s/oce-26.webp',
+              mask: getMultiCircleMaskUrl([44.3, 54.9, 4], [69.2, 56, 4])
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'North',
+              imageUrl: './m10s/oce-26.webp',
+              mask: getMultiCircleMaskUrl([44.7, 13, 4], [66.7, 35.7, 4])
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'North',
+              imageUrl: './m10s/oce-26.webp',
+              mask: getMultiCircleMaskUrl([44.7, 13, 4], [66.7, 35.7, 4])
+            }
+          ]
+        },
+        {
+          mechanic: 'Stacks',
+          description: 'Pair stacks, then resolve KB + LP stacks',
+          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#22',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'Stack near 1 with D3',
+              imageUrl: './m10s/oce-27.webp',
+              mask: getCircleMaskUrl(40.2, 21.6, 7)
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'Stack near 2 with D4',
+              imageUrl: './m10s/oce-27.webp',
+              mask: getCircleMaskUrl(60.3, 21.6, 7)
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'Stack near 4 with M1',
+              imageUrl: './m10s/oce-27.webp',
+              mask: getCircleMaskUrl(40, 79.1, 7)
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'Stack near 3 with M2',
+              imageUrl: './m10s/oce-27.webp',
+              mask: getCircleMaskUrl(60.4, 79.1, 7)
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'Stack near 4 with H1',
+              imageUrl: './m10s/oce-27.webp',
+              mask: getCircleMaskUrl(40, 79.1, 7)
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'Stack near 3 with H2',
+              imageUrl: './m10s/oce-27.webp',
+              mask: getCircleMaskUrl(60.4, 79.1, 7)
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'Stack near 1 with MT',
+              imageUrl: './m10s/oce-27.webp',
+              mask: getCircleMaskUrl(40.2, 21.6, 7)
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'Stack near 2 with OT',
+              imageUrl: './m10s/oce-27.webp',
+              mask: getCircleMaskUrl(60.3, 21.6, 7)
+            }
+          ]
+        }
+      ]
+    },
+    {
+      phaseName: 'Insane Air 2',
+      mechs: [
+        {
+          mechanic: 'Debuffs',
+          description:
+            'Same proximity debuff bait as Snaking\nStart at boss matching debuff color except Healers',
+          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#23',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'Start at boss matching debuff color',
+              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'Start at boss matching debuff color',
+              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'Start at boss OPPOSITE debuff color',
+              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'Start at boss OPPOSITE debuff color',
+              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'Start at boss matching debuff color',
+              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'Start at boss matching debuff color',
+              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'Start at boss matching debuff color',
+              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'Start at boss matching debuff color',
+              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+            }
+          ]
+        },
+        {
+          mechanic: 'Cleanses + Swaps',
+          description: 'Cleanse order: H > M > R\nSwap order: M > R',
+          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#23',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: "Swap if it's tankbuster\nMake sure to insta-swap if it's TB first",
+              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: "Swap if it's tankbuster\nMake sure to insta-swap if it's TB first",
+              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'Just do mechanics and chill',
+              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'Just do mechanics and chill',
+              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'Swap after Healer cleanses for 2nd cleanse',
+              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'Swap after Healer cleanses for 2nd cleanse',
+              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'Swap after Melee cleanses for 3rd cleanse',
+              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'Swap after Melee cleanses for 3rd cleanse',
+              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      phaseName: 'Double Alley-oop 2',
+      mechs: [
+        {
+          mechanic: 'Proteans + Puddles',
+          description: 'Double-dip = Dodge clockwise\nReverse = Stay',
+          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#24',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'North (A marker)',
+              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              mask: getCircleMaskUrl(49.9, 15.6, 5)
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'South (C marker)',
+              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              mask: getCircleMaskUrl(50, 85, 5)
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'West (D marker)',
+              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              mask: getCircleMaskUrl(31.5, 50.3, 5)
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'East (B marker)',
+              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              mask: getCircleMaskUrl(68.8, 49.8, 5)
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'Southwest (4 marker)',
+              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              mask: getCircleMaskUrl(31.5, 82.9, 5)
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'Southeast (3 marker)',
+              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              mask: getCircleMaskUrl(68.3, 83.3, 5)
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'Northwest (1 marker)',
+              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              mask: getCircleMaskUrl(31.6, 17.3, 5)
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'Northeast (2 marker)',
+              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              mask: getCircleMaskUrl(68.6, 16.8, 5)
+            }
+          ]
+        },
+        {
+          mechanic: 'TB + Party Stacks',
+          description: 'OT bait TB far\nStack under Deep Blue, rotate CW around Red Hot',
+          imageUrl: './m10s/toxic-alley2-tb.webp',
+          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#25'
+        }
+      ]
+    }
+  ]
+};
+
 // All strats as an array
-export const m10sStrats: Strat[] = [hector, toxic];
+export const m10sStrats: Strat[] = [hector, oce, toxic];
