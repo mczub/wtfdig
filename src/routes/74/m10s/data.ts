@@ -105,35 +105,35 @@ const oceFirewatersnaking: MechanicStrat[] = [
     description:
       'Proximity bait debuff\nG1 near Blue, G2 near Red\nCan go on either closest or furthest players\nWatch debuff and swap to boss that matches your color',
     imageUrl: './m10s/oce-13.webp',
-    url: 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#1'
+    url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#14'
   },
   {
     mechanic: 'Puddles + Proteans',
     description:
       '🔥 Place puddles on east wall in box shape\n💦 Giga tight spread in NW/SW corner with Tank towards middle',
     imageUrl: './m10s/oce-14.webp',
-    url: 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#2',
+    url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#15',
   },
   {
     mechanic: 'Wide Cleave',
     description:
       'Blue jumps to N or S opposite of big wave and does wide cleave\nTrue North\n💦 West, 1 ball = Stack, 4 balls = spread\n🔥 East (near fire puddles)',
     imageUrl: './m10s/oce-15.webp',
-    url: 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#5'
+    url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#16'
   },
   {
     mechanic: 'Far Jumps',
     description:
       '🔥 Boss jumps on furthest fire player 4x\n1st/3rd (T/M) Far 2nd/4th (H/R) Close relative to corner fire puddles\nStay near original puddles if not baiting\nImmediately run mid after bait',
     imageUrl: './m10s/oce-16.webp',
-    url: 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#6'
+    url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#17'
   },
   {
     mechanic: 'Cutback Blaze + TB',
     description:
       'Move into safespot\n💦 Tank bait TB far North\n🔥 Stack South to bait Cutback Blaze',
     imageUrl: './m10s/oce-18.webp',
-    url: 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#10'
+    url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#19'
   }
 ];
 
@@ -1888,7 +1888,7 @@ export const oce: Strat = {
         {
           mechanic: 'Alley-oop Inferno',
           description: "Melee close, ranged anywhere on the wall that isn't center\nPull enemy back to mid ASAP after puddle drop",
-          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#2',
+          url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#2',
           strats: [
             {
               role: 'Tank',
@@ -1945,13 +1945,13 @@ export const oce: Strat = {
           description:
             'Stack between boss and fire\nBait narrow slice behind boss\nSafe slice will bait opposite the furthest valid player',
           imageUrl: './m10s/oce-2.webp',
-          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#3'
+          url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#3'
         },
         {
           mechanic: 'Pyrotation',
           description: '3 hit party stack\nEach stack leaves a puddle',
           imageUrl: './m10s/oce-3.webp',
-          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#4'
+          url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#4'
         }
       ]
     },
@@ -1961,7 +1961,7 @@ export const oce: Strat = {
         {
           mechanic: '2 Balls',
           description: 'Light parties\nG1 Left, G2 Right facing boss',
-          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#5',
+          url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#5',
           strats: [
             {
               role: 'Tank',
@@ -2024,7 +2024,7 @@ export const oce: Strat = {
         {
           mechanic: '8 Balls',
           description: 'Spread\nG1 Left, G2 Right facing boss',
-          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#6',
+          url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#6',
           strats: [
             {
               role: 'Tank',
@@ -2092,7 +2092,7 @@ export const oce: Strat = {
         {
           mechanic: 'Proteans',
           description: '‼️BOSS RELATIVE CLOCK SPOTS',
-          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#7',
+          url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#7',
           strats: [
             {
               role: 'Tank',
@@ -2148,7 +2148,7 @@ export const oce: Strat = {
           mechanic: '2nd Hit',
           description: 'Double-dip = Dodge into empty slice\nReverse = Stay',
           imageUrl: './m10s/oce-6.webp',
-          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#7'
+          url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#7'
         }
       ]
     },
@@ -2156,7 +2156,7 @@ export const oce: Strat = {
       phaseName: 'Deep Impact',
       description: 'Tankbuster baited on furthest player\nDoes a small KB',
       imageUrl: './m10s/oce-7.webp',
-      url: 'https://raidplan.io/plan/syjvfhacdxz7awet#8'
+      url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#8'
     },
     {
       phaseName: 'Insane Air 1',
@@ -2164,7 +2164,7 @@ export const oce: Strat = {
         {
           mechanic: 'Start',
           description: 'G1 Northwest, G2 Southeast',
-          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#9',
+          url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#9',
           strats: [
             {
               role: 'Tank',
@@ -2234,7 +2234,7 @@ export const oce: Strat = {
           mechanic: 'Proteans',
           description: 'MTHR clockwise for proteans',
           imageUrl: './m10s/oce-9.webp',
-          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#10'
+          url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#10'
         },
       ]
     },
@@ -2254,7 +2254,7 @@ export const oce: Strat = {
         {
           mechanic: 'Start + Puddles',
           description: 'G1 West\nG2 East',
-          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#20',
+          url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#26',
           strats: [
             {
               role: 'Tank',
@@ -2318,7 +2318,7 @@ export const oce: Strat = {
           mechanic: 'Proteans',
           description:
             'Double-dip = Dodge (far melees dodge to intercard)\nReverse = Stay (far melees dodge to cardinal)',
-          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#21',
+          url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#27',
           strats: [
             {
               role: 'Tank',
@@ -2385,7 +2385,7 @@ export const oce: Strat = {
         {
           mechanic: 'Stacks',
           description: 'Pair stacks, then resolve KB + LP stacks',
-          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#22',
+          url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#28',
           strats: [
             {
               role: 'Tank',
@@ -2453,111 +2453,111 @@ export const oce: Strat = {
         {
           mechanic: 'Debuffs',
           description:
-            'Same proximity debuff bait as Snaking\nStart at boss matching debuff color except Healers',
-          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#23',
+            'Same proximity debuff bait as Snaking\nStart at boss matching debuff color',
+          url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#29',
           strats: [
             {
               role: 'Tank',
               party: 1,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: './m10s/oce-28.webp'
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: './m10s/oce-28.webp'
             },
             {
               role: 'Healer',
               party: 1,
-              description: 'Start at boss OPPOSITE debuff color',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              description: 'Start at boss matching debuff color',
+              imageUrl: './m10s/oce-28.webp'
             },
             {
               role: 'Healer',
               party: 2,
-              description: 'Start at boss OPPOSITE debuff color',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              description: 'Start at boss matching debuff color',
+              imageUrl: './m10s/oce-28.webp'
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: './m10s/oce-28.webp'
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: './m10s/oce-28.webp'
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: './m10s/oce-28.webp'
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: './m10s/oce-28.webp'
             }
           ]
         },
         {
           mechanic: 'Cleanses + Swaps',
-          description: 'Cleanse order: H > M > R\nSwap order: M > R',
-          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#23',
+          description: 'Swap BEFORE each Protean/Stack\nSwap order: H > M > R',
+          url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#29',
           strats: [
             {
               role: 'Tank',
               party: 1,
               description: "Swap if it's tankbuster\nMake sure to insta-swap if it's TB first",
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: './m10s/oce-28.webp'
             },
             {
               role: 'Tank',
               party: 2,
               description: "Swap if it's tankbuster\nMake sure to insta-swap if it's TB first",
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: './m10s/oce-28.webp'
             },
             {
               role: 'Healer',
               party: 1,
-              description: 'Just do mechanics and chill',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              description: 'Swap before first Protean/Stack for 1st cleanse',
+              imageUrl: './m10s/oce-28.webp'
             },
             {
               role: 'Healer',
               party: 2,
-              description: 'Just do mechanics and chill',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              description: 'Swap before first Protean/Stack for 1st cleanse',
+              imageUrl: './m10s/oce-28.webp'
             },
             {
               role: 'Melee',
               party: 1,
-              description: 'Swap after Healer cleanses for 2nd cleanse',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              description: 'Swap before second Protean/Stack for 2nd cleanse',
+              imageUrl: './m10s/oce-28.webp'
             },
             {
               role: 'Melee',
               party: 2,
-              description: 'Swap after Healer cleanses for 2nd cleanse',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              description: 'Swap before second Protean/Stack for 2nd cleanse',
+              imageUrl: './m10s/oce-28.webp'
             },
             {
               role: 'Ranged',
               party: 1,
-              description: 'Swap after Melee cleanses for 3rd cleanse',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              description: 'Swap before third Protean/Stack for 3rd cleanse',
+              imageUrl: './m10s/oce-28.webp'
             },
             {
               role: 'Ranged',
               party: 2,
-              description: 'Swap after Melee cleanses for 3rd cleanse',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              description: 'Swap before third Protean/Stack for 3rd cleanse',
+              imageUrl: './m10s/oce-28.webp'
             }
           ]
         }
@@ -2569,62 +2569,62 @@ export const oce: Strat = {
         {
           mechanic: 'Proteans + Puddles',
           description: 'Double-dip = Dodge clockwise\nReverse = Stay',
-          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#24',
+          url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#30',
           strats: [
             {
               role: 'Tank',
               party: 1,
               description: 'North (A marker)',
-              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              imageUrl: './m10s/oce-29.webp',
               mask: getCircleMaskUrl(49.9, 15.6, 5)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'South (C marker)',
-              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              imageUrl: './m10s/oce-29.webp',
               mask: getCircleMaskUrl(50, 85, 5)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'West (D marker)',
-              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              imageUrl: './m10s/oce-29.webp',
               mask: getCircleMaskUrl(31.5, 50.3, 5)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'East (B marker)',
-              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              imageUrl: './m10s/oce-29.webp',
               mask: getCircleMaskUrl(68.8, 49.8, 5)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Southwest (4 marker)',
-              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              imageUrl: './m10s/oce-29.webp',
               mask: getCircleMaskUrl(31.5, 82.9, 5)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Southeast (3 marker)',
-              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              imageUrl: './m10s/oce-29.webp',
               mask: getCircleMaskUrl(68.3, 83.3, 5)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Northwest (1 marker)',
-              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              imageUrl: './m10s/oce-29.webp',
               mask: getCircleMaskUrl(31.6, 17.3, 5)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Northeast (2 marker)',
-              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              imageUrl: './m10s/oce-29.webp',
               mask: getCircleMaskUrl(68.6, 16.8, 5)
             }
           ]
@@ -2632,8 +2632,8 @@ export const oce: Strat = {
         {
           mechanic: 'TB + Party Stacks',
           description: 'OT bait TB far\nStack under Deep Blue, rotate CW around Red Hot',
-          imageUrl: './m10s/toxic-alley2-tb.webp',
-          url: 'https://raidplan.io/plan/syjvfhacdxz7awet#25'
+          imageUrl: './m10s/oce-30.webp',
+          url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#31'
         }
       ]
     }

@@ -1085,7 +1085,7 @@ const modifiedStrat: Strat = {
       ]
     },
     {
-      phaseName: 'Grotesquerie: Act 2',
+      phaseName: 'Grotesquerie: Act 2 (Glooper)',
       tag: 'p1',
       mechs: [
         {
