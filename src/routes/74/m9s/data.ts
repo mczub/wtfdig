@@ -30,13 +30,6 @@ export const m9sFightConfig: FightConfig = {
         { text: 'JP', class: 'jp-badge' }
       ]
     },
-    game8jp: {
-      label: 'Game8/ぬけまる (日本語)',
-      jpRoles: true,
-      badges: [
-        { text: 'JP', class: 'jp-badge' }
-      ]
-    }
   },
   defaultStratName: 'toxic',
   timeline: [
@@ -1026,56 +1019,56 @@ export const game8: Strat = {
       url: 'https://game8.jp/ff14/754895#hm_5',
       mechs: [
         {
-          mechanic: 'Start',
-          description: 'Dodge near your clock spot',
+          mechanic: 'Melee Pops',
+          description: 'Go to clock spot\nMelees dodge first bats then pop when ring is 4 floor squares in diameter\nRanged dodge 2nd and 3rd bats and pop far',
           strats: [
             {
               role: 'Tank',
               party: 1,
-              description: 'Dodge close near North',
-              imageUrl: './m9s/game8-vamp.webp',
+              description: 'Dodge first bats then pop near North',
+              imageUrl: './m9s/game8-vamp-1.webp',
             },
             {
               role: 'Tank',
               party: 2,
-              description: 'Dodge close near South',
-              imageUrl: './m9s/game8-vamp.webp',
+              description: 'Dodge first bats then pop near South',
+              imageUrl: './m9s/game8-vamp-1.webp',
             },
             {
               role: 'Healer',
               party: 1,
-              description: 'Dodge far near Southwest (between D and 3)',
-              imageUrl: './m9s/game8-vamp.webp',
+              description: 'Dodge bats then pop far near Southwest (between D and 3)',
+              imageUrl: './m9s/game8-vamp-2.webp',
             },
             {
               role: 'Healer',
               party: 2,
-              description: 'Dodge far near Southeast (between 2 and C)',
-              imageUrl: './m9s/game8-vamp.webp',
+              description: 'Dodge bats then pop far near Southeast (between 2 and C)',
+              imageUrl: './m9s/game8-vamp-2.webp',
             },
             {
               role: 'Melee',
               party: 1,
-              description: 'Dodge close near West',
-              imageUrl: './m9s/game8-vamp.webp',
+              description: 'Dodge first bats then pop near West',
+              imageUrl: './m9s/game8-vamp-1.webp',
             },
             {
               role: 'Melee',
               party: 2,
-              description: 'Dodge cloes near East',
-              imageUrl: './m9s/game8-vamp.webp',
+              description: 'Dodge first bats then pop near East',
+              imageUrl: './m9s/game8-vamp-1.webp',
             },
             {
               role: 'Ranged',
               party: 1,
-              description: 'Dodge far near Northwest (between 4 and A)',
-              imageUrl: './m9s/game8-vamp.webp',
+              description: 'Dodge bats then pop far near Northwest (between 4 and A)',
+              imageUrl: './m9s/game8-vamp-2.webp',
             },
             {
               role: 'Ranged',
               party: 2,
-              description: 'Dodge far near Northeast (between 1 and B)',
-              imageUrl: './m9s/game8-vamp.webp',
+              description: 'Dodge bats then pop far near Northeast (between 1 and B)',
+              imageUrl: './m9s/game8-vamp-2.webp',
             }
           ]
         },
@@ -2165,4 +2158,4 @@ export const game8jp: Strat = {
 };
 
 // All strats as an array
-export const m9sStrats: Strat[] = [toxic, game8, game8jp];
+export const m9sStrats: Strat[] = [toxic, game8];
