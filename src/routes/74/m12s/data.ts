@@ -3242,90 +3242,90 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
       mechanic: 'Player Clones',
       description:
         '📌🐦 REMEMBER: Whether initial clones spawned Cardinal or Intercardinal first\n📌🧑‍🤝‍🧑 REMEMBER: your clone position',
-      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#3',
-      imageUrl: './m12s/em-id-2.webp'
+      url: 'https://raidplan.io/plan/hg6FhbjyktWqebyG#2',
+      imageUrl: './m12s/em-id-1.webp'
     },
     {
       mechanic: 'Cone Zone',
       description: '📌🍦 REMEMBER: whether North or South is safe from cones (E/W safe)',
       imageUrl: './m12s/dn-idyllic-4.webp',
-      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#5'
+      url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#5'
     },
     {
       mechanic: 'Tether Grabs',
       description: 'Grab the tether at your spot if it matches your assignment\nSwap with your partner if not',
-      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#3',
+      url: 'https://raidplan.io/plan/hg6FhbjyktWqebyG#4',
       strats: [
         // Generic info - shows when 'All' is selected (or no selection)
         {
           toggleKey: 'idyllictether',
           toggleValue: '',
           description: '',
-          imageUrl: './m12s/em-id-2.webp'
+          imageUrl: './m12s/em-id-3.webp'
         },
         // Position-specific instructions
         {
           toggleKey: 'idyllictether',
           toggleValue: 'N',
           description: 'Take Stack boss tether, swap partner is Southwest (4)',
-          imageUrl: './m12s/em-id-2.webp'
+          imageUrl: './m12s/em-id-3.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NE',
           description: 'Take Stack boss tether, swap partner is South (C)',
-          imageUrl: './m12s/em-id-2.webp'
+          imageUrl: './m12s/em-id-3.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'E',
           description: 'Take Stack boss tether, swap partner is Southeast (3)',
-          imageUrl: './m12s/em-id-2.webp'
+          imageUrl: './m12s/em-id-3.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SE',
           description: 'Take Defam boss tether, swap partner is East (B)',
-          imageUrl: './m12s/em-id-2.webp'
+          imageUrl: './m12s/em-id-3.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'S',
           description: 'Take Defam boss tether, swap partner is Northeast (2)',
-          imageUrl: './m12s/em-id-2.webp'
+          imageUrl: './m12s/em-id-3.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SW',
           description: 'Take Defam boss tether, swap partner is North (A)',
-          imageUrl: './m12s/em-id-2.webp'
+          imageUrl: './m12s/em-id-3.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'W',
           description: 'Take Defam boss tether, swap partner is Northwest (1)',
-          imageUrl: './m12s/em-id-2.webp'
+          imageUrl: './m12s/em-id-3.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NW',
           description: 'Take Stack boss tether, swap partner is West (D)',
-          imageUrl: './m12s/em-id-2.webp'
+          imageUrl: './m12s/em-id-3.webp'
         }
       ]
     },
     {
       mechanic: 'Boss Clones Spawn + Take Tethers',
       description: '📌🤔 REMEMBER: Whether North clone was Stack or Defamation',
-      imageUrl: './m12s/em-id-5.webp',
-      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#6'
+      imageUrl: './m12s/em-id-6.webp',
+      url: 'https://raidplan.io/plan/hg6FhbjyktWqebyG#7'
     },
     {
       mechanic: 'Cones Resolve',
       description:
         '💡🍦 RECALL: Whether South or North is safe from cones\nGo to Cone safespots (South or North) with True G1 West/G2 East\nMove to platforms right after',
       imageUrl: './m12s/dn-idyllic-10.webp',
-      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#5'
+      url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#11'
     }
   ],
   clones2: [
@@ -3333,132 +3333,132 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
       mechanic: 'Recall Clones and Tethers',
       description:
         '💡🤔🧑‍🤝‍🧑 RECALL:\nWhether North clone was Stack or Defamation\nTemporary light parties\nIf you were 1st or 2nd Defamation or a Stack',
-      imageUrl: './m12s/em-id-5.webp',
-      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#6'
+      imageUrl: './m12s/em-id-3.webp',
+      url: 'https://raidplan.io/plan/hg6FhbjyktWqebyG#4'
     },
     {
       mechanic: 'Defamations',
       description: 'Take Stacks/Defams near your original clone positions\nDefamations will be on the edge near D and C',
-      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#8',
+      url: 'https://raidplan.io/plan/hg6FhbjyktWqebyG#10',
       strats: [
         // Generic info - shows when 'All' is selected (or no selection)
         {
           toggleKey: 'idyllictether',
           toggleValue: '',
           description: '',
-          imageUrl: './m12s/em-id-7.webp'
+          imageUrl: './m12s/em-id-9.webp'
         },
         // Position-specific instructions
         {
           toggleKey: 'idyllictether',
           toggleValue: 'N',
           description: 'Stay North-ish of 1 to avoid Defamations',
-          imageUrl: './m12s/em-id-7.webp'
+          imageUrl: './m12s/em-id-9.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NE',
           description: 'Stay North-ish of 2 to avoid Defamations',
-          imageUrl: './m12s/em-id-7.webp'
+          imageUrl: './m12s/em-id-9.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'E',
           description: 'Stay North-ish of 2 to avoid Defamations',
-          imageUrl: './m12s/em-id-7.webp'
+          imageUrl: './m12s/em-id-9.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SE',
           description: '2nd Defam Southeast (3)\nStay North-ish of 2 to avoid Defamations',
-          imageUrl: './m12s/em-id-7.webp'
+          imageUrl: './m12s/em-id-9.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'S',
           description: '1st Defam Southeast (3)\nStay North-ish of 2 to avoid Defamations',
-          imageUrl: './m12s/em-id-7.webp'
+          imageUrl: './m12s/em-id-9.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SW',
           description: '1st Defam Southwest (4)\nStay North-ish of 1 to avoid Defamations',
-          imageUrl: './m12s/em-id-7.webp'
+          imageUrl: './m12s/em-id-9.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'W',
           description: '2nd Defam Southwest (4)\nStay North-ish of 1 to avoid Defamations',
-          imageUrl: './m12s/em-id-7.webp'
+          imageUrl: './m12s/em-id-9.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NW',
           description: 'Stay North-ish of 1 to avoid Defamations',
-          imageUrl: './m12s/em-id-7.webp'
+          imageUrl: './m12s/em-id-9.webp'
         }
       ]
     },
     {
       mechanic: 'Stacks',
       description: 'Take Stacks/Defams near your original clone positions\nStacks will be near 1 and 2 max melee',
-      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#9',
+      url: 'https://raidplan.io/plan/hg6FhbjyktWqebyG#11',
       strats: [
         // Generic info - shows when 'All' is selected (or no selection)
         {
           toggleKey: 'idyllictether',
           toggleValue: '',
           description: '',
-          imageUrl: './m12s/em-id-8.webp'
+          imageUrl: './m12s/em-id-10.webp'
         },
         // Position-specific instructions
         {
           toggleKey: 'idyllictether',
           toggleValue: 'N',
           description: 'Stack Northwest (1)',
-          imageUrl: './m12s/em-id-8.webp'
+          imageUrl: './m12s/em-id-10.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NE',
           description: 'Stack Northeast (2)',
-          imageUrl: './m12s/em-id-8.webp'
+          imageUrl: './m12s/em-id-10.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'E',
           description: 'Stack Northeast (2)',
-          imageUrl: './m12s/em-id-8.webp'
+          imageUrl: './m12s/em-id-10.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SE',
           description: 'Stack Northeast (2)',
-          imageUrl: './m12s/em-id-8.webp'
+          imageUrl: './m12s/em-id-10.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'S',
           description: 'Stack Northeast (2)',
-          imageUrl: './m12s/em-id-8.webp'
+          imageUrl: './m12s/em-id-10.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SW',
           description: 'Stack Northwest (1)',
-          imageUrl: './m12s/em-id-8.webp'
+          imageUrl: './m12s/em-id-10.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'W',
           description: 'Stack Northwest (1)',
-          imageUrl: './m12s/em-id-8.webp'
+          imageUrl: './m12s/em-id-10.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NW',
           description: 'Stack Northwest (1)',
-          imageUrl: './m12s/em-id-8.webp'
+          imageUrl: './m12s/em-id-10.webp'
         }
       ]
     }
@@ -3469,14 +3469,14 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
       description:
         "💡🗼 RECALL: your tower assignments\nWind: Get KB to the other platform\nDoom: Point line away\nFire: Don't move (can still attack)\nEarth: Move out of twister",
       imageUrl: './m12s/dn-idyllic-24.webp',
-      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#7'
+      url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#25'
     },
     {
       mechanic: 'Setup for Cones',
       description:
         'Wind: on NE/NW (1/2)\nDoom: on hitbox between 1/D or 2/B\nFire: Slightly outside of Doom\nMEarth: on SE/SW (3/4)',
-      imageUrl: './m12s/em-id-6.webp',
-      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#7'
+      imageUrl: './m12s/em-id-8.webp',
+      url: 'https://raidplan.io/plan/hg6FhbjyktWqebyG#9'
     }
   ],
   blackhole: [
@@ -3485,76 +3485,76 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
       description:
         '💡🍦 RECALL: whether South or North is safe from cones (E/W safe) from beginning of the mech',
       imageUrl: './m12s/dn-idyllic-29.webp',
-      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#10'
+      url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#30'
     },
     {
       mechanic: 'Black Hole Clone',
       description:
         '📌🍦🕳️ REMEMBER: Whether clone that jumps into the black hole is N/S or E/W safe\n📌🍦🐇 REMEMBER: Which platform the remaining N/S clone jumps to and which direction is safe',
       imageUrl: './m12s/dn-idyllic-30.webp',
-      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#10'
+      url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#31'
     },
     {
       mechanic: '1st Defamations/Stacks',
       description:
         '💡🐦 RECALL: Whether initial clones spawned Cardinal or Intercardinal first\nCardinal: Party to A marker, Tanks to B marker, slightly towards NE\nIntercard: Party NE, Tanks SE, slightly towards B',
-      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#10',
+      url: 'https://raidplan.io/plan/hg6FhbjyktWqebyG#12',
       strats: [
         {
           role: 'Tank',
           party: 1,
           description:
             'Cardinal: Outside of North (A) clone\nIntercard: Outside of Northwest (1) clone',
-          imageUrl: './m12s/em-id-9.webp'
+          imageUrl: './m12s/em-id-11.webp'
         },
         {
           role: 'Tank',
           party: 2,
           description:
             'Cardinal: Outside of East (B) clone\nIntercard: Outside of Northeast (2) clone',
-          imageUrl: './m12s/em-id-9.webp'
+          imageUrl: './m12s/em-id-11.webp'
         },
         {
           role: 'Healer',
           party: 1,
           description:
             'Cardinal: Outside of North (A) clone\nIntercard: Outside of Northwest (1) clone',
-          imageUrl: './m12s/em-id-9.webp'
+          imageUrl: './m12s/em-id-11.webp'
         },
         {
           role: 'Healer',
           party: 2,
           description:
             'Cardinal: Outside of East (B) clone\nIntercard: Outside of Northeast (2) clone',
-          imageUrl: './m12s/em-id-9.webp'
+          imageUrl: './m12s/em-id-11.webp'
         },
         {
           role: 'Melee',
           party: 1,
           description:
             'Cardinal: Outside of North (A) clone\nIntercard: Outside of Northwest (1) clone',
-          imageUrl: './m12s/em-id-9.webp'
+          imageUrl: './m12s/em-id-11.webp'
         },
         {
           role: 'Melee',
           party: 2,
           description:
             'Cardinal: Outside of East (B) clone\nIntercard: Outside of Northeast (2) clone',
-          imageUrl: './m12s/em-id-9.webp'
+          imageUrl: './m12s/em-id-11.webp'
         },
         {
           role: 'Ranged',
           party: 1,
           description:
             'Cardinal: Outside of North (A) clone\nIntercard: Outside of Northwest (1) clone',
-          imageUrl: './m12s/em-id-9.webp'
+          imageUrl: './m12s/em-id-11.webp'
         },
         {
           role: 'Ranged',
           party: 2,
           description:
             'Cardinal: Outside of East (B) clone\nIntercard: Outside of Northeast (2) clone',
-          imageUrl: './m12s/em-id-9.webp'
+          imageUrl: './m12s/em-id-11.webp'
         }
       ]
     },
@@ -3563,69 +3563,69 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
       description:
         '💡🍦🐇 RECALL: Which platform the remaining N/S clone jumps to and which direction is safe\nGo to the platform where clone jumped to and dodge cones',
       imageUrl: './m12s/dn-idyllic-35.webp',
-      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#10'
+      url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#36'
     },
     {
       mechanic: '2nd Defamations/Stacks',
       description:
         'Do the other variation from the 1st one\nCardinal: Party to A marker, Tanks to B marker, slightly towards NE\nIntercard: Party NE, Tanks SE, slightly towards B',
-      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#11',
+      url: 'https://raidplan.io/plan/hg6FhbjyktWqebyG#13',
       strats: [
         {
           role: 'Tank',
           party: 1,
           description:
             'Cardinal: Outside of North (A) clone\nIntercard: Outside of Northwest (1) clone',
-          imageUrl: './m12s/em-id-10.webp'
+          imageUrl: './m12s/em-id-12.webp'
         },
         {
           role: 'Tank',
           party: 2,
           description:
             'Cardinal: Outside of East (B) clone\nIntercard: Outside of Northeast (2) clone',
-          imageUrl: './m12s/em-id-10.webp'
+          imageUrl: './m12s/em-id-12.webp'
         },
         {
           role: 'Healer',
           party: 1,
           description:
             'Cardinal: Outside of North (A) clone\nIntercard: Outside of Northwest (1) clone',
-          imageUrl: './m12s/em-id-10.webp'
+          imageUrl: './m12s/em-id-12.webp'
         },
         {
           role: 'Healer',
           party: 2,
           description:
             'Cardinal: Outside of East (B) clone\nIntercard: Outside of Northeast (2) clone',
-          imageUrl: './m12s/em-id-10.webp'
+          imageUrl: './m12s/em-id-12.webp'
         },
         {
           role: 'Melee',
           party: 1,
           description:
             'Cardinal: Outside of North (A) clone\nIntercard: Outside of Northwest (1) clone',
-          imageUrl: './m12s/em-id-10.webp'
+          imageUrl: './m12s/em-id-12.webp'
         },
         {
           role: 'Melee',
           party: 2,
           description:
             'Cardinal: Outside of East (B) clone\nIntercard: Outside of Northeast (2) clone',
-          imageUrl: './m12s/em-id-10.webp'
+          imageUrl: './m12s/em-id-12.webp'
         },
         {
           role: 'Ranged',
           party: 1,
           description:
             'Cardinal: Outside of North (A) clone\nIntercard: Outside of Northwest (1) clone',
-          imageUrl: './m12s/em-id-10.webp'
+          imageUrl: './m12s/em-id-12.webp'
         },
         {
           role: 'Ranged',
           party: 2,
           description:
             'Cardinal: Outside of East (B) clone\nIntercard: Outside of Northeast (2) clone',
-          imageUrl: './m12s/em-id-10.webp'
+          imageUrl: './m12s/em-id-12.webp'
         }
       ]
     },
@@ -3634,7 +3634,7 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
       description:
         '💡🍦🕳️ RECALL: Whether clone that jumped into the black hole was N/S or E/W safe\nDodge black hole clone cleaves from North',
       imageUrl: './m12s/dn-idyllic-37.webp',
-      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#11'
+      url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#38'
     }
   ]
 };
