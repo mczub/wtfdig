@@ -1599,7 +1599,7 @@ const bcReplication2: MechanicStrat[] = [
     mechanic: 'Tether Assignments',
     description:
       'D is new Relative North\nPurple/Red take tether D/CW\nBlue/Yellow take tether D/CCW',
-    url: 'https://raidplan.io/plan/SFa6J6wDrU9PlCJ4#5',
+    url: 'https://raidplan.io/plan/jaakesbessc2uv7h#17',
     strats: [
       {
         toggleKey: 'rep2tether',
@@ -1661,7 +1661,7 @@ const bcReplication2: MechanicStrat[] = [
     mechanic: 'Player Defamations',
     description:
       'Defamations go Relative W and E\nNothing player go South\nBoss tether goes on D marker\nStacks and Cleaves go to North edge',
-    url: 'https://raidplan.io/plan/SFa6J6wDrU9PlCJ4#6',
+    url: 'https://raidplan.io/plan/jaakesbessc2uv7h#19',
     strats: [
       {
         toggleKey: 'rep2tether',
@@ -1722,7 +1722,7 @@ const bcReplication2: MechanicStrat[] = [
   {
     mechanic: 'Player Stacks',
     description: 'Light party stacks on stack players on 3 and 4 markers',
-    url: 'https://raidplan.io/plan/SFa6J6wDrU9PlCJ4#8',
+    url: 'https://raidplan.io/plan/jaakesbessc2uv7h#21',
     strats: [
       {
         toggleKey: 'rep2tether',
@@ -1783,7 +1783,7 @@ const bcReplication2: MechanicStrat[] = [
   {
     mechanic: 'Player Cleaves',
     description: 'Cleave players stand inside boss ring and look at boss to fire cleaves',
-    url: 'https://raidplan.io/plan/SFa6J6wDrU9PlCJ4#9',
+    url: 'https://raidplan.io/plan/jaakesbessc2uv7h#21',
     strats: [
       {
         toggleKey: 'rep2tether',
@@ -1845,13 +1845,13 @@ const bcReplication2: MechanicStrat[] = [
     mechanic: 'Snaking Kick',
     description: 'Dodge behind frontal cleave\nA marker always safe',
     imageUrl: './m12s/bc-rep1-21.webp',
-    url: 'https://raidplan.io/plan/SFa6J6wDrU9PlCJ4#10'
+    url: 'https://raidplan.io/plan/jaakesbessc2uv7h#22'
   },
   {
     mechanic: 'Netherwrath Near/Far + Clone Cleaves',
     description:
       'Stack and Cleave players bait Near/Far\nEveryone else stand North exactly on boss ring\nClones will cleave E/W',
-    url: 'https://raidplan.io/plan/SFa6J6wDrU9PlCJ4#14',
+    url: 'https://raidplan.io/plan/jaakesbessc2uv7h#25',
     strats: [
       {
         toggleKey: 'rep2tether',
@@ -1914,13 +1914,13 @@ const bcReplication2: MechanicStrat[] = [
     description:
       'Defams/Boss/Nothing move to 3 clone for stack\nCleave + Stack take proteans North',
     imageUrl: './m12s/bc-rep1-28.webp',
-    url: 'https://raidplan.io/plan/SFa6J6wDrU9PlCJ4#17'
+    url: 'https://raidplan.io/plan/jaakesbessc2uv7h#29'
   },
   {
     mechanic: 'Clone Second Defam + Stack',
     description: 'Defams/Boss/Nothing move to 4 clone for second stack',
     imageUrl: './m12s/bc-rep1-30.webp',
-    url: 'https://raidplan.io/plan/SFa6J6wDrU9PlCJ4#19'
+    url: 'https://raidplan.io/plan/jaakesbessc2uv7h#31'
   }
 ];
 
@@ -2543,7 +2543,7 @@ const caroIdyllic: Record<string, MechanicStrat[]> = {
           toggleKey: 'idyllictether',
           toggleValue: 'NW',
           description:
-            '<strong>NW Clone</strong>\nBlue Defamation for boss tethers\n2nd Defam on C\nStack on D'
+            '<strong>NW Clone</strong>\nPurple Defamation for boss tethers\n2nd Defam on C\nStack on D'
         }
       ]
     }
@@ -3279,7 +3279,7 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
         {
           toggleKey: 'idyllictether',
           toggleValue: 'E',
-          description: 'TakTake Stack boss tether, swap partner is Southeast (3)',
+          description: 'Take Stack boss tether, swap partner is Southeast (3)',
           imageUrl: './m12s/em-id-2.webp'
         },
         {
@@ -3781,7 +3781,7 @@ const modifiedStrat: Strat = {
         {
           mechanic: '2 (II) Debuffs',
           description:
-            'Stay middle until debuffs expire\nA: run out of snake to break, then take 4rd blob tower\nB: stay inside to break, then take 4rd chain tower',
+            'Stay middle until debuffs expire\nA: run out of snake to break, then take 4th blob tower\nB: stay inside to break, then take 4th chain tower',
           imageUrl: './m12s/p1-toxic-act2-break2.webp',
           url: {
             'Second break': 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#15',
@@ -4413,7 +4413,7 @@ export const m12sFightConfig: FightConfig = {
       options: [
         {
           value: 'dn',
-          label: 'DN',
+          label: 'DN (RuO)',
           url: {
             name: 'DN replication Raidplan',
             url: 'https://raidplan.io/plan/9ncP6UIDURcWuRuO'
@@ -4437,7 +4437,7 @@ export const m12sFightConfig: FightConfig = {
         },
         {
           value: 'bc',
-          label: 'Banana Codex',
+          label: 'Banana Codex (v7h)',
           url: {
             name: 'Banana Codex Raidplan',
             url: 'https://raidplan.io/plan/jaakesbessc2uv7h'
@@ -4455,12 +4455,12 @@ export const m12sFightConfig: FightConfig = {
           label: 'Clone Zone/Caro (CJ4)',
           url: {
             name: 'Clone Zone Raidplan',
-            url: 'https://raidplan.io/plan/9ncP6UIDURcWuRuO'
+            url: 'https://raidplan.io/plan/SFa6J6wDrU9PlCJ4'
           }
         },
         {
           value: 'bc',
-          label: 'Banana Codex',
+          label: 'Banana Codex (v7h)',
           url: {
             name: 'Banana Codex Raidplan',
             url: 'https://raidplan.io/plan/jaakesbessc2uv7h'
@@ -4475,7 +4475,7 @@ export const m12sFightConfig: FightConfig = {
       options: [
         {
           value: 'dn',
-          label: 'DN',
+          label: 'DN (OWp)',
           url: {
             name: 'DN Idyllic Dream Raidplan',
             url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp'
