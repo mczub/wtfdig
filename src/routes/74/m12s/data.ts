@@ -3035,12 +3035,12 @@ const cozyIdyllic: Record<string, MechanicStrat[]> = {
       description:
         '💡🤔🧑‍🤝‍🧑 RECALL:\nWhether North clone was Stack or Defamation\nTemporary light parties\nIf you were 1st or 2nd Defamation or a Stack',
       imageUrl: './m12s/cozy-id-10.webp',
-      url: 'https://raidplan.io/plan/txtzacv3uvbjzuku#8'
+      url: 'https://raidplan.io/plan/txtzacv3uvbjzuku#11'
     },
     {
       mechanic: 'Defamations',
       description: 'Take Stacks/Defams near your original clone positions\nDefamations will be on the edge near D and C',
-      url: 'https://raidplan.io/plan/txtzacv3uvbjzuku#8',
+      url: 'https://raidplan.io/plan/txtzacv3uvbjzuku#12',
       strats: [
         // Generic info - shows when 'All' is selected (or no selection)
         {
@@ -3103,7 +3103,7 @@ const cozyIdyllic: Record<string, MechanicStrat[]> = {
     {
       mechanic: 'Stacks',
       description: 'Take Stacks/Defams near your original clone positions\nStacks will be near 1 and 2',
-      url: 'https://raidplan.io/plan/txtzacv3uvbjzuku#8',
+      url: 'https://raidplan.io/plan/txtzacv3uvbjzuku#13',
       strats: [
         // Generic info - shows when 'All' is selected (or no selection)
         {
@@ -3242,19 +3242,19 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
       mechanic: 'Player Clones',
       description:
         '📌🐦 REMEMBER: Whether initial clones spawned Cardinal or Intercardinal first\n📌🧑‍🤝‍🧑 REMEMBER: your clone position',
-      url: 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc#3',
+      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#3',
       imageUrl: './m12s/em-id-2.webp'
     },
     {
       mechanic: 'Cone Zone',
       description: '📌🍦 REMEMBER: whether North or South is safe from cones (E/W safe)',
       imageUrl: './m12s/dn-idyllic-4.webp',
-      url: 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc#5'
+      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#5'
     },
     {
       mechanic: 'Tether Grabs',
       description: 'Grab the tether at your spot if it matches your assignment\nSwap with your partner if not',
-      url: 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc#9',
+      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#3',
       strats: [
         // Generic info - shows when 'All' is selected (or no selection)
         {
@@ -3318,14 +3318,14 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
       mechanic: 'Boss Clones Spawn + Take Tethers',
       description: '📌🤔 REMEMBER: Whether North clone was Stack or Defamation',
       imageUrl: './m12s/em-id-5.webp',
-      url: 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc#12'
+      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#6'
     },
     {
       mechanic: 'Cones Resolve',
       description:
         '💡🍦 RECALL: Whether South or North is safe from cones\nGo to Cone safespots (South or North) with True G1 West/G2 East\nMove to platforms right after',
       imageUrl: './m12s/dn-idyllic-10.webp',
-      url: 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc#13'
+      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#5'
     }
   ],
   clones2: [
@@ -3334,12 +3334,12 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
       description:
         '💡🤔🧑‍🤝‍🧑 RECALL:\nWhether North clone was Stack or Defamation\nTemporary light parties\nIf you were 1st or 2nd Defamation or a Stack',
       imageUrl: './m12s/em-id-5.webp',
-      url: 'https://raidplan.io/plan/txtzacv3uvbjzuku#8'
+      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#6'
     },
     {
       mechanic: 'Defamations',
       description: 'Take Stacks/Defams near your original clone positions\nDefamations will be on the edge near D and C',
-      url: 'https://raidplan.io/plan/txtzacv3uvbjzuku#8',
+      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#8',
       strats: [
         // Generic info - shows when 'All' is selected (or no selection)
         {
@@ -3402,7 +3402,7 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
     {
       mechanic: 'Stacks',
       description: 'Take Stacks/Defams near your original clone positions\nStacks will be near 1 and 2 max melee',
-      url: 'https://raidplan.io/plan/txtzacv3uvbjzuku#8',
+      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#9',
       strats: [
         // Generic info - shows when 'All' is selected (or no selection)
         {
@@ -3469,14 +3469,14 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
       description:
         "💡🗼 RECALL: your tower assignments\nWind: Get KB to the other platform\nDoom: Point line away\nFire: Don't move (can still attack)\nEarth: Move out of twister",
       imageUrl: './m12s/dn-idyllic-24.webp',
-      url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#25'
+      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#7'
     },
     {
       mechanic: 'Setup for Cones',
       description:
         'Wind: on NE/NW (1/2)\nDoom: on hitbox between 1/D or 2/B\nFire: Slightly outside of Doom\nMEarth: on SE/SW (3/4)',
       imageUrl: './m12s/em-id-6.webp',
-      url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#27'
+      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#7'
     }
   ],
   blackhole: [
@@ -3485,20 +3485,20 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
       description:
         '💡🍦 RECALL: whether South or North is safe from cones (E/W safe) from beginning of the mech',
       imageUrl: './m12s/dn-idyllic-29.webp',
-      url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#30'
+      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#10'
     },
     {
       mechanic: 'Black Hole Clone',
       description:
         '📌🍦🕳️ REMEMBER: Whether clone that jumps into the black hole is N/S or E/W safe\n📌🍦🐇 REMEMBER: Which platform the remaining N/S clone jumps to and which direction is safe',
       imageUrl: './m12s/dn-idyllic-30.webp',
-      url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#31'
+      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#10'
     },
     {
       mechanic: '1st Defamations/Stacks',
       description:
         '💡🐦 RECALL: Whether initial clones spawned Cardinal or Intercardinal first\nCardinal: Party to A marker, Tanks to B marker, slightly towards NE\nIntercard: Party NE, Tanks SE, slightly towards B',
-      url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#35',
+      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#10',
       strats: [
         {
           role: 'Tank',
@@ -3563,13 +3563,13 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
       description:
         '💡🍦🐇 RECALL: Which platform the remaining N/S clone jumps to and which direction is safe\nGo to the platform where clone jumped to and dodge cones',
       imageUrl: './m12s/dn-idyllic-35.webp',
-      url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#36'
+      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#10'
     },
     {
       mechanic: '2nd Defamations/Stacks',
       description:
         'Do the other variation from the 1st one\nCardinal: Party to A marker, Tanks to B marker, slightly towards NE\nIntercard: Party NE, Tanks SE, slightly towards B',
-      url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#37',
+      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#11',
       strats: [
         {
           role: 'Tank',
@@ -3634,7 +3634,7 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
       description:
         '💡🍦🕳️ RECALL: Whether clone that jumped into the black hole was N/S or E/W safe\nDodge black hole clone cleaves from North',
       imageUrl: './m12s/dn-idyllic-37.webp',
-      url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#38'
+      url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2#11'
     }
   ]
 };
