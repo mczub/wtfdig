@@ -4374,7 +4374,13 @@ export const m12sFightConfig: FightConfig = {
         replication1: 'dn',
         replication2: 'clonezone',
         idyllic: 'dn',
-      }
+      },
+      badges: [
+        {
+          text: 'NA',
+          class: 'na-badge'
+        }
+      ]
     },
     caro: {
       label: 'Caro/Zenith (a3V)',
@@ -4383,7 +4389,13 @@ export const m12sFightConfig: FightConfig = {
         replication1: 'caro',
         replication2: 'clonezone',
         idyllic: 'caro'
-      }
+      },
+      badges: [
+        {
+          text: 'EU',
+          class: 'eu-badge'
+        }
+      ]
     }
   },
   toggles: [
@@ -4394,7 +4406,7 @@ export const m12sFightConfig: FightConfig = {
       options: [
         {
           value: 'role',
-          label: 'Role (_HB)',
+          label: 'Role',
           url: {
             name: 'Role Mortal Slayer Raidplan',
             url: 'https://raidplan.io/plan/KbxeCHoPkzWbt_HB'
@@ -4413,7 +4425,7 @@ export const m12sFightConfig: FightConfig = {
       options: [
         {
           value: 'dn',
-          label: 'DN (RuO)',
+          label: 'DN',
           url: {
             name: 'DN replication Raidplan',
             url: 'https://raidplan.io/plan/9ncP6UIDURcWuRuO'
@@ -4475,7 +4487,7 @@ export const m12sFightConfig: FightConfig = {
       options: [
         {
           value: 'dn',
-          label: 'DN (OWp)',
+          label: 'DN',
           url: {
             name: 'DN Idyllic Dream Raidplan',
             url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp'
