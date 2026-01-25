@@ -4514,7 +4514,7 @@ export const m12sFightConfig: FightConfig = {
           label: 'Emergency Meeting',
           url: {
             name: 'Emergency Meeting Raidplan',
-            url: 'https://raidplan.io/plan/buBeeLVDS9lTlLt2'
+            url: 'https://raidplan.io/plan/hg6FhbjyktWqebyG'
           }
         },
       ]
