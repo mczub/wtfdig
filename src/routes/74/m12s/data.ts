@@ -3639,18 +3639,228 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
   ]
 };
 
+const dnUptimeIdyllic: Record<string, MechanicStrat[]> = {
+  overview: [
+    {
+      mechanic: 'Overview (Start)',
+      description: idyllicOverview
+    },
+    {
+      mechanic: 'Overview (Post Stacks and Defams)',
+      description: idyllicOverview2
+    },
+    {
+      mechanic: 'What Does My Tether Do?',
+      strats: [
+        // Generic info - shows when 'All' is selected (or no selection)
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: '',
+          description: "Select 'Idyllic Tether' to see your assignments"
+        },
+        // Position-specific instructions
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'N',
+          description:
+            '<strong>N Clone</strong>\nTake Stack tether from Top Right (A/1 + CW)\nStack East (2)'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'NE',
+          description:
+            '<strong>NE Clone</strong>\nTake Stack tether from Bottom Right (B/2 + CW)\nStack East (2)'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'E',
+          description:
+            '<strong>E Clone</strong>\nTake Stack tether from Bottom Left (C/3 + CW)\nStack West (4)'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'SE',
+          description:
+            '<strong>SE Clone</strong>\nTake Stack tether from Bottom Right (D/4 + CW)\nStack West (4)'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'S',
+          description:
+            '<strong>S Clone</strong>\nTake Defam tether from Top Right (A/1 + CW)\n1st Defam Northeast (between A + B)\nStack East (2)'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'SW',
+          description:
+            '<strong>SW Clone</strong>\nTake Defam tether from Bottom Right (B/2 + CW)\n2nd Defam Northeast (between A + B)\nStack East (2)'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'W',
+          description:
+            '<strong>W Clone</strong>\nTake Defam tether from Bottom Left (C/3 + CW)\n1st Defam Northwest (between D + A)\nStack West (4)'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'NW',
+          description:
+            '<strong>NW Clone</strong>\nTake Defam tether from Top Left (D/4 + CW)\n2nd Defam Northwest (between D + A)\nStack West (4)'
+        }
+      ]
+    }
+  ],
+  clones2: [
+    {
+      mechanic: 'Recall Clones and Tethers',
+      description:
+        '💡🤔🧑‍🤝‍🧑 RECALL:\nWhether North clone was Stack or Defamation\nTemporary light parties\nIf you were 1st or 2nd Defamation or a Stack',
+      imageUrl: './m12s/uptime-id-15.webp',
+      url: 'https://raidplan.io/plan/PdUdKJ3dCYzmc-p8#16'
+    },
+    {
+      mechanic: 'Defamations',
+      description: 'Defamations will be NE and NW',
+      url: 'https://raidplan.io/plan/PdUdKJ3dCYzmc-p8#18',
+      strats: [
+        // Generic info - shows when 'All' is selected (or no selection)
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: '',
+          description: '',
+          imageUrl: './m12s/uptime-id-17.webp'
+        },
+        // Position-specific instructions
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'N',
+          description: 'Stay S to avoid defamations',
+          imageUrl: './m12s/uptime-id-17.webp'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'NE',
+          description: 'Stay S to avoid defamations',
+          imageUrl: './m12s/uptime-id-17.webp'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'E',
+          description: 'Stay S to avoid defamations',
+          imageUrl: './m12s/uptime-id-17.webp'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'SE',
+          description: 'Stay S to avoid defamations',
+          imageUrl: './m12s/uptime-id-17.webp'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'S',
+          description: '1st Defamation Northeast (between A + B)',
+          imageUrl: './m12s/uptime-id-17.webp'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'SW',
+          description: '2nd Defamation Northeast (between A + B)',
+          imageUrl: './m12s/uptime-id-17.webp'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'W',
+          description: '1st Defamation Northwest (between D + A)',
+          imageUrl: './m12s/uptime-id-17.webp'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'NW',
+          description: '2nd Defamation Northwest (between D + A)',
+          imageUrl: './m12s/uptime-id-17.webp'
+        }
+      ]
+    },
+    {
+      mechanic: 'Stacks',
+      description: 'Stacks will be on 2 (G1) and 4 (G2)',
+      url: 'https://raidplan.io/plan/PdUdKJ3dCYzmc-p8#20',
+      strats: [
+        // Generic info - shows when 'All' is selected (or no selection)
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: '',
+          description: '',
+          imageUrl: './m12s/uptime-id-19.webp'
+        },
+        // Position-specific instructions
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'N',
+          description: 'Take Stacks East (2)',
+          imageUrl: './m12s/uptime-id-19.webp'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'NE',
+          description: 'Take Stacks East (2)',
+          imageUrl: './m12s/uptime-id-19.webp'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'E',
+          description: 'Take Stacks West (4)',
+          imageUrl: './m12s/uptime-id-19.webp'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'SE',
+          description: 'Take Stacks West (4)',
+          imageUrl: './m12s/uptime-id-19.webp'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'S',
+          description: 'Take Stacks East (2)',
+          imageUrl: './m12s/uptime-id-19.webp'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'SW',
+          description: 'Take Stacks East (2)',
+          imageUrl: './m12s/uptime-id-19.webp'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'W',
+          description: 'Take Stacks West (4)',
+          imageUrl: './m12s/uptime-id-19.webp'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'NW',
+          description: 'Take Stacks West (4)',
+          imageUrl: './m12s/uptime-id-19.webp'
+        }
+      ]
+    }
+  ],
+};
+
 const idyllicOverviewMechs: Record<string, MechanicStrat[]> = {
   dn: dnIdyllic.overview,
   caro: caroIdyllic.overview,
   cozy: cozyIdyllic.overview,
-  em: emIdyllic.overview
+  em: emIdyllic.overview,
+  dnuptime: dnUptimeIdyllic.overview,
 };
 
 const idyllicClones1Mechs: Record<string, MechanicStrat[]> = {
   dn: dnIdyllic.clones1,
   caro: caroIdyllic.clones1,
   cozy: dnIdyllic.clones1,
-  em: emIdyllic.clones1
+  em: emIdyllic.clones1,
+  dnuptime: dnIdyllic.clones1,
 };
 
 const idyllicPlatforms1Mechs: Record<string, MechanicStrat[]> = {
@@ -3658,13 +3868,15 @@ const idyllicPlatforms1Mechs: Record<string, MechanicStrat[]> = {
   caro: caroIdyllic.platforms1,
   cozy: dnIdyllic.platforms1,
   em: dnIdyllic.platforms1,
+  dnuptime: dnIdyllic.platforms1,
 };
 
 const idyllicClones2Mechs: Record<string, MechanicStrat[]> = {
   dn: dnIdyllic.clones2,
   caro: caroIdyllic.clones2,
   cozy: cozyIdyllic.clones2,
-  em: emIdyllic.clones2
+  em: emIdyllic.clones2,
+  dnuptime: dnUptimeIdyllic.clones2
 };
 
 const idyllicPlatforms2Mechs: Record<string, MechanicStrat[]> = {
@@ -3672,13 +3884,15 @@ const idyllicPlatforms2Mechs: Record<string, MechanicStrat[]> = {
   caro: caroIdyllic.platforms2,
   cozy: dnIdyllic.platforms2,
   em: emIdyllic.platforms2,
+  dnuptime: dnIdyllic.platforms2,
 };
 
 const idyllicBlackholeMechs: Record<string, MechanicStrat[]> = {
   dn: dnIdyllic.blackhole,
   caro: caroIdyllic.blackhole,
   cozy: dnIdyllic.blackhole,
-  em: emIdyllic.blackhole
+  em: emIdyllic.blackhole,
+  dnuptime: dnIdyllic.blackhole,
 };
 
 const modifiedStrat: Strat = {
@@ -3990,6 +4204,12 @@ const modifiedStrat: Strat = {
     {
       phaseName: 'Idyllic Dream Overview',
       tag: 'idyllic',
+      description: {
+        dn: '',
+        caro: '',
+        cozy: 'ℹ️ The only difference between Cozy and DN is the Defam/Stack placement in Clones and Tethers II',
+        em: "ℹ️ Note the marker differences if you're using this with DN or BC",
+      },
       mechs: idyllicOverviewMechs
     },
     {
@@ -4507,6 +4727,14 @@ export const m12sFightConfig: FightConfig = {
           url: {
             name: 'Cozy Clone Raidplan by ItsBexy',
             url: 'https://raidplan.io/plan/txtzacv3uvbjzuku'
+          }
+        },
+        {
+          value: 'dnuptime',
+          label: 'DN w/ Uptime (-p8)',
+          url: {
+            name: 'DN Idyllic with Uptime Stack/Defa Raidplan',
+            url: 'https://raidplan.io/plan//PdUdKJ3dCYzmc-p8'
           }
         },
         {
