@@ -101,6 +101,7 @@
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (cardinalsFirst = cardinalsFirst === true ? null : true)}
       >
+        <span class="font-extrabold">＋</span>
         Cardinals
       </button>
       <button
@@ -110,34 +111,58 @@
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (cardinalsFirst = cardinalsFirst === false ? null : false)}
       >
-        Intercards
+        <span class="font-extrabold">✕</span> Intercards
       </button>
     </div>
+
+    {#if cardinalsFirst !== null}
+      {#if cardinalsFirst}
+        <div class="font-semibold text-sm md:text-base">
+          Pre-enrage Stacks will be Cardinals first
+        </div>
+      {:else}
+        <div class="font-semibold text-sm md:text-base">
+          Pre-enrage Stacks will be Intercards first
+        </div>
+      {/if}
+    {/if}
 
     <div class="flex gap-2 md:gap-3 items-center">
       <div class="font-semibold text-sm md:text-base text-muted-foreground">Cone telegraphs</div>
       <button
         class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-medium cursor-pointer text-sm md:text-base transition-all duration-150 {northSafe ===
         true
-          ? 'bg-primary text-primary-foreground border-primary'
+          ? ' bg-destructive text-primary-foreground border-red-500'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (northSafe = northSafe === true ? null : true)}
       >
-        N Safe
+        <span class="font-extrabold">🡹</span> N Safe
       </button>
       <button
         class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-medium cursor-pointer text-sm md:text-base transition-all duration-150 {northSafe ===
         false
-          ? 'bg-primary text-primary-foreground border-primary'
+          ? 'bg-blue-700 text-primary-foreground border-blue-500'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (northSafe = northSafe === false ? null : false)}
       >
-        S Safe
+        <span class="font-extrabold">🡻</span> S Safe
       </button>
     </div>
 
+    {#if northSafe !== null}
+      {#if northSafe}
+        <div class="font-semibold text-sm md:text-base">
+          North clone is E/W safe, South clone is N/S safe
+        </div>
+      {:else}
+        <div class="font-semibold text-sm md:text-base">
+          South clone is E/W safe, North clone is N/S safe
+        </div>
+      {/if}
+    {/if}
+
     <div class="flex gap-2 md:gap-3 items-center">
-      <div class="font-semibold text-sm md:text-base text-muted-foreground">Boss tether spawns</div>
+      <div class="font-semibold text-sm md:text-base text-muted-foreground">Boss tethers</div>
       <button
         class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-medium cursor-pointer text-sm md:text-base transition-all duration-150 {defamationsFirst ===
         true
@@ -145,18 +170,28 @@
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (defamationsFirst = defamationsFirst === true ? null : true)}
       >
-        Defams First
+        ⊙ Defams First
       </button>
       <button
         class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-medium cursor-pointer text-sm md:text-base transition-all duration-150 {defamationsFirst ===
         false
-          ? 'bg-primary text-primary-foreground border-primary'
+          ? 'bg-yellow-700 text-primary-foreground border-yellow-800'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (defamationsFirst = defamationsFirst === false ? null : false)}
       >
-        Stacks First
+        ︾ Stacks First
       </button>
     </div>
+
+    {#if defamationsFirst !== null}
+      {#if defamationsFirst}
+        <div class="font-semibold text-sm md:text-base">
+          Defamations first (Defam-Stack-Defam-Stack)
+        </div>
+      {:else}
+        <div class="font-semibold text-sm md:text-base">Stacks first (Stack-Defam-Stack-Defam)</div>
+      {/if}
+    {/if}
   </div>
 
   <!-- Compass Selector -->
