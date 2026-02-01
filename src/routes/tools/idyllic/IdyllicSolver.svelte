@@ -12,6 +12,7 @@
   let cardinalsFirst = $state<boolean | null>(null); // true = cardinals, false = intercards
   let northSafe = $state<boolean | null>(null); // true = north, false = south
   let defamationsFirst = $state<boolean | null>(null); // true = defamations, false = stacks
+  let holeCloneNorth = $state<boolean | null>(null); // true = north, false = south
 
   // Computed
   const summaryText = $derived(() => {
@@ -70,7 +71,8 @@
       disabled={!selectedTether &&
         cardinalsFirst === null &&
         northSafe === null &&
-        defamationsFirst === null}
+        defamationsFirst === null &&
+        holeCloneNorth === null}
     >
       Reset
     </button>
@@ -97,7 +99,7 @@
       <button
         class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-medium cursor-pointer text-sm md:text-base transition-all duration-150 {cardinalsFirst ===
         true
-          ? 'bg-primary text-primary-foreground border-primary'
+          ? 'bg-zinc-700 text-white border-zinc-600'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (cardinalsFirst = cardinalsFirst === true ? null : true)}
       >
@@ -107,7 +109,7 @@
       <button
         class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-medium cursor-pointer text-sm md:text-base transition-all duration-150 {cardinalsFirst ===
         false
-          ? 'bg-primary text-primary-foreground border-primary'
+          ? 'bg-zinc-700 text-white border-zinc-600'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (cardinalsFirst = cardinalsFirst === false ? null : false)}
       >
@@ -136,7 +138,7 @@
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (northSafe = northSafe === true ? null : true)}
       >
-        <span class="font-extrabold">🡹</span> N Safe
+        🡑 N Safe
       </button>
       <button
         class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-medium cursor-pointer text-sm md:text-base transition-all duration-150 {northSafe ===
@@ -145,21 +147,9 @@
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (northSafe = northSafe === false ? null : false)}
       >
-        <span class="font-extrabold">🡻</span> S Safe
+        🡓 S Safe
       </button>
     </div>
-
-    {#if northSafe !== null}
-      {#if northSafe}
-        <div class="font-semibold text-sm md:text-base">
-          North clone is E/W safe, South clone is N/S safe
-        </div>
-      {:else}
-        <div class="font-semibold text-sm md:text-base">
-          South clone is E/W safe, North clone is N/S safe
-        </div>
-      {/if}
-    {/if}
 
     <div class="flex gap-2 md:gap-3 items-center">
       <div class="font-semibold text-sm md:text-base text-muted-foreground">Boss tethers</div>
@@ -179,7 +169,7 @@
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (defamationsFirst = defamationsFirst === false ? null : false)}
       >
-        ︾ Stacks First
+        ↡ Stacks First
       </button>
     </div>
 
@@ -190,6 +180,48 @@
         </div>
       {:else}
         <div class="font-semibold text-sm md:text-base">Stacks first (Stack-Defam-Stack-Defam)</div>
+      {/if}
+    {/if}
+
+    <div class="flex gap-2 md:gap-3 items-center">
+      <div class="font-semibold text-sm md:text-base text-muted-foreground">Black hole clone</div>
+      <button
+        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-medium cursor-pointer text-sm md:text-base transition-all duration-150 {holeCloneNorth ===
+        true
+          ? ' bg-destructive text-primary-foreground border-red-500'
+          : 'bg-muted text-muted-foreground hover:bg-accent'}"
+        onclick={() => (holeCloneNorth = holeCloneNorth === true ? null : true)}
+      >
+        🡑 North
+      </button>
+      <button
+        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-medium cursor-pointer text-sm md:text-base transition-all duration-150 {holeCloneNorth ===
+        false
+          ? 'bg-blue-700 text-primary-foreground border-blue-500'
+          : 'bg-muted text-muted-foreground hover:bg-accent'}"
+        onclick={() => (holeCloneNorth = holeCloneNorth === false ? null : false)}
+      >
+        🡓 South
+      </button>
+    </div>
+
+    {#if northSafe !== null && holeCloneNorth !== null}
+      {#if holeCloneNorth}
+        <div class="font-semibold text-sm md:text-base">
+          {#if northSafe}
+            Platform clone is N/S safe, arena clone is E/W safe
+          {:else}
+            Platform clone is E/W safe, arena clone is N/S safe
+          {/if}
+        </div>
+      {:else}
+        <div class="font-semibold text-sm md:text-base">
+          {#if northSafe}
+            Platform clone is E/W safe, arena clone is N/S safe
+          {:else}
+            Platform clone is N/S safe, arena clone is E/W safe
+          {/if}
+        </div>
       {/if}
     {/if}
   </div>
@@ -225,7 +257,7 @@
   >
     {#if summaryText()}
       <div
-        class="text-sm md:text-base leading-relaxed flex-1 [&_strong]:text-primary [&_strong]:text-base md:[&_strong]:text-lg [&_strong]:block [&_strong]:mb-1"
+        class="text-sm md:text-base leading-relaxed flex-1 [&_strong]:font-bold [&_strong]:text-base md:[&_strong]:text-lg [&_strong]:block [&_strong]:mb-1"
       >
         {@html summaryText()!.replace(/\n/g, '<br>')}
       </div>
