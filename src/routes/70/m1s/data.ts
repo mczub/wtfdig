@@ -32,7 +32,7 @@ export const m1sFightConfig: FightConfig = {
 export const hector: Strat = {
   stratName: 'hector',
   stratUrl: {
-    'The Hardest Mechanic in FFXIV History - Guide': 'https://www.youtube.com/watch?v=xEX0kAIfTKo'
+    'The Hardest Mechanic in FFXIV History - Guide': 'https://www.youtube.com/watch?v=vJ-SlrIyVOk'
   },
   description: 'The Hardest Mechanic in FFXIV History by Hector Hectorson (Courtesy Hector Hectorson)',
   strats: [

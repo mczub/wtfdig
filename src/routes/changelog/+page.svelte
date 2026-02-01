@@ -8,6 +8,7 @@
   </header>
   <article class="prose dark:prose-invert max-w-none">
     <div class="">
+      <div>1/31/2026: added the hardest mechanic in ff14 history</div>
       <div>1/24/2026: m12s p2 stratstravaganza, added a ton a variants on stuff</div>
       <div>1/22/2026: add game8 en/jp m9s, add oce m9s and m10s, update some wording on m10s</div>
       <div>
