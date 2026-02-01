@@ -39,6 +39,7 @@
     cardinalsFirst = null;
     northSafe = null;
     defamationsFirst = null;
+    holeCloneNorth = null;
   }
 
   // Compass position layout - angles for positioning
@@ -55,7 +56,7 @@
 </script>
 
 <svelte:head>
-  <title>WTFDIG!? | M12S Idyllic Helper</title>
+  <title>WTFDIG!?</title>
   <meta name="description" content="Quick solver tool for M12S Idyllic Dream mechanic" />
 </svelte:head>
 

@@ -3,7 +3,13 @@
   import * as Collapsible from '$lib/components/ui/collapsible';
   import { useSidebar } from '$lib/components/ui/sidebar';
   import { base } from '$app/paths';
-  import { ArrowLeftFromLine, ChevronDown, ChevronRightIcon, Grid3x3 } from '@lucide/svelte';
+  import {
+    ArrowLeftFromLine,
+    ChevronDown,
+    ChevronRightIcon,
+    Grid3x3,
+    Hammer
+  } from '@lucide/svelte';
   import Separator from './ui/separator/separator.svelte';
 
   const sidebar = useSidebar();
@@ -196,6 +202,23 @@
                 <Grid3x3 class="size-6 text-primary " /><span class="font-semibold">board</span>
               </div>
               <div class="text-base text-surface-400">view + bundle strategy boards</div>
+            </a>
+          </Sidebar.MenuItem>
+          <Separator class="my-2" />
+          <Sidebar.GroupLabel class="flex flex-row items-center gap-2 text-lg font-semibold"
+            ><Hammer class="size-6 text-primary" />Tools</Sidebar.GroupLabel
+          >
+          <Sidebar.MenuItem>
+            <a
+              data-sveltekit-replacestate
+              href="/tools/idyllic"
+              onclick={handleLinkClick}
+              class="flex flex-col w-full items-start mx-2"
+            >
+              <div class="flex flex-row items-center gap-2 text-lg">
+                <span class="font-semibold">idyllic helper</span>
+              </div>
+              <div class="text-base text-surface-400">M12S Idyllic Dream helper</div>
             </a>
           </Sidebar.MenuItem>
           <Separator class="my-2" />

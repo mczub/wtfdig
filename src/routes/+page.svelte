@@ -3,7 +3,7 @@
   import { slide } from 'svelte/transition';
   import ChevronDown from '@lucide/svelte/icons/chevron-down';
   import { Separator } from '$lib/components/ui/separator';
-  import { Grid3x3, Construction } from '@lucide/svelte';
+  import { Grid3x3, Construction, Hammer } from '@lucide/svelte';
 
   let openState = $state({
     '74': true,
@@ -36,6 +36,20 @@
             <Grid3x3 class="size-6 text-primary " /><span class="font-semibold">board</span>
           </div>
           <div class="text-base text-surface-400">view + bundle strategy boards</div>
+        </a>
+      </div>
+      <div class="gap-4 mt-4 justify-center lg:col-span-2">
+        <div class="flex flex-row items-center gap-2 text-left text-base font-semibold mb-3">
+          <Hammer class="size-6 text-primary" />Tools
+        </div>
+        <a
+          href="{base}/tools/idyllic"
+          class="flex flex-row justify-start items-center py-3 btn preset-tonal-secondary border border-secondary-500"
+        >
+          <div class="flex flex-row items-center gap-2 text-base">
+            <span class="font-semibold">idyllic helper</span>
+          </div>
+          <div class="text-sm text-surface-400">M12S Idyllic Dream helper</div>
         </a>
       </div>
       <!-- Left Column: Patch 7.4 + Ultimates -->
