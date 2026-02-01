@@ -2,6 +2,6 @@
   import IdyllicSolver from './IdyllicSolver.svelte';
 </script>
 
-<div class="container mx-auto">
+<div class="container grow mx-auto">
   <IdyllicSolver />
 </div>
