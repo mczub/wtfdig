@@ -55,7 +55,7 @@
 </script>
 
 <svelte:head>
-  <title>Idyllic Dream Solver - M12S | WTFDIG</title>
+  <title>WTFDIG!? | M12S Idyllic Helper</title>
   <meta name="description" content="Quick solver tool for M12S Idyllic Dream mechanic" />
 </svelte:head>
 
@@ -64,7 +64,7 @@
 >
   <!-- Header -->
   <header class="flex justify-between items-center shrink-0">
-    <h1 class="text-xl md:text-2xl font-bold m-0">Idyllic Dream Solver</h1>
+    <h1 class="text-xl md:text-2xl font-bold m-0">M12S Idyllic Helper</h1>
     <button
       class="px-4 py-2 md:px-5 md:py-2.5 rounded-lg bg-destructive text-destructive-foreground border-none font-semibold cursor-pointer text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed"
       onclick={reset}
@@ -97,9 +97,9 @@
     <div class="flex gap-2 md:gap-3 items-center">
       <div class="font-semibold text-sm md:text-base text-muted-foreground">First clones</div>
       <button
-        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-medium cursor-pointer text-sm md:text-base transition-all duration-150 {cardinalsFirst ===
+        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {cardinalsFirst ===
         true
-          ? 'bg-zinc-700 text-white border-zinc-600'
+          ? 'bg-zinc-700 text-white border-zinc-600 font-semibold'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (cardinalsFirst = cardinalsFirst === true ? null : true)}
       >
@@ -107,9 +107,9 @@
         Cardinals
       </button>
       <button
-        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-medium cursor-pointer text-sm md:text-base transition-all duration-150 {cardinalsFirst ===
+        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {cardinalsFirst ===
         false
-          ? 'bg-zinc-700 text-white border-zinc-600'
+          ? 'bg-zinc-700 text-white border-zinc-600 font-semibold'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (cardinalsFirst = cardinalsFirst === false ? null : false)}
       >
@@ -117,33 +117,21 @@
       </button>
     </div>
 
-    {#if cardinalsFirst !== null}
-      {#if cardinalsFirst}
-        <div class="font-semibold text-sm md:text-base">
-          Pre-enrage Stacks will be Cardinals first
-        </div>
-      {:else}
-        <div class="font-semibold text-sm md:text-base">
-          Pre-enrage Stacks will be Intercards first
-        </div>
-      {/if}
-    {/if}
-
     <div class="flex gap-2 md:gap-3 items-center">
       <div class="font-semibold text-sm md:text-base text-muted-foreground">Cone telegraphs</div>
       <button
-        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-medium cursor-pointer text-sm md:text-base transition-all duration-150 {northSafe ===
+        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {northSafe ===
         true
-          ? ' bg-destructive text-primary-foreground border-red-500'
+          ? ' bg-destructive text-primary-foreground border-red-500 font-semibold'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (northSafe = northSafe === true ? null : true)}
       >
         🡑 N Safe
       </button>
       <button
-        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-medium cursor-pointer text-sm md:text-base transition-all duration-150 {northSafe ===
+        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {northSafe ===
         false
-          ? 'bg-blue-700 text-primary-foreground border-blue-500'
+          ? 'bg-blue-700 text-primary-foreground border-blue-500 font-semibold'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (northSafe = northSafe === false ? null : false)}
       >
@@ -154,18 +142,18 @@
     <div class="flex gap-2 md:gap-3 items-center">
       <div class="font-semibold text-sm md:text-base text-muted-foreground">Boss tethers</div>
       <button
-        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-medium cursor-pointer text-sm md:text-base transition-all duration-150 {defamationsFirst ===
+        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {defamationsFirst ===
         true
-          ? 'bg-primary text-primary-foreground border-primary'
+          ? 'bg-primary text-primary-foreground border-primary font-semibold'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (defamationsFirst = defamationsFirst === true ? null : true)}
       >
         ⊙ Defams First
       </button>
       <button
-        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-medium cursor-pointer text-sm md:text-base transition-all duration-150 {defamationsFirst ===
+        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {defamationsFirst ===
         false
-          ? 'bg-yellow-700 text-primary-foreground border-yellow-800'
+          ? 'bg-yellow-700 text-primary-foreground border-yellow-800 font-semibold'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (defamationsFirst = defamationsFirst === false ? null : false)}
       >
@@ -173,31 +161,21 @@
       </button>
     </div>
 
-    {#if defamationsFirst !== null}
-      {#if defamationsFirst}
-        <div class="font-semibold text-sm md:text-base">
-          Defamations first (Defam-Stack-Defam-Stack)
-        </div>
-      {:else}
-        <div class="font-semibold text-sm md:text-base">Stacks first (Stack-Defam-Stack-Defam)</div>
-      {/if}
-    {/if}
-
     <div class="flex gap-2 md:gap-3 items-center">
       <div class="font-semibold text-sm md:text-base text-muted-foreground">Black hole clone</div>
       <button
-        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-medium cursor-pointer text-sm md:text-base transition-all duration-150 {holeCloneNorth ===
+        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {holeCloneNorth ===
         true
-          ? ' bg-destructive text-primary-foreground border-red-500'
+          ? ' bg-destructive text-primary-foreground border-red-500 font-semibold'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (holeCloneNorth = holeCloneNorth === true ? null : true)}
       >
         🡑 North
       </button>
       <button
-        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-medium cursor-pointer text-sm md:text-base transition-all duration-150 {holeCloneNorth ===
+        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {holeCloneNorth ===
         false
-          ? 'bg-blue-700 text-primary-foreground border-blue-500'
+          ? 'bg-blue-700 text-primary-foreground border-blue-500 font-semibold'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (holeCloneNorth = holeCloneNorth === false ? null : false)}
       >
