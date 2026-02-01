@@ -5,6 +5,14 @@
     getTetherDescription,
     type TetherPosition
   } from './data';
+  import {
+    ArrowDown,
+    ArrowUp,
+    MoveVertical,
+    MoveDiagonal,
+    CircleDot,
+    ChevronsDown
+  } from '@lucide/svelte';
 
   // State
   let selectedStrategy = $state('dn');
@@ -81,7 +89,7 @@
 
   <!-- Strategy Selector -->
   <div class="flex items-center gap-2 md:gap-3 shrink-0">
-    <label for="strategy-select" class="font-semibold text-sm md:text-base">Strategy:</label>
+    <label for="strategy-select" class="font-semibold text-sm md:text-base">Strategy</label>
     <select
       id="strategy-select"
       class="flex-1 px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border bg-background text-foreground text-sm md:text-base"
@@ -98,89 +106,88 @@
     <div class="flex gap-2 md:gap-3 items-center">
       <div class="font-semibold text-sm md:text-base text-muted-foreground">First clones</div>
       <button
-        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {cardinalsFirst ===
+        class="flex flex-row items-center gap-1 px-2 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {cardinalsFirst ===
         true
           ? 'bg-zinc-700 text-white border-zinc-600 font-semibold'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (cardinalsFirst = cardinalsFirst === true ? null : true)}
       >
-        <span class="font-extrabold">＋</span>
-        Cardinals
+        <MoveVertical class="size-4" /> Cardinals
       </button>
       <button
-        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {cardinalsFirst ===
+        class="flex flex-row items-center gap-1 px-2 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {cardinalsFirst ===
         false
           ? 'bg-zinc-700 text-white border-zinc-600 font-semibold'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (cardinalsFirst = cardinalsFirst === false ? null : false)}
       >
-        <span class="font-extrabold">✕</span> Intercards
+        <MoveDiagonal class="size-4" /> Intercards
       </button>
     </div>
 
     <div class="flex gap-2 md:gap-3 items-center">
       <div class="font-semibold text-sm md:text-base text-muted-foreground">Cone telegraphs</div>
       <button
-        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {northSafe ===
+        class="flex flex-row items-center gap-1 px-2 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {northSafe ===
         true
           ? ' bg-destructive text-primary-foreground border-red-500 font-semibold'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (northSafe = northSafe === true ? null : true)}
       >
-        🡑 N Safe
+        <ArrowUp class="size-4" /> N Safe
       </button>
       <button
-        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {northSafe ===
+        class="flex flex-row items-center gap-1 px-2 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {northSafe ===
         false
           ? 'bg-blue-700 text-primary-foreground border-blue-500 font-semibold'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (northSafe = northSafe === false ? null : false)}
       >
-        🡓 S Safe
+        <ArrowDown class="size-4" /> S Safe
       </button>
     </div>
 
     <div class="flex gap-2 md:gap-3 items-center">
       <div class="font-semibold text-sm md:text-base text-muted-foreground">Boss tethers</div>
       <button
-        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {defamationsFirst ===
+        class="flex flex-row items-center gap-1 px-2 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {defamationsFirst ===
         true
           ? 'bg-primary text-primary-foreground border-primary font-semibold'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (defamationsFirst = defamationsFirst === true ? null : true)}
       >
-        ⊙ Defams First
+        <CircleDot class="size-4" /> Defams First
       </button>
       <button
-        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {defamationsFirst ===
+        class="flex flex-row items-center gap-1 px-2 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {defamationsFirst ===
         false
           ? 'bg-yellow-700 text-primary-foreground border-yellow-800 font-semibold'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (defamationsFirst = defamationsFirst === false ? null : false)}
       >
-        ↡ Stacks First
+        <ChevronsDown class="size-4" /> Stacks First
       </button>
     </div>
 
     <div class="flex gap-2 md:gap-3 items-center">
       <div class="font-semibold text-sm md:text-base text-muted-foreground">Black hole clone</div>
       <button
-        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {holeCloneNorth ===
+        class="flex flex-row items-center gap-1 px-2 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {holeCloneNorth ===
         true
           ? ' bg-destructive text-primary-foreground border-red-500 font-semibold'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (holeCloneNorth = holeCloneNorth === true ? null : true)}
       >
-        🡑 North
+        <ArrowUp class="size-4" /> North
       </button>
       <button
-        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {holeCloneNorth ===
+        class="flex flex-row items-center gap-1 px-2 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {holeCloneNorth ===
         false
           ? 'bg-blue-700 text-primary-foreground border-blue-500 font-semibold'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
         onclick={() => (holeCloneNorth = holeCloneNorth === false ? null : false)}
       >
-        🡓 South
+        <ArrowDown class="size-4" /> South
       </button>
     </div>
 
