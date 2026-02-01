@@ -69,7 +69,7 @@
 </svelte:head>
 
 <div
-  class="flex flex-col gap-3 md:gap-4 p-4 md:p-6 w-full max-w-[500px] md:max-w-[600px] mx-auto max-h-dvh box-border overflow-hidden"
+  class="flex flex-col gap-3 md:gap-4 p-4 md:p-6 w-full max-w-[500px] md:max-w-[600px] mx-auto box-border overflow-hidden"
 >
   <!-- Header -->
   <header class="flex justify-between items-center shrink-0">
