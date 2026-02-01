@@ -59,13 +59,13 @@
 </svelte:head>
 
 <div
-  class="flex flex-col gap-3 p-4 w-full max-w-[500px] mx-auto max-h-dvh box-border overflow-hidden"
+  class="flex flex-col gap-3 md:gap-4 p-4 md:p-6 w-full max-w-[500px] md:max-w-[600px] mx-auto max-h-dvh box-border overflow-hidden"
 >
   <!-- Header -->
   <header class="flex justify-between items-center shrink-0">
-    <h1 class="text-xl font-bold m-0">Idyllic Dream Solver</h1>
+    <h1 class="text-xl md:text-2xl font-bold m-0">Idyllic Dream Solver</h1>
     <button
-      class="px-3 py-1.5 rounded-lg bg-destructive text-destructive-foreground border-none font-semibold cursor-pointer text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+      class="px-4 py-2 md:px-5 md:py-2.5 rounded-lg bg-destructive text-destructive-foreground border-none font-semibold cursor-pointer text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed"
       onclick={reset}
       disabled={!selectedTether &&
         cardinalsFirst === null &&
@@ -77,11 +77,11 @@
   </header>
 
   <!-- Strategy Selector -->
-  <div class="flex items-center gap-2 shrink-0">
-    <label for="strategy-select" class="font-semibold text-sm">Strategy:</label>
+  <div class="flex items-center gap-2 md:gap-3 shrink-0">
+    <label for="strategy-select" class="font-semibold text-sm md:text-base">Strategy:</label>
     <select
       id="strategy-select"
-      class="flex-1 px-2 py-1.5 rounded-lg border border-border bg-background text-foreground text-sm"
+      class="flex-1 px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border bg-background text-foreground text-sm md:text-base"
       bind:value={selectedStrategy}
     >
       {#each IDYLLIC_STRATEGIES as strat}
@@ -91,11 +91,11 @@
   </div>
 
   <!-- Mechanic Buttons -->
-  <div class="flex flex-wrap flex-col gap-2 justify-center shrink-0">
-    <div class="flex gap-2 items-center">
-      <div class="font-semibold text-sm mb-1 text-muted-foreground">First clones</div>
+  <div class="flex flex-wrap flex-col gap-2 md:gap-3 justify-center shrink-0">
+    <div class="flex gap-2 md:gap-3 items-center">
+      <div class="font-semibold text-sm md:text-base text-muted-foreground">First clones</div>
       <button
-        class="px-2.5 py-1.5 rounded-lg border border-border font-medium cursor-pointer text-xs transition-all duration-150 {cardinalsFirst ===
+        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-medium cursor-pointer text-sm md:text-base transition-all duration-150 {cardinalsFirst ===
         true
           ? 'bg-primary text-primary-foreground border-primary'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
@@ -104,7 +104,7 @@
         Cardinals
       </button>
       <button
-        class="px-2.5 py-1.5 rounded-lg border border-border font-medium cursor-pointer text-xs transition-all duration-150 {cardinalsFirst ===
+        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-medium cursor-pointer text-sm md:text-base transition-all duration-150 {cardinalsFirst ===
         false
           ? 'bg-primary text-primary-foreground border-primary'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
@@ -114,10 +114,10 @@
       </button>
     </div>
 
-    <div class="flex gap-2 items-center">
-      <div class="font-semibold text-sm mb-1 text-muted-foreground">Cone telegraphs</div>
+    <div class="flex gap-2 md:gap-3 items-center">
+      <div class="font-semibold text-sm md:text-base text-muted-foreground">Cone telegraphs</div>
       <button
-        class="px-2.5 py-1.5 rounded-lg border border-border font-medium cursor-pointer text-xs transition-all duration-150 {northSafe ===
+        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-medium cursor-pointer text-sm md:text-base transition-all duration-150 {northSafe ===
         true
           ? 'bg-primary text-primary-foreground border-primary'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
@@ -126,7 +126,7 @@
         N Safe
       </button>
       <button
-        class="px-2.5 py-1.5 rounded-lg border border-border font-medium cursor-pointer text-xs transition-all duration-150 {northSafe ===
+        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-medium cursor-pointer text-sm md:text-base transition-all duration-150 {northSafe ===
         false
           ? 'bg-primary text-primary-foreground border-primary'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
@@ -136,10 +136,10 @@
       </button>
     </div>
 
-    <div class="flex gap-2 items-center">
-      <div class="font-semibold text-sm mb-1 text-muted-foreground">Boss tether spawns</div>
+    <div class="flex gap-2 md:gap-3 items-center">
+      <div class="font-semibold text-sm md:text-base text-muted-foreground">Boss tether spawns</div>
       <button
-        class="px-2.5 py-1.5 rounded-lg border border-border font-medium cursor-pointer text-xs transition-all duration-150 {defamationsFirst ===
+        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-medium cursor-pointer text-sm md:text-base transition-all duration-150 {defamationsFirst ===
         true
           ? 'bg-primary text-primary-foreground border-primary'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
@@ -148,7 +148,7 @@
         Defams First
       </button>
       <button
-        class="px-2.5 py-1.5 rounded-lg border border-border font-medium cursor-pointer text-xs transition-all duration-150 {defamationsFirst ===
+        class="px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-medium cursor-pointer text-sm md:text-base transition-all duration-150 {defamationsFirst ===
         false
           ? 'bg-primary text-primary-foreground border-primary'
           : 'bg-muted text-muted-foreground hover:bg-accent'}"
@@ -161,22 +161,21 @@
 
   <!-- Compass Selector -->
   <div class="flex flex-col items-center shrink-0">
-    <span class="font-semibold text-sm mb-1 text-muted-foreground">Your Clone Tether</span>
-    <div class="relative" style="width: 160px; height: 160px;">
+    <span class="font-semibold text-sm md:text-base mb-1 md:mb-2 text-muted-foreground"
+      >Your Clone Tether</span
+    >
+    <div class="compass-container">
       {#each COMPASS_LAYOUT as { pos, angle }}
         {@const isCardinal = ['N', 'E', 'S', 'W'].includes(pos)}
         {@const radius = 38}
         {@const x = 50 + radius * Math.cos((angle * Math.PI) / 180)}
         {@const y = 50 + radius * Math.sin((angle * Math.PI) / 180)}
-        {@const size = isCardinal ? 40 : 36}
         <button
-          class="absolute rounded-full border font-semibold cursor-pointer transition-all duration-150 flex items-center justify-center
+          class="compass-btn {isCardinal ? 'cardinal' : 'intercardinal'}
             {selectedTether === pos
             ? 'bg-primary text-primary-foreground border-primary'
             : 'bg-muted text-foreground border-border hover:bg-accent'}"
-          style="left: {x}%; top: {y}%; width: {size}px; height: {size}px; font-size: {isCardinal
-            ? '0.75rem'
-            : '0.65rem'}; transform: translate(-50%, -50%);"
+          style="left: {x}%; top: {y}%;"
           onclick={() => (selectedTether = selectedTether === pos ? null : pos)}
         >
           {pos}
@@ -185,35 +184,73 @@
     </div>
   </div>
 
-  <!-- Remember Section
-  {#if rememberItems().length > 0}
-    <div class="shrink-0 bg-muted/50 rounded-lg p-2">
-      <h3 class="text-sm font-semibold m-0 mb-1">📌 Remember</h3>
-      <div class="flex flex-wrap flex-col gap-1.5">
-        {#each rememberItems() as item}
-          <span
-            class="px-2 py-0.5 rounded-full bg-secondary text-secondary-foreground text-xs font-medium"
-            >{item}</span
-          >
-        {/each}
-      </div>
-    </div>
-  {/if} -->
-
   <!-- Summary Output -->
   <div
-    class="flex-1 min-h-0 flex flex-col bg-card border border-border rounded-xl p-3 overflow-auto"
+    class="flex-1 min-h-0 flex flex-col bg-card border border-border rounded-xl p-3 md:p-4 overflow-auto"
   >
     {#if summaryText()}
       <div
-        class="text-sm leading-relaxed flex-1 [&_strong]:text-primary [&_strong]:text-base [&_strong]:block [&_strong]:mb-1"
+        class="text-sm md:text-base leading-relaxed flex-1 [&_strong]:text-primary [&_strong]:text-base md:[&_strong]:text-lg [&_strong]:block [&_strong]:mb-1"
       >
         {@html summaryText()!.replace(/\n/g, '<br>')}
       </div>
     {:else}
-      <div class="text-muted-foreground italic text-sm">
+      <div class="text-muted-foreground italic text-sm md:text-base">
         Select your clone tether position to see your assignments
       </div>
     {/if}
   </div>
 </div>
+
+<style>
+  .compass-container {
+    position: relative;
+    width: 180px;
+    height: 180px;
+  }
+
+  .compass-btn {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    border-radius: 9999px;
+    border-width: 1px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .compass-btn.cardinal {
+    width: 44px;
+    height: 44px;
+    font-size: 0.875rem;
+  }
+
+  .compass-btn.intercardinal {
+    width: 40px;
+    height: 40px;
+    font-size: 0.75rem;
+  }
+
+  /* Tablet and up */
+  @media (min-width: 768px) {
+    .compass-container {
+      width: 220px;
+      height: 220px;
+    }
+
+    .compass-btn.cardinal {
+      width: 56px;
+      height: 56px;
+      font-size: 1rem;
+    }
+
+    .compass-btn.intercardinal {
+      width: 48px;
+      height: 48px;
+      font-size: 0.875rem;
+    }
+  }
+</style>
