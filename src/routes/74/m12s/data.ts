@@ -2720,7 +2720,7 @@ const caroIdyllic: Record<string, MechanicStrat[]> = {
     },
     {
       mechanic: 'Defamations/Stacks',
-      description: 'Defamations will be on D and B\nStacks will be on 1 and 3',
+      description: 'Defamations will be on A and C\nStacks will be on D and B',
       url: 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc#20',
       strats: [
         // Generic info - shows when 'All' is selected (or no selection)
@@ -4714,6 +4714,17 @@ export const m12sFightConfig: FightConfig = {
           }
         },
         {
+          value: 'dnuptime',
+          label: 'DN Uptime/Better',
+          url: [{
+            name: 'DN Idyllic with Uptime Stack/Defa Raidplan',
+            url: 'https://raidplan.io/plan/PdUdKJ3dCYzmc-p8'
+          }, {
+            name: 'Better™ DN Idyllic Dream Raidplan',
+            url: 'https://raidplan.io/plan/h-GDoi2CFWKazf-Y'
+          }]
+        },
+        {
           value: 'caro',
           label: 'Caro (wqc)',
           url: {
@@ -4727,14 +4738,6 @@ export const m12sFightConfig: FightConfig = {
           url: {
             name: 'Cozy Clone Raidplan by ItsBexy',
             url: 'https://raidplan.io/plan/txtzacv3uvbjzuku'
-          }
-        },
-        {
-          value: 'dnuptime',
-          label: 'DN w/ Uptime (-p8)',
-          url: {
-            name: 'DN Idyllic with Uptime Stack/Defa Raidplan',
-            url: 'https://raidplan.io/plan//PdUdKJ3dCYzmc-p8'
           }
         },
         {

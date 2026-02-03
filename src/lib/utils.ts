@@ -337,7 +337,9 @@ export function getToggleUrls({
     if (showAllToggleUrls || (currentValue && currentValue !== defaultValue)) {
       const optionUrl = toggle.options.find((option) => option.value === currentValue)?.url ?? null;
       if (optionUrl) {
-        urls.push({ name: optionUrl.name, url: optionUrl.url });
+        // Support both single FightToggleUrl and arrays of FightToggleUrl
+        const urlArray = Array.isArray(optionUrl) ? optionUrl : [optionUrl];
+        urls.push(...urlArray);
       }
     }
     return urls;

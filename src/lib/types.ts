@@ -57,7 +57,7 @@ export interface FightToggleOption {
   value: string;
   label: string;
   badges?: Badge[];
-  url?: FightToggleUrl;
+  url?: FightToggleUrl | FightToggleUrl[];
 }
 
 export interface FightToggleUrl {
