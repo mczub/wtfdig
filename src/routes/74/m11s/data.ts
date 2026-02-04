@@ -567,53 +567,53 @@ const fixedEcliptic: MechanicStrat[] = [
         role: 'Tank',
         party: 1,
         description: 'Take CW solo tower from A\nTake tether opposite + CW',
-        imageUrl: './m11s/fixed-ecliptic-1.webp'
+        imageUrl: './m11s/hector-fixed-stampede-start.webp'
       },
       {
         role: 'Tank',
         party: 2,
         description: 'Take CCW solo tower from A\nTake tether opposite + CW',
-        imageUrl: './m11s/fixed-ecliptic-1.webp'
+        imageUrl: './m11s/hector-fixed-stampede-start.webp'
       },
       {
         role: 'Healer',
         party: 1,
         description:
           '‼️ Stand dead center of tower\nIf not marked, take first tower Cw from A\nTake tether opposite + CW',
-        imageUrl: './m11s/fixed-ecliptic-1.webp'
+        imageUrl: './m11s/hector-fixed-stampede-start.webp'
       },
       {
         role: 'Healer',
         party: 2,
         description:
           '‼️ Stand dead center of tower\nIf not marked, take tower H1 > H2 > R1 > R2 CW from A\nTake tether opposite + CW',
-        imageUrl: './m11s/fixed-ecliptic-1.webp'
+        imageUrl: './m11s/hector-fixed-stampede-start.webp'
       },
       {
         role: 'Melee',
         party: 1,
         description: '‼️ Stand on edge of tower\nTake CW pair tower from A',
-        imageUrl: './m11s/fixed-ecliptic-1.webp'
+        imageUrl: './m11s/hector-fixed-stampede-start.webp'
       },
       {
         role: 'Melee',
         party: 2,
         description: '‼️ Stand on edge of tower\nTake CCW pair tower from A',
-        imageUrl: './m11s/fixed-ecliptic-1.webp'
+        imageUrl: './m11s/hector-fixed-stampede-start.webp'
       },
       {
         role: 'Ranged',
         party: 1,
         description:
           '‼️ Stand dead center of tower\nIf not marked, take tower H1 > H2 > R1 > R2 CW from A\nTake tether opposite + CW',
-        imageUrl: './m11s/fixed-ecliptic-1.webp'
+        imageUrl: './m11s/hector-fixed-stampede-start.webp'
       },
       {
         role: 'Ranged',
         party: 2,
         description:
           '‼️ Stand dead center of tower\nIf not marked, take first tower CCw from A\nTake tether opposite + CW',
-        imageUrl: './m11s/fixed-ecliptic-1.webp'
+        imageUrl: './m11s/hector-fixed-stampede-start.webp'
       }
     ]
   },
