@@ -73,6 +73,11 @@ export const IDYLLIC_STRATEGIES: IdyllicStrategy[] = [
         tetherDescriptions: dnTetherDescriptions
     },
     {
+        value: 'dnuptime',
+        label: 'DN Uptime/Better',
+        tetherDescriptions: dnUptimeTetherDescriptions
+    },
+    {
         value: 'caro',
         label: 'Caro (wqc)',
         tetherDescriptions: caroTetherDescriptions
@@ -81,11 +86,6 @@ export const IDYLLIC_STRATEGIES: IdyllicStrategy[] = [
         value: 'cozy',
         label: 'DN + Cozy Clone',
         tetherDescriptions: cozyTetherDescriptions
-    },
-    {
-        value: 'dnuptime',
-        label: 'DN w/ Uptime',
-        tetherDescriptions: dnUptimeTetherDescriptions
     },
     {
         value: 'em',

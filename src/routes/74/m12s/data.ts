@@ -3728,62 +3728,62 @@ const dnUptimeIdyllic: Record<string, MechanicStrat[]> = {
           toggleKey: 'idyllictether',
           toggleValue: '',
           description: '',
-          imageUrl: './m12s/uptime-id-17.webp'
+          imageUrl: './m12s/hector-uptime-idyllic-defam.webp'
         },
         // Position-specific instructions
         {
           toggleKey: 'idyllictether',
           toggleValue: 'N',
           description: 'Stay S to avoid defamations',
-          imageUrl: './m12s/uptime-id-17.webp'
+          imageUrl: './m12s/hector-uptime-idyllic-defam.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NE',
           description: 'Stay S to avoid defamations',
-          imageUrl: './m12s/uptime-id-17.webp'
+          imageUrl: './m12s/hector-uptime-idyllic-defam.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'E',
           description: 'Stay S to avoid defamations',
-          imageUrl: './m12s/uptime-id-17.webp'
+          imageUrl: './m12s/hector-uptime-idyllic-defam.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SE',
           description: 'Stay S to avoid defamations',
-          imageUrl: './m12s/uptime-id-17.webp'
+          imageUrl: './m12s/hector-uptime-idyllic-defam.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'S',
           description: '1st Defamation Northeast (between A + B)',
-          imageUrl: './m12s/uptime-id-17.webp'
+          imageUrl: './m12s/hector-uptime-idyllic-defam.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SW',
           description: '2nd Defamation Northeast (between A + B)',
-          imageUrl: './m12s/uptime-id-17.webp'
+          imageUrl: './m12s/hector-uptime-idyllic-defam.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'W',
           description: '1st Defamation Northwest (between D + A)',
-          imageUrl: './m12s/uptime-id-17.webp'
+          imageUrl: './m12s/hector-uptime-idyllic-defam.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NW',
           description: '2nd Defamation Northwest (between D + A)',
-          imageUrl: './m12s/uptime-id-17.webp'
+          imageUrl: './m12s/hector-uptime-idyllic-defam.webp'
         }
       ]
     },
     {
       mechanic: 'Stacks',
-      description: 'Stacks will be on 2 (G1) and 4 (G2)',
+      description: 'Stacks will be on 4 and 2',
       url: 'https://raidplan.io/plan/PdUdKJ3dCYzmc-p8#20',
       strats: [
         // Generic info - shows when 'All' is selected (or no selection)
@@ -3791,56 +3791,56 @@ const dnUptimeIdyllic: Record<string, MechanicStrat[]> = {
           toggleKey: 'idyllictether',
           toggleValue: '',
           description: '',
-          imageUrl: './m12s/uptime-id-19.webp'
+          imageUrl: './m12s/hector-uptime-idyllic-stacks.webp'
         },
         // Position-specific instructions
         {
           toggleKey: 'idyllictether',
           toggleValue: 'N',
           description: 'Take Stacks East (2)',
-          imageUrl: './m12s/uptime-id-19.webp'
+          imageUrl: './m12s/hector-uptime-idyllic-stacks.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NE',
           description: 'Take Stacks East (2)',
-          imageUrl: './m12s/uptime-id-19.webp'
+          imageUrl: './m12s/hector-uptime-idyllic-stacks.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'E',
           description: 'Take Stacks West (4)',
-          imageUrl: './m12s/uptime-id-19.webp'
+          imageUrl: './m12s/hector-uptime-idyllic-stacks.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SE',
           description: 'Take Stacks West (4)',
-          imageUrl: './m12s/uptime-id-19.webp'
+          imageUrl: './m12s/hector-uptime-idyllic-stacks.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'S',
           description: 'Take Stacks East (2)',
-          imageUrl: './m12s/uptime-id-19.webp'
+          imageUrl: './m12s/hector-uptime-idyllic-stacks.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SW',
           description: 'Take Stacks East (2)',
-          imageUrl: './m12s/uptime-id-19.webp'
+          imageUrl: './m12s/hector-uptime-idyllic-stacks.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'W',
           description: 'Take Stacks West (4)',
-          imageUrl: './m12s/uptime-id-19.webp'
+          imageUrl: './m12s/hector-uptime-idyllic-stacks.webp'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NW',
           description: 'Take Stacks West (4)',
-          imageUrl: './m12s/uptime-id-19.webp'
+          imageUrl: './m12s/hector-uptime-idyllic-stacks.webp'
         }
       ]
     }
