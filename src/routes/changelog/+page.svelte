@@ -8,6 +8,7 @@
   </header>
   <article class="prose dark:prose-invert max-w-none">
     <div class="">
+      <div>2/4/2026: 11 + 12 tweaks and fixes</div>
       <div>2/2/2026: m12s tweaks and fixes</div>
       <div>2/1/2026: add idyllic helper</div>
       <div>1/31/2026: added the hardest mechanic in ff14 history</div>
