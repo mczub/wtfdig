@@ -155,6 +155,135 @@ const dnReplication1: MechanicStrat[] = [
   }
 ];
 
+const cloneRelReplication1: MechanicStrat[] = [
+  {
+    mechanic: 'Setup',
+    description: 'G1 N, G2 S\nMelees NE/SW, Ranged NW/SE',
+    imageUrl: './m12s/dn-rep1-1.webp',
+    url: 'https://raidplan.io/plan/t19hrfQcixmMdMmr#2'
+  },
+  {
+    mechanic: 'Dark Debuff',
+    description: 'Dark Debuffs need to take pair Fire hits',
+    strats: [
+      {
+        role: 'Tank',
+        party: 1,
+        description: 'Go center of arena, lean slightly towards inner Fire clone',
+        imageUrl: './m12s/clonerel-rep1-18.webp'
+      },
+      {
+        role: 'Tank',
+        party: 2,
+        description: 'Go center of arena, lean slightly towards inner Fire clone',
+        imageUrl: './m12s/clonerel-rep1-18.webp'
+      },
+      {
+        role: 'Healer',
+        party: 1,
+        description:
+          'Find outer Fire clone\nFrom center, go to letter marker left of it and stack with ranged',
+        imageUrl: './m12s/clonerel-rep1-13.webp'
+      },
+      {
+        role: 'Healer',
+        party: 2,
+        description:
+          'Find outer Fire clone\nFrom center, go to letter marker left of it and stack with ranged',
+        imageUrl: './m12s/clonerel-rep1-13.webp'
+      },
+      {
+        role: 'Melee',
+        party: 1,
+        description: 'Go center of arena, lean slightly towards inner Fire clone',
+        imageUrl: './m12s/clonerel-rep1-18.webp'
+      },
+      {
+        role: 'Melee',
+        party: 2,
+        description: 'Go center of arena, lean slightly towards inner Fire clone',
+        imageUrl: './m12s/clonerel-rep1-18.webp'
+      },
+      {
+        role: 'Ranged',
+        party: 1,
+        description:
+          'Find outer Fire clone\nFrom center, go to letter marker left of it and stack with healer',
+        imageUrl: './m12s/clonerel-rep1-13.webp'
+      },
+      {
+        role: 'Ranged',
+        party: 2,
+        description:
+          'Find outer Fire clone\nFrom center, go to letter marker left of it and stack with healer',
+        imageUrl: './m12s/clonerel-rep1-13.webp'
+      }
+    ]
+  },
+  {
+    mechanic: 'Fire/No Debuff',
+    description: 'Fire/No Debuffs need to take solo Dark hits',
+    strats: [
+      {
+        role: 'Tank',
+        party: 1,
+        description:
+          'Find inner Dark clone\nFrom center, go to number marker left of it\nStand on corner closest to boss and away from clone',
+        imageUrl: './m12s/clonerel-rep1-20.webp'
+      },
+      {
+        role: 'Tank',
+        party: 2,
+        description:
+          'Find inner Dark clone\nFrom center, go to number marker left of it\nStand on corner closest to boss and away from clone',
+        imageUrl: './m12s/clonerel-rep1-20.webp'
+      },
+      {
+        role: 'Healer',
+        party: 1,
+        description:
+          'Find outer Dark clone\nFrom center, go to letter marker left of it',
+        imageUrl: './m12s/clonerel-rep1-15.webp'
+      },
+      {
+        role: 'Healer',
+        party: 2,
+        description:
+          'Find outer Dark clone\nFrom center, go to letter marker left of it',
+        imageUrl: './m12s/clonerel-rep1-15.webp'
+      },
+      {
+        role: 'Melee',
+        party: 1,
+        description:
+          'Find inner Dark clone\nFrom center, go to number marker right of it\nStand on corner closest to boss and away from clone',
+        imageUrl: './m12s/clonerel-rep1-20.webp'
+      },
+      {
+        role: 'Melee',
+        party: 2,
+        description:
+          'Find inner Dark clone\nFrom center, go to number marker right of it\nStand on corner closest to boss and away from clone',
+        imageUrl: './m12s/clonerel-rep1-20.webp'
+      },
+      {
+        role: 'Ranged',
+        party: 1,
+        description:
+          'Find outer Dark clone\nFrom center, go to letter marker right of it',
+        imageUrl: './m12s/clonerel-rep1-15.webp'
+      },
+      {
+        role: 'Ranged',
+        party: 2,
+        description:
+          'Find outer Dark clone\nFrom center, go to letter marker right of it',
+        imageUrl: './m12s/clonerel-rep1-15.webp'
+      }
+    ]
+  }
+];
+
 const bcReplication1: MechanicStrat[] = [
   {
     mechanic: 'Setup',
@@ -544,6 +673,7 @@ const staticReplication1: MechanicStrat[] = [
 
 const replication1Mechs: Record<string, MechanicStrat[]> = {
   dn: dnReplication1,
+  clonerel: cloneRelReplication1,
   caro: caroReplication1,
   static: staticReplication1,
   bc: bcReplication1,
@@ -4649,6 +4779,14 @@ export const m12sFightConfig: FightConfig = {
           url: {
             name: 'DN replication Raidplan',
             url: 'https://raidplan.io/plan/9ncP6UIDURcWuRuO'
+          }
+        },
+        {
+          value: 'clonerel',
+          label: 'Clone Relative',
+          url: {
+            name: 'Clone Relative Replication 1 Raidplan',
+            url: 'https://raidplan.io/plan/t19hrfQcixmMdMmr'
           }
         },
         {
