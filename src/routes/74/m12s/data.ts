@@ -3000,7 +3000,7 @@ const cozyIdyllic: Record<string, MechanicStrat[]> = {
           toggleKey: 'idyllictether',
           toggleValue: 'SE',
           description:
-            '<strong>SE Clone</strong>\nTake Stack tether from Bottom Right (D/4 + CW)\nStack East (2)'
+            '<strong>SE Clone</strong>\nTake Stack tether from Top Left (D/4 + CW)\nStack East (2)'
         },
         {
           toggleKey: 'idyllictether',
