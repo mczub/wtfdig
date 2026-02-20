@@ -1919,55 +1919,55 @@ const bcReplication2: MechanicStrat[] = [
         toggleKey: 'rep2tether',
         toggleValue: '',
         description: '',
-        imageUrl: './m12s/bc-rep1-20.webp'
+        imageUrl: './m12s/bc-rep1-20-new.webp'
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'N',
         description: 'Be inside boss ring + look at boss for cleave',
-        imageUrl: './m12s/bc-rep1-20.webp'
+        imageUrl: './m12s/bc-rep1-20-new.webp'
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NE',
         description: 'Stay on 4',
-        imageUrl: './m12s/bc-rep1-20.webp'
+        imageUrl: './m12s/bc-rep1-20-new.webp'
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'E',
         description: 'Stay on 4',
-        imageUrl: './m12s/bc-rep1-20.webp'
+        imageUrl: './m12s/bc-rep1-20-new.webp'
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SE',
         description: 'Stay on 3',
-        imageUrl: './m12s/bc-rep1-20.webp'
+        imageUrl: './m12s/bc-rep1-20-new.webp'
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'S',
         description: 'Be inside boss ring + look at boss for cleave',
-        imageUrl: './m12s/bc-rep1-20.webp'
+        imageUrl: './m12s/bc-rep1-20-new.webp'
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SW',
         description: 'Stay on 3',
-        imageUrl: './m12s/bc-rep1-20.webp'
+        imageUrl: './m12s/bc-rep1-20-new.webp'
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'W',
         description: 'Stay on 3',
-        imageUrl: './m12s/bc-rep1-20.webp'
+        imageUrl: './m12s/bc-rep1-20-new.webp'
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NW',
         description: 'Stay on 4',
-        imageUrl: './m12s/bc-rep1-20.webp'
+        imageUrl: './m12s/bc-rep1-20-new.webp'
       }
     ]
   },
