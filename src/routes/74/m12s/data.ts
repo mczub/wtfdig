@@ -1688,7 +1688,7 @@ const bcRep2Overview: MechanicStrat[] = [
         toggleKey: 'rep2tether',
         toggleValue: 'E',
         description:
-          '<strong>E Clone</strong>\nRelative S\nNo Tether\nTake Defam South (B)\nJoin East stack on 4\nDodge Snaking Kick\nStand North exactly on boss ring\nTake 3 clone stack, then move to 4 clone to take stack'
+          '<strong>E Clone</strong>\nRelative S\nNo Tether\nTake Defam South (B)\nJoin West stack on 3\nDodge Snaking Kick\nStand North exactly on boss ring\nTake 3 clone stack, then move to 4 clone to take stack'
       },
       {
         toggleKey: 'rep2tether',
@@ -1712,7 +1712,7 @@ const bcRep2Overview: MechanicStrat[] = [
         toggleKey: 'rep2tether',
         toggleValue: 'W',
         description:
-          '<strong>W Clone</strong>\nRelative N\nBoss Tether\nStand on D\nJoin West stack on 3\nDodge Snaking Kick\nStand North exactly on boss ring\nTake 3 clone stack, then move to 4 clone to take stack'
+          '<strong>W Clone</strong>\nRelative N\nBoss Tether\nStand on D\nJoin East stack on 4\nDodge Snaking Kick\nStand North exactly on boss ring\nTake 3 clone stack, then move to 4 clone to take stack'
       },
       {
         toggleKey: 'rep2tether',
@@ -1858,55 +1858,55 @@ const bcReplication2: MechanicStrat[] = [
         toggleKey: 'rep2tether',
         toggleValue: '',
         description: '',
-        imageUrl: './m12s/bc-rep1-20.webp'
+        imageUrl: './m12s/bc-rep1-20-new.webp'
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'N',
         description: 'Join East stack on 4',
-        imageUrl: './m12s/bc-rep1-20.webp'
+        imageUrl: './m12s/bc-rep1-20-new.webp'
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NE',
         description: 'Join East stack on 4',
-        imageUrl: './m12s/bc-rep1-20.webp'
+        imageUrl: './m12s/bc-rep1-20-new.webp'
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'E',
-        description: 'Join East stack on 4',
-        imageUrl: './m12s/bc-rep1-20.webp'
+        description: 'Join West stack on 3',
+        imageUrl: './m12s/bc-rep1-20-new.webp'
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SE',
         description: 'Join West stack on 3',
-        imageUrl: './m12s/bc-rep1-20.webp'
+        imageUrl: './m12s/bc-rep1-20-new.webp'
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'S',
         description: 'Join West stack on 3',
-        imageUrl: './m12s/bc-rep1-20.webp'
+        imageUrl: './m12s/bc-rep1-20-new.webp'
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SW',
         description: 'Take West stack on 3',
-        imageUrl: './m12s/bc-rep1-20.webp'
+        imageUrl: './m12s/bc-rep1-20-new.webp'
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'W',
-        description: 'Join West stack on 3',
-        imageUrl: './m12s/bc-rep1-20.webp'
+        description: 'Join East stack on 4',
+        imageUrl: './m12s/bc-rep1-20-new.webp'
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NW',
         description: 'Take East stack on 4',
-        imageUrl: './m12s/bc-rep1-20.webp'
+        imageUrl: './m12s/bc-rep1-20-new.webp'
       }
     ]
   },
