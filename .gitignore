@@ -27,3 +27,5 @@ build
 .clinerules
 .clineignore
 memory-bank/
+.claude/
+.codex/
