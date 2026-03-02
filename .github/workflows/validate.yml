@@ -12,4 +12,4 @@ jobs:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
       - run: bun install --frozen-lockfile
-      - run: bun run test:tier1
+      - run: bun test --tsconfig tsconfig.test.json tests/validate/tier1.test.ts
