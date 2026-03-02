@@ -10,7 +10,9 @@
     "check": "bun --bun svelte-kit sync && bun --bun svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "bun --bun svelte-kit sync && bun --bun svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "bun --bun prettier --check . && bun --bun eslint .",
-    "format": "bun --bun prettier --write ."
+    "format": "bun --bun prettier --write .",
+    "test": "bun test --tsconfig tsconfig.test.json tests/validate/",
+    "test:tier1": "bun test --tsconfig tsconfig.test.json tests/validate/tier1.test.ts"
   },
   "devDependencies": {
     "@internationalized/date": "3.8.1",

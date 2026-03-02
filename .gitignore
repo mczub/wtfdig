@@ -21,6 +21,7 @@ symlink-from
 .idea/
 .vs/
 build
+/build
 
 # Cline
 .clinerules
