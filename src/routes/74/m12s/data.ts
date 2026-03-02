@@ -3087,6 +3087,154 @@ const caroIdyllic: Record<string, MechanicStrat[]> = {
     }
   ]
 };
+const caroIdyllicUptime: Record<string, MechanicStrat[]> = {
+  overview: [
+    {
+      mechanic: 'Overview (Start)',
+      description: idyllicOverview
+    },
+    {
+      mechanic: 'Overview (Post Stacks and Defams)',
+      description: idyllicOverview2
+    },
+    {
+      mechanic: 'What Does My Tether Do?',
+      strats: [
+        // Generic info - shows when 'All' is selected (or no selection)
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: '',
+          description: "Select 'Idyllic Tether' to see your assignments"
+        },
+        // Position-specific instructions
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'N',
+          description:
+            '<strong>N Clone</strong>\nRed Defamation for boss tethers\n1st Defam on 1 (NE)\nStack on B'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'NE',
+          description:
+            '<strong>NE Clone</strong>\nRed Stack for boss tethers\nStack on B'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'E',
+          description:
+            '<strong>E Clone</strong>\nYellow Stack for boss tethers\nStack on B'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'SE',
+          description:
+            '<strong>SE Clone</strong>\nYellow Defamation for boss tethers\n2nd Defam on 1 (NE)\nStack on B'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'S',
+          description:
+            '<strong>S Clone</strong>\nBlue Defamation for boss tethers\n1st Defam on 4 (NW)\nStack on D'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'SW',
+          description:
+            '<strong>SW Clone</strong>\nBlue Stack for boss tethers\nStack on D'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'W',
+          description:
+            '<strong>W Clone</strong>\nPurple Stack for boss tethers\nStack on D'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'NW',
+          description:
+            '<strong>NW Clone</strong>\nPurple Defamation for boss tethers\n2nd Defam on 4 (NW)\nStack on D'
+        }
+      ]
+    }
+  ],
+  clones1: caroIdyllic.clones1,
+  platforms1: caroIdyllic.platforms1,
+  clones2: [
+    {
+      mechanic: 'Recall Clones and Tethers',
+      description:
+        '💡🤔🧑‍🤝‍🧑 RECALL:\nWhether North clone was Stack or Defamation\nTemporary light parties\nIf you were 1st or 2nd Defamation or a Stack',
+      imageUrl: './m12s/caro-id-18.webp',
+      url: 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc#19'
+    },
+    {
+      mechanic: 'Defamations/Stacks',
+      description: 'Defamations will be on 4 and 1 arena edge\nStacks will be on B and D max melee',
+      url: 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc#20',
+      strats: [
+        // Generic info - shows when 'All' is selected (or no selection)
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: '',
+          description: '',
+          imageUrl: './m12s/carouptime-id-19.webp'
+        },
+        // Position-specific instructions
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'N',
+          description: '1st Defamation on 1\nTake Stacks on B',
+          imageUrl: './m12s/carouptime-id-20.webp'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'NE',
+          description: 'Take Stacks on B',
+          imageUrl: './m12s/carouptime-id-19.webp'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'E',
+          description: 'Take Stacks on B',
+          imageUrl: './m12s/carouptime-id-20.webp'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'SE',
+          description: '2nd Defamation on 1\nTake Stacks on B',
+          imageUrl: './m12s/carouptime-id-19.webp'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'S',
+          description: '1st Defamation on 4\nTake Stacks on D',
+          imageUrl: './m12s/carouptime-id-19.webp'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'SW',
+          description: 'Take Stacks on D',
+          imageUrl: './m12s/carouptime-id-20.webp'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'W',
+          description: 'Take Stacks on D',
+          imageUrl: './m12s/carouptime-id-20.webp'
+        },
+        {
+          toggleKey: 'idyllictether',
+          toggleValue: 'NW',
+          description: '2nd Defamation on 4\nTake Stacks on D',
+          imageUrl: './m12s/carouptime-id-19.webp'
+        }
+      ]
+    }
+  ],
+  platforms2: caroIdyllic.platforms2,
+  blackhole: caroIdyllic.blackhole,
+};
 
 const cozyIdyllic: Record<string, MechanicStrat[]> = {
   overview: [
@@ -3980,6 +4128,7 @@ const dnUptimeIdyllic: Record<string, MechanicStrat[]> = {
 const idyllicOverviewMechs: Record<string, MechanicStrat[]> = {
   dn: dnIdyllic.overview,
   caro: caroIdyllic.overview,
+  caroUptime: caroIdyllicUptime.overview,
   cozy: cozyIdyllic.overview,
   em: emIdyllic.overview,
   dnuptime: dnUptimeIdyllic.overview,
@@ -3988,6 +4137,7 @@ const idyllicOverviewMechs: Record<string, MechanicStrat[]> = {
 const idyllicClones1Mechs: Record<string, MechanicStrat[]> = {
   dn: dnIdyllic.clones1,
   caro: caroIdyllic.clones1,
+  caroUptime: caroIdyllic.clones1,
   cozy: dnIdyllic.clones1,
   em: emIdyllic.clones1,
   dnuptime: dnIdyllic.clones1,
@@ -3996,6 +4146,7 @@ const idyllicClones1Mechs: Record<string, MechanicStrat[]> = {
 const idyllicPlatforms1Mechs: Record<string, MechanicStrat[]> = {
   dn: dnIdyllic.platforms1,
   caro: caroIdyllic.platforms1,
+  caroUptime: caroIdyllic.platforms1,
   cozy: dnIdyllic.platforms1,
   em: dnIdyllic.platforms1,
   dnuptime: dnIdyllic.platforms1,
@@ -4004,6 +4155,7 @@ const idyllicPlatforms1Mechs: Record<string, MechanicStrat[]> = {
 const idyllicClones2Mechs: Record<string, MechanicStrat[]> = {
   dn: dnIdyllic.clones2,
   caro: caroIdyllic.clones2,
+  caroUptime: caroIdyllicUptime.clones2,
   cozy: cozyIdyllic.clones2,
   em: emIdyllic.clones2,
   dnuptime: dnUptimeIdyllic.clones2
@@ -4012,6 +4164,7 @@ const idyllicClones2Mechs: Record<string, MechanicStrat[]> = {
 const idyllicPlatforms2Mechs: Record<string, MechanicStrat[]> = {
   dn: dnIdyllic.platforms2,
   caro: caroIdyllic.platforms2,
+  caroUptime: caroIdyllic.platforms2,
   cozy: dnIdyllic.platforms2,
   em: emIdyllic.platforms2,
   dnuptime: dnIdyllic.platforms2,
@@ -4020,6 +4173,7 @@ const idyllicPlatforms2Mechs: Record<string, MechanicStrat[]> = {
 const idyllicBlackholeMechs: Record<string, MechanicStrat[]> = {
   dn: dnIdyllic.blackhole,
   caro: caroIdyllic.blackhole,
+  caroUptime: caroIdyllic.blackhole,
   cozy: dnIdyllic.blackhole,
   em: emIdyllic.blackhole,
   dnuptime: dnIdyllic.blackhole,
@@ -4337,6 +4491,7 @@ const modifiedStrat: Strat = {
       description: {
         dn: '',
         caro: '',
+        caroUptime: 'ℹ️ The only difference between Hector Uptime Caro and Caro is Defam placement in Clones II (NW/NE instead of N/S)',
         cozy: 'ℹ️ The only difference between Cozy and DN is the Defam/Stack placement in Clones and Tethers II',
         em: "ℹ️ Note the marker differences if you're using this with DN or BC",
       },
@@ -4380,7 +4535,8 @@ const caroStrat: Strat = {
     'P2: Zenith Rep1 Raidplan (yH4)': 'https://raidplan.io/plan/4P_QGHnBZ-nW8yH4',
     'P2: Clone Zone Rep2 (CJ4)': 'https://raidplan.io/plan/SFa6J6wDrU9PlCJ4',
     'P2: CaroKanndies Superchain Raidplan (xc9)': 'https://raidplan.io/plan/tr2jrddp4hkebxc9',
-    'P2: Caro Idyllic Dream (wqc)': 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc'
+    'P2: Caro Idyllic Dream (wqc)': 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc',
+    'P2: Hector Uptime variation of Caro Idyllic Dream (nnn)': 'https://youtu.be/Osd---W8ZTY?t=1132',
   },
   strats: [
     // P1: Lindwurm
@@ -4868,6 +5024,14 @@ export const m12sFightConfig: FightConfig = {
           url: {
             name: 'Caro Idyllic Dream Raidplan',
             url: 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc'
+          }
+        },
+        {
+          value: 'caroUptime',
+          label: 'Hector Uptime Caro (Defams NW/NE)',
+          url: {
+            name: 'M12S Phase 2 Guide (EU Strats) by Hector',
+            url: 'https://youtu.be/Osd---W8ZTY?t=1132'
           }
         },
         {
