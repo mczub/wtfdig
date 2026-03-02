@@ -1594,7 +1594,7 @@ export const hector: Strat = {
         {
           mechanic: 'Overview',
           description:
-            '<ul class="overview">\n<li>Boxes removed</li>\n<li><strong>Psychokinesis</strong> (2x big AoEs)</li>\n<li>Twisters</li>\n<br>\n<li>Boxes removed</li>\n<li><strong>Psychokinesis</strong> (3x big AoEs)</li>\n<li><strong>Lightning Burst</strong> (tankbusters)</li>\n<br>\n<li>Boxes removed</li>\n<li><strong>Psychokinesis</strong> (5x AoEs (Big Spread/YOLO))</li>\n<li>Twisters</li>\n<br>\n<li><strong>Derailment Siege</strong> (5x tower; OT Invuln)</li>\n<li><strong>Derail</li>\n</ul>'
+            '<ul class="overview">\n<li>Boxes removed</li>\n<li><strong>Psychokinesis</strong> (2x big AoEs)</li>\n<li>Twisters</li>\n<br>\n<li>Boxes removed</li>\n<li><strong>Psychokinesis</strong> (3x big AoEs)</li>\n<li><strong>Lightning Burst</strong> (tankbusters)</li>\n<br>\n<li>Boxes removed</li>\n<li><strong>Psychokinesis</strong> (5x AoEs (Big Spread/YOLO))</li>\n<li>Twisters</li>\n<br>\n<li><strong>Derailment Siege</strong> (5x tower; OT Invuln)</li>\n<li><strong>Derail</strong></li>\n</ul>'
         },
         {
           mechanic: '5x AOE (Big Spread)',
@@ -2039,7 +2039,7 @@ export const game8: Strat = {
         {
           mechanic: 'Overview',
           description:
-            '<ul class="overview">\n<li>Boxes removed</li>\n<li><strong>Psychokinesis</strong> (2x big AoEs)</li>\n<li>Twisters</li>\n<br>\n<li>Boxes removed</li>\n<li><strong>Psychokinesis</strong> (3x big AoEs)</li>\n<li><strong>Lightning Burst</strong> (tankbusters)</li>\n<br>\n<li>Boxes removed</li>\n<li><strong>Psychokinesis</strong> (5x AoEs (Big Spread/YOLO))</li>\n<li>Twisters</li>\n<br>\n<li><strong>Derailment Siege</strong> (5x tower; OT Invuln)</li>\n<li><strong>Derail</li>\n</ul>'
+            '<ul class="overview">\n<li>Boxes removed</li>\n<li><strong>Psychokinesis</strong> (2x big AoEs)</li>\n<li>Twisters</li>\n<br>\n<li>Boxes removed</li>\n<li><strong>Psychokinesis</strong> (3x big AoEs)</li>\n<li><strong>Lightning Burst</strong> (tankbusters)</li>\n<br>\n<li>Boxes removed</li>\n<li><strong>Psychokinesis</strong> (5x AoEs (Big Spread/YOLO))</li>\n<li>Twisters</li>\n<br>\n<li><strong>Derailment Siege</strong> (5x tower; OT Invuln)</li>\n<li><strong>Derail</strong></li>\n</ul>'
         },
         {
           mechanic: '2x AOE',

@@ -4624,7 +4624,7 @@ const caroStrat: Strat = {
         {
           mechanic: '2 (II) Debuffs',
           description:
-            'Stay middle until debuffs expire\nA: run out of snake to break, then take 4rd blob tower\nB: stay inside to break, then take 4rd chain tower',
+            'Stay middle until debuffs expire\nA: run out of snake to break, then take 4th blob tower\nB: stay inside to break, then take 4th chain tower',
           imageUrl: './m12s/p1-toxic-act2-break2.webp',
           url: {
             'Second break': 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#15',

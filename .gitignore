@@ -21,8 +21,11 @@ symlink-from
 .idea/
 .vs/
 build
+/build
 
 # Cline
 .clinerules
 .clineignore
 memory-bank/
+.claude/
+.codex/

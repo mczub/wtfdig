@@ -143,15 +143,6 @@ const firewatersnakingMechs: Record<string, MechanicStrat[]> = {
   oce: oceFirewatersnaking,
 };
 
-const toxicDeepaerial: MechanicStrat[] = [
-  {
-    mechanic: 'Tethers',
-    description:
-      "Healers take ball\n🔥 Fire tether hit the ball\n💦 Water tether don't hit the ball\nTether line is wide so be careful",
-    imageUrl: './m10s/toxic-deep.webp'
-  }
-];
-
 const parallelDeepaerial: MechanicStrat[] = [
   {
     mechanic: '1st Tether',
@@ -176,7 +167,6 @@ const parallelDeepaerial: MechanicStrat[] = [
 ];
 
 const deepaerialMechs: Record<string, MechanicStrat[]> = {
-  toxic: toxicDeepaerial,
   parallel: parallelDeepaerial
 };
 
