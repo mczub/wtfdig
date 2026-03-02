@@ -11,8 +11,8 @@
     "check:watch": "bun --bun svelte-kit sync && bun --bun svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "bun --bun prettier --check . && bun --bun eslint .",
     "format": "bun --bun prettier --write .",
-    "test": "bun test --tsconfig tsconfig.test.json tests/validate/",
-    "test:tier1": "bun test --tsconfig tsconfig.test.json tests/validate/tier1.test.ts"
+    "test": "vitest run tests/validate/",
+    "test:tier1": "vitest run tests/validate/tier1.test.ts"
   },
   "devDependencies": {
     "@internationalized/date": "3.8.1",
@@ -37,7 +37,8 @@
     "tailwindcss": "^4.0.15",
     "typescript": "^5.5.0",
     "typescript-eslint": "^8.0.0",
-    "vite": "^5.4.4"
+    "vite": "^5.4.4",
+    "vitest": "^4.0.18"
   },
   "type": "module",
   "dependencies": {

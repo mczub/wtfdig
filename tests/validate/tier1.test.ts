@@ -9,7 +9,7 @@
  * 5. Cross-strat copy-paste detection
  */
 
-import { describe, test, expect } from 'bun:test';
+import { describe, test, expect } from 'vitest';
 import type {
 	FightConfig,
 	Strat,
