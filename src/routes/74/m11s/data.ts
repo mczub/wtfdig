@@ -2241,6 +2241,6 @@ export const m11sFightConfig: FightConfig = {
       ]
     }
   ],
-  defaultStratName: 'nobuddies',
+  defaultStratName: 'hector',
   timeline: []
 };
