@@ -1,7 +1,8 @@
 <script lang="ts">
-  import { getContext, onMount } from 'svelte';
+  import { getContext, onMount, onDestroy } from 'svelte';
   import { fade } from 'svelte/transition';
   import type { ToastLike } from '$lib/utils';
+  import { startSolitaireEffect, stopSolitaireEffect } from '$lib/solitaire';
   import Cheatsheet from '../Cheatsheet.svelte';
   import ModernCheatsheet from './ModernCheatsheet.svelte';
   import { ChevronUp, Copy, ExternalLink, Fullscreen, Grid3x3, Info, Link } from '@lucide/svelte';
@@ -55,6 +56,21 @@
 
   let spotlight: boolean = $state(true);
   let alignment: Alignment = $state('original');
+  let solitaireActive = $state(false);
+
+  async function toggleSolitaire() {
+    if (solitaireActive) {
+      stopSolitaireEffect();
+      solitaireActive = false;
+    } else {
+      solitaireActive = true;
+      await startSolitaireEffect();
+    }
+  }
+
+  onDestroy(() => {
+    if (solitaireActive) stopSolitaireEffect();
+  });
   export const toast: ToastLike = getContext('toast');
 
   function getStratItem(
@@ -375,7 +391,14 @@
                 <div class="capitalize font-bold preset-typo-title mb-1 text-surface-50">
                   {optionsString}
                 </div>
-                {#if typeof selectedStrat?.stratUrl === 'string'}
+                {#if selectedStrat?.stratName === 'aprilfools'}
+                  <button
+                    type="button"
+                    class="inline-flex items-center text-base lg:text-lg text-blue-400 hover:text-blue-300 hover:underline gap-1 transition-colors cursor-pointer"
+                    onclick={toggleSolitaire}
+                    >{selectedStrat.description}
+                  </button>
+                {:else if typeof selectedStrat?.stratUrl === 'string'}
                   <a
                     class="inline-flex items-center text-base lg:text-lg text-blue-400 hover:text-blue-300 hover:underline gap-1 transition-colors"
                     target="_blank"
