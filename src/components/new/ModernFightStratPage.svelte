@@ -64,7 +64,7 @@
       solitaireActive = false;
     } else {
       solitaireActive = true;
-      await startSolitaireEffect();
+      await startSolitaireEffect(() => { solitaireActive = false; });
     }
   }
 

@@ -14,7 +14,10 @@ interface BouncingImage {
   settled: boolean;
 }
 
-export async function startSolitaireEffect() {
+let onDismissCallback: (() => void) | null = null;
+
+export async function startSolitaireEffect(onDismiss?: () => void) {
+  onDismissCallback = onDismiss ?? null;
   stopSolitaireEffect();
 
   const vw = window.innerWidth;
@@ -71,7 +74,7 @@ export async function startSolitaireEffect() {
 
   // Stagger image launches
   let launchIndex = 0;
-  const launchDelay = 400;
+  const launchDelay = 600;
 
   function launchNext() {
     if (launchIndex >= images.length) return;
@@ -82,13 +85,15 @@ export async function startSolitaireEffect() {
     const width = rect.width;
     const height = rect.height;
     const bitmap = bitmapCache.get(srcImg.src)!;
+    const vhScale = window.innerHeight / 100;
+    const vwScale = window.innerWidth / 100;
 
     bouncers.push({
       bitmap,
       x: rect.left + rect.width / 2 - width / 2,
       y: rect.top + rect.height / 2 - height / 2,
-      vx: (Math.random() - 0.5) * 16,
-      vy: -(Math.random() * 12 + 6 + (rect.top > currentVh ? Math.random() * 12 + 6 : 0)),
+      vx: (Math.random() - 0.5) * (vwScale),
+      vy: -(Math.random() * vhScale + (vhScale / 2) + (rect.top > currentVh ? Math.random() * (vhScale * 0.75) + (vhScale / 4) : 0)),
       width,
       height,
       trailTimer: 0,
@@ -162,7 +167,10 @@ export async function startSolitaireEffect() {
         cancelAnimationFrame(animationId);
         animationId = null;
       }
-      clickHandler = () => stopSolitaireEffect();
+      clickHandler = () => {
+        stopSolitaireEffect();
+        onDismissCallback?.();
+      };
       document.addEventListener('click', clickHandler, { once: true });
       return;
     }
