@@ -1,7 +1,8 @@
 <script lang="ts">
-  import { getContext } from 'svelte';
+  import { getContext, onMount, onDestroy } from 'svelte';
   import { fade } from 'svelte/transition';
   import type { ToastLike } from '$lib/utils';
+  import { startSolitaireEffect, stopSolitaireEffect } from '$lib/solitaire';
   import Cheatsheet from '../Cheatsheet.svelte';
   import ModernCheatsheet from './ModernCheatsheet.svelte';
   import { ChevronUp, Copy, ExternalLink, Fullscreen, Grid3x3, Info, Link } from '@lucide/svelte';
@@ -15,6 +16,7 @@
     getBoardUrl,
     getToggleUrls
   } from '$lib/utils';
+  import { generateAprilFoolsData, isAprilFools } from '$lib/aprilFools';
 
   interface Props {
     config: FightConfig;
@@ -22,17 +24,53 @@
   }
 
   let { config, strats }: Props = $props();
-  const stratOptions = strats.map((strat) => ({
-    value: strat.stratName,
-    label: config.strats[strat.stratName].label ?? strat.stratName,
-    badges: config.strats[strat.stratName].badges
-  }));
+
+  let jokeStrat = $state<Strat | undefined>(undefined);
+  let jokeConfigEntry = $state<FightConfig['strats'][string] | undefined>(undefined);
+
+  let effectiveStrats = $derived(jokeStrat ? [jokeStrat, ...strats] : strats);
+  let effectiveConfigStrats = $derived(
+    jokeConfigEntry
+      ? { ...config.strats, aprilfools: jokeConfigEntry }
+      : config.strats
+  );
+
+  let stratOptions = $derived(
+    effectiveStrats.map((strat) => ({
+      value: strat.stratName,
+      label: effectiveConfigStrats[strat.stratName]?.label ?? strat.stratName,
+      badges: effectiveConfigStrats[strat.stratName]?.badges
+    }))
+  );
   const stratKeys = (config.toggles ?? [])
     .filter((toggle) => !toggle.excludeFromUrl)
     .map((toggle) => toggle.key);
 
+  onMount(() => {
+    if (isAprilFools() && strats.length > 0) {
+      const { strat, configEntry } = generateAprilFoolsData(strats, config.strats);
+      jokeStrat = strat;
+      jokeConfigEntry = configEntry;
+    }
+  });
+
   let spotlight: boolean = $state(true);
   let alignment: Alignment = $state('original');
+  let solitaireActive = $state(false);
+
+  async function toggleSolitaire() {
+    if (solitaireActive) {
+      stopSolitaireEffect();
+      solitaireActive = false;
+    } else {
+      solitaireActive = true;
+      await startSolitaireEffect(() => { solitaireActive = false; });
+    }
+  }
+
+  onDestroy(() => {
+    if (solitaireActive) stopSolitaireEffect();
+  });
   export const toast: ToastLike = getContext('toast');
 
   function getStratItem(
@@ -126,7 +164,7 @@
   }
 
   function getStratMechs(stratName: string) {
-    return config.strats[stratName]?.defaults ?? {};
+    return effectiveConfigStrats[stratName]?.defaults ?? {};
   }
 
   function getOptionsString({
@@ -145,7 +183,7 @@
       role,
       party,
       stratState,
-      strats: config.strats,
+      strats: effectiveConfigStrats,
       toggles: config.toggles
     });
   }
@@ -162,7 +200,7 @@
       stratName,
       stratState,
       currentUrl,
-      strats: config.strats,
+      strats: effectiveConfigStrats,
       toggles: config.toggles
     });
   }
@@ -200,7 +238,7 @@
 <svelte:window bind:innerWidth bind:innerHeight bind:scrollY />
 <FightStratState
   fightKey={config.fightKey}
-  {strats}
+  strats={effectiveStrats}
   {stratKeys}
   {getStratMechs}
   let:stratName
@@ -226,7 +264,7 @@
   {@const toggleUrls = getToggleUrls({
     stratName,
     toggles: config.toggles,
-    strats: config.strats,
+    strats: effectiveConfigStrats,
     stratState,
     showAllToggleUrls: config.showAllToggleUrls
   })}
@@ -280,7 +318,7 @@
 
   <ModernFightStratControls
     title={config.abbreviatedTitle ?? config.title}
-    strats={config.strats}
+    strats={effectiveConfigStrats}
     {stratName}
     {stratOptions}
     onSelectStrat={selectStrat}
@@ -353,7 +391,14 @@
                 <div class="capitalize font-bold preset-typo-title mb-1 text-surface-50">
                   {optionsString}
                 </div>
-                {#if typeof selectedStrat?.stratUrl === 'string'}
+                {#if selectedStrat?.stratName === 'aprilfools'}
+                  <button
+                    type="button"
+                    class="inline-flex items-center text-base lg:text-lg text-blue-400 hover:text-blue-300 hover:underline gap-1 transition-colors cursor-pointer"
+                    onclick={toggleSolitaire}
+                    >{selectedStrat.description}
+                  </button>
+                {:else if typeof selectedStrat?.stratUrl === 'string'}
                   <a
                     class="inline-flex items-center text-base lg:text-lg text-blue-400 hover:text-blue-300 hover:underline gap-1 transition-colors"
                     target="_blank"
