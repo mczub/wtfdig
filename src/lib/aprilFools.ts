@@ -33,10 +33,8 @@ function generateJokePhases(strats: Strat[]): PhaseStrats[] {
 }
 
 export function isAprilFools(): boolean {
-  // TODO: eventually only activate on April 1st
-  // const now = new Date();
-  // return now.getMonth() === 3 && now.getDate() === 1;
-  return true; // always on for testing
+  const now = new Date();
+  return now.getMonth() === 3 && now.getDate() === 1;
 }
 
 export function generateAprilFoolsData(
