@@ -34,7 +34,17 @@ function generateJokePhases(strats: Strat[]): PhaseStrats[] {
 
 export function isAprilFools(): boolean {
   const now = new Date();
-  return now.getMonth() === 3 && now.getDate() === 1;
+  // Convert to Pacific time
+  const pacific = new Date(now.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+  const month = pacific.getMonth(); // 0-indexed: 2 = March, 3 = April
+  const date = pacific.getDate();
+  const hour = pacific.getHours();
+
+  // Start: 6pm Pacific on March 31
+  // End: midnight Pacific on April 2 (i.e., all of April 1)
+  if (month === 2 && date === 31 && hour >= 18) return true;
+  if (month === 3 && date === 1) return true;
+  return false;
 }
 
 export function generateAprilFoolsData(
