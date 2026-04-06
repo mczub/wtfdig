@@ -53,6 +53,11 @@
       defaultOpen: true,
       items: [
         {
+          title: 'The Epic of Alexander',
+          subtitle: 'Ultimate',
+          url: '/ultimates/tea'
+        },
+        {
           title: 'The Unending Coil of Bahamut',
           subtitle: 'Ultimate',
           url: '/ultimates/ucob'
