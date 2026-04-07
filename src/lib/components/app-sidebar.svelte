@@ -8,7 +8,8 @@
     ChevronDown,
     ChevronRightIcon,
     Grid3x3,
-    Hammer
+    Hammer,
+    History
   } from '@lucide/svelte';
   import Separator from './ui/separator/separator.svelte';
 
@@ -202,6 +203,19 @@
                 <Grid3x3 class="size-6 text-primary " /><span class="font-semibold">board</span>
               </div>
               <div class="text-base text-surface-400">view + bundle strategy boards</div>
+            </a>
+          </Sidebar.MenuItem>
+          <Sidebar.MenuItem>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://wayback.wtfdig.info"
+              class="flex flex-col w-full items-start mx-2"
+            >
+              <div class="flex flex-row items-center gap-2 text-lg">
+                <History class="size-6 text-primary " /><span class="font-semibold">wayback</span>
+              </div>
+              <div class="text-base text-surface-400">version history for raidplans</div>
             </a>
           </Sidebar.MenuItem>
           <Separator class="my-2" />

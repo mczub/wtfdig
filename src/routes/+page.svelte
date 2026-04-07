@@ -3,7 +3,7 @@
   import { slide } from 'svelte/transition';
   import ChevronDown from '@lucide/svelte/icons/chevron-down';
   import { Separator } from '$lib/components/ui/separator';
-  import { Grid3x3, Construction, Hammer } from '@lucide/svelte';
+  import { Grid3x3, History, Hammer } from '@lucide/svelte';
 
   let openState = $state({
     '74': true,
@@ -36,6 +36,19 @@
             <Grid3x3 class="size-6 text-primary " /><span class="font-semibold">board</span>
           </div>
           <div class="text-base text-surface-400">view + bundle strategy boards</div>
+        </a>
+      </div>
+      <div class="card preset-outlined-secondary-500 gap-4 p-4 justify-center lg:col-span-2">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://wayback.wtfdig.info"
+          class="flex flex-col items-start mx-2"
+        >
+          <div class="flex flex-row items-center gap-2 text-lg">
+            <History class="size-6 text-primary " /><span class="font-semibold">wayback</span>
+          </div>
+          <div class="text-base text-surface-400">version history for raidplans</div>
         </a>
       </div>
       <div class="gap-4 mt-4 justify-center lg:col-span-2">
