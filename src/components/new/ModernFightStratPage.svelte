@@ -4,7 +4,8 @@
   import type { ToastLike } from '$lib/utils';
   import { startSolitaireEffect, stopSolitaireEffect } from '$lib/solitaire';
   import ModernCheatsheet from './ModernCheatsheet.svelte';
-  import { ChevronUp, Copy, ExternalLink, Fullscreen, Grid3x3, Info, Link } from '@lucide/svelte';
+  import PosterCheatsheet from '../poster/PosterCheatsheet.svelte';
+  import { ChevronUp, Copy, ExternalLink, Fullscreen, Grid3x3, Image, Info, Link } from '@lucide/svelte';
   import ModernStratView from './ModernStratView.svelte';
   import ModernFightStratControls from './ModernFightStratControls.svelte';
   import FightStratState from './FightStratState.svelte';
@@ -227,6 +228,7 @@
   let isCheatsheetEnabled = $derived(innerWidth > 1024 && innerHeight > 768);
 
   let cheatsheetOpenState = $state(false);
+  let posterOpenState = $state(false);
   let currentTab = $state<string | undefined>(undefined);
 
   function scrollToTop() {
@@ -271,6 +273,20 @@
     strat,
     stratState
   })}
+
+  {#if config.posterLayout}
+    <PosterCheatsheet
+      {config}
+      bind:posterOpenState
+    />
+  {/if}
+
+  {#if config.posterLayout}
+    <PosterCheatsheet
+      {config}
+      bind:posterOpenState
+    />
+  {/if}
 
   <ModernCheatsheet
     title={`${config.cheatsheetTitle} - ${optionsString}`}
@@ -455,6 +471,13 @@
                     onclick={() => window.open(boardUrl)}
                     class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none cursor-pointer"
                     ><Grid3x3 size={18} />Strategy Board<ExternalLink size={16} /></button
+                  >
+                {/if}
+                {#if config.posterLayout}
+                  <button
+                    onclick={() => (posterOpenState = true)}
+                    class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none"
+                    ><Image size={18} />Poster</button
                   >
                 {/if}
                 <button

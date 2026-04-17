@@ -25,6 +25,7 @@ export interface MechanicStrat {
   notes?: string | Record<string, string>;
   strats?: PlayerMechStrat[];
   imageUrl?: string | Record<string, string>;
+  arenaData?: import('$lib/arena').ArenaDiagramData;
   url?: string | Record<string, string>;
 }
 
@@ -124,6 +125,7 @@ export interface FightConfig {
   timeline?: TimelineItem[];
   splitTimeline?: boolean;
   useEvenTimelineSpacing?: boolean;
+  posterLayout?: PosterLayout;
   additionalResources?: {
     title: string;
     description?: string;
@@ -170,3 +172,41 @@ export interface RectSpotlight {
 }
 
 export type SpotlightMask = CircleSpotlight | MultiCircleSpotlight | RectSpotlight;
+
+// Poster Cheatsheet types
+
+export interface PosterSectionDef {
+  /** Display title for this section */
+  title: string;
+  /** Grid column start (1-based) */
+  col: number;
+  /** Grid row start (1-based) */
+  row: number;
+  /** Width in grid cells */
+  w: number;
+  /** Height in grid cells */
+  h: number;
+  /** Accent color for section border/header */
+  accentColor?: string;
+  /** The arena diagram data for this section */
+  arena: import('$lib/arena').ArenaDiagramData;
+}
+
+export interface PosterLayout {
+  /** Grid columns (default 16) */
+  cols?: number;
+  /** Grid rows (default 9) */
+  rows?: number;
+  /** Sections placed on the grid */
+  sections: PosterSectionDef[];
+  /** Poster width in pixels for export (default 1920) */
+  width?: number;
+  /** Poster height in pixels for export (default 1080) */
+  height?: number;
+  /** Title displayed at top of poster */
+  title?: string;
+  /** Subtitle / strat name */
+  subtitle?: string;
+  /** Background color (default '#1a1a2e') */
+  bgColor?: string;
+}
