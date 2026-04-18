@@ -1,4 +1,5 @@
 export type Role = 'Tank' | 'Healer' | 'Melee' | 'Ranged';
+export type Alliance = 'A' | 'B' | 'C';
 export type Alignment = 'original' | 'truenorth' | 'relative';
 
 export interface PlayerMechStrat {
@@ -130,6 +131,8 @@ export interface FightConfig {
     description?: string;
     links: { text: string; url: string }[];
   };
+  allianceOptions?: Alliance[];
+  alignmentOptions?: { value: Alignment; label: string }[];
 }
 
 export interface StratOption {

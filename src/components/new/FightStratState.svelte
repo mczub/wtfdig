@@ -3,7 +3,7 @@
   import { page } from '$app/state';
   import { replaceState } from '$app/navigation';
   import { untrack } from 'svelte';
-  import type { Role, Strat } from '$lib/types';
+  import type { Alliance, Role, Strat } from '$lib/types';
   import { buildStratCode, parseStratHash } from '$lib/utils';
 
   interface Props {
@@ -11,17 +11,20 @@
     strats?: Strat[];
     stratKeys?: string[];
     getStratMechs: (stratName: string) => Record<string, string | null>;
+    allianceOptions?: Alliance[];
   }
 
-  let { fightKey, strats = [], stratKeys = [], getStratMechs }: Props = $props();
+  let { fightKey, strats = [], stratKeys = [], getStratMechs, allianceOptions }: Props = $props();
 
   const roleStorageKey = `${fightKey}-role`;
   const partyStorageKey = `${fightKey}-party`;
+  const allianceStorageKey = `${fightKey}-alliance`;
 
   let stratName: string | undefined = $state();
   let stratState: Record<string, string | null> = $state({});
   let role: Role | undefined | null = $state();
   let party: number | undefined = $state();
+  let alliance: Alliance | undefined = $state();
   let strat = $derived(getCurrentStrat());
 
   function getCurrentStrat(): Strat | undefined {
@@ -39,6 +42,12 @@
     if (storedParty) {
       party = JSON.parse(storedParty);
     }
+    if (allianceOptions) {
+      const storedAlliance = localStorage.getItem(allianceStorageKey);
+      if (storedAlliance) {
+        alliance = JSON.parse(storedAlliance);
+      }
+    }
   });
 
   $effect(() => {
@@ -48,6 +57,9 @@
     }
     if (party) {
       localStorage.setItem(partyStorageKey, JSON.stringify(party));
+    }
+    if (allianceOptions && alliance) {
+      localStorage.setItem(allianceStorageKey, JSON.stringify(alliance));
     }
   });
 
@@ -113,6 +125,10 @@
   function setPartyValue(value: number) {
     party = value;
   }
+
+  function setAllianceValue(value: Alliance) {
+    alliance = value;
+  }
 </script>
 
 <slot
@@ -120,10 +136,12 @@
   {stratState}
   {role}
   {party}
+  {alliance}
   {strat}
   {selectStrat}
   setStratState={updateStratState}
   setRole={setRoleValue}
   setParty={setPartyValue}
+  setAlliance={setAllianceValue}
   {strats}
 />
