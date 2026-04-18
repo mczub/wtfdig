@@ -57,7 +57,7 @@
       </div>
     {/if}
   </div>
-  <div>
+  <div class="flex flex-col gap-4">
     <div>
       <div class="text-xl mb-2">Which strat are you using?</div>
       <Segment

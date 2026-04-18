@@ -327,12 +327,14 @@
                             >
                               <div class="capitalize font-semibold text-xl mb-0">{step.mechanic}</div>
                               <div class="whitespace-pre-wrap text-l">{step.description}</div>
-                              <img
-                                src={getImageUrl(step)}
-                                alt={step.mechanic}
-                                style:mask-image={getMask(step)}
-                                style:transform={getTransform(step)}
-                              />
+                              {#if getImageUrl(step)}
+                                <img
+                                  src={getImageUrl(step)}
+                                  alt={step.mechanic}
+                                  style:mask-image={getMask(step)}
+                                  style:transform={getTransform(step)}
+                                />
+                              {/if}
                             </div>
                           {/key}
                         {:else}
