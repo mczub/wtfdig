@@ -126,6 +126,7 @@ export interface FightConfig {
   splitTimeline?: boolean;
   useEvenTimelineSpacing?: boolean;
   posterLayout?: PosterLayout;
+  posterEnabled?: boolean;
   additionalResources?: {
     title: string;
     description?: string;

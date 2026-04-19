@@ -11,7 +11,7 @@
     SQUARE_MARKERS,
     CIRCLE_MARKERS
   } from '$lib/arena';
-  import { Copy, Trash2, Plus, RotateCcw } from '@lucide/svelte/icons';
+  import { Copy, Crosshair, Trash2, Plus, RotateCcw } from '@lucide/svelte/icons';
 
   // --- State ---
   let arenaShape: ArenaShape = $state('square');
@@ -183,9 +183,9 @@
         const start = startPositions.get(i);
         if (!start) return el;
         if ('x1' in start) {
-          return { ...el, x1: start.x1 + dx, y1: start.y1 + dy, x2: start.x2 + dx, y2: start.y2 + dy } as ArenaElement;
+          return { ...el, x1: round2(start.x1 + dx), y1: round2(start.y1 + dy), x2: round2(start.x2 + dx), y2: round2(start.y2 + dy) } as ArenaElement;
         }
-        return { ...el, x: start.x + dx, y: start.y + dy } as ArenaElement;
+        return { ...el, x: round2(start.x + dx), y: round2(start.y + dy) } as ArenaElement;
       });
     }
 
@@ -220,7 +220,7 @@
       const xKey = endpoint === 'start' ? 'x1' : 'x2';
       const yKey = endpoint === 'start' ? 'y1' : 'y2';
       elements = elements.map((el, i) =>
-        i === index ? { ...el, [xKey]: Math.round(startPos.x + dx), [yKey]: Math.round(startPos.y + dy) } as ArenaElement : el
+        i === index ? { ...el, [xKey]: round2(startPos.x + dx), [yKey]: round2(startPos.y + dy) } as ArenaElement : el
       );
     }
 
@@ -238,6 +238,29 @@
     if (selected.size === 0) return;
     elements = elements.filter((_, i) => !selected.has(i));
     selected = new Set();
+  }
+
+  function centerSelected() {
+    if (selectedIndex === null) return;
+    // Element coords live in a viewBox of (gridW*25) × (gridH*25) and are then
+    // multiplied by `scale`, so the visual center in element space is viewBox/2/scale.
+    const cx = (gridW * 25) / 2 / scale;
+    const cy = (gridH * 25) / 2 / scale;
+    const el = { ...elements[selectedIndex] } as any;
+    if ('x1' in el) {
+      // Two-point element: shift so midpoint lands at (cx, cy)
+      const dx = cx - (el.x1 + el.x2) / 2;
+      const dy = cy - (el.y1 + el.y2) / 2;
+      el.x1 += dx; el.y1 += dy;
+      el.x2 += dx; el.y2 += dy;
+    } else if ('x' in el) {
+      el.x = cx;
+      el.y = cy;
+    }
+    for (const k of Object.keys(el)) {
+      if (typeof el[k] === 'number') el[k] = round2(el[k]);
+    }
+    elements = elements.map((e, i) => (i === selectedIndex ? el : e));
   }
 
   function duplicateSelected() {
@@ -258,8 +281,11 @@
     selected = new Set(elements.map((_, i) => i));
   }
 
+  const round2 = (n: number) => Math.round(n * 100) / 100;
+
   function updateElement(key: string, value: any) {
     if (selectedIndex === null) return;
+    if (typeof value === 'number') value = round2(value);
     const el = { ...elements[selectedIndex], [key]: value } as ArenaElement;
     elements = elements.map((e, i) => (i === selectedIndex ? el : e));
   }
@@ -517,6 +543,7 @@
   let copiedJson = $state(false);
 
   const playerJobs: PlayerJob[] = ['MT', 'OT', 'H1', 'H2', 'M1', 'M2', 'R1', 'R2'];
+  const genericJobs: PlayerJob[] = ['DPS', 'SUP', 'G1', 'G2', 'ANY'];
   const waymarkNames: WaymarkName[] = ['A', 'B', 'C', 'D', '1', '2', '3', '4'];
 </script>
 
@@ -684,6 +711,17 @@
           {/each}
         </div>
         <div class="flex flex-wrap gap-1">
+          {#each genericJobs as job}
+            <button
+              class="btn btn-sm px-2 py-1 text-xs border font-bold"
+              style:background-color={ROLE_COLORS[job] + '33'}
+              style:border-color={ROLE_COLORS[job]}
+              style:color={ROLE_COLORS[job]}
+              onclick={() => startPlace('player', job)}
+            >{job}</button>
+          {/each}
+        </div>
+        <div class="flex flex-wrap gap-1">
           {#each waymarkNames as mark}
             <button
               class="btn btn-sm px-2 py-1 text-xs border font-bold"
@@ -739,6 +777,9 @@
               {#if selectedElement.type === 'waymark'}<span style:color={WAYMARK_COLORS[selectedElement.mark]}> {selectedElement.mark}</span>{/if}
             </span>
             <div class="flex gap-1">
+              <button class="btn btn-sm preset-tonal-surface p-1" onclick={centerSelected} title="Center & round to 2 decimals">
+                <Crosshair size={14} />
+              </button>
               <button class="btn btn-sm preset-tonal-surface p-1" onclick={duplicateSelected} title="Duplicate">
                 <Copy size={14} />
               </button>

@@ -4,7 +4,32 @@
 
 export type ArenaShape = 'square' | 'circle';
 
-export type PlayerJob = 'MT' | 'OT' | 'H1' | 'H2' | 'M1' | 'M2' | 'R1' | 'R2';
+export type PlayerJob =
+  | 'MT' | 'OT' | 'H1' | 'H2' | 'M1' | 'M2' | 'R1' | 'R2'
+  | 'DPS' | 'SUP' | 'G1' | 'G2' | 'ANY';
+
+/** Jobs in group 1 (first of each role pair). */
+export const G1_JOBS: readonly PlayerJob[] = ['MT', 'H1', 'M1', 'R1'];
+/** Jobs in group 2 (second of each role pair). */
+export const G2_JOBS: readonly PlayerJob[] = ['OT', 'H2', 'M2', 'R2'];
+/** Support jobs (tanks + healers). */
+export const SUPPORT_JOBS: readonly PlayerJob[] = ['MT', 'OT', 'H1', 'H2'];
+/** DPS jobs (melee + ranged). */
+export const DPS_JOBS: readonly PlayerJob[] = ['M1', 'M2', 'R1', 'R2'];
+
+/**
+ * Returns true if a generic job icon (DPS/SUP/G1/G2/ANY) should light up
+ * when a specific role is selected, or a specific job matches itself.
+ */
+export function jobMatchesRole(iconJob: PlayerJob, selectedJob: PlayerJob): boolean {
+  if (iconJob === selectedJob) return true;
+  if (iconJob === 'ANY') return true;
+  if (iconJob === 'G1') return G1_JOBS.includes(selectedJob);
+  if (iconJob === 'G2') return G2_JOBS.includes(selectedJob);
+  if (iconJob === 'SUP') return SUPPORT_JOBS.includes(selectedJob);
+  if (iconJob === 'DPS') return DPS_JOBS.includes(selectedJob);
+  return false;
+}
 export type WaymarkName = 'A' | 'B' | 'C' | 'D' | '1' | '2' | '3' | '4';
 
 export interface PlayerElement {
@@ -119,7 +144,12 @@ export const ROLE_COLORS: Record<PlayerJob, string> = {
   M1: '#ef4444', // red
   M2: '#ef4444', // lighter red
   R1: '#ef4444', // purple
-  R2: '#ef4444'  // lighter purple
+  R2: '#ef4444', // lighter purple
+  DPS: '#ef4444', // red — generic DPS
+  SUP: '#14b8a6', // teal — generic Support (tank/healer)
+  G1: '#a78bfa', // violet — group 1
+  G2: '#f59e0b', // amber — group 2
+  ANY: '#6e7073' // light gray — any player
 };
 
 export const WAYMARK_COLORS: Record<WaymarkName, string> = {

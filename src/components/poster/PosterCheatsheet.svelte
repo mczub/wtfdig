@@ -1,31 +1,69 @@
 <script lang="ts">
   // @ts-nocheck
+  import { onMount } from 'svelte';
   import { Modal } from '$lib/components/ui';
   import { Download, X, Eye, User } from '@lucide/svelte/icons';
   import type { FightConfig } from '$lib/types';
-  import { ROLE_COLORS, type PlayerJob } from '$lib/arena';
+  import { type PlayerJob } from '$lib/arena';
   import type { ResolvedPosterSection } from './types';
   import PosterGrid from './PosterGrid.svelte';
+
+  type Resolution = 'auto' | '1080p' | '1440p' | '4k';
+  const RESOLUTIONS: { value: Resolution; label: string }[] = [
+    { value: 'auto', label: 'Auto' },
+    { value: '1080p', label: '1080p' },
+    { value: '1440p', label: '1440p' },
+    { value: '4k', label: '4K' }
+  ];
 
   interface Props {
     config: FightConfig;
     posterOpenState?: boolean;
+    selectedJob?: PlayerJob;
   }
 
   let {
     config,
-    posterOpenState = $bindable(false)
+    posterOpenState = $bindable(false),
+    selectedJob
   }: Props = $props();
 
   let posterRef: HTMLDivElement | undefined = $state();
   let exporting = $state(false);
   let showExportMenu = $state(false);
   let mode: 'overview' | 'role' = $state('overview');
-  let selectedJob: PlayerJob = $state('MT');
   let highlightJob = $derived<PlayerJob | undefined>(mode === 'role' ? selectedJob : undefined);
-  const jobs: PlayerJob[] = ['MT', 'OT', 'H1', 'H2', 'M1', 'M2', 'R1', 'R2'];
 
   let layout = $derived(config.posterLayout!);
+  let baseW = $derived(layout.width ?? 1920);
+  let baseH = $derived(layout.height ?? 1080);
+
+  let resolution: Resolution = $state('auto');
+  let viewportW = $state(1920);
+  let viewportH = $state(1080);
+
+  onMount(() => {
+    const update = () => {
+      viewportW = window.innerWidth;
+      viewportH = window.innerHeight;
+    };
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
+  });
+
+  // Modal chrome allowance: padding + header + gap + breathing room for browser UI
+  const CHROME_W = 48;
+  const CHROME_H = 140;
+
+  let posterScale = $derived.by(() => {
+    if (resolution === '1080p') return 1080 / baseH;
+    if (resolution === '1440p') return 1440 / baseH;
+    if (resolution === '4k') return 2160 / baseH;
+    const availW = Math.max(1, viewportW - CHROME_W);
+    const availH = Math.max(1, viewportH - CHROME_H);
+    return Math.min(availW / baseW, availH / baseH);
+  });
 
   // Map PosterSectionDefs directly to resolved sections
   let resolvedSections = $derived<ResolvedPosterSection[]>(
@@ -97,7 +135,7 @@
   {#snippet content()}
     <!-- Toolbar -->
     <header class="flex justify-between items-center shrink-0">
-      <div class="text-lg font-bold">{config.cheatsheetTitle} — Poster</div>
+      <div class="text-lg font-bold">{config.cheatsheetTitle} - Poster</div>
       <div class="flex items-center gap-4">
         <!-- Mode toggle -->
         <div class="flex items-center gap-1">
@@ -110,25 +148,21 @@
           <button
             class="btn btn-sm {mode === 'role' ? 'preset-filled-primary-500' : 'preset-tonal-surface'}"
             onclick={() => (mode = 'role')}
+            disabled={!selectedJob}
           >
-            <User size={14} /> Role
+            <User size={14} /> Role{selectedJob ? ` (${selectedJob})` : ''}
           </button>
         </div>
 
-        <!-- Role selector (visible when role mode active) -->
-        {#if mode === 'role'}
-          <div class="flex items-center gap-1">
-            {#each jobs as job}
-              <button
-                class="btn btn-sm text-xs px-2 font-bold {selectedJob === job ? 'border-2' : 'preset-tonal-surface'}"
-                style:background-color={selectedJob === job ? ROLE_COLORS[job] + '44' : undefined}
-                style:border-color={selectedJob === job ? ROLE_COLORS[job] : undefined}
-                style:color={ROLE_COLORS[job]}
-                onclick={() => (selectedJob = job)}
-              >{job}</button>
-            {/each}
-          </div>
-        {/if}
+        <!-- Resolution picker -->
+        <div class="flex items-center gap-1">
+          {#each RESOLUTIONS as r}
+            <button
+              class="btn btn-sm {resolution === r.value ? 'preset-filled-primary-500' : 'preset-tonal-surface'}"
+              onclick={() => (resolution = r.value)}
+            >{r.label}</button>
+          {/each}
+        </div>
 
         <!-- Export -->
         <div class="relative">
@@ -157,7 +191,12 @@
 
     <!-- Poster (scrollable container) -->
     <div class="flex-1 overflow-auto flex justify-center">
-      <div class="origin-top-left" style:transform="scale(var(--poster-scale, 1))">
+      <div
+        class="origin-top-left"
+        style:transform={`scale(${posterScale})`}
+        style:width={`${baseW * posterScale}px`}
+        style:height={`${baseH * posterScale}px`}
+      >
         <PosterGrid {layout} sections={resolvedSections} bind:posterRef {highlightJob} />
       </div>
     </div>

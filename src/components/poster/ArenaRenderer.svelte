@@ -2,6 +2,7 @@
   import {
     ROLE_COLORS,
     WAYMARK_COLORS,
+    jobMatchesRole,
     type ArenaDiagramData,
     type ArenaElement,
     type PlayerJob
@@ -22,7 +23,7 @@
 
   function isRoleMatch(job: PlayerJob): boolean {
     if (!highlightJob) return true;
-    return job === highlightJob;
+    return jobMatchesRole(job, highlightJob);
   }
 
   // 25 viewBox units per grid cell → constant pixel size regardless of section dimensions
@@ -140,7 +141,7 @@
         <circle cx={el.x} cy={el.y} r="6" fill={color} fill-opacity="0.9"
           stroke={highlightJob && roleMatch ? 'white' : 'white'}
           stroke-width={highlightJob && roleMatch ? 0.8 : 0.25} />
-        <text x={el.x} y={el.y} text-anchor="middle" dominant-baseline="central"
+        <text x={el.x} y={el.y} text-anchor="middle" dominant-baseline="central" baseline-shift="2%"
           fill="white" font-size="5" font-weight="bold" font-family="'Noto Sans', sans-serif"
         >{el.job}</text>
         {#if el.marker}

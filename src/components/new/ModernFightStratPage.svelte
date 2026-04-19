@@ -13,9 +13,11 @@
   import {
     buildFightOptionsSummary,
     buildFightPFDescription,
+    formatRoleAbbreviation,
     getBoardUrl,
     getToggleUrls
   } from '$lib/utils';
+  import type { PlayerJob } from '$lib/arena';
   import { generateAprilFoolsData, isAprilFools } from '$lib/aprilFools';
 
   interface Props {
@@ -274,17 +276,12 @@
     stratState
   })}
 
-  {#if config.posterLayout}
+  {#if config.posterLayout && config.posterEnabled}
+    {@const posterJob = formatRoleAbbreviation(normalizedRole, party) as PlayerJob | ''}
     <PosterCheatsheet
       {config}
       bind:posterOpenState
-    />
-  {/if}
-
-  {#if config.posterLayout}
-    <PosterCheatsheet
-      {config}
-      bind:posterOpenState
+      selectedJob={posterJob || undefined}
     />
   {/if}
 
@@ -473,7 +470,7 @@
                     ><Grid3x3 size={18} />Strategy Board<ExternalLink size={16} /></button
                   >
                 {/if}
-                {#if config.posterLayout}
+                {#if config.posterLayout && config.posterEnabled}
                   <button
                     onclick={() => (posterOpenState = true)}
                     class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none"
