@@ -44,7 +44,7 @@
 <Modal
   open={imageOpenState}
   onOpenChange={(e) => (imageOpenState = e.open)}
-  contentBase="bg-surface-100 dark:bg-surface-900 p-4 space-y-4 shadow-xl flex flex-col border border-surface-600 w-max h-max max-w-[95vw] max-h-[95vh]"
+  contentBase="bg-surface-100 dark:bg-surface-900 p-4 space-y-4 shadow-xl flex flex-col border border-surface-600 max-w-[95vw] max-h-[95vh]"
   backdropClasses="backdrop-blur-sm"
   zIndex={'3000'}
 >
@@ -58,7 +58,7 @@
       </div>
       <X onclick={closeImage} class="cursor-pointer" />
     </header>
-    <div class="flex-1 min-h-0 flex flex-col">
+    <div class="flex flex-col min-h-0">
       <div class="font-bold text-base lg:text-xl shrink-0">{mech ? mech?.mechanic : ''}</div>
       <div class="whitespace-pre-wrap text-xs lg:text-lg shrink-0">
         {@html mech ? mech?.description : ''}
@@ -80,20 +80,21 @@
         </div>
       </div>
       {#if getImageModalUrl()}
-        <div class="relative mt-4 flex-1 min-h-0 grid place-items-center" style="height: 100%;">
-          <div class="relative max-w-full max-h-full" style="display: grid; place-items: center;">
-            <img
-              class="rounded-md max-w-full max-h-full object-contain"
+        <div class="relative mt-4 inline-grid place-items-center self-center">
+          <img
+            class="rounded-md object-contain max-w-[90vw] max-h-[75vh]"
+            style="grid-area: 1/1;"
+            src={getImageModalUrl()}
+            alt={mech?.mechanic || phase?.phaseName || 'Strategy image'}
+          />
+          {#if spotlight && getImageMask()}
+            <div
+              class="pointer-events-none w-full h-full"
               style="grid-area: 1/1;"
-              src={getImageModalUrl()}
-              alt={mech?.mechanic || phase?.phaseName || 'Strategy image'}
-            />
-            {#if spotlight && getImageMask()}
-              <div class="pointer-events-none" style="grid-area: 1/1; width: 100%; height: 100%;">
-                <SpotlightOverlay mask={getImageMask()} />
-              </div>
-            {/if}
-          </div>
+            >
+              <SpotlightOverlay mask={getImageMask()} />
+            </div>
+          {/if}
         </div>
       {/if}
     </div>
