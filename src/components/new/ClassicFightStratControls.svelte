@@ -1,8 +1,9 @@
 <!-- @ts-nocheck -->
 <script lang="ts">
   // @ts-nocheck
-  import { Segment, Switch } from '$lib/components/ui';
-  import type { Alliance, Alignment, Role, StratOption } from '$lib/types';
+  import { Segment, Switch, Tooltip } from '$lib/components/ui';
+  import type { Alliance, Alignment, Role, StratOption, FightToggleState } from '$lib/types';
+  import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
 
   interface Props {
     stratName: string | undefined;
@@ -23,6 +24,9 @@
     showAlignment?: boolean;
     stratImageUrl?: string;
     warningMessage?: string;
+    toggles?: FightToggleState[];
+    onToggleChange?: (key: string, value: string) => void;
+    currentStratDefaults?: Record<string, string>;
   }
 
   let {
@@ -43,7 +47,10 @@
     alignmentOptions,
     showAlignment = false,
     stratImageUrl,
-    warningMessage
+    warningMessage,
+    toggles = [],
+    onToggleChange,
+    currentStratDefaults
   }: Props = $props();
 </script>
 
@@ -70,6 +77,45 @@
           <Segment.Item value={option.value}>{option.label}</Segment.Item>
         {/each}
       </Segment>
+
+      {#if stratName && toggles.length > 0 && onToggleChange}
+        <div class="text-lg my-2">Mechanics</div>
+        <div class="flex flex-row space-x-4 space-y-2 flex-wrap">
+          {#each toggles as toggle}
+            <div class="flex flex-col">
+              <div class="flex flex-row">
+                <div class="text-md mb-2">{toggle.label}</div>
+                {#if currentStratDefaults && currentStratDefaults[toggle.key] && toggle.value !== currentStratDefaults[toggle.key]}
+                  <Tooltip
+                    positioning={{ placement: 'top' }}
+                    triggerBase="underline"
+                    contentBase="card bg-surface-800 p-4"
+                    classes="ml-2"
+                    openDelay={200}
+                    arrow
+                    arrowBackground="!bg-surface-800"
+                  >
+                    {#snippet trigger()}<div class="text-warning-500">
+                        <TriangleAlert />
+                      </div>{/snippet}
+                    {#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
+                  </Tooltip>
+                {/if}
+              </div>
+              <Segment
+                classes="flex-wrap"
+                name={toggle.key}
+                value={toggle.value}
+                onValueChange={(e) => onToggleChange(toggle.key, e.value)}
+              >
+                {#each toggle.options as option}
+                  <Segment.Item value={option.value}>{option.label}</Segment.Item>
+                {/each}
+              </Segment>
+            </div>
+          {/each}
+        </div>
+      {/if}
     </div>
 
     {#if allianceOptions && setAlliance}
