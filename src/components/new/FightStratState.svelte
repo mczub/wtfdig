@@ -19,6 +19,7 @@
   const roleStorageKey = `${fightKey}-role`;
   const partyStorageKey = `${fightKey}-party`;
   const allianceStorageKey = `${fightKey}-alliance`;
+  const stratStorageKey = `${fightKey}-strat`;
 
   let stratName: string | undefined = $state();
   let stratState: Record<string, string | null> = $state({});
@@ -48,6 +49,24 @@
         alliance = JSON.parse(storedAlliance);
       }
     }
+    untrack(() => {
+      const urlHash = page.url.hash.substring(1);
+      if (urlHash) {
+        localStorage.setItem(stratStorageKey, urlHash);
+        return;
+      }
+      const storedStrat = localStorage.getItem(stratStorageKey);
+      if (!storedStrat) return;
+      const parsed = parseStratHash({
+        hash: storedStrat,
+        keys: stratKeys,
+        getStratMechs
+      });
+      if (parsed.stratName) {
+        stratName = parsed.stratName;
+        stratState = parsed.stratState ?? getStratMechs(parsed.stratName) ?? {};
+      }
+    });
   });
 
   $effect(() => {
@@ -92,6 +111,7 @@
         } else if (parsed.stratState) {
           stratState = parsed.stratState;
         }
+        localStorage.setItem(stratStorageKey, urlHash);
       });
     }
   });
@@ -105,6 +125,7 @@
       keys: stratKeys
     });
     replaceState(`#${stratCode}`, {});
+    localStorage.setItem(stratStorageKey, stratCode);
   }
 
   function selectStrat(value: string) {

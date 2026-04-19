@@ -4016,7 +4016,6 @@ export const m6sFightConfig: FightConfig = {
   abbreviatedTitle: 'M6S',
   subtitle: 'M6S Patch 7.2',
   cheatsheetTitle: 'M6S Cheatsheet',
-  cheatsheetLayout: { rows: 3, columns: 7 },
   strats: {
     latte: {
       label: 'Latte',

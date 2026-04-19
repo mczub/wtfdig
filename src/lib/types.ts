@@ -115,7 +115,6 @@ export interface FightConfig {
   abbreviatedTitle?: string;
   subtitle: string;
   cheatsheetTitle: string;
-  cheatsheetLayout?: { rows: number; columns: number };
   showAllToggleUrls?: boolean;
   strats: FightStratConfig;
   toggles?: FightToggleConfig[];
@@ -125,7 +124,6 @@ export interface FightConfig {
   timeline?: TimelineItem[];
   splitTimeline?: boolean;
   useEvenTimelineSpacing?: boolean;
-  useModernCheatsheet?: boolean;
   additionalResources?: {
     title: string;
     description?: string;

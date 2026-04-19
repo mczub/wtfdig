@@ -4871,7 +4871,6 @@ export const m12sFightConfig: FightConfig = {
   abbreviatedTitle: 'M12S',
   subtitle: 'M12S Patch 7.4',
   cheatsheetTitle: 'M12S Cheatsheet',
-  useModernCheatsheet: true,
   strats: {
     modified: {
       label: 'Modified (3VJ0)',

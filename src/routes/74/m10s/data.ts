@@ -176,7 +176,6 @@ export const m10sFightConfig: FightConfig = {
   abbreviatedTitle: 'M10S',
   subtitle: 'M10S Patch 7.4',
   cheatsheetTitle: 'M10S Cheatsheet',
-  useModernCheatsheet: true,
   strats: {
     toxic: {
       label: 'Toxic Friends',

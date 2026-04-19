@@ -13,7 +13,6 @@ export const m9sFightConfig: FightConfig = {
   abbreviatedTitle: 'M9S',
   subtitle: 'M9S Patch 7.4',
   cheatsheetTitle: 'M9S Cheatsheet',
-  useModernCheatsheet: true,
   strats: {
     toxic: {
       label: 'Toxic/Hector',

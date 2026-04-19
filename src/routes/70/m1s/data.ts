@@ -25,7 +25,6 @@ export const m1sFightConfig: FightConfig = {
     }
   },
   useMainPageTabs: false,
-  useModernCheatsheet: true,
   defaultStratName: 'hector'
 };
 

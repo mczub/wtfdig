@@ -2671,7 +2671,6 @@ export const m8sFightConfig: FightConfig = {
   subtitle: 'M8S Patch 7.2',
   cheatsheetTitle: 'M8S Cheatsheet',
   showAllToggleUrls: true,
-  cheatsheetLayout: { rows: 3, columns: 6 },
   timeline: timeline,
   strats: {
     toxic: {

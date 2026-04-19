@@ -2141,7 +2141,6 @@ export const m11sFightConfig: FightConfig = {
   abbreviatedTitle: 'M11S',
   subtitle: 'M11S Patch 7.4',
   cheatsheetTitle: 'M11S Cheatsheet',
-  useModernCheatsheet: true,
   strats: {
     hector: {
       label: 'Hector (Toxic/No Buddies)',

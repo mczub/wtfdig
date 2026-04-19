@@ -8904,7 +8904,6 @@ export const m7sFightConfig: FightConfig = {
   abbreviatedTitle: 'M7S',
   subtitle: 'M7S Patch 7.2',
   cheatsheetTitle: 'M7S Cheatsheet',
-  cheatsheetLayout: { rows: 3, columns: 5 },
   strats: {
     toxic: {
       label: 'Toxic',

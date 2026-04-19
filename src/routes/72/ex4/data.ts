@@ -6,9 +6,7 @@ export const ex4FightConfig: FightConfig = {
   title: 'Recollection (Extreme)',
   abbreviatedTitle: 'EX4',
   subtitle: 'EX4 Patch 7.2',
-  useModernCheatsheet: true,
   cheatsheetTitle: 'EX4 Cheatsheet',
-  cheatsheetLayout: { rows: 3, columns: 4 },
   strats: {
     raidplan: {
       label: 'Raidplan (-Wj9 & k9Vc)',
