@@ -8,7 +8,7 @@
   </header>
   <article class="prose dark:prose-invert max-w-none">
     <div class="">
-      <div>4/18/2026: cleanup and refactoring of ex4 + chaotic</div>
+      <div>4/18/2026: cleanup and refactoring of ex4 + chaotic, add caro uptime to idyllic tool</div>
       <div>2/19/2026: update BC rep2 to match raidplan update</div>
       <div>2/4/2026: 11 + 12 tweaks and fixes</div>
       <div>2/2/2026: m12s tweaks and fixes</div>

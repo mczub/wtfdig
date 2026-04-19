@@ -33,6 +33,17 @@ const caroTetherDescriptions: Record<TetherPosition, string> = {
     NW: '<strong>NW Clone</strong><span class="font-bold text-purple-500">Purple</span> <span class="font-bold text-purple-500">Defamation</span> for boss tethers\n2nd Defam on <span class="font-bold text-blue-500">C</span>\n<span class="font-bold text-yellow-400">Stack</span> on <span class="font-bold text-purple-500">D</span>'
 };
 
+const caroUptimeTetherDescriptions: Record<TetherPosition, string> = {
+    N: '<strong>N Clone</strong><span class="font-bold text-red-600">Red</span> <span class="font-bold text-purple-500">Defamation</span> for boss tethers\n1st Defam on <span class="font-bold text-red-600">1 (NE)</span>\n<span class="font-bold text-yellow-400">Stack</span> on <span class="font-bold text-yellow-400">B</span>',
+    NE: '<strong>NE Clone</strong><span class="font-bold text-red-600">Red</span> <span class="font-bold text-yellow-400">Stack</span> for boss tethers\n<span class="font-bold text-yellow-400">Stack</span> on <span class="font-bold text-yellow-400">B</span>',
+    E: '<strong>E Clone</strong><span class="font-bold text-yellow-400">Yellow</span> <span class="font-bold text-yellow-400">Stack</span> for boss tethers\n<span class="font-bold text-yellow-400">Stack</span> on <span class="font-bold text-yellow-400">B</span>',
+    SE: '<strong>SE Clone</strong><span class="font-bold text-yellow-400">Yellow</span> <span class="font-bold text-purple-500">Defamation</span> for boss tethers\n2nd Defam on <span class="font-bold text-red-600">1 (NE)</span>\n<span class="font-bold text-yellow-400">Stack</span> on <span class="font-bold text-yellow-400">B</span>',
+    S: '<strong>S Clone</strong><span class="font-bold text-blue-500">Blue</span> <span class="font-bold text-purple-500">Defamation</span> for boss tethers\n1st Defam on <span class="font-bold text-purple-500">4 (NW)</span>\n<span class="font-bold text-yellow-400">Stack</span> on <span class="font-bold text-purple-500">D</span>',
+    SW: '<strong>SW Clone</strong><span class="font-bold text-blue-500">Blue</span> <span class="font-bold text-yellow-400">Stack</span> for boss tethers\n<span class="font-bold text-yellow-400">Stack</span> on <span class="font-bold text-purple-500">D</span>',
+    W: '<strong>W Clone</strong><span class="font-bold text-purple-500">Purple</span> <span class="font-bold text-yellow-400">Stack</span> for boss tethers\n<span class="font-bold text-yellow-400">Stack</span> on <span class="font-bold text-purple-500">D</span>',
+    NW: '<strong>NW Clone</strong><span class="font-bold text-purple-500">Purple</span> <span class="font-bold text-purple-500">Defamation</span> for boss tethers\n2nd Defam on <span class="font-bold text-purple-500">4 (NW)</span>\n<span class="font-bold text-yellow-400">Stack</span> on <span class="font-bold text-purple-500">D</span>'
+};
+
 const cozyTetherDescriptions: Record<TetherPosition, string> = {
     N: '<strong>N Clone</strong>Take <span class="font-bold text-yellow-400">STACK</span> tether from <span class="font-bold text-red-600">Top Right (A/1 + CW)</span>\nStack on <span class="font-bold text-red-600">1 (North)</span>',
     NE: '<strong>NE Clone</strong>Take <span class="font-bold text-yellow-400">STACK</span> tether from <span class="font-bold text-yellow-400">Bottom Right (B/2 + CW)</span>\nStack on <span class="font-bold text-red-600">1 (North)</span>',
@@ -81,6 +92,11 @@ export const IDYLLIC_STRATEGIES: IdyllicStrategy[] = [
         value: 'caro',
         label: 'Caro (wqc)',
         tetherDescriptions: caroTetherDescriptions
+    },
+    {
+        value: 'carouptime',
+        label: 'Caro Uptime/Hector',
+        tetherDescriptions: caroUptimeTetherDescriptions
     },
     {
         value: 'cozy',
