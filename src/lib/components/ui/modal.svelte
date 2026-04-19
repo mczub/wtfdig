@@ -31,7 +31,7 @@
     />
     <Dialog.Content
       class={cn(
-        'fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 max-h-[90vh] w-full max-w-4xl overflow-auto rounded-xl border border-border bg-card text-card-foreground shadow-xl focus:outline-none',
+        'fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 max-h-[90vh] max-w-4xl overflow-auto rounded-xl border border-border bg-card text-card-foreground shadow-xl focus:outline-none',
         contentBase,
         contentClasses
       )}

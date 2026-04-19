@@ -387,6 +387,7 @@
                 <Segment.Item value="2" classes="text-md px-3 py-1">2</Segment.Item>
               </Segment>
             </div>
+
           </div>
 
           <!-- Strat Stuff (Selector + Toggles) -->
