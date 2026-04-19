@@ -64,7 +64,7 @@
 </script>
 
 <svelte:head>
-  <title>WTFDIG!?</title>
+  <title>WTFDIG!? Idyllic Helper</title>
   <meta name="description" content="Quick solver tool for M12S Idyllic Dream mechanic" />
 </svelte:head>
 
