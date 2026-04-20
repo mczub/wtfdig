@@ -129,6 +129,12 @@
         return { type: 'aoe', shape: 'circle', x, y, r: 12 };
       case 'aoe-rect':
         return { type: 'aoe', shape: 'rect', x, y, w: 20, h: 20 };
+      case 'arena-square':
+        return { type: 'arena', shape: 'square', x, y, w: 50, h: 50 };
+      case 'arena-circle':
+        return { type: 'arena', shape: 'circle', x, y, w: 50, h: 50 };
+      case 'arena-rect':
+        return { type: 'arena', shape: 'rect', x, y, w: 60, h: 40 };
       case 'text':
         return { type: 'text', text: 'Label', x, y };
       default:
@@ -359,6 +365,17 @@
           if (el.width) aOpts.push(`width: ${el.width}`);
           const aOptsStr = aOpts.length > 0 ? `, { ${aOpts.join(', ')} }` : '';
           return `  arrow(${el.x1}, ${el.y1}, ${el.x2}, ${el.y2}${aOptsStr})`;
+        case 'arena':
+          imports.add('arenaShape');
+          {
+            const opts: string[] = [];
+            if (el.rotation) opts.push(`rotation: ${el.rotation}`);
+            if (el.bgColor) opts.push(`bgColor: '${el.bgColor}'`);
+            if (el.borderColor) opts.push(`borderColor: '${el.borderColor}'`);
+            if (el.showCrosshairs === false) opts.push('showCrosshairs: false');
+            const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
+            return `  arenaShape('${el.shape}', ${el.x}, ${el.y}, ${el.w}, ${el.h}${optsStr})`;
+          }
         case 'text':
           imports.add('text');
           const txtOpts: string[] = [];
@@ -458,6 +475,11 @@
     for (const m of code.matchAll(new RegExp(`arrow\\(\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`, 'g'))) {
       const opts = parseInlineOpts(m[5]);
       els.push({ type: 'arrow', x1: +m[1], y1: +m[2], x2: +m[3], y2: +m[4], ...opts });
+    }
+    // Parse arenaShape('shape', x, y, w, h, { opts })
+    for (const m of code.matchAll(new RegExp(`arenaShape\\(\\s*'(square|circle|rect)'\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`, 'g'))) {
+      const opts = parseInlineOpts(m[6]);
+      els.push({ type: 'arena', shape: m[1] as 'square' | 'circle' | 'rect', x: +m[2], y: +m[3], w: +m[4], h: +m[5], ...opts });
     }
     // Parse text('label', x, y, { opts })
     for (const m of code.matchAll(new RegExp(`text\\(\\s*'([^']*)'\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`, 'g'))) {
@@ -651,6 +673,34 @@
                 class="cursor-move"
                 onmousedown={(e) => handleElementMouseDown(i, e)}
               />
+            {:else if el.type === 'arena' && el.shape === 'circle'}
+              <!-- svelte-ignore a11y_no_static_element_interactions -->
+              <circle
+                cx={el.x * scale}
+                cy={el.y * scale}
+                r={(el.w / 2) * scale}
+                fill="transparent"
+                stroke={selected.has(i) ? '#22d3ee' : 'transparent'}
+                stroke-width="0.6"
+                stroke-dasharray="1.5,1"
+                class="cursor-move"
+                onmousedown={(e) => handleElementMouseDown(i, e)}
+              />
+            {:else if el.type === 'arena'}
+              <!-- svelte-ignore a11y_no_static_element_interactions -->
+              <rect
+                x={(el.x - el.w / 2) * scale}
+                y={(el.y - el.h / 2) * scale}
+                width={el.w * scale}
+                height={el.h * scale}
+                fill="transparent"
+                stroke={selected.has(i) ? '#22d3ee' : 'transparent'}
+                stroke-width="0.6"
+                stroke-dasharray="1.5,1"
+                transform={el.rotation ? `rotate(${el.rotation} ${el.x * scale} ${el.y * scale})` : undefined}
+                class="cursor-move"
+                onmousedown={(e) => handleElementMouseDown(i, e)}
+              />
             {:else if el.type === 'arrow' || el.type === 'tether'}
               <!-- svelte-ignore a11y_no_static_element_interactions -->
               <line
@@ -742,6 +792,12 @@
           <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('arrow')}>Arrow</button>
           <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('tether')}>Line/Tether</button>
           <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('text')}>Text</button>
+        </div>
+        <div class="flex flex-wrap gap-1">
+          <span class="text-xs text-surface-400 self-center">Arena:</span>
+          <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('arena-square')}>Square</button>
+          <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('arena-circle')}>Circle</button>
+          <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('arena-rect')}>Rect</button>
         </div>
         <div class="flex gap-1">
           <button class="btn btn-sm preset-tonal-error text-xs" onclick={clearAll}>
@@ -967,6 +1023,69 @@
                 />
               </label>
             </div>
+          {/if}
+
+          {#if selectedElement.type === 'arena'}
+            {#if selectedElement.shape === 'circle'}
+              <label class="text-xs text-surface-400">
+                Diameter (W)
+                <input type="number" min="1" max="200"
+                  class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                  value={selectedElement.w}
+                  oninput={(e) => updateElement('w', Number(e.currentTarget.value))}
+                />
+              </label>
+            {:else}
+              <div class="grid grid-cols-2 gap-2">
+                <label class="text-xs text-surface-400">
+                  Width
+                  <input type="number" min="1" max="200"
+                    class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                    value={selectedElement.w}
+                    oninput={(e) => updateElement('w', Number(e.currentTarget.value))}
+                  />
+                </label>
+                <label class="text-xs text-surface-400">
+                  Height
+                  <input type="number" min="1" max="200"
+                    class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                    value={selectedElement.h}
+                    oninput={(e) => updateElement('h', Number(e.currentTarget.value))}
+                  />
+                </label>
+              </div>
+              <label class="text-xs text-surface-400">
+                Rotation
+                <input type="number" min="0" max="360"
+                  class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                  value={selectedElement.rotation ?? 0}
+                  oninput={(e) => updateElement('rotation', Number(e.currentTarget.value))}
+                />
+              </label>
+            {/if}
+            <div class="grid grid-cols-2 gap-2">
+              <label class="text-xs text-surface-400">
+                Background
+                <input type="color" class="w-full h-7 rounded border border-surface-600 bg-surface-800"
+                  value={selectedElement.bgColor ?? '#2a2420'}
+                  oninput={(e) => updateElement('bgColor', e.currentTarget.value)}
+                />
+              </label>
+              <label class="text-xs text-surface-400">
+                Border
+                <input type="color" class="w-full h-7 rounded border border-surface-600 bg-surface-800"
+                  value={selectedElement.borderColor ?? '#4a4a4a'}
+                  oninput={(e) => updateElement('borderColor', e.currentTarget.value)}
+                />
+              </label>
+            </div>
+            <label class="flex items-center gap-2 text-xs text-surface-400 cursor-pointer">
+              <input type="checkbox" class="accent-primary-500"
+                checked={selectedElement.showCrosshairs !== false}
+                onchange={(e) => updateElement('showCrosshairs', e.currentTarget.checked ? undefined : false)}
+              />
+              Show crosshairs
+            </label>
           {/if}
 
           {#if selectedElement.type === 'boss'}

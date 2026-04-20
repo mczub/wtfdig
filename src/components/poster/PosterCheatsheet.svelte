@@ -175,15 +175,23 @@
             {exporting ? 'Exporting...' : 'Download'}
           </button>
           {#if showExportMenu}
-            <div class="absolute right-0 top-full mt-1 bg-surface-800 border border-surface-600 rounded shadow-lg z-10 overflow-hidden">
-              <button class="block w-full text-left px-4 py-2 text-sm hover:bg-surface-700" onclick={() => exportPoster('jpg')}>JPG (smallest)</button>
-              <button class="block w-full text-left px-4 py-2 text-sm hover:bg-surface-700" onclick={() => exportPoster('webp')}>WebP (small)</button>
-              <button class="block w-full text-left px-4 py-2 text-sm hover:bg-surface-700" onclick={() => exportPoster('png')}>PNG (lossless)</button>
+            <div
+              class="absolute right-0 top-full mt-1 bg-surface-800 rounded-lg z-10 overflow-hidden"
+              style="box-shadow: 0 1px 2px rgba(0,0,0,0.2), 0 8px 24px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.06);"
+            >
+              <button class="block w-full text-left px-4 py-2 text-sm transition-colors hover:bg-surface-700" onclick={() => exportPoster('jpg')}>JPG (smallest)</button>
+              <button class="block w-full text-left px-4 py-2 text-sm transition-colors hover:bg-surface-700" onclick={() => exportPoster('webp')}>WebP (small)</button>
+              <button class="block w-full text-left px-4 py-2 text-sm transition-colors hover:bg-surface-700" onclick={() => exportPoster('png')}>PNG (lossless)</button>
             </div>
           {/if}
         </div>
 
-        <button onclick={() => (posterOpenState = false)} class="cursor-pointer">
+        <button
+          type="button"
+          onclick={() => (posterOpenState = false)}
+          aria-label="Close poster"
+          class="-m-2 p-2 inline-flex items-center justify-center rounded-md cursor-pointer hover:bg-surface-700/40 transition-[colors,scale] active:scale-[0.96]"
+        >
           <X size={20} />
         </button>
       </div>

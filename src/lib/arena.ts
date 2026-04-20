@@ -115,6 +115,20 @@ export interface TextElement {
   id?: string;
 }
 
+export interface ArenaShapeElement {
+  type: 'arena';
+  shape: 'square' | 'circle' | 'rect';
+  x: number; // center x
+  y: number; // center y
+  w: number; // width (or diameter for circle)
+  h: number; // height (ignored for circle; uses w as diameter)
+  rotation?: number;
+  bgColor?: string;
+  borderColor?: string;
+  showCrosshairs?: boolean; // default true
+  id?: string;
+}
+
 export type ArenaElement =
   | PlayerElement
   | BossElement
@@ -123,7 +137,8 @@ export type ArenaElement =
   | AoERectElement
   | TetherElement
   | ArrowElement
-  | TextElement;
+  | TextElement
+  | ArenaShapeElement;
 
 export interface ArenaDiagramData {
   arena: ArenaShape;
@@ -224,6 +239,17 @@ export function text(
   opts?: { color?: string; fontSize?: number; anchor?: 'start' | 'middle' | 'end'; id?: string }
 ): TextElement {
   return { type: 'text', text: label, x, y, ...opts };
+}
+
+export function arenaShape(
+  shape: 'square' | 'circle' | 'rect',
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+  opts?: { rotation?: number; bgColor?: string; borderColor?: string; showCrosshairs?: boolean; id?: string }
+): ArenaShapeElement {
+  return { type: 'arena', shape, x, y, w, h, ...opts };
 }
 
 export function diagram(

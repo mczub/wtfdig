@@ -44,7 +44,7 @@
   }
 
   const zOrder: Record<string, number> = {
-    aoe: 0, tether: 1, arrow: 2, waymark: 3, boss: 4, player: 5, text: 6
+    arena: -1, aoe: 0, tether: 1, arrow: 2, waymark: 3, boss: 4, player: 5, text: 6
   };
 
   let sortedElements = $derived(
@@ -78,7 +78,29 @@
 
   <g transform="scale({s})">
   {#each sortedElements as el}
-    {#if el.type === 'aoe' && el.shape === 'circle'}
+    {#if el.type === 'arena'}
+      {@const bg = el.bgColor ?? '#2a2420'}
+      {@const bd = el.borderColor ?? '#4a4a4a'}
+      {@const showCh = el.showCrosshairs !== false}
+      <g opacity={dimOpacity(el)} transform={el.rotation ? `rotate(${el.rotation} ${el.x} ${el.y})` : undefined}>
+        {#if el.shape === 'circle'}
+          {@const r = el.w / 2}
+          <circle cx={el.x} cy={el.y} r={r} fill={bg} stroke={bd} stroke-width="0.4" />
+          {#if showCh}
+            <line x1={el.x} y1={el.y - r} x2={el.x} y2={el.y + r} stroke="#3a3a3a" stroke-width="0.15" />
+            <line x1={el.x - r} y1={el.y} x2={el.x + r} y2={el.y} stroke="#3a3a3a" stroke-width="0.15" />
+          {/if}
+        {:else}
+          <rect x={el.x - el.w/2} y={el.y - el.h/2} width={el.w} height={el.h} rx="1"
+            fill={bg} stroke={bd} stroke-width="0.4" />
+          {#if showCh}
+            <line x1={el.x} y1={el.y - el.h/2} x2={el.x} y2={el.y + el.h/2} stroke="#3a3a3a" stroke-width="0.15" />
+            <line x1={el.x - el.w/2} y1={el.y} x2={el.x + el.w/2} y2={el.y} stroke="#3a3a3a" stroke-width="0.15" />
+          {/if}
+        {/if}
+      </g>
+
+    {:else if el.type === 'aoe' && el.shape === 'circle'}
       <circle cx={el.x} cy={el.y} r={el.r}
         fill={el.color ?? '#f59e0b'} fill-opacity={(el.opacity ?? 0.3) * dimOpacity(el)}
         stroke={el.color ?? '#f59e0b'} stroke-width="0.2" stroke-opacity={dimOpacity(el) * 0.5} />

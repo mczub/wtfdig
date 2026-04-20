@@ -238,7 +238,14 @@
         <div>
           <h3 class="h3">{additionalResources.title}</h3>
         </div>
-        <X onclick={closeOther} class="cursor-pointer" />
+        <button
+          type="button"
+          onclick={closeOther}
+          aria-label="Close"
+          class="-m-2 p-2 inline-flex items-center justify-center rounded-md cursor-pointer hover:bg-surface-700/40 transition-[colors,scale] active:scale-[0.96]"
+        >
+          <X size={20} />
+        </button>
       </header>
       <div>
         {#if additionalResources.description}
@@ -265,7 +272,7 @@
 
 <div
   bind:this={navElement}
-  class="z-10 w-full bg-surface-100-900 border-b border-surface-200-800 shadow-md backdrop-blur-md bg-opacity-90 relative lg:sticky lg:top-0 transition-all duration-300 overflow-hidden"
+  class="z-10 w-full bg-surface-100-900 border-b border-surface-200-800 shadow-md backdrop-blur-md bg-opacity-90 relative lg:sticky lg:top-0 transition-[height,padding] duration-300 overflow-hidden"
 >
   <div class="container mx-auto px-4 py-2 relative">
     <!-- Collapsed View (shown when sticky and collapsed) -->
