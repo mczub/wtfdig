@@ -9,6 +9,7 @@
   import ChevronUp from '@lucide/svelte/icons/chevron-up';
   import Settings from '@lucide/svelte/icons/settings';
   import Fullscreen from '@lucide/svelte/icons/fullscreen';
+  import Image from '@lucide/svelte/icons/image';
   import X from '@lucide/svelte/icons/x';
   import * as Select from '$lib/components/ui/select';
   import * as Tooltip from '$lib/components/ui/tooltip';
@@ -37,6 +38,7 @@
       links: { text: string; url: string }[];
     };
     onOpenCheatsheet?: () => void;
+    onOpenPoster?: () => void;
     tabTags?: Record<string, string[]> | null;
     currentTab?: string;
   }
@@ -59,6 +61,7 @@
     setSpotlight,
     additionalResources,
     onOpenCheatsheet,
+    onOpenPoster,
     tabTags = null,
     currentTab
   }: Props = $props();
@@ -558,6 +561,16 @@
         </div>
         <!-- Cheatsheet and Settings -->
         <div class="justify-self-end self-start items-center mt-1 flex gap-1">
+          {#if onOpenPoster}
+            <button
+              type="button"
+              class="btn-icon btn-icon-sm preset-tonal-surface"
+              onclick={onOpenPoster}
+              aria-label="Open poster"
+            >
+              <Image size={20} />
+            </button>
+          {/if}
           {#if onOpenCheatsheet}
             <button
               type="button"

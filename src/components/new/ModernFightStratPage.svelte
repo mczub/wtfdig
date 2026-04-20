@@ -331,6 +331,7 @@
     setSpotlight={(val) => (spotlight = val)}
     additionalResources={config.additionalResources}
     onOpenCheatsheet={isCheatsheetEnabled ? () => (cheatsheetOpenState = true) : undefined}
+    onOpenPoster={config.posterLayout && config.posterEnabled ? () => (posterOpenState = true) : undefined}
     tabTags={config.tabTags}
     {currentTab}
   />
