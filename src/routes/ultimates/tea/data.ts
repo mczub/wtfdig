@@ -1,17 +1,11 @@
 import type { FightConfig, PhaseStrats, Strat } from '$lib/types';
 import { teaPosterLayout } from './posterData';
 
-const setup: PhaseStrats[] = [
-	{
-		phaseName: 'Setup',
-		tag: 'setup',
-		mechs: []
-	}
-];
+const setup: PhaseStrats[] = [];
 
 const p1: PhaseStrats[] = [
 	{
-		phaseName: 'Living Liquid: Cascade + Tornadoes',
+		phaseName: 'Cascade + Tornadoes',
 		tag: 'p1',
 		mechs: [
 			{
@@ -128,7 +122,7 @@ const p1: PhaseStrats[] = [
 		]
 	},
 	{
-		phaseName: 'Living Liquid: Dolls',
+		phaseName: 'Dolls',
 		tag: 'p1',
 		mechs: [
 			{
@@ -296,7 +290,7 @@ const p1: PhaseStrats[] = [
 		]
 	},
 	{
-		phaseName: 'Living Liquid: Protean 1',
+		phaseName: 'Protean 1',
 		tag: 'p1',
 		mechs: [
 			{
@@ -470,7 +464,7 @@ const p1: PhaseStrats[] = [
 		]
 	},
 	{
-		phaseName: 'Living Liquid: Protean 2',
+		phaseName: 'Protean 2',
 		tag: 'p1',
 		mechs: [
 			{
@@ -756,7 +750,7 @@ const intermission1: PhaseStrats[] = [
 
 const p2: PhaseStrats[] = [
 	{
-		phaseName: 'BJCC: Start + Chakrams + First Pass',
+		phaseName: 'Start + Chakrams + First Pass',
 		tag: 'p2',
 		mechs: [
 			{
@@ -829,7 +823,7 @@ const p2: PhaseStrats[] = [
 		]
 	},
 	{
-		phaseName: 'BJCC: Water/Lightning 1',
+		phaseName: 'Water/Lightning 1',
 		tag: 'p2',
 		mechs: [
 			{
@@ -951,7 +945,7 @@ const p2: PhaseStrats[] = [
 		]
 	},
 	{
-		phaseName: 'BJCC: Enumerations',
+		phaseName: 'Enumerations',
 		tag: 'p2',
 		mechs: [
 			{
@@ -1072,7 +1066,7 @@ const p2: PhaseStrats[] = [
 		]
 	},
 	{
-		phaseName: 'BJCC: Second Pass',
+		phaseName: 'Second Pass',
 		tag: 'p2',
 		mechs: [
 			{
@@ -1134,7 +1128,7 @@ const p2: PhaseStrats[] = [
 		]
 	},
 	{
-		phaseName: 'BJCC: Water/Lightning 2',
+		phaseName: 'Water/Lightning 2',
 		tag: 'p2',
 		mechs: [
 			{
@@ -1259,7 +1253,7 @@ const p2: PhaseStrats[] = [
 		]
 	},
 	{
-		phaseName: 'BJCC: Shield + Third Pass',
+		phaseName: 'Shield + Third Pass',
 		tag: 'p2',
 		mechs: [
 			{
@@ -1391,7 +1385,7 @@ const p2: PhaseStrats[] = [
 		]
 	},
 	{
-		phaseName: 'BJCC: Water/Lightning 3',
+		phaseName: 'Water/Lightning 3',
 		tag: 'p2',
 		mechs: [
 			{
@@ -1462,7 +1456,7 @@ const p2: PhaseStrats[] = [
 		]
 	},
 	{
-		phaseName: 'BJCC: Gavel (BPOG)',
+		phaseName: 'Gavel (BPOG)',
 		tag: 'p2',
 		mechs: [
 			{
@@ -1524,7 +1518,7 @@ const p2: PhaseStrats[] = [
 		]
 	},
 	{
-		phaseName: 'BJCC: Photon + Punch + Super Jump',
+		phaseName: 'Photon + Punch + Super Jump',
 		tag: 'p2',
 		mechs: [
 			{
@@ -1651,25 +1645,560 @@ const p2: PhaseStrats[] = [
 
 const intermission2: PhaseStrats[] = [
 	{
-		phaseName: 'Intermission: Timestop/Inception',
+		phaseName: 'Temporal Stasis',
 		tag: 'i2',
-		mechs: []
+		mechs: [
+			{
+				mechanic: 'Temporal Stasis (CC East)',
+				description:
+					'House Arrest baits CC (east), No Debuff baits BJ (west)\n2x Aggravated Assault at wall on BJ side\nRestraining Order FFA (BJ side = wall, CC side = marker)',
+				strats: [
+					{
+						role: 'Tank',
+						party: 1,
+						description: 'House Arrest: North of E boss\nNo debuff: North of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						imageUrl: './tea/tea-p3-1-0.webp'
+					},
+					{
+						role: 'Tank',
+						party: 2,
+						description: 'House Arrest: North of E boss\nNo debuff: North of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						imageUrl: './tea/tea-p3-1-0.webp'
+					},
+					{
+						role: 'Healer',
+						party: 1,
+						description: 'House Arrest: North of E boss\nNo debuff: North of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						imageUrl: './tea/tea-p3-1-0.webp'
+					},
+					{
+						role: 'Healer',
+						party: 2,
+						description: 'House Arrest: North of E boss\nNo debuff: North of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						imageUrl: './tea/tea-p3-1-0.webp'
+					},
+					{
+						role: 'Melee',
+						party: 1,
+						description: 'House Arrest: South of E boss\nNo debuff: South of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						imageUrl: './tea/tea-p3-1-0.webp'
+					},
+					{
+						role: 'Melee',
+						party: 2,
+						description: 'House Arrest: South of E boss\nNo debuff: South of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						imageUrl: './tea/tea-p3-1-0.webp'
+					},
+					{
+						role: 'Ranged',
+						party: 1,
+						description: 'House Arrest: South of E boss\nNo debuff: South of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						imageUrl: './tea/tea-p3-1-0.webp'
+					},
+					{
+						role: 'Ranged',
+						party: 2,
+						description: 'House Arrest: South of E boss\nNo debuff: South of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						imageUrl: './tea/tea-p3-1-0.webp'
+					}
+				]
+			},
+			{
+				mechanic: 'Temporal Stasis (CC West)',
+				description:
+					'House Arrest baits BJ (east), No Debuff baits CC (west)\n2x Aggravated Assault at wall on BJ side\nRestraining Order FFA (BJ side = wall, CC side = marker)',
+				strats: [
+					{
+						role: 'Tank',
+						party: 1,
+						description: 'House Arrest: North of E boss\nNo debuff: North of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						imageUrl: './tea/tea-p3-1-1.webp'
+					},
+					{
+						role: 'Tank',
+						party: 2,
+						description: 'House Arrest: North of E boss\nNo debuff: North of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						imageUrl: './tea/tea-p3-1-1.webp'
+					},
+					{
+						role: 'Healer',
+						party: 1,
+						description: 'House Arrest: North of E boss\nNo debuff: North of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						imageUrl: './tea/tea-p3-1-1.webp'
+					},
+					{
+						role: 'Healer',
+						party: 2,
+						description: 'House Arrest: North of E boss\nNo debuff: North of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						imageUrl: './tea/tea-p3-1-1.webp'
+					},
+					{
+						role: 'Melee',
+						party: 1,
+						description: 'House Arrest: South of E boss\nNo debuff: South of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						imageUrl: './tea/tea-p3-1-1.webp'
+					},
+					{
+						role: 'Melee',
+						party: 2,
+						description: 'House Arrest: South of E boss\nNo debuff: South of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						imageUrl: './tea/tea-p3-1-1.webp'
+					},
+					{
+						role: 'Ranged',
+						party: 1,
+						description: 'House Arrest: South of E boss\nNo debuff: South of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						imageUrl: './tea/tea-p3-1-1.webp'
+					},
+					{
+						role: 'Ranged',
+						party: 2,
+						description: 'House Arrest: South of E boss\nNo debuff: South of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						imageUrl: './tea/tea-p3-1-1.webp'
+					}
+				]
+			}
+		]
+	},
+	{
+		phaseName: 'Inception',
+		tag: 'i2',
+		mechs: [
+			{
+				mechanic: 'Orbs Spawn',
+				description:
+					'Alex = True North\n4 random players tethered to Aetheroplasm Orbs\nTethered: opposite side of orb on red dot, cross tethers\nStart at N intercardinal, move down to E/W red dot if needed\nNon-tethered: go S away from Alex, place Judgement Crystals in box formation',
+				imageUrl: './tea/tea-p3-1-2.webp'
+			},
+			{
+				mechanic: 'Judgement Crystal Positions',
+				description:
+					'Non-tethered: place crystals in box formation, do NOT overlap AOEs\nWall players set, others align with wall (S can use 3 marker as mid)\n⚠Watch for incoming orbs before placing',
+				imageUrl: './tea/tea-p3-1-3.webp'
+			},
+			{
+				mechanic: 'Orbs + Crystal Placements',
+				description:
+					'Crystal players: place crystal, run N toward Alex (avoid Tetrashatter prox dmg)\nOrb players: place orb, run N\nTanks can mit for next step',
+				imageUrl: './tea/tea-p3-1-4.webp'
+			},
+			{
+				mechanic: 'Flarethrower Bait',
+				description:
+					'All move to BJ side\nTanks soak Flarethrowers 1 and 2\nParty takes 3rd at NW/NE red dot',
+				strats: [
+					{
+						role: 'Tank',
+						party: 1,
+						description: 'Take 1st Flarethrower (far)',
+						imageUrl: './tea/tea-p3-1-6.webp'
+					},
+					{
+						role: 'Tank',
+						party: 2,
+						description: 'Take 2nd Flarethrower (middle)',
+						imageUrl: './tea/tea-p3-1-6.webp'
+					},
+					{
+						role: 'Healer',
+						party: 1,
+						description: 'Stay at NW/NE red dot for 3rd Flarethrower',
+						imageUrl: './tea/tea-p3-1-6.webp'
+					},
+					{
+						role: 'Healer',
+						party: 2,
+						description: 'Stay at NW/NE red dot for 3rd Flarethrower',
+						imageUrl: './tea/tea-p3-1-6.webp'
+					},
+					{
+						role: 'Melee',
+						party: 1,
+						description: 'Stay at NW/NE red dot for 3rd Flarethrower',
+						imageUrl: './tea/tea-p3-1-6.webp'
+					},
+					{
+						role: 'Melee',
+						party: 2,
+						description: 'Stay at NW/NE red dot for 3rd Flarethrower',
+						imageUrl: './tea/tea-p3-1-6.webp'
+					},
+					{
+						role: 'Ranged',
+						party: 1,
+						description: 'Stay at NW/NE red dot for 3rd Flarethrower',
+						imageUrl: './tea/tea-p3-1-6.webp'
+					},
+					{
+						role: 'Ranged',
+						party: 2,
+						description: 'Stay at NW/NE red dot for 3rd Flarethrower',
+						imageUrl: './tea/tea-p3-1-6.webp'
+					}
+				]
+			},
+			{
+				mechanic: 'Debuffs Assigned',
+				description:
+					'1 Tank + 1 DPS: Restraining Order (far tethers)\n1 DPS: Shared Sentence (stack with tanks)\n2 DPS: Aggravated Assault Vuln (don\'t take extra dmg, don\'t stack)\nWatch True Heart direction = relative N',
+			},
+			{
+				mechanic: 'Heart Flies',
+				description:
+					'Heart flies to random spot → relative N for party split\nTanks + Shared Sentence DPS go West/Left facing Heart\nEveryone else goes East/Right facing Heart',
+				strats: [
+					{
+						role: 'Tank',
+						party: 1,
+						description: 'West/Left facing Heart',
+						imageUrl: './tea/tea-p3-1-8.webp'
+					},
+					{
+						role: 'Tank',
+						party: 2,
+						description: 'West/Left facing Heart',
+						imageUrl: './tea/tea-p3-1-8.webp'
+					},
+					{
+						role: 'Healer',
+						party: 1,
+						description: 'East/Right facing Heart',
+						imageUrl: './tea/tea-p3-1-8.webp'
+					},
+					{
+						role: 'Healer',
+						party: 2,
+						description: 'East/Right facing Heart',
+						imageUrl: './tea/tea-p3-1-8.webp'
+					},
+					{
+						role: 'Melee',
+						party: 1,
+						description: 'If Shared Sentence: West/Left with tanks\nElse: East/Right facing Heart',
+						imageUrl: './tea/tea-p3-1-8.webp'
+					},
+					{
+						role: 'Melee',
+						party: 2,
+						description: 'If Shared Sentence: West/Left with tanks\nElse: East/Right facing Heart',
+						imageUrl: './tea/tea-p3-1-8.webp'
+					},
+					{
+						role: 'Ranged',
+						party: 1,
+						description: 'If Shared Sentence: West/Left with tanks\nElse: East/Right facing Heart',
+						imageUrl: './tea/tea-p3-1-8.webp'
+					},
+					{
+						role: 'Ranged',
+						party: 2,
+						description: 'If Shared Sentence: West/Left with tanks\nElse: East/Right facing Heart',
+						imageUrl: './tea/tea-p3-1-8.webp'
+					}
+				]
+			},
+			{
+				mechanic: 'Alpha Sword + Super Jump Baits',
+				description:
+					'BJ is always True W here\nHealers bait Alpha Sword True N/S close to CC\nRestraining Order DPS True West close to CC\nTank who invuln\'d first: edge opposite BJ, mit, bait Super Jump\nEveryone else: stack by 1 marker',
+				strats: [
+					{
+						role: 'Tank',
+						party: 1,
+						description:
+							'If you invuln\'d first: wall opposite BJ, pop mit, bait Super Jump\nElse: stack between CC and jump tank',
+						imageUrl: './tea/tea-p3-1-10.webp'
+					},
+					{
+						role: 'Tank',
+						party: 2,
+						description:
+							'If you invuln\'d first: wall opposite BJ, pop mit, bait Super Jump\nElse: stack between CC and jump tank',
+						imageUrl: './tea/tea-p3-1-10.webp'
+					},
+					{
+						role: 'Healer',
+						party: 1,
+						description: 'Close to CC, bait Alpha Sword True South',
+						imageUrl: './tea/tea-p3-1-10.webp'
+					},
+					{
+						role: 'Healer',
+						party: 2,
+						description: 'Close to CC, bait Alpha Sword True North',
+						imageUrl: './tea/tea-p3-1-10.webp'
+					},
+					{
+						role: 'Melee',
+						party: 1,
+						description:
+							'If Restraining Order: close to CC, bait Alpha Sword True West\nElse: stack by 1 marker',
+						imageUrl: './tea/tea-p3-1-10.webp'
+					},
+					{
+						role: 'Melee',
+						party: 2,
+						description:
+							'If Restraining Order: close to CC, bait Alpha Sword True West\nElse: stack by 1 marker',
+						imageUrl: './tea/tea-p3-1-10.webp'
+					},
+					{
+						role: 'Ranged',
+						party: 1,
+						description:
+							'If Restraining Order: close to CC, bait Alpha Sword True West\nElse: stack by 1 marker',
+						imageUrl: './tea/tea-p3-1-10.webp'
+					},
+					{
+						role: 'Ranged',
+						party: 2,
+						description:
+							'If Restraining Order: close to CC, bait Alpha Sword True West\nElse: stack by 1 marker',
+						imageUrl: './tea/tea-p3-1-10.webp'
+					}
+				]
+			},
+			{
+				mechanic: 'Complete',
+				description:
+					'On Alpha Sword: non-baiting tank + DPS MOVE IN to avoid being clipped by Super Jump',
+				imageUrl: './tea/tea-p3-1-11.webp'
+			}
+		]
 	}
 ];
 
 const p3: PhaseStrats[] = [
 	{
-		phaseName: 'P3: Alexander Prime',
+		phaseName: 'Alexander Prime/Wormhole',
 		tag: 'p3',
-		mechs: []
+		mechs: [
+			{
+				mechanic: 'Initial Positions',
+				description:
+					'Group center to bait Chakrams\nBJ/CC spawn NW and NE (can swap)',
+				imageUrl: './tea/tea-p3-2-0.webp'
+			},
+			{
+				mechanic: 'Numbers Assigned',
+				description:
+					'Chakrams spawn North and on BJ\'s side (W/E)\nOdds (1/3/5/7) go West, Evens (2/4/6/8) go East\n3 and 4 move towards the southern half',
+				imageUrl: './tea/tea-p3-2-2.webp'
+			},
+			{
+				mechanic: 'Initial LC Positions',
+				description:
+					'1/2 on dots\n3/4 on dot (if Jump bait) or wall (if not)\n5-8 Northern half, away from center to avoid Chakram\nMOVE ALONG THE WALL',
+				imageUrl: './tea/tea-p3-2-3.webp'
+			},
+			{
+				mechanic: 'Wormholes Spawn',
+				description:
+					'Puddles spawn NW/SE-ish or NE/SW-ish.\nWalk ALONG THE WALL when entering/leaving puddles\nStand as close to wall as possible when soaking',
+				imageUrl: './tea/tea-p3-2-4.webp'
+			},
+			{
+				mechanic: '1 Slash + BJ Jump',
+				description:
+					'CC spawns behind 1, point cone out of arena\n5/6 step into puddles\nBJ jumps on 3 or 4',
+				imageUrl: './tea/tea-p3-2-6.webp'
+			},
+			{
+				mechanic: '2 Dash + Apoc Ray Bait',
+				description:
+					'2 gets dashed, KB resist\nBJ turns toward 1 or 2 and casts Apoc Ray\nJump baiter steps toward wall\nSTAY FACING THE WALL so CC isn\'t pointed at party',
+				imageUrl: './tea/tea-p3-2-7.webp'
+			},
+			{
+				mechanic: '3 Slash + 1st Soak',
+				description:
+					'CC spawns behind 3, point cone out of arena\n5/6 soak puddles then move to 1/2 original positions (NW/NE)\n7/8 step into puddles, 1/2 move towards puddles\n3/4 move along wall AWAY FROM ALEX to dodge Sacrament',
+				imageUrl: './tea/tea-p3-2-9.webp'
+			},
+			{
+				mechanic: '4 Dash',
+				description:
+					'2 gets dashed, KB resist, move away from Alex along wall to avoid Sacrament\n5/6 position on Nw/NE red dots',
+				imageUrl: './tea/tea-p3-2-10.webp'
+			},
+			{
+				mechanic: 'Sacrament + 5 Slash + 2nd Soak',
+				description:
+					'CC spawns behind 5, point cone out of arena\n5/6 soak puddles then move to 3/4 original positions (SW/SE)\n1/2 get ready for soak',
+				imageUrl: './tea/tea-p3-2-12.webp'
+			},
+			{
+				mechanic: '6 Dash',
+				description:
+					'6 gets dashed, KB resist\n7 and 8 move SW and SE for final Slash+Dash\n1/2 move into puddles as Magic Vuln wears off',
+				imageUrl: './tea/tea-p3-2-13.webp'
+			},
+			{
+				mechanic: '7 Slash + 3rd Soak',
+				description:
+					'CC spawns behind 7, point cone out of arena\nPlayers with no responsibilities group center for heals\n1/2 soak final puddles',
+				imageUrl: './tea/tea-p3-2-15.webp'
+			},
+			{
+				mechanic: '8 Dash + Incinerating Heat',
+				description:
+					'8 gets dashed, KB resist\nAlex casts Incinerating Heat (random-target party stack)',
+				imageUrl: './tea/tea-p3-2-16.webp'
+			},
+			{
+				mechanic: 'Enumerations',
+				description:
+					'Two Enumerations spawn on random DPS after stack (3 people each)\nHealers → West Enum. Tanks → East Enum\n2 DPS without enums stay out',
+				strats: [
+					{
+						role: 'Tank',
+						party: 1,
+						description: 'East Enumeration with OT + Enum DPS',
+						imageUrl: './tea/tea-p3-2-18.webp'
+					},
+					{
+						role: 'Tank',
+						party: 2,
+						description: 'East Enumeration with MT + Enum DPS',
+						imageUrl: './tea/tea-p3-2-18.webp'
+					},
+					{
+						role: 'Healer',
+						party: 1,
+						description: 'West Enumeration with RH + Enum DPS',
+						imageUrl: './tea/tea-p3-2-18.webp'
+					},
+					{
+						role: 'Healer',
+						party: 2,
+						description: 'West Enumeration with SH + Enum DPS',
+						imageUrl: './tea/tea-p3-2-18.webp'
+					},
+					{
+						role: 'Melee',
+						party: 1,
+						description: 'If Enumeration: pick a side (use eyeballs)\nElse: stay out',
+						imageUrl: './tea/tea-p3-2-18.webp'
+					},
+					{
+						role: 'Melee',
+						party: 2,
+						description: 'If Enumeration: pick a side (use eyeballs)\nElse: stay out',
+						imageUrl: './tea/tea-p3-2-18.webp'
+					},
+					{
+						role: 'Ranged',
+						party: 1,
+						description: 'If Enumeration: pick a side (use eyeballs)\nElse: stay out',
+						imageUrl: './tea/tea-p3-2-18.webp'
+					},
+					{
+						role: 'Ranged',
+						party: 2,
+						description: 'If Enumeration: pick a side (use eyeballs)\nElse: stay out',
+						imageUrl: './tea/tea-p3-2-18.webp'
+					}
+				]
+			}
+		]
 	}
 ];
 
 const p4: PhaseStrats[] = [
 	{
-		phaseName: 'P4: Perfect Alexander',
+		phaseName: 'Beacons (Respect Stillness)',
 		tag: 'p4',
-		mechs: []
+		mechs: [
+			{
+				mechanic: 'Debuff Assignment',
+				description:
+					'Light Beacon: A or North of A\nDark Beacon: Middle of C marker\nEveryone else: just in front of Dark Beacon',
+				imageUrl: './tea/perfect-0.webp'
+			},
+			{
+				mechanic: 'First Ordained Motion/Stillness',
+				description:
+					'Position quickly\nIf Stillness first, STOP MOVING, you have a GCD to reposition',
+				imageUrl: './tea/perfect-1.webp'
+			},
+			{
+				mechanic: 'Forced March + Second Ordained Stillness/Motion',
+				description:
+					'Opposite of first Ordained Motion/Stillness\nIf Stillness, just don\'t move after Forced March',
+				imageUrl: './tea/perfect-2.webp'
+			},
+			{
+				mechanic: 'Spread/Stack',
+				description:
+					'Lightly spread for Spread/Stack, then opposite',
+				imageUrl: './tea/perfect-3.webp'
+			},
+		]
+	},
+	{
+		phaseName: 'Fate Calibration α',
+		tag: 'p4',
+		mechs: [
+			{
+				mechanic: 'Debuff Assignment',
+				description:
+					'Watch clone\nCheck for first Stillness/Motion\nCheck for Aggravated (Red)/Defamation (big Purple)/Shared Sentence (Quad)/Nothing\nCheck for second Stillness/Motion\nLook at North Alexanders for safe spot',
+				imageUrl: './tea/perfect-5.webp'
+			},
+			{
+				mechanic: 'Positions',
+				description:
+					'Line up with safe Alexander clone\nDefamation North directly in front of safe clone\nShared Sentence + 3x Nothing on Left side\nAggravated x3 on Right side',
+				imageUrl: './tea/perfect-6.webp'
+			},
+			{
+				mechanic: 'Motion/Stillness',
+				description:
+					'Resolve first Motion/Stillness, then Debuffs + second Motion/Stillness',
+				imageUrl: './tea/perfect-8.webp'
+			},
+		]
+	},
+	{
+		phaseName: 'Fate Calibration β',
+		tag: 'p4',
+		mechs: [
+			{
+				mechanic: 'Debuff Assignment',
+				description:
+					'Watch clone\nIf clone is standing still, you\'re a Beacon\nLight can get Shared Sentence, Blue (Long) tether, or Green (Short) tether\nDark can get Blue (Long) tether, Green (Short) tether, or Nothing\nWatch Alex clones for Stack/Spread and safespot',
+				imageUrl: './tea/perfect-9.webp'
+			},
+			{
+				mechanic: 'Starting Positions',
+				description:
+					'Light Beacon: Northwest of A marker on arena dot\nDark Beacon: Center of 2 marker\nDark + Blue (Long): Southwest corner of 2 marker (aim towards C)\nDark + Nothing: West side of 2 marker (aim towards D)\nEveryone else: Northwest corner of 2 marker (aim towards A)',
+				imageUrl: './tea/perfect-10.webp'
+			},
+			{
+				mechanic: 'Run to the Wall',
+				description:
+					'After the Forced March, Dark players not at North move to the wall to bait jumps\nLight Beacon can move into Shared Sentence stack',
+				imageUrl: './tea/perfect-12.webp'
+			},
+			{
+				mechanic: 'Stack/Spread + Dynamo',
+				description:
+					'If Stack, Light stack North, Dark stack Center\nMove to safe clone after',
+				imageUrl: './tea/perfect-14.webp'
+			},
+		]
+	},
+	{
+		phaseName: 'Trines to Clear',
+		tag: 'p4',
+		mechs: [
+			{
+				mechanic: 'Trines',
+				description:
+					'Use 1/3/4/Center for Trine movement'
+			}
+		]
 	}
 ];
 
@@ -1711,17 +2240,17 @@ export const teaFightConfig: FightConfig = {
 	},
 	toggles: [],
 	tabTags: {
-		'P1: Living Liquid': ['setup', 'p1'],
-		'Intermission: Limit Cut': ['i1'],
-		'P2: BJCC': ['p2'],
-		'Intermission: Temporal Stasis': ['i2'],
-		'P3: Alexander Prime': ['p3'],
-		'P4: Perfect Alexander': ['p4']
+		'Living Liquid': ['setup', 'p1'],
+		'Limit Cut': ['i1'],
+		'BJCC': ['p2'],
+		'Temporal Stasis': ['i2'],
+		'Alexander Prime': ['p3'],
+		'Perfect Alexander': ['p4']
 	},
 	useMainPageTabs: true,
 	defaultStratName: 'elina',
 	timeline: [],
-	posterEnabled: true,
+	posterEnabled: false,
 	posterLayout: teaPosterLayout,
 	roleOptions: [
 		{ label: 'MT', role: 'Tank', party: 1 },
