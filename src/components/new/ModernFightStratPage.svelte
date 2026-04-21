@@ -186,7 +186,8 @@
       party,
       stratState,
       strats: effectiveConfigStrats,
-      toggles: config.toggles
+      toggles: config.toggles,
+      roleOptions: config.roleOptions
     });
   }
 
@@ -278,10 +279,13 @@
 
   {#if config.posterLayout && config.posterEnabled}
     {@const posterJob = formatRoleAbbreviation(normalizedRole, party) as PlayerJob | ''}
+    {@const roleOpt = config.roleOptions?.find((o) => o.role === normalizedRole && o.party === party)}
+    {@const posterJobLabel = roleOpt?.abbrev ?? roleOpt?.label}
     <PosterCheatsheet
       {config}
       bind:posterOpenState
       selectedJob={posterJob || undefined}
+      selectedJobLabel={posterJobLabel}
     />
   {/if}
 
@@ -327,6 +331,7 @@
     {setRole}
     {party}
     {setParty}
+    roleOptions={config.roleOptions}
     {spotlight}
     setSpotlight={(val) => (spotlight = val)}
     additionalResources={config.additionalResources}

@@ -1,6 +1,7 @@
 import deepEquals from 'fast-deep-equal';
 import type {
   FightPFContext,
+  FightRoleOption,
   FightToggleConfig,
   PlayerMechStrat,
   PhaseStrats,
@@ -367,6 +368,7 @@ interface FightSummaryArgs extends FightOptionsContext {
   strats: FightStratConfig;
   toggles?: FightToggleConfig[];
   separator?: string;
+  roleOptions?: FightRoleOption[];
 }
 
 export function buildFightOptionsString({
@@ -397,13 +399,15 @@ export function buildFightOptionsSummary({
   party,
   stratState,
   strats,
-  toggles
+  toggles,
+  roleOptions
 }: FightSummaryArgs): string {
   if (!stratName || !role || !party) return '';
 
   const useJpNaming = strats[stratName]?.jpRoles ?? false;
 
-  const roleAbbrev = formatRoleAbbreviation(role, party, useJpNaming);
+  const roleOpt = roleOptions?.find((o) => o.role === role && o.party === party);
+  const roleAbbrev = roleOpt?.label ?? formatRoleAbbreviation(role, party, useJpNaming);
   if (!roleAbbrev) return '';
   const fightOptions = buildFightOptionsString({
     stratName,

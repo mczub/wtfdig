@@ -6,9 +6,10 @@
   interface Props {
     section: ResolvedPosterSection;
     highlightJob?: PlayerJob;
+    jobLabels?: Partial<Record<PlayerJob, string>>;
   }
 
-  let { section, highlightJob }: Props = $props();
+  let { section, highlightJob, jobLabels }: Props = $props();
 </script>
 
 <div
@@ -28,6 +29,6 @@
 
   <!-- Arena diagram -->
   <div class="flex-1 min-h-0 overflow-hidden bg-black/30 p-1">
-    <ArenaRenderer data={section.arena} highlight={section.highlight} gridW={section.w} gridH={section.h} {highlightJob} />
+    <ArenaRenderer data={section.arena} highlight={section.highlight} gridW={section.w} gridH={section.h} {highlightJob} {jobLabels} />
   </div>
 </div>

@@ -1,4 +1,5 @@
 import type { FightConfig, PhaseStrats, Strat } from '$lib/types';
+import { teaPosterLayout } from './posterData';
 
 const setup: PhaseStrats[] = [
 	{
@@ -36,13 +37,13 @@ const p1: PhaseStrats[] = [
 					{
 						role: 'Healer',
 						party: 1,
-						description: 'Stand close to North',
+						description: 'Stand between East and South tornadoes',
 						imageUrl: './tea/living-liquid-1.webp'
 					},
 					{
 						role: 'Healer',
 						party: 2,
-						description: 'Stand between East and South tornadoes',
+						description: 'Stand close to North',
 						imageUrl: './tea/living-liquid-1.webp'
 					},
 					{
@@ -60,13 +61,13 @@ const p1: PhaseStrats[] = [
 					{
 						role: 'Ranged',
 						party: 1,
-						description: 'Bait East tornado, point protean North',
-						imageUrl: './tea/living-liquid-1.webp'
-					},
-					{
-						role: 'Ranged',
-						party: 2,
 						description: 'Bait West tornado, point protean North',
+						imageUrl: './tea/living-liquid-1.webp'
+					},
+					{
+						role: 'Ranged',
+						party: 2,
+						description: 'Bait East tornado, point protean North',
 						imageUrl: './tea/living-liquid-1.webp'
 					}
 				]
@@ -89,13 +90,13 @@ const p1: PhaseStrats[] = [
 					{
 						role: 'Healer',
 						party: 1,
-						description: 'Stand close to North',
+						description: 'Stand between East and South tornadoes',
 						imageUrl: './tea/living-liquid-2.webp'
 					},
 					{
 						role: 'Healer',
 						party: 2,
-						description: 'Stand between East and South tornadoes',
+						description: 'Stand close to North',
 						imageUrl: './tea/living-liquid-2.webp'
 					},
 					{
@@ -113,13 +114,13 @@ const p1: PhaseStrats[] = [
 					{
 						role: 'Ranged',
 						party: 1,
-						description: 'Bait East protean, step out, then step back in',
-						imageUrl: './tea/living-liquid-2.webp'
-					},
-					{
-						role: 'Ranged',
-						party: 2,
 						description: 'Bait West protean, step out, then step back in',
+						imageUrl: './tea/living-liquid-2.webp'
+					},
+					{
+						role: 'Ranged',
+						party: 2,
+						description: 'Bait East protean, step out, then step back in',
 						imageUrl: './tea/living-liquid-2.webp'
 					}
 				]
@@ -149,13 +150,13 @@ const p1: PhaseStrats[] = [
 					{
 						role: 'Healer',
 						party: 1,
-						description: 'Stand close to North',
+						description: 'Stand between East and South tornadoes',
 						imageUrl: './tea/living-liquid-3.webp'
 					},
 					{
 						role: 'Healer',
 						party: 2,
-						description: 'Stand between East and South tornadoes',
+						description: 'Stand close to North',
 						imageUrl: './tea/living-liquid-3.webp'
 					},
 					{
@@ -175,13 +176,13 @@ const p1: PhaseStrats[] = [
 					{
 						role: 'Ranged',
 						party: 1,
-						description: 'Take doll in Northeast quadrant',
+						description: 'Take doll in Northwest quadrant',
 						imageUrl: './tea/living-liquid-3.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 2,
-						description: 'Take doll in Northwest quadrant',
+						description: 'Take doll in Northeast quadrant',
 						imageUrl: './tea/living-liquid-3.webp'
 					}
 				]
@@ -228,13 +229,13 @@ const p1: PhaseStrats[] = [
 					{
 						role: 'Ranged',
 						party: 1,
-						description: 'Move near Center for heals',
+						description: 'Move near Center for heals, wait to feed',
 						imageUrl: './tea/living-liquid-4.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 2,
-						description: 'Move near Center for heals',
+						description: 'Move near Center for heals, wait to feed',
 						imageUrl: './tea/living-liquid-4.webp'
 					}
 				]
@@ -371,13 +372,13 @@ const p1: PhaseStrats[] = [
 					{
 						role: 'Healer',
 						party: 1,
-						description: 'Move out and Northwest to bait puddle',
+						description: 'Move out and Northeast to bait puddle',
 						imageUrl: './tea/living-liquid-8.webp'
 					},
 					{
 						role: 'Healer',
 						party: 2,
-						description: 'Move out and Northeast to bait puddle',
+						description: 'Move out and Northwest to bait puddle',
 						imageUrl: './tea/living-liquid-8.webp'
 					},
 					{
@@ -395,13 +396,13 @@ const p1: PhaseStrats[] = [
 					{
 						role: 'Ranged',
 						party: 1,
-						description: 'Move out and Northeast to bait puddle',
+						description: 'Move out and Northwest to bait puddle',
 						imageUrl: './tea/living-liquid-8.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 2,
-						description: 'Move out and Northwest to bait puddle',
+						description: 'Move out and Northeast to bait puddle',
 						imageUrl: './tea/living-liquid-8.webp'
 					}
 				]
@@ -425,13 +426,13 @@ const p1: PhaseStrats[] = [
 					{
 						role: 'Healer',
 						party: 1,
-						description: 'Bait boss protean Northwest',
+						description: 'Bait boss protean Northeast',
 						imageUrl: './tea/living-liquid-9.webp'
 					},
 					{
 						role: 'Healer',
 						party: 2,
-						description: 'Bait boss protean Northeast',
+						description: 'Bait boss protean Northwest',
 						imageUrl: './tea/living-liquid-9.webp'
 					},
 					{
@@ -449,13 +450,13 @@ const p1: PhaseStrats[] = [
 					{
 						role: 'Ranged',
 						party: 1,
-						description: 'Bait boss protean East',
+						description: 'Bait boss protean West',
 						imageUrl: './tea/living-liquid-9.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 2,
-						description: 'Bait boss protean West',
+						description: 'Bait boss protean East',
 						imageUrl: './tea/living-liquid-9.webp'
 					}
 				]
@@ -516,13 +517,13 @@ const p1: PhaseStrats[] = [
 					{
 						role: 'Ranged',
 						party: 1,
-						description: 'Bait boss protean South',
+						description: 'Bait boss protean North',
 						imageUrl: './tea/living-liquid-12.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 2,
-						description: 'Bait boss protean North',
+						description: 'Bait boss protean South',
 						imageUrl: './tea/living-liquid-12.webp'
 					}
 				]
@@ -548,14 +549,14 @@ const p1: PhaseStrats[] = [
 						role: 'Healer',
 						party: 1,
 						description:
-							'Move Northwest and bait puddles + West tornado protean towards arena North',
+							'Move Southwest and bait puddles + South tornado protean towards West',
 						imageUrl: './tea/living-liquid-14.webp'
 					},
 					{
 						role: 'Healer',
 						party: 2,
 						description:
-							'Move Southwest and bait puddles + South tornado protean towards West',
+							'Move Northwest and bait puddles + West tornado protean towards arena North',
 						imageUrl: './tea/living-liquid-14.webp'
 					},
 					{
@@ -574,14 +575,14 @@ const p1: PhaseStrats[] = [
 						role: 'Ranged',
 						party: 1,
 						description:
-							'Move Southeast and bait puddles + East tornado protean towards South',
+							'Move Northwest and bait puddles + West tornado protean towards arena North',
 						imageUrl: './tea/living-liquid-14.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 2,
 						description:
-							'Move Northwest and bait puddles + West tornado protean towards arena North',
+							'Move Southeast and bait puddles + East tornado protean towards South',
 						imageUrl: './tea/living-liquid-14.webp'
 					}
 				]
@@ -607,13 +608,13 @@ const p1: PhaseStrats[] = [
 					{
 						role: 'Healer',
 						party: 1,
-						description: 'Bait boss protean Northwest',
+						description: 'Bait boss protean South',
 						imageUrl: './tea/living-liquid-15.webp'
 					},
 					{
 						role: 'Healer',
 						party: 2,
-						description: 'Bait boss protean South',
+						description: 'Bait boss protean Northwest',
 						imageUrl: './tea/living-liquid-15.webp'
 					},
 					{
@@ -633,13 +634,13 @@ const p1: PhaseStrats[] = [
 					{
 						role: 'Ranged',
 						party: 1,
-						description: 'Bait boss protean East',
+						description: 'Bait boss protean West',
 						imageUrl: './tea/living-liquid-15.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 2,
-						description: 'Bait boss protean West',
+						description: 'Bait boss protean East',
 						imageUrl: './tea/living-liquid-15.webp'
 					}
 				]
@@ -669,7 +670,7 @@ const p1: PhaseStrats[] = [
 					{
 						role: 'Healer',
 						party: 2,
-						description: 'Bait boss protean South',
+						description: 'Hang out near center',
 						imageUrl: './tea/living-liquid-16.webp'
 					},
 					{
@@ -779,13 +780,13 @@ const p2: PhaseStrats[] = [
 					{
 						role: 'Healer',
 						party: 1,
-						description: 'West',
+						description: 'East',
 						imageUrl: './tea/bjcc-1.webp'
 					},
 					{
 						role: 'Healer',
 						party: 2,
-						description: 'East',
+						description: 'West',
 						imageUrl: './tea/bjcc-1.webp'
 					},
 					{
@@ -803,13 +804,13 @@ const p2: PhaseStrats[] = [
 					{
 						role: 'Ranged',
 						party: 1,
-						description: 'Southwest',
+						description: 'Southeast',
 						imageUrl: './tea/bjcc-1.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 2,
-						description: 'Southeast',
+						description: 'Southwest',
 						imageUrl: './tea/bjcc-1.webp'
 					}
 				]
@@ -879,14 +880,14 @@ const p2: PhaseStrats[] = [
 						role: 'Ranged',
 						party: 1,
 						description:
-							'If Lightning: loop around CW behind water stack and stand next to MT\nIf no Lightning: stand South of Water stack on D',
+							'If Lightning: stand next to BJ Tank (MT)\nIf no Lightning: stand SE of Water stack on D',
 						imageUrl: './tea/bjcc-9.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 2,
 						description:
-							'If Lightning: stand next to BJ Tank (MT)\nIf no Lightning: stand SE of Water stack on D',
+							'If Lightning: loop around CW behind water stack and stand next to MT\nIf no Lightning: stand South of Water stack on D',
 						imageUrl: './tea/bjcc-9.webp'
 					}
 				]
@@ -935,14 +936,14 @@ const p2: PhaseStrats[] = [
 					{
 						role: 'Ranged',
 						party: 1,
-						description:
-							'Move South to prepare to bait mines with OT',
+						description: 'Move mid to prepare for Enumerations',
 						imageUrl: './tea/bjcc-11.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 2,
-						description: 'Move mid to prepare for Enumerations',
+						description:
+							'Move South to prepare to bait mines with OT',
 						imageUrl: './tea/bjcc-11.webp'
 					}
 				]
@@ -998,14 +999,14 @@ const p2: PhaseStrats[] = [
 					{
 						role: 'Ranged',
 						party: 1,
-						description:
-							'Start on South wall, East of OT\nBait Missile puddle then step North to bait Mine',
+						description: 'Preposition for Enumerations',
 						imageUrl: './tea/bjcc-13.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 2,
-						description: 'Preposition for Enumerations',
+						description:
+							'Start on South wall, East of OT\nBait Missile puddle then step North to bait Mine',
 						imageUrl: './tea/bjcc-13.webp'
 					}
 				]
@@ -1031,13 +1032,13 @@ const p2: PhaseStrats[] = [
 					{
 						role: 'Healer',
 						party: 1,
-						description: 'West Enumeration',
+						description: 'East Enumeration',
 						imageUrl: './tea/bjcc-15.webp'
 					},
 					{
 						role: 'Healer',
 						party: 2,
-						description: 'East Enumeration',
+						description: 'West Enumeration',
 						imageUrl: './tea/bjcc-15.webp'
 					},
 					{
@@ -1056,14 +1057,14 @@ const p2: PhaseStrats[] = [
 					{
 						role: 'Ranged',
 						party: 1,
-						description:
-							'East Enumeration\nIf both Melees or both Ranged get enums, swap with M1',
+						description: 'East Enumeration',
 						imageUrl: './tea/bjcc-15.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 2,
-						description: 'East Enumeration',
+						description:
+							'East Enumeration\nIf both Melees or both Ranged get enums, swap with M1',
 						imageUrl: './tea/bjcc-15.webp'
 					}
 				]
@@ -1094,13 +1095,13 @@ const p2: PhaseStrats[] = [
 					{
 						role: 'Healer',
 						party: 1,
-						description: 'Stay still for pass with M2',
+						description: 'Stay still for pass with Caster',
 						imageUrl: './tea/bjcc-18.webp'
 					},
 					{
 						role: 'Healer',
 						party: 2,
-						description: 'Stay still for pass with Caster',
+						description: 'Stay still for pass with M2',
 						imageUrl: './tea/bjcc-18.webp'
 					},
 					{
@@ -1118,14 +1119,14 @@ const p2: PhaseStrats[] = [
 					{
 						role: 'Ranged',
 						party: 1,
-						description:
-							'Pass Nisi to OT (South)\n\u26A0Wait for mine pop to avoid explosion',
+						description: 'Pass Nisi to H2 (East Mid)',
 						imageUrl: './tea/bjcc-18.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 2,
-						description: 'Pass Nisi to H2 (East Mid)',
+						description:
+							'Pass Nisi to OT (South)\n\u26A0Wait for mine pop to avoid explosion',
 						imageUrl: './tea/bjcc-18.webp'
 					}
 				]
@@ -1184,14 +1185,14 @@ const p2: PhaseStrats[] = [
 						role: 'Ranged',
 						party: 1,
 						description:
-							'If Water: stand on B marker\nIf no Water: stand East of B to take Water stack',
+							'If Water: stand on B marker\nIf no Water: stand South of B to take Water stack',
 						imageUrl: './tea/bjcc-19.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 2,
 						description:
-							'If Water: stand on B marker\nIf no Water: stand South of B to take Water stack',
+							'If Water: stand on B marker\nIf no Water: stand East of B to take Water stack',
 						imageUrl: './tea/bjcc-19.webp'
 					}
 				]
@@ -1243,14 +1244,14 @@ const p2: PhaseStrats[] = [
 					{
 						role: 'Ranged',
 						party: 1,
-						description:
-							'Move mid to prepare for Third Pass\nLoop around near wall since you have more movement',
+						description: 'Move mid to prepare for Third Pass',
 						imageUrl: './tea/bjcc-20.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 2,
-						description: 'Move mid to prepare for Third Pass',
+						description:
+							'Move mid to prepare for Third Pass\nLoop around near wall since you have more movement',
 						imageUrl: './tea/bjcc-20.webp'
 					}
 				]
@@ -1571,14 +1572,14 @@ const p2: PhaseStrats[] = [
 					{
 						role: 'Ranged',
 						party: 1,
-						description:
-							'Get ready to move towards East wall to bait Super Jump',
+						description: '',
 						imageUrl: './tea/bjcc-30.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 2,
-						description: '',
+						description:
+							'Get ready to move towards East wall to bait Super Jump',
 						imageUrl: './tea/bjcc-30.webp'
 					}
 				]
@@ -1632,14 +1633,14 @@ const p2: PhaseStrats[] = [
 						role: 'Ranged',
 						party: 1,
 						description:
-							'Bait Super Jump against East wall\nMove slightly North or South after jump to avoid Apocalyptic Ray',
+							'Stay on West side of arena until Apocalyptic Ray finishes',
 						imageUrl: './tea/bjcc-33.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 2,
 						description:
-							'Stay on West side of arena until Apocalyptic Ray finishes',
+							'Bait Super Jump against East wall\nMove slightly North or South after jump to avoid Apocalyptic Ray',
 						imageUrl: './tea/bjcc-33.webp'
 					}
 				]
@@ -1650,7 +1651,7 @@ const p2: PhaseStrats[] = [
 
 const intermission2: PhaseStrats[] = [
 	{
-		phaseName: 'Intermission: Temporal Stasis',
+		phaseName: 'Intermission: Timestop/Inception',
 		tag: 'i2',
 		mechs: []
 	}
@@ -1718,7 +1719,18 @@ export const teaFightConfig: FightConfig = {
 		'P4: Perfect Alexander': ['p4']
 	},
 	useMainPageTabs: true,
-	useModernCheatsheet: true,
 	defaultStratName: 'elina',
-	timeline: []
+	timeline: [],
+	posterEnabled: true,
+	posterLayout: teaPosterLayout,
+	roleOptions: [
+		{ label: 'MT', role: 'Tank', party: 1 },
+		{ label: 'OT', role: 'Tank', party: 2 },
+		{ label: 'Shield', role: 'Healer', party: 1, abbrev: 'SH' },
+		{ label: 'Regen', role: 'Healer', party: 2, abbrev: 'RH' },
+		{ label: 'M1', role: 'Melee', party: 1 },
+		{ label: 'M2', role: 'Melee', party: 2 },
+		{ label: 'Caster', role: 'Ranged', party: 1, abbrev: 'C' },
+		{ label: 'Phys', role: 'Ranged', party: 2, abbrev: 'PR' }
+	]
 };

@@ -20,12 +20,14 @@
     config: FightConfig;
     posterOpenState?: boolean;
     selectedJob?: PlayerJob;
+    selectedJobLabel?: string;
   }
 
   let {
     config,
     posterOpenState = $bindable(false),
-    selectedJob
+    selectedJob,
+    selectedJobLabel
   }: Props = $props();
 
   let posterRef: HTMLDivElement | undefined = $state();
@@ -33,6 +35,28 @@
   let showExportMenu = $state(false);
   let mode: 'overview' | 'role' = $state('overview');
   let highlightJob = $derived<PlayerJob | undefined>(mode === 'role' ? selectedJob : undefined);
+
+  // Map PlayerJob → display label from config.roleOptions.
+  // Standard (role, party) → PlayerJob mapping: MT/OT/H1/H2/M1/M2/R1/R2
+  const JOB_TO_ROLE_PARTY: Record<string, { role: string; party: number }> = {
+    MT: { role: 'Tank', party: 1 },
+    OT: { role: 'Tank', party: 2 },
+    H1: { role: 'Healer', party: 1 },
+    H2: { role: 'Healer', party: 2 },
+    M1: { role: 'Melee', party: 1 },
+    M2: { role: 'Melee', party: 2 },
+    R1: { role: 'Ranged', party: 1 },
+    R2: { role: 'Ranged', party: 2 }
+  };
+  let jobLabels = $derived.by(() => {
+    if (!config.roleOptions?.length) return undefined;
+    const labels: Partial<Record<PlayerJob, string>> = {};
+    for (const [job, rp] of Object.entries(JOB_TO_ROLE_PARTY)) {
+      const opt = config.roleOptions.find((o) => o.role === rp.role && o.party === rp.party);
+      if (opt) labels[job as PlayerJob] = opt.abbrev ?? opt.label;
+    }
+    return labels;
+  });
 
   let layout = $derived(config.posterLayout!);
   let baseW = $derived(layout.width ?? 1920);
@@ -150,7 +174,7 @@
             onclick={() => (mode = 'role')}
             disabled={!selectedJob}
           >
-            <User size={14} /> Role{selectedJob ? ` (${selectedJob})` : ''}
+            <User size={14} /> Role{selectedJob ? ` (${selectedJobLabel ?? selectedJob})` : ''}
           </button>
         </div>
 
@@ -205,7 +229,7 @@
         style:width={`${baseW * posterScale}px`}
         style:height={`${baseH * posterScale}px`}
       >
-        <PosterGrid {layout} sections={resolvedSections} bind:posterRef {highlightJob} />
+        <PosterGrid {layout} sections={resolvedSections} bind:posterRef {highlightJob} {jobLabels} />
       </div>
     </div>
   {/snippet}

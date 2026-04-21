@@ -17,9 +17,11 @@
     gridH?: number;
     /** If set, highlights players of this job and dims others. */
     highlightJob?: PlayerJob;
+    /** Per-job label overrides for player icon text, e.g. { R1: 'C' }. */
+    jobLabels?: Partial<Record<PlayerJob, string>>;
   }
 
-  let { data, highlight, gridW = 4, gridH = 4, highlightJob }: Props = $props();
+  let { data, highlight, gridW = 4, gridH = 4, highlightJob, jobLabels }: Props = $props();
 
   function isRoleMatch(job: PlayerJob): boolean {
     if (!highlightJob) return true;
@@ -159,13 +161,14 @@
     {:else if el.type === 'player'}
       {@const color = ROLE_COLORS[el.job]}
       {@const roleMatch = isRoleMatch(el.job)}
+      {@const jobLabel = jobLabels?.[el.job] ?? el.job}
       <g opacity={dimOpacity(el) * (highlightJob && !roleMatch ? 0.4 : 1)}>
         <circle cx={el.x} cy={el.y} r="6" fill={color} fill-opacity="0.9"
           stroke={highlightJob && roleMatch ? 'white' : 'white'}
           stroke-width={highlightJob && roleMatch ? 0.8 : 0.25} />
         <text x={el.x} y={el.y} text-anchor="middle" dominant-baseline="central" baseline-shift="2%"
-          fill="white" font-size="5" font-weight="bold" font-family="'Noto Sans', sans-serif"
-        >{el.job}</text>
+          fill="white" font-size={jobLabel.length > 2 ? 3.5 : 5} font-weight="bold" font-family="'Noto Sans', sans-serif"
+        >{jobLabel}</text>
         {#if el.marker}
           <polyline
             points="{el.x - 2.5},{el.y - 13} {el.x},{el.y - 9} {el.x + 2.5},{el.y - 13}"

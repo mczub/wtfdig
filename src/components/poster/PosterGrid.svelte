@@ -9,9 +9,10 @@
     sections: ResolvedPosterSection[];
     posterRef?: HTMLDivElement;
     highlightJob?: PlayerJob;
+    jobLabels?: Partial<Record<PlayerJob, string>>;
   }
 
-  let { layout, sections, posterRef = $bindable(), highlightJob }: Props = $props();
+  let { layout, sections, posterRef = $bindable(), highlightJob, jobLabels }: Props = $props();
 
   let cols = $derived(layout.cols ?? 16);
   let rows = $derived(layout.rows ?? 9);
@@ -40,7 +41,7 @@
   {/if}
 
   {#each sections as section}
-    <PosterSection {section} {highlightJob} />
+    <PosterSection {section} {highlightJob} {jobLabels} />
   {/each}
 </div>
 

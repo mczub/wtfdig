@@ -1,4 +1,15 @@
 export type Role = 'Tank' | 'Healer' | 'Melee' | 'Ranged';
+
+export interface FightRoleOption {
+  /** Button text shown in the selector, e.g. "MT", "Shield". */
+  label: string;
+  /** Underlying role this option maps to. */
+  role: Role;
+  /** Underlying party (1 or 2) this option maps to. */
+  party: number;
+  /** Optional shorter abbreviation for compact display (defaults to label). */
+  abbrev?: string;
+}
 export type Alliance = 'A' | 'B' | 'C';
 export type Alignment = 'original' | 'truenorth' | 'relative';
 
@@ -127,6 +138,8 @@ export interface FightConfig {
   useEvenTimelineSpacing?: boolean;
   posterLayout?: PosterLayout;
   posterEnabled?: boolean;
+  /** Custom role selector options. When set, replaces the default 4-role + 2-group selector. */
+  roleOptions?: FightRoleOption[];
   additionalResources?: {
     title: string;
     description?: string;
