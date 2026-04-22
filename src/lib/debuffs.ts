@@ -79,38 +79,27 @@ export function debuffIconUrl(id: string): string | undefined {
 
 const TOKEN_RE = /\{\{([a-z0-9-]+)\}\}/gi;
 
-function escapeHtml(s: string): string {
+function escapeAttr(s: string): string {
   return s
     .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
 }
 
 /**
- * Replaces `{{debuff-id}}` tokens in a string with inline debuff icons.
- * Non-matching tokens are left as-is. Input is HTML-escaped; icons inject
- * safe markup with title/alt for tooltip and screen-reader access.
+ * Replaces `{{debuff-id}}` tokens with inline debuff icons. Non-token
+ * content is passed through as-is so author-authored HTML (e.g. <strong>)
+ * keeps working. Descriptions are trusted static data.
  */
 export function renderDebuffTokens(input: string): string {
   if (!input) return '';
-  let out = '';
-  let last = 0;
-  for (const m of input.matchAll(TOKEN_RE)) {
-    const start = m.index!;
-    out += escapeHtml(input.slice(last, start));
-    const def = getDebuff(m[1]);
-    if (def) {
-      const title = escapeHtml(def.description ? `${def.name} - ${def.description}` : def.name);
-      const alt = escapeHtml(def.name);
-      const src = `/icons/status/${def.iconFile}`;
-      out += `<img src="${src}" alt="${alt}" title="${title}" class="debuff-icon" />`;
-    } else {
-      out += escapeHtml(m[0]);
-    }
-    last = start + m[0].length;
-  }
-  out += escapeHtml(input.slice(last));
-  return out;
+  return input.replace(TOKEN_RE, (match, id: string) => {
+    const def = getDebuff(id);
+    if (!def) return match;
+    const title = escapeAttr(def.description ? `${def.name} - ${def.description}` : def.name);
+    const alt = escapeAttr(def.name);
+    const src = `/icons/status/${def.iconFile}`;
+    return `<img src="${src}" alt="${alt}" title="${title}" class="debuff-icon" />`;
+  });
 }
