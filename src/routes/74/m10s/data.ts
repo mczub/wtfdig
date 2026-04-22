@@ -6,6 +6,7 @@ import {
   getMultiCircleMaskUrl,
   getRectMaskUrl
 } from '$lib/utils';
+import { m10sPosterLayout } from './posterData';
 
 const toxicFirewatersnaking: MechanicStrat[] = [
   {
@@ -255,7 +256,8 @@ export const m10sFightConfig: FightConfig = {
       ]
     }
   ],
-  defaultStratName: 'toxic'
+  defaultStratName: 'toxic',
+  posterLayout: m10sPosterLayout,
 };
 
 export const toxic: Strat = {

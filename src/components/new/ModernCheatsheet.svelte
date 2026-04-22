@@ -30,6 +30,7 @@
   import SpotlightOverlay from '../SpotlightOverlay.svelte';
   import type { TimelineItem, SpotlightMask, Role, Alignment, PhaseStrats } from '$lib/types';
   import { msToTime } from '$lib/utils';
+  import { renderDebuffTokens } from '$lib/debuffs';
   import { browser } from '$app/environment';
   import Separator from '$lib/components/ui/separator/separator.svelte';
 
@@ -1107,7 +1108,7 @@
                     <!-- Description (if textMode is 'all') -->
                     {#if textMode === 'all' && mech?.description}
                       <div class="text-base text-surface-100 whitespace-pre-wrap mb-1 shrink-0">
-                        {@html mech.description}
+                        {@html renderDebuffTokens(mech.description)}
                       </div>
                     {/if}
 
@@ -1124,7 +1125,7 @@
                           />
                         {/if}
                         <div class="whitespace-pre-wrap">
-                          {@html mech.strats[0].description}
+                          {@html renderDebuffTokens(mech.strats[0].description)}
                         </div>
                       </div>
                     {/if}
@@ -1233,7 +1234,7 @@
                   <!-- Description (if textMode is 'all') -->
                   {#if textMode === 'all' && phase?.description}
                     <div class="text-base text-surface-300 whitespace-pre-wrap mb-1 shrink-0">
-                      {@html phase.description}
+                      {@html renderDebuffTokens(phase.description)}
                     </div>
                   {/if}
 

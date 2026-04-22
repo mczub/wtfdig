@@ -6,6 +6,7 @@
   import { Modal } from '$lib/components/ui';
   import { X } from '@lucide/svelte/icons';
   import SpotlightOverlay from './SpotlightOverlay.svelte';
+  import { renderDebuffTokens } from '$lib/debuffs';
 
   let { phase, mech = null, spotlight, imageOpenState = $bindable(), role = null } = $props();
 
@@ -53,7 +54,7 @@
       <div>
         <div class="font-bold text-lg lg:text-2xl">{phase ? phase?.phaseName : ''}</div>
         {#if phase?.description}<div class="text-xs lg:text-base whitespace-pre-wrap">
-            {@html phase.description}
+            {@html renderDebuffTokens(phase.description)}
           </div>{/if}
       </div>
       <X onclick={closeImage} class="cursor-pointer" />
@@ -61,7 +62,7 @@
     <div class="flex flex-col min-h-0">
       <div class="font-bold text-base lg:text-xl shrink-0">{mech ? mech?.mechanic : ''}</div>
       <div class="whitespace-pre-wrap text-xs lg:text-lg shrink-0">
-        {@html mech ? mech?.description : ''}
+        {@html mech?.description ? renderDebuffTokens(mech.description) : ''}
       </div>
       <div class="flex items-center gap-1 text-xs lg:text-lg mb-0 shrink-0">
         {#if mech?.strats && mech.strats.length > 0}
@@ -76,7 +77,7 @@
           {/if}
         {/if}
         <div class="whitespace-pre-wrap">
-          {@html mech ? mech?.strats && mech.strats[0].description : ''}
+          {@html mech?.strats?.[0]?.description ? renderDebuffTokens(mech.strats[0].description) : ''}
         </div>
       </div>
       {#if getImageModalUrl()}

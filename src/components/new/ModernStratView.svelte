@@ -25,6 +25,7 @@
   import SpotlightOverlay from '../SpotlightOverlay.svelte';
   import type { TimelineItem, SpotlightMask } from '$lib/types';
   import { msToTime } from '$lib/utils';
+  import { renderDebuffTokens } from '$lib/debuffs';
   import * as Collapsible from '$lib/components/ui/collapsible';
 
   interface Props {
@@ -325,7 +326,7 @@
               <div
                 class="text-base lg:text-lg text-surface-200 leading-relaxed max-w-4xl whitespace-pre-wrap"
               >
-                {@html phase.description}
+                {@html renderDebuffTokens(phase.description)}
               </div>
             {/if}
 
@@ -419,14 +420,14 @@
 
                         {#if mech?.description}
                           <p class="text-surface-200 text-base leading-relaxed whitespace-pre-wrap">
-                            {@html mech.description}
+                            {@html renderDebuffTokens(mech.description)}
                           </p>
                         {/if}
 
                         {#if mech?.imageUrl}
-                          <div class="mt-4 rounded-lg overflow-hidden">
+                          <div class="mt-4 overflow-hidden">
                             <img
-                              class="w-auto h-auto object-contain max-w-full max-h-[350px]"
+                              class="w-auto h-auto rounded-sm object-contain max-w-full max-h-[350px]"
                               src={mech.imageUrl}
                               alt={mech.mechanic}
                             />
@@ -446,14 +447,14 @@
                             {/if}
                           {/if}
                           <div class="whitespace-pre-wrap">
-                            {@html mech?.strats && mech.strats[0].description}
+                            {@html mech?.strats ? renderDebuffTokens(mech.strats[0].description) : ''}
                           </div>
                         </div>
 
                         {#if mech?.strats && mech.strats[0]?.imageUrl}
-                          <div class="mt-2 rounded-lg overflow-hidden relative w-fit h-fit">
+                          <div class="mt-2 overflow-hidden relative w-fit h-fit">
                             <img
-                              class="block max-w-full max-h-[350px]"
+                              class="block rounded-sm max-w-full max-h-[350px]"
                               src={mech.strats[0].imageUrl}
                               alt={`${mech.mechanic} strategy`}
                             />
@@ -538,7 +539,7 @@
                     <div
                       class="text-base lg:text-lg text-surface-200 leading-relaxed whitespace-pre-wrap"
                     >
-                      {@html phase.description}
+                      {@html renderDebuffTokens(phase.description)}
                     </div>
                   {/if}
                 </div>

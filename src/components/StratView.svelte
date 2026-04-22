@@ -23,6 +23,7 @@
   import ImagePreview from './ImagePreview.svelte';
   import type { TimelineItem } from '$lib/types';
   import { msToTime } from '$lib/utils';
+  import { renderDebuffTokens } from '$lib/debuffs';
 
   interface Props {
     timeline: TimelineItem[];
@@ -226,7 +227,7 @@
                     </div>
                   {/if}
                   {#if mech?.description}<div class="whitespace-pre-wrap text-lg mb-0">
-                      {@html mech.description}
+                      {@html renderDebuffTokens(mech.description)}
                     </div>{/if}
                   {#if mech?.imageUrl}
                     <img class="max-h-[400px] self-start rounded-md mt-4" src={mech.imageUrl} />
@@ -240,7 +241,7 @@
                       />
                     {/if}
                     <div class="whitespace-pre-wrap">
-                      {mech?.strats && mech.strats[0].description}
+                      {@html mech?.strats ? renderDebuffTokens(mech.strats[0].description) : ''}
                     </div>
                   </div>
                   {#if mech?.strats && mech.strats[0]?.imageUrl}

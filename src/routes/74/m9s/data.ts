@@ -6,6 +6,7 @@ import {
   getMultiCircleMaskUrl,
   getRectMaskUrl
 } from '$lib/utils';
+import { m9sPosterLayout } from './posterData';
 
 export const m9sFightConfig: FightConfig = {
   fightKey: 'm9s',
@@ -307,7 +308,8 @@ export const m9sFightConfig: FightConfig = {
       mechType: 'Enrage',
       startTimeMs: 605000
     }
-  ]
+  ],
+  posterLayout: m9sPosterLayout,
 };
 
 export const toxic: Strat = {

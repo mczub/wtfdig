@@ -46,6 +46,7 @@
     "@tailwindcss/vite": "^4.0.15",
     "bits-ui": "^2.14.4",
     "clsx": "^2.1.1",
+    "html-to-image": "^1.11.13",
     "svelte-bricks": "^0.3.2",
     "svelte-sonner": "^1.0.6",
     "tailwind-merge": "^3.4.0",

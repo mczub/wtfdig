@@ -1,4 +1,5 @@
 import type { FightConfig, PlayerMechStrat, PhaseStrats, Strat, StratRecord } from '$lib/types';
+import { ucobPosterLayout } from './posterData';
 
 function getStringObject(
   stratRecord: Record<string, StratRecord>,
@@ -1028,5 +1029,7 @@ export const ucobFightConfig: FightConfig = {
   },
   useMainPageTabs: true,
   defaultStratName: 'naur',
-  timeline: []
+  timeline: [],
+  posterEnabled: true,
+  posterLayout: ucobPosterLayout
 };

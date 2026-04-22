@@ -4,7 +4,8 @@
   import type { ToastLike } from '$lib/utils';
   import { startSolitaireEffect, stopSolitaireEffect } from '$lib/solitaire';
   import ModernCheatsheet from './ModernCheatsheet.svelte';
-  import { ChevronUp, Copy, ExternalLink, Fullscreen, Grid3x3, Info, Link } from '@lucide/svelte';
+  import PosterCheatsheet from '../poster/PosterCheatsheet.svelte';
+  import { ChevronUp, Copy, ExternalLink, Fullscreen, Grid3x3, Image, Info, Link } from '@lucide/svelte';
   import ModernStratView from './ModernStratView.svelte';
   import ModernFightStratControls from './ModernFightStratControls.svelte';
   import FightStratState from './FightStratState.svelte';
@@ -12,9 +13,11 @@
   import {
     buildFightOptionsSummary,
     buildFightPFDescription,
+    formatRoleAbbreviation,
     getBoardUrl,
     getToggleUrls
   } from '$lib/utils';
+  import type { PlayerJob } from '$lib/arena';
   import { generateAprilFoolsData, isAprilFools } from '$lib/aprilFools';
 
   interface Props {
@@ -183,7 +186,8 @@
       party,
       stratState,
       strats: effectiveConfigStrats,
-      toggles: config.toggles
+      toggles: config.toggles,
+      roleOptions: config.roleOptions
     });
   }
 
@@ -227,6 +231,7 @@
   let isCheatsheetEnabled = $derived(innerWidth > 1024 && innerHeight > 768);
 
   let cheatsheetOpenState = $state(false);
+  let posterOpenState = $state(false);
   let currentTab = $state<string | undefined>(undefined);
 
   function scrollToTop() {
@@ -272,6 +277,18 @@
     stratState
   })}
 
+  {#if config.posterLayout && config.posterEnabled}
+    {@const posterJob = formatRoleAbbreviation(normalizedRole, party) as PlayerJob | ''}
+    {@const roleOpt = config.roleOptions?.find((o) => o.role === normalizedRole && o.party === party)}
+    {@const posterJobLabel = roleOpt?.abbrev ?? roleOpt?.label}
+    <PosterCheatsheet
+      {config}
+      bind:posterOpenState
+      selectedJob={posterJob || undefined}
+      selectedJobLabel={posterJobLabel}
+    />
+  {/if}
+
   <ModernCheatsheet
     title={`${config.cheatsheetTitle} - ${optionsString}`}
     bind:cheatsheetOpenState
@@ -314,10 +331,12 @@
     {setRole}
     {party}
     {setParty}
+    roleOptions={config.roleOptions}
     {spotlight}
     setSpotlight={(val) => (spotlight = val)}
     additionalResources={config.additionalResources}
     onOpenCheatsheet={isCheatsheetEnabled ? () => (cheatsheetOpenState = true) : undefined}
+    onOpenPoster={config.posterLayout && config.posterEnabled ? () => (posterOpenState = true) : undefined}
     tabTags={config.tabTags}
     {currentTab}
   />
@@ -455,6 +474,13 @@
                     onclick={() => window.open(boardUrl)}
                     class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none cursor-pointer"
                     ><Grid3x3 size={18} />Strategy Board<ExternalLink size={16} /></button
+                  >
+                {/if}
+                {#if config.posterLayout && config.posterEnabled}
+                  <button
+                    onclick={() => (posterOpenState = true)}
+                    class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none"
+                    ><Image size={18} />Poster</button
                   >
                 {/if}
                 <button
