@@ -392,7 +392,7 @@
                     const opt = roleOptions.find((o) => `${o.role}-${o.party}` === e.value);
                     if (opt) selectRoleOption(opt);
                   }}
-                  classes=""
+                  classes="flex-wrap"
                 >
                   {#each roleOptions as opt}
                     <Segment.Item value={`${opt.role}-${opt.party}`} classes="text-md px-3 py-1"

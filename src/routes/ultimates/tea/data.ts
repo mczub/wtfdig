@@ -1767,7 +1767,7 @@ const intermission2: PhaseStrats[] = [
 			{
 				mechanic: 'Orbs Spawn',
 				description:
-					'Alex = True North\n4 random players tethered to Aetheroplasm Orbs\nTethered: opposite side of orb on red dot, cross tethers\nStart at N intercardinal, move down to E/W red dot if needed\nNon-tethered: go S away from Alex, place Judgement Crystals in box formation',
+					'Alex = New North\n4 random players tethered to Aetheroplasm Orbs\nTethered: opposite side of orb on red dot, cross tethers\nStart at N intercardinal, move down to E/W red dot if needed\nNon-tethered: go S away from Alex, place Judgement Crystals in box formation',
 				imageUrl: './tea/tea-p3-1-2.webp'
 			},
 			{
@@ -1970,7 +1970,7 @@ const intermission2: PhaseStrats[] = [
 
 const p3: PhaseStrats[] = [
 	{
-		phaseName: 'Alexander Prime/Wormhole',
+		phaseName: 'Wormhole',
 		tag: 'p3',
 		mechs: [
 			{
@@ -2250,8 +2250,8 @@ export const teaFightConfig: FightConfig = {
 		'Living Liquid': ['setup', 'p1'],
 		'Limit Cut': ['i1'],
 		'BJCC': ['p2'],
-		'Temporal Stasis': ['i2'],
-		'Alexander Prime': ['p3'],
+		'Timestop/Inception': ['i2'],
+		'Wormhole': ['p3'],
 		'Perfect Alexander': ['p4']
 	},
 	useMainPageTabs: true,
