@@ -4,6 +4,7 @@
     type ArenaDiagramData,
     type ArenaElement,
     type ArenaShape,
+    type PlayerCorner,
     type PlayerJob,
     type WaymarkName,
     ROLE_COLORS,
@@ -11,7 +12,11 @@
     SQUARE_MARKERS,
     CIRCLE_MARKERS
   } from '$lib/arena';
+  import { DEBUFFS, type DebuffId } from '$lib/debuffs';
   import { Copy, Crosshair, Trash2, Plus, RotateCcw } from '@lucide/svelte/icons';
+
+  const DEBUFF_IDS = Object.keys(DEBUFFS) as DebuffId[];
+  const CORNER_KEYS: PlayerCorner[] = ['tl', 'tr', 'bl', 'br'];
 
   // --- State ---
   let arenaShape: ArenaShape = $state('square');
@@ -137,6 +142,8 @@
         return { type: 'arena', shape: 'rect', x, y, w: 60, h: 40 };
       case 'text':
         return { type: 'text', text: 'Label', x, y };
+      case 'debuff':
+        return { type: 'debuff', debuffId: subtype ?? DEBUFF_IDS[0], x, y };
       default:
         return null;
     }
@@ -318,11 +325,18 @@
         case 'player':
           imports.add('player');
           {
-            const hasOpts = el.marker || el.id;
+            const hasCorners = el.corners && Object.keys(el.corners).length > 0;
+            const hasOpts = el.marker || el.id || hasCorners;
             if (hasOpts) {
               const opts: string[] = [];
               if (el.id) opts.push(`id: '${el.id}'`);
               if (el.marker) opts.push(`marker: '${el.marker}'`);
+              if (hasCorners) {
+                const cornerStr = Object.entries(el.corners!)
+                  .map(([k, v]) => `${k}: '${v}'`)
+                  .join(', ');
+                opts.push(`corners: { ${cornerStr} }`);
+              }
               return `  player('${el.job}', ${el.x}, ${el.y}, { ${opts.join(', ')} })`;
             }
             return `  player('${el.job}', ${el.x}, ${el.y})`;
@@ -385,6 +399,15 @@
           const txtOptsStr = txtOpts.length > 0 ? `, { ${txtOpts.join(', ')} }` : '';
           const escapedText = el.text.includes('\n') ? el.text.replace(/\n/g, '\\n') : el.text;
           return `  text('${escapedText}', ${el.x}, ${el.y}${txtOptsStr})`;
+        case 'debuff':
+          imports.add('debuff');
+          {
+            const opts: string[] = [];
+            if (el.size != null) opts.push(`size: ${el.size}`);
+            if (el.id) opts.push(`id: '${el.id}'`);
+            const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
+            return `  debuff('${el.debuffId}', ${el.x}, ${el.y}${optsStr})`;
+          }
         default:
           return `  // unknown element`;
       }
@@ -443,10 +466,30 @@
     const els: ArenaElement[] = [];
 
     const N = '-?[\\d.]+'; // number pattern (int or float)
+    // Opts block allowing one level of nesting (for corners: { ... })
+    const OPTS = '\\{((?:[^{}]|\\{[^{}]*\\})*)\\}';
     // Parse player('JOB', x, y, 'id'?) or player('JOB', x, y, { opts })
-    for (const m of code.matchAll(new RegExp(`player\\(\\s*'(\\w+)'\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*(?:'(\\w+)'|\\{([^}]*)\\}))?\\s*\\)`, 'g'))) {
-      const opts = m[5] ? parseInlineOpts(m[5]) : {};
-      els.push({ type: 'player', job: m[1] as PlayerJob, x: +m[2], y: +m[3], id: m[4] || opts.id as string | undefined, marker: opts.marker as 'red' | 'green' | undefined });
+    for (const m of code.matchAll(new RegExp(`player\\(\\s*'(\\w+)'\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*(?:'(\\w+)'|${OPTS}))?\\s*\\)`, 'g'))) {
+      const rawOpts = m[5] ?? '';
+      // Extract corners first, then strip it so parseInlineOpts sees simple keys
+      const cornersMatch = rawOpts.match(/corners\s*:\s*\{([^}]*)\}/);
+      const corners: Partial<Record<PlayerCorner, string>> = {};
+      if (cornersMatch) {
+        for (const cm of cornersMatch[1].matchAll(/(\w+)\s*:\s*'([^']+)'/g)) {
+          corners[cm[1] as PlayerCorner] = cm[2];
+        }
+      }
+      const restOpts = rawOpts.replace(/corners\s*:\s*\{[^}]*\}\s*,?\s*/, '');
+      const opts = restOpts ? parseInlineOpts(restOpts) : {};
+      els.push({
+        type: 'player',
+        job: m[1] as PlayerJob,
+        x: +m[2],
+        y: +m[3],
+        id: m[4] || (opts.id as string | undefined),
+        marker: opts.marker as 'red' | 'green' | undefined,
+        corners: Object.keys(corners).length ? corners : undefined
+      });
     }
     // Parse boss(x, y, rotation?)
     for (const m of code.matchAll(new RegExp(`boss\\(\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*(${N}))?\\s*\\)`, 'g'))) {
@@ -486,6 +529,11 @@
       const opts = parseInlineOpts(m[4]);
       const textContent = m[1].replace(/\\n/g, '\n');
       els.push({ type: 'text', text: textContent, x: +m[2], y: +m[3], ...opts });
+    }
+    // Parse debuff('id', x, y, { opts })
+    for (const m of code.matchAll(new RegExp(`debuff\\(\\s*'([\\w-]+)'\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`, 'g'))) {
+      const opts = parseInlineOpts(m[4]);
+      els.push({ type: 'debuff', debuffId: m[1], x: +m[2], y: +m[3], ...opts });
     }
     // Expand ...SQUARE_MARKERS / ...CIRCLE_MARKERS
     if (code.includes('SQUARE_MARKERS')) {
@@ -701,6 +749,20 @@
                 class="cursor-move"
                 onmousedown={(e) => handleElementMouseDown(i, e)}
               />
+            {:else if el.type === 'debuff'}
+              <!-- svelte-ignore a11y_no_static_element_interactions -->
+              <rect
+                x={(el.x - (el.size ?? 6) / 2) * scale}
+                y={(el.y - (el.size ?? 6) / 2) * scale}
+                width={(el.size ?? 6) * scale}
+                height={(el.size ?? 6) * scale}
+                fill="transparent"
+                stroke={selected.has(i) ? '#22d3ee' : 'transparent'}
+                stroke-width="0.6"
+                stroke-dasharray="1.5,1"
+                class="cursor-move"
+                onmousedown={(e) => handleElementMouseDown(i, e)}
+              />
             {:else if el.type === 'arrow' || el.type === 'tether'}
               <!-- svelte-ignore a11y_no_static_element_interactions -->
               <line
@@ -798,6 +860,18 @@
           <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('arena-square')}>Square</button>
           <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('arena-circle')}>Circle</button>
           <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('arena-rect')}>Rect</button>
+        </div>
+        <div class="flex flex-wrap items-center gap-1">
+          <span class="text-xs text-surface-400 self-center">Debuff:</span>
+          {#each DEBUFF_IDS as id}
+            <button
+              class="btn btn-sm preset-tonal-surface text-xs p-1"
+              title={DEBUFFS[id].name}
+              onclick={() => startPlace('debuff', id)}
+            >
+              <img src={`/icons/status/${DEBUFFS[id].iconFile}`} alt={DEBUFFS[id].name} class="w-5 h-5" />
+            </button>
+          {/each}
         </div>
         <div class="flex gap-1">
           <button class="btn btn-sm preset-tonal-error text-xs" onclick={clearAll}>
@@ -919,6 +993,55 @@
                   onclick={() => updateElement('marker', 'green')}
                 >Green ∨</button>
               </div>
+            </label>
+            <div class="text-xs text-surface-400 space-y-1">
+              <div>Corner debuffs</div>
+              <div class="grid grid-cols-2 gap-1">
+                {#each CORNER_KEYS as corner}
+                  {@const current = selectedElement.corners?.[corner]}
+                  <label class="flex items-center gap-1">
+                    <span class="uppercase font-mono text-surface-500 w-5">{corner}</span>
+                    <select
+                      class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs w-full"
+                      value={current ?? ''}
+                      onchange={(e) => {
+                        const next = { ...(selectedElement.corners ?? {}) };
+                        const v = e.currentTarget.value;
+                        if (v) next[corner] = v;
+                        else delete next[corner];
+                        updateElement('corners', Object.keys(next).length ? next : undefined);
+                      }}
+                    >
+                      <option value="">—</option>
+                      {#each DEBUFF_IDS as id}
+                        <option value={id}>{DEBUFFS[id].name}</option>
+                      {/each}
+                    </select>
+                  </label>
+                {/each}
+              </div>
+            </div>
+          {/if}
+          {#if selectedElement.type === 'debuff'}
+            <label class="text-xs text-surface-400">
+              Debuff
+              <select
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                value={selectedElement.debuffId}
+                onchange={(e) => updateElement('debuffId', e.currentTarget.value)}
+              >
+                {#each DEBUFF_IDS as id}
+                  <option value={id}>{DEBUFFS[id].name}</option>
+                {/each}
+              </select>
+            </label>
+            <label class="text-xs text-surface-400">
+              Size
+              <input type="number" min="1" max="30" step="0.5"
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                value={selectedElement.size ?? 6}
+                oninput={(e) => updateElement('size', Number(e.currentTarget.value))}
+              />
             </label>
           {/if}
           {#if selectedElement.type === 'aoe' && selectedElement.shape === 'circle'}
@@ -1179,6 +1302,7 @@
               {#if el.type === 'player'}<span class="font-bold" style:color={ROLE_COLORS[el.job]}>{el.job}</span>{/if}
               {#if el.type === 'waymark'}<span class="font-bold" style:color={WAYMARK_COLORS[el.mark]}>{el.mark}</span>{/if}
               {#if el.type === 'text'}<span class="truncate text-surface-300">"{el.text.split('\n')[0]}"</span>{/if}
+              {#if el.type === 'debuff'}<span class="truncate text-surface-300">{el.debuffId}</span>{/if}
               {#if 'x' in el}<span class="text-surface-500 ml-auto font-mono">({el.x},{el.y})</span>{/if}
               {#if 'x1' in el}<span class="text-surface-500 ml-auto font-mono">({el.x1},{el.y1})→({el.x2},{el.y2})</span>{/if}
             </button>

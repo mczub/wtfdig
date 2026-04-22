@@ -25,6 +25,7 @@
   import SpotlightOverlay from '../SpotlightOverlay.svelte';
   import type { TimelineItem, SpotlightMask } from '$lib/types';
   import { msToTime } from '$lib/utils';
+  import { renderDebuffTokens } from '$lib/debuffs';
   import * as Collapsible from '$lib/components/ui/collapsible';
 
   interface Props {
@@ -325,7 +326,7 @@
               <div
                 class="text-base lg:text-lg text-surface-200 leading-relaxed max-w-4xl whitespace-pre-wrap"
               >
-                {@html phase.description}
+                {@html renderDebuffTokens(phase.description)}
               </div>
             {/if}
 
@@ -419,7 +420,7 @@
 
                         {#if mech?.description}
                           <p class="text-surface-200 text-base leading-relaxed whitespace-pre-wrap">
-                            {@html mech.description}
+                            {@html renderDebuffTokens(mech.description)}
                           </p>
                         {/if}
 
@@ -446,7 +447,7 @@
                             {/if}
                           {/if}
                           <div class="whitespace-pre-wrap">
-                            {@html mech?.strats && mech.strats[0].description}
+                            {@html mech?.strats ? renderDebuffTokens(mech.strats[0].description) : ''}
                           </div>
                         </div>
 
@@ -538,7 +539,7 @@
                     <div
                       class="text-base lg:text-lg text-surface-200 leading-relaxed whitespace-pre-wrap"
                     >
-                      {@html phase.description}
+                      {@html renderDebuffTokens(phase.description)}
                     </div>
                   {/if}
                 </div>

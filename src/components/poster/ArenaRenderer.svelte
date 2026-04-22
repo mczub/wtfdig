@@ -7,6 +7,7 @@
     type ArenaElement,
     type PlayerJob
   } from '$lib/arena';
+  import { getDebuff } from '$lib/debuffs';
 
   interface Props {
     data: ArenaDiagramData;
@@ -46,7 +47,14 @@
   }
 
   const zOrder: Record<string, number> = {
-    arena: -1, aoe: 0, tether: 1, arrow: 2, waymark: 3, boss: 4, player: 5, text: 6
+    arena: -1, aoe: 0, tether: 1, arrow: 2, waymark: 3, boss: 4, player: 5, debuff: 6, text: 7
+  };
+
+  const CORNER_OFFSETS: Record<'tl' | 'tr' | 'bl' | 'br', { dx: number; dy: number }> = {
+    tl: { dx: -5, dy: -5 },
+    tr: { dx: 5, dy: -5 },
+    bl: { dx: -5, dy: 5 },
+    br: { dx: 5, dy: 5 }
   };
 
   let sortedElements = $derived(
@@ -176,7 +184,37 @@
             stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
           />
         {/if}
+        {#if el.corners}
+          {#each Object.entries(el.corners) as [corner, debuffId]}
+            {@const def = getDebuff(debuffId)}
+            {@const off = CORNER_OFFSETS[corner as 'tl' | 'tr' | 'bl' | 'br']}
+            {#if def}
+              <image
+                href={`/icons/status/${def.iconFile}`}
+                x={el.x + off.dx - 2.5} y={el.y + off.dy - 2.5}
+                width="5" height="5"
+              >
+                <title>{def.name}</title>
+              </image>
+            {/if}
+          {/each}
+        {/if}
       </g>
+
+    {:else if el.type === 'debuff'}
+      {@const def = getDebuff(el.debuffId)}
+      {@const size = el.size ?? 6}
+      {#if def}
+        <g opacity={dimOpacity(el)}>
+          <image
+            href={`/icons/status/${def.iconFile}`}
+            x={el.x - size / 2} y={el.y - size / 2}
+            width={size} height={size}
+          >
+            <title>{def.name}</title>
+          </image>
+        </g>
+      {/if}
 
     {:else if el.type === 'text'}
       {@const lines = el.text.split('\n')}

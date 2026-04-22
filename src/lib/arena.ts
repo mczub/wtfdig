@@ -32,12 +32,16 @@ export function jobMatchesRole(iconJob: PlayerJob, selectedJob: PlayerJob): bool
 }
 export type WaymarkName = 'A' | 'B' | 'C' | 'D' | '1' | '2' | '3' | '4';
 
+export type PlayerCorner = 'tl' | 'tr' | 'bl' | 'br';
+
 export interface PlayerElement {
   type: 'player';
   job: PlayerJob;
   x: number; // 0-100
   y: number; // 0-100
   marker?: 'red' | 'green';
+  /** Debuff icons attached to player corners (by debuff id from $lib/debuffs). */
+  corners?: Partial<Record<PlayerCorner, string>>;
   id?: string;
 }
 
@@ -129,6 +133,15 @@ export interface ArenaShapeElement {
   id?: string;
 }
 
+export interface DebuffElement {
+  type: 'debuff';
+  debuffId: string; // key in $lib/debuffs DEBUFFS
+  x: number;
+  y: number;
+  size?: number; // arena % units; default 6
+  id?: string;
+}
+
 export type ArenaElement =
   | PlayerElement
   | BossElement
@@ -138,7 +151,8 @@ export type ArenaElement =
   | TetherElement
   | ArrowElement
   | TextElement
-  | ArenaShapeElement;
+  | ArenaShapeElement
+  | DebuffElement;
 
 export interface ArenaDiagramData {
   arena: ArenaShape;
@@ -239,6 +253,15 @@ export function text(
   opts?: { color?: string; fontSize?: number; anchor?: 'start' | 'middle' | 'end'; id?: string }
 ): TextElement {
   return { type: 'text', text: label, x, y, ...opts };
+}
+
+export function debuff(
+  debuffId: string,
+  x: number,
+  y: number,
+  opts?: { size?: number; id?: string }
+): DebuffElement {
+  return { type: 'debuff', debuffId, x, y, ...opts };
 }
 
 export function arenaShape(

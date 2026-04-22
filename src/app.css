@@ -576,6 +576,17 @@
     font-weight: 700;
   }
 
+  .debuff-icon {
+    display: inline-block;
+    height: 1.2em;
+    aspect-ratio: 48 / 54;
+    vertical-align: middle;
+    margin: 0;
+    user-select: none;
+    object-view-box: inset(15.625% 0 0 0);
+    object-fit: contain;
+  }
+
   ul.overview {
     white-space: normal;
     list-style: disc;

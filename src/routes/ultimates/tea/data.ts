@@ -1651,54 +1651,54 @@ const intermission2: PhaseStrats[] = [
 			{
 				mechanic: 'Temporal Stasis (CC East)',
 				description:
-					'House Arrest baits CC (east), No Debuff baits BJ (west)\n2x Aggravated Assault at wall on BJ side\nRestraining Order FFA (BJ side = wall, CC side = marker)',
+					'{{xmas-tether}} baits CC (east), No Debuff baits BJ (west)\n2x {{aggravated-assault}} at wall on BJ side\n{{blue-tether}} FFA (BJ side = wall, CC side = marker)',
 				strats: [
 					{
 						role: 'Tank',
 						party: 1,
-						description: 'House Arrest: North of E boss\nNo debuff: North of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						description: '{{xmas-tether}} North of E boss\nNo debuff: North of W boss\n{{aggravated-assault}} Wall on BJ side\n{{blue-tether}} FFA (BJ side = wall, CC side = marker)',
 						imageUrl: './tea/tea-p3-1-0.webp'
 					},
 					{
 						role: 'Tank',
 						party: 2,
-						description: 'House Arrest: North of E boss\nNo debuff: North of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						description: '{{xmas-tether}} North of E boss\nNo debuff: North of W boss\n{{aggravated-assault}} Wall on BJ side\n{{blue-tether}} FFA (BJ side = wall, CC side = marker)',
 						imageUrl: './tea/tea-p3-1-0.webp'
 					},
 					{
 						role: 'Healer',
 						party: 1,
-						description: 'House Arrest: North of E boss\nNo debuff: North of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						description: '{{xmas-tether}} North of E boss\nNo debuff: North of W boss\n{{aggravated-assault}} Wall on BJ side\n{{blue-tether}} FFA (BJ side = wall, CC side = marker)',
 						imageUrl: './tea/tea-p3-1-0.webp'
 					},
 					{
 						role: 'Healer',
 						party: 2,
-						description: 'House Arrest: North of E boss\nNo debuff: North of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						description: '{{xmas-tether}} North of E boss\nNo debuff: North of W boss\n{{aggravated-assault}} Wall on BJ side\n{{blue-tether}} FFA (BJ side = wall, CC side = marker)',
 						imageUrl: './tea/tea-p3-1-0.webp'
 					},
 					{
 						role: 'Melee',
 						party: 1,
-						description: 'House Arrest: South of E boss\nNo debuff: South of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						description: '{{xmas-tether}} South of E boss\nNo debuff: South of W boss\n{{aggravated-assault}} Wall on BJ side\n{{blue-tether}} FFA (BJ side = wall, CC side = marker)',
 						imageUrl: './tea/tea-p3-1-0.webp'
 					},
 					{
 						role: 'Melee',
 						party: 2,
-						description: 'House Arrest: South of E boss\nNo debuff: South of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						description: '{{xmas-tether}} South of E boss\nNo debuff: South of W boss\n{{aggravated-assault}} Wall on BJ side\n{{blue-tether}} FFA (BJ side = wall, CC side = marker)',
 						imageUrl: './tea/tea-p3-1-0.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 1,
-						description: 'House Arrest: South of E boss\nNo debuff: South of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						description: '{{xmas-tether}} South of E boss\nNo debuff: South of W boss\n{{aggravated-assault}} Wall on BJ side\n{{blue-tether}} FFA (BJ side = wall, CC side = marker)',
 						imageUrl: './tea/tea-p3-1-0.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 2,
-						description: 'House Arrest: South of E boss\nNo debuff: South of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						description: '{{xmas-tether}} South of E boss\nNo debuff: South of W boss\n{{aggravated-assault}} Wall on BJ side\n{{blue-tether}} FFA (BJ side = wall, CC side = marker)',
 						imageUrl: './tea/tea-p3-1-0.webp'
 					}
 				]
@@ -1706,54 +1706,54 @@ const intermission2: PhaseStrats[] = [
 			{
 				mechanic: 'Temporal Stasis (CC West)',
 				description:
-					'House Arrest baits BJ (east), No Debuff baits CC (west)\n2x Aggravated Assault at wall on BJ side\nRestraining Order FFA (BJ side = wall, CC side = marker)',
+					'{{xmas-tether}} baits BJ (east), No Debuff baits CC (west)\n2x {{aggravated-assault}} at wall on BJ side\n{{blue-tether}} FFA (BJ side = wall, CC side = marker)',
 				strats: [
 					{
 						role: 'Tank',
 						party: 1,
-						description: 'House Arrest: North of E boss\nNo debuff: North of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						description: '{{xmas-tether}} North of E boss\nNo debuff: North of W boss\n{{aggravated-assault}} Wall on BJ side\n{{blue-tether}} FFA (BJ side = wall, CC side = marker)',
 						imageUrl: './tea/tea-p3-1-1.webp'
 					},
 					{
 						role: 'Tank',
 						party: 2,
-						description: 'House Arrest: North of E boss\nNo debuff: North of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						description: '{{xmas-tether}} North of E boss\nNo debuff: North of W boss\n{{aggravated-assault}} Wall on BJ side\n{{blue-tether}} FFA (BJ side = wall, CC side = marker)',
 						imageUrl: './tea/tea-p3-1-1.webp'
 					},
 					{
 						role: 'Healer',
 						party: 1,
-						description: 'House Arrest: North of E boss\nNo debuff: North of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						description: '{{xmas-tether}} North of E boss\nNo debuff: North of W boss\n{{aggravated-assault}} Wall on BJ side\n{{blue-tether}} FFA (BJ side = wall, CC side = marker)',
 						imageUrl: './tea/tea-p3-1-1.webp'
 					},
 					{
 						role: 'Healer',
 						party: 2,
-						description: 'House Arrest: North of E boss\nNo debuff: North of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						description: '{{xmas-tether}} North of E boss\nNo debuff: North of W boss\n{{aggravated-assault}} Wall on BJ side\n{{blue-tether}} FFA (BJ side = wall, CC side = marker)',
 						imageUrl: './tea/tea-p3-1-1.webp'
 					},
 					{
 						role: 'Melee',
 						party: 1,
-						description: 'House Arrest: South of E boss\nNo debuff: South of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						description: '{{xmas-tether}} South of E boss\nNo debuff: South of W boss\n{{aggravated-assault}} Wall on BJ side\n{{blue-tether}} FFA (BJ side = wall, CC side = marker)',
 						imageUrl: './tea/tea-p3-1-1.webp'
 					},
 					{
 						role: 'Melee',
 						party: 2,
-						description: 'House Arrest: South of E boss\nNo debuff: South of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						description: '{{xmas-tether}} South of E boss\nNo debuff: South of W boss\n{{aggravated-assault}} Wall on BJ side\n{{blue-tether}} FFA (BJ side = wall, CC side = marker)',
 						imageUrl: './tea/tea-p3-1-1.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 1,
-						description: 'House Arrest: South of E boss\nNo debuff: South of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						description: '{{xmas-tether}} South of E boss\nNo debuff: South of W boss\n{{aggravated-assault}} Wall on BJ side\n{{blue-tether}} FFA (BJ side = wall, CC side = marker)',
 						imageUrl: './tea/tea-p3-1-1.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 2,
-						description: 'House Arrest: South of E boss\nNo debuff: South of W boss\nAggravated Assault: Wall on BJ side\nRestraining Order: FFA (BJ side = wall, CC side = marker)',
+						description: '{{xmas-tether}} South of E boss\nNo debuff: South of W boss\n{{aggravated-assault}} Wall on BJ side\n{{blue-tether}} FFA (BJ side = wall, CC side = marker)',
 						imageUrl: './tea/tea-p3-1-1.webp'
 					}
 				]
@@ -1840,12 +1840,12 @@ const intermission2: PhaseStrats[] = [
 			{
 				mechanic: 'Debuffs Assigned',
 				description:
-					'1 Tank + 1 DPS: Restraining Order (far tethers)\n1 DPS: Shared Sentence (stack with tanks)\n2 DPS: Aggravated Assault Vuln (don\'t take extra dmg, don\'t stack)\nWatch True Heart direction = relative N',
+					'1 Tank + 1 DPS: {{blue-tether}} (far tethers)\n1 DPS: {{shared-sentence}} (stack with tanks)\n2 DPS: {{aggravated-assault}} (don\'t take extra dmg, don\'t stack)\nWatch True Heart direction = relative N',
 			},
 			{
 				mechanic: 'Heart Flies',
 				description:
-					'Heart flies to random spot → relative N for party split\nTanks + Shared Sentence DPS go West/Left facing Heart\nEveryone else goes East/Right facing Heart',
+					'Heart flies to random spot → relative N for party split\nTanks + {{shared-sentence}} DPS go West/Left facing Heart\nEveryone else goes East/Right facing Heart',
 				strats: [
 					{
 						role: 'Tank',
@@ -1874,25 +1874,25 @@ const intermission2: PhaseStrats[] = [
 					{
 						role: 'Melee',
 						party: 1,
-						description: 'If Shared Sentence: West/Left with tanks\nElse: East/Right facing Heart',
+						description: 'If {{shared-sentence}} West/Left with tanks\nElse: East/Right facing Heart',
 						imageUrl: './tea/tea-p3-1-8.webp'
 					},
 					{
 						role: 'Melee',
 						party: 2,
-						description: 'If Shared Sentence: West/Left with tanks\nElse: East/Right facing Heart',
+						description: 'If {{shared-sentence}} West/Left with tanks\nElse: East/Right facing Heart',
 						imageUrl: './tea/tea-p3-1-8.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 1,
-						description: 'If Shared Sentence: West/Left with tanks\nElse: East/Right facing Heart',
+						description: 'If {{shared-sentence}} West/Left with tanks\nElse: East/Right facing Heart',
 						imageUrl: './tea/tea-p3-1-8.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 2,
-						description: 'If Shared Sentence: West/Left with tanks\nElse: East/Right facing Heart',
+						description: 'If {{shared-sentence}} West/Left with tanks\nElse: East/Right facing Heart',
 						imageUrl: './tea/tea-p3-1-8.webp'
 					}
 				]
@@ -1900,7 +1900,7 @@ const intermission2: PhaseStrats[] = [
 			{
 				mechanic: 'Alpha Sword + Super Jump Baits',
 				description:
-					'BJ is always True W here\nHealers bait Alpha Sword True N/S close to CC\nRestraining Order DPS True West close to CC\nTank who invuln\'d first: edge opposite BJ, mit, bait Super Jump\nEveryone else: stack by 1 marker',
+					'BJ is always True W here\nHealers bait Alpha Sword True N/S close to CC\n{{blue-tether}} DPS True West close to CC\nTank who invuln\'d first: edge opposite BJ, mit, bait Super Jump\nEveryone else: stack by 1 marker',
 				strats: [
 					{
 						role: 'Tank',
@@ -1932,28 +1932,28 @@ const intermission2: PhaseStrats[] = [
 						role: 'Melee',
 						party: 1,
 						description:
-							'If Restraining Order: close to CC, bait Alpha Sword True West\nElse: stack by 1 marker',
+							'If {{blue-tether}} close to CC, bait Alpha Sword True West\nElse: stack by 1 marker',
 						imageUrl: './tea/tea-p3-1-10.webp'
 					},
 					{
 						role: 'Melee',
 						party: 2,
 						description:
-							'If Restraining Order: close to CC, bait Alpha Sword True West\nElse: stack by 1 marker',
+							'If {{blue-tether}} close to CC, bait Alpha Sword True West\nElse: stack by 1 marker',
 						imageUrl: './tea/tea-p3-1-10.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 1,
 						description:
-							'If Restraining Order: close to CC, bait Alpha Sword True West\nElse: stack by 1 marker',
+							'If {{blue-tether}} close to CC, bait Alpha Sword True West\nElse: stack by 1 marker',
 						imageUrl: './tea/tea-p3-1-10.webp'
 					},
 					{
 						role: 'Ranged',
 						party: 2,
 						description:
-							'If Restraining Order: close to CC, bait Alpha Sword True West\nElse: stack by 1 marker',
+							'If {{blue-tether}} close to CC, bait Alpha Sword True West\nElse: stack by 1 marker',
 						imageUrl: './tea/tea-p3-1-10.webp'
 					}
 				]
@@ -2112,7 +2112,7 @@ const p4: PhaseStrats[] = [
 			{
 				mechanic: 'Debuff Assignment',
 				description:
-					'Light Beacon: A or North of A\nDark Beacon: Middle of C marker\nEveryone else: just in front of Dark Beacon',
+					'{{light-beacon}} A or North of A\n{{dark-beacon}} Middle of C marker\nEveryone else: just in front of Dark Beacon',
 				imageUrl: './tea/perfect-0.webp'
 			},
 			{
@@ -2142,13 +2142,13 @@ const p4: PhaseStrats[] = [
 			{
 				mechanic: 'Debuff Assignment',
 				description:
-					'Watch clone\nCheck for first Stillness/Motion\nCheck for Aggravated (Red)/Defamation (big Purple)/Shared Sentence (Quad)/Nothing\nCheck for second Stillness/Motion\nLook at North Alexanders for safe spot',
+					'Watch clone\nCheck for first Stillness/Motion\nCheck for {{aggravated-assault}} (Red)/{{defamation}} (big Purple)/{{shared-sentence}} (Quad)/Nothing\nCheck for second Stillness/Motion\nLook at North Alexanders for safe spot',
 				imageUrl: './tea/perfect-5.webp'
 			},
 			{
 				mechanic: 'Positions',
 				description:
-					'Line up with safe Alexander clone\nDefamation North directly in front of safe clone\nShared Sentence + 3x Nothing on Left side\nAggravated x3 on Right side',
+					'Line up with safe Alexander clone\n{{defamation}} North directly in front of safe clone\n{{shared-sentence}} + 3x Nothing on Left side\n{{aggravated-assault}} x3 on Right side',
 				imageUrl: './tea/perfect-6.webp'
 			},
 			{
@@ -2166,19 +2166,19 @@ const p4: PhaseStrats[] = [
 			{
 				mechanic: 'Debuff Assignment',
 				description:
-					'Watch clone\nIf clone is standing still, you\'re a Beacon\nLight can get Shared Sentence, Blue (Long) tether, or Green (Short) tether\nDark can get Blue (Long) tether, Green (Short) tether, or Nothing\nWatch Alex clones for Stack/Spread and safespot',
+					'Watch clone\nIf clone is standing still, you\'re a Beacon\nLight can get {{shared-sentence}}, {{blue-tether}}, or {{xmas-tether}}\nDark can get {{blue-tether}}, {{xmas-tether}}, or Nothing\nWatch Alex clones for Stack/Spread and safespot',
 				imageUrl: './tea/perfect-9.webp'
 			},
 			{
 				mechanic: 'Starting Positions',
 				description:
-					'Light Beacon: Northwest of A marker on arena dot\nDark Beacon: Center of 2 marker\nDark + Blue (Long): Southwest corner of 2 marker (aim towards C)\nDark + Nothing: West side of 2 marker (aim towards D)\nEveryone else: Northwest corner of 2 marker (aim towards A)',
+					'{{light-beacon}} Northwest of A marker on arena dot\n{{dark-beacon}} Center of 2 marker\nDark + {{blue-tether}} Southwest corner of 2 marker (aim towards C)\nDark + Nothing: West side of 2 marker (aim towards D)\nEveryone else: Northwest corner of 2 marker (aim towards A)',
 				imageUrl: './tea/perfect-10.webp'
 			},
 			{
 				mechanic: 'Run to the Wall',
 				description:
-					'After the Forced March, Dark players not at North move to the wall to bait jumps\nLight Beacon can move into Shared Sentence stack',
+					'After the Forced March, Dark players not at North move to the wall to bait jumps\n{{light-beacon}} can move into {{shared-sentence}} stack',
 				imageUrl: './tea/perfect-12.webp'
 			},
 			{
