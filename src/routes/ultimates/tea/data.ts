@@ -1773,7 +1773,7 @@ const intermission2: PhaseStrats[] = [
 			{
 				mechanic: 'Judgement Crystal Positions',
 				description:
-					'Non-tethered: place crystals in box formation, do NOT overlap AOEs\nWall players set, others align with wall (S can use 3 marker as mid)\n⚠Watch for incoming orbs before placing',
+					'Non-tethered: place crystals in box formation, do NOT overlap AOEs\nWall players set, others align with wall (S can use 3 marker as mid)\n⚠️ Watch for incoming orbs before placing crystal',
 				imageUrl: './tea/tea-p3-1-3.webp'
 			},
 			{
@@ -2018,7 +2018,7 @@ const p3: PhaseStrats[] = [
 			{
 				mechanic: '4 Dash',
 				description:
-					'2 gets dashed, KB resist, move away from Alex along wall to avoid Sacrament\n5/6 position on Nw/NE red dots',
+					'2 gets dashed, KB resist, move away from Alex along wall to avoid Sacrament\n5/6 position on NW/NE red dots',
 				imageUrl: './tea/tea-p3-2-10.webp'
 			},
 			{
@@ -2143,7 +2143,7 @@ const p4: PhaseStrats[] = [
 				mechanic: 'Debuff Assignment',
 				description:
 					'Watch clone\nCheck for first Stillness/Motion\nCheck for {{aggravated-assault}} (Red)/{{defamation}} (big Purple)/{{shared-sentence}} (Quad)/Nothing\nCheck for second Stillness/Motion\nLook at North Alexanders for safe spot',
-				imageUrl: './tea/perfect-5.webp'
+				imageUrl: './tea/fate-cal-a-clone.webp'
 			},
 			{
 				mechanic: 'Positions',
@@ -2196,15 +2196,22 @@ const p4: PhaseStrats[] = [
 			{
 				mechanic: 'Trines',
 				description:
-					'Use 1/3/4/Center for Trine movement'
+					'Use 1/3/4/Center for Trine movement\nMove only after first explosion\nNever do a diagonal movement',
+				imageUrl: './tea/trines.webp'
+			},
+			{
+				mechanic: 'Temporal Prison (Enrage)',
+				description:
+					'Prisons start NE and go Clockwise\nGo lowest DPS to highest (Healers, Tanks, DPS)',
+				imageUrl: './tea/prisons.webp'
 			}
 		]
 	}
 ];
 
 const elinabinStrat: Strat = {
-	stratName: 'elina',
-	description: 'Elinabin',
+	stratName: 'naur',
+	description: '',
 	stratUrl: {
 		Elinabin: 'https://pastebin.com/uxVnJm7R',
 		'P1: Living Liquid':
@@ -2233,8 +2240,8 @@ export const teaFightConfig: FightConfig = {
 	subtitle: 'TEA Patch 5.11',
 	cheatsheetTitle: 'TEA Cheatsheet',
 	strats: {
-		elina: {
-			label: 'Elinabin',
+		naur: {
+			label: 'NAUR/Elinabin',
 			badges: [{ text: 'NA', class: 'na-badge' }]
 		}
 	},
@@ -2248,7 +2255,7 @@ export const teaFightConfig: FightConfig = {
 		'Perfect Alexander': ['p4']
 	},
 	useMainPageTabs: true,
-	defaultStratName: 'elina',
+	defaultStratName: 'naur',
 	timeline: [],
 	posterEnabled: false,
 	posterLayout: teaPosterLayout,

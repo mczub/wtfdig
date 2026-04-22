@@ -8,6 +8,7 @@
   </header>
   <article class="prose dark:prose-invert max-w-none">
     <div class="">
+      <div>4/21/2026: teage, ucob poster cheatsheet</div>
       <div>
         4/18/2026: cleanup and refactoring of ex4 + chaotic, add caro uptime to idyllic tool,
         moved everything to the new cheatsheet view, saves the most recently viewed strat

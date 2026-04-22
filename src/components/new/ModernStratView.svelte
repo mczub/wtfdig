@@ -425,9 +425,9 @@
                         {/if}
 
                         {#if mech?.imageUrl}
-                          <div class="mt-4 rounded-lg overflow-hidden">
+                          <div class="mt-4 overflow-hidden">
                             <img
-                              class="w-auto h-auto object-contain max-w-full max-h-[350px]"
+                              class="w-auto h-auto rounded-sm object-contain max-w-full max-h-[350px]"
                               src={mech.imageUrl}
                               alt={mech.mechanic}
                             />
@@ -452,9 +452,9 @@
                         </div>
 
                         {#if mech?.strats && mech.strats[0]?.imageUrl}
-                          <div class="mt-2 rounded-lg overflow-hidden relative w-fit h-fit">
+                          <div class="mt-2 overflow-hidden relative w-fit h-fit">
                             <img
-                              class="block max-w-full max-h-[350px]"
+                              class="block rounded-sm max-w-full max-h-[350px]"
                               src={mech.strats[0].imageUrl}
                               alt={`${mech.mechanic} strategy`}
                             />
