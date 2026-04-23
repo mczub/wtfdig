@@ -3,6 +3,8 @@
     ROLE_COLORS,
     WAYMARK_COLORS,
     jobMatchesRole,
+    lcNumberColor,
+    markersForArena,
     type ArenaDiagramData,
     type ArenaElement,
     type PlayerJob
@@ -47,7 +49,7 @@
   }
 
   const zOrder: Record<string, number> = {
-    arena: -1, aoe: 0, tether: 1, arrow: 2, waymark: 3, boss: 4, player: 5, debuff: 6, text: 7
+    arena: -1, aoe: 0, tether: 1, arrow: 2, waymark: 3, boss: 4, player: 5, lc: 5, debuff: 6, text: 7
   };
 
   const CORNER_OFFSETS: Record<'tl' | 'tr' | 'bl' | 'br', { dx: number; dy: number }> = {
@@ -57,8 +59,29 @@
     br: { dx: 5, dy: 5 }
   };
 
+  let expandedElements = $derived.by(() => {
+    const out: ArenaElement[] = [];
+    for (const el of data.elements) {
+      out.push(el);
+      if (el.type === 'arena' && el.markers) {
+        out.push(...markersForArena(el.markers, el.x, el.y, el.w, el.h, el.markerSize));
+      }
+    }
+    return out;
+  });
+
+  function effectiveZ(el: ArenaElement): number {
+    const base = zOrder[el.type] ?? 0;
+    // When a Role is selected, lift matching player icons above everything
+    // at player-z so they aren't obscured by overlapping unmatched players.
+    if (highlightJob && el.type === 'player' && isRoleMatch(el.job)) {
+      return base + 0.5;
+    }
+    return base;
+  }
+
   let sortedElements = $derived(
-    [...data.elements].sort((a, b) => (zOrder[a.type] ?? 0) - (zOrder[b.type] ?? 0))
+    [...expandedElements].sort((a, b) => effectiveZ(a) - effectiveZ(b))
   );
 
   const uid = Math.random().toString(36).slice(2, 8);
@@ -122,6 +145,21 @@
         rx="0.3"
         transform={el.rotation ? `rotate(${el.rotation} ${el.x} ${el.y})` : undefined} />
 
+    {:else if el.type === 'aoe' && el.shape === 'cone'}
+      {@const coneAngle = el.angle ?? 90}
+      {@const coneRot = el.rotation ?? 0}
+      {@const startA = ((coneRot - coneAngle / 2) - 90) * Math.PI / 180}
+      {@const endA = ((coneRot + coneAngle / 2) - 90) * Math.PI / 180}
+      {@const cx1 = el.x + el.r * Math.cos(startA)}
+      {@const cy1 = el.y + el.r * Math.sin(startA)}
+      {@const cx2 = el.x + el.r * Math.cos(endA)}
+      {@const cy2 = el.y + el.r * Math.sin(endA)}
+      {@const largeArc = coneAngle > 180 ? 1 : 0}
+      <path d="M {el.x} {el.y} L {cx1} {cy1} A {el.r} {el.r} 0 {largeArc} 1 {cx2} {cy2} Z"
+        fill={el.color ?? '#f59e0b'} fill-opacity={(el.opacity ?? 0.3) * dimOpacity(el)}
+        stroke={el.color ?? '#f59e0b'} stroke-width="0.2" stroke-opacity={dimOpacity(el) * 0.5}
+        stroke-linejoin="round" />
+
     {:else if el.type === 'tether'}
       <line x1={el.x1} y1={el.y1} x2={el.x2} y2={el.y2}
         stroke={el.color ?? '#facc15'} stroke-width={el.width ?? 0.5}
@@ -136,15 +174,21 @@
     {:else if el.type === 'waymark'}
       {@const isLetter = 'ABCD'.includes(el.mark)}
       {@const color = WAYMARK_COLORS[el.mark]}
-      <g opacity={dimOpacity(el) * 0.6}>
+      {@const wmSize = el.size ?? 8}
+      {@const wmR = wmSize / 2}
+      {@const wmFont = wmSize * 0.65}
+      <g opacity={dimOpacity(el)}>
         {#if isLetter}
-          <circle cx={el.x} cy={el.y} r="4" fill="none" stroke={color} stroke-width="0.35" />
+          <circle cx={el.x} cy={el.y} r={wmR}
+            stroke={color} stroke-width={wmSize * 0.06} />
         {:else}
-          <rect x={el.x-3.6} y={el.y-3.6} width="7.2" height="7.2"
-            fill="none" stroke={color} stroke-width="0.35" rx="0.3" />
+          <rect x={el.x - wmR} y={el.y - wmR} width={wmSize} height={wmSize} fill-opacity="0.2"
+            stroke={color} stroke-width={wmSize * 0.06} rx={wmSize * 0.08} />
         {/if}
         <text x={el.x} y={el.y} text-anchor="middle" dominant-baseline="central"
-          fill={color} font-size="4" font-weight="bold" font-family="'Noto Sans', sans-serif"
+          fill="white" stroke={color}  stroke-width={wmFont * 0.08}
+          paint-order="stroke fill" baseline-shift="2%"
+          font-size={wmFont} font-weight="normal" font-family="'Noto Sans', sans-serif"
         >{el.mark}</text>
       </g>
 
@@ -175,7 +219,7 @@
           stroke={highlightJob && roleMatch ? 'white' : 'white'}
           stroke-width={highlightJob && roleMatch ? 0.8 : 0.25} />
         <text x={el.x} y={el.y} text-anchor="middle" dominant-baseline="central" baseline-shift="2%"
-          fill="white" font-size={jobLabel.length > 2 ? 3.5 : 5} font-weight="bold" font-family="'Noto Sans', sans-serif"
+          fill="white" font-size={jobLabel.length > 1 ? 5 : 6} font-weight="bold" font-family="'Noto Sans', sans-serif"
         >{jobLabel}</text>
         {#if el.marker}
           <polyline
@@ -191,14 +235,24 @@
             {#if def}
               <image
                 href={`/icons/status/${def.iconFile}`}
-                x={el.x + off.dx - 2.5} y={el.y + off.dy - 2.5}
-                width="5" height="5"
+                x={el.x + off.dx - 3} y={el.y + off.dy - 7}
+                width="8" height="10"
               >
                 <title>{def.name}</title>
               </image>
             {/if}
           {/each}
         {/if}
+      </g>
+
+    {:else if el.type === 'lc'}
+      {@const color = lcNumberColor(el.num)}
+      <g opacity={dimOpacity(el)}>
+        <circle cx={el.x} cy={el.y} r="6" fill="white"
+          stroke={color} stroke-width="1" />
+        <text x={el.x} y={el.y} text-anchor="middle" dominant-baseline="central" baseline-shift="2%"
+          fill={color} font-size="6" font-weight="bold" font-family="'Noto Sans', sans-serif"
+        >{el.num}</text>
       </g>
 
     {:else if el.type === 'debuff'}

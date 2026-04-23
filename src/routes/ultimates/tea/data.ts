@@ -2257,7 +2257,7 @@ export const teaFightConfig: FightConfig = {
 	useMainPageTabs: true,
 	defaultStratName: 'naur',
 	timeline: [],
-	posterEnabled: false,
+	posterEnabled: true,
 	posterLayout: teaPosterLayout,
 	roleOptions: [
 		{ label: 'MT', role: 'Tank', party: 1 },

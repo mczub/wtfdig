@@ -4,13 +4,18 @@
     type ArenaDiagramData,
     type ArenaElement,
     type ArenaShape,
+    type LcNumber,
     type PlayerCorner,
     type PlayerJob,
     type WaymarkName,
     ROLE_COLORS,
     WAYMARK_COLORS,
     SQUARE_MARKERS,
-    CIRCLE_MARKERS
+    CIRCLE_MARKERS,
+    squareMarkersAround,
+    circleMarkersAround,
+    teaMarkers,
+    lcNumberColor
   } from '$lib/arena';
   import { DEBUFFS, type DebuffId } from '$lib/debuffs';
   import { Copy, Crosshair, Trash2, Plus, RotateCcw } from '@lucide/svelte/icons';
@@ -130,10 +135,14 @@
         return { type: 'boss', x, y };
       case 'waymark':
         return { type: 'waymark', mark: (subtype ?? 'A') as WaymarkName, x, y };
+      case 'lc':
+        return { type: 'lc', num: (Number(subtype) || 1) as LcNumber, x, y };
       case 'aoe-circle':
         return { type: 'aoe', shape: 'circle', x, y, r: 12 };
       case 'aoe-rect':
         return { type: 'aoe', shape: 'rect', x, y, w: 20, h: 20 };
+      case 'aoe-cone':
+        return { type: 'aoe', shape: 'cone', x, y, r: 25, angle: 90, rotation: 0 };
       case 'arena-square':
         return { type: 'arena', shape: 'square', x, y, w: 50, h: 50 };
       case 'arena-circle':
@@ -344,9 +353,17 @@
         case 'boss':
           imports.add('boss');
           return `  boss(${el.x}, ${el.y}${el.rotation ? `, ${el.rotation}` : ''})`;
-        case 'waymark':
+        case 'lc':
+          imports.add('lcPlayer');
+          return `  lcPlayer(${el.num}, ${el.x}, ${el.y}${el.id ? `, '${el.id}'` : ''})`;
+        case 'waymark': {
           imports.add('waymark');
-          return `  waymark('${el.mark}', ${el.x}, ${el.y})`;
+          const opts: string[] = [];
+          if (el.size != null) opts.push(`size: ${el.size}`);
+          if (el.id) opts.push(`id: '${el.id}'`);
+          const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
+          return `  waymark('${el.mark}', ${el.x}, ${el.y}${optsStr})`;
+        }
         case 'aoe':
           if (el.shape === 'circle') {
             imports.add('aoeCircle');
@@ -355,7 +372,7 @@
             if (el.opacity != null) opts.push(`opacity: ${el.opacity}`);
             const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
             return `  aoeCircle(${el.x}, ${el.y}, ${el.r}${optsStr})`;
-          } else {
+          } else if (el.shape === 'rect') {
             imports.add('aoeRect');
             const opts: string[] = [];
             if (el.rotation) opts.push(`rotation: ${el.rotation}`);
@@ -363,6 +380,15 @@
             if (el.opacity != null) opts.push(`opacity: ${el.opacity}`);
             const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
             return `  aoeRect(${el.x}, ${el.y}, ${el.w}, ${el.h}${optsStr})`;
+          } else {
+            imports.add('aoeCone');
+            const opts: string[] = [];
+            if (el.angle != null) opts.push(`angle: ${el.angle}`);
+            if (el.rotation) opts.push(`rotation: ${el.rotation}`);
+            if (el.color) opts.push(`color: '${el.color}'`);
+            if (el.opacity != null) opts.push(`opacity: ${el.opacity}`);
+            const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
+            return `  aoeCone(${el.x}, ${el.y}, ${el.r}${optsStr})`;
           }
         case 'tether':
           imports.add('tether');
@@ -387,6 +413,8 @@
             if (el.bgColor) opts.push(`bgColor: '${el.bgColor}'`);
             if (el.borderColor) opts.push(`borderColor: '${el.borderColor}'`);
             if (el.showCrosshairs === false) opts.push('showCrosshairs: false');
+            if (el.markers) opts.push(`markers: '${el.markers}'`);
+            if (el.markerSize != null) opts.push(`markerSize: ${el.markerSize}`);
             const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
             return `  arenaShape('${el.shape}', ${el.x}, ${el.y}, ${el.w}, ${el.h}${optsStr})`;
           }
@@ -495,9 +523,21 @@
     for (const m of code.matchAll(new RegExp(`boss\\(\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*(${N}))?\\s*\\)`, 'g'))) {
       els.push({ type: 'boss', x: +m[1], y: +m[2], rotation: m[3] ? +m[3] : undefined });
     }
-    // Parse waymark('M', x, y)
-    for (const m of code.matchAll(new RegExp(`waymark\\(\\s*'(\\w)'\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*\\)`, 'g'))) {
-      els.push({ type: 'waymark', mark: m[1] as WaymarkName, x: +m[2], y: +m[3] });
+    // Parse lcPlayer(num, x, y, 'id'?)
+    for (const m of code.matchAll(new RegExp(`lcPlayer\\(\\s*([1-8])\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*'(\\w+)')?\\s*\\)`, 'g'))) {
+      els.push({ type: 'lc', num: Number(m[1]) as LcNumber, x: +m[2], y: +m[3], id: m[4] });
+    }
+    // Parse waymark('M', x, y, { opts? })
+    for (const m of code.matchAll(new RegExp(`waymark\\(\\s*'(\\w)'\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`, 'g'))) {
+      const opts = parseInlineOpts(m[4]);
+      els.push({
+        type: 'waymark',
+        mark: m[1] as WaymarkName,
+        x: +m[2],
+        y: +m[3],
+        size: opts.size as number | undefined,
+        id: opts.id as string | undefined
+      });
     }
     // Parse aoeCircle(x, y, r, { opts })
     for (const m of code.matchAll(new RegExp(`aoeCircle\\(\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`, 'g'))) {
@@ -508,6 +548,11 @@
     for (const m of code.matchAll(new RegExp(`aoeRect\\(\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`, 'g'))) {
       const opts = parseInlineOpts(m[5]);
       els.push({ type: 'aoe', shape: 'rect', x: +m[1], y: +m[2], w: +m[3], h: +m[4], ...opts });
+    }
+    // Parse aoeCone(x, y, r, { opts })
+    for (const m of code.matchAll(new RegExp(`aoeCone\\(\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`, 'g'))) {
+      const opts = parseInlineOpts(m[4]);
+      els.push({ type: 'aoe', shape: 'cone', x: +m[1], y: +m[2], r: +m[3], ...opts });
     }
     // Parse tether(x1, y1, x2, y2, { opts })
     for (const m of code.matchAll(new RegExp(`tether\\(\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`, 'g'))) {
@@ -540,6 +585,21 @@
       els.push(...SQUARE_MARKERS.map(w => ({ ...w })));
     } else if (code.includes('CIRCLE_MARKERS')) {
       els.push(...CIRCLE_MARKERS.map(w => ({ ...w })));
+    }
+    // Expand ...squareMarkersAround(cx, cy, w, h, { opts? })
+    for (const m of code.matchAll(new RegExp(`squareMarkersAround\\(\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`, 'g'))) {
+      const opts = parseInlineOpts(m[5]);
+      els.push(...squareMarkersAround(+m[1], +m[2], +m[3], +m[4], opts).map(w => ({ ...w })));
+    }
+    // Expand ...circleMarkersAround(cx, cy, w, h, { opts? })
+    for (const m of code.matchAll(new RegExp(`circleMarkersAround\\(\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`, 'g'))) {
+      const opts = parseInlineOpts(m[5]);
+      els.push(...circleMarkersAround(+m[1], +m[2], +m[3], +m[4], opts).map(w => ({ ...w })));
+    }
+    // Expand ...teaMarkers(cx, cy, w, h, { opts? })
+    for (const m of code.matchAll(new RegExp(`teaMarkers\\(\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`, 'g'))) {
+      const opts = parseInlineOpts(m[5]);
+      els.push(...teaMarkers(+m[1], +m[2], +m[3], +m[4], opts).map(w => ({ ...w })));
     }
 
     // Parse diagram-level opts
@@ -613,7 +673,8 @@
   let copiedJson = $state(false);
 
   const playerJobs: PlayerJob[] = ['MT', 'OT', 'H1', 'H2', 'M1', 'M2', 'R1', 'R2'];
-  const genericJobs: PlayerJob[] = ['DPS', 'SUP', 'G1', 'G2', 'ANY'];
+  const genericJobs: PlayerJob[] = ['T', 'H', 'DPS', 'SUP', 'G1', 'G2', 'ANY'];
+  const lcNumbers: LcNumber[] = [1, 2, 3, 4, 5, 6, 7, 8];
   const waymarkNames: WaymarkName[] = ['A', 'B', 'C', 'D', '1', '2', '3', '4'];
 </script>
 
@@ -680,12 +741,12 @@
           onclick={handleCanvasClick}
         >
           {#each elements as el, i}
-            {#if el.type === 'player' || el.type === 'boss' || el.type === 'waymark' || el.type === 'text'}
+            {#if el.type === 'player' || el.type === 'boss' || el.type === 'waymark' || el.type === 'text' || el.type === 'lc'}
               <!-- svelte-ignore a11y_no_static_element_interactions -->
               <circle
                 cx={el.x * scale}
                 cy={el.y * scale}
-                r={el.type === 'boss' ? 14 : el.type === 'player' ? 7 : 4}
+                r={el.type === 'boss' ? 14 : el.type === 'player' || el.type === 'lc' ? 7 : 4}
                 fill="transparent"
                 stroke={selected.has(i) ? '#22d3ee' : 'transparent'}
                 stroke-width="0.6"
@@ -718,6 +779,19 @@
                 stroke-width="0.6"
                 stroke-dasharray="1.5,1"
                 transform={el.rotation ? `rotate(${el.rotation} ${el.x * scale} ${el.y * scale})` : undefined}
+                class="cursor-move"
+                onmousedown={(e) => handleElementMouseDown(i, e)}
+              />
+            {:else if el.type === 'aoe' && el.shape === 'cone'}
+              <!-- svelte-ignore a11y_no_static_element_interactions -->
+              <circle
+                cx={el.x * scale}
+                cy={el.y * scale}
+                r={el.r * scale}
+                fill="transparent"
+                stroke={selected.has(i) ? '#22d3ee' : 'transparent'}
+                stroke-width="0.6"
+                stroke-dasharray="1.5,1"
                 class="cursor-move"
                 onmousedown={(e) => handleElementMouseDown(i, e)}
               />
@@ -834,6 +908,17 @@
           {/each}
         </div>
         <div class="flex flex-wrap gap-1">
+          {#each lcNumbers as num}
+            <button
+              class="btn btn-sm px-2 py-1 text-xs border font-bold bg-white"
+              style:border-color={lcNumberColor(num)}
+              style:color={lcNumberColor(num)}
+              title="Limit Cut {num}"
+              onclick={() => startPlace('lc', String(num))}
+            >{num}</button>
+          {/each}
+        </div>
+        <div class="flex flex-wrap gap-1">
           {#each waymarkNames as mark}
             <button
               class="btn btn-sm px-2 py-1 text-xs border font-bold"
@@ -851,6 +936,7 @@
           <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('boss')}>Boss</button>
           <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('aoe-circle')}>AoE Circle</button>
           <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('aoe-rect')}>AoE Rect</button>
+          <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('aoe-cone')}>AoE Cone</button>
           <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('arrow')}>Arrow</button>
           <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('tether')}>Line/Tether</button>
           <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('text')}>Text</button>
@@ -905,6 +991,7 @@
             <span class="font-semibold text-sm capitalize text-surface-100">{selectedElement.type}
               {#if selectedElement.type === 'player'}<span style:color={ROLE_COLORS[selectedElement.job]}> {selectedElement.job}</span>{/if}
               {#if selectedElement.type === 'waymark'}<span style:color={WAYMARK_COLORS[selectedElement.mark]}> {selectedElement.mark}</span>{/if}
+              {#if selectedElement.type === 'lc'}<span style:color={lcNumberColor(selectedElement.num)}> {selectedElement.num}</span>{/if}
             </span>
             <div class="flex gap-1">
               <button class="btn btn-sm preset-tonal-surface p-1" onclick={centerSelected} title="Center & round to 2 decimals">
@@ -1022,6 +1109,30 @@
               </div>
             </div>
           {/if}
+          {#if selectedElement.type === 'lc'}
+            <label class="text-xs text-surface-400">
+              Number
+              <select
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                value={selectedElement.num}
+                onchange={(e) => updateElement('num', Number(e.currentTarget.value))}
+              >
+                {#each lcNumbers as n}
+                  <option value={n}>{n}</option>
+                {/each}
+              </select>
+            </label>
+          {/if}
+          {#if selectedElement.type === 'waymark'}
+            <label class="text-xs text-surface-400">
+              Size
+              <input type="number" min="1" max="40" step="0.5"
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                value={selectedElement.size ?? 8}
+                oninput={(e) => updateElement('size', Number(e.currentTarget.value))}
+              />
+            </label>
+          {/if}
           {#if selectedElement.type === 'debuff'}
             <label class="text-xs text-surface-400">
               Debuff
@@ -1054,6 +1165,35 @@
               />
             </label>
           {/if}
+          {#if selectedElement.type === 'aoe' && selectedElement.shape === 'cone'}
+            <label class="text-xs text-surface-400">
+              Range
+              <input type="number" min="1" max="200" step="0.5"
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                value={selectedElement.r}
+                oninput={(e) => updateElement('r', Number(e.currentTarget.value))}
+              />
+            </label>
+            <div class="grid grid-cols-2 gap-2">
+              <label class="text-xs text-surface-400">
+                Spread (deg)
+                <input type="number" min="1" max="360" step="1"
+                  class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                  value={selectedElement.angle ?? 90}
+                  oninput={(e) => updateElement('angle', Number(e.currentTarget.value))}
+                />
+              </label>
+              <label class="text-xs text-surface-400">
+                Facing (deg, 0=N)
+                <input type="number" min="0" max="360" step="1"
+                  class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                  value={selectedElement.rotation ?? 0}
+                  oninput={(e) => updateElement('rotation', Number(e.currentTarget.value))}
+                />
+              </label>
+            </div>
+          {/if}
+
           {#if selectedElement.type === 'aoe' && selectedElement.shape === 'rect'}
             <div class="grid grid-cols-2 gap-2">
               <label class="text-xs text-surface-400">
@@ -1209,6 +1349,32 @@
               />
               Show crosshairs
             </label>
+            <div class="grid grid-cols-2 gap-2">
+              <label class="text-xs text-surface-400">
+                Markers
+                <select
+                  class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                  value={selectedElement.markers ?? ''}
+                  onchange={(e) => updateElement('markers', e.currentTarget.value || undefined)}
+                >
+                  <option value="">None</option>
+                  <option value="square">Square (A/B/C/D + 1-4)</option>
+                  <option value="circle">Circle (A/B/C/D + 1-4)</option>
+                  <option value="tea">TEA (PF Trines)</option>
+                </select>
+              </label>
+              {#if selectedElement.markers}
+                <label class="text-xs text-surface-400">
+                  Marker size
+                  <input type="number" min="1" max="40" step="0.5"
+                    class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                    value={selectedElement.markerSize ?? ''}
+                    placeholder="auto"
+                    oninput={(e) => updateElement('markerSize', e.currentTarget.value === '' ? undefined : Number(e.currentTarget.value))}
+                  />
+                </label>
+              {/if}
+            </div>
           {/if}
 
           {#if selectedElement.type === 'boss'}
@@ -1301,6 +1467,7 @@
               <span class="capitalize font-mono text-surface-400">{el.type}</span>
               {#if el.type === 'player'}<span class="font-bold" style:color={ROLE_COLORS[el.job]}>{el.job}</span>{/if}
               {#if el.type === 'waymark'}<span class="font-bold" style:color={WAYMARK_COLORS[el.mark]}>{el.mark}</span>{/if}
+              {#if el.type === 'lc'}<span class="font-bold" style:color={lcNumberColor(el.num)}>{el.num}</span>{/if}
               {#if el.type === 'text'}<span class="truncate text-surface-300">"{el.text.split('\n')[0]}"</span>{/if}
               {#if el.type === 'debuff'}<span class="truncate text-surface-300">{el.debuffId}</span>{/if}
               {#if 'x' in el}<span class="text-surface-500 ml-auto font-mono">({el.x},{el.y})</span>{/if}
