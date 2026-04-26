@@ -27,6 +27,8 @@
   let party: number | undefined = $state();
   let alliance: Alliance | undefined = $state();
   let strat = $derived(getCurrentStrat());
+  let pendingHash: string | null = null;
+  let retryScheduled = false;
 
   function getCurrentStrat(): Strat | undefined {
     if (!stratName) return undefined;
@@ -124,8 +126,25 @@
       getStratMechs,
       keys: stratKeys
     });
-    replaceState(`#${stratCode}`, {});
     localStorage.setItem(stratStorageKey, stratCode);
+    pendingHash = stratCode;
+    flushPendingHash();
+  }
+
+  function flushPendingHash() {
+    if (pendingHash === null) return;
+    try {
+      replaceState(`#${pendingHash}`, {});
+      pendingHash = null;
+    } catch {
+      if (!retryScheduled) {
+        retryScheduled = true;
+        requestAnimationFrame(() => {
+          retryScheduled = false;
+          flushPendingHash();
+        });
+      }
+    }
   }
 
   function selectStrat(value: string) {

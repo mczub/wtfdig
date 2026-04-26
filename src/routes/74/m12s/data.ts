@@ -4490,6 +4490,7 @@ const modifiedStrat: Strat = {
       tag: 'idyllic',
       description: {
         dn: '',
+        dnuptime: '',
         caro: '',
         caroUptime: 'ℹ️ The only difference between Hector Uptime Caro and Caro is Defam placement in Clones II (NW/NE instead of N/S)',
         cozy: 'ℹ️ The only difference between Cozy and DN is the Defam/Stack placement in Clones and Tethers II',
