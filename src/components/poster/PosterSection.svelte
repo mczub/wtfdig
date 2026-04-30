@@ -10,6 +10,15 @@
   }
 
   let { section, highlightJob, jobLabels }: Props = $props();
+
+  let active: string[] = $state([]);
+  let renderData = $derived(
+    active.length ? { ...section.arena, activeToggles: active } : section.arena
+  );
+
+  function toggle(id: string) {
+    active = active.includes(id) ? active.filter((x) => x !== id) : [...active, id];
+  }
 </script>
 
 <div
@@ -20,15 +29,30 @@
 >
   <!-- Section header -->
   <div
-    class="px-2 py-0.5 font-bold text-base text-white shrink-0"
+    class="px-2 py-0.5 font-bold text-base text-white shrink-0 flex items-center justify-between gap-2"
     style:color={section.accentColor}
     style:font-family="'Roboto Condensed', sans-serif"
   >
-    {section.title}
+    <span>{section.title}</span>
+    {#if section.arena.groups?.some((g) => g.toggle)}
+      <span class="flex items-center gap-1">
+        {#each section.arena.groups.filter((g) => g.toggle) as g}
+          <button
+            type="button"
+            class="text-[10px] px-1.5 py-0.5 rounded border transition-colors"
+            class:bg-white={active.includes(g.id)}
+            class:text-black={active.includes(g.id)}
+            class:text-white={!active.includes(g.id)}
+            style:border-color={section.accentColor}
+            onclick={() => toggle(g.id)}
+          >{g.label ?? g.id}</button>
+        {/each}
+      </span>
+    {/if}
   </div>
 
   <!-- Arena diagram -->
   <div class="flex-1 min-h-0 overflow-hidden bg-black/30 p-1">
-    <ArenaRenderer data={section.arena} highlight={section.highlight} gridW={section.w} gridH={section.h} {highlightJob} {jobLabels} />
+    <ArenaRenderer data={renderData} highlight={section.highlight} gridW={section.w} gridH={section.h} {highlightJob} {jobLabels} />
   </div>
 </div>

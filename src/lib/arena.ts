@@ -188,7 +188,7 @@ export interface DebuffElement {
   id?: string;
 }
 
-export type ArenaElement =
+export type ArenaElement = (
   | PlayerElement
   | LcPlayerElement
   | BossElement
@@ -200,7 +200,38 @@ export type ArenaElement =
   | ArrowElement
   | TextElement
   | ArenaShapeElement
-  | DebuffElement;
+  | DebuffElement
+) & {
+  /** Optional group membership; matches a `GroupDef.id` on the diagram. */
+  groupId?: string;
+};
+
+/** Transform applied to a group, resolved around its pivot. */
+export interface GroupTransform {
+  /** Rotation in degrees, around the group's pivot. */
+  rotate?: number;
+  /** Translation in arena % units, as [dx, dy]. */
+  translate?: [number, number];
+  /** Uniform scale around the group's pivot. */
+  scale?: number;
+}
+
+/**
+ * A named group of elements with a transform. Elements reference the group
+ * via `groupId`. The `transform` is always applied; the `toggle` transform
+ * is applied only when the group's id appears in `activeToggles`.
+ */
+export interface GroupDef {
+  id: string;
+  /** Short label surfaced by toggle UIs (defaults to `id`). */
+  label?: string;
+  /** Pivot point for rotate/scale, in arena % units. Defaults to (50, 50). */
+  pivot?: { x: number; y: number };
+  /** Transform applied whenever elements in this group are rendered. */
+  transform?: GroupTransform;
+  /** Transform applied when this group's id is in `activeToggles`. */
+  toggle?: GroupTransform;
+}
 
 export interface ArenaDiagramData {
   arena: ArenaShape;
@@ -209,6 +240,10 @@ export interface ArenaDiagramData {
   highlight?: string[]; // element IDs to spotlight
   title?: string;
   scale?: number; // scales all element sizes (default 1)
+  /** Group definitions referenced by `ArenaElement.groupId`. */
+  groups?: GroupDef[];
+  /** IDs of groups whose `toggle` transform should currently be applied. */
+  activeToggles?: string[];
 }
 
 // --- Color constants ---
@@ -365,9 +400,49 @@ export function arenaShape(
 export function diagram(
   arena: ArenaShape,
   elements: ArenaElement[],
-  opts?: { bgColor?: string; highlight?: string[]; title?: string; scale?: number }
+  opts?: {
+    bgColor?: string;
+    highlight?: string[];
+    title?: string;
+    scale?: number;
+    groups?: GroupDef[];
+    activeToggles?: string[];
+  }
 ): ArenaDiagramData {
   return { arena, elements, ...opts };
+}
+
+/** Tags every element in `els` with the given `groupId`. */
+export function inGroup(groupId: string, els: ArenaElement[]): ArenaElement[] {
+  return els.map((e) => ({ ...e, groupId }));
+}
+
+/** Defines a group. Equivalent to an object literal; exists for symmetry with other helpers. */
+export function groupDef(id: string, opts?: Omit<GroupDef, 'id'>): GroupDef {
+  return { id, ...opts };
+}
+
+/**
+ * Builds an SVG `transform` attribute value for a GroupTransform around
+ * the given pivot. Returns an empty string when nothing applies.
+ */
+export function groupTransformString(
+  t: GroupTransform | undefined,
+  pivot: { x: number; y: number }
+): string {
+  if (!t) return '';
+  const parts: string[] = [];
+  if (t.translate && (t.translate[0] !== 0 || t.translate[1] !== 0)) {
+    parts.push(`translate(${t.translate[0]} ${t.translate[1]})`);
+  }
+  if (t.rotate) {
+    parts.push(`rotate(${t.rotate} ${pivot.x} ${pivot.y})`);
+  }
+  if (t.scale != null && t.scale !== 1) {
+    // Scale around pivot: translate to origin, scale, translate back.
+    parts.push(`translate(${pivot.x} ${pivot.y}) scale(${t.scale}) translate(${-pivot.x} ${-pivot.y})`);
+  }
+  return parts.join(' ');
 }
 
 // --- Standard waymark presets ---

@@ -4,6 +4,8 @@
     type ArenaDiagramData,
     type ArenaElement,
     type ArenaShape,
+    type GroupDef,
+    type GroupTransform,
     type LcNumber,
     type PlayerCorner,
     type PlayerJob,
@@ -31,6 +33,8 @@
   let gridH: number = $state(4);
   let scale: number = $state(1);
   let elements: ArenaElement[] = $state([]);
+  let groups: GroupDef[] = $state([]);
+  let activeToggles: string[] = $state([]);
   let selected: Set<number> = $state(new Set());
   let placingType: string | null = $state(null);
   let placingSubtype: string | null = $state(null);
@@ -44,7 +48,9 @@
     elements,
     title: title || undefined,
     bgColor: showBackground ? undefined : 'transparent',
-    scale: scale !== 1 ? scale : undefined
+    scale: scale !== 1 ? scale : undefined,
+    groups: groups.length ? groups : undefined,
+    activeToggles: activeToggles.length ? activeToggles : undefined
   });
 
   // For the property panel: only show when exactly one element is selected
@@ -319,7 +325,56 @@
 
   function clearAll() {
     elements = [];
+    groups = [];
+    activeToggles = [];
     selected = new Set();
+  }
+
+  // --- Groups ---
+  function addGroup() {
+    let n = groups.length + 1;
+    let id = `group${n}`;
+    while (groups.some((g) => g.id === id)) { n++; id = `group${n}`; }
+    groups = [...groups, { id, label: id, pivot: { x: 50, y: 50 }, toggle: { rotate: 180 } }];
+  }
+
+  function removeGroup(id: string) {
+    groups = groups.filter((g) => g.id !== id);
+    activeToggles = activeToggles.filter((x) => x !== id);
+    // Detach elements from this group
+    elements = elements.map((el) => (el.groupId === id ? { ...el, groupId: undefined } : el));
+  }
+
+  function renameGroup(oldId: string, newId: string) {
+    if (!newId || newId === oldId) return;
+    if (groups.some((g) => g.id === newId)) return; // collision
+    groups = groups.map((g) => (g.id === oldId ? { ...g, id: newId } : g));
+    elements = elements.map((el) => (el.groupId === oldId ? { ...el, groupId: newId } : el));
+    activeToggles = activeToggles.map((x) => (x === oldId ? newId : x));
+  }
+
+  function updateGroup(id: string, patch: Partial<GroupDef>) {
+    groups = groups.map((g) => (g.id === id ? { ...g, ...patch } : g));
+  }
+
+  function updateGroupTransform(id: string, which: 'transform' | 'toggle', patch: Partial<GroupTransform>) {
+    groups = groups.map((g) => {
+      if (g.id !== id) return g;
+      const current = g[which] ?? {};
+      const next: GroupTransform = { ...current, ...patch };
+      // Normalize — strip empty arrays/zero scale so output stays tidy
+      if (next.translate && next.translate[0] === 0 && next.translate[1] === 0) delete next.translate;
+      if (next.rotate === 0) delete next.rotate;
+      if (next.scale === 1) delete next.scale;
+      const hasAny = next.rotate != null || next.translate != null || next.scale != null;
+      return { ...g, [which]: hasAny ? next : undefined };
+    });
+  }
+
+  function toggleActive(id: string) {
+    activeToggles = activeToggles.includes(id)
+      ? activeToggles.filter((x) => x !== id)
+      : [...activeToggles, id];
   }
 
   // --- Code generation ---
@@ -441,38 +496,87 @@
       }
     });
 
-    // Check if all 8 waymarks are present as standard preset
+    // Partition element indices: ungrouped first, then per-group
+    const groupedByGid: Map<string, number[]> = new Map();
+    const ungroupedIdx: number[] = [];
+    elements.forEach((el, i) => {
+      if (el.groupId) {
+        if (!groupedByGid.has(el.groupId)) groupedByGid.set(el.groupId, []);
+        groupedByGid.get(el.groupId)!.push(i);
+      } else {
+        ungroupedIdx.push(i);
+      }
+    });
+
+    // Check if all 8 waymarks are present *among ungrouped* as standard preset
     const hasAllWaymarks = (['A', 'B', 'C', 'D', '1', '2', '3', '4'] as const).every((m) =>
-      elements.some((e) => e.type === 'waymark' && e.mark === m)
+      ungroupedIdx.some((i) => {
+        const e = elements[i];
+        return e.type === 'waymark' && e.mark === m;
+      })
     );
     if (hasAllWaymarks) {
       imports.add(arenaShape === 'square' ? 'SQUARE_MARKERS' : 'CIRCLE_MARKERS');
     }
 
-    const importStr = `import { ${[...imports].join(', ')} } from '$lib/arena';`;
-    const lines: string[] = [importStr, '', `// Grid: ${gridW}w × ${gridH}h`];
+    const lines: string[] = [`// Grid: ${gridW}w × ${gridH}h`];
 
     const diagramOpts: string[] = [];
     if (title) diagramOpts.push(`title: '${title}'`);
     if (!showBackground) diagramOpts.push(`bgColor: 'transparent'`);
     if (scale !== 1) diagramOpts.push(`scale: ${scale}`);
+    if (groups.length) {
+      const groupStrs = groups.map(formatGroup);
+      diagramOpts.push(`groups: [${groupStrs.join(', ')}]`);
+    }
+    if (activeToggles.length) {
+      diagramOpts.push(`activeToggles: [${activeToggles.map((x) => `'${x}'`).join(', ')}]`);
+    }
     const optsStr = diagramOpts.length > 0 ? `, { ${diagramOpts.join(', ')} }` : '';
 
     lines.push(`diagram('${arenaShape}', [`);
 
     if (hasAllWaymarks) {
       lines.push(`  ...${arenaShape === 'square' ? 'SQUARE_MARKERS' : 'CIRCLE_MARKERS'},`);
-      for (let idx = 0; idx < elStrs.length; idx++) {
-        if (elements[idx].type !== 'waymark') lines.push(elStrs[idx] + ',');
+      for (const i of ungroupedIdx) {
+        if (elements[i].type !== 'waymark') lines.push(elStrs[i] + ',');
       }
     } else {
-      for (const str of elStrs) {
-        lines.push(str + ',');
+      for (const i of ungroupedIdx) {
+        lines.push(elStrs[i] + ',');
       }
     }
 
+    for (const [gid, idxs] of groupedByGid) {
+      imports.add('inGroup');
+      lines.push(`  ...inGroup('${gid}', [`);
+      for (const i of idxs) {
+        lines.push('  ' + elStrs[i] + ',');
+      }
+      lines.push('  ]),');
+    }
+
     lines.push(`]${optsStr})`);
-    return lines.join('\n');
+
+    const importStr = `import { ${[...imports].join(', ')} } from '$lib/arena';`;
+    return [importStr, '', ...lines].join('\n');
+  }
+
+  function formatGroup(g: GroupDef): string {
+    const parts: string[] = [`id: '${g.id}'`];
+    if (g.label && g.label !== g.id) parts.push(`label: '${g.label}'`);
+    if (g.pivot) parts.push(`pivot: { x: ${g.pivot.x}, y: ${g.pivot.y} }`);
+    if (g.transform) parts.push(`transform: ${formatGroupTransform(g.transform)}`);
+    if (g.toggle) parts.push(`toggle: ${formatGroupTransform(g.toggle)}`);
+    return `{ ${parts.join(', ')} }`;
+  }
+
+  function formatGroupTransform(t: GroupTransform): string {
+    const p: string[] = [];
+    if (t.rotate != null && t.rotate !== 0) p.push(`rotate: ${t.rotate}`);
+    if (t.translate) p.push(`translate: [${t.translate[0]}, ${t.translate[1]}]`);
+    if (t.scale != null && t.scale !== 1) p.push(`scale: ${t.scale}`);
+    return `{ ${p.join(', ')} }`;
   }
 
   function copyCode() {
@@ -485,12 +589,199 @@
   let jsonImport = $state('');
   let jsonError = $state('');
 
+  // --- Balanced-bracket scanners for group-aware parsing ---
+
+  /** Scan forward from `start` in `src` and return the index just after the
+   *  balanced closer, honoring nested brackets and simple single-quote strings. */
+  function scanBalanced(src: string, start: number, open: string, close: string): number {
+    let depth = 1;
+    let i = start;
+    while (i < src.length && depth > 0) {
+      const c = src[i];
+      if (c === open) depth++;
+      else if (c === close) depth--;
+      else if (c === "'") {
+        i++;
+        while (i < src.length && src[i] !== "'") {
+          if (src[i] === '\\') i++;
+          i++;
+        }
+      }
+      if (depth > 0) i++;
+    }
+    return i;
+  }
+
+  /** Finds `key: [body]` or `key: {body}` with balanced brackets. Returns body + outer range. */
+  function findBracketedField(
+    src: string,
+    key: string,
+    open: '[' | '{'
+  ): { body: string; range: [number, number] } | null {
+    const close = open === '[' ? ']' : '}';
+    const re = new RegExp(`\\b${key}\\s*:\\s*\\${open}`);
+    const m = re.exec(src);
+    if (!m) return null;
+    const bodyStart = m.index + m[0].length;
+    const bodyEnd = scanBalanced(src, bodyStart, open, close);
+    return { body: src.slice(bodyStart, bodyEnd), range: [m.index, bodyEnd + 1] };
+  }
+
+  function scrubRange(src: string, range: [number, number]): string {
+    let end = range[1];
+    while (end < src.length && /[\s,]/.test(src[end])) end++;
+    return src.slice(0, range[0]) + src.slice(end);
+  }
+
+  /** Splits a body like `{ ... }, { ... }` into the individual object bodies (inside the braces). */
+  function splitTopLevelObjects(body: string): string[] {
+    const out: string[] = [];
+    let depth = 0;
+    let start = -1;
+    for (let i = 0; i < body.length; i++) {
+      const c = body[i];
+      if (c === '{') {
+        if (depth === 0) start = i + 1;
+        depth++;
+      } else if (c === '}') {
+        depth--;
+        if (depth === 0 && start >= 0) {
+          out.push(body.slice(start, i));
+          start = -1;
+        }
+      } else if (c === "'") {
+        i++;
+        while (i < body.length && body[i] !== "'") {
+          if (body[i] === '\\') i++;
+          i++;
+        }
+      }
+    }
+    return out;
+  }
+
+  /** Finds the opts block body inside `diagram(..., [...], { <body> })` with balanced braces. */
+  function findOptsBody(code: string): string | null {
+    const m = code.match(/\]\s*,\s*\{/);
+    if (!m || m.index == null) return null;
+    const bodyStart = m.index + m[0].length;
+    const bodyEnd = scanBalanced(code, bodyStart, '{', '}');
+    return code.slice(bodyStart, bodyEnd);
+  }
+
+  /** Extracts `...inGroup('id', [ body ])` ranges, returning the stripped source + blocks. */
+  function extractInGroupBlocks(code: string): { stripped: string; blocks: { id: string; body: string }[] } {
+    const blocks: { id: string; body: string }[] = [];
+    const ranges: { start: number; end: number }[] = [];
+    const openRe = /\.\.\.inGroup\s*\(\s*'([^']+)'\s*,\s*\[/g;
+    let m: RegExpExecArray | null;
+    while ((m = openRe.exec(code)) !== null) {
+      const id = m[1];
+      const bodyStart = m.index + m[0].length;
+      const bodyEnd = scanBalanced(code, bodyStart, '[', ']');
+      // Advance past `)` following the `]`
+      let afterClose = bodyEnd + 1;
+      while (afterClose < code.length && code[afterClose] !== ')') afterClose++;
+      afterClose++;
+      blocks.push({ id, body: code.slice(bodyStart, bodyEnd) });
+      ranges.push({ start: m.index, end: afterClose });
+      openRe.lastIndex = afterClose;
+    }
+    let stripped = '';
+    let cursor = 0;
+    for (const r of ranges) {
+      stripped += code.slice(cursor, r.start);
+      cursor = r.end;
+      while (cursor < code.length && /[\s,]/.test(code[cursor])) cursor++;
+    }
+    stripped += code.slice(cursor);
+    return { stripped, blocks };
+  }
+
+  function parseGroupTransformObject(body: string): GroupTransform {
+    const t: GroupTransform = {};
+    const r = body.match(/\brotate\s*:\s*(-?[\d.]+)/);
+    if (r) t.rotate = +r[1];
+    const tr = body.match(/\btranslate\s*:\s*\[\s*(-?[\d.]+)\s*,\s*(-?[\d.]+)\s*\]/);
+    if (tr) t.translate = [+tr[1], +tr[2]];
+    const sc = body.match(/\bscale\s*:\s*(-?[\d.]+)/);
+    if (sc) t.scale = +sc[1];
+    return t;
+  }
+
+  function parseGroupObject(body: string): GroupDef | null {
+    const idMatch = body.match(/\bid\s*:\s*'([^']+)'/);
+    if (!idMatch) return null;
+    const labelMatch = body.match(/\blabel\s*:\s*'([^']+)'/);
+    const pivotField = findBracketedField(body, 'pivot', '{');
+    let pivot: { x: number; y: number } | undefined;
+    if (pivotField) {
+      const x = pivotField.body.match(/\bx\s*:\s*(-?[\d.]+)/);
+      const y = pivotField.body.match(/\by\s*:\s*(-?[\d.]+)/);
+      if (x && y) pivot = { x: +x[1], y: +y[1] };
+    }
+    const transformField = findBracketedField(body, 'transform', '{');
+    const toggleField = findBracketedField(body, 'toggle', '{');
+    return {
+      id: idMatch[1],
+      label: labelMatch?.[1],
+      pivot,
+      transform: transformField ? parseGroupTransformObject(transformField.body) : undefined,
+      toggle: toggleField ? parseGroupTransformObject(toggleField.body) : undefined
+    };
+  }
+
   function parseCodeImport(code: string): ArenaDiagramData | null {
     // Match diagram('shape', [...], { opts })
     const diagramMatch = code.match(/diagram\(\s*'(square|circle)'\s*,\s*\[/);
     if (!diagramMatch) return null;
 
     const shape = diagramMatch[1] as ArenaShape;
+
+    // Extract inGroup blocks first; tag their elements with groupId, parse remainder as ungrouped.
+    const { stripped, blocks } = extractInGroupBlocks(code);
+    const els: ArenaElement[] = [];
+    for (const b of blocks) {
+      const inner = parseElementsFromCode(b.body);
+      for (const e of inner) (e as { groupId?: string }).groupId = b.id;
+      els.push(...inner);
+    }
+    els.push(...parseElementsFromCode(stripped));
+
+    // Opts: extract groups + activeToggles via balanced scans, then parse the remaining simple keys.
+    const optsBody = findOptsBody(code);
+    const groupsList: GroupDef[] = [];
+    let activeTogglesList: string[] = [];
+    let simpleOptsSrc = optsBody ?? '';
+    if (optsBody) {
+      const groupsField = findBracketedField(optsBody, 'groups', '[');
+      if (groupsField) {
+        for (const obj of splitTopLevelObjects(groupsField.body)) {
+          const g = parseGroupObject(obj);
+          if (g) groupsList.push(g);
+        }
+        simpleOptsSrc = scrubRange(simpleOptsSrc, groupsField.range);
+      }
+      const togField = findBracketedField(simpleOptsSrc, 'activeToggles', '[');
+      if (togField) {
+        activeTogglesList = [...togField.body.matchAll(/'([^']+)'/g)].map((m) => m[1]);
+        simpleOptsSrc = scrubRange(simpleOptsSrc, togField.range);
+      }
+    }
+    const diagramOpts = parseInlineOpts(simpleOptsSrc);
+
+    return {
+      arena: shape,
+      elements: els,
+      title: diagramOpts.title as string | undefined,
+      bgColor: diagramOpts.bgColor as string | undefined,
+      scale: diagramOpts.scale as number | undefined,
+      groups: groupsList.length ? groupsList : undefined,
+      activeToggles: activeTogglesList.length ? activeTogglesList : undefined
+    };
+  }
+
+  function parseElementsFromCode(code: string): ArenaElement[] {
     const els: ArenaElement[] = [];
 
     const N = '-?[\\d.]+'; // number pattern (int or float)
@@ -602,17 +893,7 @@
       els.push(...teaMarkers(+m[1], +m[2], +m[3], +m[4], opts).map(w => ({ ...w })));
     }
 
-    // Parse diagram-level opts
-    const optsMatch = code.match(/\]\s*,\s*\{([^}]*)\}\s*\)/);
-    const diagramOpts = parseInlineOpts(optsMatch?.[1]);
-
-    return {
-      arena: shape,
-      elements: els,
-      title: diagramOpts.title as string | undefined,
-      bgColor: diagramOpts.bgColor as string | undefined,
-      scale: diagramOpts.scale as number | undefined
-    };
+    return els;
   }
 
   function parseInlineOpts(str: string | undefined): Record<string, any> {
@@ -656,6 +937,8 @@
     showBackground = data.bgColor !== 'transparent';
     scale = data.scale ?? 1;
     elements = data.elements ?? [];
+    groups = data.groups ?? [];
+    activeToggles = data.activeToggles ?? [];
     selected = new Set();
     jsonError = '';
     jsonImport = '';
@@ -1436,12 +1719,154 @@
               oninput={(e) => updateElement('id', e.currentTarget.value || undefined)}
             />
           </label>
+          <label class="text-xs text-surface-400">
+            Group
+            <select
+              class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+              value={selectedElement.groupId ?? ''}
+              onchange={(e) => updateElement('groupId', e.currentTarget.value || undefined)}
+            >
+              <option value="">None</option>
+              {#each groups as g}
+                <option value={g.id}>{g.label ?? g.id}</option>
+              {/each}
+            </select>
+          </label>
         </div>
       {:else}
         <div class="card border border-surface-600 p-3 bg-surface-900 text-sm text-surface-400">
           Click an element to select it, or use the palette to add new elements.
         </div>
       {/if}
+
+      <!-- Groups -->
+      <div class="card border border-surface-600 p-3 bg-surface-900 space-y-2">
+        <div class="flex justify-between items-center">
+          <span class="text-sm font-semibold text-surface-200">Groups</span>
+          <button class="btn btn-sm preset-tonal-primary text-xs" onclick={addGroup}>
+            <Plus size={12} /> Add
+          </button>
+        </div>
+        {#if groups.length === 0}
+          <div class="text-xs text-surface-500">
+            Groups rotate/translate/scale a set of elements around a pivot. Assign elements to a group via the property panel.
+          </div>
+        {/if}
+        {#each groups as g (g.id)}
+          {@const memberCount = elements.filter((el) => el.groupId === g.id).length}
+          <div class="border border-surface-700 rounded p-2 space-y-1 bg-surface-950/50">
+            <div class="flex items-center gap-1">
+              <input
+                type="text"
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs flex-1 font-mono"
+                value={g.id}
+                onchange={(e) => renameGroup(g.id, e.currentTarget.value.trim())}
+                title="Group id"
+              />
+              <input
+                type="text"
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs flex-1"
+                value={g.label ?? ''}
+                placeholder="Label"
+                oninput={(e) => updateGroup(g.id, { label: e.currentTarget.value || undefined })}
+              />
+              <label class="flex items-center gap-1 text-xs text-surface-400 cursor-pointer whitespace-nowrap" title="Preview toggle">
+                <input
+                  type="checkbox"
+                  class="accent-primary-500"
+                  checked={activeToggles.includes(g.id)}
+                  onchange={() => toggleActive(g.id)}
+                />
+                On
+              </label>
+              <button
+                class="btn btn-sm preset-tonal-error text-xs p-1"
+                title="Delete group"
+                onclick={() => removeGroup(g.id)}
+              >
+                <Trash2 size={12} />
+              </button>
+            </div>
+            <div class="text-xs text-surface-500">{memberCount} member{memberCount === 1 ? '' : 's'}</div>
+            <div class="grid grid-cols-2 gap-1">
+              <label class="text-xs text-surface-400">
+                Pivot X
+                <input
+                  type="number" step="0.5"
+                  class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs w-full"
+                  value={g.pivot?.x ?? 50}
+                  oninput={(e) => updateGroup(g.id, { pivot: { x: Number(e.currentTarget.value), y: g.pivot?.y ?? 50 } })}
+                />
+              </label>
+              <label class="text-xs text-surface-400">
+                Pivot Y
+                <input
+                  type="number" step="0.5"
+                  class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs w-full"
+                  value={g.pivot?.y ?? 50}
+                  oninput={(e) => updateGroup(g.id, { pivot: { x: g.pivot?.x ?? 50, y: Number(e.currentTarget.value) } })}
+                />
+              </label>
+            </div>
+            {#each ['transform', 'toggle'] as const as which}
+              {@const t = g[which] ?? {}}
+              <div class="border-t border-surface-800 pt-1">
+                <div class="text-xs text-surface-400 mb-0.5 capitalize">{which === 'toggle' ? 'Toggle transform' : 'Default transform'}</div>
+                <div class="grid grid-cols-4 gap-1">
+                  <label class="text-xs text-surface-500">
+                    Rot
+                    <input
+                      type="number" step="1"
+                      class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs w-full"
+                      value={t.rotate ?? ''}
+                      placeholder="0"
+                      oninput={(e) => updateGroupTransform(g.id, which, { rotate: e.currentTarget.value === '' ? undefined : Number(e.currentTarget.value) })}
+                    />
+                  </label>
+                  <label class="text-xs text-surface-500">
+                    Tx
+                    <input
+                      type="number" step="0.5"
+                      class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs w-full"
+                      value={t.translate?.[0] ?? ''}
+                      placeholder="0"
+                      oninput={(e) => {
+                        const tx = e.currentTarget.value === '' ? 0 : Number(e.currentTarget.value);
+                        const ty = t.translate?.[1] ?? 0;
+                        updateGroupTransform(g.id, which, { translate: tx === 0 && ty === 0 ? undefined : [tx, ty] });
+                      }}
+                    />
+                  </label>
+                  <label class="text-xs text-surface-500">
+                    Ty
+                    <input
+                      type="number" step="0.5"
+                      class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs w-full"
+                      value={t.translate?.[1] ?? ''}
+                      placeholder="0"
+                      oninput={(e) => {
+                        const ty = e.currentTarget.value === '' ? 0 : Number(e.currentTarget.value);
+                        const tx = t.translate?.[0] ?? 0;
+                        updateGroupTransform(g.id, which, { translate: tx === 0 && ty === 0 ? undefined : [tx, ty] });
+                      }}
+                    />
+                  </label>
+                  <label class="text-xs text-surface-500">
+                    Scale
+                    <input
+                      type="number" step="0.05" min="0.1"
+                      class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs w-full"
+                      value={t.scale ?? ''}
+                      placeholder="1"
+                      oninput={(e) => updateGroupTransform(g.id, which, { scale: e.currentTarget.value === '' ? undefined : Number(e.currentTarget.value) })}
+                    />
+                  </label>
+                </div>
+              </div>
+            {/each}
+          </div>
+        {/each}
+      </div>
 
       <!-- Element list -->
       <div class="card border border-surface-600 p-3 bg-surface-900 space-y-1">

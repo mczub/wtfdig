@@ -5,8 +5,11 @@
     jobMatchesRole,
     lcNumberColor,
     markersForArena,
+    groupTransformString,
     type ArenaDiagramData,
     type ArenaElement,
+    type GroupDef,
+    type GroupTransform,
     type PlayerJob
   } from '$lib/arena';
   import { getDebuff } from '$lib/debuffs';
@@ -59,15 +62,89 @@
     br: { dx: 5, dy: 5 }
   };
 
+  // Element types whose text/icon contents should not rotate with a group transform —
+  // only their (x, y) positions move. Other types (arena, aoe, tether, arrow, boss)
+  // still get a full SVG transform wrapper so their geometry rotates/scales too.
+  const POSITION_ONLY_TYPES = new Set(['player', 'lc', 'waymark', 'debuff', 'text']);
+
+  function applyTransformToPoint(
+    t: GroupTransform | undefined,
+    pivot: { x: number; y: number },
+    x: number,
+    y: number
+  ): { x: number; y: number } {
+    if (!t) return { x, y };
+    let nx = x;
+    let ny = y;
+    if (t.translate) {
+      nx += t.translate[0];
+      ny += t.translate[1];
+    }
+    if (t.rotate) {
+      const rad = (t.rotate * Math.PI) / 180;
+      const dx = nx - pivot.x;
+      const dy = ny - pivot.y;
+      nx = pivot.x + dx * Math.cos(rad) - dy * Math.sin(rad);
+      ny = pivot.y + dx * Math.sin(rad) + dy * Math.cos(rad);
+    }
+    if (t.scale != null && t.scale !== 1) {
+      nx = pivot.x + (nx - pivot.x) * t.scale;
+      ny = pivot.y + (ny - pivot.y) * t.scale;
+    }
+    return { x: nx, y: ny };
+  }
+
+  let groupsById = $derived.by(() => {
+    const map = new Map<string, GroupDef>();
+    for (const g of data.groups ?? []) map.set(g.id, g);
+    return map;
+  });
+
+  function bakePointForGroup(groupId: string, x: number, y: number): { x: number; y: number } {
+    const g = groupsById.get(groupId);
+    if (!g) return { x, y };
+    const pivot = g.pivot ?? { x: 50, y: 50 };
+    let p = applyTransformToPoint(g.transform, pivot, x, y);
+    const active = new Set(data.activeToggles ?? []);
+    if (active.has(g.id)) p = applyTransformToPoint(g.toggle, pivot, p.x, p.y);
+    return p;
+  }
+
   let expandedElements = $derived.by(() => {
     const out: ArenaElement[] = [];
+    const pushResolved = (el: ArenaElement) => {
+      if (el.groupId && POSITION_ONLY_TYPES.has(el.type)) {
+        const baked = bakePointForGroup(el.groupId, (el as any).x, (el as any).y);
+        const { groupId, ...rest } = el as any;
+        out.push({ ...rest, x: baked.x, y: baked.y } as ArenaElement);
+      } else {
+        out.push(el);
+      }
+    };
     for (const el of data.elements) {
-      out.push(el);
+      pushResolved(el);
       if (el.type === 'arena' && el.markers) {
-        out.push(...markersForArena(el.markers, el.x, el.y, el.w, el.h, el.markerSize));
+        const markers = markersForArena(el.markers, el.x, el.y, el.w, el.h, el.markerSize);
+        for (const m of markers) {
+          pushResolved(el.groupId ? ({ ...m, groupId: el.groupId } as ArenaElement) : m);
+        }
       }
     }
     return out;
+  });
+
+  let groupTransforms = $derived.by(() => {
+    const map = new Map<string, string>();
+    if (!data.groups?.length) return map;
+    const active = new Set(data.activeToggles ?? []);
+    for (const g of data.groups) {
+      const pivot = g.pivot ?? { x: 50, y: 50 };
+      const base = groupTransformString(g.transform, pivot);
+      const tog = active.has(g.id) ? groupTransformString(g.toggle, pivot) : '';
+      const combined = [base, tog].filter(Boolean).join(' ');
+      if (combined) map.set(g.id, combined);
+    }
+    return map;
   });
 
   function effectiveZ(el: ArenaElement): number {
@@ -111,6 +188,8 @@
 
   <g transform="scale({s})">
   {#each sortedElements as el}
+    {@const gt = el.groupId ? groupTransforms.get(el.groupId) : undefined}
+    <g transform={gt || undefined}>
     {#if el.type === 'arena'}
       {@const bg = el.bgColor ?? '#2a2420'}
       {@const bd = el.borderColor ?? '#4a4a4a'}
@@ -283,6 +362,7 @@
         {/each}
       </text>
     {/if}
+    </g>
   {/each}
 
   {#if data.title}

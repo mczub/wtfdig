@@ -1,5 +1,5 @@
 import type { PosterLayout } from '$lib/types';
-import { diagram, player, boss, arenaShape, aoeCircle, aoeRect, text, arrow, circleMarkersAround, teaMarkers, debuff, tether, waymark, lcPlayer, aoeCone } from '$lib/arena';
+import { diagram, player, boss, arenaShape, aoeCircle, aoeRect, text, arrow, circleMarkersAround, teaMarkers, debuff, tether, waymark, lcPlayer, aoeCone, inGroup } from '$lib/arena';
 
 export const teaPosterLayout: PosterLayout = {
   cols: 16,
@@ -226,28 +226,34 @@ export const teaPosterLayout: PosterLayout = {
       col: 9, row: 6, w: 3, h: 5,
       accentColor: '#e91e63',
       arena: diagram('circle', [
-        arenaShape('circle', 50, 50, 80, 50),
-        lcPlayer(2, 70.67, 20.01),
-        aoeCircle(74.33, 57.01, 14, { color: '#8c00ff' }),
-        aoeCircle(27.33, 43.34, 14, { color: '#8c00ff' }),
-        lcPlayer(5, 15.01, 38.33),
-        lcPlayer(7, 19, 29),
-        lcPlayer(3, 25.67, 75.67),
-        lcPlayer(4, 74.67, 76.33),
-        boss(15, 11, 135),
-        boss(85, 10.67, 225),
-        lcPlayer(6, 88, 39),
-        lcPlayer(8, 83.67, 33.33),
-        aoeRect(48.33, 21.34, 52, 12, { rotation: 358 }),
-        aoeRect(49.32, 75.67, 52, 12, { rotation: 1 }),
-        lcPlayer(1, 24, 22),
+        ...inGroup('flip', [
+          arenaShape('circle', 50, 50, 80, 50),
+          lcPlayer(2, 70.67, 20.01),
+          aoeCircle(74.33, 57.01, 14, { color: '#8c00ff' }),
+          aoeCircle(27.33, 43.34, 14, { color: '#8c00ff' }),
+          lcPlayer(5, 15.01, 38.33),
+          lcPlayer(7, 19, 29),
+          lcPlayer(3, 25.67, 75.67),
+          lcPlayer(4, 74.67, 76.33),
+          boss(15, 11, 135),
+          boss(85, 10.67, 225),
+          lcPlayer(6, 88, 39),
+          lcPlayer(8, 83.67, 33.33),
+          aoeRect(48.33, 21.34, 52, 12, { rotation: 358 }),
+          aoeRect(49.32, 75.67, 52, 12, { rotation: 1 }),
+          lcPlayer(1, 24, 22),
+        ]),
         text('3/4 Bait Super Jump on Red Dot\n1/2 Stay on Red Dot to bait Apoc Ray\nPuddle soaks are 5+6, 7+8, 1+2', 50, 104.33, { fontSize: 6 }),
         text('Enumerations', 48, 125.33, { fontSize: 8 }),
         player('T', 40, 138),
         text('East', 50, 138, { fontSize: 7, anchor: 'start' }),
         player('H', 40, 154),
         text('West', 50, 154, { fontSize: 7, anchor: 'start' }),
-      ], { bgColor: 'transparent', scale: 0.75 })
+      ], {
+        bgColor: 'transparent',
+        scale: 0.75,
+        groups: [{ id: 'flip', label: '↻ Alex North', pivot: { x: 50, y: 50 }, toggle: { rotate: 180 } }]
+      })
 
     },
     {
