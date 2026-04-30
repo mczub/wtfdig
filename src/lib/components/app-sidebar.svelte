@@ -17,6 +17,18 @@
 
   const navItems = [
     {
+      title: 'Patch 7.5',
+      url: '#',
+      defaultOpen: true,
+      items: [
+        {
+          title: 'The Unmaking (EX8)',
+          subtitle: 'Extreme',
+          url: '/75/ex8'
+        }
+      ]
+    },
+    {
       title: 'Patch 7.4',
       url: '#',
       defaultOpen: true,
