@@ -110,6 +110,20 @@
     return p;
   }
 
+  let groupTransforms = $derived.by(() => {
+    const map = new Map<string, string>();
+    if (!data.groups?.length) return map;
+    const active = new Set(data.activeToggles ?? []);
+    for (const g of data.groups) {
+      const pivot = g.pivot ?? { x: 50, y: 50 };
+      const base = groupTransformString(g.transform, pivot);
+      const tog = active.has(g.id) ? groupTransformString(g.toggle, pivot) : '';
+      const combined = [base, tog].filter(Boolean).join(' ');
+      if (combined) map.set(g.id, combined);
+    }
+    return map;
+  });
+
   let expandedElements = $derived.by(() => {
     const out: ArenaElement[] = [];
     const pushResolved = (el: ArenaElement) => {
@@ -117,6 +131,11 @@
         const baked = bakePointForGroup(el.groupId, (el as any).x, (el as any).y);
         const { groupId, ...rest } = el as any;
         out.push({ ...rest, x: baked.x, y: baked.y } as ArenaElement);
+      } else if (el.type === 'boss' && el.name && el.groupId && groupTransforms.has(el.groupId)) {
+        // Boss in a transformed group: render the circle/arrow inside the group
+        // (so it rotates/translates with siblings) but strip the name — it will
+        // be rendered separately as an upright overlay at the baked position.
+        out.push({ ...el, name: undefined } as ArenaElement);
       } else {
         out.push(el);
       }
@@ -133,18 +152,15 @@
     return out;
   });
 
-  let groupTransforms = $derived.by(() => {
-    const map = new Map<string, string>();
-    if (!data.groups?.length) return map;
-    const active = new Set(data.activeToggles ?? []);
-    for (const g of data.groups) {
-      const pivot = g.pivot ?? { x: 50, y: 50 };
-      const base = groupTransformString(g.transform, pivot);
-      const tog = active.has(g.id) ? groupTransformString(g.toggle, pivot) : '';
-      const combined = [base, tog].filter(Boolean).join(' ');
-      if (combined) map.set(g.id, combined);
+  let bossNameOverlays = $derived.by(() => {
+    const out: Array<{ x: number; y: number; text: string; opacity: number }> = [];
+    for (const el of data.elements) {
+      if (el.type !== 'boss' || !el.name || !el.groupId) continue;
+      if (!groupTransforms.has(el.groupId)) continue;
+      const baked = bakePointForGroup(el.groupId, el.x, el.y);
+      out.push({ x: baked.x, y: baked.y, text: el.name, opacity: dimOpacity(el) });
     }
-    return map;
+    return out;
   });
 
   function effectiveZ(el: ArenaElement): number {
@@ -288,6 +304,14 @@
         <!-- Front arrow at 12 o'clock -->
         <polygon points="{el.x},{el.y - r - 3} {el.x - 2},{el.y - r} {el.x + 2},{el.y - r}" fill="#dc2626" />
       </g>
+      {#if el.name}
+        {@const nameFs = el.name.length <= 2 ? 7 : el.name.length <= 5 ? 5 : 3.5}
+        <text x={el.x} y={el.y} text-anchor="middle" dominant-baseline="central" baseline-shift="2%"
+          fill="white" stroke="black" stroke-width={nameFs * 0.08} paint-order="stroke fill"
+          font-size={nameFs} font-weight="bold" font-family="'Roboto Condensed', sans-serif"
+          opacity={dimOpacity(el)}
+        >{el.name}</text>
+      {/if}
 
     {:else if el.type === 'player'}
       {@const color = ROLE_COLORS[el.job]}
@@ -363,6 +387,15 @@
       </text>
     {/if}
     </g>
+  {/each}
+
+  {#each bossNameOverlays as ov}
+    {@const nameFs = ov.text.length <= 2 ? 7 : ov.text.length <= 5 ? 5 : 3.5}
+    <text x={ov.x} y={ov.y} text-anchor="middle" dominant-baseline="central" baseline-shift="2%"
+      fill="white" stroke="black" stroke-width={nameFs * 0.08} paint-order="stroke fill"
+      font-size={nameFs} font-weight="bold" font-family="'Roboto Condensed', sans-serif"
+      opacity={ov.opacity}
+    >{ov.text}</text>
   {/each}
 
   {#if data.title}

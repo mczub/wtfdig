@@ -229,7 +229,7 @@
         style:width={`${baseW * posterScale}px`}
         style:height={`${baseH * posterScale}px`}
       >
-        <PosterGrid {layout} sections={resolvedSections} bind:posterRef {highlightJob} {jobLabels} />
+        <PosterGrid {layout} sections={resolvedSections} bind:posterRef {highlightJob} {jobLabels} storagePrefix={config.fightKey} />
       </div>
     </div>
   {/snippet}

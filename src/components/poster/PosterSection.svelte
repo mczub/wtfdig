@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { onMount, untrack } from 'svelte';
   import type { PlayerJob } from '$lib/arena';
   import type { ResolvedPosterSection } from './types';
   import ArenaRenderer from './ArenaRenderer.svelte';
@@ -7,14 +8,48 @@
     section: ResolvedPosterSection;
     highlightJob?: PlayerJob;
     jobLabels?: Partial<Record<PlayerJob, string>>;
+    /** Stable identifier scoping localStorage persistence (e.g., fightKey). */
+    storagePrefix?: string;
   }
 
-  let { section, highlightJob, jobLabels }: Props = $props();
+  let { section, highlightJob, jobLabels, storagePrefix }: Props = $props();
 
   let active: string[] = $state([]);
+  let storageKey = $derived(
+    storagePrefix ? `wtfdig:poster:${storagePrefix}:${section.title}:toggles` : null
+  );
   let renderData = $derived(
     active.length ? { ...section.arena, activeToggles: active } : section.arena
   );
+
+  onMount(() => {
+    const key = untrack(() => storageKey);
+    if (!key || typeof localStorage === 'undefined') return;
+    try {
+      const raw = localStorage.getItem(key);
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      if (!Array.isArray(parsed)) return;
+      const valid = new Set(
+        (section.arena.groups ?? []).filter((g) => g.toggle).map((g) => g.id)
+      );
+      active = parsed.filter((x): x is string => typeof x === 'string' && valid.has(x));
+    } catch {
+      // Ignore corrupt entries; defaults to empty.
+    }
+  });
+
+  $effect(() => {
+    const key = storageKey;
+    const snapshot = active.slice();
+    if (!key || typeof localStorage === 'undefined') return;
+    try {
+      if (snapshot.length) localStorage.setItem(key, JSON.stringify(snapshot));
+      else localStorage.removeItem(key);
+    } catch {
+      // Quota or privacy mode — nothing to do.
+    }
+  });
 
   function toggle(id: string) {
     active = active.includes(id) ? active.filter((x) => x !== id) : [...active, id];
@@ -29,7 +64,7 @@
 >
   <!-- Section header -->
   <div
-    class="px-2 py-0.5 font-bold text-base text-white shrink-0 flex items-center justify-between gap-2"
+    class="pl-2 pr-0.5 py-0.5 font-bold text-base text-white shrink-0 flex items-center justify-between gap-2"
     style:color={section.accentColor}
     style:font-family="'Roboto Condensed', sans-serif"
   >
@@ -39,7 +74,7 @@
         {#each section.arena.groups.filter((g) => g.toggle) as g}
           <button
             type="button"
-            class="text-[10px] px-1.5 py-0.5 rounded border transition-colors"
+            class="text-[12px] px-1.5 py-0.5 rounded-sm border transition-colors"
             class:bg-white={active.includes(g.id)}
             class:text-black={active.includes(g.id)}
             class:text-white={!active.includes(g.id)}

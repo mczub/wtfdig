@@ -72,6 +72,8 @@ export interface BossElement {
   x: number;
   y: number;
   rotation?: number; // degrees, 0 = facing north (up)
+  /** Label rendered upright at the center of the boss circle. */
+  name?: string;
   id?: string;
 }
 
@@ -294,8 +296,16 @@ export function player(job: PlayerJob, x: number, y: number, opts?: string | { i
   return { type: 'player', job, x, y, ...opts };
 }
 
-export function boss(x: number, y: number, rotation?: number, id?: string): BossElement {
-  return { type: 'boss', x, y, rotation, id };
+export function boss(
+  x: number,
+  y: number,
+  rotationOrOpts?: number | { rotation?: number; name?: string; id?: string },
+  id?: string
+): BossElement {
+  if (typeof rotationOrOpts === 'object' && rotationOrOpts !== null) {
+    return { type: 'boss', x, y, ...rotationOrOpts };
+  }
+  return { type: 'boss', x, y, rotation: rotationOrOpts, id };
 }
 
 export function lcPlayer(num: LcNumber, x: number, y: number, id?: string): LcPlayerElement {

@@ -405,9 +405,17 @@
             }
             return `  player('${el.job}', ${el.x}, ${el.y})`;
           }
-        case 'boss':
+        case 'boss': {
           imports.add('boss');
+          if (el.name || el.id) {
+            const opts: string[] = [];
+            if (el.rotation) opts.push(`rotation: ${el.rotation}`);
+            if (el.name) opts.push(`name: '${el.name.replace(/'/g, "\\'")}'`);
+            if (el.id) opts.push(`id: '${el.id}'`);
+            return `  boss(${el.x}, ${el.y}, { ${opts.join(', ')} })`;
+          }
           return `  boss(${el.x}, ${el.y}${el.rotation ? `, ${el.rotation}` : ''})`;
+        }
         case 'lc':
           imports.add('lcPlayer');
           return `  lcPlayer(${el.num}, ${el.x}, ${el.y}${el.id ? `, '${el.id}'` : ''})`;
@@ -810,9 +818,23 @@
         corners: Object.keys(corners).length ? corners : undefined
       });
     }
-    // Parse boss(x, y, rotation?)
-    for (const m of code.matchAll(new RegExp(`boss\\(\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*(${N}))?\\s*\\)`, 'g'))) {
-      els.push({ type: 'boss', x: +m[1], y: +m[2], rotation: m[3] ? +m[3] : undefined });
+    // Parse boss(x, y, rotation?)  or  boss(x, y, { opts })
+    for (const m of code.matchAll(new RegExp(`boss\\(\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*(?:(${N})|\\{([^}]*)\\}))?\\s*\\)`, 'g'))) {
+      const x = +m[1];
+      const y = +m[2];
+      if (m[4] != null) {
+        const opts = parseInlineOpts(m[4]);
+        els.push({
+          type: 'boss',
+          x,
+          y,
+          rotation: opts.rotation as number | undefined,
+          name: opts.name as string | undefined,
+          id: opts.id as string | undefined
+        });
+      } else {
+        els.push({ type: 'boss', x, y, rotation: m[3] ? +m[3] : undefined });
+      }
     }
     // Parse lcPlayer(num, x, y, 'id'?)
     for (const m of code.matchAll(new RegExp(`lcPlayer\\(\\s*([1-8])\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*'(\\w+)')?\\s*\\)`, 'g'))) {
@@ -1661,14 +1683,24 @@
           {/if}
 
           {#if selectedElement.type === 'boss'}
-            <label class="text-xs text-surface-400">
-              Facing (rotation)
-              <input type="number" min="0" max="360" step="45"
-                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
-                value={selectedElement.rotation ?? 0}
-                oninput={(e) => updateElement('rotation', Number(e.currentTarget.value))}
-              />
-            </label>
+            <div class="grid grid-cols-2 gap-2">
+              <label class="text-xs text-surface-400">
+                Facing (rotation)
+                <input type="number" min="0" max="360" step="45"
+                  class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                  value={selectedElement.rotation ?? 0}
+                  oninput={(e) => updateElement('rotation', Number(e.currentTarget.value))}
+                />
+              </label>
+              <label class="text-xs text-surface-400">
+                Name (center label)
+                <input type="text"
+                  class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                  value={selectedElement.name ?? ''}
+                  oninput={(e) => updateElement('name', e.currentTarget.value || undefined)}
+                />
+              </label>
+            </div>
           {/if}
 
           {#if selectedElement.type === 'text'}

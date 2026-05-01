@@ -10,9 +10,11 @@
     posterRef?: HTMLDivElement;
     highlightJob?: PlayerJob;
     jobLabels?: Partial<Record<PlayerJob, string>>;
+    /** Stable identifier scoping per-section toggle persistence. */
+    storagePrefix?: string;
   }
 
-  let { layout, sections, posterRef = $bindable(), highlightJob, jobLabels }: Props = $props();
+  let { layout, sections, posterRef = $bindable(), highlightJob, jobLabels, storagePrefix }: Props = $props();
 
   let cols = $derived(layout.cols ?? 16);
   let rows = $derived(layout.rows ?? 9);
@@ -41,7 +43,7 @@
   {/if}
 
   {#each sections as section}
-    <PosterSection {section} {highlightJob} {jobLabels} />
+    <PosterSection {section} {highlightJob} {jobLabels} {storagePrefix} />
   {/each}
 </div>
 
