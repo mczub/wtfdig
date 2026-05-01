@@ -6,6 +6,7 @@
   import { Grid3x3, History, Hammer } from '@lucide/svelte';
 
   let openState = $state({
+    '75': true,
     '74': true,
     ultimates: true,
     '73': false,
@@ -65,8 +66,34 @@
           <div class="text-sm text-surface-400">M12S Idyllic Dream helper</div>
         </a>
       </div>
-      <!-- Left Column: Patch 7.4 + Ultimates -->
+      <!-- Left Column: Patch 7.5, 7.4 + Ultimates -->
       <div class="grid gap-4 content-start min-w-[330px]">
+        <div
+          class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
+        >
+          <button class="flex w-full items-center justify-between" onclick={() => toggle('75')}>
+            <div class="text-lg font-bold">Patch 7.5</div>
+            <ChevronDown
+              class="h-4 w-4 opacity-50 transition-transform duration-200 {openState['75']
+                ? 'rotate-180'
+                : ''}"
+            />
+          </button>
+          {#if openState['75']}
+            <div transition:slide class="flex flex-col gap-4">
+              <div class="flex flex-col">
+                <div class="text-left text-sm font-semibold mb-3">Extreme</div>
+                <div class="flex flex-col gap-4">
+                  <a
+                    href="{base}/75/ex8"
+                    class="btn preset-tonal-secondary border border-secondary-500"
+                    >The Unmaking (EX8)</a
+                  >
+                </div>
+              </div>
+            </div>
+          {/if}
+        </div>
         <div
           class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
         >

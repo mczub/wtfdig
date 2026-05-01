@@ -8,6 +8,7 @@
   </header>
   <article class="prose dark:prose-invert max-w-none">
     <div class="">
+      <div>4/30/2026: ex8</div>
       <div>4/21/2026: teage, ucob poster cheatsheet</div>
       <div>
         4/18/2026: cleanup and refactoring of ex4 + chaotic, add caro uptime to idyllic tool,
