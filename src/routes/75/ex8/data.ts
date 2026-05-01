@@ -1,9 +1,6 @@
 import type { Strat, FightConfig, StratRecord, PlayerMechStrat, MechanicStrat } from '$lib/types';
 import {
-  getStringObject,
-  getStratArray,
-  getCircleMaskUrl,
-  getRectMaskUrl
+  getCircleMaskUrl
 } from '$lib/utils';
 
 const hectorIntermission: MechanicStrat[] = [
@@ -632,11 +629,11 @@ export const ex8FightConfig: FightConfig = {
     {
       label: 'Hector',
       description:
-        '1-A Markers, Pairs on intercards (Supports rotate CCW), original pairs (Northmost/Southmost) for Intermission, CW-CW for Hunts'
+        '1-A Markers, Color pairs on intercards (Supports rotate), original pairs (Northmost/Southmost) for Intermission, CW-CW for Hunts'
     },
     {
       label: 'Modified',
-      description: 'A-1 Markers, Pairs on cardinals (DPS rotate CCW), Snake prio for Intermission, CW-CCW for Hunts'
+      description: 'A-1 Markers, Color pairs on cardinals (DPS rotate), Snake prio for Intermission, CW-CCW for Hunts'
     }
   ]
 };
