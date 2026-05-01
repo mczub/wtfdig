@@ -1000,49 +1000,49 @@ export const hector: Strat = {
               party: 2,
               description: 'South (C Marker)',
               imageUrl: './ex8/hector-meltdown-clocks.webp',
-              mask: getCircleMaskUrl(50, 76, 5)
+              mask: getCircleMaskUrl(50, 75, 5)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'West (D Marker)',
               imageUrl: './ex8/hector-meltdown-clocks.webp',
-              mask: getCircleMaskUrl(36, 50, 5)
+              mask: getCircleMaskUrl(36.5, 51, 5)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'East (B Marker)',
               imageUrl: './ex8/hector-meltdown-clocks.webp',
-              mask: getCircleMaskUrl(64, 50, 5)
+              mask: getCircleMaskUrl(66, 51, 5)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Southwest (4 Marker)',
               imageUrl: './ex8/hector-meltdown-clocks.webp',
-              mask: getCircleMaskUrl(43, 76, 5)
+              mask: getCircleMaskUrl(40, 68, 5)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Southeast (3 Marker)',
               imageUrl: './ex8/hector-meltdown-clocks.webp',
-              mask: getCircleMaskUrl(58, 76, 5)
+              mask: getCircleMaskUrl(60, 67, 5)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Northwest (1 Marker)',
               imageUrl: './ex8/hector-meltdown-clocks.webp',
-              mask: getCircleMaskUrl(42.8, 37.1, 5)
+              mask: getCircleMaskUrl(40.8, 35, 5)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Northeast (2 Marker)',
               imageUrl: './ex8/hector-meltdown-clocks.webp',
-              mask: getCircleMaskUrl(57.1, 37.1, 5)
+              mask: getCircleMaskUrl(60.2, 35, 5)
             }
           ]
         }
@@ -1136,28 +1136,28 @@ export const hector: Strat = {
               party: 1,
               description: 'Southwest with M1',
               imageUrl: './ex8/hector-airy.webp',
-              mask: getCircleMaskUrl(41, 65, 6)
+              mask: getCircleMaskUrl(41, 67, 6)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Northeast with R2',
               imageUrl: './ex8/hector-airy.webp',
-              mask: getCircleMaskUrl(59, 35, 6)
+              mask: getCircleMaskUrl(60, 34, 6)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Southwest with H1',
               imageUrl: './ex8/hector-airy.webp',
-              mask: getCircleMaskUrl(43, 73, 6)
+              mask: getCircleMaskUrl(41, 67, 6)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Southeast with OT',
               imageUrl: './ex8/hector-airy.webp',
-              mask: getCircleMaskUrl(58, 73, 6)
+              mask: getCircleMaskUrl(59, 65, 6)
             },
             {
               role: 'Ranged',
@@ -1171,7 +1171,7 @@ export const hector: Strat = {
               party: 2,
               description: 'Northeast with H2',
               imageUrl: './ex8/hector-airy.webp',
-              mask: getCircleMaskUrl(58, 38, 6)
+              mask: getCircleMaskUrl(60, 34, 6)
             }
           ]
         },
@@ -1871,56 +1871,56 @@ export const modified: Strat = {
               party: 1,
               description: 'North',
               imageUrl: './ex8/hector-meltdown-clocks.webp',
-              mask: getCircleMaskUrl(50, 28.3, 5)
+              mask: getCircleMaskUrl(50, 28, 5)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'South',
               imageUrl: './ex8/hector-meltdown-clocks.webp',
-              mask: getCircleMaskUrl(50, 80, 5)
+              mask: getCircleMaskUrl(50, 75, 5)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'West',
               imageUrl: './ex8/hector-meltdown-clocks.webp',
-              mask: getCircleMaskUrl(39.4, 50, 5)
+              mask: getCircleMaskUrl(36.5, 51, 5)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'East',
               imageUrl: './ex8/hector-meltdown-clocks.webp',
-              mask: getCircleMaskUrl(60.9, 50, 5)
+              mask: getCircleMaskUrl(66, 51, 5)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Southwest',
               imageUrl: './ex8/hector-meltdown-clocks.webp',
-              mask: getCircleMaskUrl(43, 76, 5)
+              mask: getCircleMaskUrl(40, 68, 5)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Southeast',
               imageUrl: './ex8/hector-meltdown-clocks.webp',
-              mask: getCircleMaskUrl(58, 76, 5)
+              mask: getCircleMaskUrl(60, 67, 5)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Northwest',
               imageUrl: './ex8/hector-meltdown-clocks.webp',
-              mask: getCircleMaskUrl(42.8, 37.1, 5)
+              mask: getCircleMaskUrl(40.8, 35, 5)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Northeast',
               imageUrl: './ex8/hector-meltdown-clocks.webp',
-              mask: getCircleMaskUrl(57.1, 37.1, 5)
+              mask: getCircleMaskUrl(60.2, 35, 5)
             }
           ]
         }
