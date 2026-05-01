@@ -579,7 +579,7 @@ export const ex8FightConfig: FightConfig = {
           label: 'Hector',
           url: {
             name: 'Hector',
-            url: 'https://www.youtube.com/watch?v=fGGI8MM-wKM'
+            url: 'https://www.youtube.com/watch?v=cA_WHJyXzyE'
           }
         },
         {
