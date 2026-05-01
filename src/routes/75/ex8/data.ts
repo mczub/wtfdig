@@ -642,7 +642,7 @@ export const hector: Strat = {
   stratName: 'hector',
   description: 'Source: Hector Hectorson',
   stratUrl: {
-    'Video by Hector Hectorson': 'https://www.youtube.com/watch?v=fGGI8MM-wKM'
+    'Video by Hector Hectorson': 'https://www.youtube.com/watch?v=cA_WHJyXzyE'
   },
   strats: [
     {
