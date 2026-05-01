@@ -564,7 +564,7 @@ export const ex8FightConfig: FightConfig = {
       }
     },
     modified: {
-      label: 'Modified',
+      label: 'Modified (1L_)',
       defaults: {
         intermission: 'snake',
         hunts: 'cwccw'
