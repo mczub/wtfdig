@@ -1993,7 +1993,7 @@ export const modified: Strat = {
         },
         {
           mechanic: 'Airy Emptiness',
-          description: 'Pair stacks on cardinals\nDPS rotate CCW',
+          description: 'Color partners on cardinals',
           strats: [
             {
               role: 'Tank',
