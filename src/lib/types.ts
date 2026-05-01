@@ -145,6 +145,7 @@ export interface FightConfig {
     description?: string;
     links: { text: string; url: string }[];
   };
+  stratDifferences?: { label: string; description: string }[];
   allianceOptions?: Alliance[];
   alignmentOptions?: { value: Alignment; label: string }[];
 }

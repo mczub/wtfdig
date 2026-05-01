@@ -5,7 +5,7 @@
   import { startSolitaireEffect, stopSolitaireEffect } from '$lib/solitaire';
   import ModernCheatsheet from './ModernCheatsheet.svelte';
   import PosterCheatsheet from '../poster/PosterCheatsheet.svelte';
-  import { ChevronUp, Copy, ExternalLink, Fullscreen, Grid3x3, Image, Info, Link } from '@lucide/svelte';
+  import { ChevronUp, CircleQuestionMark, Copy, ExternalLink, Fullscreen, Grid3x3, Image, Info, Link } from '@lucide/svelte';
   import ModernStratView from './ModernStratView.svelte';
   import ModernFightStratControls from './ModernFightStratControls.svelte';
   import FightStratState from './FightStratState.svelte';
@@ -436,16 +436,36 @@
                 {/if}
               </div>
             </div>
-            <div
-              class="card preset-outlined-primary-500 p-4 mb-6 w-fit flex flex-row gap-4 items-center"
-            >
-              <Info size={24} class="shrink-0" />
-              <div class="text-sm md:text-base text-warning-200">
-                <p>
-                  Some strats may be missing images or highlights. Please refer to original guides
-                  for full details.
-                </p>
+            <div class="flex flex-col gap-4 mb-6 items-start">
+              <div
+                class="card preset-outlined-primary-500 p-4 w-fit flex flex-row gap-4 items-center"
+              >
+                <Info size={24} class="shrink-0" />
+                <div class="text-sm md:text-base text-warning-200">
+                  <p>
+                    Some strats may be missing images or highlights. Please refer to original guides
+                    for full details.
+                  </p>
+                </div>
               </div>
+              {#if config.stratDifferences && config.stratDifferences.length > 0}
+                <div
+                  class="card preset-outlined-secondary-500 p-4 w-fit flex flex-col gap-2"
+                >
+                  <div class="flex flex-row gap-4 items-center text-sm md:text-base font-semibold">
+                    <CircleQuestionMark size={24} class="shrink-0" />
+                    <span>What's the difference between the strats?</span>
+                  </div>
+                  <ul class="text-sm md:text-base text-surface-100 flex flex-col gap-1">
+                    {#each config.stratDifferences as diff}
+                      <li>
+                        <span class="font-semibold text-surface">{diff.label}:</span>
+                        {diff.description}
+                      </li>
+                    {/each}
+                  </ul>
+                </div>
+              {/if}
             </div>
 
             <!-- Action Bar -->
