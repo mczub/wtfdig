@@ -958,24 +958,26 @@ const rawAxeDiagram = diagram('square', [
   player('R1', 15, 65),
   player('R2', 85, 65),
   player('M1', 40, 63),
-  player('M2', 60, 63),
-])
+  player('M2', 60, 63)
+]);
 
-const rawScytheDiagram = diagram('square', [
-  boss(50, 50, 315),
-  player('MT', 50, 79),
-  aoeRect(50, 50, 200, 30, { rotation: 45 }),
-  aoeRect(50, 50, 200, 30, { rotation: 135 }),
-  player('H1', 58, 89),
-  player('M1', 42, 88),
-  player('R1', 50, 94),
-  player('OT', 79, 50),
-  player('H2', 92, 38),
-  player('M2', 94, 50),
-  player('R2', 90, 62),
-], { bgColor: 'transparent' })
-
-
+const rawScytheDiagram = diagram(
+  'square',
+  [
+    boss(50, 50, 315),
+    player('MT', 50, 79),
+    aoeRect(50, 50, 200, 30, { rotation: 45 }),
+    aoeRect(50, 50, 200, 30, { rotation: 135 }),
+    player('H1', 58, 89),
+    player('M1', 42, 88),
+    player('R1', 50, 94),
+    player('OT', 79, 50),
+    player('H2', 92, 38),
+    player('M2', 94, 50),
+    player('R2', 90, 62)
+  ],
+  { bgColor: 'transparent' }
+);
 
 const toxicStrat: Strat = {
   stratName: 'toxic',

@@ -76,7 +76,9 @@
           {/if}
         {/if}
         <div class="whitespace-pre-wrap">
-          {@html mech?.strats?.[0]?.description ? renderDebuffTokens(mech.strats[0].description) : ''}
+          {@html mech?.strats?.[0]?.description
+            ? renderDebuffTokens(mech.strats[0].description)
+            : ''}
         </div>
       </div>
       {#if getImageModalUrl()}
@@ -88,10 +90,7 @@
             alt={mech?.mechanic || phase?.phaseName || 'Strategy image'}
           />
           {#if spotlight && getImageMask()}
-            <div
-              class="pointer-events-none w-full h-full"
-              style="grid-area: 1/1;"
-            >
+            <div class="pointer-events-none w-full h-full" style="grid-area: 1/1;">
               <SpotlightOverlay mask={getImageMask()} />
             </div>
           {/if}

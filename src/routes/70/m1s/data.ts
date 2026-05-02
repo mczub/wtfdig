@@ -33,31 +33,29 @@ export const hector: Strat = {
   stratUrl: {
     'The Hardest Mechanic in FFXIV History - Guide': 'https://www.youtube.com/watch?v=vJ-SlrIyVOk'
   },
-  description: 'The Hardest Mechanic in FFXIV History by Hector Hectorson (Courtesy Hector Hectorson)',
+  description:
+    'The Hardest Mechanic in FFXIV History by Hector Hectorson (Courtesy Hector Hectorson)',
   strats: [
     {
       phaseName: 'Mouser',
       mechs: [
         {
           mechanic: 'Setup',
-          description:
-            'Stand on 4 marker',
+          description: 'Stand on 4 marker',
           imageUrl: './m1s/hector-mouser.webp'
         },
         {
           mechanic: 'If 3 is hit once',
-          description:
-            'Wipe, GG go next',
+          description: 'Wipe, GG go next',
           imageUrl: './m1s/hector-3-once.webp'
         },
         {
           mechanic: 'If 3 is hit twice',
-          description:
-            'Damage down, good to go, wear that crown proudly',
+          description: 'Damage down, good to go, wear that crown proudly',
           imageUrl: './m1s/hector-3-twice.webp'
         }
       ]
-    },
+    }
   ]
 };
 

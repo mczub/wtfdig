@@ -46,7 +46,6 @@
   let selectedIndex = $derived(selected.size === 1 ? [...selected][0] : null);
   let selectedElement = $derived(selectedIndex !== null ? elements[selectedIndex] : null);
 
-
   // --- Coordinate conversion ---
   let svgEl: SVGSVGElement | undefined = $state();
 
@@ -111,7 +110,11 @@
     selected = new Set();
   }
 
-  function createTwoPointElement(type: string, from: { x: number; y: number }, to: { x: number; y: number }): ArenaElement | null {
+  function createTwoPointElement(
+    type: string,
+    from: { x: number; y: number },
+    to: { x: number; y: number }
+  ): ArenaElement | null {
     switch (type) {
       case 'arrow':
         return { type: 'arrow', x1: from.x, y1: from.y, x2: to.x, y2: to.y };
@@ -122,7 +125,12 @@
     }
   }
 
-  function createElementAt(type: string, subtype: string | null, x: number, y: number): ArenaElement | null {
+  function createElementAt(
+    type: string,
+    subtype: string | null,
+    x: number,
+    y: number
+  ): ArenaElement | null {
     switch (type) {
       case 'player':
         return { type: 'player', job: (subtype ?? 'MT') as PlayerJob, x, y };
@@ -196,7 +204,13 @@
         const start = startPositions.get(i);
         if (!start) return el;
         if ('x1' in start) {
-          return { ...el, x1: round2(start.x1 + dx), y1: round2(start.y1 + dy), x2: round2(start.x2 + dx), y2: round2(start.y2 + dy) } as ArenaElement;
+          return {
+            ...el,
+            x1: round2(start.x1 + dx),
+            y1: round2(start.y1 + dy),
+            x2: round2(start.x2 + dx),
+            y2: round2(start.y2 + dy)
+          } as ArenaElement;
         }
         return { ...el, x: round2(start.x + dx), y: round2(start.y + dy) } as ArenaElement;
       });
@@ -221,9 +235,7 @@
     const startCoords = svgCoords(e);
     if (!startCoords) return;
     const el = elements[index] as any;
-    const startPos = endpoint === 'start'
-      ? { x: el.x1, y: el.y1 }
-      : { x: el.x2, y: el.y2 };
+    const startPos = endpoint === 'start' ? { x: el.x1, y: el.y1 } : { x: el.x2, y: el.y2 };
 
     function onMove(me: MouseEvent) {
       const coords = svgCoords(me);
@@ -233,7 +245,13 @@
       const xKey = endpoint === 'start' ? 'x1' : 'x2';
       const yKey = endpoint === 'start' ? 'y1' : 'y2';
       elements = elements.map((el, i) =>
-        i === index ? { ...el, [xKey]: round2(startPos.x + dx), [yKey]: round2(startPos.y + dy) } as ArenaElement : el
+        i === index
+          ? ({
+              ...el,
+              [xKey]: round2(startPos.x + dx),
+              [yKey]: round2(startPos.y + dy)
+            } as ArenaElement)
+          : el
       );
     }
 
@@ -264,8 +282,10 @@
       // Two-point element: shift so midpoint lands at (cx, cy)
       const dx = cx - (el.x1 + el.x2) / 2;
       const dy = cy - (el.y1 + el.y2) / 2;
-      el.x1 += dx; el.y1 += dy;
-      el.x2 += dx; el.y2 += dy;
+      el.x1 += dx;
+      el.y1 += dy;
+      el.x2 += dx;
+      el.y2 += dy;
     } else if ('x' in el) {
       el.x = cx;
       el.y = cy;
@@ -469,7 +489,12 @@
     // Opts block allowing one level of nesting (for corners: { ... })
     const OPTS = '\\{((?:[^{}]|\\{[^{}]*\\})*)\\}';
     // Parse player('JOB', x, y, 'id'?) or player('JOB', x, y, { opts })
-    for (const m of code.matchAll(new RegExp(`player\\(\\s*'(\\w+)'\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*(?:'(\\w+)'|${OPTS}))?\\s*\\)`, 'g'))) {
+    for (const m of code.matchAll(
+      new RegExp(
+        `player\\(\\s*'(\\w+)'\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*(?:'(\\w+)'|${OPTS}))?\\s*\\)`,
+        'g'
+      )
+    )) {
       const rawOpts = m[5] ?? '';
       // Extract corners first, then strip it so parseInlineOpts sees simple keys
       const cornersMatch = rawOpts.match(/corners\s*:\s*\{([^}]*)\}/);
@@ -492,54 +517,101 @@
       });
     }
     // Parse boss(x, y, rotation?)
-    for (const m of code.matchAll(new RegExp(`boss\\(\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*(${N}))?\\s*\\)`, 'g'))) {
+    for (const m of code.matchAll(
+      new RegExp(`boss\\(\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*(${N}))?\\s*\\)`, 'g')
+    )) {
       els.push({ type: 'boss', x: +m[1], y: +m[2], rotation: m[3] ? +m[3] : undefined });
     }
     // Parse waymark('M', x, y)
-    for (const m of code.matchAll(new RegExp(`waymark\\(\\s*'(\\w)'\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*\\)`, 'g'))) {
+    for (const m of code.matchAll(
+      new RegExp(`waymark\\(\\s*'(\\w)'\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*\\)`, 'g')
+    )) {
       els.push({ type: 'waymark', mark: m[1] as WaymarkName, x: +m[2], y: +m[3] });
     }
     // Parse aoeCircle(x, y, r, { opts })
-    for (const m of code.matchAll(new RegExp(`aoeCircle\\(\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`, 'g'))) {
+    for (const m of code.matchAll(
+      new RegExp(
+        `aoeCircle\\(\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`,
+        'g'
+      )
+    )) {
       const opts = parseInlineOpts(m[4]);
       els.push({ type: 'aoe', shape: 'circle', x: +m[1], y: +m[2], r: +m[3], ...opts });
     }
     // Parse aoeRect(x, y, w, h, { opts })
-    for (const m of code.matchAll(new RegExp(`aoeRect\\(\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`, 'g'))) {
+    for (const m of code.matchAll(
+      new RegExp(
+        `aoeRect\\(\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`,
+        'g'
+      )
+    )) {
       const opts = parseInlineOpts(m[5]);
       els.push({ type: 'aoe', shape: 'rect', x: +m[1], y: +m[2], w: +m[3], h: +m[4], ...opts });
     }
     // Parse tether(x1, y1, x2, y2, { opts })
-    for (const m of code.matchAll(new RegExp(`tether\\(\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`, 'g'))) {
+    for (const m of code.matchAll(
+      new RegExp(
+        `tether\\(\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`,
+        'g'
+      )
+    )) {
       const opts = parseInlineOpts(m[5]);
       els.push({ type: 'tether', x1: +m[1], y1: +m[2], x2: +m[3], y2: +m[4], ...opts });
     }
     // Parse arrow(x1, y1, x2, y2, { opts })
-    for (const m of code.matchAll(new RegExp(`arrow\\(\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`, 'g'))) {
+    for (const m of code.matchAll(
+      new RegExp(
+        `arrow\\(\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`,
+        'g'
+      )
+    )) {
       const opts = parseInlineOpts(m[5]);
       els.push({ type: 'arrow', x1: +m[1], y1: +m[2], x2: +m[3], y2: +m[4], ...opts });
     }
     // Parse arenaShape('shape', x, y, w, h, { opts })
-    for (const m of code.matchAll(new RegExp(`arenaShape\\(\\s*'(square|circle|rect)'\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`, 'g'))) {
+    for (const m of code.matchAll(
+      new RegExp(
+        `arenaShape\\(\\s*'(square|circle|rect)'\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`,
+        'g'
+      )
+    )) {
       const opts = parseInlineOpts(m[6]);
-      els.push({ type: 'arena', shape: m[1] as 'square' | 'circle' | 'rect', x: +m[2], y: +m[3], w: +m[4], h: +m[5], ...opts });
+      els.push({
+        type: 'arena',
+        shape: m[1] as 'square' | 'circle' | 'rect',
+        x: +m[2],
+        y: +m[3],
+        w: +m[4],
+        h: +m[5],
+        ...opts
+      });
     }
     // Parse text('label', x, y, { opts })
-    for (const m of code.matchAll(new RegExp(`text\\(\\s*'([^']*)'\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`, 'g'))) {
+    for (const m of code.matchAll(
+      new RegExp(
+        `text\\(\\s*'([^']*)'\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`,
+        'g'
+      )
+    )) {
       const opts = parseInlineOpts(m[4]);
       const textContent = m[1].replace(/\\n/g, '\n');
       els.push({ type: 'text', text: textContent, x: +m[2], y: +m[3], ...opts });
     }
     // Parse debuff('id', x, y, { opts })
-    for (const m of code.matchAll(new RegExp(`debuff\\(\\s*'([\\w-]+)'\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`, 'g'))) {
+    for (const m of code.matchAll(
+      new RegExp(
+        `debuff\\(\\s*'([\\w-]+)'\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`,
+        'g'
+      )
+    )) {
       const opts = parseInlineOpts(m[4]);
       els.push({ type: 'debuff', debuffId: m[1], x: +m[2], y: +m[3], ...opts });
     }
     // Expand ...SQUARE_MARKERS / ...CIRCLE_MARKERS
     if (code.includes('SQUARE_MARKERS')) {
-      els.push(...SQUARE_MARKERS.map(w => ({ ...w })));
+      els.push(...SQUARE_MARKERS.map((w) => ({ ...w })));
     } else if (code.includes('CIRCLE_MARKERS')) {
-      els.push(...CIRCLE_MARKERS.map(w => ({ ...w })));
+      els.push(...CIRCLE_MARKERS.map((w) => ({ ...w })));
     }
 
     // Parse diagram-level opts
@@ -628,13 +700,17 @@
         <div class="flex items-center gap-1">
           <span class="text-sm font-semibold text-surface-300">Arena:</span>
           <button
-            class="btn btn-sm {arenaShape === 'square' ? 'preset-filled-primary-500' : 'preset-tonal-surface'}"
-            onclick={() => (arenaShape = 'square')}
-          >Square</button>
+            class="btn btn-sm {arenaShape === 'square'
+              ? 'preset-filled-primary-500'
+              : 'preset-tonal-surface'}"
+            onclick={() => (arenaShape = 'square')}>Square</button
+          >
           <button
-            class="btn btn-sm {arenaShape === 'circle' ? 'preset-filled-primary-500' : 'preset-tonal-surface'}"
-            onclick={() => (arenaShape = 'circle')}
-          >Circle</button>
+            class="btn btn-sm {arenaShape === 'circle'
+              ? 'preset-filled-primary-500'
+              : 'preset-tonal-surface'}"
+            onclick={() => (arenaShape = 'circle')}>Circle</button
+          >
         </div>
         <label class="flex items-center gap-1 text-sm text-surface-300 cursor-pointer">
           <input type="checkbox" bind:checked={showBackground} class="accent-primary-500" />
@@ -648,17 +724,33 @@
         />
         <div class="flex items-center gap-1">
           <span class="text-sm font-semibold text-surface-300">Grid:</span>
-          <input type="number" min="1" max="16" bind:value={gridW}
-            class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-14 text-center" />
+          <input
+            type="number"
+            min="1"
+            max="16"
+            bind:value={gridW}
+            class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-14 text-center"
+          />
           <span class="text-surface-400">×</span>
-          <input type="number" min="1" max="9" bind:value={gridH}
-            class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-14 text-center" />
+          <input
+            type="number"
+            min="1"
+            max="9"
+            bind:value={gridH}
+            class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-14 text-center"
+          />
           <span class="text-xs text-surface-500">cells</span>
         </div>
         <div class="flex items-center gap-1">
           <span class="text-sm font-semibold text-surface-300">Scale:</span>
-          <input type="number" min="0.1" max="5" step="0.1" bind:value={scale}
-            class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-16 text-center" />
+          <input
+            type="number"
+            min="0.1"
+            max="5"
+            step="0.1"
+            bind:value={scale}
+            class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-16 text-center"
+          />
         </div>
       </div>
 
@@ -668,7 +760,9 @@
         class:cursor-crosshair={placingType !== null}
         class:bg-surface-950={showBackground}
         style="width: {gridW * 100}px; height: {gridH * 100}px;"
-        style:background={!showBackground ? 'repeating-conic-gradient(#333 0% 25%, #222 0% 50%) 0 0 / 20px 20px' : undefined}
+        style:background={!showBackground
+          ? 'repeating-conic-gradient(#333 0% 25%, #222 0% 50%) 0 0 / 20px 20px'
+          : undefined}
       >
         <ArenaRenderer data={diagramData} {gridW} {gridH} />
 
@@ -717,7 +811,9 @@
                 stroke={selected.has(i) ? '#22d3ee' : 'transparent'}
                 stroke-width="0.6"
                 stroke-dasharray="1.5,1"
-                transform={el.rotation ? `rotate(${el.rotation} ${el.x * scale} ${el.y * scale})` : undefined}
+                transform={el.rotation
+                  ? `rotate(${el.rotation} ${el.x * scale} ${el.y * scale})`
+                  : undefined}
                 class="cursor-move"
                 onmousedown={(e) => handleElementMouseDown(i, e)}
               />
@@ -745,7 +841,9 @@
                 stroke={selected.has(i) ? '#22d3ee' : 'transparent'}
                 stroke-width="0.6"
                 stroke-dasharray="1.5,1"
-                transform={el.rotation ? `rotate(${el.rotation} ${el.x * scale} ${el.y * scale})` : undefined}
+                transform={el.rotation
+                  ? `rotate(${el.rotation} ${el.x * scale} ${el.y * scale})`
+                  : undefined}
                 class="cursor-move"
                 onmousedown={(e) => handleElementMouseDown(i, e)}
               />
@@ -778,14 +876,20 @@
               {#if selected.has(i)}
                 <!-- svelte-ignore a11y_no_static_element_interactions -->
                 <circle
-                  cx={el.x1 * scale} cy={el.y1 * scale} r="2.5"
-                  fill="#22d3ee" class="cursor-grab"
+                  cx={el.x1 * scale}
+                  cy={el.y1 * scale}
+                  r="2.5"
+                  fill="#22d3ee"
+                  class="cursor-grab"
                   onmousedown={(e) => handleEndpointDrag(i, 'start', e)}
                 />
                 <!-- svelte-ignore a11y_no_static_element_interactions -->
                 <circle
-                  cx={el.x2 * scale} cy={el.y2 * scale} r="2.5"
-                  fill="#22d3ee" class="cursor-grab"
+                  cx={el.x2 * scale}
+                  cy={el.y2 * scale}
+                  r="2.5"
+                  fill="#22d3ee"
+                  class="cursor-grab"
                   onmousedown={(e) => handleEndpointDrag(i, 'end', e)}
                 />
               {/if}
@@ -793,7 +897,13 @@
           {/each}
           <!-- Two-point placement preview -->
           {#if twoPointStart && (placingType === 'arrow' || placingType === 'tether')}
-            <circle cx={twoPointStart.x * scale} cy={twoPointStart.y * scale} r="2" fill="#22d3ee" opacity="0.7" />
+            <circle
+              cx={twoPointStart.x * scale}
+              cy={twoPointStart.y * scale}
+              r="2"
+              fill="#22d3ee"
+              opacity="0.7"
+            />
           {/if}
         </svg>
 
@@ -802,7 +912,10 @@
             {#if twoPointStart}
               Click to set end point — Esc to cancel
             {:else}
-              Click to {placingType === 'arrow' || placingType === 'tether' ? 'set start point' : 'place'} {placingType}{placingSubtype ? ` (${placingSubtype})` : ''} — Esc to cancel
+              Click to {placingType === 'arrow' || placingType === 'tether'
+                ? 'set start point'
+                : 'place'}
+              {placingType}{placingSubtype ? ` (${placingSubtype})` : ''} — Esc to cancel
             {/if}
           </div>
         {/if}
@@ -818,8 +931,8 @@
               style:background-color={ROLE_COLORS[job] + '33'}
               style:border-color={ROLE_COLORS[job]}
               style:color={ROLE_COLORS[job]}
-              onclick={() => startPlace('player', job)}
-            >{job}</button>
+              onclick={() => startPlace('player', job)}>{job}</button
+            >
           {/each}
         </div>
         <div class="flex flex-wrap gap-1">
@@ -829,8 +942,8 @@
               style:background-color={ROLE_COLORS[job] + '33'}
               style:border-color={ROLE_COLORS[job]}
               style:color={ROLE_COLORS[job]}
-              onclick={() => startPlace('player', job)}
-            >{job}</button>
+              onclick={() => startPlace('player', job)}>{job}</button
+            >
           {/each}
         </div>
         <div class="flex flex-wrap gap-1">
@@ -840,26 +953,51 @@
               style:border-color={WAYMARK_COLORS[mark]}
               style:color={WAYMARK_COLORS[mark]}
               onclick={() => startPlace('waymark', mark)}
-            >{'ABCD'.includes(mark) ? mark : `#${mark}`}</button>
+              >{'ABCD'.includes(mark) ? mark : `#${mark}`}</button
+            >
           {/each}
-          <button
-            class="btn btn-sm preset-tonal-surface text-xs"
-            onclick={addWaymarkPreset}
-          ><Plus size={12} /> All Waymarks</button>
+          <button class="btn btn-sm preset-tonal-surface text-xs" onclick={addWaymarkPreset}
+            ><Plus size={12} /> All Waymarks</button
+          >
         </div>
         <div class="flex flex-wrap gap-1">
-          <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('boss')}>Boss</button>
-          <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('aoe-circle')}>AoE Circle</button>
-          <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('aoe-rect')}>AoE Rect</button>
-          <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('arrow')}>Arrow</button>
-          <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('tether')}>Line/Tether</button>
-          <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('text')}>Text</button>
+          <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('boss')}
+            >Boss</button
+          >
+          <button
+            class="btn btn-sm preset-tonal-surface text-xs"
+            onclick={() => startPlace('aoe-circle')}>AoE Circle</button
+          >
+          <button
+            class="btn btn-sm preset-tonal-surface text-xs"
+            onclick={() => startPlace('aoe-rect')}>AoE Rect</button
+          >
+          <button
+            class="btn btn-sm preset-tonal-surface text-xs"
+            onclick={() => startPlace('arrow')}>Arrow</button
+          >
+          <button
+            class="btn btn-sm preset-tonal-surface text-xs"
+            onclick={() => startPlace('tether')}>Line/Tether</button
+          >
+          <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('text')}
+            >Text</button
+          >
         </div>
         <div class="flex flex-wrap gap-1">
           <span class="text-xs text-surface-400 self-center">Arena:</span>
-          <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('arena-square')}>Square</button>
-          <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('arena-circle')}>Circle</button>
-          <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('arena-rect')}>Rect</button>
+          <button
+            class="btn btn-sm preset-tonal-surface text-xs"
+            onclick={() => startPlace('arena-square')}>Square</button
+          >
+          <button
+            class="btn btn-sm preset-tonal-surface text-xs"
+            onclick={() => startPlace('arena-circle')}>Circle</button
+          >
+          <button
+            class="btn btn-sm preset-tonal-surface text-xs"
+            onclick={() => startPlace('arena-rect')}>Rect</button
+          >
         </div>
         <div class="flex flex-wrap items-center gap-1">
           <span class="text-xs text-surface-400 self-center">Debuff:</span>
@@ -869,7 +1007,11 @@
               title={DEBUFFS[id].name}
               onclick={() => startPlace('debuff', id)}
             >
-              <img src={`/icons/status/${DEBUFFS[id].iconFile}`} alt={DEBUFFS[id].name} class="w-5 h-5" />
+              <img
+                src={`/icons/status/${DEBUFFS[id].iconFile}`}
+                alt={DEBUFFS[id].name}
+                class="w-5 h-5"
+              />
             </button>
           {/each}
         </div>
@@ -887,33 +1029,66 @@
       {#if selected.size > 1}
         <div class="card border border-surface-600 p-3 space-y-2 bg-surface-900">
           <div class="flex justify-between items-center">
-            <span class="font-semibold text-sm text-surface-100">{selected.size} elements selected</span>
+            <span class="font-semibold text-sm text-surface-100"
+              >{selected.size} elements selected</span
+            >
             <div class="flex gap-1">
-              <button class="btn btn-sm preset-tonal-surface p-1" onclick={duplicateSelected} title="Duplicate all">
+              <button
+                class="btn btn-sm preset-tonal-surface p-1"
+                onclick={duplicateSelected}
+                title="Duplicate all"
+              >
                 <Copy size={14} />
               </button>
-              <button class="btn btn-sm preset-tonal-error p-1" onclick={deleteSelected} title="Delete all">
+              <button
+                class="btn btn-sm preset-tonal-error p-1"
+                onclick={deleteSelected}
+                title="Delete all"
+              >
                 <Trash2 size={14} />
               </button>
             </div>
           </div>
-          <div class="text-xs text-surface-400">Ctrl+click to toggle individual elements. Drag any selected element to move all.</div>
+          <div class="text-xs text-surface-400">
+            Ctrl+click to toggle individual elements. Drag any selected element to move all.
+          </div>
         </div>
       {:else if selectedElement && selectedIndex !== null}
         <div class="card border border-surface-600 p-3 space-y-2 bg-surface-900">
           <div class="flex justify-between items-center">
-            <span class="font-semibold text-sm capitalize text-surface-100">{selectedElement.type}
-              {#if selectedElement.type === 'player'}<span style:color={ROLE_COLORS[selectedElement.job]}> {selectedElement.job}</span>{/if}
-              {#if selectedElement.type === 'waymark'}<span style:color={WAYMARK_COLORS[selectedElement.mark]}> {selectedElement.mark}</span>{/if}
+            <span class="font-semibold text-sm capitalize text-surface-100"
+              >{selectedElement.type}
+              {#if selectedElement.type === 'player'}<span
+                  style:color={ROLE_COLORS[selectedElement.job]}
+                >
+                  {selectedElement.job}</span
+                >{/if}
+              {#if selectedElement.type === 'waymark'}<span
+                  style:color={WAYMARK_COLORS[selectedElement.mark]}
+                >
+                  {selectedElement.mark}</span
+                >{/if}
             </span>
             <div class="flex gap-1">
-              <button class="btn btn-sm preset-tonal-surface p-1" onclick={centerSelected} title="Center & round to 2 decimals">
+              <button
+                class="btn btn-sm preset-tonal-surface p-1"
+                onclick={centerSelected}
+                title="Center & round to 2 decimals"
+              >
                 <Crosshair size={14} />
               </button>
-              <button class="btn btn-sm preset-tonal-surface p-1" onclick={duplicateSelected} title="Duplicate">
+              <button
+                class="btn btn-sm preset-tonal-surface p-1"
+                onclick={duplicateSelected}
+                title="Duplicate"
+              >
                 <Copy size={14} />
               </button>
-              <button class="btn btn-sm preset-tonal-error p-1" onclick={deleteSelected} title="Delete">
+              <button
+                class="btn btn-sm preset-tonal-error p-1"
+                onclick={deleteSelected}
+                title="Delete"
+              >
                 <Trash2 size={14} />
               </button>
             </div>
@@ -923,7 +1098,10 @@
             <div class="grid grid-cols-2 gap-2">
               <label class="text-xs text-surface-400">
                 X
-                <input type="number" min="0" max="100"
+                <input
+                  type="number"
+                  min="0"
+                  max="100"
                   class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
                   value={selectedElement.x}
                   oninput={(e) => updateElement('x', Number(e.currentTarget.value))}
@@ -931,7 +1109,10 @@
               </label>
               <label class="text-xs text-surface-400">
                 Y
-                <input type="number" min="0" max="100"
+                <input
+                  type="number"
+                  min="0"
+                  max="100"
                   class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
                   value={selectedElement.y}
                   oninput={(e) => updateElement('y', Number(e.currentTarget.value))}
@@ -943,7 +1124,10 @@
             <div class="grid grid-cols-2 gap-2">
               <label class="text-xs text-surface-400">
                 X1
-                <input type="number" min="0" max="100"
+                <input
+                  type="number"
+                  min="0"
+                  max="100"
                   class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
                   value={selectedElement.x1}
                   oninput={(e) => updateElement('x1', Number(e.currentTarget.value))}
@@ -951,7 +1135,10 @@
               </label>
               <label class="text-xs text-surface-400">
                 Y1
-                <input type="number" min="0" max="100"
+                <input
+                  type="number"
+                  min="0"
+                  max="100"
                   class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
                   value={selectedElement.y1}
                   oninput={(e) => updateElement('y1', Number(e.currentTarget.value))}
@@ -959,7 +1146,10 @@
               </label>
               <label class="text-xs text-surface-400">
                 X2
-                <input type="number" min="0" max="100"
+                <input
+                  type="number"
+                  min="0"
+                  max="100"
                   class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
                   value={selectedElement.x2}
                   oninput={(e) => updateElement('x2', Number(e.currentTarget.value))}
@@ -967,7 +1157,10 @@
               </label>
               <label class="text-xs text-surface-400">
                 Y2
-                <input type="number" min="0" max="100"
+                <input
+                  type="number"
+                  min="0"
+                  max="100"
                   class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
                   value={selectedElement.y2}
                   oninput={(e) => updateElement('y2', Number(e.currentTarget.value))}
@@ -981,17 +1174,23 @@
               Marker
               <div class="flex gap-1 mt-0.5">
                 <button
-                  class="btn btn-sm text-xs px-2 {!selectedElement.marker ? 'preset-filled-surface' : 'preset-tonal-surface'}"
-                  onclick={() => updateElement('marker', undefined)}
-                >None</button>
+                  class="btn btn-sm text-xs px-2 {!selectedElement.marker
+                    ? 'preset-filled-surface'
+                    : 'preset-tonal-surface'}"
+                  onclick={() => updateElement('marker', undefined)}>None</button
+                >
                 <button
-                  class="btn btn-sm text-xs px-2 {selectedElement.marker === 'red' ? 'preset-filled-error' : 'preset-tonal-surface'}"
-                  onclick={() => updateElement('marker', 'red')}
-                >Red ∨</button>
+                  class="btn btn-sm text-xs px-2 {selectedElement.marker === 'red'
+                    ? 'preset-filled-error'
+                    : 'preset-tonal-surface'}"
+                  onclick={() => updateElement('marker', 'red')}>Red ∨</button
+                >
                 <button
-                  class="btn btn-sm text-xs px-2 {selectedElement.marker === 'green' ? 'preset-filled-success' : 'preset-tonal-surface'}"
-                  onclick={() => updateElement('marker', 'green')}
-                >Green ∨</button>
+                  class="btn btn-sm text-xs px-2 {selectedElement.marker === 'green'
+                    ? 'preset-filled-success'
+                    : 'preset-tonal-surface'}"
+                  onclick={() => updateElement('marker', 'green')}>Green ∨</button
+                >
               </div>
             </label>
             <div class="text-xs text-surface-400 space-y-1">
@@ -1037,7 +1236,11 @@
             </label>
             <label class="text-xs text-surface-400">
               Size
-              <input type="number" min="1" max="30" step="0.5"
+              <input
+                type="number"
+                min="1"
+                max="30"
+                step="0.5"
                 class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
                 value={selectedElement.size ?? 6}
                 oninput={(e) => updateElement('size', Number(e.currentTarget.value))}
@@ -1047,7 +1250,10 @@
           {#if selectedElement.type === 'aoe' && selectedElement.shape === 'circle'}
             <label class="text-xs text-surface-400">
               Radius
-              <input type="number" min="1" max="50"
+              <input
+                type="number"
+                min="1"
+                max="50"
                 class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
                 value={selectedElement.r}
                 oninput={(e) => updateElement('r', Number(e.currentTarget.value))}
@@ -1058,7 +1264,10 @@
             <div class="grid grid-cols-2 gap-2">
               <label class="text-xs text-surface-400">
                 Width
-                <input type="number" min="1" max="100"
+                <input
+                  type="number"
+                  min="1"
+                  max="100"
                   class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
                   value={selectedElement.w}
                   oninput={(e) => updateElement('w', Number(e.currentTarget.value))}
@@ -1066,7 +1275,10 @@
               </label>
               <label class="text-xs text-surface-400">
                 Height
-                <input type="number" min="1" max="100"
+                <input
+                  type="number"
+                  min="1"
+                  max="100"
                   class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
                   value={selectedElement.h}
                   oninput={(e) => updateElement('h', Number(e.currentTarget.value))}
@@ -1075,7 +1287,10 @@
             </div>
             <label class="text-xs text-surface-400">
               Rotation
-              <input type="number" min="0" max="360"
+              <input
+                type="number"
+                min="0"
+                max="360"
                 class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
                 value={selectedElement.rotation ?? 0}
                 oninput={(e) => updateElement('rotation', Number(e.currentTarget.value))}
@@ -1087,14 +1302,21 @@
             <div class="grid grid-cols-2 gap-2">
               <label class="text-xs text-surface-400">
                 Color
-                <input type="color" class="w-full h-7 rounded border border-surface-600 bg-surface-800"
+                <input
+                  type="color"
+                  class="w-full h-7 rounded border border-surface-600 bg-surface-800"
                   value={selectedElement.color ?? '#f59e0b'}
                   oninput={(e) => updateElement('color', e.currentTarget.value)}
                 />
               </label>
               <label class="text-xs text-surface-400">
                 Opacity ({(selectedElement.opacity ?? 0.35).toFixed(2)})
-                <input type="range" min="0" max="1" step="0.05" class="w-full accent-primary-500"
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.05"
+                  class="w-full accent-primary-500"
                   value={selectedElement.opacity ?? 0.35}
                   oninput={(e) => updateElement('opacity', Number(e.currentTarget.value))}
                 />
@@ -1106,14 +1328,20 @@
             <div class="grid grid-cols-2 gap-2">
               <label class="text-xs text-surface-400">
                 Color
-                <input type="color" class="w-full h-7 rounded border border-surface-600 bg-surface-800"
+                <input
+                  type="color"
+                  class="w-full h-7 rounded border border-surface-600 bg-surface-800"
                   value={selectedElement.color ?? '#facc15'}
                   oninput={(e) => updateElement('color', e.currentTarget.value)}
                 />
               </label>
               <label class="text-xs text-surface-400">
                 Width
-                <input type="number" min="0.1" max="5" step="0.1"
+                <input
+                  type="number"
+                  min="0.1"
+                  max="5"
+                  step="0.1"
                   class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
                   value={selectedElement.width ?? 0.5}
                   oninput={(e) => updateElement('width', Number(e.currentTarget.value))}
@@ -1121,7 +1349,9 @@
               </label>
             </div>
             <label class="flex items-center gap-2 text-xs text-surface-400 cursor-pointer">
-              <input type="checkbox" class="accent-primary-500"
+              <input
+                type="checkbox"
+                class="accent-primary-500"
                 checked={selectedElement.dashed ?? false}
                 onchange={(e) => updateElement('dashed', e.currentTarget.checked)}
               />
@@ -1132,14 +1362,20 @@
             <div class="grid grid-cols-2 gap-2">
               <label class="text-xs text-surface-400">
                 Color
-                <input type="color" class="w-full h-7 rounded border border-surface-600 bg-surface-800"
+                <input
+                  type="color"
+                  class="w-full h-7 rounded border border-surface-600 bg-surface-800"
                   value={selectedElement.color ?? '#ffffff'}
                   oninput={(e) => updateElement('color', e.currentTarget.value)}
                 />
               </label>
               <label class="text-xs text-surface-400">
                 Width
-                <input type="number" min="0.1" max="5" step="0.1"
+                <input
+                  type="number"
+                  min="0.1"
+                  max="5"
+                  step="0.1"
                   class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
                   value={selectedElement.width ?? 0.5}
                   oninput={(e) => updateElement('width', Number(e.currentTarget.value))}
@@ -1152,7 +1388,10 @@
             {#if selectedElement.shape === 'circle'}
               <label class="text-xs text-surface-400">
                 Diameter (W)
-                <input type="number" min="1" max="200"
+                <input
+                  type="number"
+                  min="1"
+                  max="200"
                   class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
                   value={selectedElement.w}
                   oninput={(e) => updateElement('w', Number(e.currentTarget.value))}
@@ -1162,7 +1401,10 @@
               <div class="grid grid-cols-2 gap-2">
                 <label class="text-xs text-surface-400">
                   Width
-                  <input type="number" min="1" max="200"
+                  <input
+                    type="number"
+                    min="1"
+                    max="200"
                     class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
                     value={selectedElement.w}
                     oninput={(e) => updateElement('w', Number(e.currentTarget.value))}
@@ -1170,7 +1412,10 @@
                 </label>
                 <label class="text-xs text-surface-400">
                   Height
-                  <input type="number" min="1" max="200"
+                  <input
+                    type="number"
+                    min="1"
+                    max="200"
                     class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
                     value={selectedElement.h}
                     oninput={(e) => updateElement('h', Number(e.currentTarget.value))}
@@ -1179,7 +1424,10 @@
               </div>
               <label class="text-xs text-surface-400">
                 Rotation
-                <input type="number" min="0" max="360"
+                <input
+                  type="number"
+                  min="0"
+                  max="360"
                   class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
                   value={selectedElement.rotation ?? 0}
                   oninput={(e) => updateElement('rotation', Number(e.currentTarget.value))}
@@ -1189,23 +1437,30 @@
             <div class="grid grid-cols-2 gap-2">
               <label class="text-xs text-surface-400">
                 Background
-                <input type="color" class="w-full h-7 rounded border border-surface-600 bg-surface-800"
+                <input
+                  type="color"
+                  class="w-full h-7 rounded border border-surface-600 bg-surface-800"
                   value={selectedElement.bgColor ?? '#2a2420'}
                   oninput={(e) => updateElement('bgColor', e.currentTarget.value)}
                 />
               </label>
               <label class="text-xs text-surface-400">
                 Border
-                <input type="color" class="w-full h-7 rounded border border-surface-600 bg-surface-800"
+                <input
+                  type="color"
+                  class="w-full h-7 rounded border border-surface-600 bg-surface-800"
                   value={selectedElement.borderColor ?? '#4a4a4a'}
                   oninput={(e) => updateElement('borderColor', e.currentTarget.value)}
                 />
               </label>
             </div>
             <label class="flex items-center gap-2 text-xs text-surface-400 cursor-pointer">
-              <input type="checkbox" class="accent-primary-500"
+              <input
+                type="checkbox"
+                class="accent-primary-500"
                 checked={selectedElement.showCrosshairs !== false}
-                onchange={(e) => updateElement('showCrosshairs', e.currentTarget.checked ? undefined : false)}
+                onchange={(e) =>
+                  updateElement('showCrosshairs', e.currentTarget.checked ? undefined : false)}
               />
               Show crosshairs
             </label>
@@ -1214,7 +1469,11 @@
           {#if selectedElement.type === 'boss'}
             <label class="text-xs text-surface-400">
               Facing (rotation)
-              <input type="number" min="0" max="360" step="45"
+              <input
+                type="number"
+                min="0"
+                max="360"
+                step="45"
                 class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
                 value={selectedElement.rotation ?? 0}
                 oninput={(e) => updateElement('rotation', Number(e.currentTarget.value))}
@@ -1234,14 +1493,20 @@
             <div class="grid grid-cols-3 gap-2">
               <label class="text-xs text-surface-400">
                 Color
-                <input type="color" class="w-full h-7 rounded border border-surface-600 bg-surface-800"
+                <input
+                  type="color"
+                  class="w-full h-7 rounded border border-surface-600 bg-surface-800"
                   value={selectedElement.color ?? '#ffffff'}
                   oninput={(e) => updateElement('color', e.currentTarget.value)}
                 />
               </label>
               <label class="text-xs text-surface-400">
                 Size
-                <input type="number" min="1" max="12" step="0.5"
+                <input
+                  type="number"
+                  min="1"
+                  max="12"
+                  step="0.5"
                   class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
                   value={selectedElement.fontSize ?? 4}
                   oninput={(e) => updateElement('fontSize', Number(e.currentTarget.value))}
@@ -1252,7 +1517,11 @@
                 <select
                   class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
                   value={selectedElement.anchor ?? 'middle'}
-                  onchange={(e) => updateElement('anchor', e.currentTarget.value === 'middle' ? undefined : e.currentTarget.value)}
+                  onchange={(e) =>
+                    updateElement(
+                      'anchor',
+                      e.currentTarget.value === 'middle' ? undefined : e.currentTarget.value
+                    )}
                 >
                   <option value="start">Left</option>
                   <option value="middle">Center</option>
@@ -1264,7 +1533,8 @@
 
           <label class="text-xs text-surface-400">
             ID (for highlighting)
-            <input type="text"
+            <input
+              type="text"
               class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
               value={selectedElement.id ?? ''}
               oninput={(e) => updateElement('id', e.currentTarget.value || undefined)}
@@ -1281,17 +1551,22 @@
       <div class="card border border-surface-600 p-3 bg-surface-900 space-y-1">
         <div class="flex justify-between items-center mb-1">
           <span class="text-sm font-semibold text-surface-200">Elements ({elements.length})</span>
-          <button class="btn btn-sm preset-tonal-surface text-xs px-1.5 py-0.5" onclick={selectAll}>Select All</button>
+          <button class="btn btn-sm preset-tonal-surface text-xs px-1.5 py-0.5" onclick={selectAll}
+            >Select All</button
+          >
         </div>
         <div class="max-h-64 overflow-y-auto space-y-0.5">
           {#each elements as el, i}
             <button
               class="w-full text-left text-xs px-2 py-1 rounded flex items-center gap-1
-                {selected.has(i) ? 'bg-primary-500/20 text-primary-300 border border-primary-500/30' : 'hover:bg-surface-800 text-surface-300'}"
+                {selected.has(i)
+                ? 'bg-primary-500/20 text-primary-300 border border-primary-500/30'
+                : 'hover:bg-surface-800 text-surface-300'}"
               onclick={(e) => {
                 if (e.ctrlKey || e.metaKey) {
                   const next = new Set(selected);
-                  if (next.has(i)) next.delete(i); else next.add(i);
+                  if (next.has(i)) next.delete(i);
+                  else next.add(i);
                   selected = next;
                 } else {
                   selected = new Set([i]);
@@ -1299,12 +1574,23 @@
               }}
             >
               <span class="capitalize font-mono text-surface-400">{el.type}</span>
-              {#if el.type === 'player'}<span class="font-bold" style:color={ROLE_COLORS[el.job]}>{el.job}</span>{/if}
-              {#if el.type === 'waymark'}<span class="font-bold" style:color={WAYMARK_COLORS[el.mark]}>{el.mark}</span>{/if}
-              {#if el.type === 'text'}<span class="truncate text-surface-300">"{el.text.split('\n')[0]}"</span>{/if}
-              {#if el.type === 'debuff'}<span class="truncate text-surface-300">{el.debuffId}</span>{/if}
-              {#if 'x' in el}<span class="text-surface-500 ml-auto font-mono">({el.x},{el.y})</span>{/if}
-              {#if 'x1' in el}<span class="text-surface-500 ml-auto font-mono">({el.x1},{el.y1})→({el.x2},{el.y2})</span>{/if}
+              {#if el.type === 'player'}<span class="font-bold" style:color={ROLE_COLORS[el.job]}
+                  >{el.job}</span
+                >{/if}
+              {#if el.type === 'waymark'}<span
+                  class="font-bold"
+                  style:color={WAYMARK_COLORS[el.mark]}>{el.mark}</span
+                >{/if}
+              {#if el.type === 'text'}<span class="truncate text-surface-300"
+                  >"{el.text.split('\n')[0]}"</span
+                >{/if}
+              {#if el.type === 'debuff'}<span class="truncate text-surface-300">{el.debuffId}</span
+                >{/if}
+              {#if 'x' in el}<span class="text-surface-500 ml-auto font-mono">({el.x},{el.y})</span
+                >{/if}
+              {#if 'x1' in el}<span class="text-surface-500 ml-auto font-mono"
+                  >({el.x1},{el.y1})→({el.x2},{el.y2})</span
+                >{/if}
             </button>
           {/each}
         </div>
@@ -1315,10 +1601,12 @@
         <div class="flex justify-between items-center">
           <span class="text-sm font-semibold text-surface-200">Generated Code</span>
           <button class="btn btn-sm preset-tonal-secondary text-xs" onclick={copyCode}>
-            <Copy size={12} /> {copied ? 'Copied!' : 'Copy'}
+            <Copy size={12} />
+            {copied ? 'Copied!' : 'Copy'}
           </button>
         </div>
-        <pre class="text-xs text-surface-200 bg-surface-950 border border-surface-700 p-2 rounded overflow-x-auto max-h-60 overflow-y-auto font-mono whitespace-pre">{generatedCode}</pre>
+        <pre
+          class="text-xs text-surface-200 bg-surface-950 border border-surface-700 p-2 rounded overflow-x-auto max-h-60 overflow-y-auto font-mono whitespace-pre">{generatedCode}</pre>
       </div>
 
       <!-- JSON Export/Import -->
@@ -1326,7 +1614,8 @@
         <div class="flex justify-between items-center">
           <span class="text-sm font-semibold text-surface-200">JSON</span>
           <button class="btn btn-sm preset-tonal-secondary text-xs" onclick={copyJson}>
-            <Copy size={12} /> {copiedJson ? 'Copied!' : 'Copy JSON'}
+            <Copy size={12} />
+            {copiedJson ? 'Copied!' : 'Copy JSON'}
           </button>
         </div>
         <textarea
@@ -1340,8 +1629,8 @@
         <button
           class="btn btn-sm preset-tonal-primary text-xs w-full"
           onclick={loadFromImport}
-          disabled={!jsonImport.trim()}
-        >Load from JSON</button>
+          disabled={!jsonImport.trim()}>Load from JSON</button
+        >
       </div>
     </div>
   </div>
@@ -1356,12 +1645,19 @@
       selected = new Set();
     }
     if (e.key === 'Delete' || e.key === 'Backspace') {
-      if (selected.size > 0 && document.activeElement?.tagName !== 'INPUT' && document.activeElement?.tagName !== 'TEXTAREA') {
+      if (
+        selected.size > 0 &&
+        document.activeElement?.tagName !== 'INPUT' &&
+        document.activeElement?.tagName !== 'TEXTAREA'
+      ) {
         deleteSelected();
       }
     }
     if ((e.ctrlKey || e.metaKey) && e.key === 'a') {
-      if (document.activeElement?.tagName !== 'INPUT' && document.activeElement?.tagName !== 'TEXTAREA') {
+      if (
+        document.activeElement?.tagName !== 'INPUT' &&
+        document.activeElement?.tagName !== 'TEXTAREA'
+      ) {
         e.preventDefault();
         selectAll();
       }

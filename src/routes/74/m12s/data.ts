@@ -241,15 +241,13 @@ const cloneRelReplication1: MechanicStrat[] = [
       {
         role: 'Healer',
         party: 1,
-        description:
-          'Find outer Dark clone\nFrom center, go to letter marker left of it',
+        description: 'Find outer Dark clone\nFrom center, go to letter marker left of it',
         imageUrl: './m12s/clonerel-rep1-15.webp'
       },
       {
         role: 'Healer',
         party: 2,
-        description:
-          'Find outer Dark clone\nFrom center, go to letter marker left of it',
+        description: 'Find outer Dark clone\nFrom center, go to letter marker left of it',
         imageUrl: './m12s/clonerel-rep1-15.webp'
       },
       {
@@ -269,15 +267,13 @@ const cloneRelReplication1: MechanicStrat[] = [
       {
         role: 'Ranged',
         party: 1,
-        description:
-          'Find outer Dark clone\nFrom center, go to letter marker right of it',
+        description: 'Find outer Dark clone\nFrom center, go to letter marker right of it',
         imageUrl: './m12s/clonerel-rep1-15.webp'
       },
       {
         role: 'Ranged',
         party: 2,
-        description:
-          'Find outer Dark clone\nFrom center, go to letter marker right of it',
+        description: 'Find outer Dark clone\nFrom center, go to letter marker right of it',
         imageUrl: './m12s/clonerel-rep1-15.webp'
       }
     ]
@@ -287,7 +283,8 @@ const cloneRelReplication1: MechanicStrat[] = [
 const bcReplication1: MechanicStrat[] = [
   {
     mechanic: 'Setup',
-    description: 'Stand on corners of markers\nG1 N, G2 S\nTanks on 4, Healers on 1, Ranged on 3, Melees on 2',
+    description:
+      'Stand on corners of markers\nG1 N, G2 S\nTanks on 4, Healers on 1, Ranged on 3, Melees on 2',
     imageUrl: './m12s/bc-rep1-1.webp',
     url: 'https://raidplan.io/plan/jaakesbessc2uv7h#2'
   },
@@ -310,15 +307,13 @@ const bcReplication1: MechanicStrat[] = [
       {
         role: 'Healer',
         party: 1,
-        description:
-          'Go to outer Fire clone\nBait Fire stack on wall while dodging proteans',
+        description: 'Go to outer Fire clone\nBait Fire stack on wall while dodging proteans',
         imageUrl: './m12s/bc-rep1-7.webp'
       },
       {
         role: 'Healer',
         party: 2,
-        description:
-          'Go to outer Fire clone\nBait Fire stack on wall while dodging proteans',
+        description: 'Go to outer Fire clone\nBait Fire stack on wall while dodging proteans',
         imageUrl: './m12s/bc-rep1-7.webp'
       },
       {
@@ -336,15 +331,13 @@ const bcReplication1: MechanicStrat[] = [
       {
         role: 'Ranged',
         party: 1,
-        description:
-          'Go to outer Fire clone\nBait Fire stack on wall while dodging proteans',
+        description: 'Go to outer Fire clone\nBait Fire stack on wall while dodging proteans',
         imageUrl: './m12s/bc-rep1-7.webp'
       },
       {
         role: 'Ranged',
         party: 2,
-        description:
-          'Go to outer Fire clone\nBait Fire stack on wall while dodging proteans',
+        description: 'Go to outer Fire clone\nBait Fire stack on wall while dodging proteans',
         imageUrl: './m12s/bc-rep1-7.webp'
       }
     ]
@@ -356,57 +349,49 @@ const bcReplication1: MechanicStrat[] = [
       {
         role: 'Tank',
         party: 1,
-        description:
-          'Go to inner Dark clone\nBait Dark spread inside of light diamond N or S',
+        description: 'Go to inner Dark clone\nBait Dark spread inside of light diamond N or S',
         imageUrl: './m12s/bc-rep1-8.webp'
       },
       {
         role: 'Tank',
         party: 2,
-        description:
-          'Go to inner Dark clone\nBait Dark spread inside of light diamond E or W',
+        description: 'Go to inner Dark clone\nBait Dark spread inside of light diamond E or W',
         imageUrl: './m12s/bc-rep1-8.webp'
       },
       {
         role: 'Healer',
         party: 1,
-        description:
-          'Go to outer Dark clone\nBait Dark spread while dodging proteans',
+        description: 'Go to outer Dark clone\nBait Dark spread while dodging proteans',
         imageUrl: './m12s/bc-rep1-7.webp'
       },
       {
         role: 'Healer',
         party: 2,
-        description:
-          'Go to outer Dark clone\nBait Dark spread while dodging proteans',
+        description: 'Go to outer Dark clone\nBait Dark spread while dodging proteans',
         imageUrl: './m12s/bc-rep1-7.webp'
       },
       {
         role: 'Melee',
         party: 1,
-        description:
-          'Go to inner Dark clone\nBait Dark spread inside of light diamond N or S',
+        description: 'Go to inner Dark clone\nBait Dark spread inside of light diamond N or S',
         imageUrl: './m12s/bc-rep1-8.webp'
       },
       {
         role: 'Melee',
         party: 2,
-        description:
-          'Go to inner Dark clone\nBait Dark spread inside of light diamond E or W',
+        description: 'Go to inner Dark clone\nBait Dark spread inside of light diamond E or W',
         imageUrl: './m12s/bc-rep1-8.webp'
       },
       {
         role: 'Ranged',
         party: 1,
-        description:
-          'Go to outer Dark clone\nBait Dark spread while dodging proteans',
+        description: 'Go to outer Dark clone\nBait Dark spread while dodging proteans',
         imageUrl: './m12s/bc-rep1-7.webp'
       },
       {
         role: 'Ranged',
         party: 2,
-        description:
-          'Go to outer Dark clone\nBait Dark spread while dodging proteans',
+        description: 'Go to outer Dark clone\nBait Dark spread while dodging proteans',
         imageUrl: './m12s/bc-rep1-7.webp'
       }
     ]
@@ -416,7 +401,8 @@ const bcReplication1: MechanicStrat[] = [
 const caroReplication1: MechanicStrat[] = [
   {
     mechanic: 'Setup',
-    description: 'Ranged and Healers on corners of 1 and 3 markers\nMelees and Tanks max melee on 2 and 4 markers',
+    description:
+      'Ranged and Healers on corners of 1 and 3 markers\nMelees and Tanks max melee on 2 and 4 markers',
     imageUrl: './m12s/caro-rep1-0.webp',
     url: 'https://raidplan.io/plan/4P_QGHnBZ-nW8yH4#1'
   },
@@ -427,53 +413,53 @@ const caroReplication1: MechanicStrat[] = [
       {
         role: 'Tank',
         party: 1,
-        description: 'Go to inner Fire clone\nBait Fire max melee E/W if horizontal or N/S if vertical',
+        description:
+          'Go to inner Fire clone\nBait Fire max melee E/W if horizontal or N/S if vertical',
         imageUrl: './m12s/caro-rep1-8.webp'
       },
       {
         role: 'Tank',
         party: 2,
-        description: 'Go to inner Fire clone\nBait Fire max melee E/W if horizontal or N/S if vertical',
+        description:
+          'Go to inner Fire clone\nBait Fire max melee E/W if horizontal or N/S if vertical',
         imageUrl: './m12s/caro-rep1-8.webp'
       },
       {
         role: 'Healer',
         party: 1,
-        description:
-          'Go to outer Fire clone\nBait Fire stack on wall while dodging proteans',
+        description: 'Go to outer Fire clone\nBait Fire stack on wall while dodging proteans',
         imageUrl: './m12s/caro-rep1-8.webp'
       },
       {
         role: 'Healer',
         party: 2,
-        description:
-          'Go to outer Fire clone\nBait Fire stack on wall while dodging proteans',
+        description: 'Go to outer Fire clone\nBait Fire stack on wall while dodging proteans',
         imageUrl: './m12s/caro-rep1-8.webp'
       },
       {
         role: 'Melee',
         party: 1,
-        description: 'Go to inner Fire clone\nBait Fire max melee E/W if horizontal or N/S if vertical',
+        description:
+          'Go to inner Fire clone\nBait Fire max melee E/W if horizontal or N/S if vertical',
         imageUrl: './m12s/caro-rep1-8.webp'
       },
       {
         role: 'Melee',
         party: 2,
-        description: 'Go to inner Fire clone\nBait Fire max melee E/W if horizontal or N/S if vertical',
+        description:
+          'Go to inner Fire clone\nBait Fire max melee E/W if horizontal or N/S if vertical',
         imageUrl: './m12s/caro-rep1-8.webp'
       },
       {
         role: 'Ranged',
         party: 1,
-        description:
-          'Go to outer Fire clone\nBait Fire stack on wall while dodging proteans',
+        description: 'Go to outer Fire clone\nBait Fire stack on wall while dodging proteans',
         imageUrl: './m12s/caro-rep1-8.webp'
       },
       {
         role: 'Ranged',
         party: 2,
-        description:
-          'Go to outer Fire clone\nBait Fire stack on wall while dodging proteans',
+        description: 'Go to outer Fire clone\nBait Fire stack on wall while dodging proteans',
         imageUrl: './m12s/caro-rep1-8.webp'
       }
     ]
@@ -499,15 +485,13 @@ const caroReplication1: MechanicStrat[] = [
       {
         role: 'Healer',
         party: 1,
-        description:
-          'Go to outer Dark clone\nBait Dark spread while dodging proteans',
+        description: 'Go to outer Dark clone\nBait Dark spread while dodging proteans',
         imageUrl: './m12s/caro-rep1-9.webp'
       },
       {
         role: 'Healer',
         party: 2,
-        description:
-          'Go to outer Dark clone\nBait Dark spread while dodging proteans',
+        description: 'Go to outer Dark clone\nBait Dark spread while dodging proteans',
         imageUrl: './m12s/caro-rep1-9.webp'
       },
       {
@@ -527,15 +511,13 @@ const caroReplication1: MechanicStrat[] = [
       {
         role: 'Ranged',
         party: 1,
-        description:
-          'Go to outer Dark clone\nBait Dark spread while dodging proteans',
+        description: 'Go to outer Dark clone\nBait Dark spread while dodging proteans',
         imageUrl: './m12s/caro-rep1-9.webp'
       },
       {
         role: 'Ranged',
         party: 2,
-        description:
-          'Go to outer Dark clone\nBait Dark spread while dodging proteans',
+        description: 'Go to outer Dark clone\nBait Dark spread while dodging proteans',
         imageUrl: './m12s/caro-rep1-9.webp'
       }
     ]
@@ -545,7 +527,8 @@ const caroReplication1: MechanicStrat[] = [
 const staticReplication1: MechanicStrat[] = [
   {
     mechanic: 'Setup',
-    description: 'Ranged and Healers on corners of 1 and 3 markers\nMelees and Tanks max melee on 2 and 4 markers',
+    description:
+      'Ranged and Healers on corners of 1 and 3 markers\nMelees and Tanks max melee on 2 and 4 markers',
     imageUrl: './m12s/static-rep1-0.webp',
     url: 'https://raidplan.io/plan/3g95apsey4t987bz#1'
   },
@@ -556,53 +539,53 @@ const staticReplication1: MechanicStrat[] = [
       {
         role: 'Tank',
         party: 1,
-        description: 'Stack on Relative North line of center box\nDo not go past the line or you will bait Far Dark',
+        description:
+          'Stack on Relative North line of center box\nDo not go past the line or you will bait Far Dark',
         imageUrl: './m12s/static-rep1-3.webp'
       },
       {
         role: 'Tank',
         party: 2,
-        description: 'Stack on Relative North line of center box\nDo not go past the line or you will bait Far Dark',
+        description:
+          'Stack on Relative North line of center box\nDo not go past the line or you will bait Far Dark',
         imageUrl: './m12s/static-rep1-3.webp'
       },
       {
         role: 'Healer',
         party: 1,
-        description:
-          'Stack center of white box Relative Southwest',
+        description: 'Stack center of white box Relative Southwest',
         imageUrl: './m12s/static-rep1-3.webp'
       },
       {
         role: 'Healer',
         party: 2,
-        description:
-          'Stack center of white box Relative Southwest',
+        description: 'Stack center of white box Relative Southwest',
         imageUrl: './m12s/static-rep1-3.webp'
       },
       {
         role: 'Melee',
         party: 1,
-        description: 'Stack on Relative North line of center box\nDo not go past the line or you will bait Far Dark',
+        description:
+          'Stack on Relative North line of center box\nDo not go past the line or you will bait Far Dark',
         imageUrl: './m12s/static-rep1-3.webp'
       },
       {
         role: 'Melee',
         party: 2,
-        description: 'Stack on Relative North line of center box\nDo not go past the line or you will bait Far Dark',
+        description:
+          'Stack on Relative North line of center box\nDo not go past the line or you will bait Far Dark',
         imageUrl: './m12s/static-rep1-3.webp'
       },
       {
         role: 'Ranged',
         party: 1,
-        description:
-          'Stack center of white box Relative Southwest',
+        description: 'Stack center of white box Relative Southwest',
         imageUrl: './m12s/static-rep1-3.webp'
       },
       {
         role: 'Ranged',
         party: 2,
-        description:
-          'Stack center of white box Relative Southwest',
+        description: 'Stack center of white box Relative Southwest',
         imageUrl: './m12s/static-rep1-3.webp'
       }
     ]
@@ -628,15 +611,13 @@ const staticReplication1: MechanicStrat[] = [
       {
         role: 'Healer',
         party: 1,
-        description:
-          'Go center of the white box Relative Northwest',
+        description: 'Go center of the white box Relative Northwest',
         imageUrl: './m12s/static-rep1-3.webp'
       },
       {
         role: 'Healer',
         party: 2,
-        description:
-          'Go center of the white box Relative Northeast',
+        description: 'Go center of the white box Relative Northeast',
         imageUrl: './m12s/static-rep1-3.webp'
       },
       {
@@ -656,15 +637,13 @@ const staticReplication1: MechanicStrat[] = [
       {
         role: 'Ranged',
         party: 1,
-        description:
-          'Go center of the white box Relative Northwest',
+        description: 'Go center of the white box Relative Northwest',
         imageUrl: './m12s/static-rep1-3.webp'
       },
       {
         role: 'Ranged',
         party: 2,
-        description:
-          'Go center of the white box Relative Northeast',
+        description: 'Go center of the white box Relative Northeast',
         imageUrl: './m12s/static-rep1-3.webp'
       }
     ]
@@ -676,7 +655,7 @@ const replication1Mechs: Record<string, MechanicStrat[]> = {
   clonerel: cloneRelReplication1,
   caro: caroReplication1,
   static: staticReplication1,
-  bc: bcReplication1,
+  bc: bcReplication1
 };
 
 // Toggle-dependent mechs for Replication 2
@@ -2471,57 +2450,49 @@ const dnIdyllic: Record<string, MechanicStrat[]> = {
         {
           role: 'Tank',
           party: 1,
-          description:
-            'Cardinal: B marker slightly towards NE\nIntercard: SE slightly towards B',
+          description: 'Cardinal: B marker slightly towards NE\nIntercard: SE slightly towards B',
           imageUrl: './m12s/dn-idyllic-34.webp'
         },
         {
           role: 'Tank',
           party: 2,
-          description:
-            'Cardinal: B marker slightly towards NE\nIntercard: SE slightly towards B',
+          description: 'Cardinal: B marker slightly towards NE\nIntercard: SE slightly towards B',
           imageUrl: './m12s/dn-idyllic-34.webp'
         },
         {
           role: 'Healer',
           party: 1,
-          description:
-            'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
+          description: 'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
           imageUrl: './m12s/dn-idyllic-34.webp'
         },
         {
           role: 'Healer',
           party: 2,
-          description:
-            'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
+          description: 'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
           imageUrl: './m12s/dn-idyllic-34.webp'
         },
         {
           role: 'Melee',
           party: 1,
-          description:
-            'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
+          description: 'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
           imageUrl: './m12s/dn-idyllic-34.webp'
         },
         {
           role: 'Melee',
           party: 2,
-          description:
-            'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
+          description: 'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
           imageUrl: './m12s/dn-idyllic-34.webp'
         },
         {
           role: 'Ranged',
           party: 1,
-          description:
-            'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
+          description: 'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
           imageUrl: './m12s/dn-idyllic-34.webp'
         },
         {
           role: 'Ranged',
           party: 2,
-          description:
-            'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
+          description: 'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
           imageUrl: './m12s/dn-idyllic-34.webp'
         }
       ]
@@ -2542,57 +2513,49 @@ const dnIdyllic: Record<string, MechanicStrat[]> = {
         {
           role: 'Tank',
           party: 1,
-          description:
-            'Cardinal: B marker slightly towards NE\nIntercard: SE slightly towards B',
+          description: 'Cardinal: B marker slightly towards NE\nIntercard: SE slightly towards B',
           imageUrl: './m12s/dn-idyllic-36.webp'
         },
         {
           role: 'Tank',
           party: 2,
-          description:
-            'Cardinal: B marker slightly towards NE\nIntercard: SE slightly towards B',
+          description: 'Cardinal: B marker slightly towards NE\nIntercard: SE slightly towards B',
           imageUrl: './m12s/dn-idyllic-36.webp'
         },
         {
           role: 'Healer',
           party: 1,
-          description:
-            'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
+          description: 'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
           imageUrl: './m12s/dn-idyllic-36.webp'
         },
         {
           role: 'Healer',
           party: 2,
-          description:
-            'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
+          description: 'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
           imageUrl: './m12s/dn-idyllic-36.webp'
         },
         {
           role: 'Melee',
           party: 1,
-          description:
-            'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
+          description: 'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
           imageUrl: './m12s/dn-idyllic-36.webp'
         },
         {
           role: 'Melee',
           party: 2,
-          description:
-            'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
+          description: 'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
           imageUrl: './m12s/dn-idyllic-36.webp'
         },
         {
           role: 'Ranged',
           party: 1,
-          description:
-            'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
+          description: 'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
           imageUrl: './m12s/dn-idyllic-36.webp'
         },
         {
           role: 'Ranged',
           party: 2,
-          description:
-            'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
+          description: 'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
           imageUrl: './m12s/dn-idyllic-36.webp'
         }
       ]
@@ -2636,14 +2599,12 @@ const caroIdyllic: Record<string, MechanicStrat[]> = {
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NE',
-          description:
-            '<strong>NE Clone</strong>\nRed Stack for boss tethers\nStack on B'
+          description: '<strong>NE Clone</strong>\nRed Stack for boss tethers\nStack on B'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'E',
-          description:
-            '<strong>E Clone</strong>\nYellow Stack for boss tethers\nStack on B'
+          description: '<strong>E Clone</strong>\nYellow Stack for boss tethers\nStack on B'
         },
         {
           toggleKey: 'idyllictether',
@@ -2660,14 +2621,12 @@ const caroIdyllic: Record<string, MechanicStrat[]> = {
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SW',
-          description:
-            '<strong>SW Clone</strong>\nBlue Stack for boss tethers\nStack on D'
+          description: '<strong>SW Clone</strong>\nBlue Stack for boss tethers\nStack on D'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'W',
-          description:
-            '<strong>W Clone</strong>\nPurple Stack for boss tethers\nStack on D'
+          description: '<strong>W Clone</strong>\nPurple Stack for boss tethers\nStack on D'
         },
         {
           toggleKey: 'idyllictether',
@@ -2772,7 +2731,8 @@ const caroIdyllic: Record<string, MechanicStrat[]> = {
   platforms1: [
     {
       mechanic: 'Platform Setup',
-      description: 'True G1 West/G2 East\nSupports Left, DPS Right facing boss\nMelees close, Ranged far',
+      description:
+        'True G1 West/G2 East\nSupports Left, DPS Right facing boss\nMelees close, Ranged far',
       url: 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc#14',
       strats: [
         {
@@ -3116,14 +3076,12 @@ const caroIdyllicUptime: Record<string, MechanicStrat[]> = {
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NE',
-          description:
-            '<strong>NE Clone</strong>\nRed Stack for boss tethers\nStack on B'
+          description: '<strong>NE Clone</strong>\nRed Stack for boss tethers\nStack on B'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'E',
-          description:
-            '<strong>E Clone</strong>\nYellow Stack for boss tethers\nStack on B'
+          description: '<strong>E Clone</strong>\nYellow Stack for boss tethers\nStack on B'
         },
         {
           toggleKey: 'idyllictether',
@@ -3140,14 +3098,12 @@ const caroIdyllicUptime: Record<string, MechanicStrat[]> = {
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SW',
-          description:
-            '<strong>SW Clone</strong>\nBlue Stack for boss tethers\nStack on D'
+          description: '<strong>SW Clone</strong>\nBlue Stack for boss tethers\nStack on D'
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'W',
-          description:
-            '<strong>W Clone</strong>\nPurple Stack for boss tethers\nStack on D'
+          description: '<strong>W Clone</strong>\nPurple Stack for boss tethers\nStack on D'
         },
         {
           toggleKey: 'idyllictether',
@@ -3233,7 +3189,7 @@ const caroIdyllicUptime: Record<string, MechanicStrat[]> = {
     }
   ],
   platforms2: caroIdyllic.platforms2,
-  blackhole: caroIdyllic.blackhole,
+  blackhole: caroIdyllic.blackhole
 };
 
 const cozyIdyllic: Record<string, MechanicStrat[]> = {
@@ -3317,7 +3273,8 @@ const cozyIdyllic: Record<string, MechanicStrat[]> = {
     },
     {
       mechanic: 'Defamations',
-      description: 'Take Stacks/Defams near your original clone positions\nDefamations will be on the edge near D and C',
+      description:
+        'Take Stacks/Defams near your original clone positions\nDefamations will be on the edge near D and C',
       url: 'https://raidplan.io/plan/txtzacv3uvbjzuku#12',
       strats: [
         // Generic info - shows when 'All' is selected (or no selection)
@@ -3380,7 +3337,8 @@ const cozyIdyllic: Record<string, MechanicStrat[]> = {
     },
     {
       mechanic: 'Stacks',
-      description: 'Take Stacks/Defams near your original clone positions\nStacks will be near 1 and 2',
+      description:
+        'Take Stacks/Defams near your original clone positions\nStacks will be near 1 and 2',
       url: 'https://raidplan.io/plan/txtzacv3uvbjzuku#13',
       strats: [
         // Generic info - shows when 'All' is selected (or no selection)
@@ -3441,7 +3399,7 @@ const cozyIdyllic: Record<string, MechanicStrat[]> = {
         }
       ]
     }
-  ],
+  ]
 };
 
 const emIdyllic: Record<string, MechanicStrat[]> = {
@@ -3531,7 +3489,8 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
     },
     {
       mechanic: 'Tether Grabs',
-      description: 'Grab the tether at your spot if it matches your assignment\nSwap with your partner if not',
+      description:
+        'Grab the tether at your spot if it matches your assignment\nSwap with your partner if not',
       url: 'https://raidplan.io/plan/hg6FhbjyktWqebyG#4',
       strats: [
         // Generic info - shows when 'All' is selected (or no selection)
@@ -3616,7 +3575,8 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
     },
     {
       mechanic: 'Defamations',
-      description: 'Take Stacks/Defams near your original clone positions\nDefamations will be on the edge near D and C',
+      description:
+        'Take Stacks/Defams near your original clone positions\nDefamations will be on the edge near D and C',
       url: 'https://raidplan.io/plan/hg6FhbjyktWqebyG#10',
       strats: [
         // Generic info - shows when 'All' is selected (or no selection)
@@ -3679,7 +3639,8 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
     },
     {
       mechanic: 'Stacks',
-      description: 'Take Stacks/Defams near your original clone positions\nStacks will be near 1 and 2 max melee',
+      description:
+        'Take Stacks/Defams near your original clone positions\nStacks will be near 1 and 2 max melee',
       url: 'https://raidplan.io/plan/hg6FhbjyktWqebyG#11',
       strats: [
         // Generic info - shows when 'All' is selected (or no selection)
@@ -4122,7 +4083,7 @@ const dnUptimeIdyllic: Record<string, MechanicStrat[]> = {
         }
       ]
     }
-  ],
+  ]
 };
 
 const idyllicOverviewMechs: Record<string, MechanicStrat[]> = {
@@ -4131,7 +4092,7 @@ const idyllicOverviewMechs: Record<string, MechanicStrat[]> = {
   caroUptime: caroIdyllicUptime.overview,
   cozy: cozyIdyllic.overview,
   em: emIdyllic.overview,
-  dnuptime: dnUptimeIdyllic.overview,
+  dnuptime: dnUptimeIdyllic.overview
 };
 
 const idyllicClones1Mechs: Record<string, MechanicStrat[]> = {
@@ -4140,7 +4101,7 @@ const idyllicClones1Mechs: Record<string, MechanicStrat[]> = {
   caroUptime: caroIdyllic.clones1,
   cozy: dnIdyllic.clones1,
   em: emIdyllic.clones1,
-  dnuptime: dnIdyllic.clones1,
+  dnuptime: dnIdyllic.clones1
 };
 
 const idyllicPlatforms1Mechs: Record<string, MechanicStrat[]> = {
@@ -4149,7 +4110,7 @@ const idyllicPlatforms1Mechs: Record<string, MechanicStrat[]> = {
   caroUptime: caroIdyllic.platforms1,
   cozy: dnIdyllic.platforms1,
   em: dnIdyllic.platforms1,
-  dnuptime: dnIdyllic.platforms1,
+  dnuptime: dnIdyllic.platforms1
 };
 
 const idyllicClones2Mechs: Record<string, MechanicStrat[]> = {
@@ -4167,7 +4128,7 @@ const idyllicPlatforms2Mechs: Record<string, MechanicStrat[]> = {
   caroUptime: caroIdyllic.platforms2,
   cozy: dnIdyllic.platforms2,
   em: emIdyllic.platforms2,
-  dnuptime: dnIdyllic.platforms2,
+  dnuptime: dnIdyllic.platforms2
 };
 
 const idyllicBlackholeMechs: Record<string, MechanicStrat[]> = {
@@ -4176,7 +4137,7 @@ const idyllicBlackholeMechs: Record<string, MechanicStrat[]> = {
   caroUptime: caroIdyllic.blackhole,
   cozy: dnIdyllic.blackhole,
   em: emIdyllic.blackhole,
-  dnuptime: dnIdyllic.blackhole,
+  dnuptime: dnIdyllic.blackhole
 };
 
 const modifiedStrat: Strat = {
@@ -4492,9 +4453,10 @@ const modifiedStrat: Strat = {
         dn: '',
         dnuptime: '',
         caro: '',
-        caroUptime: 'ℹ️ The only difference between Hector Uptime Caro and Caro is Defam placement in Clones II (NW/NE instead of N/S)',
+        caroUptime:
+          'ℹ️ The only difference between Hector Uptime Caro and Caro is Defam placement in Clones II (NW/NE instead of N/S)',
         cozy: 'ℹ️ The only difference between Cozy and DN is the Defam/Stack placement in Clones and Tethers II',
-        em: "ℹ️ Note the marker differences if you're using this with DN or BC",
+        em: "ℹ️ Note the marker differences if you're using this with DN or BC"
       },
       mechs: idyllicOverviewMechs
     },
@@ -4522,7 +4484,7 @@ const modifiedStrat: Strat = {
       phaseName: 'Idyllic Dream - Black Holes and Revelations',
       tag: 'idyllic',
       mechs: idyllicBlackholeMechs
-    },
+    }
   ]
 };
 
@@ -4537,7 +4499,7 @@ const caroStrat: Strat = {
     'P2: Clone Zone Rep2 (CJ4)': 'https://raidplan.io/plan/SFa6J6wDrU9PlCJ4',
     'P2: CaroKanndies Superchain Raidplan (xc9)': 'https://raidplan.io/plan/tr2jrddp4hkebxc9',
     'P2: Caro Idyllic Dream (wqc)': 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc',
-    'P2: Hector Uptime variation of Caro Idyllic Dream (nnn)': 'https://youtu.be/Osd---W8ZTY?t=1132',
+    'P2: Hector Uptime variation of Caro Idyllic Dream (nnn)': 'https://youtu.be/Osd---W8ZTY?t=1132'
   },
   strats: [
     // P1: Lindwurm
@@ -4860,7 +4822,7 @@ const caroStrat: Strat = {
       phaseName: 'Idyllic Dream - Black Holes and Revelations',
       tag: 'idyllic',
       mechs: idyllicBlackholeMechs
-    },
+    }
   ]
 };
 
@@ -4879,7 +4841,7 @@ export const m12sFightConfig: FightConfig = {
         mortalslayer: 'role',
         replication1: 'dn',
         replication2: 'clonezone',
-        idyllic: 'dn',
+        idyllic: 'dn'
       },
       badges: [
         {
@@ -4968,7 +4930,7 @@ export const m12sFightConfig: FightConfig = {
             name: 'Banana Codex Raidplan',
             url: 'https://raidplan.io/plan/jaakesbessc2uv7h'
           }
-        },
+        }
       ]
     },
     {
@@ -4991,7 +4953,7 @@ export const m12sFightConfig: FightConfig = {
             name: 'Banana Codex Raidplan',
             url: 'https://raidplan.io/plan/jaakesbessc2uv7h'
           }
-        },
+        }
       ]
     },
     {
@@ -5010,13 +4972,16 @@ export const m12sFightConfig: FightConfig = {
         {
           value: 'dnuptime',
           label: 'DN Uptime/Better',
-          url: [{
-            name: 'DN Idyllic with Uptime Stack/Defa Raidplan',
-            url: 'https://raidplan.io/plan/PdUdKJ3dCYzmc-p8'
-          }, {
-            name: 'Better™ DN Idyllic Dream Raidplan',
-            url: 'https://raidplan.io/plan/h-GDoi2CFWKazf-Y'
-          }]
+          url: [
+            {
+              name: 'DN Idyllic with Uptime Stack/Defa Raidplan',
+              url: 'https://raidplan.io/plan/PdUdKJ3dCYzmc-p8'
+            },
+            {
+              name: 'Better™ DN Idyllic Dream Raidplan',
+              url: 'https://raidplan.io/plan/h-GDoi2CFWKazf-Y'
+            }
+          ]
         },
         {
           value: 'caro',
@@ -5049,7 +5014,7 @@ export const m12sFightConfig: FightConfig = {
             name: 'Emergency Meeting Raidplan',
             url: 'https://raidplan.io/plan/hg6FhbjyktWqebyG'
           }
-        },
+        }
       ]
     },
     {

@@ -348,7 +348,7 @@ export function getToggleUrls({
 }
 
 export interface BoardUrlArgs {
-  strat: Strat;
+  strat: Strat | undefined;
   stratState: Record<string, string | null>;
 }
 

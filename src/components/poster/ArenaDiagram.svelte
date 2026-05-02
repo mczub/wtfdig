@@ -23,12 +23,7 @@
 {:else if imageUrl}
   <!-- Static image fallback -->
   <div class="relative w-full h-full overflow-hidden rounded">
-    <img
-      src={imageUrl}
-      {alt}
-      class="w-full h-full object-contain"
-      loading="lazy"
-    />
+    <img src={imageUrl} {alt} class="w-full h-full object-contain" loading="lazy" />
     {#if spotlight && mask}
       <SpotlightOverlay {mask} />
     {/if}

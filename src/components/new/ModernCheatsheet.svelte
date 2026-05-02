@@ -665,10 +665,7 @@
         // Pick whichever split (after i, or after i+1) is closer to balanced.
         const splitAfter = i + 1; // upper has cards [0..i], sum = next
         const splitBefore = i; // upper has cards [0..i-1], sum = acc
-        const idx =
-          target - acc <= next - target && splitBefore >= 1
-            ? splitBefore
-            : splitAfter;
+        const idx = target - acc <= next - target && splitBefore >= 1 ? splitBefore : splitAfter;
         const safeIdx = Math.max(1, Math.min(smalls.length - 1, idx));
         return { upper: smalls.slice(0, safeIdx), lower: smalls.slice(safeIdx) };
       }
@@ -730,9 +727,7 @@
         if (smalls.length > 0) rows.push({ kind: 'simple', smalls });
         smalls = [];
       } else {
-        const real = items.filter(
-          (it) => it.type === 'large' || it.smalls.length > 0
-        );
+        const real = items.filter((it) => it.type === 'large' || it.smalls.length > 0);
         if (real.length > 0) rows.push({ kind: 'macro', items: real });
         items = [];
       }
@@ -748,11 +743,12 @@
           // the simple row first and start a fresh macro row.
           const trial: MacroItem[] =
             smalls.length > 0
-              ? [{ type: 'smalls', smalls }, { type: 'large', card: spec }]
+              ? [
+                  { type: 'smalls', smalls },
+                  { type: 'large', card: spec }
+                ]
               : [{ type: 'large', card: spec }];
-          const fits =
-            trial.length <= 1 ||
-            macroNaturalWidth(trial, T, H) <= gridContainerWidth;
+          const fits = trial.length <= 1 || macroNaturalWidth(trial, T, H) <= gridContainerWidth;
           if (fits) {
             mode = 'macro';
             items = trial;
@@ -789,10 +785,7 @@
           const last = items[items.length - 1];
           let trial: MacroItem[];
           if (last && last.type === 'smalls') {
-            trial = [
-              ...items.slice(0, -1),
-              { type: 'smalls', smalls: [...last.smalls, spec] }
-            ];
+            trial = [...items.slice(0, -1), { type: 'smalls', smalls: [...last.smalls, spec] }];
           } else {
             trial = [...items, { type: 'smalls', smalls: [spec] }];
           }
@@ -871,10 +864,8 @@
         const { upper: upperSpecs, lower: lowerSpecs } = splitSmalls(it.smalls);
         const uA = upperSpecs.reduce((s, c) => s + c.aspect, 0);
         const lA = lowerSpecs.reduce((s, c) => s + c.aspect, 0);
-        const upperW =
-          upperSpecs.length > 0 ? uA * finalT + (upperSpecs.length - 1) * GAP : 0;
-        const lowerW =
-          lowerSpecs.length > 0 ? lA * finalT + (lowerSpecs.length - 1) * GAP : 0;
+        const upperW = upperSpecs.length > 0 ? uA * finalT + (upperSpecs.length - 1) * GAP : 0;
+        const lowerW = lowerSpecs.length > 0 ? lA * finalT + (lowerSpecs.length - 1) * GAP : 0;
         const blockWidth = Math.max(upperW, lowerW);
         laid.push({
           type: 'smalls',
@@ -1093,8 +1084,7 @@
               <div class="p-4">
                 <h3 class="text-lg font-semibold mb-2">Reset Cheatsheet Settings?</h3>
                 <p class="text-sm text-surface-400 mb-4">
-                  This will reset all visibility, cell sizes, and display options to their
-                  defaults.
+                  This will reset all visibility, cell sizes, and display options to their defaults.
                 </p>
                 <div class="flex gap-2 justify-end">
                   <button
@@ -1361,7 +1351,8 @@
           {@const showStrat = (textMode === 'all' || textMode === 'role') && stratDesc}
           {@const showHeader = textMode === 'all'}
           {@const showBottom = showDesc || showStrat}
-          {@const showWarning = phase?.tag && stratState[phase.tag] !== getStratMechs(stratName ?? '')[phase.tag]}
+          {@const showWarning =
+            phase?.tag && stratState[phase.tag] !== getStratMechs(stratName ?? '')[phase.tag]}
           <button
             class="relative card border border-surface-700 overflow-hidden bg-surface-950 hover:border-surface-500 transition-colors cursor-pointer group shrink-0"
             style:width="{cardWidth}px"
@@ -1376,11 +1367,7 @@
                 onload={(e) => handleImageLoad(e, imgUrl)}
               />
               {#if spotlight && showSpotlight && mask}
-                <SpotlightOverlay
-                  {mask}
-                  imageWidth={dims?.width}
-                  imageHeight={dims?.height}
-                />
+                <SpotlightOverlay {mask} imageWidth={dims?.width} imageHeight={dims?.height} />
               {/if}
             {/if}
 
@@ -1403,7 +1390,9 @@
                       </a>
                     {:else}
                       <div class="flex items-baseline gap-x-2 min-w-0">
-                        <span class="capitalize font-semibold text-base text-white leading-tight truncate">
+                        <span
+                          class="capitalize font-semibold text-base text-white leading-tight truncate"
+                        >
                           {headerName}
                         </span>
                       </div>
@@ -1411,7 +1400,9 @@
                   </div>
                   <div class="flex items-center gap-2 shrink-0">
                     {#if mech}
-                      <span class="capitalize text-xs font-semibold uppercase tracking-wide text-surface-300 leading-tight">
+                      <span
+                        class="capitalize text-xs font-semibold uppercase tracking-wide text-surface-300 leading-tight"
+                      >
                         {phase.phaseName}
                       </span>
                     {/if}
@@ -1447,12 +1438,16 @@
               >
                 <div class="pointer-events-auto space-y-1 text-left">
                   {#if showDesc}
-                    <div class="text-base text-surface-100 whitespace-pre-wrap leading-snug text-left">
+                    <div
+                      class="text-base text-surface-100 whitespace-pre-wrap leading-snug text-left"
+                    >
                       {@html renderDebuffTokens(desc)}
                     </div>
                   {/if}
                   {#if showStrat}
-                    <div class="flex items-start gap-2 text-base text-surface-50 leading-snug text-left">
+                    <div
+                      class="flex items-start gap-2 text-base text-surface-50 leading-snug text-left"
+                    >
                       {#if stratToggleKey}
                         <span class="shrink-0">⏩</span>
                       {:else if role}

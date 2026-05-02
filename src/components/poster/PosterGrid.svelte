@@ -33,9 +33,14 @@
   <!-- Title bar -->
   {#if layout.title}
     <div class="poster-title" style:grid-column={`1 / ${cols + 1}`}>
-      <span class="text-2xl font-bold text-white" style="font-family: 'Roboto Condensed', sans-serif">{layout.title}</span>
+      <span
+        class="text-2xl font-bold text-white"
+        style="font-family: 'Roboto Condensed', sans-serif">{layout.title}</span
+      >
       {#if layout.subtitle}
-        <span class="text-lg text-white/60 ml-4" style="font-family: 'Roboto Condensed', sans-serif">{layout.subtitle}</span>
+        <span class="text-lg text-white/60 ml-4" style="font-family: 'Roboto Condensed', sans-serif"
+          >{layout.subtitle}</span
+        >
       {/if}
     </div>
   {/if}

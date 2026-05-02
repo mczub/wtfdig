@@ -104,9 +104,9 @@
   );
 
   const formatConfig = {
-    png:  { mime: 'image/png',  ext: 'png',  quality: undefined },
-    jpg:  { mime: 'image/jpeg', ext: 'jpg',  quality: 0.85 },
-    webp: { mime: 'image/webp', ext: 'webp', quality: 0.85 },
+    png: { mime: 'image/png', ext: 'png', quality: undefined },
+    jpg: { mime: 'image/jpeg', ext: 'jpg', quality: 0.85 },
+    webp: { mime: 'image/webp', ext: 'webp', quality: 0.85 }
   } as const;
 
   async function exportPoster(format: 'png' | 'jpg' | 'webp') {
@@ -164,13 +164,17 @@
         <!-- Mode toggle -->
         <div class="flex items-center gap-1">
           <button
-            class="btn btn-sm {mode === 'overview' ? 'preset-filled-primary-500' : 'preset-tonal-surface'}"
+            class="btn btn-sm {mode === 'overview'
+              ? 'preset-filled-primary-500'
+              : 'preset-tonal-surface'}"
             onclick={() => (mode = 'overview')}
           >
             <Eye size={14} /> Overall
           </button>
           <button
-            class="btn btn-sm {mode === 'role' ? 'preset-filled-primary-500' : 'preset-tonal-surface'}"
+            class="btn btn-sm {mode === 'role'
+              ? 'preset-filled-primary-500'
+              : 'preset-tonal-surface'}"
             onclick={() => (mode = 'role')}
             disabled={!selectedJob}
           >
@@ -182,9 +186,11 @@
         <div class="flex items-center gap-1">
           {#each RESOLUTIONS as r}
             <button
-              class="btn btn-sm {resolution === r.value ? 'preset-filled-primary-500' : 'preset-tonal-surface'}"
-              onclick={() => (resolution = r.value)}
-            >{r.label}</button>
+              class="btn btn-sm {resolution === r.value
+                ? 'preset-filled-primary-500'
+                : 'preset-tonal-surface'}"
+              onclick={() => (resolution = r.value)}>{r.label}</button
+            >
           {/each}
         </div>
 
@@ -203,9 +209,18 @@
               class="absolute right-0 top-full mt-1 bg-surface-800 rounded-lg z-10 overflow-hidden"
               style="box-shadow: 0 1px 2px rgba(0,0,0,0.2), 0 8px 24px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.06);"
             >
-              <button class="block w-full text-left px-4 py-2 text-sm transition-colors hover:bg-surface-700" onclick={() => exportPoster('jpg')}>JPG (smallest)</button>
-              <button class="block w-full text-left px-4 py-2 text-sm transition-colors hover:bg-surface-700" onclick={() => exportPoster('webp')}>WebP (small)</button>
-              <button class="block w-full text-left px-4 py-2 text-sm transition-colors hover:bg-surface-700" onclick={() => exportPoster('png')}>PNG (lossless)</button>
+              <button
+                class="block w-full text-left px-4 py-2 text-sm transition-colors hover:bg-surface-700"
+                onclick={() => exportPoster('jpg')}>JPG (smallest)</button
+              >
+              <button
+                class="block w-full text-left px-4 py-2 text-sm transition-colors hover:bg-surface-700"
+                onclick={() => exportPoster('webp')}>WebP (small)</button
+              >
+              <button
+                class="block w-full text-left px-4 py-2 text-sm transition-colors hover:bg-surface-700"
+                onclick={() => exportPoster('png')}>PNG (lossless)</button
+              >
             </div>
           {/if}
         </div>
@@ -229,7 +244,13 @@
         style:width={`${baseW * posterScale}px`}
         style:height={`${baseH * posterScale}px`}
       >
-        <PosterGrid {layout} sections={resolvedSections} bind:posterRef {highlightJob} {jobLabels} />
+        <PosterGrid
+          {layout}
+          sections={resolvedSections}
+          bind:posterRef
+          {highlightJob}
+          {jobLabels}
+        />
       </div>
     </div>
   {/snippet}

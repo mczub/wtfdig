@@ -26,10 +26,8 @@ export const m9sFightConfig: FightConfig = {
     game8: {
       label: 'Game8/ぬけまる (English)',
       jpRoles: true,
-      badges: [
-        { text: 'JP', class: 'jp-badge' }
-      ]
-    },
+      badges: [{ text: 'JP', class: 'jp-badge' }]
+    }
   },
   defaultStratName: 'toxic',
   timeline: [
@@ -309,7 +307,7 @@ export const m9sFightConfig: FightConfig = {
       startTimeMs: 605000
     }
   ],
-  posterLayout: m9sPosterLayout,
+  posterLayout: m9sPosterLayout
 };
 
 export const toxic: Strat = {
@@ -319,7 +317,8 @@ export const toxic: Strat = {
     'Video by Hector Hectorson': 'https://www.youtube.com/watch?v=cR3wuG8VQ0o',
     'Toxic Friends Raidplan': 'https://raidplan.io/plan/c2L5iJfuYIWXk1v7',
     'Detailed Visual Guide by Hyulia': 'https://raidplan.io/plan/D8fCeim7LDLuEFmu',
-    'Cheatsheet by Hyulia': 'https://drive.google.com/file/d/1AL0cGcu9b51u6AvWiyUxwyApQLzFrYlW/view?usp=sharing',
+    'Cheatsheet by Hyulia':
+      'https://drive.google.com/file/d/1AL0cGcu9b51u6AvWiyUxwyApQLzFrYlW/view?usp=sharing'
   },
   strats: [
     {
@@ -1004,7 +1003,7 @@ export const game8: Strat = {
   stratName: 'game8',
   description: '',
   stratUrl: {
-    'Game8': 'https://game8.jp/ff14/754895',
+    Game8: 'https://game8.jp/ff14/754895',
     'Video by ぬけまる': 'https://www.youtube.com/watch?v=m4_8a0N8GcM'
   },
   strats: [
@@ -1021,58 +1020,59 @@ export const game8: Strat = {
       mechs: [
         {
           mechanic: 'Melee Pops',
-          description: 'Go to clock spot\nMelees dodge first bats then pop when ring is 4 floor squares in diameter\nRanged dodge 2nd and 3rd bats and pop far',
+          description:
+            'Go to clock spot\nMelees dodge first bats then pop when ring is 4 floor squares in diameter\nRanged dodge 2nd and 3rd bats and pop far',
           strats: [
             {
               role: 'Tank',
               party: 1,
               description: 'Dodge first bats then pop near North',
-              imageUrl: './m9s/game8-vamp-1.webp',
+              imageUrl: './m9s/game8-vamp-1.webp'
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Dodge first bats then pop near South',
-              imageUrl: './m9s/game8-vamp-1.webp',
+              imageUrl: './m9s/game8-vamp-1.webp'
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Dodge bats then pop far near Southwest (between D and 3)',
-              imageUrl: './m9s/game8-vamp-2.webp',
+              imageUrl: './m9s/game8-vamp-2.webp'
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Dodge bats then pop far near Southeast (between 2 and C)',
-              imageUrl: './m9s/game8-vamp-2.webp',
+              imageUrl: './m9s/game8-vamp-2.webp'
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Dodge first bats then pop near West',
-              imageUrl: './m9s/game8-vamp-1.webp',
+              imageUrl: './m9s/game8-vamp-1.webp'
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Dodge first bats then pop near East',
-              imageUrl: './m9s/game8-vamp-1.webp',
+              imageUrl: './m9s/game8-vamp-1.webp'
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Dodge bats then pop far near Northwest (between 4 and A)',
-              imageUrl: './m9s/game8-vamp-2.webp',
+              imageUrl: './m9s/game8-vamp-2.webp'
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Dodge bats then pop far near Northeast (between 1 and B)',
-              imageUrl: './m9s/game8-vamp-2.webp',
+              imageUrl: './m9s/game8-vamp-2.webp'
             }
           ]
-        },
+        }
       ]
     },
     {
@@ -1082,19 +1082,19 @@ export const game8: Strat = {
           mechanic: 'First Cleave',
           description: 'Dodge into non-glowing area\nBoss will cleave N or S',
           url: 'https://game8.jp/ff14/754895#hm_6',
-          imageUrl: './m9s/toxic-sadistic-1.webp',
+          imageUrl: './m9s/toxic-sadistic-1.webp'
         },
         {
           mechanic: 'Second Cleave',
           description: 'Boss will cleave other half\nDodge into non-glowing lane',
           url: 'https://game8.jp/ff14/754895#hm_6',
-          imageUrl: './m9s/toxic-sadistic-2.webp',
+          imageUrl: './m9s/toxic-sadistic-2.webp'
         },
         {
           mechanic: 'Third Cleave',
           description: 'Boss will cleave from South side\nOne tile will be safe',
           url: 'https://game8.jp/ff14/754895#hm_6',
-          imageUrl: './m9s/toxic-sadistic-3.webp',
+          imageUrl: './m9s/toxic-sadistic-3.webp'
         }
       ]
     },
@@ -1104,59 +1104,59 @@ export const game8: Strat = {
         {
           mechanic: 'Start',
           description:
-            "Static, start on marker CCW of your clock spot, drop AOE at edge of arena\nStack center to dodge crosses",
+            'Static, start on marker CCW of your clock spot, drop AOE at edge of arena\nStack center to dodge crosses',
           url: 'https://game8.jp/ff14/754895#hm_7',
           strats: [
             {
               role: 'Tank',
               party: 1,
               description: 'A marker',
-              imageUrl: './m9s/game8-aetherletting.webp',
+              imageUrl: './m9s/game8-aetherletting.webp'
             },
             {
               role: 'Tank',
               party: 2,
               description: 'C marker',
-              imageUrl: './m9s/game8-aetherletting.webp',
+              imageUrl: './m9s/game8-aetherletting.webp'
             },
             {
               role: 'Healer',
               party: 1,
               description: 'D marker',
-              imageUrl: './m9s/game8-aetherletting.webp',
+              imageUrl: './m9s/game8-aetherletting.webp'
             },
             {
               role: 'Healer',
               party: 2,
               description: 'B marker',
-              imageUrl: './m9s/game8-aetherletting.webp',
+              imageUrl: './m9s/game8-aetherletting.webp'
             },
             {
               role: 'Melee',
               party: 1,
               description: '3 Marker',
-              imageUrl: './m9s/game8-aetherletting.webp',
+              imageUrl: './m9s/game8-aetherletting.webp'
             },
             {
               role: 'Melee',
               party: 2,
               description: '2 Marker',
-              imageUrl: './m9s/game8-aetherletting.webp',
+              imageUrl: './m9s/game8-aetherletting.webp'
             },
             {
               role: 'Ranged',
               party: 1,
               description: '4 Marker',
-              imageUrl: './m9s/game8-aetherletting.webp',
+              imageUrl: './m9s/game8-aetherletting.webp'
             },
             {
               role: 'Ranged',
               party: 2,
               description: '1 Marker',
-              imageUrl: './m9s/game8-aetherletting.webp',
+              imageUrl: './m9s/game8-aetherletting.webp'
             }
           ]
-        },
+        }
       ]
     },
     {
@@ -1172,52 +1172,52 @@ export const game8: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Take North tower, then focus Flail',
-              imageUrl: './m9s/game8-sadistic2.webp',
+              imageUrl: './m9s/game8-sadistic2.webp'
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Take South tower, then focus Flail',
-              imageUrl: './m9s/game8-sadistic2.webp',
+              imageUrl: './m9s/game8-sadistic2.webp'
             },
             {
               role: 'Healer',
               party: 1,
-              description: "Avoid circle, focus Doornail",
+              description: 'Avoid circle, focus Doornail',
               imageUrl: './m9s/game8-sadistic2.webp'
             },
             {
               role: 'Healer',
               party: 2,
-              description: "Avoid circle, focus Doornail",
+              description: 'Avoid circle, focus Doornail',
               imageUrl: './m9s/game8-sadistic2.webp'
             },
             {
               role: 'Melee',
               party: 1,
-              description: "Avoid circle, focus Flail North",
+              description: 'Avoid circle, focus Flail North',
               imageUrl: './m9s/game8-sadistic2.webp'
             },
             {
               role: 'Melee',
               party: 2,
-              description: "Avoid circle, focus Flail South",
+              description: 'Avoid circle, focus Flail South',
               imageUrl: './m9s/game8-sadistic2.webp'
             },
             {
               role: 'Ranged',
               party: 1,
-              description: "Avoid circle, focus Doornail",
+              description: 'Avoid circle, focus Doornail',
               imageUrl: './m9s/game8-sadistic2.webp'
             },
             {
               role: 'Ranged',
               party: 2,
-              description: "Avoid circle, focus Doornail",
+              description: 'Avoid circle, focus Doornail',
               imageUrl: './m9s/game8-sadistic2.webp'
             }
           ]
-        },
+        }
       ]
     },
     {
@@ -1232,103 +1232,104 @@ export const game8: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Take 1st tower CW from N',
-              imageUrl: './m9s/game8-hell-towers.webp',
+              imageUrl: './m9s/game8-hell-towers.webp'
             },
             {
               role: 'Tank',
               party: 2,
-              description: "Take 1st tower CW from N",
+              description: 'Take 1st tower CW from N',
               imageUrl: './m9s/game8-hell-towers.webp'
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Take 4th tower CW from N',
-              imageUrl: './m9s/game8-hell-towers.webp',
+              imageUrl: './m9s/game8-hell-towers.webp'
             },
             {
               role: 'Healer',
               party: 2,
-              description: "Take 4th tower CW from N",
+              description: 'Take 4th tower CW from N',
               imageUrl: './m9s/game8-hell-towers.webp'
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Take 2nd tower CW from N',
-              imageUrl: './m9s/game8-hell-towers.webp',
+              imageUrl: './m9s/game8-hell-towers.webp'
             },
             {
               role: 'Melee',
               party: 2,
-              description: "Take 2nd tower CW from N",
+              description: 'Take 2nd tower CW from N',
               imageUrl: './m9s/game8-hell-towers.webp'
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Take 3rd tower CW from N',
-              imageUrl: './m9s/game8-hell-towers.webp',
+              imageUrl: './m9s/game8-hell-towers.webp'
             },
             {
               role: 'Ranged',
               party: 2,
-              description: "Take 3rd tower CW from N",
+              description: 'Take 3rd tower CW from N',
               imageUrl: './m9s/game8-hell-towers.webp'
             }
           ]
         },
         {
           mechanic: '1st Towers (Spread)',
-          description: 'MT group (G1) takes first set of towers\nOT group (G2) Spread is T>D>H CW from wide (Tank) gap',
+          description:
+            'MT group (G1) takes first set of towers\nOT group (G2) Spread is T>D>H CW from wide (Tank) gap',
           url: 'https://game8.jp/ff14/754895#hm_9',
           strats: [
             {
               role: 'Tank',
               party: 1,
               description: 'Take 1st tower CW from N',
-              imageUrl: './m9s/game8-hell-spread1.webp',
+              imageUrl: './m9s/game8-hell-spread1.webp'
             },
             {
               role: 'Tank',
               party: 2,
-              description: "Take cleave in wide gap",
+              description: 'Take cleave in wide gap',
               imageUrl: './m9s/game8-hell-spread1.webp'
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Take 4th tower CW from N',
-              imageUrl: './m9s/game8-hell-spread1.webp',
+              imageUrl: './m9s/game8-hell-spread1.webp'
             },
             {
               role: 'Healer',
               party: 2,
-              description: "Take cleave in 2nd gap CW of wide gap",
+              description: 'Take cleave in 2nd gap CW of wide gap',
               imageUrl: './m9s/game8-hell-spread1.webp'
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Take 2nd tower CW from N',
-              imageUrl: './m9s/game8-hell-spread1.webp',
+              imageUrl: './m9s/game8-hell-spread1.webp'
             },
             {
               role: 'Melee',
               party: 2,
-              description: "Take cleave in 1st gap CW of wide gap",
+              description: 'Take cleave in 1st gap CW of wide gap',
               imageUrl: './m9s/game8-hell-spread1.webp'
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Take 3rd tower CW from N',
-              imageUrl: './m9s/game8-hell-spread1.webp',
+              imageUrl: './m9s/game8-hell-spread1.webp'
             },
             {
               role: 'Ranged',
               party: 2,
-              description: "Take cleave in 1st gap CW of wide gap",
+              description: 'Take cleave in 1st gap CW of wide gap',
               imageUrl: './m9s/game8-hell-spread1.webp'
             }
           ]
@@ -1342,62 +1343,63 @@ export const game8: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Take 1st tower CW from N',
-              imageUrl: './m9s/game8-hell-stack1.webp',
+              imageUrl: './m9s/game8-hell-stack1.webp'
             },
             {
               role: 'Tank',
               party: 2,
-              description: "Stack in wide gap",
+              description: 'Stack in wide gap',
               imageUrl: './m9s/game8-hell-stack1.webp'
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Take 4th tower CW from N',
-              imageUrl: './m9s/game8-hell-stack1.webp',
+              imageUrl: './m9s/game8-hell-stack1.webp'
             },
             {
               role: 'Healer',
               party: 2,
-              description: "Stack in wide gap",
+              description: 'Stack in wide gap',
               imageUrl: './m9s/game8-hell-stack1.webp'
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Take 2nd tower CW from N',
-              imageUrl: './m9s/game8-hell-stack1.webp',
+              imageUrl: './m9s/game8-hell-stack1.webp'
             },
             {
               role: 'Melee',
               party: 2,
-              description: "Stack in wide gap",
+              description: 'Stack in wide gap',
               imageUrl: './m9s/game8-hell-stack1.webp'
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Take 3rd tower CW from N',
-              imageUrl: './m9s/game8-hell-stack1.webp',
+              imageUrl: './m9s/game8-hell-stack1.webp'
             },
             {
               role: 'Ranged',
               party: 2,
-              description: "Stack in wide gap",
+              description: 'Stack in wide gap',
               imageUrl: './m9s/game8-hell-stack1.webp'
             }
           ]
         },
         {
           mechanic: '2nd Towers (Spread)',
-          description: 'OT group (G2) takes second set of towers\nMT group (G1) Spread is T>D>H CW from wide (Tank) gap',
+          description:
+            'OT group (G2) takes second set of towers\nMT group (G1) Spread is T>D>H CW from wide (Tank) gap',
           url: 'https://game8.jp/ff14/754895#hm_9',
           strats: [
             {
               role: 'Tank',
               party: 1,
-              description: "Take cleave in wide gap",
-              imageUrl: './m9s/game8-hell-spread2.webp',
+              description: 'Take cleave in wide gap',
+              imageUrl: './m9s/game8-hell-spread2.webp'
             },
             {
               role: 'Tank',
@@ -1408,8 +1410,8 @@ export const game8: Strat = {
             {
               role: 'Healer',
               party: 1,
-              description: "Take cleave in 2nd gap CW of wide gap",
-              imageUrl: './m9s/game8-hell-spread2.webp',
+              description: 'Take cleave in 2nd gap CW of wide gap',
+              imageUrl: './m9s/game8-hell-spread2.webp'
             },
             {
               role: 'Healer',
@@ -1420,8 +1422,8 @@ export const game8: Strat = {
             {
               role: 'Melee',
               party: 1,
-              description: "Take cleave in 1st gap CW of wide gap",
-              imageUrl: './m9s/game8-hell-spread2.webp',
+              description: 'Take cleave in 1st gap CW of wide gap',
+              imageUrl: './m9s/game8-hell-spread2.webp'
             },
             {
               role: 'Melee',
@@ -1432,8 +1434,8 @@ export const game8: Strat = {
             {
               role: 'Ranged',
               party: 1,
-              description: "Take cleave in 1st gap CW of wide gap",
-              imageUrl: './m9s/game8-hell-spread2.webp',
+              description: 'Take cleave in 1st gap CW of wide gap',
+              imageUrl: './m9s/game8-hell-spread2.webp'
             },
             {
               role: 'Ranged',
@@ -1451,8 +1453,8 @@ export const game8: Strat = {
             {
               role: 'Tank',
               party: 1,
-              description: "Stack in wide gap",
-              imageUrl: './m9s/game8-hell-stack2.webp',
+              description: 'Stack in wide gap',
+              imageUrl: './m9s/game8-hell-stack2.webp'
             },
             {
               role: 'Tank',
@@ -1463,8 +1465,8 @@ export const game8: Strat = {
             {
               role: 'Healer',
               party: 1,
-              description: "Stack in wide gap",
-              imageUrl: './m9s/game8-hell-stack2.webp',
+              description: 'Stack in wide gap',
+              imageUrl: './m9s/game8-hell-stack2.webp'
             },
             {
               role: 'Healer',
@@ -1475,8 +1477,8 @@ export const game8: Strat = {
             {
               role: 'Melee',
               party: 1,
-              description: "Stack in wide gap",
-              imageUrl: './m9s/game8-hell-stack2.webp',
+              description: 'Stack in wide gap',
+              imageUrl: './m9s/game8-hell-stack2.webp'
             },
             {
               role: 'Melee',
@@ -1487,8 +1489,8 @@ export const game8: Strat = {
             {
               role: 'Ranged',
               party: 1,
-              description: "Stack in wide gap",
-              imageUrl: './m9s/game8-hell-stack2.webp',
+              description: 'Stack in wide gap',
+              imageUrl: './m9s/game8-hell-stack2.webp'
             },
             {
               role: 'Ranged',
@@ -1497,7 +1499,7 @@ export const game8: Strat = {
               imageUrl: './m9s/game8-hell-stack2.webp'
             }
           ]
-        },
+        }
       ]
     },
     {
@@ -1511,42 +1513,42 @@ export const game8: Strat = {
             {
               role: 'Tank',
               party: 1,
-              description: 'North/West',
+              description: 'North/West'
             },
             {
               role: 'Tank',
               party: 2,
-              description: 'South/East',
+              description: 'South/East'
             },
             {
               role: 'Healer',
               party: 1,
-              description: 'North/West',
+              description: 'North/West'
             },
             {
               role: 'Healer',
               party: 2,
-              description: 'South/East',
+              description: 'South/East'
             },
             {
               role: 'Melee',
               party: 1,
-              description: 'North/West',
+              description: 'North/West'
             },
             {
               role: 'Melee',
               party: 2,
-              description: 'South/East',
+              description: 'South/East'
             },
             {
               role: 'Ranged',
               party: 1,
-              description: 'North/West',
+              description: 'North/West'
             },
             {
               role: 'Ranged',
               party: 2,
-              description: 'South/East',
+              description: 'South/East'
             }
           ]
         }
@@ -1583,8 +1585,8 @@ export const game8jp: Strat = {
   stratName: 'game8jp',
   description: '',
   stratUrl: {
-    'Game8': 'https://game8.jp/ff14/754895',
-    'ぬけまる様の解説動画': 'https://www.youtube.com/watch?v=m4_8a0N8GcM'
+    Game8: 'https://game8.jp/ff14/754895',
+    ぬけまる様の解説動画: 'https://www.youtube.com/watch?v=m4_8a0N8GcM'
   },
   strats: [
     {
@@ -1606,52 +1608,52 @@ export const game8jp: Strat = {
               role: 'Tank',
               party: 1,
               description: '北(内側)',
-              imageUrl: './m9s/game8-vamp.webp',
+              imageUrl: './m9s/game8-vamp.webp'
             },
             {
               role: 'Tank',
               party: 2,
               description: '南(内側)',
-              imageUrl: './m9s/game8-vamp.webp',
+              imageUrl: './m9s/game8-vamp.webp'
             },
             {
               role: 'Healer',
               party: 1,
               description: '南西(外側、Dと3の間)',
-              imageUrl: './m9s/game8-vamp.webp',
+              imageUrl: './m9s/game8-vamp.webp'
             },
             {
               role: 'Healer',
               party: 2,
               description: '南東(外側、2とCの間)',
-              imageUrl: './m9s/game8-vamp.webp',
+              imageUrl: './m9s/game8-vamp.webp'
             },
             {
               role: 'Melee',
               party: 1,
               description: '西(内側)',
-              imageUrl: './m9s/game8-vamp.webp',
+              imageUrl: './m9s/game8-vamp.webp'
             },
             {
               role: 'Melee',
               party: 2,
               description: '東(内側)',
-              imageUrl: './m9s/game8-vamp.webp',
+              imageUrl: './m9s/game8-vamp.webp'
             },
             {
               role: 'Ranged',
               party: 1,
               description: '北西(外側、4とAの間)',
-              imageUrl: './m9s/game8-vamp.webp',
+              imageUrl: './m9s/game8-vamp.webp'
             },
             {
               role: 'Ranged',
               party: 2,
               description: '北東(外側、1とBの間)',
-              imageUrl: './m9s/game8-vamp.webp',
+              imageUrl: './m9s/game8-vamp.webp'
             }
           ]
-        },
+        }
       ]
     },
     {
@@ -1661,19 +1663,19 @@ export const game8jp: Strat = {
           mechanic: '1回目',
           description: '光っていない方向へ回避\nボスから北か南への半面範囲',
           url: 'https://game8.jp/ff14/754895#hm_6',
-          imageUrl: './m9s/toxic-sadistic-1.webp',
+          imageUrl: './m9s/toxic-sadistic-1.webp'
         },
         {
           mechanic: '2回目',
           description: 'ボスから逆の半面範囲\n光っていないレーンへ回避',
           url: 'https://game8.jp/ff14/754895#hm_6',
-          imageUrl: './m9s/toxic-sadistic-2.webp',
+          imageUrl: './m9s/toxic-sadistic-2.webp'
         },
         {
           mechanic: '3回目',
           description: 'ボスから南側への半面範囲\n1マスのみ安置',
           url: 'https://game8.jp/ff14/754895#hm_6',
-          imageUrl: './m9s/toxic-sadistic-3.webp',
+          imageUrl: './m9s/toxic-sadistic-3.webp'
         }
       ]
     },
@@ -1682,60 +1684,59 @@ export const game8jp: Strat = {
       mechs: [
         {
           mechanic: '範囲捨て',
-          description:
-            '指定マーカーへ扇範囲を避けつつ向かい、範囲を捨てる\n処理後、中央に集合',
+          description: '指定マーカーへ扇範囲を避けつつ向かい、範囲を捨てる\n処理後、中央に集合',
           url: 'https://game8.jp/ff14/754895#hm_7',
           strats: [
             {
               role: 'Tank',
               party: 1,
               description: 'Aマーカー',
-              imageUrl: './m9s/game8-aetherletting.webp',
+              imageUrl: './m9s/game8-aetherletting.webp'
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Cマーカー',
-              imageUrl: './m9s/game8-aetherletting.webp',
+              imageUrl: './m9s/game8-aetherletting.webp'
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Dマーカー',
-              imageUrl: './m9s/game8-aetherletting.webp',
+              imageUrl: './m9s/game8-aetherletting.webp'
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Bマーカー',
-              imageUrl: './m9s/game8-aetherletting.webp',
+              imageUrl: './m9s/game8-aetherletting.webp'
             },
             {
               role: 'Melee',
               party: 1,
               description: '3マーカー',
-              imageUrl: './m9s/game8-aetherletting.webp',
+              imageUrl: './m9s/game8-aetherletting.webp'
             },
             {
               role: 'Melee',
               party: 2,
               description: '2マーカー',
-              imageUrl: './m9s/game8-aetherletting.webp',
+              imageUrl: './m9s/game8-aetherletting.webp'
             },
             {
               role: 'Ranged',
               party: 1,
               description: '4マーカー',
-              imageUrl: './m9s/game8-aetherletting.webp',
+              imageUrl: './m9s/game8-aetherletting.webp'
             },
             {
               role: 'Ranged',
               party: 2,
               description: '1マーカー',
-              imageUrl: './m9s/game8-aetherletting.webp',
+              imageUrl: './m9s/game8-aetherletting.webp'
             }
           ]
-        },
+        }
       ]
     },
     {
@@ -1751,13 +1752,13 @@ export const game8jp: Strat = {
               role: 'Tank',
               party: 1,
               description: '北の塔を踏む→鉄球を破壊',
-              imageUrl: './m9s/game8-sadistic2.webp',
+              imageUrl: './m9s/game8-sadistic2.webp'
             },
             {
               role: 'Tank',
               party: 2,
               description: '南の塔を踏む→鉄球を破壊',
-              imageUrl: './m9s/game8-sadistic2.webp',
+              imageUrl: './m9s/game8-sadistic2.webp'
             },
             {
               role: 'Healer',
@@ -1796,7 +1797,7 @@ export const game8jp: Strat = {
               imageUrl: './m9s/game8-sadistic2.webp'
             }
           ]
-        },
+        }
       ]
     },
     {
@@ -1811,7 +1812,7 @@ export const game8jp: Strat = {
               role: 'Tank',
               party: 1,
               description: '北から時計回り1番目の塔',
-              imageUrl: './m9s/game8-hell-towers.webp',
+              imageUrl: './m9s/game8-hell-towers.webp'
             },
             {
               role: 'Tank',
@@ -1823,7 +1824,7 @@ export const game8jp: Strat = {
               role: 'Healer',
               party: 1,
               description: '北から時計回り4番目の塔',
-              imageUrl: './m9s/game8-hell-towers.webp',
+              imageUrl: './m9s/game8-hell-towers.webp'
             },
             {
               role: 'Healer',
@@ -1835,7 +1836,7 @@ export const game8jp: Strat = {
               role: 'Melee',
               party: 1,
               description: '北から時計回り2番目の塔',
-              imageUrl: './m9s/game8-hell-towers.webp',
+              imageUrl: './m9s/game8-hell-towers.webp'
             },
             {
               role: 'Melee',
@@ -1847,7 +1848,7 @@ export const game8jp: Strat = {
               role: 'Ranged',
               party: 1,
               description: '北から時計回り3番目の塔',
-              imageUrl: './m9s/game8-hell-towers.webp',
+              imageUrl: './m9s/game8-hell-towers.webp'
             },
             {
               role: 'Ranged',
@@ -1866,7 +1867,7 @@ export const game8jp: Strat = {
               role: 'Tank',
               party: 1,
               description: '北から時計回り1番目の塔',
-              imageUrl: './m9s/game8-hell-spread1.webp',
+              imageUrl: './m9s/game8-hell-spread1.webp'
             },
             {
               role: 'Tank',
@@ -1878,7 +1879,7 @@ export const game8jp: Strat = {
               role: 'Healer',
               party: 1,
               description: '北から時計回り4番目の塔',
-              imageUrl: './m9s/game8-hell-spread1.webp',
+              imageUrl: './m9s/game8-hell-spread1.webp'
             },
             {
               role: 'Healer',
@@ -1890,7 +1891,7 @@ export const game8jp: Strat = {
               role: 'Melee',
               party: 1,
               description: '北から時計回り2番目の塔',
-              imageUrl: './m9s/game8-hell-spread1.webp',
+              imageUrl: './m9s/game8-hell-spread1.webp'
             },
             {
               role: 'Melee',
@@ -1902,7 +1903,7 @@ export const game8jp: Strat = {
               role: 'Ranged',
               party: 1,
               description: '北から時計回り3番目の塔',
-              imageUrl: './m9s/game8-hell-spread1.webp',
+              imageUrl: './m9s/game8-hell-spread1.webp'
             },
             {
               role: 'Ranged',
@@ -1921,7 +1922,7 @@ export const game8jp: Strat = {
               role: 'Tank',
               party: 1,
               description: '北から時計回り1番目の塔',
-              imageUrl: './m9s/game8-hell-stack1.webp',
+              imageUrl: './m9s/game8-hell-stack1.webp'
             },
             {
               role: 'Tank',
@@ -1933,7 +1934,7 @@ export const game8jp: Strat = {
               role: 'Healer',
               party: 1,
               description: '北から時計回り4番目の塔',
-              imageUrl: './m9s/game8-hell-stack1.webp',
+              imageUrl: './m9s/game8-hell-stack1.webp'
             },
             {
               role: 'Healer',
@@ -1945,7 +1946,7 @@ export const game8jp: Strat = {
               role: 'Melee',
               party: 1,
               description: '北から時計回り2番目の塔',
-              imageUrl: './m9s/game8-hell-stack1.webp',
+              imageUrl: './m9s/game8-hell-stack1.webp'
             },
             {
               role: 'Melee',
@@ -1957,7 +1958,7 @@ export const game8jp: Strat = {
               role: 'Ranged',
               party: 1,
               description: '北から時計回り3番目の塔',
-              imageUrl: './m9s/game8-hell-stack1.webp',
+              imageUrl: './m9s/game8-hell-stack1.webp'
             },
             {
               role: 'Ranged',
@@ -1976,7 +1977,7 @@ export const game8jp: Strat = {
               role: 'Tank',
               party: 1,
               description: '広い安置で散開',
-              imageUrl: './m9s/game8-hell-spread2.webp',
+              imageUrl: './m9s/game8-hell-spread2.webp'
             },
             {
               role: 'Tank',
@@ -1988,7 +1989,7 @@ export const game8jp: Strat = {
               role: 'Healer',
               party: 1,
               description: '広い安置から時計回り2番目で散開',
-              imageUrl: './m9s/game8-hell-spread2.webp',
+              imageUrl: './m9s/game8-hell-spread2.webp'
             },
             {
               role: 'Healer',
@@ -2000,7 +2001,7 @@ export const game8jp: Strat = {
               role: 'Melee',
               party: 1,
               description: '広い安置から時計回り1番目で散開',
-              imageUrl: './m9s/game8-hell-spread2.webp',
+              imageUrl: './m9s/game8-hell-spread2.webp'
             },
             {
               role: 'Melee',
@@ -2012,7 +2013,7 @@ export const game8jp: Strat = {
               role: 'Ranged',
               party: 1,
               description: '広い安置から時計回り1番目で散開',
-              imageUrl: './m9s/game8-hell-spread2.webp',
+              imageUrl: './m9s/game8-hell-spread2.webp'
             },
             {
               role: 'Ranged',
@@ -2031,7 +2032,7 @@ export const game8jp: Strat = {
               role: 'Tank',
               party: 1,
               description: '広い安置で頭割り',
-              imageUrl: './m9s/game8-hell-stack2.webp',
+              imageUrl: './m9s/game8-hell-stack2.webp'
             },
             {
               role: 'Tank',
@@ -2043,7 +2044,7 @@ export const game8jp: Strat = {
               role: 'Healer',
               party: 1,
               description: '広い安置で頭割り',
-              imageUrl: './m9s/game8-hell-stack2.webp',
+              imageUrl: './m9s/game8-hell-stack2.webp'
             },
             {
               role: 'Healer',
@@ -2055,7 +2056,7 @@ export const game8jp: Strat = {
               role: 'Melee',
               party: 1,
               description: '広い安置で頭割り',
-              imageUrl: './m9s/game8-hell-stack2.webp',
+              imageUrl: './m9s/game8-hell-stack2.webp'
             },
             {
               role: 'Melee',
@@ -2067,7 +2068,7 @@ export const game8jp: Strat = {
               role: 'Ranged',
               party: 1,
               description: '広い安置で頭割り',
-              imageUrl: './m9s/game8-hell-stack2.webp',
+              imageUrl: './m9s/game8-hell-stack2.webp'
             },
             {
               role: 'Ranged',
@@ -2076,7 +2077,7 @@ export const game8jp: Strat = {
               imageUrl: './m9s/game8-hell-stack2.webp'
             }
           ]
-        },
+        }
       ]
     },
     {
@@ -2090,42 +2091,42 @@ export const game8jp: Strat = {
             {
               role: 'Tank',
               party: 1,
-              description: '北/西',
+              description: '北/西'
             },
             {
               role: 'Tank',
               party: 2,
-              description: '南/東',
+              description: '南/東'
             },
             {
               role: 'Healer',
               party: 1,
-              description: '北/西',
+              description: '北/西'
             },
             {
               role: 'Healer',
               party: 2,
-              description: '南/東',
+              description: '南/東'
             },
             {
               role: 'Melee',
               party: 1,
-              description: '北/西',
+              description: '北/西'
             },
             {
               role: 'Melee',
               party: 2,
-              description: '南/東',
+              description: '南/東'
             },
             {
               role: 'Ranged',
               party: 1,
-              description: '北/西',
+              description: '北/西'
             },
             {
               role: 'Ranged',
               party: 2,
-              description: '南/東',
+              description: '南/東'
             }
           ]
         }
@@ -2137,14 +2138,14 @@ export const game8jp: Strat = {
       mechs: [
         {
           mechanic: '扇回避＋線追従',
-          description:
-            'ボスの扇範囲を交互に避けつつ、コウモリの線を追従\n画像は線の最大距離',
+          description: 'ボスの扇範囲を交互に避けつつ、コウモリの線を追従\n画像は線の最大距離',
           imageUrl: './m9s/game8-sanguine-range.webp',
           url: 'https://game8.jp/ff14/754895#hm_10'
         },
         {
           mechanic: 'ドーナツ/円範囲',
-          description: 'コウモリからのドーナツ範囲か円範囲が発動\n円範囲はボスに寄って回避、ドーナツはコウモリの足元',
+          description:
+            'コウモリからのドーナツ範囲か円範囲が発動\n円範囲はボスに寄って回避、ドーナツはコウモリの足元',
           imageUrl: './m9s/game8-sanguine-2.webp',
           url: 'https://game8.jp/ff14/754895#hm_10'
         }

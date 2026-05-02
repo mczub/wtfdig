@@ -5,7 +5,17 @@
   import { startSolitaireEffect, stopSolitaireEffect } from '$lib/solitaire';
   import ModernCheatsheet from './ModernCheatsheet.svelte';
   import PosterCheatsheet from '../poster/PosterCheatsheet.svelte';
-  import { ChevronUp, CircleQuestionMark, Copy, ExternalLink, Fullscreen, Grid3x3, Image, Info, Link } from '@lucide/svelte';
+  import {
+    ChevronUp,
+    CircleQuestionMark,
+    Copy,
+    ExternalLink,
+    Fullscreen,
+    Grid3x3,
+    Image,
+    Info,
+    Link
+  } from '@lucide/svelte';
   import ModernStratView from './ModernStratView.svelte';
   import ModernFightStratControls from './ModernFightStratControls.svelte';
   import FightStratState from './FightStratState.svelte';
@@ -32,9 +42,7 @@
 
   let effectiveStrats = $derived(jokeStrat ? [jokeStrat, ...strats] : strats);
   let effectiveConfigStrats = $derived(
-    jokeConfigEntry
-      ? { ...config.strats, aprilfools: jokeConfigEntry }
-      : config.strats
+    jokeConfigEntry ? { ...config.strats, aprilfools: jokeConfigEntry } : config.strats
   );
 
   let stratOptions = $derived(
@@ -66,7 +74,9 @@
       solitaireActive = false;
     } else {
       solitaireActive = true;
-      await startSolitaireEffect(() => { solitaireActive = false; });
+      await startSolitaireEffect(() => {
+        solitaireActive = false;
+      });
     }
   }
 
@@ -240,12 +250,7 @@
 </script>
 
 <svelte:window bind:innerWidth bind:innerHeight bind:scrollY />
-<FightStratState
-  fightKey={config.fightKey}
-  strats={effectiveStrats}
-  {stratKeys}
-  {getStratMechs}
->
+<FightStratState fightKey={config.fightKey} strats={effectiveStrats} {stratKeys} {getStratMechs}>
   {#snippet children({
     stratName,
     stratState,
@@ -257,291 +262,300 @@
     setRole,
     setParty
   })}
-  {@const normalizedRole: Role | undefined = role ?? undefined}
-  {@const optionsString = getOptionsString({ stratName, role: normalizedRole, party, stratState })}
-  {@const individualStrat = getIndividualStrat({
-    strat,
-    stratName,
-    role: normalizedRole,
-    party,
-    stratState
-  })}
-  {@const pfDescription = getPFDescription({ stratName, stratState })}
-  {@const toggleUrls = getToggleUrls({
-    stratName,
-    toggles: config.toggles,
-    strats: effectiveConfigStrats,
-    stratState,
-    showAllToggleUrls: config.showAllToggleUrls
-  })}
-  {@const boardUrl = getBoardUrl({
-    strat,
-    stratState
-  })}
+    {@const normalizedRole: Role | undefined = role ?? undefined}
+    {@const optionsString = getOptionsString({
+      stratName,
+      role: normalizedRole,
+      party,
+      stratState
+    })}
+    {@const individualStrat = getIndividualStrat({
+      strat,
+      stratName,
+      role: normalizedRole,
+      party,
+      stratState
+    })}
+    {@const pfDescription = getPFDescription({ stratName, stratState })}
+    {@const toggleUrls = getToggleUrls({
+      stratName,
+      toggles: config.toggles,
+      strats: effectiveConfigStrats,
+      stratState,
+      showAllToggleUrls: config.showAllToggleUrls
+    })}
+    {@const boardUrl = getBoardUrl({
+      strat,
+      stratState
+    })}
 
-  {#if config.posterLayout && config.posterEnabled}
-    {@const posterJob = formatRoleAbbreviation(normalizedRole, party) as PlayerJob | ''}
-    {@const roleOpt = config.roleOptions?.find((o) => o.role === normalizedRole && o.party === party)}
-    {@const posterJobLabel = roleOpt?.abbrev ?? roleOpt?.label}
-    <PosterCheatsheet
-      {config}
-      bind:posterOpenState
-      selectedJob={posterJob || undefined}
-      selectedJobLabel={posterJobLabel}
-    />
-  {/if}
-
-  <ModernCheatsheet
-    title={`${config.cheatsheetTitle} - ${optionsString}`}
-    bind:cheatsheetOpenState
-    timeline={config.timeline ?? []}
-    splitTimeline={config.splitTimeline ?? false}
-    useEvenTimelineSpacing={config.useEvenTimelineSpacing ?? false}
-    {stratName}
-    {stratState}
-    {setStratState}
-    {getStratMechs}
-    {individualStrat}
-    {spotlight}
-    {alignment}
-    {innerHeight}
-    {innerWidth}
-    tabTags={config.tabTags}
-    role={normalizedRole}
-    fightKey={config.fightKey}
-    mechToggles={(config.toggles ?? []).filter((t) => t.isMechToggle)}
-  />
-
-  <ModernFightStratControls
-    title={config.abbreviatedTitle ?? config.title}
-    strats={effectiveConfigStrats}
-    {stratName}
-    {stratOptions}
-    onSelectStrat={selectStrat}
-    {stratState}
-    toggles={(config.toggles ?? []).map((toggle) => ({
-      key: toggle.key,
-      label: toggle.label,
-      value: stratState?.[toggle.key] ?? toggle.defaultValue ?? null,
-      options: toggle.options,
-      isMechToggle: toggle.isMechToggle,
-      phaseTag: toggle.phaseTag
-    }))}
-    onToggleChange={setStratState}
-    currentStratDefaults={getStratMechs(stratName ?? '')}
-    role={normalizedRole}
-    {setRole}
-    {party}
-    {setParty}
-    roleOptions={config.roleOptions}
-    {spotlight}
-    setSpotlight={(val) => (spotlight = val)}
-    additionalResources={config.additionalResources}
-    onOpenCheatsheet={isCheatsheetEnabled ? () => (cheatsheetOpenState = true) : undefined}
-    onOpenPoster={config.posterLayout && config.posterEnabled ? () => (posterOpenState = true) : undefined}
-    tabTags={config.tabTags}
-    {currentTab}
-  />
-
-  {#if scrollY > 300}
-    <button
-      transition:fade={{ duration: 200 }}
-      onclick={scrollToTop}
-      id="btn-back-to-top"
-      class="fixed bottom-4 right-4 p-4 border text-white rounded-full shadow-lg z-40 bg-surface-1000 hover:bg-muted transition-colors"
-      aria-label="Back to top"
-    >
-      <ChevronUp size={24} />
-    </button>
-  {/if}
-  <div class="container grow px-4 mx-auto mb-6 pt-6">
-    {#if !role || !party || !stratName}
-      <div
-        class="relative w-fit -mt-5 mb-2 z-10 bg-surface-900 border border-primary-500 text-surface-50 px-4 py-2 rounded-xl shadow-xl"
-      >
-        <div
-          class="absolute -top-1.5 left-8 w-3 h-3 bg-surface-900 border-t border-l border-primary-500 transform rotate-45"
-        ></div>
-        <span class="font-bold text-lg whitespace-nowrap">Select your role, group & strat</span>
-      </div>
+    {#if config.posterLayout && config.posterEnabled}
+      {@const posterJob = formatRoleAbbreviation(normalizedRole, party) as PlayerJob | ''}
+      {@const roleOpt = config.roleOptions?.find(
+        (o) => o.role === normalizedRole && o.party === party
+      )}
+      {@const posterJobLabel = roleOpt?.abbrev ?? roleOpt?.label}
+      <PosterCheatsheet
+        {config}
+        bind:posterOpenState
+        selectedJob={posterJob || undefined}
+        selectedJobLabel={posterJobLabel}
+      />
     {/if}
-    <div class="container">
-      <div class="mb-4 text-left border-b border-surface-700/50 pb-4">
-        <div class="preset-typo-headline font-bold tracking-tight">{config.title}</div>
-        <div class="text-lg lg:text-2xl text-surface-400 font-light">{config.subtitle}</div>
-      </div>
-      {#if stratName && normalizedRole && party}
-        {#if typeof individualStrat === 'string'}
-          {strat}
-        {:else if typeof individualStrat === 'undefined'}
-          <div></div>
-        {:else if !strat}
-          <div></div>
-        {:else}
-          {@const selectedStrat = strat}
 
-          <!-- Strat Info & Content -->
-          <div class="space-y-4">
-            <div
-              class="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between pb-2"
-            >
-              <div class="w-full lg:w-auto">
-                <div class="capitalize font-bold preset-typo-title mb-1 text-surface-50">
-                  {optionsString}
-                </div>
-                {#if selectedStrat?.stratName === 'aprilfools'}
-                  <button
-                    type="button"
-                    class="inline-flex items-center text-base lg:text-lg text-blue-400 hover:text-blue-300 hover:underline gap-1 transition-colors cursor-pointer"
-                    onclick={toggleSolitaire}
-                    >{selectedStrat.description}
-                  </button>
-                {:else if typeof selectedStrat?.stratUrl === 'string'}
-                  <a
-                    class="inline-flex items-center text-base lg:text-lg text-blue-400 hover:text-blue-300 hover:underline gap-1 transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={selectedStrat.stratUrl}
-                    >{selectedStrat.description}
-                    <ExternalLink size={16} />
-                  </a>
-                {:else if typeof selectedStrat?.stratUrl === 'object'}
-                  <div class="flex flex-col gap-x-4 gap-y-1">
-                    <span class="text-surface-300">{selectedStrat.description}</span>
+    <ModernCheatsheet
+      title={`${config.cheatsheetTitle} - ${optionsString}`}
+      bind:cheatsheetOpenState
+      timeline={config.timeline ?? []}
+      splitTimeline={config.splitTimeline ?? false}
+      useEvenTimelineSpacing={config.useEvenTimelineSpacing ?? false}
+      {stratName}
+      {stratState}
+      {setStratState}
+      {getStratMechs}
+      {individualStrat}
+      {spotlight}
+      {alignment}
+      {innerHeight}
+      {innerWidth}
+      tabTags={config.tabTags}
+      role={normalizedRole}
+      fightKey={config.fightKey}
+      mechToggles={(config.toggles ?? []).filter((t) => t.isMechToggle)}
+    />
+
+    <ModernFightStratControls
+      title={config.abbreviatedTitle ?? config.title}
+      strats={effectiveConfigStrats}
+      {stratName}
+      {stratOptions}
+      onSelectStrat={selectStrat}
+      {stratState}
+      toggles={(config.toggles ?? []).map((toggle) => ({
+        key: toggle.key,
+        label: toggle.label,
+        value: stratState?.[toggle.key] ?? toggle.defaultValue ?? null,
+        options: toggle.options,
+        isMechToggle: toggle.isMechToggle,
+        phaseTag: toggle.phaseTag
+      }))}
+      onToggleChange={setStratState}
+      currentStratDefaults={getStratMechs(stratName ?? '')}
+      role={normalizedRole}
+      {setRole}
+      {party}
+      {setParty}
+      roleOptions={config.roleOptions}
+      {spotlight}
+      setSpotlight={(val) => (spotlight = val)}
+      additionalResources={config.additionalResources}
+      onOpenCheatsheet={isCheatsheetEnabled ? () => (cheatsheetOpenState = true) : undefined}
+      onOpenPoster={config.posterLayout && config.posterEnabled
+        ? () => (posterOpenState = true)
+        : undefined}
+      tabTags={config.tabTags}
+      {currentTab}
+    />
+
+    {#if scrollY > 300}
+      <button
+        transition:fade={{ duration: 200 }}
+        onclick={scrollToTop}
+        id="btn-back-to-top"
+        class="fixed bottom-4 right-4 p-4 border text-white rounded-full shadow-lg z-40 bg-surface-1000 hover:bg-muted transition-colors"
+        aria-label="Back to top"
+      >
+        <ChevronUp size={24} />
+      </button>
+    {/if}
+    <div class="container grow px-4 mx-auto mb-6 pt-6">
+      {#if !role || !party || !stratName}
+        <div
+          class="relative w-fit -mt-5 mb-2 z-10 bg-surface-900 border border-primary-500 text-surface-50 px-4 py-2 rounded-xl shadow-xl"
+        >
+          <div
+            class="absolute -top-1.5 left-8 w-3 h-3 bg-surface-900 border-t border-l border-primary-500 transform rotate-45"
+          ></div>
+          <span class="font-bold text-lg whitespace-nowrap">Select your role, group & strat</span>
+        </div>
+      {/if}
+      <div class="container">
+        <div class="mb-4 text-left border-b border-surface-700/50 pb-4">
+          <div class="preset-typo-headline font-bold tracking-tight">{config.title}</div>
+          <div class="text-lg lg:text-2xl text-surface-400 font-light">{config.subtitle}</div>
+        </div>
+        {#if stratName && normalizedRole && party}
+          {#if typeof individualStrat === 'string'}
+            {strat}
+          {:else if typeof individualStrat === 'undefined'}
+            <div></div>
+          {:else if !strat}
+            <div></div>
+          {:else}
+            {@const selectedStrat = strat}
+
+            <!-- Strat Info & Content -->
+            <div class="space-y-4">
+              <div
+                class="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between pb-2"
+              >
+                <div class="w-full lg:w-auto">
+                  <div class="capitalize font-bold preset-typo-title mb-1 text-surface-50">
+                    {optionsString}
+                  </div>
+                  {#if selectedStrat?.stratName === 'aprilfools'}
+                    <button
+                      type="button"
+                      class="inline-flex items-center text-base lg:text-lg text-blue-400 hover:text-blue-300 hover:underline gap-1 transition-colors cursor-pointer"
+                      onclick={toggleSolitaire}
+                      >{selectedStrat.description}
+                    </button>
+                  {:else if typeof selectedStrat?.stratUrl === 'string'}
+                    <a
+                      class="inline-flex items-center text-base lg:text-lg text-blue-400 hover:text-blue-300 hover:underline gap-1 transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={selectedStrat.stratUrl}
+                      >{selectedStrat.description}
+                      <ExternalLink size={16} />
+                    </a>
+                  {:else if typeof selectedStrat?.stratUrl === 'object'}
+                    <div class="flex flex-col gap-x-4 gap-y-1">
+                      <span class="text-surface-300">{selectedStrat.description}</span>
+                      <div class="flex flex-wrap gap-x-4 gap-y-1">
+                        {#each Object.entries(selectedStrat.stratUrl) as [linkName, linkUrl]}
+                          <a
+                            class="inline-flex items-center text-base lg:text-lg text-blue-400 hover:text-blue-300 hover:underline gap-1 transition-colors"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={linkUrl}
+                            >{linkName}
+                            <ExternalLink size={16} />
+                          </a>
+                        {/each}
+                      </div>
+                    </div>
+                  {/if}
+                  {#if toggleUrls.length > 0}
                     <div class="flex flex-wrap gap-x-4 gap-y-1">
-                      {#each Object.entries(selectedStrat.stratUrl) as [linkName, linkUrl]}
+                      {#each toggleUrls as toggleUrl}
                         <a
                           class="inline-flex items-center text-base lg:text-lg text-blue-400 hover:text-blue-300 hover:underline gap-1 transition-colors"
                           target="_blank"
                           rel="noopener noreferrer"
-                          href={linkUrl}
-                          >{linkName}
+                          href={toggleUrl.url}
+                          >{toggleUrl.name}
                           <ExternalLink size={16} />
                         </a>
                       {/each}
                     </div>
+                  {/if}
+                </div>
+              </div>
+              <div class="flex flex-col gap-4 mb-6 items-start">
+                <div
+                  class="card preset-outlined-primary-500 p-4 w-fit flex flex-row gap-4 items-center"
+                >
+                  <Info size={24} class="shrink-0" />
+                  <div class="text-sm md:text-base text-warning-200">
+                    <p>
+                      Some strats may be missing images or highlights. Please refer to original
+                      guides for full details.
+                    </p>
+                  </div>
+                </div>
+                {#if config.stratDifferences && config.stratDifferences.length > 0}
+                  <div class="card preset-outlined-secondary-500 p-4 w-fit flex flex-col gap-2">
+                    <div
+                      class="flex flex-row gap-4 items-center text-sm md:text-base font-semibold"
+                    >
+                      <CircleQuestionMark size={24} class="shrink-0" />
+                      <span>What's the difference between the strats?</span>
+                    </div>
+                    <ul class="text-sm md:text-base text-surface-100 flex flex-col gap-1">
+                      {#each config.stratDifferences as diff}
+                        <li>
+                          <span class="font-semibold text-surface">{diff.label}:</span>
+                          {diff.description}
+                        </li>
+                      {/each}
+                    </ul>
                   </div>
                 {/if}
-                {#if toggleUrls.length > 0}
-                  <div class="flex flex-wrap gap-x-4 gap-y-1">
-                    {#each toggleUrls as toggleUrl}
-                      <a
-                        class="inline-flex items-center text-base lg:text-lg text-blue-400 hover:text-blue-300 hover:underline gap-1 transition-colors"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href={toggleUrl.url}
-                        >{toggleUrl.name}
-                        <ExternalLink size={16} />
-                      </a>
-                    {/each}
-                  </div>
-                {/if}
-              </div>
-            </div>
-            <div class="flex flex-col gap-4 mb-6 items-start">
-              <div
-                class="card preset-outlined-primary-500 p-4 w-fit flex flex-row gap-4 items-center"
-              >
-                <Info size={24} class="shrink-0" />
-                <div class="text-sm md:text-base text-warning-200">
-                  <p>
-                    Some strats may be missing images or highlights. Please refer to original guides
-                    for full details.
-                  </p>
-                </div>
-              </div>
-              {#if config.stratDifferences && config.stratDifferences.length > 0}
-                <div
-                  class="card preset-outlined-secondary-500 p-4 w-fit flex flex-col gap-2"
-                >
-                  <div class="flex flex-row gap-4 items-center text-sm md:text-base font-semibold">
-                    <CircleQuestionMark size={24} class="shrink-0" />
-                    <span>What's the difference between the strats?</span>
-                  </div>
-                  <ul class="text-sm md:text-base text-surface-100 flex flex-col gap-1">
-                    {#each config.stratDifferences as diff}
-                      <li>
-                        <span class="font-semibold text-surface">{diff.label}:</span>
-                        {diff.description}
-                      </li>
-                    {/each}
-                  </ul>
-                </div>
-              {/if}
-            </div>
-
-            <!-- Action Bar -->
-            <div
-              class="flex flex-col lg:flex-row gap-4 mb-6 items-center justify-between bg-surface-900/30 p-4 rounded-xl border border-surface-800/50 backdrop-blur-sm min-w-0 w-full"
-            >
-              <div
-                class="card flex flex-col lg:flex-row grow border border-surface-700/50 items-center bg-surface-950/50 overflow-hidden w-full lg:w-auto min-w-0 order-first lg:order-last"
-              >
-                <div
-                  class="self-start lg:self-center overflow-x-auto max-w-[calc(100vw-5rem)] lg:max-w-none lg:w-0 lg:flex-1 px-2 py-2 [&::-webkit-scrollbar]:hidden"
-                >
-                  <span class="whitespace-nowrap font-mono text-sm">{pfDescription}</span>
-                </div>
-                <button
-                  onclick={() => copyPFDescription(pfDescription)}
-                  class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors hidden lg:flex shrink-0"
-                  ><Copy size={18} />Copy PF Description</button
-                >
               </div>
 
-              <!-- Action Buttons -->
-              <div class="gap-2 w-full flex flex-col lg:flex-row lg:w-auto shrink-0">
-                {#if boardUrl}
-                  <button
-                    onclick={() => window.open(boardUrl)}
-                    class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none cursor-pointer"
-                    ><Grid3x3 size={18} />Strategy Board<ExternalLink size={16} /></button
+              <!-- Action Bar -->
+              <div
+                class="flex flex-col lg:flex-row gap-4 mb-6 items-center justify-between bg-surface-900/30 p-4 rounded-xl border border-surface-800/50 backdrop-blur-sm min-w-0 w-full"
+              >
+                <div
+                  class="card flex flex-col lg:flex-row grow border border-surface-700/50 items-center bg-surface-950/50 overflow-hidden w-full lg:w-auto min-w-0 order-first lg:order-last"
+                >
+                  <div
+                    class="self-start lg:self-center overflow-x-auto max-w-[calc(100vw-5rem)] lg:max-w-none lg:w-0 lg:flex-1 px-2 py-2 [&::-webkit-scrollbar]:hidden"
                   >
-                {/if}
-                {#if config.posterLayout && config.posterEnabled}
+                    <span class="whitespace-nowrap font-mono text-sm">{pfDescription}</span>
+                  </div>
                   <button
-                    onclick={() => (posterOpenState = true)}
+                    onclick={() => copyPFDescription(pfDescription)}
+                    class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors hidden lg:flex shrink-0"
+                    ><Copy size={18} />Copy PF Description</button
+                  >
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="gap-2 w-full flex flex-col lg:flex-row lg:w-auto shrink-0">
+                  {#if boardUrl}
+                    <button
+                      onclick={() => window.open(boardUrl)}
+                      class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none cursor-pointer"
+                      ><Grid3x3 size={18} />Strategy Board<ExternalLink size={16} /></button
+                    >
+                  {/if}
+                  {#if config.posterLayout && config.posterEnabled}
+                    <button
+                      onclick={() => (posterOpenState = true)}
+                      class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none"
+                      ><Image size={18} />Poster</button
+                    >
+                  {/if}
+                  <button
+                    onclick={() => (cheatsheetOpenState = true)}
                     class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none"
-                    ><Image size={18} />Poster</button
+                    ><Fullscreen size={18} />Cheatsheet</button
                   >
-                {/if}
-                <button
-                  onclick={() => (cheatsheetOpenState = true)}
-                  class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none"
-                  ><Fullscreen size={18} />Cheatsheet</button
-                >
-                <button
-                  onclick={() => copyLinkToClipboard()}
-                  class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none"
-                  ><Link size={18} />Copy Link</button
-                >
-                <button
-                  onclick={() => copyPFDescription(pfDescription)}
-                  class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:hidden"
-                  ><Copy size={18} />Copy PF Description</button
-                >
+                  <button
+                    onclick={() => copyLinkToClipboard()}
+                    class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none"
+                    ><Link size={18} />Copy Link</button
+                  >
+                  <button
+                    onclick={() => copyPFDescription(pfDescription)}
+                    class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:hidden"
+                    ><Copy size={18} />Copy PF Description</button
+                  >
+                </div>
               </div>
-            </div>
 
-            <ModernStratView
-              strat={selectedStrat}
-              timeline={config.timeline ?? []}
-              {stratName}
-              {stratState}
-              {getStratMechs}
-              {individualStrat}
-              {spotlight}
-              {alignment}
-              tabTags={config.tabTags}
-              role={normalizedRole}
-              fightKey={config.fightKey}
-              useMainPageTabs={config.useMainPageTabs}
-              bind:currentTab
-            />
-          </div>
+              <ModernStratView
+                strat={selectedStrat}
+                timeline={config.timeline ?? []}
+                {stratName}
+                {stratState}
+                {getStratMechs}
+                {individualStrat}
+                {spotlight}
+                {alignment}
+                tabTags={config.tabTags}
+                role={normalizedRole}
+                fightKey={config.fightKey}
+                useMainPageTabs={config.useMainPageTabs}
+                bind:currentTab
+              />
+            </div>
+          {/if}
         {/if}
-      {/if}
+      </div>
     </div>
-  </div>
   {/snippet}
 </FightStratState>

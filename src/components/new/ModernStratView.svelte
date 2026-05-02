@@ -463,7 +463,9 @@
                             {/if}
                           {/if}
                           <div class="whitespace-pre-wrap">
-                            {@html mech?.strats ? renderDebuffTokens(mech.strats[0].description) : ''}
+                            {@html mech?.strats
+                              ? renderDebuffTokens(mech.strats[0].description)
+                              : ''}
                           </div>
                         </div>
 

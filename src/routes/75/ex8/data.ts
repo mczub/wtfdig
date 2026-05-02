@@ -1,7 +1,5 @@
 import type { Strat, FightConfig, StratRecord, PlayerMechStrat, MechanicStrat } from '$lib/types';
-import {
-  getCircleMaskUrl
-} from '$lib/utils';
+import { getCircleMaskUrl } from '$lib/utils';
 
 const hectorIntermission: MechanicStrat[] = [
   {
@@ -69,7 +67,7 @@ const hectorIntermission: MechanicStrat[] = [
         imageUrl: './ex8/hector-intermission-towers-markers.webp',
         mask: getCircleMaskUrl(71, 70, 5)
       }
-    ],
+    ]
   },
   {
     mechanic: 'Markers',
@@ -79,51 +77,51 @@ const hectorIntermission: MechanicStrat[] = [
         role: 'Tank',
         party: 1,
         description: 'Stay on West side, take North gap',
-        imageUrl: './ex8/hector-intermission-towers-markers.webp',
+        imageUrl: './ex8/hector-intermission-towers-markers.webp'
       },
       {
         role: 'Tank',
         party: 2,
         description: 'Stay on East side, take South gap',
-        imageUrl: './ex8/hector-intermission-towers-markers.webp',
+        imageUrl: './ex8/hector-intermission-towers-markers.webp'
       },
       {
         role: 'Healer',
         party: 1,
         description: 'Stay on West side, take South gap',
-        imageUrl: './ex8/hector-intermission-towers-markers.webp',
+        imageUrl: './ex8/hector-intermission-towers-markers.webp'
       },
       {
         role: 'Healer',
         party: 2,
         description: 'Stay on East side, take North gap',
-        imageUrl: './ex8/hector-intermission-towers-markers.webp',
+        imageUrl: './ex8/hector-intermission-towers-markers.webp'
       },
       {
         role: 'Melee',
         party: 1,
         description: 'Stay on West side, take South gap',
-        imageUrl: './ex8/hector-intermission-towers-markers.webp',
+        imageUrl: './ex8/hector-intermission-towers-markers.webp'
       },
       {
         role: 'Melee',
         party: 2,
         description: 'Stay on East side, take South gap',
-        imageUrl: './ex8/hector-intermission-towers-markers.webp',
+        imageUrl: './ex8/hector-intermission-towers-markers.webp'
       },
       {
         role: 'Ranged',
         party: 1,
         description: 'Stay on West side, take North gap',
-        imageUrl: './ex8/hector-intermission-towers-markers.webp',
+        imageUrl: './ex8/hector-intermission-towers-markers.webp'
       },
       {
         role: 'Ranged',
         party: 2,
         description: 'Stay on East side, take North gap',
-        imageUrl: './ex8/hector-intermission-towers-markers.webp',
+        imageUrl: './ex8/hector-intermission-towers-markers.webp'
       }
-    ],
+    ]
   },
   {
     mechanic: 'Adds',
@@ -132,44 +130,44 @@ const hectorIntermission: MechanicStrat[] = [
       {
         role: 'Tank',
         party: 1,
-        description: 'Interrupt Drain Touch, then line Tankbuster',
+        description: 'Interrupt Drain Touch, then line Tankbuster'
       },
       {
         role: 'Tank',
         party: 2,
-        description: 'Interrupt Drain Touch, then line Tankbuster',
+        description: 'Interrupt Drain Touch, then line Tankbuster'
       },
       {
         role: 'Healer',
         party: 1,
-        description: 'Esuna debuff',
+        description: 'Esuna debuff'
       },
       {
         role: 'Healer',
         party: 2,
-        description: 'Esuna debuff',
+        description: 'Esuna debuff'
       },
       {
         role: 'Melee',
         party: 1,
-        description: 'Avoid gaze and kill add',
+        description: 'Avoid gaze and kill add'
       },
       {
         role: 'Melee',
         party: 2,
-        description: 'Avoid gaze and kill add',
+        description: 'Avoid gaze and kill add'
       },
       {
         role: 'Ranged',
         party: 1,
-        description: 'Avoid gaze and kill add',
+        description: 'Avoid gaze and kill add'
       },
       {
         role: 'Ranged',
         party: 2,
-        description: 'Avoid gaze and kill add',
+        description: 'Avoid gaze and kill add'
       }
-    ],
+    ]
   }
 ];
 
@@ -188,51 +186,51 @@ const snakeIntermission: MechanicStrat[] = [
         role: 'Tank',
         party: 1,
         description: 'Take 1st tower CCW from NW',
-        imageUrl: './ex8/snake-intermission-towers-markers.webp',
+        imageUrl: './ex8/snake-intermission-towers-markers.webp'
       },
       {
         role: 'Tank',
         party: 2,
         description: 'Take 1st tower CW from A',
-        imageUrl: './ex8/snake-intermission-towers-markers.webp',
+        imageUrl: './ex8/snake-intermission-towers-markers.webp'
       },
       {
         role: 'Healer',
         party: 1,
         description: 'Take 2nd tower CCW from NW',
-        imageUrl: './ex8/snake-intermission-towers-markers.webp',
+        imageUrl: './ex8/snake-intermission-towers-markers.webp'
       },
       {
         role: 'Healer',
         party: 2,
         description: 'Take 2nd tower CW from A',
-        imageUrl: './ex8/snake-intermission-towers-markers.webp',
+        imageUrl: './ex8/snake-intermission-towers-markers.webp'
       },
       {
         role: 'Melee',
         party: 1,
         description: 'Take 2nd tower CCW from NW',
-        imageUrl: './ex8/snake-intermission-towers-markers.webp',
+        imageUrl: './ex8/snake-intermission-towers-markers.webp'
       },
       {
         role: 'Melee',
         party: 2,
         description: 'Take 2nd tower CW from A',
-        imageUrl: './ex8/snake-intermission-towers-markers.webp',
+        imageUrl: './ex8/snake-intermission-towers-markers.webp'
       },
       {
         role: 'Ranged',
         party: 1,
         description: 'Take 1st tower CCW from NW',
-        imageUrl: './ex8/snake-intermission-towers-markers.webp',
+        imageUrl: './ex8/snake-intermission-towers-markers.webp'
       },
       {
         role: 'Ranged',
         party: 2,
         description: 'Take 1st tower CW from A',
-        imageUrl: './ex8/snake-intermission-towers-markers.webp',
+        imageUrl: './ex8/snake-intermission-towers-markers.webp'
       }
-    ],
+    ]
   },
   {
     mechanic: 'Markers',
@@ -242,51 +240,51 @@ const snakeIntermission: MechanicStrat[] = [
         role: 'Tank',
         party: 1,
         description: 'Take 1st gap CCW from NW',
-        imageUrl: './ex8/snake-intermission-towers-markers.webp',
+        imageUrl: './ex8/snake-intermission-towers-markers.webp'
       },
       {
         role: 'Tank',
         party: 2,
         description: 'Take 1st gap CW from A',
-        imageUrl: './ex8/snake-intermission-towers-markers.webp',
+        imageUrl: './ex8/snake-intermission-towers-markers.webp'
       },
       {
         role: 'Healer',
         party: 1,
         description: 'Take 2nd gap CCW from NW',
-        imageUrl: './ex8/snake-intermission-towers-markers.webp',
+        imageUrl: './ex8/snake-intermission-towers-markers.webp'
       },
       {
         role: 'Healer',
         party: 2,
         description: 'Take 2nd gap CW from A',
-        imageUrl: './ex8/snake-intermission-towers-markers.webp',
+        imageUrl: './ex8/snake-intermission-towers-markers.webp'
       },
       {
         role: 'Melee',
         party: 1,
         description: 'Take 2nd gap CCW from NW',
-        imageUrl: './ex8/snake-intermission-towers-markers.webp',
+        imageUrl: './ex8/snake-intermission-towers-markers.webp'
       },
       {
         role: 'Melee',
         party: 2,
         description: 'Take 2nd gap CW from A',
-        imageUrl: './ex8/snake-intermission-towers-markers.webp',
+        imageUrl: './ex8/snake-intermission-towers-markers.webp'
       },
       {
         role: 'Ranged',
         party: 1,
         description: 'Take 1st gap CCW from NW',
-        imageUrl: './ex8/snake-intermission-towers-markers.webp',
+        imageUrl: './ex8/snake-intermission-towers-markers.webp'
       },
       {
         role: 'Ranged',
         party: 2,
         description: 'Take 1st gap CW from A',
-        imageUrl: './ex8/snake-intermission-towers-markers.webp',
+        imageUrl: './ex8/snake-intermission-towers-markers.webp'
       }
-    ],
+    ]
   },
   {
     mechanic: 'Adds',
@@ -295,44 +293,44 @@ const snakeIntermission: MechanicStrat[] = [
       {
         role: 'Tank',
         party: 1,
-        description: 'Interrupt Drain Touch, then line Tankbuster',
+        description: 'Interrupt Drain Touch, then line Tankbuster'
       },
       {
         role: 'Tank',
         party: 2,
-        description: 'Interrupt Drain Touch, then line Tankbuster',
+        description: 'Interrupt Drain Touch, then line Tankbuster'
       },
       {
         role: 'Healer',
         party: 1,
-        description: 'Esuna debuff',
+        description: 'Esuna debuff'
       },
       {
         role: 'Healer',
         party: 2,
-        description: 'Esuna debuff',
+        description: 'Esuna debuff'
       },
       {
         role: 'Melee',
         party: 1,
-        description: 'Avoid gaze and kill add',
+        description: 'Avoid gaze and kill add'
       },
       {
         role: 'Melee',
         party: 2,
-        description: 'Avoid gaze and kill add',
+        description: 'Avoid gaze and kill add'
       },
       {
         role: 'Ranged',
         party: 1,
-        description: 'Avoid gaze and kill add',
+        description: 'Avoid gaze and kill add'
       },
       {
         role: 'Ranged',
         party: 2,
-        description: 'Avoid gaze and kill add',
+        description: 'Avoid gaze and kill add'
       }
-    ],
+    ]
   }
 ];
 
@@ -350,51 +348,51 @@ const acwIntermission: MechanicStrat[] = [
         role: 'Tank',
         party: 1,
         description: 'Take 1st tower CW from A',
-        imageUrl: './ex8/acw-intermission-towers-markers.webp',
+        imageUrl: './ex8/acw-intermission-towers-markers.webp'
       },
       {
         role: 'Tank',
         party: 2,
         description: 'Take 4th tower CW from A',
-        imageUrl: './ex8/acw-intermission-towers-markers.webp',
+        imageUrl: './ex8/acw-intermission-towers-markers.webp'
       },
       {
         role: 'Healer',
         party: 1,
         description: 'Take 2nd tower CW from A',
-        imageUrl: './ex8/acw-intermission-towers-markers.webp',
+        imageUrl: './ex8/acw-intermission-towers-markers.webp'
       },
       {
         role: 'Healer',
         party: 2,
         description: 'Take 3rd tower CW from A',
-        imageUrl: './ex8/acw-intermission-towers-markers.webp',
+        imageUrl: './ex8/acw-intermission-towers-markers.webp'
       },
       {
         role: 'Melee',
         party: 1,
         description: 'Take 2nd tower CW from A',
-        imageUrl: './ex8/acw-intermission-towers-markers.webp',
+        imageUrl: './ex8/acw-intermission-towers-markers.webp'
       },
       {
         role: 'Melee',
         party: 2,
         description: 'Take 3rd tower CW from A',
-        imageUrl: './ex8/acw-intermission-towers-markers.webp',
+        imageUrl: './ex8/acw-intermission-towers-markers.webp'
       },
       {
         role: 'Ranged',
         party: 1,
         description: 'Take 1st tower CW from A',
-        imageUrl: './ex8/acw-intermission-towers-markers.webp',
+        imageUrl: './ex8/acw-intermission-towers-markers.webp'
       },
       {
         role: 'Ranged',
         party: 2,
         description: 'Take 4th tower CW from A',
-        imageUrl: './ex8/acw-intermission-towers-markers.webp',
+        imageUrl: './ex8/acw-intermission-towers-markers.webp'
       }
-    ],
+    ]
   },
   {
     mechanic: 'Markers',
@@ -404,51 +402,51 @@ const acwIntermission: MechanicStrat[] = [
         role: 'Tank',
         party: 1,
         description: 'Take 1st gap CW from A',
-        imageUrl: './ex8/acw-intermission-towers-markers.webp',
+        imageUrl: './ex8/acw-intermission-towers-markers.webp'
       },
       {
         role: 'Tank',
         party: 2,
         description: 'Take 4th gap CW from A',
-        imageUrl: './ex8/acw-intermission-towers-markers.webp',
+        imageUrl: './ex8/acw-intermission-towers-markers.webp'
       },
       {
         role: 'Healer',
         party: 1,
         description: 'Take 2nd gap CW from A',
-        imageUrl: './ex8/acw-intermission-towers-markers.webp',
+        imageUrl: './ex8/acw-intermission-towers-markers.webp'
       },
       {
         role: 'Healer',
         party: 2,
         description: 'Take 3rd gap CW from A',
-        imageUrl: './ex8/acw-intermission-towers-markers.webp',
+        imageUrl: './ex8/acw-intermission-towers-markers.webp'
       },
       {
         role: 'Melee',
         party: 1,
         description: 'Take 2nd gap CW from A',
-        imageUrl: './ex8/acw-intermission-towers-markers.webp',
+        imageUrl: './ex8/acw-intermission-towers-markers.webp'
       },
       {
         role: 'Melee',
         party: 2,
         description: 'Take 3rd gap CW from A',
-        imageUrl: './ex8/acw-intermission-towers-markers.webp',
+        imageUrl: './ex8/acw-intermission-towers-markers.webp'
       },
       {
         role: 'Ranged',
         party: 1,
         description: 'Take 1st gap CW from A',
-        imageUrl: './ex8/acw-intermission-towers-markers.webp',
+        imageUrl: './ex8/acw-intermission-towers-markers.webp'
       },
       {
         role: 'Ranged',
         party: 2,
         description: 'Take 4th gap CW from A',
-        imageUrl: './ex8/acw-intermission-towers-markers.webp',
+        imageUrl: './ex8/acw-intermission-towers-markers.webp'
       }
-    ],
+    ]
   },
   {
     mechanic: 'Adds',
@@ -457,47 +455,46 @@ const acwIntermission: MechanicStrat[] = [
       {
         role: 'Tank',
         party: 1,
-        description: 'Interrupt Drain Touch, then line Tankbuster',
+        description: 'Interrupt Drain Touch, then line Tankbuster'
       },
       {
         role: 'Tank',
         party: 2,
-        description: 'Interrupt Drain Touch, then line Tankbuster',
+        description: 'Interrupt Drain Touch, then line Tankbuster'
       },
       {
         role: 'Healer',
         party: 1,
-        description: 'Esuna debuff',
+        description: 'Esuna debuff'
       },
       {
         role: 'Healer',
         party: 2,
-        description: 'Esuna debuff',
+        description: 'Esuna debuff'
       },
       {
         role: 'Melee',
         party: 1,
-        description: 'Avoid gaze and kill add',
+        description: 'Avoid gaze and kill add'
       },
       {
         role: 'Melee',
         party: 2,
-        description: 'Avoid gaze and kill add',
+        description: 'Avoid gaze and kill add'
       },
       {
         role: 'Ranged',
         party: 1,
-        description: 'Avoid gaze and kill add',
+        description: 'Avoid gaze and kill add'
       },
       {
         role: 'Ranged',
         party: 2,
-        description: 'Avoid gaze and kill add',
+        description: 'Avoid gaze and kill add'
       }
-    ],
+    ]
   }
 ];
-
 
 const intermissionStrats: Record<string, MechanicStrat[]> = {
   hector: hectorIntermission,
@@ -508,7 +505,8 @@ const intermissionStrats: Record<string, MechanicStrat[]> = {
 const cwcwHunts: MechanicStrat[] = [
   {
     mechanic: 'First Portals + First Tethers',
-    description: 'Tethers prepare to go CW of chaser start\nStay middle until portals go off, then bait chasers CW',
+    description:
+      'Tethers prepare to go CW of chaser start\nStay middle until portals go off, then bait chasers CW',
     imageUrl: './ex8/hector-hunts-cwcw-start.webp'
   },
   {
@@ -543,7 +541,7 @@ const cwccwHunts: MechanicStrat[] = [
 
 const huntsStrats: Record<string, MechanicStrat[]> = {
   cwcw: cwcwHunts,
-  cwccw: cwccwHunts,
+  cwccw: cwccwHunts
 };
 
 export const ex8FightConfig: FightConfig = {
@@ -597,7 +595,7 @@ export const ex8FightConfig: FightConfig = {
             name: 'The Unmaking Raidplan (pg. 19)',
             url: 'https://raidplan.io/plan/z6hesq84t7ewujw9#19'
           }
-        },
+        }
       ]
     },
     {
@@ -616,7 +614,7 @@ export const ex8FightConfig: FightConfig = {
             name: 'The Unmaking Raidplan by Kroxy Cat (pg. 28)',
             url: 'https://raidplan.io/plan/z6hesq84t7ewujw9#28'
           }
-        },
+        }
       ]
     }
   ],
@@ -633,7 +631,8 @@ export const ex8FightConfig: FightConfig = {
     },
     {
       label: 'Modified',
-      description: 'A-1 Markers, Color pairs on cardinals (DPS rotate), Snake prio for Intermission, CW-CCW for Hunts'
+      description:
+        'A-1 Markers, Color pairs on cardinals (DPS rotate), Snake prio for Intermission, CW-CCW for Hunts'
     }
   ]
 };
@@ -893,7 +892,7 @@ export const hector: Strat = {
               mask: getCircleMaskUrl(39.2, 49.85, 6)
             }
           ]
-        },
+        }
       ]
     },
     {
@@ -901,7 +900,8 @@ export const hector: Strat = {
       mechs: [
         {
           mechanic: 'Tethers/Wild Charge',
-          description: 'If single orb/tether, both tanks must stand between orb and party\nIf two orbs/tethers, light party stacks with tank between orb and party',
+          description:
+            'If single orb/tether, both tanks must stand between orb and party\nIf two orbs/tethers, light party stacks with tank between orb and party',
           imageUrl: './ex8/hector-grows-charge.webp'
         },
         {
@@ -913,7 +913,7 @@ export const hector: Strat = {
           mechanic: 'Circle',
           description: 'Get far from void portal',
           imageUrl: './ex8/hector-grows-circle.webp'
-        },
+        }
       ]
     },
     {
@@ -921,7 +921,8 @@ export const hector: Strat = {
       mechs: [
         {
           mechanic: 'Start + Pyretic',
-          description: 'Start underneath boss, stay until Pyretic debuff expires, then move towards clock spots',
+          description:
+            'Start underneath boss, stay until Pyretic debuff expires, then move towards clock spots',
           strats: [
             {
               role: 'Tank',
@@ -1171,7 +1172,7 @@ export const hector: Strat = {
               mask: getCircleMaskUrl(60, 34, 6)
             }
           ]
-        },
+        }
       ]
     },
     {
@@ -1179,61 +1180,63 @@ export const hector: Strat = {
       mechs: [
         {
           mechanic: 'Dodges + New North',
-          description: 'Dodge rotating cones starting at glowing orb\nFirst two orbs will be Tank orbs/new North',
+          description:
+            'Dodge rotating cones starting at glowing orb\nFirst two orbs will be Tank orbs/new North',
           strats: [
             {
               role: 'Tank',
               party: 1,
               description: 'Stack near center, dodge cones',
-              imageUrl: './ex8/hector-gaze-start.webp',
+              imageUrl: './ex8/hector-gaze-start.webp'
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Stack near center, dodge cones',
-              imageUrl: './ex8/hector-gaze-start.webp',
+              imageUrl: './ex8/hector-gaze-start.webp'
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Stack near center, dodge cones',
-              imageUrl: './ex8/hector-gaze-start.webp',
+              imageUrl: './ex8/hector-gaze-start.webp'
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Stack near center, dodge cones',
-              imageUrl: './ex8/hector-gaze-start.webp',
+              imageUrl: './ex8/hector-gaze-start.webp'
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Stack near center, dodge cones',
-              imageUrl: './ex8/hector-gaze-start.webp',
+              imageUrl: './ex8/hector-gaze-start.webp'
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Stack near center, dodge cones',
-              imageUrl: './ex8/hector-gaze-start.webp',
+              imageUrl: './ex8/hector-gaze-start.webp'
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Stack near center, dodge cones',
-              imageUrl: './ex8/hector-gaze-start.webp',
+              imageUrl: './ex8/hector-gaze-start.webp'
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Stack near center, dodge cones',
-              imageUrl: './ex8/hector-gaze-start.webp',
+              imageUrl: './ex8/hector-gaze-start.webp'
             }
           ]
         },
         {
           mechanic: 'Role Orb Prio',
-          description: 'Starting orb + the one after it will be Tank orbs/new North\nTHMR going Clockwise',
+          description:
+            'Starting orb + the one after it will be Tank orbs/new North\nTHMR going Clockwise',
           strats: [
             {
               role: 'Tank',
@@ -1295,7 +1298,8 @@ export const hector: Strat = {
         },
         {
           mechanic: 'Orb Pops',
-          description: 'Pop Yellow tethered orb\nWait for Vuln to fall off\nPop Purple tethered orb\n‼️Orbs may not be next to each other\nCalculate THMR independently per color',
+          description:
+            'Pop Yellow tethered orb\nWait for Vuln to fall off\nPop Purple tethered orb\n‼️Orbs may not be next to each other\nCalculate THMR independently per color',
           strats: [
             {
               role: 'Tank',
@@ -1364,7 +1368,7 @@ export const hector: Strat = {
           mechanic: 'Center Safespot',
           description: 'Use center safespots away from short path',
           imageUrl: './ex8/hector-vacuum-start.webp'
-        },
+        }
       ]
     },
     {
@@ -1379,20 +1383,21 @@ export const hector: Strat = {
           mechanic: 'Freeze',
           description: 'Move when cast finishes, keep moving until debuff falls off',
           imageUrl: './ex8/hector-deep-freeze.webp'
-        },
+        }
       ]
     },
     {
       phaseName: 'Intermission',
       tag: 'intermission',
-      mechs: intermissionStrats,
+      mechs: intermissionStrats
     },
     {
       phaseName: 'Naught Grows (Double)',
       mechs: [
         {
           mechanic: 'Overview',
-          description: 'Two circles/donuts, one on boss, one on portal\nSame wild charge orbs as before',
+          description:
+            'Two circles/donuts, one on boss, one on portal\nSame wild charge orbs as before'
         },
         {
           mechanic: 'Donut + Downtime',
@@ -1403,7 +1408,7 @@ export const hector: Strat = {
           mechanic: 'Circle + Close',
           description: 'If donut on boss, stay close\nCan adjust after donut/circle goes off',
           imageUrl: './ex8/hector-grows-double-circle.webp'
-        },
+        }
       ]
     },
     {
@@ -1443,7 +1448,7 @@ export const hector: Strat = {
           mechanic: 'Party Stacks + Line AoE',
           description: '',
           imageUrl: './ex8/hector-wakes-stacks.webp'
-        },
+        }
       ]
     },
     {
@@ -1457,49 +1462,49 @@ export const hector: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Stack center inner safespot',
-              imageUrl: './ex8/hector-vacuum-meltdown-start.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-start.webp'
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Stack center inner safespot',
-              imageUrl: './ex8/hector-vacuum-meltdown-start.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-start.webp'
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Stack center inner safespot',
-              imageUrl: './ex8/hector-vacuum-meltdown-start.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-start.webp'
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Stack center inner safespot',
-              imageUrl: './ex8/hector-vacuum-meltdown-start.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-start.webp'
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Stack center inner safespot',
-              imageUrl: './ex8/hector-vacuum-meltdown-start.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-start.webp'
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Stack center inner safespot',
-              imageUrl: './ex8/hector-vacuum-meltdown-start.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-start.webp'
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Stack center inner safespot',
-              imageUrl: './ex8/hector-vacuum-meltdown-start.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-start.webp'
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Stack center inner safespot',
-              imageUrl: './ex8/hector-vacuum-meltdown-start.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-start.webp'
             }
           ]
         },
@@ -1511,75 +1516,77 @@ export const hector: Strat = {
               role: 'Tank',
               party: 1,
               description: 'North',
-              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp'
             },
             {
               role: 'Tank',
               party: 2,
               description: 'South',
-              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp'
             },
             {
               role: 'Healer',
               party: 1,
               description: 'West',
-              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp'
             },
             {
               role: 'Healer',
               party: 2,
               description: 'East',
-              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp'
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Southwest',
-              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp'
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Southeast',
-              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp'
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Northwest',
-              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp'
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Northeast',
-              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp'
             }
           ]
-        },
+        }
       ]
     },
     {
       phaseName: 'Naught Hunts',
       tag: 'hunts',
-      mechs: huntsStrats,
+      mechs: huntsStrats
     },
     {
       phaseName: 'Repeat Mechs + Enrage',
       mechs: [
         {
           mechanic: 'Remaining Mechanics',
-          description: 'Dimension Zero, Almagest, Naught Grows, Naught Wakes, Deep Freeze\nNaught Grows, Dimension Zero, Meteorain x2',
+          description:
+            'Dimension Zero, Almagest, Naught Grows, Naught Wakes, Deep Freeze\nNaught Grows, Dimension Zero, Meteorain x2',
           imageUrl: './ex8/hector-enrage.webp'
-        },
+        }
       ]
-    },
+    }
   ]
 };
 
 export const modified: Strat = {
   stratName: 'modified',
-  description: 'Original Raidplan by Kroxy Cat from Adamantoise\nModified by Quill Fleche from Coeurl',
+  description:
+    'Original Raidplan by Kroxy Cat from Adamantoise\nModified by Quill Fleche from Coeurl',
   stratUrl: {
     'modified enuo Raidplan': 'https://raidplan.io/plan/kgH6GJydOCbUs1L_'
   },
@@ -1771,7 +1778,7 @@ export const modified: Strat = {
               mask: getCircleMaskUrl(39.2, 49.85, 6)
             }
           ]
-        },
+        }
       ]
     },
     {
@@ -1779,7 +1786,8 @@ export const modified: Strat = {
       mechs: [
         {
           mechanic: 'Tethers/Wild Charge',
-          description: 'If single orb/tether, both tanks must stand between orb and party\nIf two orbs/tethers, light party stacks with tank between orb and party',
+          description:
+            'If single orb/tether, both tanks must stand between orb and party\nIf two orbs/tethers, light party stacks with tank between orb and party',
           imageUrl: './ex8/hector-grows-charge.webp'
         },
         {
@@ -1791,7 +1799,7 @@ export const modified: Strat = {
           mechanic: 'Circle',
           description: 'Get far from void portal',
           imageUrl: './ex8/hector-grows-circle.webp'
-        },
+        }
       ]
     },
     {
@@ -1799,7 +1807,8 @@ export const modified: Strat = {
       mechs: [
         {
           mechanic: 'Start + Pyretic',
-          description: 'Start underneath boss, stay until Pyretic debuff expires, then move towards clock spots',
+          description:
+            'Start underneath boss, stay until Pyretic debuff expires, then move towards clock spots',
           strats: [
             {
               role: 'Tank',
@@ -2049,7 +2058,7 @@ export const modified: Strat = {
               mask: getCircleMaskUrl(50, 35, 6)
             }
           ]
-        },
+        }
       ]
     },
     {
@@ -2057,61 +2066,63 @@ export const modified: Strat = {
       mechs: [
         {
           mechanic: 'Dodges + New North',
-          description: 'Dodge rotating cones starting at glowing orb\nFirst two orbs will be Tank orbs/new North',
+          description:
+            'Dodge rotating cones starting at glowing orb\nFirst two orbs will be Tank orbs/new North',
           strats: [
             {
               role: 'Tank',
               party: 1,
               description: 'Stack near center, dodge cones',
-              imageUrl: './ex8/hector-gaze-start.webp',
+              imageUrl: './ex8/hector-gaze-start.webp'
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Stack near center, dodge cones',
-              imageUrl: './ex8/hector-gaze-start.webp',
+              imageUrl: './ex8/hector-gaze-start.webp'
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Stack near center, dodge cones',
-              imageUrl: './ex8/hector-gaze-start.webp',
+              imageUrl: './ex8/hector-gaze-start.webp'
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Stack near center, dodge cones',
-              imageUrl: './ex8/hector-gaze-start.webp',
+              imageUrl: './ex8/hector-gaze-start.webp'
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Stack near center, dodge cones',
-              imageUrl: './ex8/hector-gaze-start.webp',
+              imageUrl: './ex8/hector-gaze-start.webp'
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Stack near center, dodge cones',
-              imageUrl: './ex8/hector-gaze-start.webp',
+              imageUrl: './ex8/hector-gaze-start.webp'
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Stack near center, dodge cones',
-              imageUrl: './ex8/hector-gaze-start.webp',
+              imageUrl: './ex8/hector-gaze-start.webp'
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Stack near center, dodge cones',
-              imageUrl: './ex8/hector-gaze-start.webp',
+              imageUrl: './ex8/hector-gaze-start.webp'
             }
           ]
         },
         {
           mechanic: 'Role Orb Prio',
-          description: 'Starting orb + the one after it will be Tank orbs/new North\nTHMR going Clockwise',
+          description:
+            'Starting orb + the one after it will be Tank orbs/new North\nTHMR going Clockwise',
           strats: [
             {
               role: 'Tank',
@@ -2173,7 +2184,8 @@ export const modified: Strat = {
         },
         {
           mechanic: 'Orb Pops',
-          description: 'Pop Yellow tethered orb\nWait for Vuln to fall off\nPop Purple tethered orb\n‼️Orbs may not be next to each other\nCalculate THMR independently per color',
+          description:
+            'Pop Yellow tethered orb\nWait for Vuln to fall off\nPop Purple tethered orb\n‼️Orbs may not be next to each other\nCalculate THMR independently per color',
           strats: [
             {
               role: 'Tank',
@@ -2242,7 +2254,7 @@ export const modified: Strat = {
           mechanic: 'Center Safespot',
           description: 'Use center safespots away from short path',
           imageUrl: './ex8/hector-vacuum-start.webp'
-        },
+        }
       ]
     },
     {
@@ -2257,20 +2269,21 @@ export const modified: Strat = {
           mechanic: 'Freeze',
           description: 'Move when cast finishes, keep moving until debuff falls off',
           imageUrl: './ex8/hector-deep-freeze.webp'
-        },
+        }
       ]
     },
     {
       phaseName: 'Intermission',
       tag: 'intermission',
-      mechs: intermissionStrats,
+      mechs: intermissionStrats
     },
     {
       phaseName: 'Naught Grows (Double)',
       mechs: [
         {
           mechanic: 'Overview',
-          description: 'Two circles/donuts, one on boss, one on portal\nSame wild charge orbs as before',
+          description:
+            'Two circles/donuts, one on boss, one on portal\nSame wild charge orbs as before'
         },
         {
           mechanic: 'Donut + Downtime',
@@ -2281,7 +2294,7 @@ export const modified: Strat = {
           mechanic: 'Circle + Close',
           description: 'If donut on boss, stay close\nCan adjust after donut/circle goes off',
           imageUrl: './ex8/hector-grows-double-circle.webp'
-        },
+        }
       ]
     },
     {
@@ -2321,7 +2334,7 @@ export const modified: Strat = {
           mechanic: 'Party Stacks + Line AoE',
           description: '',
           imageUrl: './ex8/hector-wakes-stacks.webp'
-        },
+        }
       ]
     },
     {
@@ -2335,49 +2348,49 @@ export const modified: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Stack center inner safespot',
-              imageUrl: './ex8/hector-vacuum-meltdown-start.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-start.webp'
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Stack center inner safespot',
-              imageUrl: './ex8/hector-vacuum-meltdown-start.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-start.webp'
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Stack center inner safespot',
-              imageUrl: './ex8/hector-vacuum-meltdown-start.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-start.webp'
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Stack center inner safespot',
-              imageUrl: './ex8/hector-vacuum-meltdown-start.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-start.webp'
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Stack center inner safespot',
-              imageUrl: './ex8/hector-vacuum-meltdown-start.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-start.webp'
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Stack center inner safespot',
-              imageUrl: './ex8/hector-vacuum-meltdown-start.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-start.webp'
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Stack center inner safespot',
-              imageUrl: './ex8/hector-vacuum-meltdown-start.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-start.webp'
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Stack center inner safespot',
-              imageUrl: './ex8/hector-vacuum-meltdown-start.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-start.webp'
             }
           ]
         },
@@ -2389,69 +2402,70 @@ export const modified: Strat = {
               role: 'Tank',
               party: 1,
               description: 'North',
-              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp'
             },
             {
               role: 'Tank',
               party: 2,
               description: 'South',
-              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp'
             },
             {
               role: 'Healer',
               party: 1,
               description: 'West',
-              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp'
             },
             {
               role: 'Healer',
               party: 2,
               description: 'East',
-              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp'
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Southwest',
-              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp'
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Southeast',
-              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp'
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Northwest',
-              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp'
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Northeast',
-              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp',
+              imageUrl: './ex8/hector-vacuum-meltdown-spread.webp'
             }
           ]
-        },
+        }
       ]
     },
     {
       phaseName: 'Naught Hunts',
       tag: 'hunts',
-      mechs: huntsStrats,
+      mechs: huntsStrats
     },
     {
       phaseName: 'Repeat Mechs + Enrage',
       mechs: [
         {
           mechanic: 'Remaining Mechanics',
-          description: 'Dimension Zero, Almagest, Naught Grows, Naught Wakes, Deep Freeze\nNaught Grows, Dimension Zero, Meteorain x2',
+          description:
+            'Dimension Zero, Almagest, Naught Grows, Naught Wakes, Deep Freeze\nNaught Grows, Dimension Zero, Meteorain x2',
           imageUrl: './ex8/hector-enrage.webp'
-        },
+        }
       ]
-    },
+    }
   ]
 };
 
