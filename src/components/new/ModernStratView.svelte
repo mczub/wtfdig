@@ -2,7 +2,7 @@
 
 <script lang="ts">
   // @ts-nocheck
-  import { Accordion, Tooltip, Tabs } from '$lib/components/ui';
+  import { Accordion, Tabs } from '$lib/components/ui';
   import { Button } from '$lib/components/ui/button';
   import {
     ChevronsUpDown,

@@ -320,7 +320,6 @@
                     arrowClasses="bg-surface-800"
                   >
                     Some mechanics differ from the selected guide.
-                    <Tooltip.Arrow class="fill-popover" />
                   </Tooltip.Content>
                 </Tooltip.Root>
               </Tooltip.Provider>
@@ -534,7 +533,6 @@
                             arrowClasses="bg-surface-800"
                           >
                             This mechanic differs from the selected guide.
-                            <Tooltip.Arrow class={cn('fill-popover')} />
                           </Tooltip.Content>
                         </Tooltip.Root>
                       </Tooltip.Provider>

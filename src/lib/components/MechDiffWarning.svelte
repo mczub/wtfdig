@@ -1,9 +1,5 @@
-<!-- @ts-nocheck -->
 <script lang="ts">
-  // @ts-nocheck — the monolithic `Tooltip` component is on Svelte 4 slot syntax
-  // and doesn't type its `trigger`/`content` snippet props; consumers use the
-  // same pattern with @ts-nocheck.
-  import { Tooltip } from '$lib/components/ui';
+  import * as Tooltip from '$lib/components/ui/tooltip';
   import { TriangleAlert } from '@lucide/svelte/icons';
 
   interface Props {
@@ -14,14 +10,19 @@
   let { size = 16, message = 'Differs from guide' }: Props = $props();
 </script>
 
-<Tooltip
-  positioning={{ placement: 'top' }}
-  triggerBase="cursor-help flex"
-  contentBase="card bg-surface-800 p-2 text-xs"
-  openDelay={200}
-  arrow
-  arrowBackground="!bg-surface-800"
->
-  {#snippet trigger()}<div class="text-warning-500"><TriangleAlert {size} /></div>{/snippet}
-  {#snippet content()}{message}{/snippet}
-</Tooltip>
+<Tooltip.Provider>
+  <Tooltip.Root delayDuration={200}>
+    <Tooltip.Trigger class="cursor-help flex">
+      <div class="text-warning-500">
+        <TriangleAlert {size} />
+      </div>
+    </Tooltip.Trigger>
+    <Tooltip.Content
+      side="top"
+      class="bg-surface-800 text-surface-100 p-2"
+      arrowClasses="bg-surface-800"
+    >
+      {message}
+    </Tooltip.Content>
+  </Tooltip.Root>
+</Tooltip.Provider>

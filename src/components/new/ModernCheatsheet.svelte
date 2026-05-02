@@ -2,7 +2,7 @@
 
 <script lang="ts">
   // @ts-nocheck
-  import { Modal, Switch, Tabs, Tooltip } from '$lib/components/ui';
+  import { Modal, Switch, Tabs } from '$lib/components/ui';
   import {
     Check,
     ChevronLeft,

@@ -9,11 +9,11 @@ import TabsRoot from './tabs-root.svelte';
 import TabsControl from './tabs-control.svelte';
 import TabsContent from './tabs-content.svelte';
 import ToastProvider from './toast-provider.svelte';
-import Tooltip from './tooltip.svelte';
 import * as NavigationMenu from './navigation-menu';
 
 export const Accordion = Object.assign(AccordionRoot, { Item: AccordionItem });
 export const Segment = Object.assign(SegmentRoot, { Item: SegmentItem });
 export const Tabs = Object.assign(TabsRoot, { Control: TabsControl, Content: TabsContent });
 
-export { Modal, Popover, Switch, ToastProvider, Tooltip };
+// For Tooltip use the namespaced API: `import * as Tooltip from '$lib/components/ui/tooltip';`
+export { Modal, Popover, Switch, ToastProvider };
