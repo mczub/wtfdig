@@ -1406,20 +1406,6 @@
                         <span class="capitalize font-semibold text-base text-white leading-tight truncate">
                           {headerName}
                         </span>
-                        {#if typeof headerUrl === 'object' && headerUrl}
-                          {#each Object.entries(headerUrl) as [linkName, linkUrl]}
-                            <a
-                              href={linkUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              class="text-xs text-blue-300 hover:text-blue-200 hover:underline inline-flex items-center gap-0.5 shrink-0"
-                              onclick={(e) => e.stopPropagation()}
-                            >
-                              {linkName}
-                              <ExternalLink size={9} />
-                            </a>
-                          {/each}
-                        {/if}
                       </div>
                     {/if}
                   </div>
