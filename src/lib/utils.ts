@@ -4,13 +4,11 @@ import type {
   FightRoleOption,
   FightToggleConfig,
   PlayerMechStrat,
-  PhaseStrats,
   Role,
   Strat,
   StratRecord,
   FightOptionsContext,
   FightToggleUrl,
-  Badge,
   FightStratConfig,
   SpotlightMask
 } from './types';
@@ -195,7 +193,13 @@ export function resolveStratItem<T>(
   ) {
     const itemRecord = item as Record<string, T>;
     const stateKey = stratState[tag] as string;
-    return (stateKey && itemRecord[stateKey]) || (item as T);
+    // Use `in` rather than truthy-checking the value: a toggle variant may
+    // legitimately be an empty string (e.g. m12s Idyllic Dream Overview has
+    // description "" for several toggles), and `'' || item` would incorrectly
+    // return the whole record object back to the consumer.
+    if (stateKey in itemRecord) {
+      return itemRecord[stateKey];
+    }
   }
   return item as T;
 }
@@ -212,67 +216,6 @@ export function resolveMechs<T>(
     return (mechs as Record<string, T[]>)[stateKey] ?? Object.values(mechs)[0];
   }
   return Object.values(mechs)[0];
-}
-
-interface BuildIndividualParams {
-  strat?: Strat | string;
-  stratName?: string;
-  role?: Role;
-  party?: number;
-  stratState: Record<string, string | null>;
-}
-
-export function buildIndividualStratView({
-  strat,
-  stratName,
-  role,
-  party,
-  stratState
-}: BuildIndividualParams): PhaseStrats[] | string {
-  if (!stratName || !role || !party) return '';
-  if (!strat) return `Couldn't find ${stratName} strat`;
-  if (typeof strat === 'string') return strat;
-
-  const individualPackages = strat.strats?.map((phaseStrat) => {
-    const resolvedMechs = resolveMechs(phaseStrat.mechs, phaseStrat.tag, stratState);
-    return {
-      ...phaseStrat,
-      description: resolveStratItem(phaseStrat.description, phaseStrat.tag, stratState),
-      imageUrl: resolveStratItem(phaseStrat.imageUrl, phaseStrat.tag, stratState),
-      mask: resolveStratItem(phaseStrat.mask, phaseStrat.tag, stratState),
-      mechs: resolvedMechs?.map((phaseStratMech) => ({
-        ...phaseStratMech,
-        description: resolveStratItem(phaseStratMech.description, phaseStrat.tag, stratState),
-        imageUrl: resolveStratItem(phaseStratMech.imageUrl, phaseStrat.tag, stratState),
-        strats: phaseStratMech.strats
-          ?.filter((playerStrat) => {
-            // Role filter: matches if undefined or equals selected role
-            const matchesRole = !playerStrat.role || playerStrat.role === role;
-            // Party filter: matches if undefined or equals selected party
-            const matchesParty = !playerStrat.party || playerStrat.party === party;
-            if (!matchesRole || !matchesParty) return false;
-
-            // Toggle filter: matches if no toggleKey or value matches current state
-            if (!playerStrat.toggleKey) return true;
-            const currentToggleValue = stratState[playerStrat.toggleKey] ?? '';
-            return playerStrat.toggleValue === currentToggleValue;
-          })
-          .map((playerStrat) => ({
-            ...playerStrat,
-            description:
-              resolveStratItem(playerStrat.description, phaseStrat.tag, stratState) ?? '',
-            imageUrl: resolveStratItem(playerStrat.imageUrl, phaseStrat.tag, stratState),
-            mask: resolveStratItem(playerStrat.mask, phaseStrat.tag, stratState)
-          }))
-      }))
-    };
-  });
-
-  if (!individualPackages) {
-    return `Couldn't find ${stratName} strat for ${role} ${party}`;
-  }
-
-  return individualPackages;
 }
 
 export function formatRoleAbbreviation(role?: Role, party?: number, useJpNaming = false): string {
@@ -348,7 +291,7 @@ export function getToggleUrls({
 }
 
 export interface BoardUrlArgs {
-  strat: Strat;
+  strat: Strat | undefined;
   stratState: Record<string, string | null>;
 }
 
@@ -444,16 +387,6 @@ export function buildFightPFDescription({
 
 export interface ToastLike {
   create: (args: { description: string; type?: string }) => void;
-}
-
-export function copyTextWithToast(
-  text: string,
-  toast?: ToastLike,
-  description = 'Copied to clipboard!'
-) {
-  if (typeof navigator === 'undefined' || !navigator.clipboard) return;
-  navigator.clipboard.writeText(text);
-  toast?.create({ description, type: 'success' });
 }
 
 interface StratCodeOptions {

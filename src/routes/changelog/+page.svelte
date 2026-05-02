@@ -12,8 +12,8 @@
       <div>4/30/2026: ex8</div>
       <div>4/21/2026: teage, ucob poster cheatsheet</div>
       <div>
-        4/18/2026: cleanup and refactoring of ex4 + chaotic, add caro uptime to idyllic tool,
-        moved everything to the new cheatsheet view, saves the most recently viewed strat
+        4/18/2026: cleanup and refactoring of ex4 + chaotic, add caro uptime to idyllic tool, moved
+        everything to the new cheatsheet view, saves the most recently viewed strat
       </div>
       <div>2/19/2026: update BC rep2 to match raidplan update</div>
       <div>2/4/2026: 11 + 12 tweaks and fixes</div>

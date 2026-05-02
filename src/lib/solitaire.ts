@@ -48,9 +48,9 @@ export async function startSolitaireEffect(onDismiss?: () => void) {
   headCtx.scale(dpr, dpr);
 
   // Gather all strat images currently visible on the page
-  const images = Array.from(
-    document.querySelectorAll<HTMLImageElement>('main img')
-  ).filter((img) => img.naturalWidth > 0);
+  const images = Array.from(document.querySelectorAll<HTMLImageElement>('main img')).filter(
+    (img) => img.naturalWidth > 0
+  );
 
   if (images.length === 0) {
     stopSolitaireEffect();
@@ -92,8 +92,12 @@ export async function startSolitaireEffect(onDismiss?: () => void) {
       bitmap,
       x: rect.left + rect.width / 2 - width / 2,
       y: rect.top + rect.height / 2 - height / 2,
-      vx: (Math.random() - 0.5) * (vwScale),
-      vy: -(Math.random() * vhScale + (vhScale / 2) + (rect.top > currentVh ? Math.random() * (vhScale * 0.75) + (vhScale / 4) : 0)),
+      vx: (Math.random() - 0.5) * vwScale,
+      vy: -(
+        Math.random() * vhScale +
+        vhScale / 2 +
+        (rect.top > currentVh ? Math.random() * (vhScale * 0.75) + vhScale / 4 : 0)
+      ),
       width,
       height,
       trailTimer: 0,

@@ -113,7 +113,7 @@ const oceFirewatersnaking: MechanicStrat[] = [
     description:
       '🔥 Place puddles on east wall in box shape\n💦 Giga tight spread in NW/SW corner with Tank towards middle',
     imageUrl: './m10s/oce-14.webp',
-    url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#15',
+    url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#15'
   },
   {
     mechanic: 'Wide Cleave',
@@ -141,7 +141,7 @@ const oceFirewatersnaking: MechanicStrat[] = [
 const firewatersnakingMechs: Record<string, MechanicStrat[]> = {
   toxic: toxicFirewatersnaking,
   nomnom: nomnomFirewatersnaking,
-  oce: oceFirewatersnaking,
+  oce: oceFirewatersnaking
 };
 
 const parallelDeepaerial: MechanicStrat[] = [
@@ -212,7 +212,7 @@ export const m10sFightConfig: FightConfig = {
         {
           text: 'OCE',
           class: 'oce-badge'
-        },
+        }
       ]
     }
   },
@@ -236,7 +236,7 @@ export const m10sFightConfig: FightConfig = {
         },
         {
           value: 'oce',
-          label: 'OCE',
+          label: 'OCE'
         }
       ]
     },
@@ -257,7 +257,7 @@ export const m10sFightConfig: FightConfig = {
     }
   ],
   defaultStratName: 'toxic',
-  posterLayout: m10sPosterLayout,
+  posterLayout: m10sPosterLayout
 };
 
 export const toxic: Strat = {
@@ -1863,7 +1863,8 @@ export const oce: Strat = {
   stratUrl: {
     'M10S OCE V3 Raidplan by Valyntine Arkani@Ravana': 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl',
     'Detailed Visual Guide by Hyulia': 'https://raidplan.io/plan/Qy730U_dC9zSjk0X',
-    'Cheatsheet by Hyulia': 'https://drive.google.com/file/d/1rBtN18jpOjTmPEun4NjuoCA4pzuo5ZRZ/view?usp=sharing',
+    'Cheatsheet by Hyulia':
+      'https://drive.google.com/file/d/1rBtN18jpOjTmPEun4NjuoCA4pzuo5ZRZ/view?usp=sharing'
   },
   description: '',
   strats: [
@@ -1872,62 +1873,64 @@ export const oce: Strat = {
       mechs: [
         {
           mechanic: 'Flame Floater',
-          description: '1st: CCW corner\n2nd: Boss Start\n3rd: Next to Wall Fire\n4th: Back to Boss Start Next to Fire',
+          description:
+            '1st: CCW corner\n2nd: Boss Start\n3rd: Next to Wall Fire\n4th: Back to Boss Start Next to Fire',
           imageUrl: './m10s/oce-0.webp',
           url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#1'
         },
         {
           mechanic: 'Alley-oop Inferno',
-          description: "Melee close, ranged anywhere on the wall that isn't center\nPull enemy back to mid ASAP after puddle drop",
+          description:
+            "Melee close, ranged anywhere on the wall that isn't center\nPull enemy back to mid ASAP after puddle drop",
           url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#2',
           strats: [
             {
               role: 'Tank',
               party: 1,
               description: 'Pull CW from where boss finishes to the new corner',
-              imageUrl: './m10s/oce-1.webp',
+              imageUrl: './m10s/oce-1.webp'
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Close to boss',
-              imageUrl: './m10s/oce-1.webp',
+              imageUrl: './m10s/oce-1.webp'
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Far from boss',
-              imageUrl: './m10s/oce-1.webp',
+              imageUrl: './m10s/oce-1.webp'
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Far from boss',
-              imageUrl: './m10s/oce-1.webp',
+              imageUrl: './m10s/oce-1.webp'
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Close to boss',
-              imageUrl: './m10s/oce-1.webp',
+              imageUrl: './m10s/oce-1.webp'
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Close to boss',
-              imageUrl: './m10s/oce-1.webp',
+              imageUrl: './m10s/oce-1.webp'
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Far from boss',
-              imageUrl: './m10s/oce-1.webp',
+              imageUrl: './m10s/oce-1.webp'
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Far from boss',
-              imageUrl: './m10s/oce-1.webp',
+              imageUrl: './m10s/oce-1.webp'
             }
           ]
         },
@@ -2226,7 +2229,7 @@ export const oce: Strat = {
           description: 'MTHR clockwise for proteans',
           imageUrl: './m10s/oce-9.webp',
           url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#10'
-        },
+        }
       ]
     },
     {
@@ -2443,8 +2446,7 @@ export const oce: Strat = {
       mechs: [
         {
           mechanic: 'Debuffs',
-          description:
-            'Same proximity debuff bait as Snaking\nStart at boss matching debuff color',
+          description: 'Same proximity debuff bait as Snaking\nStart at boss matching debuff color',
           url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#29',
           strats: [
             {

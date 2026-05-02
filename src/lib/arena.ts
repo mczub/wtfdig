@@ -5,8 +5,19 @@
 export type ArenaShape = 'square' | 'circle';
 
 export type PlayerJob =
-  | 'MT' | 'OT' | 'H1' | 'H2' | 'M1' | 'M2' | 'R1' | 'R2'
-  | 'DPS' | 'SUP' | 'G1' | 'G2' | 'ANY';
+  | 'MT'
+  | 'OT'
+  | 'H1'
+  | 'H2'
+  | 'M1'
+  | 'M2'
+  | 'R1'
+  | 'R2'
+  | 'DPS'
+  | 'SUP'
+  | 'G1'
+  | 'G2'
+  | 'ANY';
 
 /** Jobs in group 1 (first of each role pair). */
 export const G1_JOBS: readonly PlayerJob[] = ['MT', 'H1', 'M1', 'R1'];
@@ -194,7 +205,12 @@ export const WAYMARK_COLORS: Record<WaymarkName, string> = {
 
 // --- Helper functions for concise diagram definition ---
 
-export function player(job: PlayerJob, x: number, y: number, opts?: string | { id?: string; marker?: 'red' | 'green' }): PlayerElement {
+export function player(
+  job: PlayerJob,
+  x: number,
+  y: number,
+  opts?: string | { id?: string; marker?: 'red' | 'green' }
+): PlayerElement {
   if (typeof opts === 'string') return { type: 'player', job, x, y, id: opts };
   return { type: 'player', job, x, y, ...opts };
 }
@@ -270,7 +286,13 @@ export function arenaShape(
   y: number,
   w: number,
   h: number,
-  opts?: { rotation?: number; bgColor?: string; borderColor?: string; showCrosshairs?: boolean; id?: string }
+  opts?: {
+    rotation?: number;
+    bgColor?: string;
+    borderColor?: string;
+    showCrosshairs?: boolean;
+    id?: string;
+  }
 ): ArenaShapeElement {
   return { type: 'arena', shape, x, y, w, h, ...opts };
 }

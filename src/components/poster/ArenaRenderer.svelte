@@ -47,7 +47,15 @@
   }
 
   const zOrder: Record<string, number> = {
-    arena: -1, aoe: 0, tether: 1, arrow: 2, waymark: 3, boss: 4, player: 5, debuff: 6, text: 7
+    arena: -1,
+    aoe: 0,
+    tether: 1,
+    arrow: 2,
+    waymark: 3,
+    boss: 4,
+    player: 5,
+    debuff: 6,
+    text: 7
   };
 
   const CORNER_OFFSETS: Record<'tl' | 'tr' | 'bl' | 'br', { dx: number; dy: number }> = {
@@ -74,167 +82,314 @@
   <!-- Arena -->
   {#if data.bgColor !== 'transparent'}
     {#if data.arena === 'square'}
-      <rect x={pad} y={pad} width={arenaW} height={arenaH} rx="1"
-        fill={data.bgColor ?? '#2a2420'} stroke="#4a4a4a" stroke-width="0.4" />
-      <line x1={vW/2} y1={pad} x2={vW/2} y2={vH-pad} stroke="#3a3a3a" stroke-width="0.15" />
-      <line x1={pad} y1={vH/2} x2={vW-pad} y2={vH/2} stroke="#3a3a3a" stroke-width="0.15" />
+      <rect
+        x={pad}
+        y={pad}
+        width={arenaW}
+        height={arenaH}
+        rx="1"
+        fill={data.bgColor ?? '#2a2420'}
+        stroke="#4a4a4a"
+        stroke-width="0.4"
+      />
+      <line x1={vW / 2} y1={pad} x2={vW / 2} y2={vH - pad} stroke="#3a3a3a" stroke-width="0.15" />
+      <line x1={pad} y1={vH / 2} x2={vW - pad} y2={vH / 2} stroke="#3a3a3a" stroke-width="0.15" />
     {:else}
-      <circle cx={vW/2} cy={vH/2} r={Math.min(arenaW, arenaH)/2}
-        fill={data.bgColor ?? '#2a2420'} stroke="#4a4a4a" stroke-width="0.4" />
-      <line x1={vW/2} y1={pad} x2={vW/2} y2={vH-pad} stroke="#3a3a3a" stroke-width="0.15" />
-      <line x1={pad} y1={vH/2} x2={vW-pad} y2={vH/2} stroke="#3a3a3a" stroke-width="0.15" />
+      <circle
+        cx={vW / 2}
+        cy={vH / 2}
+        r={Math.min(arenaW, arenaH) / 2}
+        fill={data.bgColor ?? '#2a2420'}
+        stroke="#4a4a4a"
+        stroke-width="0.4"
+      />
+      <line x1={vW / 2} y1={pad} x2={vW / 2} y2={vH - pad} stroke="#3a3a3a" stroke-width="0.15" />
+      <line x1={pad} y1={vH / 2} x2={vW - pad} y2={vH / 2} stroke="#3a3a3a" stroke-width="0.15" />
     {/if}
   {/if}
 
   <g transform="scale({s})">
-  {#each sortedElements as el}
-    {#if el.type === 'arena'}
-      {@const bg = el.bgColor ?? '#2a2420'}
-      {@const bd = el.borderColor ?? '#4a4a4a'}
-      {@const showCh = el.showCrosshairs !== false}
-      <g opacity={dimOpacity(el)} transform={el.rotation ? `rotate(${el.rotation} ${el.x} ${el.y})` : undefined}>
-        {#if el.shape === 'circle'}
-          {@const r = el.w / 2}
-          <circle cx={el.x} cy={el.y} r={r} fill={bg} stroke={bd} stroke-width="0.4" />
-          {#if showCh}
-            <line x1={el.x} y1={el.y - r} x2={el.x} y2={el.y + r} stroke="#3a3a3a" stroke-width="0.15" />
-            <line x1={el.x - r} y1={el.y} x2={el.x + r} y2={el.y} stroke="#3a3a3a" stroke-width="0.15" />
-          {/if}
-        {:else}
-          <rect x={el.x - el.w/2} y={el.y - el.h/2} width={el.w} height={el.h} rx="1"
-            fill={bg} stroke={bd} stroke-width="0.4" />
-          {#if showCh}
-            <line x1={el.x} y1={el.y - el.h/2} x2={el.x} y2={el.y + el.h/2} stroke="#3a3a3a" stroke-width="0.15" />
-            <line x1={el.x - el.w/2} y1={el.y} x2={el.x + el.w/2} y2={el.y} stroke="#3a3a3a" stroke-width="0.15" />
-          {/if}
-        {/if}
-      </g>
-
-    {:else if el.type === 'aoe' && el.shape === 'circle'}
-      <circle cx={el.x} cy={el.y} r={el.r}
-        fill={el.color ?? '#f59e0b'} fill-opacity={(el.opacity ?? 0.3) * dimOpacity(el)}
-        stroke={el.color ?? '#f59e0b'} stroke-width="0.2" stroke-opacity={dimOpacity(el) * 0.5} />
-
-    {:else if el.type === 'aoe' && el.shape === 'rect'}
-      <rect x={el.x - el.w/2} y={el.y - el.h/2} width={el.w} height={el.h}
-        fill={el.color ?? '#f59e0b'} fill-opacity={(el.opacity ?? 0.3) * dimOpacity(el)}
-        stroke={el.color ?? '#f59e0b'} stroke-width="0.2" stroke-opacity={dimOpacity(el) * 0.5}
-        rx="0.3"
-        transform={el.rotation ? `rotate(${el.rotation} ${el.x} ${el.y})` : undefined} />
-
-    {:else if el.type === 'tether'}
-      <line x1={el.x1} y1={el.y1} x2={el.x2} y2={el.y2}
-        stroke={el.color ?? '#facc15'} stroke-width={el.width ?? 0.5}
-        stroke-opacity={dimOpacity(el)}
-        stroke-dasharray={el.dashed ? '1.5,1' : undefined} />
-
-    {:else if el.type === 'arrow'}
-      <line x1={el.x1} y1={el.y1} x2={el.x2} y2={el.y2}
-        stroke={el.color ?? '#fff'} stroke-width={el.width ?? 0.5}
-        stroke-opacity={dimOpacity(el)} marker-end="url(#ah-{uid})" />
-
-    {:else if el.type === 'waymark'}
-      {@const isLetter = 'ABCD'.includes(el.mark)}
-      {@const color = WAYMARK_COLORS[el.mark]}
-      <g opacity={dimOpacity(el) * 0.6}>
-        {#if isLetter}
-          <circle cx={el.x} cy={el.y} r="4" fill="none" stroke={color} stroke-width="0.35" />
-        {:else}
-          <rect x={el.x-3.6} y={el.y-3.6} width="7.2" height="7.2"
-            fill="none" stroke={color} stroke-width="0.35" rx="0.3" />
-        {/if}
-        <text x={el.x} y={el.y} text-anchor="middle" dominant-baseline="central"
-          fill={color} font-size="4" font-weight="bold" font-family="'Noto Sans', sans-serif"
-        >{el.mark}</text>
-      </g>
-
-    {:else if el.type === 'boss'}
-      {@const r = 12}
-      {@const cos45 = r * Math.cos(Math.PI / 4)}
-      {@const sin45 = r * Math.sin(Math.PI / 4)}
-      <g opacity={dimOpacity(el)} transform={el.rotation ? `rotate(${el.rotation} ${el.x} ${el.y})` : undefined}>
-        <!-- Target ring: 270deg arc with open rear quarter -->
-        <path
-          d="M {el.x + cos45} {el.y + sin45}
-             A {r} {r} 0 1 0 {el.x - cos45} {el.y + sin45}"
-          fill="none" stroke="#dc2626" stroke-width="0.6"
-        />
-        <!-- Flank lines at 3 and 9 o'clock -->
-        <line x1={el.x + r - 0.6} y1={el.y} x2={el.x + r + 0.6} y2={el.y} stroke="#dc2626" stroke-width="0.6" />
-        <line x1={el.x - r - 0.6} y1={el.y} x2={el.x - r + 0.6} y2={el.y} stroke="#dc2626" stroke-width="0.6" />
-        <!-- Front arrow at 12 o'clock -->
-        <polygon points="{el.x},{el.y - r - 3} {el.x - 2},{el.y - r} {el.x + 2},{el.y - r}" fill="#dc2626" />
-      </g>
-
-    {:else if el.type === 'player'}
-      {@const color = ROLE_COLORS[el.job]}
-      {@const roleMatch = isRoleMatch(el.job)}
-      {@const jobLabel = jobLabels?.[el.job] ?? el.job}
-      <g opacity={dimOpacity(el) * (highlightJob && !roleMatch ? 0.4 : 1)}>
-        <circle cx={el.x} cy={el.y} r="6" fill={color} fill-opacity="0.9"
-          stroke={highlightJob && roleMatch ? 'white' : 'white'}
-          stroke-width={highlightJob && roleMatch ? 0.8 : 0.25} />
-        <text x={el.x} y={el.y} text-anchor="middle" dominant-baseline="central" baseline-shift="2%"
-          fill="white" font-size={jobLabel.length > 2 ? 3.5 : 5} font-weight="bold" font-family="'Noto Sans', sans-serif"
-        >{jobLabel}</text>
-        {#if el.marker}
-          <polyline
-            points="{el.x - 2.5},{el.y - 13} {el.x},{el.y - 9} {el.x + 2.5},{el.y - 13}"
-            fill="none" stroke={el.marker === 'green' ? '#22c55e' : '#ef4444'}
-            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-          />
-        {/if}
-        {#if el.corners}
-          {#each Object.entries(el.corners) as [corner, debuffId]}
-            {@const def = getDebuff(debuffId)}
-            {@const off = CORNER_OFFSETS[corner as 'tl' | 'tr' | 'bl' | 'br']}
-            {#if def}
-              <image
-                href={`/icons/status/${def.iconFile}`}
-                x={el.x + off.dx - 2.5} y={el.y + off.dy - 2.5}
-                width="5" height="5"
-              >
-                <title>{def.name}</title>
-              </image>
+    {#each sortedElements as el}
+      {#if el.type === 'arena'}
+        {@const bg = el.bgColor ?? '#2a2420'}
+        {@const bd = el.borderColor ?? '#4a4a4a'}
+        {@const showCh = el.showCrosshairs !== false}
+        <g
+          opacity={dimOpacity(el)}
+          transform={el.rotation ? `rotate(${el.rotation} ${el.x} ${el.y})` : undefined}
+        >
+          {#if el.shape === 'circle'}
+            {@const r = el.w / 2}
+            <circle cx={el.x} cy={el.y} {r} fill={bg} stroke={bd} stroke-width="0.4" />
+            {#if showCh}
+              <line
+                x1={el.x}
+                y1={el.y - r}
+                x2={el.x}
+                y2={el.y + r}
+                stroke="#3a3a3a"
+                stroke-width="0.15"
+              />
+              <line
+                x1={el.x - r}
+                y1={el.y}
+                x2={el.x + r}
+                y2={el.y}
+                stroke="#3a3a3a"
+                stroke-width="0.15"
+              />
             {/if}
-          {/each}
-        {/if}
-      </g>
-
-    {:else if el.type === 'debuff'}
-      {@const def = getDebuff(el.debuffId)}
-      {@const size = el.size ?? 6}
-      {#if def}
-        <g opacity={dimOpacity(el)}>
-          <image
-            href={`/icons/status/${def.iconFile}`}
-            x={el.x - size / 2} y={el.y - size / 2}
-            width={size} height={size}
-          >
-            <title>{def.name}</title>
-          </image>
+          {:else}
+            <rect
+              x={el.x - el.w / 2}
+              y={el.y - el.h / 2}
+              width={el.w}
+              height={el.h}
+              rx="1"
+              fill={bg}
+              stroke={bd}
+              stroke-width="0.4"
+            />
+            {#if showCh}
+              <line
+                x1={el.x}
+                y1={el.y - el.h / 2}
+                x2={el.x}
+                y2={el.y + el.h / 2}
+                stroke="#3a3a3a"
+                stroke-width="0.15"
+              />
+              <line
+                x1={el.x - el.w / 2}
+                y1={el.y}
+                x2={el.x + el.w / 2}
+                y2={el.y}
+                stroke="#3a3a3a"
+                stroke-width="0.15"
+              />
+            {/if}
+          {/if}
         </g>
+      {:else if el.type === 'aoe' && el.shape === 'circle'}
+        <circle
+          cx={el.x}
+          cy={el.y}
+          r={el.r}
+          fill={el.color ?? '#f59e0b'}
+          fill-opacity={(el.opacity ?? 0.3) * dimOpacity(el)}
+          stroke={el.color ?? '#f59e0b'}
+          stroke-width="0.2"
+          stroke-opacity={dimOpacity(el) * 0.5}
+        />
+      {:else if el.type === 'aoe' && el.shape === 'rect'}
+        <rect
+          x={el.x - el.w / 2}
+          y={el.y - el.h / 2}
+          width={el.w}
+          height={el.h}
+          fill={el.color ?? '#f59e0b'}
+          fill-opacity={(el.opacity ?? 0.3) * dimOpacity(el)}
+          stroke={el.color ?? '#f59e0b'}
+          stroke-width="0.2"
+          stroke-opacity={dimOpacity(el) * 0.5}
+          rx="0.3"
+          transform={el.rotation ? `rotate(${el.rotation} ${el.x} ${el.y})` : undefined}
+        />
+      {:else if el.type === 'tether'}
+        <line
+          x1={el.x1}
+          y1={el.y1}
+          x2={el.x2}
+          y2={el.y2}
+          stroke={el.color ?? '#facc15'}
+          stroke-width={el.width ?? 0.5}
+          stroke-opacity={dimOpacity(el)}
+          stroke-dasharray={el.dashed ? '1.5,1' : undefined}
+        />
+      {:else if el.type === 'arrow'}
+        <line
+          x1={el.x1}
+          y1={el.y1}
+          x2={el.x2}
+          y2={el.y2}
+          stroke={el.color ?? '#fff'}
+          stroke-width={el.width ?? 0.5}
+          stroke-opacity={dimOpacity(el)}
+          marker-end="url(#ah-{uid})"
+        />
+      {:else if el.type === 'waymark'}
+        {@const isLetter = 'ABCD'.includes(el.mark)}
+        {@const color = WAYMARK_COLORS[el.mark]}
+        <g opacity={dimOpacity(el) * 0.6}>
+          {#if isLetter}
+            <circle cx={el.x} cy={el.y} r="4" fill="none" stroke={color} stroke-width="0.35" />
+          {:else}
+            <rect
+              x={el.x - 3.6}
+              y={el.y - 3.6}
+              width="7.2"
+              height="7.2"
+              fill="none"
+              stroke={color}
+              stroke-width="0.35"
+              rx="0.3"
+            />
+          {/if}
+          <text
+            x={el.x}
+            y={el.y}
+            text-anchor="middle"
+            dominant-baseline="central"
+            fill={color}
+            font-size="4"
+            font-weight="bold"
+            font-family="'Noto Sans', sans-serif">{el.mark}</text
+          >
+        </g>
+      {:else if el.type === 'boss'}
+        {@const r = 12}
+        {@const cos45 = r * Math.cos(Math.PI / 4)}
+        {@const sin45 = r * Math.sin(Math.PI / 4)}
+        <g
+          opacity={dimOpacity(el)}
+          transform={el.rotation ? `rotate(${el.rotation} ${el.x} ${el.y})` : undefined}
+        >
+          <!-- Target ring: 270deg arc with open rear quarter -->
+          <path
+            d="M {el.x + cos45} {el.y + sin45}
+             A {r} {r} 0 1 0 {el.x - cos45} {el.y + sin45}"
+            fill="none"
+            stroke="#dc2626"
+            stroke-width="0.6"
+          />
+          <!-- Flank lines at 3 and 9 o'clock -->
+          <line
+            x1={el.x + r - 0.6}
+            y1={el.y}
+            x2={el.x + r + 0.6}
+            y2={el.y}
+            stroke="#dc2626"
+            stroke-width="0.6"
+          />
+          <line
+            x1={el.x - r - 0.6}
+            y1={el.y}
+            x2={el.x - r + 0.6}
+            y2={el.y}
+            stroke="#dc2626"
+            stroke-width="0.6"
+          />
+          <!-- Front arrow at 12 o'clock -->
+          <polygon
+            points="{el.x},{el.y - r - 3} {el.x - 2},{el.y - r} {el.x + 2},{el.y - r}"
+            fill="#dc2626"
+          />
+        </g>
+      {:else if el.type === 'player'}
+        {@const color = ROLE_COLORS[el.job]}
+        {@const roleMatch = isRoleMatch(el.job)}
+        {@const jobLabel = jobLabels?.[el.job] ?? el.job}
+        <g opacity={dimOpacity(el) * (highlightJob && !roleMatch ? 0.4 : 1)}>
+          <circle
+            cx={el.x}
+            cy={el.y}
+            r="6"
+            fill={color}
+            fill-opacity="0.9"
+            stroke={highlightJob && roleMatch ? 'white' : 'white'}
+            stroke-width={highlightJob && roleMatch ? 0.8 : 0.25}
+          />
+          <text
+            x={el.x}
+            y={el.y}
+            text-anchor="middle"
+            dominant-baseline="central"
+            baseline-shift="2%"
+            fill="white"
+            font-size={jobLabel.length > 2 ? 3.5 : 5}
+            font-weight="bold"
+            font-family="'Noto Sans', sans-serif">{jobLabel}</text
+          >
+          {#if el.marker}
+            <polyline
+              points="{el.x - 2.5},{el.y - 13} {el.x},{el.y - 9} {el.x + 2.5},{el.y - 13}"
+              fill="none"
+              stroke={el.marker === 'green' ? '#22c55e' : '#ef4444'}
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          {/if}
+          {#if el.corners}
+            {#each Object.entries(el.corners) as [corner, debuffId]}
+              {@const def = getDebuff(debuffId)}
+              {@const off = CORNER_OFFSETS[corner as 'tl' | 'tr' | 'bl' | 'br']}
+              {#if def}
+                <image
+                  href={`/icons/status/${def.iconFile}`}
+                  x={el.x + off.dx - 2.5}
+                  y={el.y + off.dy - 2.5}
+                  width="5"
+                  height="5"
+                >
+                  <title>{def.name}</title>
+                </image>
+              {/if}
+            {/each}
+          {/if}
+        </g>
+      {:else if el.type === 'debuff'}
+        {@const def = getDebuff(el.debuffId)}
+        {@const size = el.size ?? 6}
+        {#if def}
+          <g opacity={dimOpacity(el)}>
+            <image
+              href={`/icons/status/${def.iconFile}`}
+              x={el.x - size / 2}
+              y={el.y - size / 2}
+              width={size}
+              height={size}
+            >
+              <title>{def.name}</title>
+            </image>
+          </g>
+        {/if}
+      {:else if el.type === 'text'}
+        {@const lines = el.text.split('\n')}
+        {@const fs = el.fontSize ?? 3.5}
+        {@const lh = fs * 1.2}
+        <text
+          x={el.x}
+          y={el.y}
+          text-anchor={el.anchor ?? 'middle'}
+          fill={el.color ?? 'white'}
+          font-size={fs}
+          font-weight="normal"
+          font-family="'Roboto Condensed', sans-serif"
+          opacity={dimOpacity(el)}
+        >
+          {#each lines as line, i}
+            <tspan
+              x={el.x}
+              dy={i === 0 ? (-lh * (lines.length - 1)) / 2 : lh}
+              dominant-baseline="central">{line}</tspan
+            >
+          {/each}
+        </text>
       {/if}
+    {/each}
 
-    {:else if el.type === 'text'}
-      {@const lines = el.text.split('\n')}
-      {@const fs = el.fontSize ?? 3.5}
-      {@const lh = fs * 1.2}
-      <text x={el.x} y={el.y} text-anchor={el.anchor ?? 'middle'}
-        fill={el.color ?? 'white'} font-size={fs}
-        font-weight="normal" font-family="'Roboto Condensed', sans-serif" opacity={dimOpacity(el)}
+    {#if data.title}
+      <text
+        x={vW / 2}
+        y={pad + 2}
+        text-anchor="middle"
+        dominant-baseline="central"
+        fill="#facc15"
+        font-size="3"
+        font-weight="bold"
+        font-family="'Roboto Condensed', sans-serif">{data.title}</text
       >
-        {#each lines as line, i}
-          <tspan x={el.x} dy={i === 0 ? -lh * (lines.length - 1) / 2 : lh} dominant-baseline="central">{line}</tspan>
-        {/each}
-      </text>
     {/if}
-  {/each}
-
-  {#if data.title}
-    <text x={vW/2} y={pad + 2} text-anchor="middle" dominant-baseline="central"
-      fill="#facc15" font-size="3" font-weight="bold" font-family="'Roboto Condensed', sans-serif"
-    >{data.title}</text>
-  {/if}
   </g>
 </svg>

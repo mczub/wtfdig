@@ -2,26 +2,20 @@
 
 <script lang="ts">
   // @ts-nocheck
-  import { Accordion, Tooltip, Tabs } from '$lib/components/ui';
+  import { Accordion, Tabs } from '$lib/components/ui';
   import { Button } from '$lib/components/ui/button';
   import {
-    ArrowBigRight,
-    ArrowRight,
     ChevronsUpDown,
     CircleAlert,
-    Clock,
-    Divide,
     Expand,
     ExternalLink,
-    Play,
-    Shield,
-    Siren,
-    Skull,
-    TriangleAlert,
-    Wrench
+    TriangleAlert
   } from '@lucide/svelte/icons';
   import ImagePreview from '../ImagePreview.svelte';
   import SpotlightOverlay from '../SpotlightOverlay.svelte';
+  import TimelineIcon from '$lib/components/TimelineIcon.svelte';
+  import RoleIcon from '$lib/components/RoleIcon.svelte';
+  import MechDiffWarning from '$lib/components/MechDiffWarning.svelte';
   import type { TimelineItem, SpotlightMask } from '$lib/types';
   import { msToTime } from '$lib/utils';
   import { renderDebuffTokens } from '$lib/debuffs';
@@ -171,53 +165,7 @@
                 class="flex flex-row gap-3 items-center text-sm border-b border-surface-800/50 pb-1 last:border-0"
               >
                 <div class="w-5 shrink-0">
-                  {#if item.mechType === 'Start'}
-                    <div
-                      class="grid bg-green-700 rounded-full h-5 w-5 place-content-center text-white shadow-sm"
-                    >
-                      <Play size={10} strokeWidth={3} />
-                    </div>
-                  {/if}
-                  {#if item.mechType === 'Phase'}
-                    <div class="grid rounded-full h-5 w-5 place-items-center text-white shadow-sm">
-                      <ArrowRight size={12} strokeWidth={3} />
-                    </div>
-                  {/if}
-                  {#if item.mechType === 'Raidwide'}
-                    <div
-                      class="grid bg-purple-800 rounded-full h-5 w-5 place-content-center text-white shadow-sm"
-                    >
-                      <Siren size={12} strokeWidth={2} />
-                    </div>
-                  {/if}
-                  {#if item.mechType === 'Mechanic'}
-                    <div
-                      class="grid bg-amber-700 rounded-full h-5 w-5 place-content-center text-white shadow-sm"
-                    >
-                      <Wrench size={10} strokeWidth={2} />
-                    </div>
-                  {/if}
-                  {#if item.mechType === 'Tankbuster'}
-                    <div
-                      class="grid bg-blue-700 rounded-full h-5 w-5 place-content-center text-white shadow-sm"
-                    >
-                      <Shield size={10} strokeWidth={2} />
-                    </div>
-                  {/if}
-                  {#if item.mechType === 'StoredMechanic'}
-                    <div
-                      class="grid bg-amber-600 rounded-full h-5 w-5 place-content-center text-white shadow-sm"
-                    >
-                      <Clock size={12} strokeWidth={2} />
-                    </div>
-                  {/if}
-                  {#if item.mechType === 'Enrage'}
-                    <div
-                      class="grid bg-pink-800 rounded-full h-5 w-5 place-items-center text-white shadow-sm"
-                    >
-                      <Skull size={12} strokeWidth={2} />
-                    </div>
-                  {/if}
+                  <TimelineIcon mechType={item.mechType} variant="md" />
                 </div>
                 <div class="w-12 font-mono text-surface-400">
                   {msToTime(item.startTimeMs)}
@@ -315,19 +263,10 @@
                 {/if}
               {/if}
               {#if phase?.tag && stratState[phase.tag] !== getStratMechs(stratName)[phase.tag]}
-                <Tooltip
-                  positioning={{ placement: 'top' }}
-                  triggerBase="cursor-help"
-                  contentBase="card bg-surface-800 p-3 text-sm"
-                  openDelay={200}
-                  arrow
-                  arrowBackground="!text-surface-800"
-                >
-                  {#snippet trigger()}<div class="text-warning-500">
-                      <TriangleAlert size={24} />
-                    </div>{/snippet}
-                  {#snippet content()}This mechanic differs from what's in the selected guide.{/snippet}
-                </Tooltip>
+                <MechDiffWarning
+                  size={24}
+                  message="This mechanic differs from what's in the selected guide."
+                />
               {/if}
             </div>
             <Collapsible.Trigger
@@ -455,15 +394,13 @@
                             {#if mech.strats[0].toggleKey}
                               <span class="shrink-0">⏩</span>
                             {:else if role}
-                              <img
-                                src={`/icons/${role.toLowerCase()}.png`}
-                                alt={role}
-                                class="w-5 h-5 shrink-0 mt-0.5"
-                              />
+                              <RoleIcon {role} class="w-5 h-5 mt-0.5" />
                             {/if}
                           {/if}
                           <div class="whitespace-pre-wrap">
-                            {@html mech?.strats ? renderDebuffTokens(mech.strats[0].description) : ''}
+                            {@html mech?.strats
+                              ? renderDebuffTokens(mech.strats[0].description)
+                              : ''}
                           </div>
                         </div>
 

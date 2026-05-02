@@ -2,32 +2,30 @@
 
 <script lang="ts">
   // @ts-nocheck
-  import { Modal, Switch, Tabs, Tooltip } from '$lib/components/ui';
+  import { Modal, Switch, Tabs } from '$lib/components/ui';
   import {
-    ArrowRight,
     Check,
     ChevronLeft,
     ChevronRight,
-    Clock,
     Expand,
     ExternalLink,
     Eye,
     EyeOff,
     Grid2x2,
     Grid3x3,
-    Play,
     RectangleVertical,
     Settings,
     Shield,
     Siren,
-    Skull,
-    TriangleAlert,
     Type,
     Wrench,
     X
   } from '@lucide/svelte/icons';
   import ImagePreview from '../ImagePreview.svelte';
   import SpotlightOverlay from '../SpotlightOverlay.svelte';
+  import TimelineIcon from '$lib/components/TimelineIcon.svelte';
+  import RoleIcon from '$lib/components/RoleIcon.svelte';
+  import MechDiffWarning from '$lib/components/MechDiffWarning.svelte';
   import type { TimelineItem, SpotlightMask, Role, Alignment, PhaseStrats } from '$lib/types';
   import { msToTime } from '$lib/utils';
   import { renderDebuffTokens } from '$lib/debuffs';
@@ -194,9 +192,13 @@
 
   // Generate a unique key for a mechanic
   function getMechKey(phase: any, mech?: any, index?: number): string {
-    const phaseKey = phase?.tag || phase?.phaseName || 'unknown';
+    // Prefer `phaseName` over `tag` because `tag` is shared across phases in
+    // the same tab (e.g. multiple `p4` phases in TEA Perfect Alexander), and
+    // include the mech index too in case a single phase has duplicate mech
+    // names. Without both, keyed each blocks throw `each_key_duplicate`.
+    const phaseKey = phase?.phaseName || phase?.tag || 'unknown';
     if (mech) {
-      return `${phaseKey}::${mech.mechanic || index}`;
+      return `${phaseKey}::${mech.mechanic ?? ''}::${index ?? ''}`;
     }
     return phaseKey;
   }
@@ -488,6 +490,12 @@
   const MIN_ROW_HEIGHT = 140;
   const MAX_ROW_HEIGHT = 520;
   const TEXT_ONLY_ASPECT = 1.5;
+  // Tailwind `sm` breakpoint. Below this the cards container is narrow enough
+  // that single-card rows should always stretch to fill (otherwise mobile
+  // layouts leave large empty space on the right when binary search trims the
+  // target height). Above it, sparse single-card rows stay at target so an
+  // orphan last card doesn't blow up to full width on desktop.
+  const NARROW_CONTAINER_BREAKPOINT = 640;
 
   let gridContainerWidth = $state(0);
   let gridContainerHeight = $state(0);
@@ -665,10 +673,7 @@
         // Pick whichever split (after i, or after i+1) is closer to balanced.
         const splitAfter = i + 1; // upper has cards [0..i], sum = next
         const splitBefore = i; // upper has cards [0..i-1], sum = acc
-        const idx =
-          target - acc <= next - target && splitBefore >= 1
-            ? splitBefore
-            : splitAfter;
+        const idx = target - acc <= next - target && splitBefore >= 1 ? splitBefore : splitAfter;
         const safeIdx = Math.max(1, Math.min(smalls.length - 1, idx));
         return { upper: smalls.slice(0, safeIdx), lower: smalls.slice(safeIdx) };
       }
@@ -730,9 +735,7 @@
         if (smalls.length > 0) rows.push({ kind: 'simple', smalls });
         smalls = [];
       } else {
-        const real = items.filter(
-          (it) => it.type === 'large' || it.smalls.length > 0
-        );
+        const real = items.filter((it) => it.type === 'large' || it.smalls.length > 0);
         if (real.length > 0) rows.push({ kind: 'macro', items: real });
         items = [];
       }
@@ -748,11 +751,12 @@
           // the simple row first and start a fresh macro row.
           const trial: MacroItem[] =
             smalls.length > 0
-              ? [{ type: 'smalls', smalls }, { type: 'large', card: spec }]
+              ? [
+                  { type: 'smalls', smalls },
+                  { type: 'large', card: spec }
+                ]
               : [{ type: 'large', card: spec }];
-          const fits =
-            trial.length <= 1 ||
-            macroNaturalWidth(trial, T, H) <= gridContainerWidth;
+          const fits = trial.length <= 1 || macroNaturalWidth(trial, T, H) <= gridContainerWidth;
           if (fits) {
             mode = 'macro';
             items = trial;
@@ -789,10 +793,7 @@
           const last = items[items.length - 1];
           let trial: MacroItem[];
           if (last && last.type === 'smalls') {
-            trial = [
-              ...items.slice(0, -1),
-              { type: 'smalls', smalls: [...last.smalls, spec] }
-            ];
+            trial = [...items.slice(0, -1), { type: 'smalls', smalls: [...last.smalls, spec] }];
           } else {
             trial = [...items, { type: 'smalls', smalls: [spec] }];
           }
@@ -820,11 +821,12 @@
     const avail = gridContainerWidth - Math.max(0, smalls.length - 1) * GAP;
     let h = target;
     // Scale to fit container width when:
-    //  - the row overflows (must scale down), or
-    //  - the row is at least 80% of the container width — covers the
-    //    narrow-screen single-column case where one card per row should
-    //    span the full container instead of leaving empty space.
-    if (naturalW >= gridContainerWidth * 0.8) {
+    //  - the row has only one card AND the container is narrow (single-column
+    //    / mobile / scrolling layouts — always fill the width), or
+    //  - the row is at least 80% of the container width — covers the multi-card
+    //    case while leaving sparse partial last rows on desktop at target.
+    const isNarrow = gridContainerWidth < NARROW_CONTAINER_BREAKPOINT;
+    if ((smalls.length === 1 && isNarrow) || naturalW >= gridContainerWidth * 0.8) {
       h = avail / aSum;
     }
     return {
@@ -836,16 +838,18 @@
 
   function layoutMacroRow(items: MacroItem[], target: number): LaidOutMacroRow {
     // Iteratively scale H so the macro row's natural width ≈ container width.
-    // Always scales DOWN on overflow. Scales UP only when the row is already
-    // at least 80% of the container width (covers narrow-screen single-item
-    // rows that would otherwise leave empty space on the right).
+    // Always scales DOWN on overflow. Scales UP for single-item rows in a
+    // narrow container (mobile / scrolling), or for multi-item rows that are
+    // already at least 80% of the container width.
     let h = 2 * target + GAP;
     let t = target;
+    const isNarrow = gridContainerWidth < NARROW_CONTAINER_BREAKPOINT;
+    const stretchSingle = items.length === 1 && isNarrow;
     for (let iter = 0; iter < 6; iter++) {
       const natW = macroNaturalWidth(items, t, h);
       if (natW <= 0) break;
       if (Math.abs(natW - gridContainerWidth) < 0.5) break;
-      if (natW < gridContainerWidth * 0.8) break; // too sparse; don't stretch
+      if (!stretchSingle && natW < gridContainerWidth * 0.8) break;
       const scale = gridContainerWidth / natW;
       h = h * scale;
       t = (h - GAP) / 2;
@@ -871,10 +875,8 @@
         const { upper: upperSpecs, lower: lowerSpecs } = splitSmalls(it.smalls);
         const uA = upperSpecs.reduce((s, c) => s + c.aspect, 0);
         const lA = lowerSpecs.reduce((s, c) => s + c.aspect, 0);
-        const upperW =
-          upperSpecs.length > 0 ? uA * finalT + (upperSpecs.length - 1) * GAP : 0;
-        const lowerW =
-          lowerSpecs.length > 0 ? lA * finalT + (lowerSpecs.length - 1) * GAP : 0;
+        const upperW = upperSpecs.length > 0 ? uA * finalT + (upperSpecs.length - 1) * GAP : 0;
+        const lowerW = lowerSpecs.length > 0 ? lA * finalT + (lowerSpecs.length - 1) * GAP : 0;
         const blockWidth = Math.max(upperW, lowerW);
         laid.push({
           type: 'smalls',
@@ -1093,8 +1095,7 @@
               <div class="p-4">
                 <h3 class="text-lg font-semibold mb-2">Reset Cheatsheet Settings?</h3>
                 <p class="text-sm text-surface-400 mb-4">
-                  This will reset all visibility, cell sizes, and display options to their
-                  defaults.
+                  This will reset all visibility, cell sizes, and display options to their defaults.
                 </p>
                 <div class="flex gap-2 justify-end">
                   <button
@@ -1280,51 +1281,7 @@
                     class="absolute flex text-sm w-full items-center"
                   >
                     <div class="w-5 shrink-0">
-                      {#if item.mechType === 'Start'}
-                        <div
-                          class="grid bg-green-700 rounded-xs h-4 w-4 p-auto place-content-center"
-                        >
-                          <Play size={10} strokeWidth={2} />
-                        </div>
-                      {/if}
-                      {#if item.mechType === 'Phase'}
-                        <div class="grid rounded-xs h-4 w-4 p-auto place-items-center">
-                          <ArrowRight size={10} strokeWidth={2} />
-                        </div>
-                      {/if}
-                      {#if item.mechType === 'Raidwide'}
-                        <div
-                          class="grid bg-purple-800 rounded-xs h-4 w-4 p-auto place-content-center"
-                        >
-                          <Siren size={10} strokeWidth={2} />
-                        </div>
-                      {/if}
-                      {#if item.mechType === 'Mechanic'}
-                        <div
-                          class="grid bg-amber-700 rounded-xs h-4 w-4 p-auto place-content-center"
-                        >
-                          <Wrench size={10} strokeWidth={2} />
-                        </div>
-                      {/if}
-                      {#if item.mechType === 'Tankbuster'}
-                        <div
-                          class="grid bg-blue-700 rounded-xs h-4 w-4 p-auto place-content-center"
-                        >
-                          <Shield size={10} strokeWidth={2} />
-                        </div>
-                      {/if}
-                      {#if item.mechType === 'StoredMechanic'}
-                        <div
-                          class="grid bg-amber-600 rounded-xs h-4 w-4 p-auto place-content-center"
-                        >
-                          <Clock size={10} strokeWidth={2} />
-                        </div>
-                      {/if}
-                      {#if item.mechType === 'Enrage'}
-                        <div class="grid bg-pink-800 rounded-xs h-4 w-4 p-auto place-items-center">
-                          <Skull size={10} strokeWidth={2} />
-                        </div>
-                      {/if}
+                      <TimelineIcon mechType={item.mechType} variant="sm" />
                     </div>
                     <div class="w-10 text-[10px] text-surface-400">
                       {msToTime(item.startTimeMs)}
@@ -1361,7 +1318,8 @@
           {@const showStrat = (textMode === 'all' || textMode === 'role') && stratDesc}
           {@const showHeader = textMode === 'all'}
           {@const showBottom = showDesc || showStrat}
-          {@const showWarning = phase?.tag && stratState[phase.tag] !== getStratMechs(stratName ?? '')[phase.tag]}
+          {@const showWarning =
+            phase?.tag && stratState[phase.tag] !== getStratMechs(stratName ?? '')[phase.tag]}
           <button
             class="relative card border border-surface-700 overflow-hidden bg-surface-950 hover:border-surface-500 transition-colors cursor-pointer group shrink-0"
             style:width="{cardWidth}px"
@@ -1376,11 +1334,7 @@
                 onload={(e) => handleImageLoad(e, imgUrl)}
               />
               {#if spotlight && showSpotlight && mask}
-                <SpotlightOverlay
-                  {mask}
-                  imageWidth={dims?.width}
-                  imageHeight={dims?.height}
-                />
+                <SpotlightOverlay {mask} imageWidth={dims?.width} imageHeight={dims?.height} />
               {/if}
             {/if}
 
@@ -1403,7 +1357,9 @@
                       </a>
                     {:else}
                       <div class="flex items-baseline gap-x-2 min-w-0">
-                        <span class="capitalize font-semibold text-base text-white leading-tight truncate">
+                        <span
+                          class="capitalize font-semibold text-base text-white leading-tight truncate"
+                        >
                           {headerName}
                         </span>
                       </div>
@@ -1411,25 +1367,15 @@
                   </div>
                   <div class="flex items-center gap-2 shrink-0">
                     {#if mech}
-                      <span class="capitalize text-xs font-semibold uppercase tracking-wide text-surface-300 leading-tight">
+                      <span
+                        class="capitalize text-xs font-semibold uppercase tracking-wide text-surface-300 leading-tight"
+                      >
                         {phase.phaseName}
                       </span>
                     {/if}
                     {#if showWarning}
                       <div class="pointer-events-auto flex">
-                        <Tooltip
-                          positioning={{ placement: 'top' }}
-                          triggerBase="flex"
-                          contentBase="card bg-surface-800 p-2 text-xs"
-                          openDelay={200}
-                          arrow
-                          arrowBackground="!bg-surface-800"
-                        >
-                          {#snippet trigger()}<div class="text-warning-500">
-                              <TriangleAlert size={14} />
-                            </div>{/snippet}
-                          {#snippet content()}Differs from guide{/snippet}
-                        </Tooltip>
+                        <MechDiffWarning size={14} />
                       </div>
                     {/if}
                     <Expand
@@ -1447,20 +1393,20 @@
               >
                 <div class="pointer-events-auto space-y-1 text-left">
                   {#if showDesc}
-                    <div class="text-base text-surface-100 whitespace-pre-wrap leading-snug text-left">
+                    <div
+                      class="text-base text-surface-100 whitespace-pre-wrap leading-snug text-left"
+                    >
                       {@html renderDebuffTokens(desc)}
                     </div>
                   {/if}
                   {#if showStrat}
-                    <div class="flex items-start gap-2 text-base text-surface-50 leading-snug text-left">
+                    <div
+                      class="flex items-start gap-2 text-base text-surface-50 leading-snug text-left"
+                    >
                       {#if stratToggleKey}
                         <span class="shrink-0">⏩</span>
                       {:else if role}
-                        <img
-                          src={`/icons/${role.toLowerCase()}.png`}
-                          alt={role}
-                          class="w-5 h-5 shrink-0"
-                        />
+                        <RoleIcon {role} />
                       {/if}
                       <div class="whitespace-pre-wrap text-left flex-1 min-w-0">
                         {@html renderDebuffTokens(stratDesc)}

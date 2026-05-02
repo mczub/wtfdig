@@ -5984,4 +5984,9 @@ const idyllStrat: ChaoticStrat = {
   ]
 };
 
-export const chaoticStrats: ChaoticStrat[] = [raidplanStrat, codcarStrat, healerOutStrat, idyllStrat];
+export const chaoticStrats: ChaoticStrat[] = [
+  raidplanStrat,
+  codcarStrat,
+  healerOutStrat,
+  idyllStrat
+];

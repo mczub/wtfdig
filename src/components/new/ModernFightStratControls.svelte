@@ -2,7 +2,13 @@
 <script lang="ts">
   // @ts-nocheck
   import { Segment, Switch, Popover, Modal } from '$lib/components/ui';
-  import type { Role, StratOption, FightToggleState, FightRoleOption } from '$lib/types';
+  import type {
+    Role,
+    StratOption,
+    FightToggleState,
+    FightRoleOption,
+    FightStratConfig
+  } from '$lib/types';
   import { formatRoleAbbreviation, buildFightOptionsString } from '$lib/utils';
   import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
   import ChevronDown from '@lucide/svelte/icons/chevron-down';
@@ -18,7 +24,7 @@
 
   interface Props {
     title: string;
-    strats: Strat[];
+    strats: FightStratConfig;
     stratName: string | undefined;
     stratOptions: StratOption[];
     onSelectStrat: (value: string) => void;
@@ -107,9 +113,7 @@
   // Role label for collapsed view
   let roleLabel = $derived(role ? { Tank: 'T', Healer: 'H', Melee: 'M', Ranged: 'R' }[role] : '');
 
-  let selectedRoleOption = $derived(
-    roleOptions?.find((o) => o.role === role && o.party === party)
-  );
+  let selectedRoleOption = $derived(roleOptions?.find((o) => o.role === role && o.party === party));
   let roleDisplayLabel = $derived(
     selectedRoleOption ? selectedRoleOption.label : formatRoleAbbreviation(role, party)
   );
@@ -316,7 +320,6 @@
                     arrowClasses="bg-surface-800"
                   >
                     Some mechanics differ from the selected guide.
-                    <Tooltip.Arrow class="fill-popover" />
                   </Tooltip.Content>
                 </Tooltip.Root>
               </Tooltip.Provider>
@@ -382,12 +385,15 @@
           <div class="flex flex-wrap items-center gap-4 order-1" bind:this={roleContainer}>
             {#if roleOptions && roleOptions.length > 0}
               <div class="flex items-center relative">
-                <span class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider mr-2"
+                <span
+                  class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider mr-2"
                   >Role</span
                 >
                 <Segment
                   name="role-option"
-                  value={selectedRoleOption ? `${selectedRoleOption.role}-${selectedRoleOption.party}` : undefined}
+                  value={selectedRoleOption
+                    ? `${selectedRoleOption.role}-${selectedRoleOption.party}`
+                    : undefined}
                   onValueChange={(e) => {
                     const opt = roleOptions.find((o) => `${o.role}-${o.party}` === e.value);
                     if (opt) selectRoleOption(opt);
@@ -403,7 +409,8 @@
               </div>
             {:else}
               <div class="flex items-center relative">
-                <span class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider mr-2"
+                <span
+                  class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider mr-2"
                   >Role</span
                 >
                 <Segment
@@ -420,7 +427,8 @@
               </div>
 
               <div class="flex items-center">
-                <span class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider mr-2"
+                <span
+                  class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider mr-2"
                   >Group</span
                 >
                 <Segment
@@ -434,7 +442,6 @@
                 </Segment>
               </div>
             {/if}
-
           </div>
 
           <!-- Strat Stuff (Selector + Toggles) -->
@@ -526,7 +533,6 @@
                             arrowClasses="bg-surface-800"
                           >
                             This mechanic differs from the selected guide.
-                            <Tooltip.Arrow class={cn('fill-popover')} />
                           </Tooltip.Content>
                         </Tooltip.Root>
                       </Tooltip.Provider>

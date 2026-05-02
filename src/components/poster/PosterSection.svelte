@@ -29,6 +29,13 @@
 
   <!-- Arena diagram -->
   <div class="flex-1 min-h-0 overflow-hidden bg-black/30 p-1">
-    <ArenaRenderer data={section.arena} highlight={section.highlight} gridW={section.w} gridH={section.h} {highlightJob} {jobLabels} />
+    <ArenaRenderer
+      data={section.arena}
+      highlight={section.highlight}
+      gridW={section.w}
+      gridH={section.h}
+      {highlightJob}
+      {jobLabels}
+    />
   </div>
 </div>
