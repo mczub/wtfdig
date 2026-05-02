@@ -1,19 +1,10 @@
-name: Validate Strat Data
+name: PR Validation
 
 on:
   pull_request:
     branches: [main]
 
 jobs:
-  tier1:
-    name: Tier 1 – Structural Validation
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
-      - run: bun install --frozen-lockfile
-      - run: bun run test:tier1
-
   unit:
     name: Unit Tests
     runs-on: ubuntu-latest
@@ -22,3 +13,12 @@ jobs:
       - uses: oven-sh/setup-bun@v2
       - run: bun install --frozen-lockfile
       - run: bun run test:unit
+
+  tier1:
+    name: Tier 1 – Structural Validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - run: bun run test:tier1
