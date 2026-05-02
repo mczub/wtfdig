@@ -789,10 +789,10 @@
     let h = target;
     // Scale to fit container width when:
     //  - the row overflows (must scale down), or
-    //  - the row is at least half the container width — covers the
+    //  - the row is at least 80% of the container width — covers the
     //    narrow-screen single-column case where one card per row should
     //    span the full container instead of leaving empty space.
-    if (naturalW >= gridContainerWidth * 0.5) {
+    if (naturalW >= gridContainerWidth * 0.8) {
       h = avail / aSum;
     }
     return {
@@ -805,15 +805,15 @@
   function layoutMacroRow(items: MacroItem[], target: number): LaidOutMacroRow {
     // Iteratively scale H so the macro row's natural width ≈ container width.
     // Always scales DOWN on overflow. Scales UP only when the row is already
-    // at least half the container width (covers narrow-screen single-item rows
-    // that would otherwise leave empty space on the right).
+    // at least 80% of the container width (covers narrow-screen single-item
+    // rows that would otherwise leave empty space on the right).
     let h = 2 * target + GAP;
     let t = target;
     for (let iter = 0; iter < 6; iter++) {
       const natW = macroNaturalWidth(items, t, h);
       if (natW <= 0) break;
       if (Math.abs(natW - gridContainerWidth) < 0.5) break;
-      if (natW < gridContainerWidth * 0.5) break; // too sparse; don't stretch
+      if (natW < gridContainerWidth * 0.8) break; // too sparse; don't stretch
       const scale = gridContainerWidth / natW;
       h = h * scale;
       t = (h - GAP) / 2;
