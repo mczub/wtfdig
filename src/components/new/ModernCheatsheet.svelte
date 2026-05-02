@@ -111,18 +111,48 @@
     localStorage.setItem(storageKey, JSON.stringify(state));
   }
 
-  // Initialize state from localStorage or defaults
-  const savedState = loadSavedState();
-
-  let showTimeline = $state(savedState?.showTimeline ?? true);
+  // Persisted state — defaults applied here, then overwritten by applySaved()
+  // for the current fightKey both on mount and whenever fightKey changes.
+  let showTimeline = $state(true);
   // Text display mode: 'all' = show all text, 'role' = only role-based text, 'image' = no text
-  let textMode = $state<'all' | 'role' | 'image'>(savedState?.textMode ?? 'all');
-  let sidebarOpen = $state(savedState?.sidebarOpen ?? true);
-  let splitPhases = $state(savedState?.splitPhases ?? true); // true = split into tabs, false = show all
-  let showSpotlight = $state(savedState?.showSpotlight ?? true); // local override for spotlight visibility
+  let textMode = $state<'all' | 'role' | 'image'>('all');
+  let sidebarOpen = $state(true);
+  let splitPhases = $state(true); // true = split into tabs, false = show all
+  let showSpotlight = $state(true); // local override for spotlight visibility
+  let cellSizes = $state<Map<string, 'small' | 'large'>>(new Map());
+  let hiddenMechanics = $state<Set<string>>(new Set());
 
   // Confirmation dialog state
   let resetConfirmOpen = $state(false);
+
+  function applySaved(saved: any) {
+    showTimeline = saved?.showTimeline ?? true;
+    textMode = saved?.textMode ?? 'all';
+    sidebarOpen = saved?.sidebarOpen ?? true;
+    splitPhases = saved?.splitPhases ?? true;
+    showSpotlight = saved?.showSpotlight ?? true;
+    cellSizes = new Map(saved?.cellSizes ? Object.entries(saved.cellSizes) : []);
+    hiddenMechanics = new Set(saved?.hiddenMechanics ?? []);
+  }
+
+  // Initial load (so the first paint matches the saved state without flashing
+  // defaults).
+  applySaved(loadSavedState());
+
+  // Reload when fightKey changes mid-mount so we don't write the previous
+  // fight's state under the new fight's storageKey. The first effect run is
+  // skipped because the synchronous load above already covered it.
+  let lastLoadedFightKey: string | null = null;
+  $effect(() => {
+    const key = fightKey;
+    if (lastLoadedFightKey === null) {
+      lastLoadedFightKey = key;
+      return;
+    }
+    if (key === lastLoadedFightKey) return;
+    lastLoadedFightKey = key;
+    applySaved(loadSavedState());
+  });
 
   // Reset all settings to defaults
   function resetSettings() {
@@ -134,14 +164,6 @@
     hiddenMechanics = new Set();
     resetConfirmOpen = false;
   }
-
-  // Map of mechanic keys to their sizes: 'small' (1x1) or 'large' (2x2)
-  let cellSizes = $state<Map<string, 'small' | 'large'>>(
-    new Map(savedState?.cellSizes ? Object.entries(savedState.cellSizes) : [])
-  );
-
-  // Set of hidden mechanic keys
-  let hiddenMechanics = $state<Set<string>>(new Set(savedState?.hiddenMechanics ?? []));
 
   // Track image dimensions for SpotlightOverlay alignment with object-contain
   let imageDimensions = $state<Map<string, { width: number; height: number }>>(new Map());
@@ -276,10 +298,20 @@
   // Timeline positioning logic
   let tab = $state('');
 
-  // Initialize tab when tabTags changes
+  // Initialize tab on mount and reset it whenever the current value isn't
+  // valid for the new tabTags (e.g. after fightKey change).
   $effect(() => {
-    if (tabTags && Object.keys(tabTags).length > 0 && !tab) {
-      tab = Object.keys(tabTags)[0];
+    if (!tabTags) {
+      tab = '';
+      return;
+    }
+    const keys = Object.keys(tabTags);
+    if (keys.length === 0) {
+      tab = '';
+      return;
+    }
+    if (!tab || !keys.includes(tab)) {
+      tab = keys[0];
     }
   });
 
@@ -1057,26 +1089,29 @@
 
           <!-- Reset Confirmation Dialog -->
           <Modal bind:open={resetConfirmOpen} contentClasses="!max-w-sm !w-auto">
-            <div slot="content" class="p-4">
-              <h3 class="text-lg font-semibold mb-2">Reset Cheatsheet Settings?</h3>
-              <p class="text-sm text-surface-400 mb-4">
-                This will reset all visibility, cell sizes, and display options to their defaults.
-              </p>
-              <div class="flex gap-2 justify-end">
-                <button
-                  class="px-3 py-1.5 text-sm bg-surface-800 hover:bg-surface-700 rounded transition-colors"
-                  onclick={() => (resetConfirmOpen = false)}
-                >
-                  Cancel
-                </button>
-                <button
-                  class="px-3 py-1.5 text-sm bg-error-500 hover:bg-error-600 text-white rounded transition-colors"
-                  onclick={() => resetSettings()}
-                >
-                  Reset
-                </button>
+            {#snippet content()}
+              <div class="p-4">
+                <h3 class="text-lg font-semibold mb-2">Reset Cheatsheet Settings?</h3>
+                <p class="text-sm text-surface-400 mb-4">
+                  This will reset all visibility, cell sizes, and display options to their
+                  defaults.
+                </p>
+                <div class="flex gap-2 justify-end">
+                  <button
+                    class="px-3 py-1.5 text-sm bg-surface-800 hover:bg-surface-700 rounded transition-colors"
+                    onclick={() => (resetConfirmOpen = false)}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    class="px-3 py-1.5 text-sm bg-error-500 hover:bg-error-600 text-white rounded transition-colors"
+                    onclick={() => resetSettings()}
+                  >
+                    Reset
+                  </button>
+                </div>
               </div>
-            </div>
+            {/snippet}
           </Modal>
         </div>
 
@@ -1226,8 +1261,8 @@
           >
             <div
               class="grow relative"
-              class:overflow-hidden={!timelineNeedsScroll()}
-              class:overflow-y-auto={timelineNeedsScroll()}
+              class:overflow-hidden={!timelineNeedsScroll}
+              class:overflow-y-auto={timelineNeedsScroll}
               bind:clientHeight={timelineContainerHeight}
               onscroll={(e) => {
                 const target = e.currentTarget as HTMLElement;
@@ -1237,7 +1272,7 @@
             >
               <div
                 class="relative"
-                style:height={timelineNeedsScroll() ? `${timelineContentHeight()}px` : '100%'}
+                style:height={timelineNeedsScroll ? `${timelineContentHeight}px` : '100%'}
               >
                 {#each visibleTimelineItems as item, index}
                   <div
@@ -1354,7 +1389,7 @@
                 class="absolute top-0 left-0 right-0 bg-surface-950/80 px-2 pt-1.5 pb-1.5 pointer-events-none"
               >
                 <div class="flex items-center justify-between gap-2">
-                  <div class="min-w-0 pointer-events-auto flex-1">
+                  <div class="min-w-0 pointer-events-auto">
                     {#if typeof headerUrl === 'string'}
                       <a
                         href={headerUrl}
