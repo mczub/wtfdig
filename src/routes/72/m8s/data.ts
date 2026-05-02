@@ -1,86 +1,11 @@
-// @ts-nocheck
 import type {
   FightConfig,
   Strat,
   TimelineItem,
   StratRecord,
-  PlayerMechStrat,
-  MechanicStrat,
   PhaseStrats
 } from '$lib/types';
-
-function getStringObject(
-  stratRecord: Record<string, StratRecord>,
-  mechanic: string,
-  property: string,
-  role?: string
-): Record<string, string> {
-  let stringObject = {};
-  for (const [key, strat] of Object.entries(stratRecord)) {
-    if (role) {
-      stringObject[key] = (strat[mechanic][role][property] as string) || '';
-    } else {
-      stringObject[key] = (strat[mechanic][property] as string) || '';
-    }
-  }
-  return stringObject;
-}
-
-function getStratArray(
-  stratRecord: Record<string, StratRecord>,
-  mechanic: string
-): PlayerMechStrat[] {
-  return [
-    {
-      role: 'Tank',
-      party: 1,
-      description: getStringObject(stratRecord, mechanic, 'description', 'MT'),
-      imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'MT')
-    },
-    {
-      role: 'Tank',
-      party: 2,
-      description: getStringObject(stratRecord, mechanic, 'description', 'OT'),
-      imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'OT')
-    },
-    {
-      role: 'Healer',
-      party: 1,
-      description: getStringObject(stratRecord, mechanic, 'description', 'H1'),
-      imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'H1')
-    },
-    {
-      role: 'Healer',
-      party: 2,
-      description: getStringObject(stratRecord, mechanic, 'description', 'H2'),
-      imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'H2')
-    },
-    {
-      role: 'Melee',
-      party: 1,
-      description: getStringObject(stratRecord, mechanic, 'description', 'M1'),
-      imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'M1')
-    },
-    {
-      role: 'Melee',
-      party: 2,
-      description: getStringObject(stratRecord, mechanic, 'description', 'M2'),
-      imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'M2')
-    },
-    {
-      role: 'Ranged',
-      party: 1,
-      description: getStringObject(stratRecord, mechanic, 'description', 'R1'),
-      imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'R1')
-    },
-    {
-      role: 'Ranged',
-      party: 2,
-      description: getStringObject(stratRecord, mechanic, 'description', 'R2'),
-      imageUrl: getStringObject(stratRecord, mechanic, 'imageUrl', 'R2')
-    }
-  ];
-}
+import { getStratArray, getStringObject } from '$lib/utils';
 
 const timeline: TimelineItem[] = [
   {
