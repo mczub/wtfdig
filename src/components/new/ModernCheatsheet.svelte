@@ -327,28 +327,28 @@
     timelineContainerHeight > 0 ? (TIMELINE_ITEM_HEIGHT / timelineContainerHeight) * 100 : 3
   );
 
-  let timelineNeedsScroll = $derived(() => {
+  let timelineNeedsScroll = $derived.by(() => {
     const items = visibleTimelineItems;
     if (items.length === 0) return false;
     const requiredHeight = items.length * TIMELINE_ITEM_HEIGHT;
     return requiredHeight > timelineContainerHeight;
   });
 
-  let timelineContentHeight = $derived(() => {
+  let timelineContentHeight = $derived.by(() => {
     const items = visibleTimelineItems;
     if (items.length === 0) return 0;
-    if (timelineNeedsScroll()) {
+    if (timelineNeedsScroll) {
       return items.length * TIMELINE_ITEM_HEIGHT;
     }
     return timelineContainerHeight;
   });
 
-  let timelinePositions = $derived(() => {
+  let timelinePositions = $derived.by(() => {
     const items = visibleTimelineItems;
     if (items.length === 0) return new Map<number, string>();
 
     const positions = new Map<number, string>();
-    const needsScroll = timelineNeedsScroll();
+    const needsScroll = timelineNeedsScroll;
 
     if (!splitPhases) {
       items.forEach((item, index) => {
@@ -392,11 +392,11 @@
   });
 
   function getTimelinePosition(index: number): string {
-    return timelinePositions().get(index) ?? '0%';
+    return timelinePositions.get(index) ?? '0%';
   }
 
   let showTimelineScrollIndicator = $derived(
-    timelineNeedsScroll() && timelineScrollTop + timelineContainerHeight < timelineScrollHeight - 10
+    timelineNeedsScroll && timelineScrollTop + timelineContainerHeight < timelineScrollHeight - 10
   );
 
   function closeCheatsheet() {
@@ -430,7 +430,7 @@
   );
 
   // Get visible mechanics count
-  let visibleMechCount = $derived(() => {
+  let visibleMechCount = $derived.by(() => {
     let count = 0;
     visiblePhases.forEach((phase: any) => {
       if (phase.mechs) {
@@ -446,183 +446,427 @@
     return count;
   });
 
-  const MIN_COL_WIDTH = 300;
+  // === Justified gallery layout ===
+  // Pack cards into rows with uniform height per row. Each card width is
+  // proportional to its image's natural aspect ratio. Last row stays at
+  // target height (ragged right) instead of stretching.
+
   const GAP = 12;
-  const ROW_HEIGHT = 10;
+  const TARGET_ROW_HEIGHT = 280;
+  const MIN_ROW_HEIGHT = 140;
+  const MAX_ROW_HEIGHT = 520;
+  const TEXT_ONLY_ASPECT = 1.5;
 
-  let gridContainer: HTMLElement | null = null;
-  let columnCount = $state(2);
-  let isInitialRender = $state(true);
-  let pendingRecalc = $state(false);
+  let gridContainerWidth = $state(0);
+  let gridContainerHeight = $state(0);
 
-  function getCardHeights(
-    container: HTMLElement,
-    cols: number
-  ): { height: number; span: number }[] {
-    const cards = Array.from(
-      container.querySelectorAll(':scope > [data-masonry-card]')
-    ) as HTMLElement[];
-    const colWidth = (container.clientWidth - (cols - 1) * GAP) / cols;
+  // Cached image aspect ratios (width / height), populated via prefetch
+  let imageAspects = $state<Map<string, number>>(new Map());
+  let initialPrefetchDone = $state(false);
 
-    return cards.map((card) => {
-      const isLarge = card.hasAttribute('data-large');
-      const span = isLarge && cols > 1 ? 2 : 1;
-      const cardWidth = span * colWidth + (span - 1) * GAP;
-
-      const clone = card.cloneNode(true) as HTMLElement;
-      clone.style.position = 'absolute';
-      clone.style.visibility = 'hidden';
-      clone.style.width = `${cardWidth}px`;
-      clone.style.height = 'auto';
-      clone.style.gridRowEnd = '';
-      container.appendChild(clone);
-      const height = clone.offsetHeight;
-      container.removeChild(clone);
-      return { height, span };
-    });
+  function getCardImageUrl(phase: any, mech?: any): string | null {
+    if (mech?.strats?.[0]?.imageUrl) return mech.strats[0].imageUrl;
+    if (mech?.imageUrl) return mech.imageUrl;
+    if (phase?.imageUrl) return phase.imageUrl;
+    return null;
   }
 
-  function calculateTotalHeight(cards: { height: number; span: number }[], cols: number): number {
-    const columnHeights = new Array(cols).fill(0);
-    cards.forEach(({ height, span }) => {
-      if (span >= cols) {
-        const maxHeight = Math.max(...columnHeights);
-        for (let i = 0; i < cols; i++) {
-          columnHeights[i] = maxHeight + height + GAP;
+  // Collect every image URL across all phases (not just visible) so toggling
+  // tabs doesn't trigger a re-prefetch.
+  let allImageUrls = $derived.by(() => {
+    const urls = new Set<string>();
+    for (const phase of stratPhases) {
+      if (phase.imageUrl) urls.add(phase.imageUrl);
+      if (phase.mechs) {
+        for (const mech of phase.mechs) {
+          if (mech.imageUrl) urls.add(mech.imageUrl);
+          if (mech.strats?.[0]?.imageUrl) urls.add(mech.strats[0].imageUrl);
         }
+      }
+    }
+    return Array.from(urls);
+  });
+
+  // Prefetch image dimensions on mount / when URL set changes.
+  $effect(() => {
+    if (!browser) return;
+    const urls = allImageUrls;
+    if (urls.length === 0) {
+      initialPrefetchDone = true;
+      return;
+    }
+    let cancelled = false;
+    const probes = urls
+      .filter((u) => !imageAspects.has(u))
+      .map(
+        (url) =>
+          new Promise<void>((resolve) => {
+            const img = new Image();
+            img.onload = () => {
+              if (!cancelled && img.naturalWidth > 0 && img.naturalHeight > 0) {
+                imageAspects.set(url, img.naturalWidth / img.naturalHeight);
+                imageDimensions.set(url, {
+                  width: img.naturalWidth,
+                  height: img.naturalHeight
+                });
+              }
+              resolve();
+            };
+            img.onerror = () => resolve();
+            img.src = url;
+          })
+      );
+    if (probes.length === 0) {
+      initialPrefetchDone = true;
+      return;
+    }
+    Promise.all(probes).then(() => {
+      if (cancelled) return;
+      imageAspects = new Map(imageAspects);
+      imageDimensions = new Map(imageDimensions);
+      initialPrefetchDone = true;
+    });
+    return () => {
+      cancelled = true;
+    };
+  });
+
+  function getCardAspect(phase: any, mech?: any): number {
+    const url = getCardImageUrl(phase, mech);
+    if (url) {
+      const a = imageAspects.get(url);
+      if (a && a > 0) return a;
+    }
+    return TEXT_ONLY_ASPECT;
+  }
+
+  type CardSpec = {
+    phase: any;
+    mech: any | null;
+    mechIndex: number | null;
+    key: string;
+    aspect: number;
+    large: boolean;
+    imgUrl: string | null;
+  };
+
+  let cardList = $derived.by(() => {
+    const list: CardSpec[] = [];
+    for (const phase of visiblePhases) {
+      if (phase.mechs) {
+        phase.mechs.forEach((mech: any, index: number) => {
+          const key = getMechKey(phase, mech, index);
+          if (!shouldShowCard(key, phase, mech)) return;
+          list.push({
+            phase,
+            mech,
+            mechIndex: index,
+            key,
+            aspect: getCardAspect(phase, mech),
+            large: getCellSize(key) === 'large',
+            imgUrl: getCardImageUrl(phase, mech)
+          });
+        });
       } else {
-        let bestStart = 0;
-        let bestMax = Infinity;
-        for (let start = 0; start <= cols - span; start++) {
-          const maxInSpan = Math.max(...columnHeights.slice(start, start + span));
-          if (maxInSpan < bestMax) {
-            bestMax = maxInSpan;
-            bestStart = start;
+        const key = getMechKey(phase);
+        if (!shouldShowCard(key, phase)) return;
+        list.push({
+          phase,
+          mech: null,
+          mechIndex: null,
+          key,
+          aspect: getCardAspect(phase),
+          large: getCellSize(key) === 'large',
+          imgUrl: getCardImageUrl(phase)
+        });
+      }
+    }
+    return list;
+  });
+
+  type LaidOutCard = { spec: CardSpec; width: number; height: number };
+
+  type LaidOutLargeItem = { type: 'large'; card: LaidOutCard };
+  type LaidOutSmallsBlock = {
+    type: 'smalls';
+    blockWidth: number;
+    smallHeight: number;
+    upper: LaidOutCard[];
+    lower: LaidOutCard[];
+  };
+  type LaidOutMacroItem = LaidOutLargeItem | LaidOutSmallsBlock;
+
+  type LaidOutSimpleRow = { kind: 'simple'; height: number; cards: LaidOutCard[] };
+  type LaidOutMacroRow = {
+    kind: 'macro';
+    height: number;
+    smallHeight: number;
+    items: LaidOutMacroItem[];
+  };
+  type LaidOutRow = LaidOutSimpleRow | LaidOutMacroRow;
+
+  // === Macro-row builder ===
+  // A macro row is 2T + GAP tall and contains a sequence of items: large
+  // cards (full height) and "smalls blocks" (small cards split 50/50 by
+  // user order into upper and lower sub-rows of height T). Rows that
+  // contain no large cards stay as simple single-strip rows at height T.
+
+  type SmallsBlockItem = { type: 'smalls'; smalls: CardSpec[] };
+  type LargeBlockItem = { type: 'large'; card: CardSpec };
+  type MacroItem = SmallsBlockItem | LargeBlockItem;
+
+  function smallsBlockNaturalWidth(smalls: CardSpec[], T: number): number {
+    if (smalls.length === 0) return 0;
+    const half = Math.ceil(smalls.length / 2);
+    const upper = smalls.slice(0, half);
+    const lower = smalls.slice(half);
+    const uA = upper.reduce((s, c) => s + c.aspect, 0);
+    const lA = lower.reduce((s, c) => s + c.aspect, 0);
+    const upperW = upper.length > 0 ? uA * T + (upper.length - 1) * GAP : 0;
+    const lowerW = lower.length > 0 ? lA * T + (lower.length - 1) * GAP : 0;
+    return Math.max(upperW, lowerW);
+  }
+
+  function macroNaturalWidth(items: MacroItem[], T: number, H: number): number {
+    let total = 0;
+    let count = 0;
+    for (const it of items) {
+      let w = 0;
+      if (it.type === 'large') w = it.card.aspect * H;
+      else w = smallsBlockNaturalWidth(it.smalls, T);
+      if (w === 0) continue;
+      total += w;
+      count++;
+    }
+    return total + Math.max(0, count - 1) * GAP;
+  }
+
+  function simpleNaturalWidth(smalls: CardSpec[], T: number): number {
+    if (smalls.length === 0) return 0;
+    const aSum = smalls.reduce((s, c) => s + c.aspect, 0);
+    return aSum * T + (smalls.length - 1) * GAP;
+  }
+
+  type RawSimpleRow = { kind: 'simple'; smalls: CardSpec[] };
+  type RawMacroRow = { kind: 'macro'; items: MacroItem[] };
+  type RawRow = RawSimpleRow | RawMacroRow;
+
+  function buildRows(target: number): RawRow[] {
+    const rows: RawRow[] = [];
+    if (cardList.length === 0 || gridContainerWidth <= 0) return rows;
+
+    const T = target;
+    const H = 2 * target + GAP;
+
+    let mode: 'simple' | 'macro' = 'simple';
+    let items: MacroItem[] = []; // for macro mode
+    let smalls: CardSpec[] = []; // for simple mode
+
+    function flush() {
+      if (mode === 'simple') {
+        if (smalls.length > 0) rows.push({ kind: 'simple', smalls });
+        smalls = [];
+      } else {
+        const real = items.filter(
+          (it) => it.type === 'large' || it.smalls.length > 0
+        );
+        if (real.length > 0) rows.push({ kind: 'macro', items: real });
+        items = [];
+      }
+      mode = 'simple';
+    }
+
+    for (const spec of cardList) {
+      if (spec.large) {
+        // Switching into / staying in macro mode.
+        if (mode === 'simple') {
+          // Promote current simple smalls into a macro smalls block (if any),
+          // then add the large item. If the combined trial overflows, flush
+          // the simple row first and start a fresh macro row.
+          const trial: MacroItem[] =
+            smalls.length > 0
+              ? [{ type: 'smalls', smalls }, { type: 'large', card: spec }]
+              : [{ type: 'large', card: spec }];
+          const fits =
+            trial.length <= 1 ||
+            macroNaturalWidth(trial, T, H) <= gridContainerWidth;
+          if (fits) {
+            mode = 'macro';
+            items = trial;
+            smalls = [];
+          } else {
+            // Flush simple smalls as their own row, start macro with the large.
+            flush();
+            mode = 'macro';
+            items = [{ type: 'large', card: spec }];
+          }
+        } else {
+          const trial: MacroItem[] = [...items, { type: 'large', card: spec }];
+          if (items.length === 0 || macroNaturalWidth(trial, T, H) <= gridContainerWidth) {
+            items = trial;
+          } else {
+            flush();
+            mode = 'macro';
+            items = [{ type: 'large', card: spec }];
           }
         }
-        for (let i = bestStart; i < bestStart + span; i++) {
-          columnHeights[i] = bestMax + height + GAP;
+      } else {
+        // Small card.
+        if (mode === 'simple') {
+          const trial = [...smalls, spec];
+          if (smalls.length === 0 || simpleNaturalWidth(trial, T) <= gridContainerWidth) {
+            smalls = trial;
+          } else {
+            flush();
+            mode = 'simple';
+            smalls = [spec];
+          }
+        } else {
+          // Macro mode: append to last smalls block (or start one).
+          const last = items[items.length - 1];
+          let trial: MacroItem[];
+          if (last && last.type === 'smalls') {
+            trial = [
+              ...items.slice(0, -1),
+              { type: 'smalls', smalls: [...last.smalls, spec] }
+            ];
+          } else {
+            trial = [...items, { type: 'smalls', smalls: [spec] }];
+          }
+          if (macroNaturalWidth(trial, T, H) <= gridContainerWidth) {
+            items = trial;
+          } else {
+            flush();
+            // After flush, mode is 'simple' — keep it that way unless this
+            // small later transitions to macro again.
+            mode = 'simple';
+            smalls = [spec];
+          }
         }
       }
-    });
-    return Math.max(...columnHeights);
-  }
-
-  function findOptimalColumns(container: HTMLElement, maxHeight: number): number {
-    const containerWidth = container.clientWidth;
-    const maxCols = Math.max(1, Math.floor((containerWidth + GAP) / (MIN_COL_WIDTH + GAP)));
-
-    if (maxCols === 1) return 1;
-
-    for (let cols = 1; cols <= maxCols; cols++) {
-      const heights = getCardHeights(container, cols);
-      const totalHeight = calculateTotalHeight(heights, cols);
-      if (totalHeight <= maxHeight) {
-        return cols;
-      }
     }
-    return maxCols;
+    flush();
+    return rows;
   }
 
-  function applyMasonryLayout(container: HTMLElement, cols: number) {
-    const cards = Array.from(
-      container.querySelectorAll(':scope > [data-masonry-card]')
-    ) as HTMLElement[];
-    const colWidth = (container.clientWidth - (cols - 1) * GAP) / cols;
+  // === Layout (per-row height/width assignment) ===
 
-    cards.forEach((card) => {
-      const isLarge = card.hasAttribute('data-large');
-      const span = isLarge && cols > 1 ? 2 : 1;
-      const cardWidth = span * colWidth + (span - 1) * GAP;
-
-      const clone = card.cloneNode(true) as HTMLElement;
-      clone.style.position = 'absolute';
-      clone.style.visibility = 'hidden';
-      clone.style.width = `${cardWidth}px`;
-      clone.style.height = 'auto';
-      clone.style.gridRowEnd = '';
-      container.appendChild(clone);
-      const height = clone.offsetHeight;
-      container.removeChild(clone);
-
-      const rowSpan = Math.max(1, Math.ceil((height + GAP) / (ROW_HEIGHT + GAP)));
-      card.style.gridRowEnd = `span ${rowSpan}`;
-    });
-  }
-
-  function recalculateGrid() {
-    if (!gridContainer) return;
-
-    const parent = gridContainer.parentElement;
-    if (!parent) return;
-
-    const maxHeight = parent.clientHeight - 32;
-    const newCols = findOptimalColumns(gridContainer, maxHeight);
-
-    gridContainer.style.gridTemplateColumns = `repeat(${newCols}, minmax(0, 1fr))`;
-    applyMasonryLayout(gridContainer, newCols);
-
-    columnCount = newCols;
-    isInitialRender = false;
-    pendingRecalc = false;
-  }
-
-  function masonryGrid(node: HTMLElement) {
-    gridContainer = node;
-    let resizeTimeout: number;
-    let initialTimeout: number;
-
-    node.style.gridTemplateColumns = `repeat(${columnCount}, minmax(0, 1fr))`;
-
-    initialTimeout = setTimeout(() => {
-      recalculateGrid();
-    }, 50) as unknown as number;
-
-    const resizeObserver = new ResizeObserver(() => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(recalculateGrid, 150) as unknown as number;
-    });
-
-    const parent = node.parentElement;
-    if (parent) {
-      resizeObserver.observe(parent);
+  function layoutSimpleRow(smalls: CardSpec[], target: number): LaidOutSimpleRow {
+    const aSum = smalls.reduce((s, c) => s + c.aspect, 0);
+    const naturalW = aSum * target + Math.max(0, smalls.length - 1) * GAP;
+    let h = target;
+    if (naturalW > gridContainerWidth) {
+      const avail = gridContainerWidth - Math.max(0, smalls.length - 1) * GAP;
+      h = avail / aSum;
     }
-
-    function handleRecalc() {
-      pendingRecalc = true;
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(recalculateGrid, 50) as unknown as number;
-    }
-    node.addEventListener('recalc', handleRecalc);
-
     return {
-      destroy() {
-        clearTimeout(resizeTimeout);
-        clearTimeout(initialTimeout);
-        resizeObserver.disconnect();
-        node.removeEventListener('recalc', handleRecalc);
-        gridContainer = null;
-      }
+      kind: 'simple',
+      height: h,
+      cards: smalls.map((s) => ({ spec: s, width: h * s.aspect, height: h }))
     };
   }
 
-  function triggerGridRecalc() {
-    if (!gridContainer) return;
-    gridContainer.dispatchEvent(new CustomEvent('recalc'));
+  function layoutMacroRow(items: MacroItem[], target: number): LaidOutMacroRow {
+    // Iteratively scale H so the macro row's natural width ≈ container width.
+    let h = 2 * target + GAP;
+    let t = target;
+    for (let iter = 0; iter < 6; iter++) {
+      const natW = macroNaturalWidth(items, t, h);
+      if (natW <= gridContainerWidth + 0.5) break;
+      const scale = gridContainerWidth / natW;
+      h = h * scale;
+      t = (h - GAP) / 2;
+      if (t < 1) {
+        t = 1;
+        h = 2 * t + GAP;
+        break;
+      }
+    }
+    const finalH = h;
+    const finalT = (finalH - GAP) / 2;
+
+    const laid: LaidOutMacroItem[] = [];
+    for (const it of items) {
+      if (it.type === 'large') {
+        laid.push({
+          type: 'large',
+          card: { spec: it.card, width: it.card.aspect * finalH, height: finalH }
+        });
+      } else {
+        const N = it.smalls.length;
+        if (N === 0) continue;
+        const half = Math.ceil(N / 2);
+        const upperSpecs = it.smalls.slice(0, half);
+        const lowerSpecs = it.smalls.slice(half);
+        const uA = upperSpecs.reduce((s, c) => s + c.aspect, 0);
+        const lA = lowerSpecs.reduce((s, c) => s + c.aspect, 0);
+        const upperW =
+          upperSpecs.length > 0 ? uA * finalT + (upperSpecs.length - 1) * GAP : 0;
+        const lowerW =
+          lowerSpecs.length > 0 ? lA * finalT + (lowerSpecs.length - 1) * GAP : 0;
+        const blockWidth = Math.max(upperW, lowerW);
+        laid.push({
+          type: 'smalls',
+          blockWidth,
+          smallHeight: finalT,
+          upper: upperSpecs.map((s) => ({
+            spec: s,
+            width: finalT * s.aspect,
+            height: finalT
+          })),
+          lower: lowerSpecs.map((s) => ({
+            spec: s,
+            width: finalT * s.aspect,
+            height: finalT
+          }))
+        });
+      }
+    }
+
+    return { kind: 'macro', height: finalH, smallHeight: finalT, items: laid };
   }
 
-  $effect(() => {
-    textMode;
-    hiddenMechanics;
-    cellSizes;
-    splitPhases;
-    tab;
-    visiblePhases;
-    showTimeline;
+  function layoutAt(target: number): LaidOutRow[] {
+    const raw = buildRows(target);
+    return raw.map((r) =>
+      r.kind === 'simple' ? layoutSimpleRow(r.smalls, target) : layoutMacroRow(r.items, target)
+    );
+  }
 
-    if (browser && gridContainer && !isInitialRender) {
-      triggerGridRecalc();
+  function totalLayoutHeight(rows: LaidOutRow[]): number {
+    if (rows.length === 0) return 0;
+    let h = 0;
+    for (const r of rows) h += r.height;
+    return h + (rows.length - 1) * GAP;
+  }
+
+  // Pick the largest target T where the layout fits in the visible height.
+  // Falls back to MIN_ROW_HEIGHT (scrollable) when even that doesn't fit.
+  let laidOutRows = $derived.by(() => {
+    if (gridContainerWidth <= 0 || cardList.length === 0) return [] as LaidOutRow[];
+
+    const budget = gridContainerHeight;
+    if (budget <= 0) return layoutAt(TARGET_ROW_HEIGHT);
+
+    const maxRows = layoutAt(MAX_ROW_HEIGHT);
+    if (totalLayoutHeight(maxRows) <= budget) return maxRows;
+
+    let lo = MIN_ROW_HEIGHT;
+    let hi = MAX_ROW_HEIGHT;
+    let bestRows = layoutAt(lo);
+    if (totalLayoutHeight(bestRows) > budget) return bestRows;
+
+    for (let iter = 0; iter < 14 && hi - lo > 1; iter++) {
+      const mid = (lo + hi) / 2;
+      const rows = layoutAt(mid);
+      if (totalLayoutHeight(rows) <= budget) {
+        lo = mid;
+        bestRows = rows;
+      } else {
+        hi = mid;
+      }
     }
+    return bestRows;
   });
 </script>
 
@@ -1021,247 +1265,201 @@
           </div>
         {/if}
 
-        <!-- Mechanic Cards Grid -->
-        <div
-          use:masonryGrid
-          class="flex-1 grid gap-3 overflow-y-auto content-start relative"
-          class:invisible={isInitialRender}
-          style:grid-auto-rows="10px"
-        >
-          {#each visiblePhases as phase, i}
-            {#if phase.mechs}
-              {#each phase.mechs as mech, i}
-                {@const mechKey = getMechKey(phase, mech, i)}
-                {#if shouldShowCard(mechKey, phase, mech)}
-                  {@const isLarge = getCellSize(mechKey) === 'large'}
-                  <button
-                    data-masonry-card
-                    data-large={isLarge && hasImage(phase, mech) ? '' : undefined}
-                    class="card border border-surface-700 p-2 flex flex-col text-start group overflow-hidden bg-surface-900/80 hover:bg-surface-800/80 transition-colors cursor-pointer"
-                    class:col-span-2={isLarge && hasImage(phase, mech)}
-                    onclick={() => openImageModal(phase, mech)}
-                  >
-                    <!-- Header (hide in image-only mode) -->
-                    {#if textMode !== 'image'}
-                      <div class="flex items-start justify-between mb-1 shrink-0">
-                        <div>
-                          <div class="capitalize font-bold text-base text-surface-200">
-                            {phase.phaseName}
-                          </div>
-                          {#if typeof mech.url === 'string'}
-                            <a
-                              href={mech.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              class="capitalize font-semibold text-lg hover:text-secondary-400 hover:bg-surface-700/50 rounded-sm px-1 -mx-1 transition-colors inline-flex items-center gap-1"
-                              onclick={(e) => e.stopPropagation()}
-                            >
-                              {mech.mechanic}
-                              <ExternalLink size={14} class="inline-block" />
-                            </a>
-                          {:else}
-                            <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
-                              <div class="capitalize font-semibold text-lg">
-                                {mech.mechanic}
-                              </div>
-                              {#if typeof mech.url === 'object'}
-                                {#each Object.entries(mech.url) as [linkName, linkUrl]}
-                                  <a
-                                    href={linkUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="text-xs text-blue-400 hover:text-blue-300 hover:underline inline-flex items-center gap-0.5"
-                                    onclick={(e) => e.stopPropagation()}
-                                  >
-                                    {linkName}
-                                    <ExternalLink size={10} />
-                                  </a>
-                                {/each}
-                              {/if}
-                            </div>
-                          {/if}
-                        </div>
-                        <div class="flex items-center gap-1">
-                          {#if phase?.tag && stratState[phase.tag] !== getStratMechs(stratName ?? '')[phase.tag]}
-                            <Tooltip
-                              positioning={{ placement: 'top' }}
-                              triggerBase="flex"
-                              contentBase="card bg-surface-800 p-2 text-xs"
-                              openDelay={200}
-                              arrow
-                              arrowBackground="!bg-surface-800"
-                            >
-                              {#snippet trigger()}<div class="text-warning-500">
-                                  <TriangleAlert size={16} />
-                                </div>{/snippet}
-                              {#snippet content()}Differs from guide{/snippet}
-                            </Tooltip>
-                          {/if}
-                          <Expand
-                            size={14}
-                            class="opacity-0 group-hover:opacity-100 transition-opacity text-surface-400"
-                          />
-                        </div>
-                      </div>
-                    {/if}
-
-                    <!-- Description (if textMode is 'all') -->
-                    {#if textMode === 'all' && mech?.description}
-                      <div class="text-base text-surface-100 whitespace-pre-wrap mb-1 shrink-0">
-                        {@html renderDebuffTokens(mech.description)}
-                      </div>
-                    {/if}
-
-                    <!-- Player strat (if textMode is 'all' or 'role') -->
-                    {#if (textMode === 'all' || textMode === 'role') && mech?.strats && mech.strats[0]?.description}
-                      <div class="flex items-start gap-2 text-base mb-2 shrink-0">
-                        {#if mech.strats[0].toggleKey}
-                          <span class="shrink-0">⏩</span>
-                        {:else if role}
-                          <img
-                            src={`/icons/${role.toLowerCase()}.png`}
-                            alt={role}
-                            class="w-6 h-6 shrink-0"
-                          />
-                        {/if}
-                        <div class="whitespace-pre-wrap">
-                          {@html renderDebuffTokens(mech.strats[0].description)}
-                        </div>
-                      </div>
-                    {/if}
-
-                    <!-- Image -->
-                    {#if mech?.strats && mech.strats[0]?.imageUrl}
-                      {@const imgUrl = mech.strats[0].imageUrl}
-                      {@const dims = getImageDimensions(imgUrl)}
-                      <div class="min-h-0 h-full relative">
-                        <img
-                          class="rounded w-full h-full object-contain"
-                          src={imgUrl}
-                          alt={mech.mechanic}
-                          onload={(e) => handleImageLoad(e, imgUrl)}
-                        />
-                        {#if spotlight && showSpotlight && mech.strats[0]?.mask}
-                          <SpotlightOverlay
-                            mask={mech.strats[0].mask}
-                            imageWidth={dims?.width}
-                            imageHeight={dims?.height}
-                          />
-                        {/if}
-                      </div>
-                    {:else if mech?.imageUrl}
-                      <div class="min-h-0 h-full flex items-center justify-center">
-                        <img
-                          class="rounded h-auto w-auto max-h-full max-w-full"
-                          src={mech.imageUrl}
-                          alt={mech.mechanic}
-                        />
-                      </div>
-                    {/if}
-                  </button>
-                {/if}
-              {/each}
-            {:else}
-              {@const phaseKey = getMechKey(phase)}
-              {#if shouldShowCard(phaseKey, phase)}
-                {@const isLarge = getCellSize(phaseKey) === 'large'}
-                <button
-                  data-masonry-card
-                  data-large={isLarge && hasImage(phase) ? '' : undefined}
-                  class="card border border-surface-700 p-2 flex flex-col text-start group overflow-hidden bg-surface-900/80 hover:bg-surface-800/80 transition-colors cursor-pointer"
-                  class:col-span-2={isLarge && hasImage(phase)}
-                  onclick={() => openImageModal(phase)}
-                >
-                  <!-- Header (hide in image-only mode) -->
-                  {#if textMode !== 'image'}
-                    <div class="flex items-start justify-between mb-1 shrink-0">
-                      {#if typeof phase.url === 'string'}
-                        <a
-                          href={phase.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="capitalize font-semibold text-lg hover:text-secondary-400 hover:bg-surface-700/50 rounded-sm px-1 -mx-1 transition-colors inline-flex items-center gap-1"
-                          onclick={(e) => e.stopPropagation()}
-                        >
-                          {phase.phaseName}
-                          <ExternalLink size={14} class="inline-block" />
-                        </a>
-                      {:else}
-                        <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
-                          <div class="capitalize font-semibold text-lg">
-                            {phase.phaseName}
-                          </div>
-                          {#if typeof phase.url === 'object'}
-                            {#each Object.entries(phase.url) as [linkName, linkUrl]}
-                              <a
-                                href={linkUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="text-xs text-blue-400 hover:text-blue-300 hover:underline inline-flex items-center gap-0.5"
-                                onclick={(e) => e.stopPropagation()}
-                              >
-                                {linkName}
-                                <ExternalLink size={10} />
-                              </a>
-                            {/each}
-                          {/if}
-                        </div>
-                      {/if}
-                      <div class="flex items-center gap-1">
-                        {#if phase?.tag && stratState[phase.tag] !== getStratMechs(stratName ?? '')[phase.tag]}
-                          <Tooltip
-                            positioning={{ placement: 'top' }}
-                            triggerBase="flex"
-                            contentBase="card bg-surface-800 p-2 text-xs"
-                            openDelay={200}
-                            arrow
-                            arrowBackground="!bg-surface-800"
-                          >
-                            {#snippet trigger()}<div class="text-warning-500">
-                                <TriangleAlert size={16} />
-                              </div>{/snippet}
-                            {#snippet content()}Differs from guide{/snippet}
-                          </Tooltip>
-                        {/if}
-                        <Expand
-                          size={14}
-                          class="opacity-0 group-hover:opacity-100 transition-opacity text-surface-400"
-                        />
-                      </div>
-                    </div>
-                  {/if}
-
-                  <!-- Description (if textMode is 'all') -->
-                  {#if textMode === 'all' && phase?.description}
-                    <div class="text-base text-surface-300 whitespace-pre-wrap mb-1 shrink-0">
-                      {@html renderDebuffTokens(phase.description)}
-                    </div>
-                  {/if}
-
-                  <!-- Image -->
-                  {#if phase?.imageUrl}
-                    {@const imgUrl = phase.imageUrl}
-                    {@const dims = getImageDimensions(imgUrl)}
-                    <div class="min-h-0 h-full relative">
-                      <img
-                        class="rounded w-full h-full object-contain"
-                        src={imgUrl}
-                        alt={phase.phaseName}
-                        onload={(e) => handleImageLoad(e, imgUrl)}
-                      />
-                      {#if spotlight && showSpotlight && phase.mask}
-                        <SpotlightOverlay
-                          mask={phase.mask}
-                          imageWidth={dims?.width}
-                          imageHeight={dims?.height}
-                        />
-                      {/if}
-                    </div>
-                  {/if}
-                </button>
+        {#snippet cardButton(spec, cardWidth, cardHeight)}
+          {@const phase = spec.phase}
+          {@const mech = spec.mech}
+          {@const imgUrl = spec.imgUrl}
+          {@const dims = imgUrl ? imageDimensions.get(imgUrl) : null}
+          {@const mask = mech?.strats?.[0]?.mask ?? phase?.mask}
+          {@const headerName = mech?.mechanic ?? phase.phaseName}
+          {@const headerUrl = mech ? mech.url : phase.url}
+          {@const stratDesc = mech?.strats?.[0]?.description}
+          {@const stratToggleKey = mech?.strats?.[0]?.toggleKey}
+          {@const desc = mech?.description ?? (mech ? null : phase?.description)}
+          {@const showDesc = textMode === 'all' && desc}
+          {@const showStrat = (textMode === 'all' || textMode === 'role') && stratDesc}
+          {@const showHeader = textMode === 'all'}
+          {@const showBottom = showDesc || showStrat}
+          {@const showWarning = phase?.tag && stratState[phase.tag] !== getStratMechs(stratName ?? '')[phase.tag]}
+          <button
+            class="relative card border border-surface-700 overflow-hidden bg-surface-950 hover:border-surface-500 transition-colors cursor-pointer group shrink-0"
+            style:width="{cardWidth}px"
+            style:height="{cardHeight}px"
+            onclick={() => openImageModal(phase, mech)}
+          >
+            {#if imgUrl}
+              <img
+                class="absolute inset-0 w-full h-full object-contain"
+                src={imgUrl}
+                alt={headerName}
+                onload={(e) => handleImageLoad(e, imgUrl)}
+              />
+              {#if spotlight && showSpotlight && mask}
+                <SpotlightOverlay
+                  {mask}
+                  imageWidth={dims?.width}
+                  imageHeight={dims?.height}
+                />
               {/if}
             {/if}
-          {/each}
+
+            {#if showHeader}
+              <div
+                class="absolute top-0 left-0 right-0 bg-gradient-to-b from-surface-950 from-50% to-transparent px-2 pt-1.5 pb-3 pointer-events-none"
+              >
+                <div class="flex items-center justify-between gap-2">
+                  <div class="min-w-0 pointer-events-auto flex-1">
+                    {#if typeof headerUrl === 'string'}
+                      <a
+                        href={headerUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="capitalize font-semibold text-base text-white hover:text-secondary-400 inline-flex items-center gap-1 leading-tight max-w-full"
+                        onclick={(e) => e.stopPropagation()}
+                      >
+                        <span class="truncate">{headerName}</span>
+                        <ExternalLink size={12} class="shrink-0" />
+                      </a>
+                    {:else}
+                      <div class="flex items-baseline gap-x-2 min-w-0">
+                        <span class="capitalize font-semibold text-base text-white leading-tight truncate">
+                          {headerName}
+                        </span>
+                        {#if typeof headerUrl === 'object' && headerUrl}
+                          {#each Object.entries(headerUrl) as [linkName, linkUrl]}
+                            <a
+                              href={linkUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              class="text-[10px] text-blue-300 hover:text-blue-200 hover:underline inline-flex items-center gap-0.5 shrink-0"
+                              onclick={(e) => e.stopPropagation()}
+                            >
+                              {linkName}
+                              <ExternalLink size={9} />
+                            </a>
+                          {/each}
+                        {/if}
+                      </div>
+                    {/if}
+                  </div>
+                  <div class="flex items-center gap-2 shrink-0">
+                    {#if mech}
+                      <span class="capitalize text-[10px] font-semibold uppercase tracking-wide text-surface-300 leading-tight">
+                        {phase.phaseName}
+                      </span>
+                    {/if}
+                    {#if showWarning}
+                      <div class="pointer-events-auto flex">
+                        <Tooltip
+                          positioning={{ placement: 'top' }}
+                          triggerBase="flex"
+                          contentBase="card bg-surface-800 p-2 text-xs"
+                          openDelay={200}
+                          arrow
+                          arrowBackground="!bg-surface-800"
+                        >
+                          {#snippet trigger()}<div class="text-warning-500">
+                              <TriangleAlert size={14} />
+                            </div>{/snippet}
+                          {#snippet content()}Differs from guide{/snippet}
+                        </Tooltip>
+                      </div>
+                    {/if}
+                    <Expand
+                      size={14}
+                      class="opacity-0 group-hover:opacity-100 transition-opacity text-white"
+                    />
+                  </div>
+                </div>
+              </div>
+            {/if}
+
+            {#if showBottom}
+              <div
+                class={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-surface-950 from-50% to-transparent px-2 pt-3 pb-1.5 overflow-y-auto pointer-events-none text-left ${imgUrl ? 'max-h-[70%]' : ''}`}
+              >
+                <div class="pointer-events-auto space-y-1 text-left">
+                  {#if showDesc}
+                    <div class="text-sm text-surface-100 whitespace-pre-wrap leading-snug text-left">
+                      {@html renderDebuffTokens(desc)}
+                    </div>
+                  {/if}
+                  {#if showStrat}
+                    <div class="flex items-start gap-2 text-sm text-surface-50 leading-snug text-left">
+                      {#if stratToggleKey}
+                        <span class="shrink-0">⏩</span>
+                      {:else if role}
+                        <img
+                          src={`/icons/${role.toLowerCase()}.png`}
+                          alt={role}
+                          class="w-5 h-5 shrink-0"
+                        />
+                      {/if}
+                      <div class="whitespace-pre-wrap text-left flex-1 min-w-0">
+                        {@html renderDebuffTokens(stratDesc)}
+                      </div>
+                    </div>
+                  {/if}
+                </div>
+              </div>
+            {/if}
+          </button>
+        {/snippet}
+
+        <!-- Mechanic Cards Grid (justified gallery with macro rows) -->
+        <div
+          class="flex-1 flex flex-col gap-3 overflow-y-auto"
+          bind:clientWidth={gridContainerWidth}
+          bind:clientHeight={gridContainerHeight}
+        >
+          {#if !initialPrefetchDone}
+            <div class="flex-1 flex items-center justify-center text-surface-400 text-sm">
+              Loading images…
+            </div>
+          {:else if cardList.length === 0}
+            <div class="flex-1 flex items-center justify-center text-surface-400 text-sm">
+              No mechanics to display
+            </div>
+          {:else}
+            {#each laidOutRows as row, ri (ri)}
+              {#if row.kind === 'simple'}
+                <div class="flex gap-3 shrink-0" style:height="{row.height}px">
+                  {#each row.cards as card (card.spec.key)}
+                    {@render cardButton(card.spec, card.width, card.height)}
+                  {/each}
+                </div>
+              {:else}
+                <div class="flex gap-3 shrink-0" style:height="{row.height}px">
+                  {#each row.items as item, ii (ri + '-' + ii)}
+                    {#if item.type === 'large'}
+                      {@render cardButton(item.card.spec, item.card.width, item.card.height)}
+                    {:else}
+                      <div
+                        class="flex flex-col gap-3 shrink-0"
+                        style:width="{item.blockWidth}px"
+                        style:height="{row.height}px"
+                      >
+                        {#if item.upper.length > 0}
+                          <div class="flex gap-3 shrink-0" style:height="{item.smallHeight}px">
+                            {#each item.upper as card (card.spec.key)}
+                              {@render cardButton(card.spec, card.width, card.height)}
+                            {/each}
+                          </div>
+                        {/if}
+                        {#if item.lower.length > 0}
+                          <div class="flex gap-3 shrink-0" style:height="{item.smallHeight}px">
+                            {#each item.lower as card (card.spec.key)}
+                              {@render cardButton(card.spec, card.width, card.height)}
+                            {/each}
+                          </div>
+                        {/if}
+                      </div>
+                    {/if}
+                  {/each}
+                </div>
+              {/if}
+            {/each}
+          {/if}
         </div>
       </div>
     </div>
