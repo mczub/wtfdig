@@ -490,6 +490,12 @@
   const MIN_ROW_HEIGHT = 140;
   const MAX_ROW_HEIGHT = 520;
   const TEXT_ONLY_ASPECT = 1.5;
+  // Tailwind `sm` breakpoint. Below this the cards container is narrow enough
+  // that single-card rows should always stretch to fill (otherwise mobile
+  // layouts leave large empty space on the right when binary search trims the
+  // target height). Above it, sparse single-card rows stay at target so an
+  // orphan last card doesn't blow up to full width on desktop.
+  const NARROW_CONTAINER_BREAKPOINT = 640;
 
   let gridContainerWidth = $state(0);
   let gridContainerHeight = $state(0);
@@ -815,11 +821,12 @@
     const avail = gridContainerWidth - Math.max(0, smalls.length - 1) * GAP;
     let h = target;
     // Scale to fit container width when:
-    //  - the row overflows (must scale down), or
-    //  - the row is at least 80% of the container width — covers the
-    //    narrow-screen single-column case where one card per row should
-    //    span the full container instead of leaving empty space.
-    if (naturalW >= gridContainerWidth * 0.8) {
+    //  - the row has only one card AND the container is narrow (single-column
+    //    / mobile / scrolling layouts — always fill the width), or
+    //  - the row is at least 80% of the container width — covers the multi-card
+    //    case while leaving sparse partial last rows on desktop at target.
+    const isNarrow = gridContainerWidth < NARROW_CONTAINER_BREAKPOINT;
+    if ((smalls.length === 1 && isNarrow) || naturalW >= gridContainerWidth * 0.8) {
       h = avail / aSum;
     }
     return {
@@ -831,16 +838,18 @@
 
   function layoutMacroRow(items: MacroItem[], target: number): LaidOutMacroRow {
     // Iteratively scale H so the macro row's natural width ≈ container width.
-    // Always scales DOWN on overflow. Scales UP only when the row is already
-    // at least 80% of the container width (covers narrow-screen single-item
-    // rows that would otherwise leave empty space on the right).
+    // Always scales DOWN on overflow. Scales UP for single-item rows in a
+    // narrow container (mobile / scrolling), or for multi-item rows that are
+    // already at least 80% of the container width.
     let h = 2 * target + GAP;
     let t = target;
+    const isNarrow = gridContainerWidth < NARROW_CONTAINER_BREAKPOINT;
+    const stretchSingle = items.length === 1 && isNarrow;
     for (let iter = 0; iter < 6; iter++) {
       const natW = macroNaturalWidth(items, t, h);
       if (natW <= 0) break;
       if (Math.abs(natW - gridContainerWidth) < 0.5) break;
-      if (natW < gridContainerWidth * 0.8) break; // too sparse; don't stretch
+      if (!stretchSingle && natW < gridContainerWidth * 0.8) break;
       const scale = gridContainerWidth / natW;
       h = h * scale;
       t = (h - GAP) / 2;

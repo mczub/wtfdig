@@ -29,6 +29,7 @@ import { m9sFightConfig, m9sStrats } from '../../src/routes/74/m9s/data';
 import { m10sFightConfig, m10sStrats } from '../../src/routes/74/m10s/data';
 import { m11sFightConfig, m11sStrats } from '../../src/routes/74/m11s/data';
 import { m12sFightConfig, m12sStrats } from '../../src/routes/74/m12s/data';
+import { ex8FightConfig, ex8Strats } from '../../src/routes/75/ex8/data';
 import { ucobFightConfig, ucobStrats } from '../../src/routes/ultimates/ucob/data';
 
 // ── Registry ───────────────────────────────────────────────────────────────
@@ -53,6 +54,7 @@ export const ALL_FIGHTS: FightEntry[] = [
   { label: 'M10S', config: m10sFightConfig, strats: m10sStrats },
   { label: 'M11S', config: m11sFightConfig, strats: m11sStrats },
   { label: 'M12S', config: m12sFightConfig, strats: m12sStrats },
+  { label: 'EX8', config: ex8FightConfig, strats: ex8Strats },
   { label: 'UCOB', config: ucobFightConfig, strats: ucobStrats }
 ];
 

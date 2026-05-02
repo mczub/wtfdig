@@ -11,8 +11,9 @@
     "check:watch": "bun --bun svelte-kit sync && bun --bun svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "bun --bun prettier --check . && bun --bun eslint .",
     "format": "bun --bun prettier --write .",
-    "test": "vitest run tests/validate/",
-    "test:tier1": "vitest run tests/validate/tier1.test.ts"
+    "test": "vitest run tests/",
+    "test:tier1": "vitest run tests/validate/tier1.test.ts",
+    "test:unit": "vitest run tests/unit/"
   },
   "devDependencies": {
     "@internationalized/date": "3.8.1",
