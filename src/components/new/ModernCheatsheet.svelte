@@ -218,7 +218,7 @@
     if (hiddenMechanics.has(key)) return false;
 
     // Filter by textMode
-    if (textMode === 'role' && !hasRoleStrats(mech)) return false;
+    if (textMode === 'role' && !hasImage(phase, mech)) return false;
     if (textMode === 'image' && !hasImage(phase, mech)) return false;
 
     return true;
@@ -569,7 +569,7 @@
         });
       } else {
         const key = getMechKey(phase);
-        if (!shouldShowCard(key, phase)) return;
+        if (!shouldShowCard(key, phase)) continue;
         list.push({
           phase,
           mech: null,
@@ -615,11 +615,42 @@
   type LargeBlockItem = { type: 'large'; card: CardSpec };
   type MacroItem = SmallsBlockItem | LargeBlockItem;
 
+  // Split a smalls block into upper/lower sub-rows by walking in user order
+  // and cutting at the point where cumulative aspect sum is closest to half
+  // the total. Preserves user order and minimizes width disparity between
+  // the two strips.
+  function splitSmalls(smalls: CardSpec[]): { upper: CardSpec[]; lower: CardSpec[] } {
+    if (smalls.length === 0) return { upper: [], lower: [] };
+    if (smalls.length === 1) return { upper: smalls, lower: [] };
+
+    const total = smalls.reduce((s, c) => s + c.aspect, 0);
+    const target = total / 2;
+
+    let acc = 0;
+    for (let i = 0; i < smalls.length - 1; i++) {
+      const next = acc + smalls[i].aspect;
+      if (next >= target) {
+        // Pick whichever split (after i, or after i+1) is closer to balanced.
+        const splitAfter = i + 1; // upper has cards [0..i], sum = next
+        const splitBefore = i; // upper has cards [0..i-1], sum = acc
+        const idx =
+          target - acc <= next - target && splitBefore >= 1
+            ? splitBefore
+            : splitAfter;
+        const safeIdx = Math.max(1, Math.min(smalls.length - 1, idx));
+        return { upper: smalls.slice(0, safeIdx), lower: smalls.slice(safeIdx) };
+      }
+      acc = next;
+    }
+    return {
+      upper: smalls.slice(0, smalls.length - 1),
+      lower: smalls.slice(smalls.length - 1)
+    };
+  }
+
   function smallsBlockNaturalWidth(smalls: CardSpec[], T: number): number {
     if (smalls.length === 0) return 0;
-    const half = Math.ceil(smalls.length / 2);
-    const upper = smalls.slice(0, half);
-    const lower = smalls.slice(half);
+    const { upper, lower } = splitSmalls(smalls);
     const uA = upper.reduce((s, c) => s + c.aspect, 0);
     const lA = lower.reduce((s, c) => s + c.aspect, 0);
     const upperW = upper.length > 0 ? uA * T + (upper.length - 1) * GAP : 0;
@@ -754,9 +785,14 @@
   function layoutSimpleRow(smalls: CardSpec[], target: number): LaidOutSimpleRow {
     const aSum = smalls.reduce((s, c) => s + c.aspect, 0);
     const naturalW = aSum * target + Math.max(0, smalls.length - 1) * GAP;
+    const avail = gridContainerWidth - Math.max(0, smalls.length - 1) * GAP;
     let h = target;
-    if (naturalW > gridContainerWidth) {
-      const avail = gridContainerWidth - Math.max(0, smalls.length - 1) * GAP;
+    // Scale to fit container width when:
+    //  - the row overflows (must scale down), or
+    //  - the row is at least half the container width — covers the
+    //    narrow-screen single-column case where one card per row should
+    //    span the full container instead of leaving empty space.
+    if (naturalW >= gridContainerWidth * 0.5) {
       h = avail / aSum;
     }
     return {
@@ -768,11 +804,16 @@
 
   function layoutMacroRow(items: MacroItem[], target: number): LaidOutMacroRow {
     // Iteratively scale H so the macro row's natural width ≈ container width.
+    // Always scales DOWN on overflow. Scales UP only when the row is already
+    // at least half the container width (covers narrow-screen single-item rows
+    // that would otherwise leave empty space on the right).
     let h = 2 * target + GAP;
     let t = target;
     for (let iter = 0; iter < 6; iter++) {
       const natW = macroNaturalWidth(items, t, h);
-      if (natW <= gridContainerWidth + 0.5) break;
+      if (natW <= 0) break;
+      if (Math.abs(natW - gridContainerWidth) < 0.5) break;
+      if (natW < gridContainerWidth * 0.5) break; // too sparse; don't stretch
       const scale = gridContainerWidth / natW;
       h = h * scale;
       t = (h - GAP) / 2;
@@ -795,9 +836,7 @@
       } else {
         const N = it.smalls.length;
         if (N === 0) continue;
-        const half = Math.ceil(N / 2);
-        const upperSpecs = it.smalls.slice(0, half);
-        const lowerSpecs = it.smalls.slice(half);
+        const { upper: upperSpecs, lower: lowerSpecs } = splitSmalls(it.smalls);
         const uA = upperSpecs.reduce((s, c) => s + c.aspect, 0);
         const lA = lowerSpecs.reduce((s, c) => s + c.aspect, 0);
         const upperW =
@@ -886,20 +925,16 @@
   backdropClasses="backdrop-blur-sm"
 >
   {#snippet content()}
-    <!-- Collapsible Sidebar -->
+    <!-- Collapsible Sidebar (no width when closed; expand button moves to header) -->
     <div
-      class={`flex-shrink-0 h-full flex flex-col bg-surface-950 border-r border-surface-700 transition-all duration-300 ${sidebarOpen ? 'w-80' : 'w-12'}`}
+      class={`flex-shrink-0 h-full flex flex-col bg-surface-950 transition-all duration-300 overflow-hidden ${sidebarOpen ? 'w-80 border-r border-surface-700' : 'w-0'}`}
     >
-      <!-- Sidebar Toggle -->
+      <!-- Sidebar header bar — height matches main header for clean alignment -->
       <button
-        class="flex items-center justify-center h-12 border-b border-surface-700 hover:bg-surface-800 transition-colors"
-        onclick={() => (sidebarOpen = !sidebarOpen)}
+        class="flex items-center justify-start h-14 px-4 border-b border-surface-700 hover:bg-surface-800 transition-colors shrink-0"
+        onclick={() => (sidebarOpen = false)}
       >
-        {#if sidebarOpen}
-          <ChevronLeft size={20} />
-        {:else}
-          <ChevronRight size={20} />
-        {/if}
+        <ChevronLeft size={24} />
       </button>
 
       {#if sidebarOpen}
@@ -1148,9 +1183,20 @@
     <div class="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
       <!-- Header -->
       <header
-        class="flex justify-between items-center px-4 py-2 border-b border-surface-700 bg-surface-900/50 shrink-0"
+        class="flex justify-between items-center gap-4 px-4 h-14 border-b border-surface-700 bg-surface-900/50 shrink-0"
       >
-        <div class="text-lg 3xl:text-2xl font-semibold truncate">{title}</div>
+        <div class="flex items-center gap-2 min-w-0">
+          {#if !sidebarOpen}
+            <button
+              class="flex items-center justify-center p-1 hover:bg-surface-700 rounded-xs transition-colors shrink-0"
+              onclick={() => (sidebarOpen = true)}
+              aria-label="Open sidebar"
+            >
+              <ChevronRight size={24} />
+            </button>
+          {/if}
+          <div class="text-lg 3xl:text-2xl font-semibold truncate">{title}</div>
+        </div>
         {#if tabTags && splitPhases}
           <div class="flex gap-1">
             {#each Object.keys(tabTags) as tabName}
@@ -1164,7 +1210,7 @@
           </div>
         {/if}
         <button
-          class="p-2 hover:bg-surface-700 rounded transition-colors"
+          class="p-2 hover:bg-surface-700 rounded-xs transition-colors"
           onclick={closeCheatsheet}
         >
           <X size={20} />
@@ -1305,7 +1351,7 @@
 
             {#if showHeader}
               <div
-                class="absolute top-0 left-0 right-0 bg-gradient-to-b from-surface-950 from-50% to-transparent px-2 pt-1.5 pb-3 pointer-events-none"
+                class="absolute top-0 left-0 right-0 bg-surface-950/80 px-2 pt-1.5 pb-1.5 pointer-events-none"
               >
                 <div class="flex items-center justify-between gap-2">
                   <div class="min-w-0 pointer-events-auto flex-1">
@@ -1331,7 +1377,7 @@
                               href={linkUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              class="text-[10px] text-blue-300 hover:text-blue-200 hover:underline inline-flex items-center gap-0.5 shrink-0"
+                              class="text-xs text-blue-300 hover:text-blue-200 hover:underline inline-flex items-center gap-0.5 shrink-0"
                               onclick={(e) => e.stopPropagation()}
                             >
                               {linkName}
@@ -1344,7 +1390,7 @@
                   </div>
                   <div class="flex items-center gap-2 shrink-0">
                     {#if mech}
-                      <span class="capitalize text-[10px] font-semibold uppercase tracking-wide text-surface-300 leading-tight">
+                      <span class="capitalize text-xs font-semibold uppercase tracking-wide text-surface-300 leading-tight">
                         {phase.phaseName}
                       </span>
                     {/if}
@@ -1376,16 +1422,16 @@
 
             {#if showBottom}
               <div
-                class={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-surface-950 from-50% to-transparent px-2 pt-3 pb-1.5 overflow-y-auto pointer-events-none text-left ${imgUrl ? 'max-h-[70%]' : ''}`}
+                class={`absolute bottom-0 left-0 right-0 bg-surface-950/80 px-2 pt-1 pb-1.5 overflow-y-auto pointer-events-none text-left ${imgUrl ? 'max-h-[70%]' : ''}`}
               >
                 <div class="pointer-events-auto space-y-1 text-left">
                   {#if showDesc}
-                    <div class="text-sm text-surface-100 whitespace-pre-wrap leading-snug text-left">
+                    <div class="text-base text-surface-100 whitespace-pre-wrap leading-snug text-left">
                       {@html renderDebuffTokens(desc)}
                     </div>
                   {/if}
                   {#if showStrat}
-                    <div class="flex items-start gap-2 text-sm text-surface-50 leading-snug text-left">
+                    <div class="flex items-start gap-2 text-base text-surface-50 leading-snug text-left">
                       {#if stratToggleKey}
                         <span class="shrink-0">⏩</span>
                       {:else if role}
