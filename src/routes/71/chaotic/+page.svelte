@@ -19,7 +19,7 @@
   }
 
   let { data }: Props = $props();
-  const config = data.config;
+  let config = $derived(data.config);
 
   let stratOptions = $derived(
     data.strats.map((strat) => ({
@@ -136,18 +136,20 @@
   stratKeys={[]}
   {getStratMechs}
   allianceOptions={config.allianceOptions}
-  let:stratName
-  let:stratState
-  let:role
-  let:party
-  let:alliance
-  let:selectStrat
-  let:setStratState
-  let:setRole
-  let:setParty
-  let:setAlliance
 >
-  {@const normalizedRole = role ?? undefined}
+  {#snippet children({
+    stratName,
+    stratState,
+    role,
+    party,
+    alliance,
+    selectStrat,
+    setStratState,
+    setRole,
+    setParty,
+    setAlliance
+  })}
+    {@const normalizedRole = role ?? undefined}
   {@const stratPackage = data.strats.find((s) => s.stratName === stratName)}
   {@const playerStrat = getPlayerStrat(data.strats, stratName, alliance, normalizedRole, party)}
   {@const optionsString = getOptionsString(stratName, alliance, normalizedRole, party)}
@@ -351,4 +353,5 @@
       {/if}
     </div>
   </div>
+  {/snippet}
 </FightStratState>

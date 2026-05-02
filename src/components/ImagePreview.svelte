@@ -1,5 +1,4 @@
 <!-- @ts-nocheck -->
-<svelte:options customElement={{ shadow: 'none' }} />
 
 <script lang="ts">
   // @ts-nocheck

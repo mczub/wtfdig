@@ -270,16 +270,6 @@
     border-color: hsl(var(--warning-500));
   }
 
-  . {
-    background-color: hsl(var(--surface-50));
-    color: hsl(var(--foreground));
-  }
-
-  .dark . {
-    background-color: hsl(var(--surface-950));
-    color: hsl(var(--foreground));
-  }
-
   .preset-filled-surface-100-900 {
     background-color: hsl(var(--surface-100));
     color: hsl(var(--foreground));
@@ -603,11 +593,13 @@
   }
 }
 
-@layer utilities .scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
