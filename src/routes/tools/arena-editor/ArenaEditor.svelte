@@ -766,11 +766,15 @@
       >
         <ArenaRenderer data={diagramData} {gridW} {gridH} />
 
-        <!-- Interactive overlay -->
+        <!-- Interactive overlay — positional click-only input, no keyboard equivalent. -->
+        <!-- svelte-ignore a11y_click_events_have_key_events -->
+        <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
         <svg
           bind:this={svgEl}
           viewBox="0 0 {gridW * 25} {gridH * 25}"
           class="absolute inset-0 w-full h-full"
+          role="application"
+          aria-label="Arena diagram canvas"
           onclick={handleCanvasClick}
         >
           {#each elements as el, i}

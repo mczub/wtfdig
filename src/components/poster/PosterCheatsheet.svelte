@@ -1,12 +1,15 @@
 <script lang="ts">
   // @ts-nocheck
-  import { onMount } from 'svelte';
+  import { getContext, onMount } from 'svelte';
   import { Modal } from '$lib/components/ui';
   import { Download, X, Eye, User } from '@lucide/svelte/icons';
   import type { FightConfig } from '$lib/types';
   import { type PlayerJob } from '$lib/arena';
   import type { ResolvedPosterSection } from './types';
+  import type { ToastLike } from '$lib/utils';
   import PosterGrid from './PosterGrid.svelte';
+
+  const toast = getContext<ToastLike | undefined>('toast');
 
   type Resolution = 'auto' | '1080p' | '1440p' | '4k';
   const RESOLUTIONS: { value: Resolution; label: string }[] = [
@@ -143,7 +146,8 @@
       link.href = downloadUrl;
       link.click();
     } catch (err) {
-      console.error('Failed to export poster:', err);
+      const message = err instanceof Error ? err.message : 'Failed to export poster';
+      toast?.create({ description: `Poster export failed: ${message}`, type: 'error' });
     } finally {
       exporting = false;
     }
@@ -257,6 +261,10 @@
 </Modal>
 
 {#if showExportMenu}
-  <!-- svelte-ignore a11y_no_static_element_interactions -->
-  <div class="fixed inset-0 z-[5]" onclick={() => (showExportMenu = false)}></div>
+  <button
+    type="button"
+    class="fixed inset-0 z-[5] cursor-default"
+    aria-label="Close export menu"
+    onclick={() => (showExportMenu = false)}
+  ></button>
 {/if}

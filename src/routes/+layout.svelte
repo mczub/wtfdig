@@ -30,7 +30,7 @@
           <a
             href="{base}/"
             class="flex flex-row items-center text-2xl font-semibold my-4 md:my-0 justify-self-center gap-1"
-            >WTFDIG<img width="32px" src="{base}/wtfdig-small-800.png" /></a
+            >WTFDIG<img width="32px" src="{base}/wtfdig-small-800.png" alt="WTFDIG logo" /></a
           >
           <div
             class="card preset-outlined-secondary-500 gap-4 p-4 md:justify-self-end text-sm hidden md:block"

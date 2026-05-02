@@ -4,30 +4,28 @@
   // @ts-nocheck
   import { Modal, Switch, Tabs, Tooltip } from '$lib/components/ui';
   import {
-    ArrowRight,
     Check,
     ChevronLeft,
     ChevronRight,
-    Clock,
     Expand,
     ExternalLink,
     Eye,
     EyeOff,
     Grid2x2,
     Grid3x3,
-    Play,
     RectangleVertical,
     Settings,
     Shield,
     Siren,
-    Skull,
-    TriangleAlert,
     Type,
     Wrench,
     X
   } from '@lucide/svelte/icons';
   import ImagePreview from '../ImagePreview.svelte';
   import SpotlightOverlay from '../SpotlightOverlay.svelte';
+  import TimelineIcon from '$lib/components/TimelineIcon.svelte';
+  import RoleIcon from '$lib/components/RoleIcon.svelte';
+  import MechDiffWarning from '$lib/components/MechDiffWarning.svelte';
   import type { TimelineItem, SpotlightMask, Role, Alignment, PhaseStrats } from '$lib/types';
   import { msToTime } from '$lib/utils';
   import { renderDebuffTokens } from '$lib/debuffs';
@@ -194,9 +192,13 @@
 
   // Generate a unique key for a mechanic
   function getMechKey(phase: any, mech?: any, index?: number): string {
-    const phaseKey = phase?.tag || phase?.phaseName || 'unknown';
+    // Prefer `phaseName` over `tag` because `tag` is shared across phases in
+    // the same tab (e.g. multiple `p4` phases in TEA Perfect Alexander), and
+    // include the mech index too in case a single phase has duplicate mech
+    // names. Without both, keyed each blocks throw `each_key_duplicate`.
+    const phaseKey = phase?.phaseName || phase?.tag || 'unknown';
     if (mech) {
-      return `${phaseKey}::${mech.mechanic || index}`;
+      return `${phaseKey}::${mech.mechanic ?? ''}::${index ?? ''}`;
     }
     return phaseKey;
   }
@@ -1270,51 +1272,7 @@
                     class="absolute flex text-sm w-full items-center"
                   >
                     <div class="w-5 shrink-0">
-                      {#if item.mechType === 'Start'}
-                        <div
-                          class="grid bg-green-700 rounded-xs h-4 w-4 p-auto place-content-center"
-                        >
-                          <Play size={10} strokeWidth={2} />
-                        </div>
-                      {/if}
-                      {#if item.mechType === 'Phase'}
-                        <div class="grid rounded-xs h-4 w-4 p-auto place-items-center">
-                          <ArrowRight size={10} strokeWidth={2} />
-                        </div>
-                      {/if}
-                      {#if item.mechType === 'Raidwide'}
-                        <div
-                          class="grid bg-purple-800 rounded-xs h-4 w-4 p-auto place-content-center"
-                        >
-                          <Siren size={10} strokeWidth={2} />
-                        </div>
-                      {/if}
-                      {#if item.mechType === 'Mechanic'}
-                        <div
-                          class="grid bg-amber-700 rounded-xs h-4 w-4 p-auto place-content-center"
-                        >
-                          <Wrench size={10} strokeWidth={2} />
-                        </div>
-                      {/if}
-                      {#if item.mechType === 'Tankbuster'}
-                        <div
-                          class="grid bg-blue-700 rounded-xs h-4 w-4 p-auto place-content-center"
-                        >
-                          <Shield size={10} strokeWidth={2} />
-                        </div>
-                      {/if}
-                      {#if item.mechType === 'StoredMechanic'}
-                        <div
-                          class="grid bg-amber-600 rounded-xs h-4 w-4 p-auto place-content-center"
-                        >
-                          <Clock size={10} strokeWidth={2} />
-                        </div>
-                      {/if}
-                      {#if item.mechType === 'Enrage'}
-                        <div class="grid bg-pink-800 rounded-xs h-4 w-4 p-auto place-items-center">
-                          <Skull size={10} strokeWidth={2} />
-                        </div>
-                      {/if}
+                      <TimelineIcon mechType={item.mechType} variant="sm" />
                     </div>
                     <div class="w-10 text-[10px] text-surface-400">
                       {msToTime(item.startTimeMs)}
@@ -1408,19 +1366,7 @@
                     {/if}
                     {#if showWarning}
                       <div class="pointer-events-auto flex">
-                        <Tooltip
-                          positioning={{ placement: 'top' }}
-                          triggerBase="flex"
-                          contentBase="card bg-surface-800 p-2 text-xs"
-                          openDelay={200}
-                          arrow
-                          arrowBackground="!bg-surface-800"
-                        >
-                          {#snippet trigger()}<div class="text-warning-500">
-                              <TriangleAlert size={14} />
-                            </div>{/snippet}
-                          {#snippet content()}Differs from guide{/snippet}
-                        </Tooltip>
+                        <MechDiffWarning size={14} />
                       </div>
                     {/if}
                     <Expand
@@ -1451,11 +1397,7 @@
                       {#if stratToggleKey}
                         <span class="shrink-0">⏩</span>
                       {:else if role}
-                        <img
-                          src={`/icons/${role.toLowerCase()}.png`}
-                          alt={role}
-                          class="w-5 h-5 shrink-0"
-                        />
+                        <RoleIcon {role} />
                       {/if}
                       <div class="whitespace-pre-wrap text-left flex-1 min-w-0">
                         {@html renderDebuffTokens(stratDesc)}

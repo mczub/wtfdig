@@ -5,6 +5,7 @@
   import { Modal } from '$lib/components/ui';
   import { X } from '@lucide/svelte/icons';
   import SpotlightOverlay from './SpotlightOverlay.svelte';
+  import RoleIcon from '$lib/components/RoleIcon.svelte';
   import { renderDebuffTokens } from '$lib/debuffs';
 
   let { phase, mech = null, spotlight, imageOpenState = $bindable(), role = null } = $props();
@@ -68,11 +69,7 @@
           {#if mech.strats[0].toggleKey}
             <span class="shrink-0">⏩</span>
           {:else if role}
-            <img
-              src={`/icons/${role.toLowerCase()}.png`}
-              alt={role}
-              class="w-4 h-4 lg:w-6 lg:h-6 shrink-0 mt-1"
-            />
+            <RoleIcon {role} class="w-4 h-4 lg:w-6 lg:h-6 mt-1" />
           {/if}
         {/if}
         <div class="whitespace-pre-wrap">

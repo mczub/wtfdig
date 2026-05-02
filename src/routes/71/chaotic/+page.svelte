@@ -3,7 +3,7 @@
   // @ts-nocheck
   import { getContext } from 'svelte';
   import { fade } from 'svelte/transition';
-  import type { ToastLike } from '$lib/utils';
+  import { formatRoleAbbreviation, type ToastLike } from '$lib/utils';
   import type { Alignment, Alliance, FightConfig, Role } from '$lib/types';
   import type { ChaoticStrat, ChaoticMechanicStrat, PlayerStrats } from './data';
   import { Accordion, Segment, Switch } from '$lib/components/ui';
@@ -62,26 +62,13 @@
     if (!stratName || !alliance || !role || !party) return '';
     const stratConfig = config.strats[stratName];
     const useJpRoles = stratConfig?.jpRoles ?? false;
-    const jpRoleAbbrev: Record<string, string> = {
-      MT: 'MT',
-      OT: 'ST',
-      H1: 'H1',
-      H2: 'H2',
-      M1: 'D1',
-      M2: 'D2',
-      R1: 'D3',
-      R2: 'D4'
-    };
-    let roleAbbrev = '';
-    if (role === 'Tank') {
-      roleAbbrev = party === 1 ? 'MT' : 'OT';
-    } else {
-      roleAbbrev = role.charAt(0).toUpperCase() + party.toString();
+    const roleAbbrev = formatRoleAbbreviation(role, party);
+    const jpAbbrev = formatRoleAbbreviation(role, party, true);
+    const label = stratConfig?.label ?? stratName;
+    if (useJpRoles && roleAbbrev !== jpAbbrev) {
+      return `${label} - Alliance ${alliance} ${roleAbbrev}/${jpAbbrev}`;
     }
-    if (useJpRoles && roleAbbrev !== jpRoleAbbrev[roleAbbrev]) {
-      return `${stratConfig?.label ?? stratName} - Alliance ${alliance} ${roleAbbrev}/${jpRoleAbbrev[roleAbbrev]}`;
-    }
-    return `${stratConfig?.label ?? stratName} - Alliance ${alliance} ${roleAbbrev}`;
+    return `${label} - Alliance ${alliance} ${roleAbbrev}`;
   }
 
   function getMask(step: ChaoticMechanicStrat): string {

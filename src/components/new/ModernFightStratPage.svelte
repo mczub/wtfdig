@@ -19,13 +19,15 @@
   import ModernStratView from './ModernStratView.svelte';
   import ModernFightStratControls from './ModernFightStratControls.svelte';
   import FightStratState from './FightStratState.svelte';
-  import type { Alignment, FightConfig, Role, Strat } from '$lib/types';
+  import type { Alignment, FightConfig, PhaseStrats, Role, Strat } from '$lib/types';
   import {
     buildFightOptionsSummary,
     buildFightPFDescription,
     formatRoleAbbreviation,
     getBoardUrl,
-    getToggleUrls
+    getToggleUrls,
+    resolveMechs,
+    resolveStratItem
   } from '$lib/utils';
   import type { PlayerJob } from '$lib/arena';
   import { generateAprilFoolsData, isAprilFools } from '$lib/aprilFools';
@@ -85,21 +87,6 @@
   });
   export const toast: ToastLike = getContext('toast');
 
-  function getStratItem(
-    item?: string | Record<string, any>,
-    tag?: string | undefined,
-    stratState?: Record<string, string | null>
-  ) {
-    if (!item) return item;
-    if (tag && stratState?.[tag] && typeof item === 'object' && item !== null) {
-      const key = stratState[tag];
-      if (key && key in item) {
-        return item[key];
-      }
-    }
-    return item;
-  }
-
   function getIndividualStrat({
     strat,
     stratName,
@@ -112,38 +99,24 @@
     role?: Role;
     party?: number;
     stratState: Record<string, string | null>;
-  }) {
+  }): PhaseStrats[] | string {
     if (!stratName || !role || !party || !strat) return '';
 
-    // Helper to resolve toggle-dependent mechs
-    function resolveMechs<T>(
-      mechs: T[] | Record<string, T[]> | undefined,
-      tag: string | undefined
-    ): T[] | undefined {
-      if (!mechs) return undefined;
-      if (Array.isArray(mechs)) return mechs;
-      if (tag && stratState?.[tag]) {
-        const stateKey = stratState[tag] as string;
-        return (mechs as Record<string, T[]>)[stateKey] ?? Object.values(mechs)[0];
-      }
-      return Object.values(mechs)[0];
-    }
-
     const individualPackages = strat.strats?.map((phaseStrat) => {
-      const resolvedMechs = resolveMechs(phaseStrat.mechs, phaseStrat.tag);
+      const resolvedMechs = resolveMechs(phaseStrat.mechs, phaseStrat.tag, stratState);
       return {
         ...phaseStrat,
-        description: getStratItem(phaseStrat.description, phaseStrat.tag, stratState),
-        imageUrl: getStratItem(phaseStrat.imageUrl, phaseStrat.tag, stratState),
-        mask: getStratItem(phaseStrat.mask, phaseStrat.tag, stratState),
-        url: getStratItem(phaseStrat.url, phaseStrat.tag, stratState),
+        description: resolveStratItem(phaseStrat.description, phaseStrat.tag, stratState),
+        imageUrl: resolveStratItem(phaseStrat.imageUrl, phaseStrat.tag, stratState),
+        mask: resolveStratItem(phaseStrat.mask, phaseStrat.tag, stratState),
+        url: resolveStratItem(phaseStrat.url, phaseStrat.tag, stratState),
         mechs: resolvedMechs?.map((phaseStratMech) => {
           return {
             ...phaseStratMech,
-            description: getStratItem(phaseStratMech.description, phaseStrat.tag, stratState),
-            notes: getStratItem(phaseStratMech.notes, phaseStrat.tag, stratState),
-            imageUrl: getStratItem(phaseStratMech.imageUrl, phaseStrat.tag, stratState),
-            url: getStratItem(phaseStratMech.url, phaseStrat.tag, stratState),
+            description: resolveStratItem(phaseStratMech.description, phaseStrat.tag, stratState),
+            notes: resolveStratItem(phaseStratMech.notes, phaseStrat.tag, stratState),
+            imageUrl: resolveStratItem(phaseStratMech.imageUrl, phaseStrat.tag, stratState),
+            url: resolveStratItem(phaseStratMech.url, phaseStrat.tag, stratState),
             strats:
               phaseStratMech.strats &&
               phaseStratMech.strats
@@ -162,9 +135,13 @@
                 .map((playerStrat) => {
                   return {
                     ...playerStrat,
-                    description: getStratItem(playerStrat.description, phaseStrat.tag, stratState),
-                    imageUrl: getStratItem(playerStrat.imageUrl, phaseStrat.tag, stratState),
-                    mask: getStratItem(playerStrat.mask, phaseStrat.tag, stratState)
+                    description: resolveStratItem(
+                      playerStrat.description,
+                      phaseStrat.tag,
+                      stratState
+                    ),
+                    imageUrl: resolveStratItem(playerStrat.imageUrl, phaseStrat.tag, stratState),
+                    mask: resolveStratItem(playerStrat.mask, phaseStrat.tag, stratState)
                   };
                 })
           };
@@ -172,7 +149,10 @@
       };
     });
     if (!individualPackages) return `Couldn't find ${stratName} strat for ${role} ${party}`;
-    return individualPackages;
+    // PhaseStrats models the pre-resolution shape (string | Record<string, string>);
+    // after resolveStratItem the Record branches have collapsed to plain strings,
+    // which is structurally compatible but narrower than the declared type.
+    return individualPackages as unknown as PhaseStrats[];
   }
 
   function getStratMechs(stratName: string) {
