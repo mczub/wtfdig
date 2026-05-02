@@ -8,6 +8,7 @@
   </header>
   <article class="prose dark:prose-invert max-w-none">
     <div class="">
+      <div>5/1/2026: updated cheatsheet view</div>
       <div>4/30/2026: ex8</div>
       <div>4/21/2026: teage, ucob poster cheatsheet</div>
       <div>

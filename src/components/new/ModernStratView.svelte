@@ -1,5 +1,4 @@
 <!-- @ts-nocheck -->
-<svelte:options customElement={{ shadow: 'none' }} />
 
 <script lang="ts">
   // @ts-nocheck
@@ -90,7 +89,24 @@
 
   let timelineValue = $state(['']);
 
-  let tab = $state(tabTags ? Object.keys(tabTags)[0] : '');
+  let tab = $state('');
+
+  // Initialize tab on mount and reset whenever the current value isn't valid
+  // for the new tabTags (e.g. after fightKey change).
+  $effect(() => {
+    if (!tabTags) {
+      tab = '';
+      return;
+    }
+    const keys = Object.keys(tabTags);
+    if (keys.length === 0) {
+      tab = '';
+      return;
+    }
+    if (!tab || !keys.includes(tab)) {
+      tab = keys[0];
+    }
+  });
 
   // Sync internal tab state with bindable currentTab
   $effect(() => {

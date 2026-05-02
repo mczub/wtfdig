@@ -2,9 +2,24 @@
   import { browser } from '$app/environment';
   import { page } from '$app/state';
   import { replaceState } from '$app/navigation';
-  import { untrack } from 'svelte';
+  import { untrack, type Snippet } from 'svelte';
   import type { Alliance, Role, Strat } from '$lib/types';
   import { buildStratCode, parseStratHash } from '$lib/utils';
+
+  type StateSnippetProps = {
+    stratName: string | undefined;
+    stratState: Record<string, string | null>;
+    role: Role | null | undefined;
+    party: number | undefined;
+    alliance: Alliance | undefined;
+    strat: Strat | undefined;
+    selectStrat: (value: string) => void;
+    setStratState: (key: string, value: string) => void;
+    setRole: (value: Role | null) => void;
+    setParty: (value: number) => void;
+    setAlliance: (value: Alliance) => void;
+    strats: Strat[];
+  };
 
   interface Props {
     fightKey: string;
@@ -12,14 +27,22 @@
     stratKeys?: string[];
     getStratMechs: (stratName: string) => Record<string, string | null>;
     allianceOptions?: Alliance[];
+    children?: Snippet<[StateSnippetProps]>;
   }
 
-  let { fightKey, strats = [], stratKeys = [], getStratMechs, allianceOptions }: Props = $props();
+  let {
+    fightKey,
+    strats = [],
+    stratKeys = [],
+    getStratMechs,
+    allianceOptions,
+    children
+  }: Props = $props();
 
-  const roleStorageKey = `${fightKey}-role`;
-  const partyStorageKey = `${fightKey}-party`;
-  const allianceStorageKey = `${fightKey}-alliance`;
-  const stratStorageKey = `${fightKey}-strat`;
+  let roleStorageKey = $derived(`${fightKey}-role`);
+  let partyStorageKey = $derived(`${fightKey}-party`);
+  let allianceStorageKey = $derived(`${fightKey}-alliance`);
+  let stratStorageKey = $derived(`${fightKey}-strat`);
 
   let stratName: string | undefined = $state();
   let stratState: Record<string, string | null> = $state({});
@@ -171,17 +194,17 @@
   }
 </script>
 
-<slot
-  {stratName}
-  {stratState}
-  {role}
-  {party}
-  {alliance}
-  {strat}
-  {selectStrat}
-  setStratState={updateStratState}
-  setRole={setRoleValue}
-  setParty={setPartyValue}
-  setAlliance={setAllianceValue}
-  {strats}
-/>
+{@render children?.({
+  stratName,
+  stratState,
+  role,
+  party,
+  alliance,
+  strat,
+  selectStrat,
+  setStratState: updateStratState,
+  setRole: setRoleValue,
+  setParty: setPartyValue,
+  setAlliance: setAllianceValue,
+  strats
+})}

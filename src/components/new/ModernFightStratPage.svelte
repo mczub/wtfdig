@@ -44,9 +44,9 @@
       badges: effectiveConfigStrats[strat.stratName]?.badges
     }))
   );
-  const stratKeys = (config.toggles ?? [])
-    .filter((toggle) => !toggle.excludeFromUrl)
-    .map((toggle) => toggle.key);
+  let stratKeys = $derived(
+    (config.toggles ?? []).filter((toggle) => !toggle.excludeFromUrl).map((toggle) => toggle.key)
+  );
 
   onMount(() => {
     if (isAprilFools() && strats.length > 0) {
@@ -245,16 +245,18 @@
   strats={effectiveStrats}
   {stratKeys}
   {getStratMechs}
-  let:stratName
-  let:stratState
-  let:role
-  let:party
-  let:strat
-  let:selectStrat
-  let:setStratState
-  let:setRole
-  let:setParty
 >
+  {#snippet children({
+    stratName,
+    stratState,
+    role,
+    party,
+    strat,
+    selectStrat,
+    setStratState,
+    setRole,
+    setParty
+  })}
   {@const normalizedRole: Role | undefined = role ?? undefined}
   {@const optionsString = getOptionsString({ stratName, role: normalizedRole, party, stratState })}
   {@const individualStrat = getIndividualStrat({
@@ -346,7 +348,7 @@
       transition:fade={{ duration: 200 }}
       onclick={scrollToTop}
       id="btn-back-to-top"
-      class="fixed bottom-4 right-4 p-4 border text-white rounded-full shadow-lg z-200 bg-surface-1000 hover:bg-muted transition-colors"
+      class="fixed bottom-4 right-4 p-4 border text-white rounded-full shadow-lg z-40 bg-surface-1000 hover:bg-muted transition-colors"
       aria-label="Back to top"
     >
       <ChevronUp size={24} />
@@ -541,4 +543,5 @@
       {/if}
     </div>
   </div>
+  {/snippet}
 </FightStratState>

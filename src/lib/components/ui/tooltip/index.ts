@@ -5,6 +5,7 @@ import Content from './tooltip-content.svelte';
 const Root = TooltipPrimitive.Root;
 const Provider = TooltipPrimitive.Provider;
 const Portal = TooltipPrimitive.Portal;
+const Arrow = TooltipPrimitive.Arrow;
 
 export {
   Root,
@@ -12,10 +13,12 @@ export {
   Content,
   Provider,
   Portal,
+  Arrow,
   //
   Root as Tooltip,
   Content as TooltipContent,
   Trigger as TooltipTrigger,
   Provider as TooltipProvider,
-  Portal as TooltipPortal
+  Portal as TooltipPortal,
+  Arrow as TooltipArrow
 };
