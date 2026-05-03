@@ -41,11 +41,17 @@
     currentTab = $bindable()
   }: Props = $props();
 
+  function phaseKey(phase: any, index: number): string {
+    // Recurring phase names (e.g. "Towers" appearing twice in EX6) need a
+    // unique key per occurrence so each Collapsible's state is independent.
+    return `${phase?.phaseName ?? ''}-${index}`;
+  }
+
   function getDefaultCollapsibleState() {
     const newState: Record<string, boolean> = {};
-    individualStrat.forEach((phase: any) => {
+    individualStrat.forEach((phase: any, index: number) => {
       if (phase?.phaseName) {
-        newState[phase.phaseName] = true;
+        newState[phaseKey(phase, index)] = true;
       }
     });
     return newState;
@@ -59,12 +65,12 @@
   });
 
   // Helper to safely get/set collapsible state, ensuring we never pass undefined to bind:open
-  function getCollapsibleOpen(phaseName: string): boolean {
-    return collapsibleState[phaseName] ?? true;
+  function getCollapsibleOpen(key: string): boolean {
+    return collapsibleState[key] ?? true;
   }
 
-  function setCollapsibleOpen(phaseName: string, value: boolean) {
-    collapsibleState[phaseName] = value;
+  function setCollapsibleOpen(key: string, value: boolean) {
+    collapsibleState[key] = value;
   }
 
   let imageOpenState = $state(false);
@@ -115,15 +121,17 @@
   }
 
   let isAllExpanded = $derived(
-    individualStrat.filter(isPhaseVisible).every((phase: any) => collapsibleState[phase.phaseName])
+    individualStrat
+      .map((phase: any, index: number) => ({ phase, index }))
+      .filter(({ phase }) => isPhaseVisible(phase))
+      .every(({ phase, index }) => collapsibleState[phaseKey(phase, index)])
   );
 
   function toggleAll() {
     const newState = !isAllExpanded;
-    individualStrat.filter(isPhaseVisible).forEach((phase: any) => {
-      if (phase?.phaseName) {
-        collapsibleState[phase.phaseName] = newState;
-      }
+    individualStrat.forEach((phase: any, index: number) => {
+      if (!phase?.phaseName || !isPhaseVisible(phase)) return;
+      collapsibleState[phaseKey(phase, index)] = newState;
     });
   }
 </script>
@@ -217,13 +225,13 @@
 </div>
 
 <div class="space-y-8 lg:space-y-12">
-  {#each individualStrat as phase (phase.phaseName)}
+  {#each individualStrat as phase, i (phase.phaseName + '-' + i)}
     {#if tabTags && tabTags[tab] && useMainPageTabs ? tabTags[tab].includes(phase.tag) : true}
       {#if phase?.mechs}
         <Collapsible.Root
           class="space-y-4 w-full"
-          open={getCollapsibleOpen(phase.phaseName)}
-          onOpenChange={(open) => setCollapsibleOpen(phase.phaseName, open)}
+          open={getCollapsibleOpen(phaseKey(phase, i))}
+          onOpenChange={(open) => setCollapsibleOpen(phaseKey(phase, i), open)}
         >
           <!-- Phase Header -->
           <div
@@ -428,8 +436,8 @@
         <!-- Fallback for simple phases without mechs array -->
         <Collapsible.Root
           class="overflow-hidden"
-          open={getCollapsibleOpen(phase.phaseName)}
-          onOpenChange={(open) => setCollapsibleOpen(phase.phaseName, open)}
+          open={getCollapsibleOpen(phaseKey(phase, i))}
+          onOpenChange={(open) => setCollapsibleOpen(phaseKey(phase, i), open)}
         >
           <div class="flex justify-between items-center border-b border-surface-700 pb-2">
             <div class="flex flex-row space-x-2 items-center">

@@ -156,12 +156,26 @@
 
     // Calculate the nav's absolute position in the document ONCE at mount time
     let stickyThreshold = 0;
+    // Distance from top of document to the nav's natural (non-sticky) top.
+    // This is effectively "everything above the nav" — the page header height.
+    // We can't use previousElementSibling because the strat/poster overlay
+    // hosts now sit between the layout header and this nav as inline siblings
+    // (zero height when not popped, but they still break the lookup).
+    let navNaturalTop = 0;
     let initialized = false;
 
     function setStickyThreshold() {
-      const headerHeight = navElement.previousElementSibling?.getBoundingClientRect().height ?? 0;
+      // Walk the offsetParent chain because getBoundingClientRect().top would
+      // return 0 once the nav has gone sticky.
+      let top = 0;
+      let el: HTMLElement | null = navElement;
+      while (el) {
+        top += el.offsetTop;
+        el = el.offsetParent as HTMLElement | null;
+      }
+      navNaturalTop = top;
       const rect = navElement.getBoundingClientRect();
-      stickyThreshold = headerHeight + rect.height;
+      stickyThreshold = navNaturalTop + rect.height;
     }
 
     // Wait for layout to settle, then calculate threshold
@@ -195,7 +209,7 @@
       // When expanded, collapse at the threshold
       // When collapsed, only expand when scrolled above the threshold (with buffer)
       const collapsePoint = stickyThreshold + 1;
-      const headerHeight = navElement.previousElementSibling?.getBoundingClientRect().height ?? 0;
+      const headerHeight = navNaturalTop;
       const expandPoint = Math.max(0, stickyThreshold - headerHeight);
 
       if (!isCollapsed && navElement.getBoundingClientRect().height > 60) {
