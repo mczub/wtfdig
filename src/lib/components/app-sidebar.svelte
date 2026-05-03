@@ -188,7 +188,6 @@
                         <Sidebar.MenuSubButton>
                           {#snippet child({ props })}
                             <a
-                              data-sveltekit-replacestate
                               href={subItem.url}
                               {...props}
                               onclick={handleLinkClick}
@@ -241,7 +240,6 @@
           >
           <Sidebar.MenuItem>
             <a
-              data-sveltekit-replacestate
               href="/tools/idyllic"
               onclick={handleLinkClick}
               class="flex flex-col w-full items-start mx-2"
@@ -255,7 +253,6 @@
           <Separator class="my-2" />
           <Sidebar.MenuItem>
             <a
-              data-sveltekit-replacestate
               href="/changelog"
               onclick={handleLinkClick}
               class="flex flex-col w-full items-start mx-2"

@@ -242,6 +242,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>WTFDIG!? {config.abbreviatedTitle ?? config.title}</title>
+</svelte:head>
+
 <svelte:window bind:innerWidth bind:innerHeight bind:scrollY />
 <FightStratState fightKey={config.fightKey} strats={effectiveStrats} {stratKeys} {getStratMechs}>
   {#snippet children({
