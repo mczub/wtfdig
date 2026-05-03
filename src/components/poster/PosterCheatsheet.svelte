@@ -2,12 +2,20 @@
   // @ts-nocheck
   import { getContext, onMount } from 'svelte';
   import { Modal } from '$lib/components/ui';
-  import { Download, X, Eye, User } from '@lucide/svelte/icons';
+  import {
+    Download,
+    X,
+    Eye,
+    User,
+    PictureInPicture,
+    PictureInPicture2
+  } from '@lucide/svelte/icons';
   import type { FightConfig } from '$lib/types';
   import { type PlayerJob } from '$lib/arena';
   import type { ResolvedPosterSection } from './types';
   import type { ToastLike } from '$lib/utils';
   import PosterGrid from './PosterGrid.svelte';
+  import PosterCheatsheetOverlay from './PosterCheatsheetOverlay.svelte';
 
   const toast = getContext<ToastLike | undefined>('toast');
 
@@ -24,19 +32,42 @@
     posterOpenState?: boolean;
     selectedJob?: PlayerJob;
     selectedJobLabel?: string;
+    /** Bindable: external trigger to open the overlay PIP window. */
+    overlayPopOut?: () => Promise<void>;
+    /** Bindable: external trigger to close the overlay PIP window. */
+    overlayPopIn?: () => void;
+    /** Bindable: true while the poster is in the overlay PIP window. */
+    overlayIsPopped?: boolean;
+    /** Bindable: true if Document Picture-in-Picture is supported. */
+    overlayIsSupported?: boolean;
   }
 
   let {
     config,
     posterOpenState = $bindable(false),
     selectedJob,
-    selectedJobLabel
+    selectedJobLabel,
+    overlayPopOut = $bindable<() => Promise<void>>(async () => {}),
+    overlayPopIn = $bindable<() => void>(() => {}),
+    overlayIsPopped = $bindable(false),
+    overlayIsSupported = $bindable(false)
   }: Props = $props();
 
   let posterRef: HTMLDivElement | undefined = $state();
   let exporting = $state(false);
   let showExportMenu = $state(false);
   let mode: 'overview' | 'role' = $state('overview');
+
+  async function toggleOverlay() {
+    if (overlayIsPopped) {
+      overlayPopIn();
+    } else {
+      // Close the modal so the PIP window isn't competing with a fullscreen
+      // modal — the whole point of the overlay is to free up the screen.
+      posterOpenState = false;
+      await overlayPopOut();
+    }
+  }
   let highlightJob = $derived<PlayerJob | undefined>(mode === 'role' ? selectedJob : undefined);
 
   // Map PlayerJob → display label from config.roleOptions.
@@ -198,6 +229,23 @@
           {/each}
         </div>
 
+        <!-- Overlay (PIP) -->
+        {#if overlayIsSupported}
+          <button
+            class="btn btn-sm {overlayIsPopped
+              ? 'preset-filled-primary-500 border border-primary-300 shadow-lg shadow-primary-500/40 ring-2 ring-primary-400/60'
+              : 'preset-tonal-secondary'}"
+            onclick={toggleOverlay}
+            title={overlayIsPopped ? 'Close overlay window' : 'Open as overlay window'}
+          >
+            {#if overlayIsPopped}
+              <PictureInPicture size={16} /> Restore
+            {:else}
+              <PictureInPicture2 size={16} /> Overlay
+            {/if}
+          </button>
+        {/if}
+
         <!-- Export -->
         <div class="relative">
           <button
@@ -268,3 +316,16 @@
     onclick={() => (showExportMenu = false)}
   ></button>
 {/if}
+
+<PosterCheatsheetOverlay
+  {layout}
+  sections={resolvedSections}
+  {selectedJob}
+  {selectedJobLabel}
+  {jobLabels}
+  title={`${config.cheatsheetTitle} - Poster`}
+  bind:popOut={overlayPopOut}
+  bind:popIn={overlayPopIn}
+  bind:isPopped={overlayIsPopped}
+  bind:isSupported={overlayIsSupported}
+/>

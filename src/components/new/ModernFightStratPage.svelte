@@ -4,6 +4,7 @@
   import type { ToastLike } from '$lib/utils';
   import { startSolitaireEffect, stopSolitaireEffect } from '$lib/solitaire';
   import ModernCheatsheet from './ModernCheatsheet.svelte';
+  import ModernStratOverlay from './ModernStratOverlay.svelte';
   import PosterCheatsheet from '../poster/PosterCheatsheet.svelte';
   import {
     ChevronUp,
@@ -14,7 +15,9 @@
     Grid3x3,
     Image,
     Info,
-    Link
+    Link,
+    PictureInPicture,
+    PictureInPicture2
   } from '@lucide/svelte';
   import ModernStratView from './ModernStratView.svelte';
   import ModernFightStratControls from './ModernFightStratControls.svelte';
@@ -224,10 +227,24 @@
   let posterOpenState = $state(false);
   let currentTab = $state<string | undefined>(undefined);
 
+  let overlayPopOut = $state<() => Promise<void>>(async () => {});
+  let overlayPopIn = $state<() => void>(() => {});
+  let overlayIsPopped = $state(false);
+  let overlayIsSupported = $state(false);
+
+  let posterOverlayPopOut = $state<() => Promise<void>>(async () => {});
+  let posterOverlayPopIn = $state<() => void>(() => {});
+  let posterOverlayIsPopped = $state(false);
+  let posterOverlayIsSupported = $state(false);
+
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 </script>
+
+<svelte:head>
+  <title>WTFDIG!? {config.abbreviatedTitle ?? config.title}</title>
+</svelte:head>
 
 <svelte:window bind:innerWidth bind:innerHeight bind:scrollY />
 <FightStratState fightKey={config.fightKey} strats={effectiveStrats} {stratKeys} {getStratMechs}>
@@ -280,6 +297,10 @@
         bind:posterOpenState
         selectedJob={posterJob || undefined}
         selectedJobLabel={posterJobLabel}
+        bind:overlayPopOut={posterOverlayPopOut}
+        bind:overlayPopIn={posterOverlayPopIn}
+        bind:overlayIsPopped={posterOverlayIsPopped}
+        bind:overlayIsSupported={posterOverlayIsSupported}
       />
     {/if}
 
@@ -302,6 +323,17 @@
       role={normalizedRole}
       fightKey={config.fightKey}
       mechToggles={(config.toggles ?? []).filter((t) => t.isMechToggle)}
+    />
+
+    <ModernStratOverlay
+      title={`${config.cheatsheetTitle} - ${optionsString}`}
+      {individualStrat}
+      {spotlight}
+      role={normalizedRole}
+      bind:popOut={overlayPopOut}
+      bind:popIn={overlayPopIn}
+      bind:isPopped={overlayIsPopped}
+      bind:isSupported={overlayIsSupported}
     />
 
     <ModernFightStratControls
@@ -493,17 +525,42 @@
                     >
                   {/if}
                   {#if config.posterLayout && config.posterEnabled}
-                    <button
-                      onclick={() => (posterOpenState = true)}
-                      class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none"
-                      ><Image size={18} />Poster</button
-                    >
+                    {#if posterOverlayIsPopped}
+                      <button
+                        onclick={() => posterOverlayPopIn()}
+                        class="btn preset-filled-primary-500 border border-primary-300 shadow-lg shadow-primary-500/40 font-semibold ring-2 ring-primary-400/60 transition-colors flex-1 lg:flex-none"
+                        title="Close poster overlay"
+                      >
+                        <PictureInPicture size={18} />Restore Poster
+                      </button>
+                    {:else}
+                      <button
+                        onclick={() => (posterOpenState = true)}
+                        class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none"
+                      >
+                        <Image size={18} />Poster
+                      </button>
+                    {/if}
                   {/if}
                   <button
                     onclick={() => (cheatsheetOpenState = true)}
                     class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none"
                     ><Fullscreen size={18} />Cheatsheet</button
                   >
+                  {#if overlayIsSupported}
+                    <button
+                      onclick={() => (overlayIsPopped ? overlayPopIn() : overlayPopOut())}
+                      class={overlayIsPopped
+                        ? 'btn preset-filled-primary-500 border border-primary-300 shadow-lg shadow-primary-500/40 font-semibold ring-2 ring-primary-400/60 transition-colors flex-1 lg:flex-none'
+                        : 'btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none'}
+                    >
+                      {#if overlayIsPopped}
+                        <PictureInPicture size={18} />Restore
+                      {:else}
+                        <PictureInPicture2 size={18} />Overlay
+                      {/if}
+                    </button>
+                  {/if}
                   <button
                     onclick={() => copyLinkToClipboard()}
                     class="btn preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors flex-1 lg:flex-none"

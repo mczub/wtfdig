@@ -2,6 +2,7 @@
   import type { PosterLayout } from '$lib/types';
   import type { PlayerJob } from '$lib/arena';
   import type { ResolvedPosterSection } from './types';
+  import type { Snippet } from 'svelte';
   import PosterSection from './PosterSection.svelte';
 
   interface Props {
@@ -10,9 +11,18 @@
     posterRef?: HTMLDivElement;
     highlightJob?: PlayerJob;
     jobLabels?: Partial<Record<PlayerJob, string>>;
+    /** Right-aligned controls rendered in the title bar (e.g. mode toggles). */
+    titleActions?: Snippet;
   }
 
-  let { layout, sections, posterRef = $bindable(), highlightJob, jobLabels }: Props = $props();
+  let {
+    layout,
+    sections,
+    posterRef = $bindable(),
+    highlightJob,
+    jobLabels,
+    titleActions
+  }: Props = $props();
 
   let cols = $derived(layout.cols ?? 16);
   let rows = $derived(layout.rows ?? 9);
@@ -41,6 +51,11 @@
         <span class="text-lg text-white/60 ml-4" style="font-family: 'Roboto Condensed', sans-serif"
           >{layout.subtitle}</span
         >
+      {/if}
+      {#if titleActions}
+        <div class="ml-auto flex items-center gap-2">
+          {@render titleActions()}
+        </div>
       {/if}
     </div>
   {/if}

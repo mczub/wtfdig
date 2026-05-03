@@ -31,6 +31,9 @@
   import { renderDebuffTokens } from '$lib/debuffs';
   import { browser } from '$app/environment';
   import Separator from '$lib/components/ui/separator/separator.svelte';
+  import { IsMobile } from '$lib/hooks/is-mobile.svelte';
+
+  const isMobile = new IsMobile();
 
   interface Props {
     title: string;
@@ -109,9 +112,16 @@
     localStorage.setItem(storageKey, JSON.stringify(state));
   }
 
+  // The timeline column eats a lot of width, which on a phone leaves the
+  // cheatsheet area too narrow to be useful. Default it off on mobile; users
+  // can still toggle it back on, and that choice is remembered per fight.
+  function getDefaultShowTimeline(): boolean {
+    return !isMobile.current;
+  }
+
   // Persisted state — defaults applied here, then overwritten by applySaved()
   // for the current fightKey both on mount and whenever fightKey changes.
-  let showTimeline = $state(true);
+  let showTimeline = $state(getDefaultShowTimeline());
   // Text display mode: 'all' = show all text, 'role' = only role-based text, 'image' = no text
   let textMode = $state<'all' | 'role' | 'image'>('all');
   let sidebarOpen = $state(true);
@@ -124,7 +134,7 @@
   let resetConfirmOpen = $state(false);
 
   function applySaved(saved: any) {
-    showTimeline = saved?.showTimeline ?? true;
+    showTimeline = saved?.showTimeline ?? getDefaultShowTimeline();
     textMode = saved?.textMode ?? 'all';
     sidebarOpen = saved?.sidebarOpen ?? true;
     splitPhases = saved?.splitPhases ?? true;
@@ -954,14 +964,14 @@
 <Modal
   open={cheatsheetOpenState}
   onOpenChange={(e) => (cheatsheetOpenState = e.open)}
-  contentBase="card bg-surface-100-900 p-0 space-y-0 shadow-xl flex flex-row h-full w-full max-w-none max-h-none overflow-hidden"
+  contentBase="card bg-surface-100-900 p-0 space-y-0 shadow-xl flex flex-row h-full w-full max-w-none max-h-none overflow-hidden rounded-none"
   contentClasses={imageOpenState ? 'blur-sm' : ''}
   backdropClasses="backdrop-blur-sm"
 >
   {#snippet content()}
     <!-- Collapsible Sidebar (no width when closed; expand button moves to header) -->
     <div
-      class={`flex-shrink-0 h-full flex flex-col bg-surface-950 transition-all duration-300 overflow-hidden ${sidebarOpen ? 'w-80 border-r border-surface-700' : 'w-0'}`}
+      class={`flex-shrink-0 h-full flex flex-col bg-surface-950 transition-all duration-300 overflow-hidden ${isMobile.current ? 'absolute inset-y-0 left-0 z-20 shadow-2xl' : ''} ${sidebarOpen ? 'w-80 border-r border-surface-700' : 'w-0'}`}
     >
       <!-- Sidebar header bar — height matches main header for clean alignment -->
       <button
@@ -1218,23 +1228,9 @@
     <!-- Main Content Area -->
     <div class="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
       <!-- Header -->
-      <header
-        class="flex justify-between items-center gap-4 px-4 h-14 border-b border-surface-700 bg-surface-900/50 shrink-0"
-      >
-        <div class="flex items-center gap-2 min-w-0">
-          {#if !sidebarOpen}
-            <button
-              class="flex items-center justify-center p-1 hover:bg-surface-700 rounded-xs transition-colors shrink-0"
-              onclick={() => (sidebarOpen = true)}
-              aria-label="Open sidebar"
-            >
-              <ChevronRight size={24} />
-            </button>
-          {/if}
-          <div class="text-lg 3xl:text-2xl font-semibold truncate">{title}</div>
-        </div>
+      {#snippet tabRow(wrap)}
         {#if tabTags && splitPhases}
-          <div class="flex gap-1">
+          <div class={`flex gap-1 ${wrap ? 'flex-wrap' : ''}`}>
             {#each Object.keys(tabTags) as tabName}
               <button
                 class={`px-3 py-1 text-sm rounded transition-colors ${tab === tabName ? 'bg-primary-500 text-white' : 'bg-surface-800 hover:bg-surface-700'}`}
@@ -1245,12 +1241,39 @@
             {/each}
           </div>
         {/if}
-        <button
-          class="p-2 hover:bg-surface-700 rounded-xs transition-colors"
-          onclick={closeCheatsheet}
-        >
-          <X size={20} />
-        </button>
+      {/snippet}
+
+      <header
+        class="flex flex-col px-4 border-b border-surface-700 bg-surface-900/50 shrink-0"
+      >
+        <div class={`flex justify-between items-center gap-4 ${isMobile.current ? 'h-12' : 'h-14'}`}>
+          <div class="flex items-center gap-2 min-w-0 flex-1">
+            {#if !sidebarOpen}
+              <button
+                class="flex items-center justify-center p-1 hover:bg-surface-700 rounded-xs transition-colors shrink-0"
+                onclick={() => (sidebarOpen = true)}
+                aria-label="Open sidebar"
+              >
+                <ChevronRight size={24} />
+              </button>
+            {/if}
+            <div class="text-lg 3xl:text-2xl font-semibold truncate">{title}</div>
+          </div>
+          {#if !isMobile.current}
+            {@render tabRow(false)}
+          {/if}
+          <button
+            class="p-2 hover:bg-surface-700 rounded-xs transition-colors shrink-0"
+            onclick={closeCheatsheet}
+          >
+            <X size={20} />
+          </button>
+        </div>
+        {#if isMobile.current && tabTags && splitPhases}
+          <div class="pb-2">
+            {@render tabRow(true)}
+          </div>
+        {/if}
       </header>
 
       <!-- Content Grid -->
