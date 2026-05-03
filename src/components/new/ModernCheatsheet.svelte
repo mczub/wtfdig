@@ -109,9 +109,17 @@
     localStorage.setItem(storageKey, JSON.stringify(state));
   }
 
+  // The timeline column eats a lot of width, which on a phone leaves the
+  // cheatsheet area too narrow to be useful. Default it off below sm; users
+  // can still toggle it back on, and that choice is remembered per fight.
+  function getDefaultShowTimeline(): boolean {
+    if (!browser) return true;
+    return window.innerWidth >= 640;
+  }
+
   // Persisted state — defaults applied here, then overwritten by applySaved()
   // for the current fightKey both on mount and whenever fightKey changes.
-  let showTimeline = $state(true);
+  let showTimeline = $state(getDefaultShowTimeline());
   // Text display mode: 'all' = show all text, 'role' = only role-based text, 'image' = no text
   let textMode = $state<'all' | 'role' | 'image'>('all');
   let sidebarOpen = $state(true);
@@ -124,7 +132,7 @@
   let resetConfirmOpen = $state(false);
 
   function applySaved(saved: any) {
-    showTimeline = saved?.showTimeline ?? true;
+    showTimeline = saved?.showTimeline ?? getDefaultShowTimeline();
     textMode = saved?.textMode ?? 'all';
     sidebarOpen = saved?.sidebarOpen ?? true;
     splitPhases = saved?.splitPhases ?? true;
@@ -954,14 +962,14 @@
 <Modal
   open={cheatsheetOpenState}
   onOpenChange={(e) => (cheatsheetOpenState = e.open)}
-  contentBase="card bg-surface-100-900 p-0 space-y-0 shadow-xl flex flex-row h-full w-full max-w-none max-h-none overflow-hidden"
+  contentBase="card bg-surface-100-900 p-0 space-y-0 shadow-xl flex flex-row h-full w-full max-w-none max-h-none overflow-hidden rounded-none"
   contentClasses={imageOpenState ? 'blur-sm' : ''}
   backdropClasses="backdrop-blur-sm"
 >
   {#snippet content()}
     <!-- Collapsible Sidebar (no width when closed; expand button moves to header) -->
     <div
-      class={`flex-shrink-0 h-full flex flex-col bg-surface-950 transition-all duration-300 overflow-hidden ${sidebarOpen ? 'w-80 border-r border-surface-700' : 'w-0'}`}
+      class={`flex-shrink-0 h-full flex flex-col bg-surface-950 transition-all duration-300 overflow-hidden absolute inset-y-0 left-0 z-20 shadow-2xl sm:relative sm:z-auto sm:inset-auto sm:shadow-none ${sidebarOpen ? 'w-80 border-r border-surface-700' : 'w-0'}`}
     >
       <!-- Sidebar header bar — height matches main header for clean alignment -->
       <button
