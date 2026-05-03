@@ -11,8 +11,11 @@
     MoveVertical,
     MoveDiagonal,
     CircleDot,
-    ChevronsDown
+    ChevronsDown,
+    PictureInPicture2,
+    X
   } from '@lucide/svelte';
+  import PipPortal from '$lib/components/PipPortal.svelte';
 
   // State
   let selectedStrategy = $state('dn');
@@ -68,24 +71,57 @@
   <meta name="description" content="Quick solver tool for M12S Idyllic Dream mechanic" />
 </svelte:head>
 
-<div
-  class="flex flex-col gap-3 md:gap-4 p-4 md:p-6 w-full max-w-[500px] md:max-w-[600px] mx-auto box-border overflow-hidden"
->
-  <!-- Header -->
-  <header class="flex justify-between items-center shrink-0">
-    <h1 class="text-xl md:text-2xl font-bold m-0">M12S Idyllic Helper</h1>
-    <button
-      class="px-4 py-2 md:px-5 md:py-2.5 rounded-lg bg-destructive text-destructive-foreground border-none font-semibold cursor-pointer text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed"
-      onclick={reset}
-      disabled={!selectedTether &&
-        cardinalsFirst === null &&
-        northSafe === null &&
-        defamationsFirst === null &&
-        holeCloneNorth === null}
+<PipPortal width={360} height={640} title="WTFDIG Idyllic Helper" rootFontSize={15}>
+  {#snippet placeholder({ popIn })}
+    <div
+      class="flex flex-col gap-3 p-4 md:p-6 w-full max-w-[500px] md:max-w-[600px] mx-auto items-start"
     >
-      Reset
-    </button>
-  </header>
+      <p class="text-sm md:text-base text-muted-foreground m-0">
+        Helper is popped out in a picture-in-picture window.
+      </p>
+      <button
+        class="flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-muted hover:bg-accent text-foreground text-sm md:text-base cursor-pointer"
+        onclick={popIn}
+      >
+        <X class="size-4" /> Bring back
+      </button>
+    </div>
+  {/snippet}
+
+  {#snippet children({ isPopped, isSupported, popOut, popIn })}
+  <div
+    class="flex flex-col gap-3 md:gap-4 p-4 md:p-6 w-full max-w-[500px] md:max-w-[600px] mx-auto box-border overflow-hidden"
+  >
+    <!-- Header -->
+    <header class="flex justify-between items-center gap-2 shrink-0">
+      <h1 class="text-xl md:text-2xl font-bold m-0">M12S Idyllic Helper</h1>
+      <div class="flex items-center gap-2">
+        {#if isSupported}
+          <button
+            class="flex items-center gap-1 px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border bg-muted hover:bg-accent text-foreground font-semibold cursor-pointer text-sm md:text-base"
+            onclick={isPopped ? popIn : popOut}
+            title={isPopped ? 'Close overlay window' : 'Open as overlay window'}
+          >
+            {#if isPopped}
+              <X class="size-4" /> Close
+            {:else}
+              <PictureInPicture2 class="size-4" /> Pop out
+            {/if}
+          </button>
+        {/if}
+        <button
+          class="px-4 py-2 md:px-5 md:py-2.5 rounded-lg bg-destructive text-destructive-foreground border-none font-semibold cursor-pointer text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed"
+          onclick={reset}
+          disabled={!selectedTether &&
+            cardinalsFirst === null &&
+            northSafe === null &&
+            defamationsFirst === null &&
+            holeCloneNorth === null}
+        >
+          Reset
+        </button>
+      </div>
+    </header>
 
   <!-- Strategy Selector -->
   <div class="flex items-center gap-2 md:gap-3 shrink-0">
@@ -253,13 +289,15 @@
       </div>
     {/if}
   </div>
-</div>
+  </div>
+  {/snippet}
+</PipPortal>
 
 <style>
   .compass-container {
     position: relative;
-    width: 180px;
-    height: 180px;
+    width: 11.25rem;
+    height: 11.25rem;
   }
 
   .compass-btn {
@@ -276,33 +314,33 @@
   }
 
   .compass-btn.cardinal {
-    width: 44px;
-    height: 44px;
+    width: 2.75rem;
+    height: 2.75rem;
     font-size: 0.875rem;
   }
 
   .compass-btn.intercardinal {
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
     font-size: 0.75rem;
   }
 
   /* Tablet and up */
   @media (min-width: 768px) {
     .compass-container {
-      width: 220px;
-      height: 220px;
+      width: 13.75rem;
+      height: 13.75rem;
     }
 
     .compass-btn.cardinal {
-      width: 56px;
-      height: 56px;
+      width: 3.5rem;
+      height: 3.5rem;
       font-size: 1rem;
     }
 
     .compass-btn.intercardinal {
-      width: 48px;
-      height: 48px;
+      width: 3rem;
+      height: 3rem;
       font-size: 0.875rem;
     }
   }
