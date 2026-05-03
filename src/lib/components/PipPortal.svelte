@@ -30,6 +30,14 @@
     placeholder?: Snippet<[PipApi]>;
     onpopout?: () => void;
     onpopin?: () => void;
+    /** Bindable: external trigger to open the PIP window. */
+    popOut?: () => Promise<void>;
+    /** Bindable: external trigger to close the PIP window. */
+    popIn?: () => void;
+    /** Bindable: true while content is in the PIP window. */
+    isPopped?: boolean;
+    /** Bindable: true if Document Picture-in-Picture is supported. */
+    isSupported?: boolean;
   };
 
   let {
@@ -40,7 +48,11 @@
     children,
     placeholder,
     onpopout,
-    onpopin
+    onpopin,
+    popOut: popOutBinding = $bindable<() => Promise<void>>(async () => {}),
+    popIn: popInBinding = $bindable<() => void>(() => {}),
+    isPopped: isPoppedBinding = $bindable(false),
+    isSupported: isSupportedBinding = $bindable(false)
   }: Props = $props();
 
   let hostEl: HTMLDivElement = $state(null!);
@@ -114,6 +126,19 @@
     isSupported,
     popOut,
     popIn
+  });
+
+  // Sync component-internal state to bindable props so a parent can drive
+  // popOut/popIn from outside the snippet (e.g. a button in a sibling
+  // toolbar) and read isPopped to flip its label.
+  $effect(() => {
+    popOutBinding = popOut;
+    popInBinding = popIn;
+    isSupportedBinding = isSupported;
+  });
+
+  $effect(() => {
+    isPoppedBinding = pipWindow !== null;
   });
 
   onDestroy(() => {

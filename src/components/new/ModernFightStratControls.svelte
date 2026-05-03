@@ -118,6 +118,14 @@
     selectedRoleOption ? selectedRoleOption.label : formatRoleAbbreviation(role, party)
   );
 
+  // Highlight the role/group selectors when a strat is picked but the user
+  // hasn't told us who they are yet — those segments are the missing input.
+  let needsRoleAttention = $derived(!!stratName && !role);
+  let needsPartyAttention = $derived(!!stratName && !party);
+  let needsRoleOptionAttention = $derived(!!stratName && !selectedRoleOption);
+  const ATTENTION_RING =
+    'rounded-md ring-2 ring-primary-400 shadow-[0_0_18px_2px] shadow-primary-500/50 animate-pulse';
+
   function selectRoleOption(option: FightRoleOption) {
     setRole(option.role);
     setParty(option.party);
@@ -389,23 +397,25 @@
                   class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider mr-2"
                   >Role</span
                 >
-                <Segment
-                  name="role-option"
-                  value={selectedRoleOption
-                    ? `${selectedRoleOption.role}-${selectedRoleOption.party}`
-                    : undefined}
-                  onValueChange={(e) => {
-                    const opt = roleOptions.find((o) => `${o.role}-${o.party}` === e.value);
-                    if (opt) selectRoleOption(opt);
-                  }}
-                  classes="flex-wrap"
-                >
-                  {#each roleOptions as opt}
-                    <Segment.Item value={`${opt.role}-${opt.party}`} classes="text-md px-3 py-1"
-                      >{opt.label}</Segment.Item
-                    >
-                  {/each}
-                </Segment>
+                <div class={needsRoleOptionAttention ? ATTENTION_RING : ''}>
+                  <Segment
+                    name="role-option"
+                    value={selectedRoleOption
+                      ? `${selectedRoleOption.role}-${selectedRoleOption.party}`
+                      : undefined}
+                    onValueChange={(e) => {
+                      const opt = roleOptions.find((o) => `${o.role}-${o.party}` === e.value);
+                      if (opt) selectRoleOption(opt);
+                    }}
+                    classes="flex-wrap"
+                  >
+                    {#each roleOptions as opt}
+                      <Segment.Item value={`${opt.role}-${opt.party}`} classes="text-md px-3 py-1"
+                        >{opt.label}</Segment.Item
+                      >
+                    {/each}
+                  </Segment>
+                </div>
               </div>
             {:else}
               <div class="flex items-center relative">
@@ -413,17 +423,19 @@
                   class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider mr-2"
                   >Role</span
                 >
-                <Segment
-                  name="role"
-                  value={role}
-                  onValueChange={(e) => setRole(e.value as Role)}
-                  classes=""
-                >
-                  <Segment.Item value="Tank" classes="text-md px-3 py-1">T</Segment.Item>
-                  <Segment.Item value="Healer" classes="text-md px-3 py-1">H</Segment.Item>
-                  <Segment.Item value="Melee" classes="text-md px-3 py-1">M</Segment.Item>
-                  <Segment.Item value="Ranged" classes="text-md px-3 py-1">R</Segment.Item>
-                </Segment>
+                <div class={needsRoleAttention ? ATTENTION_RING : ''}>
+                  <Segment
+                    name="role"
+                    value={role}
+                    onValueChange={(e) => setRole(e.value as Role)}
+                    classes=""
+                  >
+                    <Segment.Item value="Tank" classes="text-md px-3 py-1">T</Segment.Item>
+                    <Segment.Item value="Healer" classes="text-md px-3 py-1">H</Segment.Item>
+                    <Segment.Item value="Melee" classes="text-md px-3 py-1">M</Segment.Item>
+                    <Segment.Item value="Ranged" classes="text-md px-3 py-1">R</Segment.Item>
+                  </Segment>
+                </div>
               </div>
 
               <div class="flex items-center">
@@ -431,15 +443,17 @@
                   class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider mr-2"
                   >Group</span
                 >
-                <Segment
-                  name="party"
-                  value={party?.toString()}
-                  onValueChange={(e) => setParty(parseInt(e.value!))}
-                  classes=""
-                >
-                  <Segment.Item value="1" classes="text-md px-3 py-1">1</Segment.Item>
-                  <Segment.Item value="2" classes="text-md px-3 py-1">2</Segment.Item>
-                </Segment>
+                <div class={needsPartyAttention ? ATTENTION_RING : ''}>
+                  <Segment
+                    name="party"
+                    value={party?.toString()}
+                    onValueChange={(e) => setParty(parseInt(e.value!))}
+                    classes=""
+                  >
+                    <Segment.Item value="1" classes="text-md px-3 py-1">1</Segment.Item>
+                    <Segment.Item value="2" classes="text-md px-3 py-1">2</Segment.Item>
+                  </Segment>
+                </div>
               </div>
             {/if}
           </div>
