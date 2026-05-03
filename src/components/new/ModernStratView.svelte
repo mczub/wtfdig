@@ -217,7 +217,7 @@
 </div>
 
 <div class="space-y-8 lg:space-y-12">
-  {#each individualStrat as phase}
+  {#each individualStrat as phase (phase.phaseName)}
     {#if tabTags && tabTags[tab] && useMainPageTabs ? tabTags[tab].includes(phase.tag) : true}
       {#if phase?.mechs}
         <Collapsible.Root

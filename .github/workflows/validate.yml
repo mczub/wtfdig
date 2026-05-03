@@ -14,6 +14,15 @@ jobs:
       - run: bun install --frozen-lockfile
       - run: bun run test:unit
 
+  component:
+    name: Component Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - run: bun run test:component
+
   tier1:
     name: Tier 1 – Structural Validation
     runs-on: ubuntu-latest
