@@ -147,6 +147,11 @@
           title: 'AAC LHW M4 (M4S)',
           subtitle: 'Savage',
           url: '/70/m4s'
+        },
+        {
+          title: 'Worqor Lar Dor (EX1)',
+          subtitle: 'Extreme',
+          url: '/70/ex1'
         }
       ]
     }

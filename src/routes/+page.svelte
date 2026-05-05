@@ -308,6 +308,16 @@
                   >
                 </div>
               </div>
+              <div class="flex flex-col">
+                <div class="text-left text-sm font-semibold mb-3">Extreme</div>
+                <div class="flex flex-col gap-4">
+                  <a
+                    href="{base}/70/ex1"
+                    class="btn preset-tonal-secondary border border-secondary-500"
+                    >Worqor Lar Dor (EX1)</a
+                  >
+                </div>
+              </div>
             </div>
           {/if}
         </div>
