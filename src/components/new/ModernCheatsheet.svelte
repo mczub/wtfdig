@@ -103,6 +103,7 @@
     const state = {
       showTimeline,
       textMode,
+      textPlacement,
       cellSizes: Object.fromEntries(cellSizes),
       hiddenMechanics: Array.from(hiddenMechanics),
       sidebarOpen,
@@ -124,6 +125,8 @@
   let showTimeline = $state(getDefaultShowTimeline());
   // Text display mode: 'all' = show all text, 'role' = only role-based text, 'image' = no text
   let textMode = $state<'all' | 'role' | 'image'>('all');
+  // Where text is placed relative to the image — 'overlay' floats on top, 'stacked' renders above/below
+  let textPlacement = $state<'overlay' | 'stacked'>('overlay');
   let sidebarOpen = $state(true);
   let splitPhases = $state(true); // true = split into tabs, false = show all
   let showSpotlight = $state(true); // local override for spotlight visibility
@@ -136,6 +139,7 @@
   function applySaved(saved: any) {
     showTimeline = saved?.showTimeline ?? getDefaultShowTimeline();
     textMode = saved?.textMode ?? 'all';
+    textPlacement = saved?.textPlacement ?? 'overlay';
     sidebarOpen = saved?.sidebarOpen ?? true;
     splitPhases = saved?.splitPhases ?? true;
     showSpotlight = saved?.showSpotlight ?? true;
@@ -166,6 +170,7 @@
   function resetSettings() {
     showTimeline = true;
     textMode = 'all';
+    textPlacement = 'overlay';
     splitPhases = true;
     showSpotlight = true;
     cellSizes = new Map();
@@ -192,6 +197,7 @@
   $effect(() => {
     showTimeline;
     textMode;
+    textPlacement;
     sidebarOpen;
     splitPhases;
     showSpotlight;
@@ -512,6 +518,20 @@
   const TARGET_ROW_HEIGHT = 280;
   const MIN_ROW_HEIGHT = 140;
   const MAX_ROW_HEIGHT = 520;
+  // Stacked-mode reserves space for ~2 lines of text by default. Image area
+  // uses flex-1 so 1-line text leaves the image bigger (text slammed at the
+  // bottom with a margin), and 3+ line text shrinks the image.
+  const STACKED_HEADER = 30;
+  const STACKED_BOTTOM = 52; // ~2 lines + padding
+  let stackedPad = $derived(
+    textPlacement === 'stacked'
+      ? textMode === 'image'
+        ? 0
+        : textMode === 'role'
+          ? STACKED_BOTTOM
+          : STACKED_HEADER + STACKED_BOTTOM
+      : 0
+  );
   const TEXT_ONLY_ASPECT = 1.5;
   // Tailwind `sm` breakpoint. Below this the cards container is narrow enough
   // that single-card rows should always stretch to fill (otherwise mobile
@@ -932,7 +952,11 @@
   function totalLayoutHeight(rows: LaidOutRow[]): number {
     if (rows.length === 0) return 0;
     let h = 0;
-    for (const r of rows) h += r.height;
+    for (const r of rows) {
+      const hasBlocks = r.kind === 'macro' && r.items.some((it) => it.type === 'smalls');
+      const rowExtra = hasBlocks ? 2 * stackedPad : stackedPad;
+      h += r.height + rowExtra;
+    }
     return h + (rows.length - 1) * GAP;
   }
 
@@ -1058,6 +1082,24 @@
                 onclick={() => (textMode = 'image')}
               >
                 Image Only
+              </button>
+            </div>
+          </div>
+
+          <div class="flex flex-col space-y-2">
+            <span class="text-sm mb-2">Text Placement</span>
+            <div class="flex gap-1">
+              <button
+                class={`flex-1 px-2 py-1 text-xs rounded transition-colors ${textPlacement === 'overlay' ? 'bg-primary-500 text-white' : 'bg-surface-800 hover:bg-surface-700'}`}
+                onclick={() => (textPlacement = 'overlay')}
+              >
+                Overlay
+              </button>
+              <button
+                class={`flex-1 px-2 py-1 text-xs rounded transition-colors ${textPlacement === 'stacked' ? 'bg-primary-500 text-white' : 'bg-surface-800 hover:bg-surface-700'}`}
+                onclick={() => (textPlacement = 'stacked')}
+              >
+                Stacked
               </button>
             </div>
           </div>
@@ -1356,27 +1398,19 @@
           {@const showBottom = showDesc || showStrat}
           {@const showWarning =
             phase?.tag && stratState[phase.tag] !== getStratMechs(stratName ?? '')[phase.tag]}
+          {@const stacked = textPlacement === 'stacked' && (showHeader || showBottom)}
+          {@const buttonHeight = stacked ? cardHeight + stackedPad : cardHeight}
           <button
-            class="relative card border border-surface-700 overflow-hidden bg-surface-950 hover:border-surface-500 transition-colors cursor-pointer group shrink-0"
+            class={`card border border-surface-700 overflow-hidden bg-surface-950 hover:border-surface-500 transition-colors cursor-pointer group shrink-0 ${stacked ? 'flex flex-col' : 'relative'}`}
             style:width="{cardWidth}px"
-            style:height="{cardHeight}px"
+            style:height="{buttonHeight}px"
             onclick={() => openImageModal(phase, mech)}
           >
-            {#if imgUrl}
-              <img
-                class="absolute inset-0 w-full h-full object-contain"
-                src={imgUrl}
-                alt={headerName}
-                onload={(e) => handleImageLoad(e, imgUrl)}
-              />
-              {#if spotlight && showSpotlight && mask}
-                <SpotlightOverlay {mask} imageWidth={dims?.width} imageHeight={dims?.height} />
-              {/if}
-            {/if}
-
-            {#if showHeader}
+            {#snippet headerBlock(isStacked: boolean)}
               <div
-                class="absolute top-0 left-0 right-0 bg-surface-950/80 px-2 pt-1.5 pb-1.5 pointer-events-none"
+                class={isStacked
+                  ? 'shrink-0 bg-surface-900 px-2 pt-1.5 pb-1.5'
+                  : 'absolute top-0 left-0 right-0 bg-surface-950/80 px-2 pt-1.5 pb-1.5 pointer-events-none'}
               >
                 <div class="flex items-center justify-between gap-2">
                   <div class="min-w-0 pointer-events-auto">
@@ -1421,11 +1455,13 @@
                   </div>
                 </div>
               </div>
-            {/if}
+            {/snippet}
 
-            {#if showBottom}
+            {#snippet bottomBlock(isStacked: boolean)}
               <div
-                class={`absolute bottom-0 left-0 right-0 bg-surface-950/80 px-2 pt-1 pb-1.5 overflow-y-auto pointer-events-none text-left ${imgUrl ? 'max-h-[70%]' : ''}`}
+                class={isStacked
+                  ? 'shrink-0 bg-surface-900 px-2 pt-1 pb-1.5 overflow-y-auto text-left'
+                  : `absolute bottom-0 left-0 right-0 bg-surface-950/80 px-2 pt-1 pb-1.5 overflow-y-auto pointer-events-none text-left ${imgUrl ? 'max-h-[70%]' : ''}`}
               >
                 <div class="pointer-events-auto space-y-1 text-left">
                   {#if showDesc}
@@ -1451,6 +1487,46 @@
                   {/if}
                 </div>
               </div>
+            {/snippet}
+
+            {#if stacked}
+              {#if showHeader}
+                {@render headerBlock(true)}
+              {/if}
+              <div class="relative flex-1 min-h-0 overflow-hidden">
+                {#if imgUrl}
+                  <img
+                    class="absolute inset-0 w-full h-full object-contain"
+                    src={imgUrl}
+                    alt={headerName}
+                    onload={(e) => handleImageLoad(e, imgUrl)}
+                  />
+                  {#if spotlight && showSpotlight && mask}
+                    <SpotlightOverlay {mask} imageWidth={dims?.width} imageHeight={dims?.height} />
+                  {/if}
+                {/if}
+              </div>
+              {#if showBottom}
+                {@render bottomBlock(true)}
+              {/if}
+            {:else}
+              {#if imgUrl}
+                <img
+                  class="absolute inset-0 w-full h-full object-contain"
+                  src={imgUrl}
+                  alt={headerName}
+                  onload={(e) => handleImageLoad(e, imgUrl)}
+                />
+                {#if spotlight && showSpotlight && mask}
+                  <SpotlightOverlay {mask} imageWidth={dims?.width} imageHeight={dims?.height} />
+                {/if}
+              {/if}
+              {#if showHeader}
+                {@render headerBlock(false)}
+              {/if}
+              {#if showBottom}
+                {@render bottomBlock(false)}
+              {/if}
             {/if}
           </button>
         {/snippet}
@@ -1471,14 +1547,23 @@
             </div>
           {:else}
             {#each laidOutRows as row, ri (ri)}
+              {@const hasBlocks =
+                row.kind === 'macro' && row.items.some((it) => it.type === 'smalls')}
+              {@const rowExtra = hasBlocks ? 2 * stackedPad : stackedPad}
               {#if row.kind === 'simple'}
-                <div class="flex gap-3 shrink-0" style:height="{row.height}px">
+                <div
+                  class="flex gap-3 shrink-0 items-start"
+                  style:height="{row.height + rowExtra}px"
+                >
                   {#each row.cards as card (card.spec.key)}
                     {@render cardButton(card.spec, card.width, card.height)}
                   {/each}
                 </div>
               {:else}
-                <div class="flex gap-3 shrink-0" style:height="{row.height}px">
+                <div
+                  class="flex gap-3 shrink-0 items-start"
+                  style:height="{row.height + rowExtra}px"
+                >
                   {#each row.items as item, ii (ri + '-' + ii)}
                     {#if item.type === 'large'}
                       {@render cardButton(item.card.spec, item.card.width, item.card.height)}
@@ -1486,17 +1571,23 @@
                       <div
                         class="flex flex-col gap-3 shrink-0"
                         style:width="{item.blockWidth}px"
-                        style:height="{row.height}px"
+                        style:height="{row.height + rowExtra}px"
                       >
                         {#if item.upper.length > 0}
-                          <div class="flex gap-3 shrink-0" style:height="{item.smallHeight}px">
+                          <div
+                            class="flex gap-3 shrink-0 items-start"
+                            style:height="{item.smallHeight + stackedPad}px"
+                          >
                             {#each item.upper as card (card.spec.key)}
                               {@render cardButton(card.spec, card.width, card.height)}
                             {/each}
                           </div>
                         {/if}
                         {#if item.lower.length > 0}
-                          <div class="flex gap-3 shrink-0" style:height="{item.smallHeight}px">
+                          <div
+                            class="flex gap-3 shrink-0 items-start"
+                            style:height="{item.smallHeight + stackedPad}px"
+                          >
                             {#each item.lower as card (card.spec.key)}
                               {@render cardButton(card.spec, card.width, card.height)}
                             {/each}
