@@ -70,7 +70,6 @@
           <Segment.Item value={option.value}>{option.label}</Segment.Item>
         {/each}
       </Segment>
-
     </div>
 
     {#if allianceOptions && setAlliance}

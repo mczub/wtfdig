@@ -1,10 +1,4 @@
-import type {
-  FightConfig,
-  Strat,
-  TimelineItem,
-  PlayerMechStrat,
-  PhaseStrats
-} from '$lib/types';
+import type { FightConfig, Strat, TimelineItem, PlayerMechStrat, PhaseStrats } from '$lib/types';
 import { getStratArray, getStringObject } from '$lib/utils';
 
 const timeline: TimelineItem[] = [

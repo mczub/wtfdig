@@ -1,9 +1,5 @@
 import type { Strat, FightConfig, MechanicStrat } from '$lib/types';
-import {
-  getCircleMaskUrl,
-  getMultiCircleMaskUrl,
-  getRectMaskUrl
-} from '$lib/utils';
+import { getCircleMaskUrl, getMultiCircleMaskUrl, getRectMaskUrl } from '$lib/utils';
 
 // ============================================================
 // Fight Config
@@ -47,7 +43,7 @@ export const ex2FightConfig: FightConfig = {
     { mechName: 'Sync', mechType: 'Mechanic', startTimeMs: 320000 },
     { mechName: 'Chasm of Vollok + Aero III', mechType: 'Mechanic', startTimeMs: 334000 },
     { mechName: 'Forward/Backward Half', mechType: 'Mechanic', startTimeMs: 340000 },
-    { mechName: 'Duty\'s Edge', mechType: 'Mechanic', startTimeMs: 352000 },
+    { mechName: "Duty's Edge", mechType: 'Mechanic', startTimeMs: 352000 },
     { mechName: 'Burning Chains', mechType: 'Mechanic', startTimeMs: 366000 },
     { mechName: 'Actualize', mechType: 'Raidwide', startTimeMs: 386000 },
     { mechName: 'Projection of Triumph', mechType: 'Mechanic', startTimeMs: 399000 },
@@ -62,7 +58,7 @@ export const ex2FightConfig: FightConfig = {
     { mechName: 'Vollok', mechType: 'Mechanic', startTimeMs: 538000 },
     { mechName: 'Sync', mechType: 'Mechanic', startTimeMs: 546000 },
     { mechName: 'Chasm of Vollok', mechType: 'Mechanic', startTimeMs: 560000 },
-    { mechName: 'Duty\'s Edge', mechType: 'Mechanic', startTimeMs: 563000 },
+    { mechName: "Duty's Edge", mechType: 'Mechanic', startTimeMs: 563000 },
     { mechName: 'Greater Gateway', mechType: 'Mechanic', startTimeMs: 580000 },
     { mechName: 'Blade Warp', mechType: 'Mechanic', startTimeMs: 588000 },
     { mechName: 'Forged Track', mechType: 'Mechanic', startTimeMs: 596000 },
@@ -101,7 +97,7 @@ export const conga: Strat = {
         {
           mechanic: 'Conga',
           imageUrl: './ex1/hector-setup-3.webp'
-        },
+        }
       ]
     },
     {
@@ -109,7 +105,8 @@ export const conga: Strat = {
       mechs: [
         {
           mechanic: 'Multidirectional Divide',
-          description: 'Thick + thin line AoEs from intercardinals\nDodge to checkerboard safe spot in a quadrant',
+          description:
+            'Thick + thin line AoEs from intercardinals\nDodge to checkerboard safe spot in a quadrant',
           imageUrl: './ex2/multidirectional-divide.webp'
         },
         {
@@ -126,7 +123,7 @@ export const conga: Strat = {
           mechanic: 'Regicidal Rage',
           description: 'Tanks grab tethers away from party',
           imageUrl: './ex2/regicidal-rage.webp'
-        },
+        }
       ]
     },
     {
@@ -134,7 +131,8 @@ export const conga: Strat = {
       mechs: [
         {
           mechanic: 'Vollok + Sync + Half Full',
-          description: 'Sword patterns spawn on 4 outer platforms\nBoss picks 2, swords project onto main platform\nBoss does half-room cleave simultaneously',
+          description:
+            'Sword patterns spawn on 4 outer platforms\nBoss picks 2, swords project onto main platform\nBoss does half-room cleave simultaneously',
           imageUrl: './ex2/vollok-p1.webp'
         },
         {
@@ -151,7 +149,7 @@ export const conga: Strat = {
           mechanic: 'Chasm of Vollok',
           description: 'One player per tile',
           imageUrl: './ex2/chasm-of-vollok.webp'
-        },
+        }
       ]
     },
     {
@@ -159,7 +157,8 @@ export const conga: Strat = {
       mechs: [
         {
           mechanic: 'Projection of Triumph',
-          description: 'One side starts donut, other side circle\nAvoid donuts on swords, avoid circles between swords',
+          description:
+            'One side starts donut, other side circle\nAvoid donuts on swords, avoid circles between swords',
           imageUrl: './ex2/projection-of-triumph.webp'
         },
         {
@@ -241,7 +240,8 @@ export const conga: Strat = {
       mechs: [
         {
           mechanic: 'Drum of Vollok',
-          description: '2-person stacks on 4 players\nKnocks back partner to other platform\nLine up HTTH/RMMR',
+          description:
+            '2-person stacks on 4 players\nKnocks back partner to other platform\nLine up HTTH/RMMR',
           imageUrl: './ex2/drum-of-vollok.webp'
         },
         {
@@ -255,14 +255,15 @@ export const conga: Strat = {
         },
         {
           mechanic: 'Half + Tornado',
-          description: 'Random Forward/Backward Half faces a platform\nUse tornado to get knocked to other platform if needed',
+          description:
+            'Random Forward/Backward Half faces a platform\nUse tornado to get knocked to other platform if needed',
           imageUrl: './ex2/tornado-tile.webp'
         },
         {
           mechanic: 'Burning Chains',
           description: `Supports tethered to DPS\nUse tornado to stretch if you didn't before`,
           imageUrl: './ex2/burning-chains.webp'
-        },
+        }
       ]
     },
     {
@@ -286,7 +287,7 @@ export const conga: Strat = {
           description: 'Same as Phase 1 platforms'
         },
         {
-          mechanic: 'Duty\'s Edge',
+          mechanic: "Duty's Edge",
           description: 'Big line stack'
         },
         {

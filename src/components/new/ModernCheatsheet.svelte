@@ -1298,10 +1298,10 @@
         {/if}
       {/snippet}
 
-      <header
-        class="flex flex-col px-4 border-b border-surface-700 bg-surface-900/50 shrink-0"
-      >
-        <div class={`flex justify-between items-center gap-4 ${isMobile.current ? 'h-12' : 'h-14'}`}>
+      <header class="flex flex-col px-4 border-b border-surface-700 bg-surface-900/50 shrink-0">
+        <div
+          class={`flex justify-between items-center gap-4 ${isMobile.current ? 'h-12' : 'h-14'}`}
+        >
           <div class="flex items-center gap-2 min-w-0 flex-1">
             {#if !sidebarOpen}
               <button

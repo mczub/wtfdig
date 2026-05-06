@@ -1,9 +1,5 @@
 import type { Strat, FightConfig, MechanicStrat } from '$lib/types';
-import {
-  getCircleMaskUrl,
-  getMultiCircleMaskUrl,
-  getRectMaskUrl
-} from '$lib/utils';
+import { getCircleMaskUrl, getMultiCircleMaskUrl, getRectMaskUrl } from '$lib/utils';
 
 // ============================================================
 // Fight Config
@@ -21,7 +17,7 @@ export const ex1FightConfig: FightConfig = {
       badges: [{ text: 'NA', class: 'na-badge' }]
     }
   },
-  defaultStratName: 'hector',
+  defaultStratName: 'hector'
 };
 
 export const hector: Strat = {
@@ -71,7 +67,8 @@ export const hector: Strat = {
         },
         {
           mechanic: 'Dodge',
-          description: 'After 2 lines fire, cross to opposite side of arrow\nAfter 2 explosions, sit at top of arrow\nWait there for the rest',
+          description:
+            'After 2 lines fire, cross to opposite side of arrow\nAfter 2 explosions, sit at top of arrow\nWait there for the rest',
           imageUrl: './ex1/hector-spikesicle-4.webp'
         }
       ]
@@ -91,19 +88,21 @@ export const hector: Strat = {
         },
         {
           mechanic: 'Mountain Fire',
-          description: 'MT/OT alternate every soak (6 swaps)\nVuln + DoT — invuln cheese kills you (DoT outlasts)\n1st tower North — party hides directly behind tank\nBoss randomly shifts L/R after each — adjust behind tank from boss',
+          description:
+            'MT/OT alternate every soak (6 swaps)\nVuln + DoT — invuln cheese kills you (DoT outlasts)\n1st tower North — party hides directly behind tank\nBoss randomly shifts L/R after each — adjust behind tank from boss',
           imageUrl: './ex1/hector-mountain-fire.webp'
         },
         {
           mechanic: 'Scourge of Fire',
-          description: 'Party stack w/ fire puddles\nLight parties go C/D, walk forward each hit\nMove off final puddle',
+          description:
+            'Party stack w/ fire puddles\nLight parties go C/D, walk forward each hit\nMove off final puddle',
           imageUrl: './ex1/hector-calamitys-inferno.webp'
         },
         {
           mechanic: 'Scourge of Thunder',
           description: 'Thunder spread on every player\nLoose YOLO spread',
           imageUrl: './ex1/hector-calamitys-bolt.webp'
-        },
+        }
       ]
     },
     {
@@ -113,7 +112,7 @@ export const hector: Strat = {
           mechanic: 'Calamitous Cry',
           description: 'G1 Left, G2 Right\nStacks are wild charges, tanks in front',
           imageUrl: './ex1/hector-calamitous-cry.webp'
-        },
+        }
       ]
     },
     {
@@ -121,7 +120,8 @@ export const hector: Strat = {
       mechs: [
         {
           mechanic: 'Fire Stacks',
-          description: 'Single hit light party stacks\nAll players should be either floating or on the ground',
+          description:
+            'Single hit light party stacks\nAll players should be either floating or on the ground',
           imageUrl: './ex1/hector-lightning-fire.webp'
         },
         {
@@ -153,7 +153,7 @@ export const hector: Strat = {
           mechanic: 'Knockback Tower',
           description: 'Everyone pop KBI and ignore KB\nBoth tanks soak tower',
           imageUrl: './ex1/hector-ruinfall.webp'
-        },
+        }
       ]
     },
     {
@@ -171,7 +171,8 @@ export const hector: Strat = {
         },
         {
           mechanic: 'Northern Cross',
-          description: 'Find the North ice star AoE\nDodge to the opposite side\nSafe spot is inline with 1 and 4 waymarks',
+          description:
+            'Find the North ice star AoE\nDodge to the opposite side\nSafe spot is inline with 1 and 4 waymarks',
           imageUrl: './ex1/hector-ice-cross.webp'
         },
         {
@@ -181,7 +182,8 @@ export const hector: Strat = {
         },
         {
           mechanic: 'Spikesicle',
-          description: 'Same Spikesicle dodge as before with avalanche\nIf avalanche is north, adjust slightly left',
+          description:
+            'Same Spikesicle dodge as before with avalanche\nIf avalanche is north, adjust slightly left',
           imageUrl: './ex1/hector-ice-spike.webp'
         },
         {
