@@ -785,7 +785,7 @@ export const ex7FightConfig: FightConfig = {
       mechName: 'Store Stack/Spread',
       mechType: 'StoredMechanic',
       mechTag: 'pre',
-      startTimeMs: 9000
+      startTimeMs: 9000,
     },
     {
       mechName: 'Express (KB)',
