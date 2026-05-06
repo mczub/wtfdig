@@ -33,27 +33,311 @@ export const hector: Strat = {
       mechs: [
         {
           mechanic: 'Light Parties',
-          description: '',
-          imageUrl: './ex1/hector-setup-1.webp'
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'West',
+              imageUrl: './ex1/hector-setup-1.webp',
+              mask: getCircleMaskUrl(45, 78, 7)
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'East',
+              imageUrl: './ex1/hector-setup-1.webp',
+              mask: getCircleMaskUrl(57.5, 78, 7)
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'West',
+              imageUrl: './ex1/hector-setup-1.webp',
+              mask: getCircleMaskUrl(45, 78, 7)
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'East',
+              imageUrl: './ex1/hector-setup-1.webp',
+              mask: getCircleMaskUrl(57.5, 78, 7)
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'West',
+              imageUrl: './ex1/hector-setup-1.webp',
+              mask: getCircleMaskUrl(45, 78, 7)
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'East',
+              imageUrl: './ex1/hector-setup-1.webp',
+              mask: getCircleMaskUrl(57.5, 78, 7)
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'West',
+              imageUrl: './ex1/hector-setup-1.webp',
+              mask: getCircleMaskUrl(45, 78, 7)
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'East',
+              imageUrl: './ex1/hector-setup-1.webp',
+              mask: getCircleMaskUrl(57.5, 78, 7)
+            }
+          ]
         },
         {
           mechanic: 'Partners (Out)',
           description: 'Tell: Valigarmanda gathers its strength...',
-          imageUrl: './ex1/hector-setup-2.webp'
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'Center West w/ M1',
+              imageUrl: './ex1/hector-setup-2.webp',
+              mask: getCircleMaskUrl(44, 84, 6)
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'Center East w/ M2',
+              imageUrl: './ex1/hector-setup-2.webp',
+              mask: getCircleMaskUrl(57, 84, 6)
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'Far West w/ R1',
+              imageUrl: './ex1/hector-setup-2.webp',
+              mask: getCircleMaskUrl(26, 76, 6)
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'Far East w/ R2',
+              imageUrl: './ex1/hector-setup-2.webp',
+              mask: getCircleMaskUrl(74, 77, 6)
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'Center West w/ MT',
+              imageUrl: './ex1/hector-setup-2.webp',
+              mask: getCircleMaskUrl(44, 84, 6)
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'Center East w/ OT',
+              imageUrl: './ex1/hector-setup-2.webp',
+              mask: getCircleMaskUrl(57, 84, 6)
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'Far West w/ H1',
+              imageUrl: './ex1/hector-setup-2.webp',
+              mask: getCircleMaskUrl(26, 76, 6)
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'Far East w/ H2',
+              imageUrl: './ex1/hector-setup-2.webp',
+              mask: getCircleMaskUrl(74, 77, 6)
+            }
+          ]
         },
         {
           mechanic: 'Partners (Cone)',
           description: `Tell: Blinding energies build within Valigarmanda's wide-open beak...`,
-          imageUrl: './ex1/hector-setup-3.webp'
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'Northwest w/ M1',
+              imageUrl: './ex1/hector-setup-3.webp',
+              mask: getCircleMaskUrl(31, 20, 6)
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'Northeast w/ M2',
+              imageUrl: './ex1/hector-setup-3.webp',
+              mask: getCircleMaskUrl(72, 20, 6)
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'West w/ R1',
+              imageUrl: './ex1/hector-setup-3.webp',
+              mask: getCircleMaskUrl(23, 35, 6)
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'East w/ R2',
+              imageUrl: './ex1/hector-setup-3.webp',
+              mask: getCircleMaskUrl(81, 37, 6)
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'Northwest w/ MT',
+              imageUrl: './ex1/hector-setup-3.webp',
+              mask: getCircleMaskUrl(31, 20, 6)
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'Northeast w/ OT',
+              imageUrl: './ex1/hector-setup-3.webp',
+              mask: getCircleMaskUrl(72, 20, 6)
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'West w/ H1',
+              imageUrl: './ex1/hector-setup-3.webp',
+              mask: getCircleMaskUrl(23, 35, 6)
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'East w/ H2',
+              imageUrl: './ex1/hector-setup-3.webp',
+              mask: getCircleMaskUrl(81, 37, 6)
+            }
+          ]
         },
         {
           mechanic: 'Partners (Donut)',
           description: 'Tell: A tempestuous wind surrounds Valigarmanda...',
-          imageUrl: './ex1/hector-setup-4.webp'
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'Northwest w/ M1',
+              imageUrl: './ex1/hector-setup-4.webp',
+              mask: getCircleMaskUrl(44.7, 51.7, 6)
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'Northeast w/ M2',
+              imageUrl: './ex1/hector-setup-4.webp',
+              mask: getCircleMaskUrl(57.5, 51.7, 6)
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'Southwest w/ R1',
+              imageUrl: './ex1/hector-setup-4.webp',
+              mask: getCircleMaskUrl(44.5, 76.6, 6)
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'Southeast w/ R2',
+              imageUrl: './ex1/hector-setup-4.webp',
+              mask: getCircleMaskUrl(57.5, 76.6, 6)
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'Northwest w/ MT',
+              imageUrl: './ex1/hector-setup-4.webp',
+              mask: getCircleMaskUrl(44.7, 51.7, 6)
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'Northeast w/ OT',
+              imageUrl: './ex1/hector-setup-4.webp',
+              mask: getCircleMaskUrl(57.5, 51.7, 6)
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'Southwest w/ H1',
+              imageUrl: './ex1/hector-setup-4.webp',
+              mask: getCircleMaskUrl(44.5, 76.6, 6)
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'Southeast w/ H2',
+              imageUrl: './ex1/hector-setup-4.webp',
+              mask: getCircleMaskUrl(57.5, 76.6, 6)
+            }
+          ]
         },
         {
           mechanic: 'Spreads',
-          imageUrl: './ex1/hector-setup-5.webp'
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'Far Northwest',
+              imageUrl: './ex1/hector-setup-5.webp',
+              mask: getCircleMaskUrl(26.4, 26.2, 4)
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'Far Northeast',
+              imageUrl: './ex1/hector-setup-5.webp',
+              mask: getCircleMaskUrl(76.2, 26.2, 4)
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'Inner Southwest',
+              imageUrl: './ex1/hector-setup-5.webp',
+              mask: getCircleMaskUrl(44.2, 60.4, 4)
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'Inner Southeast',
+              imageUrl: './ex1/hector-setup-5.webp',
+              mask: getCircleMaskUrl(59, 60.4, 4)
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'Inner Northwest',
+              imageUrl: './ex1/hector-setup-5.webp',
+              mask: getCircleMaskUrl(43.8, 26.2, 4)
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'Inner Northeast',
+              imageUrl: './ex1/hector-setup-5.webp',
+              mask: getCircleMaskUrl(59.1, 26.2, 4)
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'Far Southwest',
+              imageUrl: './ex1/hector-setup-5.webp',
+              mask: getCircleMaskUrl(24.6, 60.5, 4)
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'Far Southeast',
+              imageUrl: './ex1/hector-setup-5.webp',
+              mask: getCircleMaskUrl(76.2, 59.3, 4)
+            }
+          ]
         }
       ]
     },

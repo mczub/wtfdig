@@ -13,7 +13,8 @@ export const ex2FightConfig: FightConfig = {
   cheatsheetTitle: 'EX2 Cheatsheet',
   strats: {
     conga: {
-      label: 'Conga/Hector'
+      label: 'Conga/Hector',
+      badges: [{ text: 'NA', class: 'na-badge' }]
     }
   },
   defaultStratName: 'conga',
@@ -79,7 +80,7 @@ export const conga: Strat = {
   description: '',
   stratUrl: {
     'Video by Hector Hectorson': 'https://www.youtube.com/watch?v=Du3QNaUkIt0',
-    'Conga Turmoil Raidplan': 'https://raidplan.io/plan/kOzWlEJdezZxbmL9',
+    'Projection of Turmoil braindead Raidplan': 'https://raidplan.io/plan/kOzWlEJdezZxbmL9',
     'Icy Veins Guide': 'https://www.icy-veins.com/ffxiv/everkeep-extreme-trial-guide'
   },
   strats: [
@@ -88,15 +89,186 @@ export const conga: Strat = {
       mechs: [
         {
           mechanic: 'Light Parties',
-          imageUrl: './ex1/hector-setup-1.webp'
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'LP1: MT + M1 + R1 + H1',
+              imageUrl: './ex2/setup-partners.webp',
+              mask: getCircleMaskUrl(45.4, 78.7, 7)
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'LP2: OT + M2 + R2 + H2',
+              imageUrl: './ex2/setup-partners.webp',
+              mask: getCircleMaskUrl(55.8, 78, 7)
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'LP1: H1 + MT + M1 + R1',
+              imageUrl: './ex2/setup-partners.webp',
+              mask: getCircleMaskUrl(45.4, 78.7, 7)
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'LP2: H2 + OT + M2 + R2',
+              imageUrl: './ex2/setup-partners.webp',
+              mask: getCircleMaskUrl(55.8, 78, 7)
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'LP1: M1 + MT + R1 + H1',
+              imageUrl: './ex2/setup-partners.webp',
+              mask: getCircleMaskUrl(45.4, 78.7, 7)
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'LP2: M2 + OT + R2 + H2',
+              imageUrl: './ex2/setup-partners.webp',
+              mask: getCircleMaskUrl(55.8, 78, 7)
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'LP1: R1 + MT + M1 + H1',
+              imageUrl: './ex2/setup-partners.webp',
+              mask: getCircleMaskUrl(45.4, 78.7, 7)
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'LP2: R2 + OT + M2 + H2',
+              imageUrl: './ex2/setup-partners.webp',
+              mask: getCircleMaskUrl(55.8, 78, 7)
+            }
+          ]
         },
         {
           mechanic: 'Partners (HTTH/RMMR)',
-          imageUrl: './ex1/hector-setup-2.webp'
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'MT pair w/ M1',
+              imageUrl: './ex2/setup-htth.webp',
+              mask: getCircleMaskUrl(52.3, 45.2, 6)
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'OT pair w/ M2',
+              imageUrl: './ex2/setup-htth.webp',
+              mask: getCircleMaskUrl(52.3, 54.6, 6)
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'H1 pair w/ R1',
+              imageUrl: './ex2/setup-htth.webp',
+              mask: getCircleMaskUrl(52.3, 35.9, 6)
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'H2 pair w/ R2',
+              imageUrl: './ex2/setup-htth.webp',
+              mask: getCircleMaskUrl(52.3, 63.9, 6)
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'M1 pair w/ MT',
+              imageUrl: './ex2/setup-htth.webp',
+              mask: getCircleMaskUrl(52.3, 45.2, 6)
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'M2 pair w/ OT',
+              imageUrl: './ex2/setup-htth.webp',
+              mask: getCircleMaskUrl(52.3, 54.6, 6)
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'R1 pair w/ H1',
+              imageUrl: './ex2/setup-htth.webp',
+              mask: getCircleMaskUrl(52.3, 35.9, 6)
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'R2 pair w/ H2',
+              imageUrl: './ex2/setup-htth.webp',
+              mask: getCircleMaskUrl(52.3, 63.9, 6)
+            }
+          ]
         },
         {
           mechanic: 'Conga',
-          imageUrl: './ex1/hector-setup-3.webp'
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'MT — top-left corner',
+              imageUrl: './ex2/conga-setup.webp',
+              mask: getCircleMaskUrl(45.8, 12.8, 4)
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'OT — top-right corner',
+              imageUrl: './ex2/conga-setup.webp',
+              mask: getCircleMaskUrl(56.6, 12.8, 4)
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: '2nd in line',
+              imageUrl: './ex2/conga-setup.webp',
+              mask: getCircleMaskUrl(51.3, 24.0, 4)
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: '3rd in line',
+              imageUrl: './ex2/conga-setup.webp',
+              mask: getCircleMaskUrl(51.2, 35.4, 4)
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: '4th in line',
+              imageUrl: './ex2/conga-setup.webp',
+              mask: getCircleMaskUrl(51.2, 46.9, 4)
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: '5th in line',
+              imageUrl: './ex2/conga-setup.webp',
+              mask: getCircleMaskUrl(51.2, 57.9, 4)
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: '6th in line',
+              imageUrl: './ex2/conga-setup.webp',
+              mask: getCircleMaskUrl(51.3, 69.8, 4)
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'Last in line',
+              imageUrl: './ex2/conga-setup.webp',
+              mask: getCircleMaskUrl(51.2, 80.4, 4)
+            }
+          ]
         }
       ]
     },
@@ -133,12 +305,11 @@ export const conga: Strat = {
           mechanic: 'Vollok + Sync + Half Full',
           description:
             'Sword patterns spawn on 4 outer platforms\nBoss picks 2, swords project onto main platform\nBoss does half-room cleave simultaneously',
-          imageUrl: './ex2/vollok-p1.webp'
+          imageUrl: './ex2/half-full-platform.webp'
         },
         {
           mechanic: 'Greater Gateway',
           description: 'Fire = expands to 3 lanes\nWind = 2-square knockback from lane',
-          imageUrl: './ex2/greater-gateway.webp'
         },
         {
           mechanic: 'Forged Track',
@@ -178,58 +349,58 @@ export const conga: Strat = {
             {
               role: 'Tank',
               party: 1,
-              description: 'MT — north position\nTake 1st wall hit solo with heavy mit',
-              imageUrl: './ex2/conga-setup.webp',
-              mask: getCircleMaskUrl(61.9, 2.2, 5)
+              description: 'MT — top-left corner\nTake 1st wall hit solo with heavy mit',
+              imageUrl: './ex2/projection-of-turmoil-conga.webp',
+              mask: getCircleMaskUrl(45.8, 12.8, 4)
             },
             {
               role: 'Tank',
               party: 2,
-              description: 'OT — east position\nTake your wall hit solo with personal mit',
-              imageUrl: './ex2/conga-setup.webp',
-              mask: getCircleMaskUrl(92.3, 22.7, 5)
+              description: 'OT — top-right corner\nTake your wall hit solo with personal mit',
+              imageUrl: './ex2/projection-of-turmoil-conga.webp',
+              mask: getCircleMaskUrl(56.3, 12.8, 4)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Stack with tank after their solo hit\nFollow line after your hit',
-              imageUrl: './ex2/conga-setup.webp',
-              mask: getCircleMaskUrl(67.6, 23.7, 5)
+              imageUrl: './ex2/projection-of-turmoil-conga.webp',
+              mask: getCircleMaskUrl(51.6, 24.0, 4)
             },
             {
               role: 'Melee',
               party: 2,
               description: '2nd in line behind M1\nFollow line after your hit',
-              imageUrl: './ex2/conga-setup.webp',
-              mask: getCircleMaskUrl(57.3, 34.8, 5)
+              imageUrl: './ex2/projection-of-turmoil-conga.webp',
+              mask: getCircleMaskUrl(51.5, 35.0, 4)
             },
             {
               role: 'Healer',
               party: 1,
               description: '3rd in line\nFollow line after your hit',
-              imageUrl: './ex2/conga-setup.webp',
-              mask: getCircleMaskUrl(48.7, 47.4, 5)
+              imageUrl: './ex2/projection-of-turmoil-conga.webp',
+              mask: getCircleMaskUrl(51.2, 46.7, 4)
             },
             {
               role: 'Healer',
               party: 2,
               description: '4th in line\nFollow line after your hit',
-              imageUrl: './ex2/conga-setup.webp',
-              mask: getCircleMaskUrl(38.4, 58.5, 5)
+              imageUrl: './ex2/projection-of-turmoil-conga.webp',
+              mask: getCircleMaskUrl(51.2, 58.3, 4)
             },
             {
               role: 'Ranged',
               party: 1,
               description: '5th in line\nFollow line after your hit',
-              imageUrl: './ex2/conga-setup.webp',
-              mask: getCircleMaskUrl(28.9, 69.4, 5)
+              imageUrl: './ex2/projection-of-turmoil-conga.webp',
+              mask: getCircleMaskUrl(51.3, 70.0, 4)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Last in line, can plant',
-              imageUrl: './ex2/conga-setup.webp',
-              mask: getCircleMaskUrl(21.0, 79.7, 5)
+              imageUrl: './ex2/projection-of-turmoil-conga.webp',
+              mask: getCircleMaskUrl(51.2, 81.6, 4)
             }
           ]
         }
@@ -242,7 +413,64 @@ export const conga: Strat = {
           mechanic: 'Drum of Vollok',
           description:
             '2-person stacks on 4 players\nKnocks back partner to other platform\nLine up HTTH/RMMR',
-          imageUrl: './ex2/drum-of-vollok.webp'
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'MT pair w/ M1\nKnocks M1 across to other platform',
+              imageUrl: './ex2/drum-of-vollok.webp',
+              mask: getCircleMaskUrl(35.5, 45.8, 6)
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'OT pair w/ M2\nKnocks M2 across to other platform',
+              imageUrl: './ex2/drum-of-vollok.webp',
+              mask: getCircleMaskUrl(35.9, 55.1, 6)
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'H1 pair w/ R1\nKnocks R1 across to other platform',
+              imageUrl: './ex2/drum-of-vollok.webp',
+              mask: getCircleMaskUrl(35.6, 35.9, 6)
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'H2 pair w/ R2\nKnocks R2 across to other platform',
+              imageUrl: './ex2/drum-of-vollok.webp',
+              mask: getCircleMaskUrl(35.6, 64.2, 6)
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'M1 pair w/ MT\nGet knocked across to other platform',
+              imageUrl: './ex2/drum-of-vollok.webp',
+              mask: getCircleMaskUrl(35.5, 45.8, 6)
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'M2 pair w/ OT\nGet knocked across to other platform',
+              imageUrl: './ex2/drum-of-vollok.webp',
+              mask: getCircleMaskUrl(35.9, 55.1, 6)
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'R1 pair w/ H1\nGet knocked across to other platform',
+              imageUrl: './ex2/drum-of-vollok.webp',
+              mask: getCircleMaskUrl(35.6, 35.9, 6)
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'R2 pair w/ H2\nGet knocked across to other platform',
+              imageUrl: './ex2/drum-of-vollok.webp',
+              mask: getCircleMaskUrl(35.6, 64.2, 6)
+            }
+          ]
         },
         {
           mechanic: 'Vollok',
@@ -251,7 +479,8 @@ export const conga: Strat = {
         },
         {
           mechanic: 'Sync + Pyramids',
-          description: 'Swords and yellow pyramids project onto other platform'
+          description: 'Swords and yellow pyramids project onto other platform',
+          imageUrl: './ex2/sync-pyramids.webp'
         },
         {
           mechanic: 'Half + Tornado',
@@ -276,23 +505,13 @@ export const conga: Strat = {
         },
         {
           mechanic: 'Regicidal Rage',
-          description: 'Party stacks behind boss, tanks grab tethers'
+          description: 'Party stacks behind boss, tanks grab tethers',
+          imageUrl: './ex2/regicidal-rage-p3.webp'
         },
         {
           mechanic: 'Projection of Turmoil',
-          description: 'Same conga as before\nDodge half-room cleaves'
-        },
-        {
-          mechanic: 'Vollok + Pyramids',
-          description: 'Same as Phase 1 platforms'
-        },
-        {
-          mechanic: "Duty's Edge",
-          description: 'Big line stack'
-        },
-        {
-          mechanic: 'Greater Gateway',
-          description: 'Same as Phase 1 platforms'
+          description: 'Same conga as before\nDodge half-room cleaves',
+          imageUrl: './ex2/turmoil-half-full.webp'
         },
         {
           mechanic: 'Enrage',
