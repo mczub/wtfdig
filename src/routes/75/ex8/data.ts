@@ -634,74 +634,74 @@ export const ex8FightConfig: FightConfig = {
       startTimeMs: 14000,
     },
     {
-      mechName: 'Naught Grows (Dodge AoEs)',
+      mechName: 'Naught Grows',
       mechType: 'Mechanic',
       mechTag: 'pre',
       startTimeMs: 29000,
     },
     {
-      mechName: 'Return to Nothing (Stack/LP Wild Charges)',
+      mechName: 'Return to Nothing (Orbs)',
       mechType: 'Mechanic',
       mechTag: 'pre',
       startTimeMs: 31000,
     },
     {
-      mechName: 'Meltdown: Baits Set',
+      mechName: 'Meltdown Snapshot',
       mechType: 'StoredMechanic',
       mechTag: 'pre',
       startTimeMs: 48000
     },
     {
-      mechName: 'Meltdown: Baited AoEs',
+      mechName: 'Meltdown Puddles',
       mechType: 'Mechanic',
       mechTag: 'pre',
       startTimeMs: 47000
     },
     {
-      mechName: 'Meltdown: Spreads',
+      mechName: 'Meltdown Spreads',
       mechType: 'Mechanic',
       mechTag: 'pre',
       startTimeMs: 50000
     },
     {
-      mechName: 'Airy/Dense Emptiness (Pairs/LPs)',
+      mechName: 'Airy/Dense Emptiness',
       mechType: 'Mechanic',
       mechTag: 'pre',
       startTimeMs: 57000
     },
     {
-      mechName: 'Naught Grows (Dodge AoEs)',
+      mechName: 'Naught Grows',
       mechType: 'Mechanic',
       mechTag: 'pre',
       startTimeMs: 58000
     },
     {
-      mechName: 'Return to Nothing (Stack/LP Wild Charges)',
+      mechName: 'Return to Nothing (Orbs)',
       mechType: 'Mechanic',
       mechTag: 'pre',
       startTimeMs: 59000,
     },
     {
-      mechName: 'Gaze of the Void: Cones Begin',
+      mechName: 'Gaze of the Void Cones',
       mechType: 'Mechanic',
       mechTag: 'pre',
       startTimeMs: 84000
     },
     {
-      mechName: 'Gaze of the Void: Clocks Appear',
+      mechName: 'Gaze of the Void Clocks',
       mechType: 'StoredMechanic',
       mechTag: 'pre',
       startTimeMs: 90000
     },
     {
-      mechName: 'Gaze of the Void: Yellow Clocks Detonate',
-      mechType: 'Enrage',
+      mechName: 'Gaze of the Void: Yellow Detonate',
+      mechType: 'Raidwide',
       mechTag: 'pre',
       startTimeMs: 98000
     },
     {
-      mechName: 'Gaze of the Void: Purple Clocks Detonate',
-      mechType: 'Enrage',
+      mechName: 'Gaze of the Void: Purple Detonate',
+      mechType: 'Raidwide',
       mechTag: 'pre',
       startTimeMs: 106000
     },
@@ -718,13 +718,13 @@ export const ex8FightConfig: FightConfig = {
       startTimeMs: 117000
     },
     {
-      mechName: 'Airy/Dense Emptiness (Pairs/LPs)',
+      mechName: 'Airy/Dense Emptiness',
       mechType: 'Mechanic',
       mechTag: 'pre',
       startTimeMs: 122000
     },
     {
-      mechName: 'Deep Freeze (Ice Flares)',
+      mechName: 'Deep Freeze',
       mechType: 'Tankbuster',
       mechTag: 'pre',
       startTimeMs: 133000
@@ -742,85 +742,79 @@ export const ex8FightConfig: FightConfig = {
       startTimeMs: 154000
     },
     {
-      mechName: 'Power of the Void: 0',
-      mechType: 'Enrage',
-      mechTag: 'pre',
-      startTimeMs: 179000,
-    },
-    {
-      mechName: 'Looming Shadow: Knockback',
+      mechName: 'Looming Shadow KB',
       mechType: 'Mechanic',
       mechTag: 'pre',
       startTimeMs: 177000
     },
     {
-      mechName: 'Looming Shadow: Targetable',
-      mechType: 'Start',
+      mechName: 'Looming Shadow Targetable',
+      mechType: 'Mechanic',
       mechTag: 'pre',
       startTimeMs: 177000
     },
     {
-      mechName: 'Voidal Turbulence + Empty Shadow (Towers/Proteans)',
+      mechName: 'First Towers',
       mechType: 'Mechanic',
       mechTag: 'pre',
       startTimeMs: 184000
     },
     {
-      mechName: 'Protecting/Soothing/Aggressive Shadows: Targetable',
+      mechName: 'First Adds Targetable',
       mechType: 'Start',
       mechTag: 'pre',
       startTimeMs: 186000
     },
     {
-      mechName: 'Soothing Shadows: Curse of the Eye',
+      mechName: 'Debuff (Healers)',
       mechType: 'Mechanic',
       mechTag: 'pre',
       startTimeMs: 187000
     },
     {
-      mechName: 'Protecting Shadows: Drain Touch',
+      mechName: 'Drain Touch (Tank)',
       mechType: 'Mechanic',
       mechTag: 'pre',
       startTimeMs: 189000
     },
     {
-      mechName: 'Aggressive Shadows: Demon Eye',
+      mechName: 'Gaze (DPS)',
       mechType: 'Mechanic',
       mechTag: 'pre',
       startTimeMs: 191000
     },
     {
-      mechName: 'Voidal Turbulence + Empty Shadow (Towers/Proteans)',
+      mechName: 'Second Towers',
       mechType: 'Mechanic',
       mechTag: 'pre',
       startTimeMs: 215000
     },
     {
-      mechName: 'Protecting/Soothing/Aggressive Shadows: Targetable',
+      mechName: 'Second Adds Targetable',
       mechType: 'Start',
       mechTag: 'pre',
       startTimeMs: 219000
     },
     {
-      mechName: 'Soothing Shadows: Curse of the Eye',
+      mechName: 'Debuff (Healers)',
       mechType: 'Mechanic',
       mechTag: 'pre',
       startTimeMs: 220000
     },
     {
-      mechName: 'Protecting Shadows: Drain Touch',
+      mechName: 'Drain Touch (Tank)',
       mechType: 'Mechanic',
       mechTag: 'pre',
       startTimeMs: 222000
     },
     {
-      mechName: 'Aggressive Shadows: Demon Eye',
+      mechName: 'Gaze (DPS)',
       mechType: 'Mechanic',
       mechTag: 'pre',
       startTimeMs: 224000
     },
     {
-      mechName: 'Power of the Void: 100',
+      mechName: 'Adds Phase Enrage',
       mechType: 'Enrage',
       mechTag: 'pre',
       startTimeMs: 289000,
@@ -844,25 +838,25 @@ export const ex8FightConfig: FightConfig = {
       startTimeMs: 25000
     },
     {
-      mechName: 'Naught Grows (Dodge AoEs)',
+      mechName: 'Naught Grows',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 38000,
     },
     {
-      mechName: 'Return to Nothing (Stack/LP Wild Charges)',
+      mechName: 'Return to Nothing (Orbs)',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 40000,
     },
     {
-      mechName: 'Naught Wakes: First Lines',
+      mechName: 'Naught Wakes First Lines',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 55000,
     },
     {
-      mechName: 'Naught Wakes: Second Lines',
+      mechName: 'Naught Wakes Second Lines',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 66000,
@@ -874,19 +868,19 @@ export const ex8FightConfig: FightConfig = {
       startTimeMs: 72000,
     },
     {
-      mechName: 'Naught Grows (Dodge AoEs)',
+      mechName: 'Naught Grows',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 87000,
     },
     {
-      mechName: 'Return to Nothing (Stack/LP Wild Charges)',
+      mechName: 'Return to Nothing (Orbs)',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 89000,
     },
     {
-      mechName: 'Dimension Zero (Line Stack)',
+      mechName: 'Dimension Zero',
       mechType: 'Raidwide',
       mechTag: 'post',
       startTimeMs: 99000,
@@ -898,7 +892,7 @@ export const ex8FightConfig: FightConfig = {
       startTimeMs: 117000
     },
     {
-      mechName: 'Meltdown: Baits Set',
+      mechName: 'Meltdown Snapshot',
       mechType: 'StoredMechanic',
       mechTag: 'post',
       startTimeMs: 118000
@@ -910,38 +904,38 @@ export const ex8FightConfig: FightConfig = {
       startTimeMs: 120000
     },
     {
-      mechName: 'Meltdown: Baited AoEs',
+      mechName: 'Meltdown Puddles',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 122000
     },
     {
-      mechName: 'Meltdown: Spostads',
+      mechName: 'Meltdown Spreads',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 124000
     },
     {
-      mechName: 'Gaze of the Void: Cones Begin',
+      mechName: 'Gaze of the Void Cones',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 137000
     },
     {
-      mechName: 'Gaze of the Void: Clocks Appear',
+      mechName: 'Gaze of the Void Clocks',
       mechType: 'StoredMechanic',
       mechTag: 'post',
       startTimeMs: 143000
     },
     {
-      mechName: 'Gaze of the Void: Yellow Clocks Detonate',
-      mechType: 'Enrage',
+      mechName: 'Gaze of the Void: Yellow Detonate',
+      mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 151000
     },
     {
-      mechName: 'Gaze of the Void: Purple Clocks Detonate',
-      mechType: 'Enrage',
+      mechName: 'Gaze of the Void: Purple Detonate',
+      mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 157000
     },
@@ -952,91 +946,79 @@ export const ex8FightConfig: FightConfig = {
       startTimeMs: 170000
     },
     {
-      mechName: 'Naught Hunts: First Tethers Mark posty',
+      mechName: 'Naught Hunts 1 Start',
       mechType: 'StoredMechanic',
       mechTag: 'post',
       startTimeMs: 184000
     },
     {
-      mechName: 'Naught Wakes: First Lines',
+      mechName: 'Naught Wakes (Middle)',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 189000
     },
     {
-      mechName: 'Naught Hunts: First Tethers Activate',
+      mechName: 'Naught Hunts 1 First Tethers',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 189000
     },
     {
-      mechName: 'Naught Hunts: Second Tethers Mark posty',
-      mechType: 'StoredMechanic',
-      mechTag: 'post',
-      startTimeMs: 193000
-    },
-    {
-      mechName: 'Naught Hunts: Second Tethers Activate',
+      mechName: 'Naught Hunts 1 Second Tethers',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 199000
     },
     {
-      mechName: 'Naught Wakes: Second Lines',
+      mechName: 'Naught Wakes (Card or Inter)',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 210000
     },
     {
-      mechName: 'Airy/Dense Emptiness (Pairs/LPs)',
+      mechName: 'Airy/Dense Emptiness',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 216000
     },
     {
-      mechName: 'Naught Hunts: First Tethers Mark posty',
+      mechName: 'Naught Hunts 2 Start',
       mechType: 'StoredMechanic',
       mechTag: 'post',
       startTimeMs: 224000
     },
     {
-      mechName: 'Naught Wakes: First Lines',
+      mechName: 'Naught Wakes (Middle)',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 229000
     },
     {
-      mechName: 'Naught Hunts: First Tethers Activate',
+      mechName: 'Naught Hunts 2 First Tethers',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 229000
     },
     {
-      mechName: 'Naught Hunts: Second Tethers Mark posty',
-      mechType: 'StoredMechanic',
-      mechTag: 'post',
-      startTimeMs: 233000
-    },
-    {
-      mechName: 'Naught Hunts: Second Tethers Activate',
+      mechName: 'Naught Hunts 2 Second Tethers',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 239000
     },
     {
-      mechName: 'Naught Wakes: Second Lines',
+      mechName: 'Naught Wakes (Card or Inter)',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 250000
     },
     {
-      mechName: 'Airy/Dense Emptiness (Pairs/LPs)',
+      mechName: 'Airy/Dense Emptiness',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 256000
     },
     {
-      mechName: 'Dimension Zero (Line Stack)',
+      mechName: 'Dimension Zero',
       mechType: 'Raidwide',
       mechTag: 'post',
       startTimeMs: 265000
@@ -1048,49 +1030,49 @@ export const ex8FightConfig: FightConfig = {
       startTimeMs: 280000
     },
     {
-      mechName: 'Naught Grows (Dodge AoEs)',
+      mechName: 'Naught Grows',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 293000,
     },
     {
-      mechName: 'Return to Nothing (Stack/LP Wild Charges)',
+      mechName: 'Return to Nothing (Orbs)',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 295000,
     },
     {
-      mechName: 'Naught Wakes: First Lines',
+      mechName: 'Naught Wakes (First)',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 310000,
     },
     {
-      mechName: 'Naught Wakes: Second Lines',
+      mechName: 'Naught Wakes (Second)',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 321000,
     },
     {
-      mechName: 'Deep Freeze (Ice Flares)',
+      mechName: 'Deep Freeze',
       mechType: 'Tankbuster',
       mechTag: 'post',
       startTimeMs: 327000
     },
     {
-      mechName: 'Naught Grows (Dodge AoEs)',
+      mechName: 'Naught Grows',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 341000,
     },
     {
-      mechName: 'Return to Nothing (Stack/LP Wild Charges)',
+      mechName: 'Return to Nothing (Orbs)',
       mechType: 'Mechanic',
       mechTag: 'post',
       startTimeMs: 343000,
     },
     {
-      mechName: 'Dimension Zero (Line Stack)',
+      mechName: 'Dimension Zero',
       mechType: 'Raidwide',
       mechTag: 'post',
       startTimeMs: 353000

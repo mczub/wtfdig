@@ -1269,7 +1269,7 @@ export const ex7FightConfig: FightConfig = {
     }
   ],
   splitTimeline: true,
-  useEvenTimelineSpacing: true
+  useEvenTimelineSpacing: false
 };
 
 export const hector: Strat = {

@@ -394,7 +394,7 @@
     const positions = new Map<number, string>();
     const needsScroll = timelineNeedsScroll;
 
-    if (!splitPhases) {
+    if (!splitPhases || useEvenTimelineSpacingProp) {
       items.forEach((item, index) => {
         if (needsScroll) {
           const position = index * TIMELINE_ITEM_HEIGHT;
@@ -407,23 +407,36 @@
       return positions;
     }
 
-    const enrageItem = items.find((item) => item.mechType === 'Enrage');
-    const startTime = items[0]?.startTimeMs || 0;
-    const endTime =
-      enrageItem?.startTimeMs || items[items.length - 1]?.startTimeMs || startTime + 1;
+    // Build virtual times that flatten timeline segments separated by resets
+    // (e.g. ex8 post-adds restarts at 0:00 after a variable-length adds phase).
+    // Each reset bumps an offset so subsequent items render after the prior
+    // segment with a fixed gap representing the unscored interval.
+    const SEGMENT_GAP_MS = 30000;
+    const virtualTimes = new Array<number>(items.length);
+    virtualTimes[0] = items[0].startTimeMs;
+    let segmentOffset = 0;
+    for (let i = 1; i < items.length; i++) {
+      if (items[i].startTimeMs < items[i - 1].startTimeMs) {
+        segmentOffset = virtualTimes[i - 1] + SEGMENT_GAP_MS - items[i].startTimeMs;
+      }
+      virtualTimes[i] = items[i].startTimeMs + segmentOffset;
+    }
+
+    const startTime = virtualTimes[0];
+    const endTime = virtualTimes[virtualTimes.length - 1] || startTime + 1;
     const duration = endTime - startTime || 1;
 
     if (needsScroll) {
       const totalHeight = items.length * TIMELINE_ITEM_HEIGHT;
-      items.forEach((item, index) => {
-        const relativeTime = item.startTimeMs - startTime;
+      items.forEach((_, index) => {
+        const relativeTime = virtualTimes[index] - startTime;
         const position = (relativeTime / duration) * (totalHeight - TIMELINE_ITEM_HEIGHT);
         positions.set(index, `${position}px`);
       });
     } else {
       let lastPosition = 0;
-      items.forEach((item, index) => {
-        const relativeTime = item.startTimeMs - startTime;
+      items.forEach((_, index) => {
+        const relativeTime = virtualTimes[index] - startTime;
         const idealPercent = (relativeTime / duration) * 98;
         const minPercent = index === 0 ? 0 : lastPosition + timelineMinGapPercent;
         const position = Math.max(idealPercent, minPercent);
