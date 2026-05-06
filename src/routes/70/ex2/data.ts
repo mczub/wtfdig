@@ -93,56 +93,56 @@ export const conga: Strat = {
             {
               role: 'Tank',
               party: 1,
-              description: 'LP1: MT + M1 + R1 + H1',
+              description: '',
               imageUrl: './ex2/setup-partners.webp',
               mask: getCircleMaskUrl(45.4, 78.7, 7)
             },
             {
               role: 'Tank',
               party: 2,
-              description: 'LP2: OT + M2 + R2 + H2',
+              description: '',
               imageUrl: './ex2/setup-partners.webp',
               mask: getCircleMaskUrl(55.8, 78, 7)
             },
             {
               role: 'Healer',
               party: 1,
-              description: 'LP1: H1 + MT + M1 + R1',
+              description: '',
               imageUrl: './ex2/setup-partners.webp',
               mask: getCircleMaskUrl(45.4, 78.7, 7)
             },
             {
               role: 'Healer',
               party: 2,
-              description: 'LP2: H2 + OT + M2 + R2',
+              description: '',
               imageUrl: './ex2/setup-partners.webp',
               mask: getCircleMaskUrl(55.8, 78, 7)
             },
             {
               role: 'Melee',
               party: 1,
-              description: 'LP1: M1 + MT + R1 + H1',
+              description: '',
               imageUrl: './ex2/setup-partners.webp',
               mask: getCircleMaskUrl(45.4, 78.7, 7)
             },
             {
               role: 'Melee',
               party: 2,
-              description: 'LP2: M2 + OT + R2 + H2',
+              description: '',
               imageUrl: './ex2/setup-partners.webp',
               mask: getCircleMaskUrl(55.8, 78, 7)
             },
             {
               role: 'Ranged',
               party: 1,
-              description: 'LP1: R1 + MT + M1 + H1',
+              description: '',
               imageUrl: './ex2/setup-partners.webp',
               mask: getCircleMaskUrl(45.4, 78.7, 7)
             },
             {
               role: 'Ranged',
               party: 2,
-              description: 'LP2: R2 + OT + M2 + H2',
+              description: '',
               imageUrl: './ex2/setup-partners.webp',
               mask: getCircleMaskUrl(55.8, 78, 7)
             }
@@ -154,56 +154,56 @@ export const conga: Strat = {
             {
               role: 'Tank',
               party: 1,
-              description: 'MT pair w/ M1',
+              description: 'Middle North w/ M1',
               imageUrl: './ex2/setup-htth.webp',
               mask: getCircleMaskUrl(52.3, 45.2, 6)
             },
             {
               role: 'Tank',
               party: 2,
-              description: 'OT pair w/ M2',
+              description: 'Middle South w/ M2',
               imageUrl: './ex2/setup-htth.webp',
               mask: getCircleMaskUrl(52.3, 54.6, 6)
             },
             {
               role: 'Healer',
               party: 1,
-              description: 'H1 pair w/ R1',
+              description: 'North w/ R1',
               imageUrl: './ex2/setup-htth.webp',
               mask: getCircleMaskUrl(52.3, 35.9, 6)
             },
             {
               role: 'Healer',
               party: 2,
-              description: 'H2 pair w/ R2',
+              description: 'South w/ R2',
               imageUrl: './ex2/setup-htth.webp',
               mask: getCircleMaskUrl(52.3, 63.9, 6)
             },
             {
               role: 'Melee',
               party: 1,
-              description: 'M1 pair w/ MT',
+              description: 'Middle North w/ MT',
               imageUrl: './ex2/setup-htth.webp',
               mask: getCircleMaskUrl(52.3, 45.2, 6)
             },
             {
               role: 'Melee',
               party: 2,
-              description: 'M2 pair w/ OT',
+              description: 'Middle South w/ OT',
               imageUrl: './ex2/setup-htth.webp',
               mask: getCircleMaskUrl(52.3, 54.6, 6)
             },
             {
               role: 'Ranged',
               party: 1,
-              description: 'R1 pair w/ H1',
+              description: 'North w/ H1',
               imageUrl: './ex2/setup-htth.webp',
               mask: getCircleMaskUrl(52.3, 35.9, 6)
             },
             {
               role: 'Ranged',
               party: 2,
-              description: 'R2 pair w/ H2',
+              description: 'South w/ H2',
               imageUrl: './ex2/setup-htth.webp',
               mask: getCircleMaskUrl(52.3, 63.9, 6)
             }
@@ -215,49 +215,49 @@ export const conga: Strat = {
             {
               role: 'Tank',
               party: 1,
-              description: 'MT — top-left corner',
+              description: 'North edge, slightly West',
               imageUrl: './ex2/conga-setup.webp',
               mask: getCircleMaskUrl(45.8, 12.8, 4)
             },
             {
               role: 'Tank',
               party: 2,
-              description: 'OT — top-right corner',
+              description: 'North edge, slightly East',
               imageUrl: './ex2/conga-setup.webp',
               mask: getCircleMaskUrl(56.6, 12.8, 4)
             },
             {
               role: 'Melee',
               party: 1,
-              description: '2nd in line',
+              description: '1st in line',
               imageUrl: './ex2/conga-setup.webp',
               mask: getCircleMaskUrl(51.3, 24.0, 4)
             },
             {
               role: 'Melee',
               party: 2,
-              description: '3rd in line',
+              description: '2nd in line',
               imageUrl: './ex2/conga-setup.webp',
               mask: getCircleMaskUrl(51.2, 35.4, 4)
             },
             {
               role: 'Healer',
               party: 1,
-              description: '4th in line',
+              description: '3rd in line',
               imageUrl: './ex2/conga-setup.webp',
               mask: getCircleMaskUrl(51.2, 46.9, 4)
             },
             {
               role: 'Healer',
               party: 2,
-              description: '5th in line',
+              description: '4th in line',
               imageUrl: './ex2/conga-setup.webp',
               mask: getCircleMaskUrl(51.2, 57.9, 4)
             },
             {
               role: 'Ranged',
               party: 1,
-              description: '6th in line',
+              description: '5th in line',
               imageUrl: './ex2/conga-setup.webp',
               mask: getCircleMaskUrl(51.3, 69.8, 4)
             },
@@ -349,21 +349,21 @@ export const conga: Strat = {
             {
               role: 'Tank',
               party: 1,
-              description: 'MT — top-left corner\nTake 1st wall hit solo with heavy mit',
+              description: 'Take 1st wall hit solo with heavy mit',
               imageUrl: './ex2/projection-of-turmoil-conga.webp',
               mask: getCircleMaskUrl(45.8, 12.8, 4)
             },
             {
               role: 'Tank',
               party: 2,
-              description: 'OT — top-right corner\nTake your wall hit solo with personal mit',
+              description: 'Take 1st wall hit solo with personal mit',
               imageUrl: './ex2/projection-of-turmoil-conga.webp',
               mask: getCircleMaskUrl(56.3, 12.8, 4)
             },
             {
               role: 'Melee',
               party: 1,
-              description: 'Stack with tank after their solo hit\nFollow line after your hit',
+              description: '1st in line with tanks\nFollow line after your hit',
               imageUrl: './ex2/projection-of-turmoil-conga.webp',
               mask: getCircleMaskUrl(51.6, 24.0, 4)
             },
