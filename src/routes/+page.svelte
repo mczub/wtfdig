@@ -6,13 +6,11 @@
   import { Grid3x3, History, Hammer } from '@lucide/svelte';
 
   let openState = $state({
-    '75': true,
-    '74': true,
+    savage: true,
     ultimates: true,
-    '73': false,
-    '72': false,
-    '71': true,
-    '70': false
+    chaotic: true,
+    extreme: true,
+    archives: true
   });
 
   function toggle(key: keyof typeof openState) {
@@ -21,12 +19,12 @@
 </script>
 
 <div class="container grid grow mx-auto my-6">
-  <div class="grid place-content-center">
-    <div class="flex justify-center lg:col-span-2">
+  <div class="@container flex flex-col items-center">
+    <div class="flex justify-center">
       <img width="300px" src="{base}/wtfdig-icon-1024.png" alt="WTFDIG Icon" />
     </div>
-    <div class="grid lg:grid-cols-2 gap-4 max-w-full">
-      <div class="card preset-outlined-secondary-500 gap-4 p-4 mt-4 justify-center lg:col-span-2">
+    <div class="mx-auto w-full lg:max-w-[676px] flex flex-col gap-4 px-4 lg:px-0">
+      <div class="card preset-outlined-secondary-500 gap-4 p-4 mt-4 justify-center">
         <a
           target="_blank"
           rel="noopener noreferrer"
@@ -39,7 +37,7 @@
           <div class="text-base text-surface-400">view + bundle strategy boards</div>
         </a>
       </div>
-      <div class="card preset-outlined-secondary-500 gap-4 p-4 justify-center lg:col-span-2">
+      <div class="card preset-outlined-secondary-500 gap-4 p-4 justify-center">
         <a
           target="_blank"
           rel="noopener noreferrer"
@@ -52,7 +50,7 @@
           <div class="text-base text-surface-400">version history for raidplans</div>
         </a>
       </div>
-      <div class="gap-4 mt-4 justify-center lg:col-span-2">
+      <div class="gap-4 mt-4 justify-center">
         <div class="flex flex-row items-center gap-2 text-left text-base font-semibold mb-3">
           <Hammer class="size-6 text-primary" />Tools
         </div>
@@ -66,49 +64,27 @@
           <div class="text-sm text-surface-400">M12S Idyllic Dream helper</div>
         </a>
       </div>
-      <!-- Left Column: Patch 7.5, 7.4 + Ultimates -->
-      <div class="grid gap-4 content-start min-w-[330px]">
+    </div>
+
+    <div
+      class="grid grid-cols-1 @2xl:grid-cols-2 @5xl:grid-cols-3 gap-4 mt-4 w-full max-w-[1022px] px-4 @5xl:px-0"
+    >
+      <div class="grid gap-4 content-start min-w-0">
         <div
           class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
         >
-          <button class="flex w-full items-center justify-between" onclick={() => toggle('75')}>
-            <div class="text-lg font-bold">Patch 7.5</div>
+          <button class="flex w-full items-center justify-between" onclick={() => toggle('savage')}>
+            <div class="text-lg font-bold">Savage</div>
             <ChevronDown
-              class="h-4 w-4 opacity-50 transition-transform duration-200 {openState['75']
+              class="h-4 w-4 opacity-50 transition-transform duration-200 {openState['savage']
                 ? 'rotate-180'
                 : ''}"
             />
           </button>
-          {#if openState['75']}
+          {#if openState['savage']}
             <div transition:slide class="flex flex-col gap-4">
               <div class="flex flex-col">
-                <div class="text-left text-sm font-semibold mb-3">Extreme</div>
-                <div class="flex flex-col gap-4">
-                  <a
-                    href="{base}/75/ex8"
-                    class="btn preset-tonal-secondary border border-secondary-500"
-                    >The Unmaking (EX8)</a
-                  >
-                </div>
-              </div>
-            </div>
-          {/if}
-        </div>
-        <div
-          class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
-        >
-          <button class="flex w-full items-center justify-between" onclick={() => toggle('74')}>
-            <div class="text-lg font-bold">Patch 7.4</div>
-            <ChevronDown
-              class="h-4 w-4 opacity-50 transition-transform duration-200 {openState['74']
-                ? 'rotate-180'
-                : ''}"
-            />
-          </button>
-          {#if openState['74']}
-            <div transition:slide class="flex flex-col gap-4">
-              <div class="flex flex-col">
-                <div class="text-left text-sm font-semibold mb-3">Savage</div>
+                <div class="text-left text-sm font-semibold mb-3">Patch 7.4</div>
                 <div class="flex flex-col gap-4">
                   <a
                     href="{base}/74/m9s"
@@ -129,16 +105,6 @@
                     href="{base}/74/m12s"
                     class="btn preset-tonal-secondary border border-secondary-500"
                     >AAC Heavyweight M4 (M12S)</a
-                  >
-                </div>
-              </div>
-              <div class="flex flex-col">
-                <div class="text-left text-sm font-semibold mb-3">Extreme</div>
-                <div class="flex flex-col gap-4">
-                  <a
-                    href="{base}/74/ex7"
-                    class="btn preset-tonal-secondary border border-secondary-500"
-                    >Hell on Rails (EX7)</a
                   >
                 </div>
               </div>
@@ -174,24 +140,75 @@
             </div>
           {/if}
         </div>
-      </div>
-      <!-- Right Column: Patch 7.3, 7.2, 7.1, 7.0 -->
-      <div class="grid gap-4 content-start min-w-[330px]">
         <div
           class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
         >
-          <button class="flex w-full items-center justify-between" onclick={() => toggle('73')}>
-            <div class="text-lg font-bold">Patch 7.3</div>
+          <button
+            class="flex w-full items-center justify-between"
+            onclick={() => toggle('chaotic')}
+          >
+            <div class="text-lg font-bold">Chaotic</div>
             <ChevronDown
-              class="h-4 w-4 opacity-50 transition-transform duration-200 {openState['73']
+              class="h-4 w-4 opacity-50 transition-transform duration-200 {openState['chaotic']
                 ? 'rotate-180'
                 : ''}"
             />
           </button>
-          {#if openState['73']}
+          {#if openState['chaotic']}
             <div transition:slide class="flex flex-col gap-4">
               <div class="flex flex-col">
-                <div class="text-left text-sm font-semibold mb-3">Extreme</div>
+                <div class="flex flex-col gap-4">
+                  <a
+                    href="{base}/71/chaotic"
+                    class="btn preset-tonal-secondary border border-secondary-500"
+                    >The Cloud of Darkness (Chaotic)</a
+                  >
+                </div>
+              </div>
+            </div>
+          {/if}
+        </div>
+      </div>
+
+      <div class="grid gap-4 content-start min-w-0">
+        <div
+          class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
+        >
+          <button
+            class="flex w-full items-center justify-between"
+            onclick={() => toggle('extreme')}
+          >
+            <div class="text-lg font-bold">Extreme</div>
+            <ChevronDown
+              class="h-4 w-4 opacity-50 transition-transform duration-200 {openState['extreme']
+                ? 'rotate-180'
+                : ''}"
+            />
+          </button>
+          {#if openState['extreme']}
+            <div transition:slide class="flex flex-col gap-4">
+              <div class="flex flex-col">
+                <div class="text-left text-sm font-semibold mb-3">Patch 7.5</div>
+                <div class="flex flex-col gap-4">
+                  <a
+                    href="{base}/75/ex8"
+                    class="btn preset-tonal-secondary border border-secondary-500"
+                    >The Unmaking (EX8)</a
+                  >
+                </div>
+              </div>
+              <div class="flex flex-col">
+                <div class="text-left text-sm font-semibold mb-3">Patch 7.4</div>
+                <div class="flex flex-col gap-4">
+                  <a
+                    href="{base}/74/ex7"
+                    class="btn preset-tonal-secondary border border-secondary-500"
+                    >Hell on Rails (EX7)</a
+                  >
+                </div>
+              </div>
+              <div class="flex flex-col">
+                <div class="text-left text-sm font-semibold mb-3">Patch 7.3</div>
                 <div class="flex flex-col gap-4">
                   <a
                     href="{base}/73/ex6"
@@ -205,24 +222,64 @@
                   >
                 </div>
               </div>
+              <div class="flex flex-col">
+                <div class="text-left text-sm font-semibold mb-3">Patch 7.2</div>
+                <div class="flex flex-col gap-4">
+                  <a
+                    href="{base}/72/ex4"
+                    class="btn preset-tonal-secondary border border-secondary-500"
+                    >Recollection (EX4)</a
+                  >
+                </div>
+              </div>
+              <div class="flex flex-col">
+                <div class="text-left text-sm font-semibold mb-3">Patch 7.1</div>
+                <div class="flex flex-col gap-4">
+                  <a
+                    href="{base}/72/ex3"
+                    class="btn preset-tonal-secondary border border-secondary-500"
+                    >Sphene's Burden (EX3)</a
+                  >
+                </div>
+              </div>
+              <div class="flex flex-col">
+                <div class="text-left text-sm font-semibold mb-3">Patch 7.0</div>
+                <div class="flex flex-col gap-4">
+                  <a
+                    href="{base}/70/ex2"
+                    class="btn preset-tonal-secondary border border-secondary-500">Everkeep (EX2)</a
+                  >
+                  <a
+                    href="{base}/70/ex1"
+                    class="btn preset-tonal-secondary border border-secondary-500"
+                    >Worqor Lar Dor (EX1)</a
+                  >
+                </div>
+              </div>
             </div>
           {/if}
         </div>
+      </div>
+
+      <div class="grid gap-4 content-start min-w-0">
         <div
           class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
         >
-          <button class="flex w-full items-center justify-between" onclick={() => toggle('72')}>
-            <div class="text-lg font-bold">Patch 7.2</div>
+          <button
+            class="flex w-full items-center justify-between"
+            onclick={() => toggle('archives')}
+          >
+            <div class="text-lg font-bold">Older Fights</div>
             <ChevronDown
-              class="h-4 w-4 opacity-50 transition-transform duration-200 {openState['72']
+              class="h-4 w-4 opacity-50 transition-transform duration-200 {openState['archives']
                 ? 'rotate-180'
                 : ''}"
             />
           </button>
-          {#if openState['72']}
+          {#if openState['archives']}
             <div transition:slide class="flex flex-col gap-4">
               <div class="flex flex-col">
-                <div class="text-left text-sm font-semibold mb-3">Savage</div>
+                <div class="text-left text-sm font-semibold mb-3">Patch 7.2 Savage</div>
                 <div class="flex flex-col gap-4">
                   <a
                     href="{base}/72/m5s"
@@ -247,78 +304,12 @@
                 </div>
               </div>
               <div class="flex flex-col">
-                <div class="text-left text-sm font-semibold mb-3">Extreme</div>
-                <div class="flex flex-col gap-4">
-                  <a
-                    href="{base}/72/ex4"
-                    class="btn preset-tonal-secondary border border-secondary-500"
-                    >Recollection (EX4)</a
-                  >
-                </div>
-              </div>
-            </div>
-          {/if}
-        </div>
-        <div
-          class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
-        >
-          <button class="flex w-full items-center justify-between" onclick={() => toggle('71')}>
-            <div class="text-lg font-bold">Patch 7.1</div>
-            <ChevronDown
-              class="h-4 w-4 opacity-50 transition-transform duration-200 {openState['71']
-                ? 'rotate-180'
-                : ''}"
-            />
-          </button>
-          {#if openState['71']}
-            <div transition:slide class="flex flex-col gap-4">
-              <div class="flex flex-col">
-                <div class="text-left text-sm font-semibold mb-3">Chaotic</div>
-                <div class="flex flex-col gap-4">
-                  <a
-                    href="{base}/71/chaotic"
-                    class="btn preset-tonal-secondary border border-secondary-500"
-                    >The Cloud of Darkness (Chaotic)</a
-                  >
-                </div>
-              </div>
-            </div>
-          {/if}
-        </div>
-        <div
-          class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
-        >
-          <button class="flex w-full items-center justify-between" onclick={() => toggle('70')}>
-            <div class="text-lg font-bold">Patch 7.0</div>
-            <ChevronDown
-              class="h-4 w-4 opacity-50 transition-transform duration-200 {openState['70']
-                ? 'rotate-180'
-                : ''}"
-            />
-          </button>
-          {#if openState['70']}
-            <div transition:slide class="flex flex-col gap-4">
-              <div class="flex flex-col">
-                <div class="text-left text-sm font-semibold mb-3">Savage</div>
+                <div class="text-left text-sm font-semibold mb-3">Patch 7.0 Savage</div>
                 <div class="flex flex-col gap-4">
                   <a
                     href="{base}/70/m4s"
                     class="btn preset-tonal-secondary border border-secondary-500"
                     >AAC Light-Heavyweight M4 (Savage)</a
-                  >
-                </div>
-              </div>
-              <div class="flex flex-col">
-                <div class="text-left text-sm font-semibold mb-3">Extreme</div>
-                <div class="flex flex-col gap-4">
-                  <a
-                    href="{base}/70/ex1"
-                    class="btn preset-tonal-secondary border border-secondary-500"
-                    >Worqor Lar Dor (EX1)</a
-                  >
-                  <a
-                    href="{base}/70/ex2"
-                    class="btn preset-tonal-secondary border border-secondary-500">Everkeep (EX2)</a
                   >
                 </div>
               </div>
