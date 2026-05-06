@@ -785,7 +785,7 @@ export const ex7FightConfig: FightConfig = {
       mechName: 'Store Stack/Spread',
       mechType: 'StoredMechanic',
       mechTag: 'pre',
-      startTimeMs: 9000
+      startTimeMs: 9000,
     },
     {
       mechName: 'Express (KB)',
@@ -1269,7 +1269,7 @@ export const ex7FightConfig: FightConfig = {
     }
   ],
   splitTimeline: true,
-  useEvenTimelineSpacing: true
+  useEvenTimelineSpacing: false
 };
 
 export const hector: Strat = {
