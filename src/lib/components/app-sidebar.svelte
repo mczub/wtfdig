@@ -152,6 +152,11 @@
           title: 'Worqor Lar Dor (EX1)',
           subtitle: 'Extreme',
           url: '/70/ex1'
+        },
+        {
+          title: 'Everkeep (EX2)',
+          subtitle: 'Extreme',
+          url: '/70/ex2'
         }
       ]
     }

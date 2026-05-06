@@ -316,6 +316,11 @@
                     class="btn preset-tonal-secondary border border-secondary-500"
                     >Worqor Lar Dor (EX1)</a
                   >
+                  <a
+                    href="{base}/70/ex2"
+                    class="btn preset-tonal-secondary border border-secondary-500"
+                    >Everkeep (EX2)</a
+                  >
                 </div>
               </div>
             </div>
