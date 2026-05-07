@@ -20,51 +20,48 @@ export const ex3FightConfig: FightConfig = {
   defaultStratName: 'hector',
   timeline: [
     { mechName: 'Start', mechType: 'Start', startTimeMs: 0 },
-    { mechName: 'Aethertithe', mechType: 'Mechanic', startTimeMs: 10000 },
-    { mechName: 'Virtual Shift', mechType: 'Raidwide', startTimeMs: 55000 },
-    { mechName: 'Laws of Wind', mechType: 'Mechanic', startTimeMs: 75000 },
-    { mechName: 'Chain Debuff', mechType: 'Mechanic', startTimeMs: 95000 },
-    { mechName: 'Legitimate Force', mechType: 'Mechanic', startTimeMs: 110000 },
-    { mechName: 'Knockback', mechType: 'Mechanic', startTimeMs: 130000 },
-    { mechName: 'World Shatter', mechType: 'Raidwide', startTimeMs: 150000 },
-    { mechName: 'Prosecution of War', mechType: 'Tankbuster', startTimeMs: 165000 },
-    { mechName: 'Divide and Conquer', mechType: 'Mechanic', startTimeMs: 180000 },
-    { mechName: 'Royal Domain', mechType: 'Raidwide', startTimeMs: 205000 },
-    { mechName: 'Virtual Shift', mechType: 'Raidwide', startTimeMs: 220000 },
-    { mechName: 'Laws of Earth', mechType: 'Mechanic', startTimeMs: 240000 },
-    { mechName: 'Legitimate Force', mechType: 'Mechanic', startTimeMs: 255000 },
-    { mechName: '8 Towers', mechType: 'Mechanic', startTimeMs: 270000 },
-    { mechName: 'Gravitational Empire', mechType: 'Mechanic', startTimeMs: 295000 },
-    { mechName: 'Meteors', mechType: 'Mechanic', startTimeMs: 325000 },
-    { mechName: 'Weighty Blow', mechType: 'Mechanic', startTimeMs: 360000 },
-    { mechName: 'World Shatter', mechType: 'Raidwide', startTimeMs: 385000 },
-    { mechName: 'Prosecution of War', mechType: 'Tankbuster', startTimeMs: 400000 },
-    { mechName: 'Coronation', mechType: 'Mechanic', startTimeMs: 415000 },
-    { mechName: 'Absolute Authority', mechType: 'Mechanic', startTimeMs: 450000 },
-    { mechName: 'Virtual Shift', mechType: 'Raidwide', startTimeMs: 525000 },
-    { mechName: 'Laws of Ice', mechType: 'Mechanic', startTimeMs: 540000 },
-    { mechName: 'Icicles (T+H)', mechType: 'Mechanic', startTimeMs: 560000 },
-    { mechName: 'Icicles (DPS)', mechType: 'Mechanic', startTimeMs: 580000 },
-    { mechName: 'Legitimate Force', mechType: 'Mechanic', startTimeMs: 605000 },
-    { mechName: 'Laws of Ice', mechType: 'Mechanic', startTimeMs: 625000 },
-    { mechName: 'MTTT (4 tethers)', mechType: 'Mechanic', startTimeMs: 645000 },
-    { mechName: 'World Shatter', mechType: 'Raidwide', startTimeMs: 720000 },
-    { mechName: 'Prosecution of War', mechType: 'Tankbuster', startTimeMs: 735000 },
-    { mechName: 'Royal Domain', mechType: 'Raidwide', startTimeMs: 750000 },
-    { mechName: 'Legitimate Force', mechType: 'Mechanic', startTimeMs: 765000 },
-    { mechName: 'Royal Domain', mechType: 'Raidwide', startTimeMs: 785000 },
-    { mechName: 'Authority Eternal', mechType: 'Raidwide', startTimeMs: 800000 },
-    { mechName: 'Radical Shift', mechType: 'Mechanic', startTimeMs: 830000 },
-    { mechName: 'Radical Shift', mechType: 'Mechanic', startTimeMs: 850000 },
-    { mechName: 'World Shatter', mechType: 'Raidwide', startTimeMs: 870000 },
-    { mechName: 'Dimensional Distortion', mechType: 'Mechanic', startTimeMs: 885000 },
-    { mechName: "Tyranny's Grasp", mechType: 'Tankbuster', startTimeMs: 905000 },
-    { mechName: 'Ground Slams', mechType: 'Raidwide', startTimeMs: 925000 },
-    { mechName: 'Royal Banishment', mechType: 'Mechanic', startTimeMs: 955000 },
-    { mechName: 'Radical Shift', mechType: 'Mechanic', startTimeMs: 985000 },
-    { mechName: 'Radical Shift', mechType: 'Mechanic', startTimeMs: 1005000 },
-    { mechName: 'World Shatter', mechType: 'Raidwide', startTimeMs: 1025000 },
-    { mechName: 'Enrage', mechType: 'Enrage', startTimeMs: 1040000 }
+    { mechName: 'Aethertithe', mechType: 'Mechanic', startTimeMs: 12000 },
+    { mechName: 'Virtual Shift', mechType: 'Raidwide', startTimeMs: 59000 },
+    { mechName: 'Laws of Wind', mechType: 'Mechanic', startTimeMs: 64000 },
+    { mechName: 'Legitimate Force', mechType: 'Mechanic', startTimeMs: 78000 },
+    { mechName: 'World Shatter', mechType: 'Raidwide', startTimeMs: 101000 },
+    { mechName: 'Prosecution of War', mechType: 'Tankbuster', startTimeMs: 113000 },
+    { mechName: 'Divide and Conquer', mechType: 'Mechanic', startTimeMs: 119000 },
+    { mechName: 'Royal Domain', mechType: 'Raidwide', startTimeMs: 146000 },
+    { mechName: 'Virtual Shift', mechType: 'Raidwide', startTimeMs: 159000 },
+    { mechName: 'Laws of Earth', mechType: 'Mechanic', startTimeMs: 164000 },
+    { mechName: 'Legitimate Force', mechType: 'Mechanic', startTimeMs: 171000 },
+    { mechName: 'Gravitational Empire', mechType: 'Mechanic', startTimeMs: 192000 },
+    { mechName: 'Weighty Blow', mechType: 'Mechanic', startTimeMs: 222000 },
+    { mechName: 'World Shatter', mechType: 'Raidwide', startTimeMs: 242000 },
+    { mechName: 'Prosecution of War', mechType: 'Tankbuster', startTimeMs: 254000 },
+    { mechName: 'Coronation', mechType: 'Mechanic', startTimeMs: 260000 },
+    { mechName: 'Atomic Ray', mechType: 'Raidwide', startTimeMs: 277000 },
+    { mechName: 'Absolute Authority', mechType: 'Mechanic', startTimeMs: 283000 },
+    { mechName: 'Virtual Shift', mechType: 'Raidwide', startTimeMs: 331000 },
+    { mechName: 'Laws of Ice', mechType: 'Mechanic', startTimeMs: 336000 },
+    { mechName: 'Rush', mechType: 'Mechanic', startTimeMs: 346000 },
+    { mechName: 'Legitimate Force', mechType: 'Mechanic', startTimeMs: 358000 },
+    { mechName: 'Laws of Ice', mechType: 'Mechanic', startTimeMs: 375000 },
+    { mechName: 'Drear Rising', mechType: 'Mechanic', startTimeMs: 385000 },
+    { mechName: 'Virtual Shift', mechType: 'Raidwide', startTimeMs: 416000 },
+    { mechName: 'Prosecution of War', mechType: 'Tankbuster', startTimeMs: 429000 },
+    { mechName: 'Royal Domain', mechType: 'Raidwide', startTimeMs: 444000 },
+    { mechName: 'Legitimate Force', mechType: 'Mechanic', startTimeMs: 451000 },
+    { mechName: 'Royal Domain', mechType: 'Raidwide', startTimeMs: 470000 },
+    { mechName: 'Authority Eternal', mechType: 'Raidwide', startTimeMs: 489000 },
+    { mechName: 'Phase 2', mechType: 'Start', startTimeMs: 0 },
+    { mechName: 'Radical Shift', mechType: 'Mechanic', startTimeMs: 29000 },
+    { mechName: 'Radical Shift', mechType: 'Mechanic', startTimeMs: 48000 },
+    { mechName: 'World Shatter', mechType: 'Raidwide', startTimeMs: 72000 },
+    { mechName: 'Dimensional Distortion', mechType: 'Mechanic', startTimeMs: 79000 },
+    { mechName: "Tyranny's Grasp", mechType: 'Tankbuster', startTimeMs: 94000 },
+    { mechName: 'Dying Memory', mechType: 'Raidwide', startTimeMs: 99000 },
+    { mechName: 'Royal Banishment', mechType: 'Mechanic', startTimeMs: 109000 },
+    { mechName: 'Radical Shift', mechType: 'Mechanic', startTimeMs: 136000 },
+    { mechName: 'Radical Shift', mechType: 'Mechanic', startTimeMs: 155000 },
+    { mechName: 'World Shatter', mechType: 'Raidwide', startTimeMs: 179000 },
+    { mechName: 'Enrage', mechType: 'Enrage', startTimeMs: 200000 }
   ]
 };
 
@@ -93,13 +90,13 @@ export const hector: Strat = {
           imageUrl: './ex3/fan-out-spreads.webp'
         },
         {
-          mechanic: 'Yellow Platform Spreads',
+          mechanic: 'Earth Spreads',
           imageUrl: './ex3/yellow-platform-spreads.webp'
         },
       ]
     },
     {
-      phaseName: 'Wind',
+      phaseName: 'Wind Phase',
       mechs: [
         {
           mechanic: 'Aethertithe',
@@ -134,7 +131,7 @@ export const hector: Strat = {
       ]
     },
     {
-      phaseName: 'Earth',
+      phaseName: 'Earth Phase',
       mechs: [
         {
           mechanic: 'Laws of Earth',
@@ -177,13 +174,9 @@ export const hector: Strat = {
       mechs: [
         {
           mechanic: 'Resolution',
-          description: 'Run toward triangle, drag right (CW)\nStand on waymark if you have them',
+          description: 'Go to tethered triangle\nDiagram has CCW (left), can also be CW (right)\nStand on waymark if you have them',
           imageUrl: './ex3/coronation.webp'
         },
-        {
-          mechanic: 'Atomic Ray',
-          description: 'Spread AoE — resolves from spread positions'
-        }
       ]
     },
     {
@@ -196,17 +189,14 @@ export const hector: Strat = {
         },
         {
           mechanic: 'Stack + Mit',
-          description: 'Stay stacked, mit, ignore flares/doritos',
+          description: 'Stay stacked, mit, ignore flares/doritos\nKBI after',
           imageUrl: './ex3/mit-authority-stack.webp'
         },
-        {
-          mechanic: 'Knockback',
-          description: 'KBI',
-        }
       ]
     },
     {
-      phaseName: 'Ice',
+      phaseName: 'Ice Phase',
+      description: 'Skippable, will go directly into Radical Shift if 1HP before cast',
       mechs: [
         {
           mechanic: 'Laws of Ice',
@@ -219,24 +209,15 @@ export const hector: Strat = {
           imageUrl: './ex3/ice-bridges.webp'
         },
         {
-          mechanic: '1st Icicles (T+H)',
-          description: 'Outer tether = N bridge, inner = S bridge\nGo',
-          imageUrl: './ex3/icicles-1st.webp'
-        },
-        {
-          mechanic: '2nd Icicles (DPS)',
-          description: 'Cross bridge directly opposite your icicle',
+          mechanic: 'Icicles (Fixed bridge)',
+          description: 'Outer tethers = North bridge, Inner tethers = South bridge',
           imageUrl: './ex3/icicles-2nd.webp'
         },
         {
           mechanic: 'Stretch Tethers',
-          description: 'Unstretched = knockoff death'
-        },
-        {
-          mechanic: 'Legitimate Force',
-          description: 'Return middle\n2nd-out role crosses first, same bridge',
+          description: 'After, go back mid, use same bridge as before, reverse order',
           imageUrl: './ex3/legitimate-force-ice.webp'
-        }
+        },
       ]
     },
     {
@@ -255,19 +236,17 @@ export const hector: Strat = {
       ]
     },
     {
-      phaseName: 'Phase 2',
+      phaseName: 'Radical Shift',
       mechs: [
         {
           mechanic: 'Radical Shift',
-          description: 'Read background rotation → step onto incoming color\nSpread on land'
-        },
-        {
-          mechanic: 'Radical Shift (AFK Strat)',
-          description: 'Stay on current color, prep next\nMay overlap on landing — spread out'
+          description: 'Read element rotation, adjust to incoming platform\nIf AFK strat, use markers, THMR front to back',
+          imageUrl: './ex3/radical-shift-afk.webp'
         },
         {
           mechanic: 'Dimensional Distortion',
-          description: 'Exaflares — stand in 2nd wave spot, dodge after 2 hits'
+          description: 'Exaflares — stand in 2nd wave spot, dodge after 2 hits',
+          imageUrl: './ex3/exaflares.webp'
         },
       ]
     }
