@@ -236,7 +236,7 @@
                 <div class="text-left text-sm font-semibold mb-3">Patch 7.1</div>
                 <div class="flex flex-col gap-4">
                   <a
-                    href="{base}/72/ex3"
+                    href="{base}/71/ex3"
                     class="btn preset-tonal-secondary border border-secondary-500"
                     >Sphene's Burden (EX3)</a
                   >

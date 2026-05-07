@@ -132,6 +132,11 @@
       defaultOpen: true,
       items: [
         {
+          title: "Sphene's Burden (EX3)",
+          subtitle: 'Extreme',
+          url: '/71/ex3'
+        },
+        {
           title: 'Cloud of Darkness',
           subtitle: 'Chaotic',
           url: '/71/chaotic'
