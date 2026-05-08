@@ -208,7 +208,12 @@
               </Sidebar.MenuItem>
             </Collapsible.Root>
           {/each}
+          
           <Separator class="my-2" />
+          
+          <Sidebar.GroupLabel class="flex flex-row items-center gap-2 text-lg font-semibold mb-2"
+            ><Hammer class="size-6 text-primary" />Tools</Sidebar.GroupLabel
+          >
           <Sidebar.MenuItem>
             <a
               target="_blank"
@@ -235,10 +240,6 @@
               <div class="text-base text-surface-400">version history for raidplans</div>
             </a>
           </Sidebar.MenuItem>
-          <Separator class="my-2" />
-          <Sidebar.GroupLabel class="flex flex-row items-center gap-2 text-lg font-semibold"
-            ><Hammer class="size-6 text-primary" />Tools</Sidebar.GroupLabel
-          >
           <Sidebar.MenuItem>
             <a
               href="/tools/idyllic"

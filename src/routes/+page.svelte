@@ -21,10 +21,13 @@
 <div class="container grid grow mx-auto my-6">
   <div class="@container flex flex-col items-center">
     <div class="flex justify-center">
-      <img width="300px" src="{base}/wtfdig-icon-1024.png" alt="WTFDIG Icon" />
+      <img class="w-[240px] @2xl:w-[300px]" src="{base}/wtfdig-icon-1024.png" alt="WTFDIG Icon" />
     </div>
-    <div class="mx-auto w-full lg:max-w-[676px] flex flex-col gap-4 px-4 lg:px-0">
-      <div class="card preset-outlined-secondary-500 gap-4 p-4 mt-4 justify-center">
+    <div class="mx-auto w-full max-w-[362px] @2xl:max-w-[708px] flex flex-col gap-4 px-4">
+       <div class="flex flex-row items-center gap-2 text-left text-lg font-bold">
+          <Hammer class="size-6 text-primary" />Tools
+      </div>
+      <div class="card preset-outlined-secondary-500 gap-4 p-4 justify-center">
         <a
           target="_blank"
           rel="noopener noreferrer"
@@ -50,26 +53,23 @@
           <div class="text-base text-surface-400">version history for raidplans</div>
         </a>
       </div>
-      <div class="gap-4 mt-4 justify-center">
-        <div class="flex flex-row items-center gap-2 text-left text-base font-semibold mb-3">
-          <Hammer class="size-6 text-primary" />Tools
-        </div>
+      <div class="card preset-outlined-secondary-500 gap-4 p-4 justify-center">
         <a
           href="{base}/tools/idyllic"
-          class="flex flex-row justify-start items-center py-3 btn preset-tonal-secondary border border-secondary-500"
+          class="flex flex-col items-start mx-2"
         >
-          <div class="flex flex-row items-center gap-2 text-base">
+          <div class="flex flex-row items-center gap-2 text-lg">
             <span class="font-semibold">idyllic helper</span>
           </div>
-          <div class="text-sm text-surface-400">M12S Idyllic Dream helper</div>
+          <div class="text-base text-surface-400">m12s idyllic dream helper</div>
         </a>
       </div>
     </div>
 
     <div
-      class="grid grid-cols-1 @2xl:grid-cols-2 @5xl:grid-cols-3 gap-4 mt-4 w-full max-w-[1022px] px-4 @5xl:px-0"
+      class="grid grid-cols-1 @2xl:grid-cols-2 @5xl:grid-cols-3 gap-4 mt-4 w-full max-w-[362px] @2xl:max-w-[708px] @5xl:max-w-[1022px] px-4 @5xl:px-0"
     >
-      <div class="grid gap-4 content-start min-w-0">
+      <div class="grid gap-4 content-start min-w-[300px]">
         <div
           class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
         >
@@ -170,7 +170,7 @@
         </div>
       </div>
 
-      <div class="grid gap-4 content-start min-w-0">
+      <div class="grid gap-4 content-start min-w-[300px]">
         <div
           class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
         >
@@ -261,7 +261,9 @@
         </div>
       </div>
 
-      <div class="grid gap-4 content-start min-w-0">
+      <div
+        class="grid gap-4 content-start min-w-[300px] @2xl:col-span-2 @5xl:col-span-1 @2xl:max-w-[330px] @2xl:mx-auto @5xl:max-w-none @5xl:mx-0"
+      >
         <div
           class="card flex flex-col preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-4 text-center gap-4"
         >
