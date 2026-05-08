@@ -118,7 +118,7 @@
             class="flex w-full items-center justify-between"
             onclick={() => toggle('ultimates')}
           >
-            <div class="text-lg font-bold">Ultimates</div>
+            <div class="text-lg font-bold">Ultimate</div>
             <ChevronDown
               class="h-4 w-4 opacity-50 transition-transform duration-200 {openState['ultimates']
                 ? 'rotate-180'

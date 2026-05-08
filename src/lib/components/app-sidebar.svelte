@@ -44,7 +44,7 @@
       ]
     },
     {
-      title: 'Ultimates',
+      title: 'Ultimate',
       url: '#',
       defaultOpen: true,
       items: [
