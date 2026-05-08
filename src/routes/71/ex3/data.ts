@@ -83,16 +83,43 @@ export const hector: Strat = {
       mechs: [
         {
           mechanic: 'Light Parties',
-          imageUrl: './ex3/light-parties.webp'
+          strats: [
+            { role: 'Tank', party: 1, description: 'G1 West', imageUrl: './ex3/light-parties.webp', mask: getCircleMaskUrl(43, 32, 7) },
+            { role: 'Tank', party: 2, description: 'G2 East', imageUrl: './ex3/light-parties.webp', mask: getCircleMaskUrl(56, 50, 7) },
+            { role: 'Healer', party: 1, description: 'G1 West', imageUrl: './ex3/light-parties.webp', mask: getCircleMaskUrl(43, 32, 7) },
+            { role: 'Healer', party: 2, description: 'G2 East', imageUrl: './ex3/light-parties.webp', mask: getCircleMaskUrl(56, 50, 7) },
+            { role: 'Melee', party: 1, description: 'G1 West', imageUrl: './ex3/light-parties.webp', mask: getCircleMaskUrl(43, 32, 7) },
+            { role: 'Melee', party: 2, description: 'G2 East', imageUrl: './ex3/light-parties.webp', mask: getCircleMaskUrl(56, 50, 7) },
+            { role: 'Ranged', party: 1, description: 'G1 West', imageUrl: './ex3/light-parties.webp', mask: getCircleMaskUrl(43, 32, 7) },
+            { role: 'Ranged', party: 2, description: 'G2 East', imageUrl: './ex3/light-parties.webp', mask: getCircleMaskUrl(56, 50, 7) }
+          ]
         },
         {
           mechanic: 'Fan Spreads',
-          imageUrl: './ex3/fan-out-spreads.webp'
+          strats: [
+            { role: 'Tank', party: 1, description: 'Northwest Corner', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(28, 21, 4) },
+            { role: 'Tank', party: 2, description: 'Northeast Corner', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(72, 19, 4) },
+            { role: 'Healer', party: 1, description: 'West', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(31, 35, 4) },
+            { role: 'Healer', party: 2, description: 'East', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(68, 33, 4) },
+            { role: 'Melee', party: 1, description: 'West of Center', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(44, 52, 4) },
+            { role: 'Melee', party: 2, description: 'East of Center', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(55, 53, 4) },
+            { role: 'Ranged', party: 1, description: 'Southwest', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(36, 45, 4) },
+            { role: 'Ranged', party: 2, description: 'Southeast', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(63, 47, 4) }
+          ]
         },
         {
           mechanic: 'Earth Spreads',
-          imageUrl: './ex3/yellow-platform-spreads.webp'
-        },
+          strats: [
+            { role: 'Tank', party: 1, description: 'West platform, NE', imageUrl: './ex3/yellow-platform-spreads.webp', mask: getCircleMaskUrl(40.9, 31.1, 4) },
+            { role: 'Tank', party: 2, description: 'East platform, NW', imageUrl: './ex3/yellow-platform-spreads.webp', mask: getCircleMaskUrl(58.5, 31.1, 4) },
+            { role: 'Healer', party: 1, description: 'West platform, SE', imageUrl: './ex3/yellow-platform-spreads.webp', mask: getCircleMaskUrl(40.9, 58.9, 4) },
+            { role: 'Healer', party: 2, description: 'East platform, SW', imageUrl: './ex3/yellow-platform-spreads.webp', mask: getCircleMaskUrl(57.6, 58.9, 4) },
+            { role: 'Melee', party: 1, description: 'West platform, NW', imageUrl: './ex3/yellow-platform-spreads.webp', mask: getCircleMaskUrl(34.8, 31.1, 4) },
+            { role: 'Melee', party: 2, description: 'East platform, NE', imageUrl: './ex3/yellow-platform-spreads.webp', mask: getCircleMaskUrl(64.8, 31.1, 4) },
+            { role: 'Ranged', party: 1, description: 'West platform, SW', imageUrl: './ex3/yellow-platform-spreads.webp', mask: getCircleMaskUrl(34.8, 59, 4) },
+            { role: 'Ranged', party: 2, description: 'East platform, SE', imageUrl: './ex3/yellow-platform-spreads.webp', mask: getCircleMaskUrl(64.8, 59, 4) }
+          ]
+        }
       ]
     },
     {
@@ -101,17 +128,44 @@ export const hector: Strat = {
         {
           mechanic: 'Aethertithe',
           description: 'LP stacks: G1 W, G2 E',
-          imageUrl: './ex3/aethertithe.webp'
+          strats: [
+            { role: 'Tank', party: 1, description: 'G1 West', imageUrl: './ex3/aethertithe.webp', mask: getCircleMaskUrl(36, 38, 7) },
+            { role: 'Tank', party: 2, description: 'G2 East', imageUrl: './ex3/aethertithe.webp', mask: getCircleMaskUrl(49, 43, 7) },
+            { role: 'Healer', party: 1, description: 'G1 West', imageUrl: './ex3/aethertithe.webp', mask: getCircleMaskUrl(36, 38, 7) },
+            { role: 'Healer', party: 2, description: 'G2 East', imageUrl: './ex3/aethertithe.webp', mask: getCircleMaskUrl(49, 43, 7) },
+            { role: 'Melee', party: 1, description: 'G1 West', imageUrl: './ex3/aethertithe.webp', mask: getCircleMaskUrl(36, 38, 7) },
+            { role: 'Melee', party: 2, description: 'G2 East', imageUrl: './ex3/aethertithe.webp', mask: getCircleMaskUrl(49, 43, 7) },
+            { role: 'Ranged', party: 1, description: 'G1 West', imageUrl: './ex3/aethertithe.webp', mask: getCircleMaskUrl(36, 38, 7) },
+            { role: 'Ranged', party: 2, description: 'G2 East', imageUrl: './ex3/aethertithe.webp', mask: getCircleMaskUrl(49, 43, 7) }
+          ]
         },
         {
           mechanic: 'Laws of Wind',
           description: 'LP stacks',
-          imageUrl: './ex3/laws-of-wind.webp'
+          strats: [
+            { role: 'Tank', party: 1, description: 'G1', imageUrl: './ex3/laws-of-wind.webp', mask: getCircleMaskUrl(42, 33, 7) },
+            { role: 'Tank', party: 2, description: 'G2', imageUrl: './ex3/laws-of-wind.webp', mask: getCircleMaskUrl(58, 51, 7) },
+            { role: 'Healer', party: 1, description: 'G1', imageUrl: './ex3/laws-of-wind.webp', mask: getCircleMaskUrl(42, 33, 7) },
+            { role: 'Healer', party: 2, description: 'G2', imageUrl: './ex3/laws-of-wind.webp', mask: getCircleMaskUrl(58, 51, 7) },
+            { role: 'Melee', party: 1, description: 'G1', imageUrl: './ex3/laws-of-wind.webp', mask: getCircleMaskUrl(42, 33, 7) },
+            { role: 'Melee', party: 2, description: 'G2', imageUrl: './ex3/laws-of-wind.webp', mask: getCircleMaskUrl(58, 51, 7) },
+            { role: 'Ranged', party: 1, description: 'G1', imageUrl: './ex3/laws-of-wind.webp', mask: getCircleMaskUrl(42, 33, 7) },
+            { role: 'Ranged', party: 2, description: 'G2', imageUrl: './ex3/laws-of-wind.webp', mask: getCircleMaskUrl(58, 51, 7) }
+          ]
         },
         {
           mechanic: 'Chain Debuff',
           description: 'Start center, then DPS N, Supports S',
-          imageUrl: './ex3/chain-debuff.webp'
+          strats: [
+            { role: 'Tank', party: 1, description: 'South', imageUrl: './ex3/chain-debuff.webp', mask: getCircleMaskUrl(36, 65, 7) },
+            { role: 'Tank', party: 2, description: 'South', imageUrl: './ex3/chain-debuff.webp', mask: getCircleMaskUrl(36, 65, 7) },
+            { role: 'Healer', party: 1, description: 'South', imageUrl: './ex3/chain-debuff.webp', mask: getCircleMaskUrl(36, 65, 7) },
+            { role: 'Healer', party: 2, description: 'South', imageUrl: './ex3/chain-debuff.webp', mask: getCircleMaskUrl(36, 65, 7) },
+            { role: 'Melee', party: 1, description: 'North', imageUrl: './ex3/chain-debuff.webp', mask: getCircleMaskUrl(63, 18, 7) },
+            { role: 'Melee', party: 2, description: 'North', imageUrl: './ex3/chain-debuff.webp', mask: getCircleMaskUrl(63, 18, 7) },
+            { role: 'Ranged', party: 1, description: 'North', imageUrl: './ex3/chain-debuff.webp', mask: getCircleMaskUrl(63, 18, 7) },
+            { role: 'Ranged', party: 2, description: 'North', imageUrl: './ex3/chain-debuff.webp', mask: getCircleMaskUrl(63, 18, 7) }
+          ]
         },
         {
           mechanic: 'Legitimate Force',
@@ -125,8 +179,17 @@ export const hector: Strat = {
         },
         {
           mechanic: 'Divide and Conquer',
-          description: 'Fan out, dodge between for second hit',
-          imageUrl: './ex3/divide-and-conquer.webp'
+          description: 'Fan spreads, dodge between for second hit',
+          strats: [
+            { role: 'Tank', party: 1, description: 'Northwest Corner', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(28, 21, 4) },
+            { role: 'Tank', party: 2, description: 'Northeast Corner', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(72, 19, 4) },
+            { role: 'Healer', party: 1, description: 'West', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(31, 35, 4) },
+            { role: 'Healer', party: 2, description: 'East', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(68, 33, 4) },
+            { role: 'Melee', party: 1, description: 'West of Center', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(44, 52, 4) },
+            { role: 'Melee', party: 2, description: 'East of Center', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(55, 53, 4) },
+            { role: 'Ranged', party: 1, description: 'Southwest', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(36, 45, 4) },
+            { role: 'Ranged', party: 2, description: 'Southeast', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(63, 47, 4) }
+          ]
         }
       ]
     },
@@ -141,7 +204,16 @@ export const hector: Strat = {
         {
           mechanic: 'Towers',
           description: 'G1 West, G2 East\nGround before towers',
-          imageUrl: './ex3/8-towers.webp'
+          strats: [
+            { role: 'Tank', party: 1, description: 'West platform, NE', imageUrl: './ex3/8-towers.webp', mask: getCircleMaskUrl(40.9, 31.9, 4) },
+            { role: 'Tank', party: 2, description: 'East platform, NW', imageUrl: './ex3/8-towers.webp', mask: getCircleMaskUrl(59.3, 32.3, 4) },
+            { role: 'Healer', party: 1, description: 'West platform, SE', imageUrl: './ex3/8-towers.webp', mask: getCircleMaskUrl(40.9, 57.8, 4) },
+            { role: 'Healer', party: 2, description: 'East platform, SW', imageUrl: './ex3/8-towers.webp', mask: getCircleMaskUrl(59.2, 57.9, 4) },
+            { role: 'Melee', party: 1, description: 'West platform, NW', imageUrl: './ex3/8-towers.webp', mask: getCircleMaskUrl(35.6, 31.9, 4) },
+            { role: 'Melee', party: 2, description: 'East platform, NE', imageUrl: './ex3/8-towers.webp', mask: getCircleMaskUrl(64.7, 32, 4) },
+            { role: 'Ranged', party: 1, description: 'West platform, SW', imageUrl: './ex3/8-towers.webp', mask: getCircleMaskUrl(35.6, 57.8, 4) },
+            { role: 'Ranged', party: 2, description: 'East platform, SE', imageUrl: './ex3/8-towers.webp', mask: getCircleMaskUrl(64.5, 58.2, 4) }
+          ]
         },
         {
           mechanic: 'Gravitational Empire',
@@ -155,7 +227,16 @@ export const hector: Strat = {
       mechs: [
         {
           mechanic: '1st Meteors',
-          imageUrl: './ex3/meteors-1st.webp'
+          strats: [
+            { role: 'Tank', party: 1, description: 'West platform, NE', imageUrl: './ex3/meteors-1st.webp', mask: getCircleMaskUrl(41.3, 35.9, 4) },
+            { role: 'Tank', party: 2, description: 'East platform, NW', imageUrl: './ex3/meteors-1st.webp', mask: getCircleMaskUrl(58.5, 35.9, 4) },
+            { role: 'Healer', party: 1, description: 'West platform, SE', imageUrl: './ex3/meteors-1st.webp', mask: getCircleMaskUrl(41.2, 49, 4) },
+            { role: 'Healer', party: 2, description: 'East platform, SW', imageUrl: './ex3/meteors-1st.webp', mask: getCircleMaskUrl(58.4, 49, 4) },
+            { role: 'Melee', party: 1, description: 'West platform, NW', imageUrl: './ex3/meteors-1st.webp', mask: getCircleMaskUrl(35.3, 35.9, 4) },
+            { role: 'Melee', party: 2, description: 'East platform, NE', imageUrl: './ex3/meteors-1st.webp', mask: getCircleMaskUrl(65.1, 35.9, 4) },
+            { role: 'Ranged', party: 1, description: 'West platform, SW', imageUrl: './ex3/meteors-1st.webp', mask: getCircleMaskUrl(35.3, 49, 4) },
+            { role: 'Ranged', party: 2, description: 'East platform, SE', imageUrl: './ex3/meteors-1st.webp', mask: getCircleMaskUrl(65.1, 49, 4) }
+          ]
         },
         {
           mechanic: '2nd Meteors',
@@ -196,7 +277,7 @@ export const hector: Strat = {
     },
     {
       phaseName: 'Ice Phase',
-      description: 'Skippable, will go directly into Radical Shift if 1HP before cast',
+      description: 'Skippable, will go directly into Radical Shift if low enough before cast',
       mechs: [
         {
           mechanic: 'Laws of Ice',
@@ -245,7 +326,7 @@ export const hector: Strat = {
         },
         {
           mechanic: 'Dimensional Distortion',
-          description: 'Exaflares — stand in 2nd wave spot, dodge after 2 hits',
+          description: 'Dodge Exaflares',
           imageUrl: './ex3/exaflares.webp'
         },
       ]
