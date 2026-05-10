@@ -101,10 +101,10 @@ export const hector: Strat = {
             { role: 'Tank', party: 2, description: 'Northeast Corner', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(72, 19, 4) },
             { role: 'Healer', party: 1, description: 'West', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(31, 35, 4) },
             { role: 'Healer', party: 2, description: 'East', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(68, 33, 4) },
-            { role: 'Melee', party: 1, description: 'West of Center', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(44, 52, 4) },
-            { role: 'Melee', party: 2, description: 'East of Center', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(55, 53, 4) },
-            { role: 'Ranged', party: 1, description: 'Southwest', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(36, 45, 4) },
-            { role: 'Ranged', party: 2, description: 'Southeast', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(63, 47, 4) }
+            { role: 'Melee', party: 1, description: 'Southwest', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(36, 45, 4) },
+            { role: 'Melee', party: 2, description: 'Southeast', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(63, 47, 4) },
+            { role: 'Ranged', party: 1, description: 'West of Center', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(44, 52, 4) },
+            { role: 'Ranged', party: 2, description: 'East of Center', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(55, 53, 4) }
           ]
         },
         {
@@ -185,10 +185,10 @@ export const hector: Strat = {
             { role: 'Tank', party: 2, description: 'Northeast Corner', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(72, 19, 4) },
             { role: 'Healer', party: 1, description: 'West', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(31, 35, 4) },
             { role: 'Healer', party: 2, description: 'East', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(68, 33, 4) },
-            { role: 'Melee', party: 1, description: 'West of Center', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(44, 52, 4) },
-            { role: 'Melee', party: 2, description: 'East of Center', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(55, 53, 4) },
-            { role: 'Ranged', party: 1, description: 'Southwest', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(36, 45, 4) },
-            { role: 'Ranged', party: 2, description: 'Southeast', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(63, 47, 4) }
+            { role: 'Melee', party: 1, description: 'Southwest', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(36, 45, 4) },
+            { role: 'Melee', party: 2, description: 'Southeast', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(63, 47, 4) },
+            { role: 'Ranged', party: 1, description: 'West of Center', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(44, 52, 4) },
+            { role: 'Ranged', party: 2, description: 'East of Center', imageUrl: './ex3/fan-out-spreads.webp', mask: getCircleMaskUrl(55, 53, 4) }
           ]
         }
       ]
