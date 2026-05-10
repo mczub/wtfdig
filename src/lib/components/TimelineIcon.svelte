@@ -1,13 +1,5 @@
 <script lang="ts">
-  import {
-    ArrowRight,
-    Clock,
-    Play,
-    Shield,
-    Siren,
-    Skull,
-    Wrench
-  } from '@lucide/svelte/icons';
+  import { ArrowRight, Clock, Play, Shield, Siren, Skull, Wrench } from '@lucide/svelte/icons';
 
   interface Props {
     mechType: string;
@@ -32,9 +24,7 @@
 
   let entry = $derived(meta[mechType]);
   let containerCls = $derived(
-    variant === 'md'
-      ? 'rounded-full h-5 w-5 text-white shadow-sm'
-      : 'rounded-xs h-4 w-4'
+    variant === 'md' ? 'rounded-full h-5 w-5 text-white shadow-sm' : 'rounded-xs h-4 w-4'
   );
   let iconSize = $derived(variant === 'md' ? 12 : 10);
 </script>

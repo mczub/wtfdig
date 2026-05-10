@@ -59,8 +59,7 @@
   let contentEl: HTMLDivElement = $state(null!);
   let pipWindow = $state<Window | null>(null);
 
-  const isSupported =
-    typeof window !== 'undefined' && 'documentPictureInPicture' in window;
+  const isSupported = typeof window !== 'undefined' && 'documentPictureInPicture' in window;
 
   // Svelte 5 stores delegated event handlers under a private symbol on each
   // element and dispatches them via a single listener on the root document.

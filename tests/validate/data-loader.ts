@@ -18,10 +18,14 @@ import type {
 
 import { m1sFightConfig, m1sStrats } from '../../src/routes/70/m1s/data';
 import { m4sFightConfig, m4sStrats } from '../../src/routes/70/m4s/data';
+import { ex1FightConfig, ex1Strats } from '../../src/routes/70/ex1/data';
+import { ex2FightConfig, ex2Strats } from '../../src/routes/70/ex2/data';
+import { ex3FightConfig, ex3Strats } from '../../src/routes/71/ex3/data';
 import { m5sFightConfig, m5sStrats } from '../../src/routes/72/m5s/data';
 import { m6sFightConfig, m6sStrats } from '../../src/routes/72/m6s/data';
 import { m7sFightConfig, m7sStrats } from '../../src/routes/72/m7s/data';
 import { m8sFightConfig, m8sStrats } from '../../src/routes/72/m8s/data';
+import { ex4FightConfig, ex4Strats } from '../../src/routes/72/ex4/data';
 import { ex5FightConfig, ex5Strats } from '../../src/routes/73/ex5/data';
 import { ex6FightConfig, ex6Strats } from '../../src/routes/73/ex6/data';
 import { ex7FightConfig, ex7Strats } from '../../src/routes/74/ex7/data';
@@ -43,10 +47,14 @@ export interface FightEntry {
 export const ALL_FIGHTS: FightEntry[] = [
   { label: 'M1S', config: m1sFightConfig, strats: m1sStrats },
   { label: 'M4S', config: m4sFightConfig, strats: m4sStrats },
+  { label: 'EX1', config: ex1FightConfig, strats: ex1Strats },
+  { label: 'EX2', config: ex2FightConfig, strats: ex2Strats },
+  { label: 'EX3', config: ex3FightConfig, strats: ex3Strats },
   { label: 'M5S', config: m5sFightConfig, strats: m5sStrats },
   { label: 'M6S', config: m6sFightConfig, strats: m6sStrats },
   { label: 'M7S', config: m7sFightConfig, strats: m7sStrats },
   { label: 'M8S', config: m8sFightConfig, strats: m8sStrats },
+  { label: 'EX4', config: ex4FightConfig, strats: ex4Strats },
   { label: 'EX5', config: ex5FightConfig, strats: ex5Strats },
   { label: 'EX6', config: ex6FightConfig, strats: ex6Strats },
   { label: 'EX7', config: ex7FightConfig, strats: ex7Strats },

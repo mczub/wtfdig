@@ -89,207 +89,211 @@
   {/snippet}
 
   {#snippet children({ isPopped, isSupported, popOut, popIn })}
-  <div
-    class="flex flex-col gap-3 md:gap-4 p-4 md:p-6 w-full max-w-[500px] md:max-w-[600px] mx-auto box-border overflow-hidden"
-  >
-    <!-- Header -->
-    <header class="flex justify-between items-center gap-2 shrink-0">
-      <h1 class="text-xl md:text-2xl font-bold m-0">M12S Idyllic Helper</h1>
-      <div class="flex items-center gap-2">
-        {#if isSupported}
+    <div
+      class="flex flex-col gap-3 md:gap-4 p-4 md:p-6 w-full max-w-[500px] md:max-w-[600px] mx-auto box-border overflow-hidden"
+    >
+      <!-- Header -->
+      <header class="flex justify-between items-center gap-2 shrink-0">
+        <h1 class="text-xl md:text-2xl font-bold m-0">M12S Idyllic Helper</h1>
+        <div class="flex items-center gap-2">
+          {#if isSupported}
+            <button
+              class="flex items-center gap-1 px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border bg-muted hover:bg-accent text-foreground font-semibold cursor-pointer text-sm md:text-base"
+              onclick={isPopped ? popIn : popOut}
+              title={isPopped ? 'Close overlay window' : 'Open as overlay window'}
+            >
+              {#if isPopped}
+                <X class="size-4" /> Close
+              {:else}
+                <PictureInPicture2 class="size-4" /> Pop out
+              {/if}
+            </button>
+          {/if}
           <button
-            class="flex items-center gap-1 px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border bg-muted hover:bg-accent text-foreground font-semibold cursor-pointer text-sm md:text-base"
-            onclick={isPopped ? popIn : popOut}
-            title={isPopped ? 'Close overlay window' : 'Open as overlay window'}
+            class="px-4 py-2 md:px-5 md:py-2.5 rounded-lg bg-destructive text-destructive-foreground border-none font-semibold cursor-pointer text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed"
+            onclick={reset}
+            disabled={!selectedTether &&
+              cardinalsFirst === null &&
+              northSafe === null &&
+              defamationsFirst === null &&
+              holeCloneNorth === null}
           >
-            {#if isPopped}
-              <X class="size-4" /> Close
-            {:else}
-              <PictureInPicture2 class="size-4" /> Pop out
-            {/if}
+            Reset
           </button>
+        </div>
+      </header>
+
+      <!-- Strategy Selector -->
+      <div class="flex items-center gap-2 md:gap-3 shrink-0">
+        <label for="strategy-select" class="font-semibold text-sm md:text-base">Strategy</label>
+        <select
+          id="strategy-select"
+          class="flex-1 px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border bg-background text-foreground text-sm md:text-base"
+          bind:value={selectedStrategy}
+        >
+          {#each IDYLLIC_STRATEGIES as strat}
+            <option value={strat.value}>{strat.label}</option>
+          {/each}
+        </select>
+      </div>
+
+      <!-- Mechanic Buttons -->
+      <div class="flex flex-wrap flex-col gap-2 md:gap-3 justify-center shrink-0">
+        <div class="flex gap-2 md:gap-3 items-center">
+          <div class="font-semibold text-sm md:text-base text-muted-foreground">First clones</div>
+          <button
+            class="flex flex-row items-center gap-1 px-2 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {cardinalsFirst ===
+            true
+              ? 'bg-zinc-700 text-white border-zinc-600 font-semibold'
+              : 'bg-muted text-muted-foreground hover:bg-accent'}"
+            onclick={() => (cardinalsFirst = cardinalsFirst === true ? null : true)}
+          >
+            <MoveVertical class="size-4" /> Cardinals
+          </button>
+          <button
+            class="flex flex-row items-center gap-1 px-2 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {cardinalsFirst ===
+            false
+              ? 'bg-zinc-700 text-white border-zinc-600 font-semibold'
+              : 'bg-muted text-muted-foreground hover:bg-accent'}"
+            onclick={() => (cardinalsFirst = cardinalsFirst === false ? null : false)}
+          >
+            <MoveDiagonal class="size-4" /> Intercards
+          </button>
+        </div>
+
+        <div class="flex gap-2 md:gap-3 items-center">
+          <div class="font-semibold text-sm md:text-base text-muted-foreground">
+            Cone telegraphs
+          </div>
+          <button
+            class="flex flex-row items-center gap-1 px-2 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {northSafe ===
+            true
+              ? ' bg-destructive text-primary-foreground border-red-500 font-semibold'
+              : 'bg-muted text-muted-foreground hover:bg-accent'}"
+            onclick={() => (northSafe = northSafe === true ? null : true)}
+          >
+            <ArrowUp class="size-4" /> N Safe
+          </button>
+          <button
+            class="flex flex-row items-center gap-1 px-2 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {northSafe ===
+            false
+              ? 'bg-blue-700 text-primary-foreground border-blue-500 font-semibold'
+              : 'bg-muted text-muted-foreground hover:bg-accent'}"
+            onclick={() => (northSafe = northSafe === false ? null : false)}
+          >
+            <ArrowDown class="size-4" /> S Safe
+          </button>
+        </div>
+
+        <div class="flex gap-2 md:gap-3 items-center">
+          <div class="font-semibold text-sm md:text-base text-muted-foreground">Boss tethers</div>
+          <button
+            class="flex flex-row items-center gap-1 px-2 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {defamationsFirst ===
+            true
+              ? 'bg-primary text-primary-foreground border-primary font-semibold'
+              : 'bg-muted text-muted-foreground hover:bg-accent'}"
+            onclick={() => (defamationsFirst = defamationsFirst === true ? null : true)}
+          >
+            <CircleDot class="size-4" /> Defams First
+          </button>
+          <button
+            class="flex flex-row items-center gap-1 px-2 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {defamationsFirst ===
+            false
+              ? 'bg-yellow-700 text-primary-foreground border-yellow-800 font-semibold'
+              : 'bg-muted text-muted-foreground hover:bg-accent'}"
+            onclick={() => (defamationsFirst = defamationsFirst === false ? null : false)}
+          >
+            <ChevronsDown class="size-4" /> Stacks First
+          </button>
+        </div>
+
+        <div class="flex gap-2 md:gap-3 items-center">
+          <div class="font-semibold text-sm md:text-base text-muted-foreground">
+            Black hole clone
+          </div>
+          <button
+            class="flex flex-row items-center gap-1 px-2 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {holeCloneNorth ===
+            true
+              ? ' bg-destructive text-primary-foreground border-red-500 font-semibold'
+              : 'bg-muted text-muted-foreground hover:bg-accent'}"
+            onclick={() => (holeCloneNorth = holeCloneNorth === true ? null : true)}
+          >
+            <ArrowUp class="size-4" /> North
+          </button>
+          <button
+            class="flex flex-row items-center gap-1 px-2 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {holeCloneNorth ===
+            false
+              ? 'bg-blue-700 text-primary-foreground border-blue-500 font-semibold'
+              : 'bg-muted text-muted-foreground hover:bg-accent'}"
+            onclick={() => (holeCloneNorth = holeCloneNorth === false ? null : false)}
+          >
+            <ArrowDown class="size-4" /> South
+          </button>
+        </div>
+
+        {#if northSafe !== null && holeCloneNorth !== null}
+          {#if holeCloneNorth}
+            <div class="font-semibold text-sm md:text-base">
+              {#if northSafe}
+                Platform clone is N/S safe, arena clone is E/W safe
+              {:else}
+                Platform clone is E/W safe, arena clone is N/S safe
+              {/if}
+            </div>
+          {:else}
+            <div class="font-semibold text-sm md:text-base">
+              {#if northSafe}
+                Platform clone is E/W safe, arena clone is N/S safe
+              {:else}
+                Platform clone is N/S safe, arena clone is E/W safe
+              {/if}
+            </div>
+          {/if}
         {/if}
-        <button
-          class="px-4 py-2 md:px-5 md:py-2.5 rounded-lg bg-destructive text-destructive-foreground border-none font-semibold cursor-pointer text-sm md:text-base disabled:opacity-50 disabled:cursor-not-allowed"
-          onclick={reset}
-          disabled={!selectedTether &&
-            cardinalsFirst === null &&
-            northSafe === null &&
-            defamationsFirst === null &&
-            holeCloneNorth === null}
-        >
-          Reset
-        </button>
       </div>
-    </header>
 
-  <!-- Strategy Selector -->
-  <div class="flex items-center gap-2 md:gap-3 shrink-0">
-    <label for="strategy-select" class="font-semibold text-sm md:text-base">Strategy</label>
-    <select
-      id="strategy-select"
-      class="flex-1 px-3 py-2 md:px-4 md:py-2.5 rounded-lg border border-border bg-background text-foreground text-sm md:text-base"
-      bind:value={selectedStrategy}
-    >
-      {#each IDYLLIC_STRATEGIES as strat}
-        <option value={strat.value}>{strat.label}</option>
-      {/each}
-    </select>
-  </div>
-
-  <!-- Mechanic Buttons -->
-  <div class="flex flex-wrap flex-col gap-2 md:gap-3 justify-center shrink-0">
-    <div class="flex gap-2 md:gap-3 items-center">
-      <div class="font-semibold text-sm md:text-base text-muted-foreground">First clones</div>
-      <button
-        class="flex flex-row items-center gap-1 px-2 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {cardinalsFirst ===
-        true
-          ? 'bg-zinc-700 text-white border-zinc-600 font-semibold'
-          : 'bg-muted text-muted-foreground hover:bg-accent'}"
-        onclick={() => (cardinalsFirst = cardinalsFirst === true ? null : true)}
-      >
-        <MoveVertical class="size-4" /> Cardinals
-      </button>
-      <button
-        class="flex flex-row items-center gap-1 px-2 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {cardinalsFirst ===
-        false
-          ? 'bg-zinc-700 text-white border-zinc-600 font-semibold'
-          : 'bg-muted text-muted-foreground hover:bg-accent'}"
-        onclick={() => (cardinalsFirst = cardinalsFirst === false ? null : false)}
-      >
-        <MoveDiagonal class="size-4" /> Intercards
-      </button>
-    </div>
-
-    <div class="flex gap-2 md:gap-3 items-center">
-      <div class="font-semibold text-sm md:text-base text-muted-foreground">Cone telegraphs</div>
-      <button
-        class="flex flex-row items-center gap-1 px-2 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {northSafe ===
-        true
-          ? ' bg-destructive text-primary-foreground border-red-500 font-semibold'
-          : 'bg-muted text-muted-foreground hover:bg-accent'}"
-        onclick={() => (northSafe = northSafe === true ? null : true)}
-      >
-        <ArrowUp class="size-4" /> N Safe
-      </button>
-      <button
-        class="flex flex-row items-center gap-1 px-2 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {northSafe ===
-        false
-          ? 'bg-blue-700 text-primary-foreground border-blue-500 font-semibold'
-          : 'bg-muted text-muted-foreground hover:bg-accent'}"
-        onclick={() => (northSafe = northSafe === false ? null : false)}
-      >
-        <ArrowDown class="size-4" /> S Safe
-      </button>
-    </div>
-
-    <div class="flex gap-2 md:gap-3 items-center">
-      <div class="font-semibold text-sm md:text-base text-muted-foreground">Boss tethers</div>
-      <button
-        class="flex flex-row items-center gap-1 px-2 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {defamationsFirst ===
-        true
-          ? 'bg-primary text-primary-foreground border-primary font-semibold'
-          : 'bg-muted text-muted-foreground hover:bg-accent'}"
-        onclick={() => (defamationsFirst = defamationsFirst === true ? null : true)}
-      >
-        <CircleDot class="size-4" /> Defams First
-      </button>
-      <button
-        class="flex flex-row items-center gap-1 px-2 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {defamationsFirst ===
-        false
-          ? 'bg-yellow-700 text-primary-foreground border-yellow-800 font-semibold'
-          : 'bg-muted text-muted-foreground hover:bg-accent'}"
-        onclick={() => (defamationsFirst = defamationsFirst === false ? null : false)}
-      >
-        <ChevronsDown class="size-4" /> Stacks First
-      </button>
-    </div>
-
-    <div class="flex gap-2 md:gap-3 items-center">
-      <div class="font-semibold text-sm md:text-base text-muted-foreground">Black hole clone</div>
-      <button
-        class="flex flex-row items-center gap-1 px-2 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {holeCloneNorth ===
-        true
-          ? ' bg-destructive text-primary-foreground border-red-500 font-semibold'
-          : 'bg-muted text-muted-foreground hover:bg-accent'}"
-        onclick={() => (holeCloneNorth = holeCloneNorth === true ? null : true)}
-      >
-        <ArrowUp class="size-4" /> North
-      </button>
-      <button
-        class="flex flex-row items-center gap-1 px-2 py-2 md:px-4 md:py-2.5 rounded-lg border border-border font-normal cursor-pointer text-sm md:text-base transition-all duration-150 {holeCloneNorth ===
-        false
-          ? 'bg-blue-700 text-primary-foreground border-blue-500 font-semibold'
-          : 'bg-muted text-muted-foreground hover:bg-accent'}"
-        onclick={() => (holeCloneNorth = holeCloneNorth === false ? null : false)}
-      >
-        <ArrowDown class="size-4" /> South
-      </button>
-    </div>
-
-    {#if northSafe !== null && holeCloneNorth !== null}
-      {#if holeCloneNorth}
-        <div class="font-semibold text-sm md:text-base">
-          {#if northSafe}
-            Platform clone is N/S safe, arena clone is E/W safe
-          {:else}
-            Platform clone is E/W safe, arena clone is N/S safe
-          {/if}
-        </div>
-      {:else}
-        <div class="font-semibold text-sm md:text-base">
-          {#if northSafe}
-            Platform clone is E/W safe, arena clone is N/S safe
-          {:else}
-            Platform clone is N/S safe, arena clone is E/W safe
-          {/if}
-        </div>
-      {/if}
-    {/if}
-  </div>
-
-  <!-- Compass Selector -->
-  <div class="flex flex-col items-center shrink-0">
-    <span class="font-semibold text-sm md:text-base mb-1 md:mb-2 text-muted-foreground"
-      >Your Clone Tether</span
-    >
-    <div class="compass-container">
-      {#each COMPASS_LAYOUT as { pos, angle }}
-        {@const isCardinal = ['N', 'E', 'S', 'W'].includes(pos)}
-        {@const radius = 38}
-        {@const x = 50 + radius * Math.cos((angle * Math.PI) / 180)}
-        {@const y = 50 + radius * Math.sin((angle * Math.PI) / 180)}
-        <button
-          class="compass-btn {isCardinal ? 'cardinal' : 'intercardinal'}
+      <!-- Compass Selector -->
+      <div class="flex flex-col items-center shrink-0">
+        <span class="font-semibold text-sm md:text-base mb-1 md:mb-2 text-muted-foreground"
+          >Your Clone Tether</span
+        >
+        <div class="compass-container">
+          {#each COMPASS_LAYOUT as { pos, angle }}
+            {@const isCardinal = ['N', 'E', 'S', 'W'].includes(pos)}
+            {@const radius = 38}
+            {@const x = 50 + radius * Math.cos((angle * Math.PI) / 180)}
+            {@const y = 50 + radius * Math.sin((angle * Math.PI) / 180)}
+            <button
+              class="compass-btn {isCardinal ? 'cardinal' : 'intercardinal'}
             {selectedTether === pos
-            ? 'bg-primary text-primary-foreground border-primary'
-            : 'bg-muted text-foreground border-border hover:bg-accent'}"
-          style="left: {x}%; top: {y}%;"
-          onclick={() => (selectedTether = selectedTether === pos ? null : pos)}
-        >
-          {pos}
-        </button>
-      {/each}
-    </div>
-  </div>
+                ? 'bg-primary text-primary-foreground border-primary'
+                : 'bg-muted text-foreground border-border hover:bg-accent'}"
+              style="left: {x}%; top: {y}%;"
+              onclick={() => (selectedTether = selectedTether === pos ? null : pos)}
+            >
+              {pos}
+            </button>
+          {/each}
+        </div>
+      </div>
 
-  <!-- Summary Output -->
-  <div
-    class="flex-1 min-h-0 flex flex-col bg-card border border-border rounded-xl p-3 md:p-4 overflow-auto"
-  >
-    {#if summaryText()}
+      <!-- Summary Output -->
       <div
-        class="text-sm md:text-base leading-relaxed flex-1 [&_strong]:font-bold [&_strong]:text-base md:[&_strong]:text-lg [&_strong]:block [&_strong]:mb-1"
+        class="flex-1 min-h-0 flex flex-col bg-card border border-border rounded-xl p-3 md:p-4 overflow-auto"
       >
-        {@html summaryText()!.replace(/\n/g, '<br>')}
+        {#if summaryText()}
+          <div
+            class="text-sm md:text-base leading-relaxed flex-1 [&_strong]:font-bold [&_strong]:text-base md:[&_strong]:text-lg [&_strong]:block [&_strong]:mb-1"
+          >
+            {@html summaryText()!.replace(/\n/g, '<br>')}
+          </div>
+        {:else}
+          <div class="text-muted-foreground italic text-sm md:text-base">
+            Select your clone tether position to see your assignments
+          </div>
+        {/if}
       </div>
-    {:else}
-      <div class="text-muted-foreground italic text-sm md:text-base">
-        Select your clone tether position to see your assignments
-      </div>
-    {/if}
-  </div>
-  </div>
+    </div>
   {/snippet}
 </PipPortal>
 

@@ -201,16 +201,12 @@
                 class="absolute bottom-0 left-0 right-0 bg-surface-950/80 px-3 py-1.5 max-h-[45%] overflow-y-auto pointer-events-none text-left"
               >
                 {#if current.description}
-                  <div
-                    class="text-sm text-surface-100 whitespace-pre-wrap leading-snug"
-                  >
+                  <div class="text-sm text-surface-100 whitespace-pre-wrap leading-snug">
                     {@html renderDebuffTokens(current.description)}
                   </div>
                 {/if}
                 {#if current.stratDesc}
-                  <div
-                    class="flex items-start gap-2 text-sm text-surface-50 leading-snug mt-1"
-                  >
+                  <div class="flex items-start gap-2 text-sm text-surface-50 leading-snug mt-1">
                     {#if role}
                       <RoleIcon {role} />
                     {/if}
@@ -222,9 +218,7 @@
               </div>
             {/if}
           {:else}
-            <div
-              class="absolute inset-0 flex items-center justify-center text-surface-400 text-sm"
-            >
+            <div class="absolute inset-0 flex items-center justify-center text-surface-400 text-sm">
               No mechanics with images
             </div>
           {/if}

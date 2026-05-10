@@ -631,19 +631,19 @@ export const ex8FightConfig: FightConfig = {
       mechName: 'Meteorain',
       mechType: 'Raidwide',
       mechTag: 'pre',
-      startTimeMs: 14000,
+      startTimeMs: 14000
     },
     {
       mechName: 'Naught Grows',
       mechType: 'Mechanic',
       mechTag: 'pre',
-      startTimeMs: 29000,
+      startTimeMs: 29000
     },
     {
       mechName: 'Return to Nothing (Orbs)',
       mechType: 'Mechanic',
       mechTag: 'pre',
-      startTimeMs: 31000,
+      startTimeMs: 31000
     },
     {
       mechName: 'Meltdown Snapshot',
@@ -679,7 +679,7 @@ export const ex8FightConfig: FightConfig = {
       mechName: 'Return to Nothing (Orbs)',
       mechType: 'Mechanic',
       mechTag: 'pre',
-      startTimeMs: 59000,
+      startTimeMs: 59000
     },
     {
       mechName: 'Gaze of the Void Cones',
@@ -817,19 +817,19 @@ export const ex8FightConfig: FightConfig = {
       mechName: 'Adds Phase Enrage',
       mechType: 'Enrage',
       mechTag: 'pre',
-      startTimeMs: 289000,
+      startTimeMs: 289000
     },
     {
       mechName: 'Enuo Returns',
       mechType: 'Start',
       mechTag: 'post',
-      startTimeMs: 0,
+      startTimeMs: 0
     },
     {
       mechName: 'Lightless World',
       mechType: 'Raidwide',
       mechTag: 'post',
-      startTimeMs: 10000,
+      startTimeMs: 10000
     },
     {
       mechName: 'Almaghest',
@@ -841,49 +841,49 @@ export const ex8FightConfig: FightConfig = {
       mechName: 'Naught Grows',
       mechType: 'Mechanic',
       mechTag: 'post',
-      startTimeMs: 38000,
+      startTimeMs: 38000
     },
     {
       mechName: 'Return to Nothing (Orbs)',
       mechType: 'Mechanic',
       mechTag: 'post',
-      startTimeMs: 40000,
+      startTimeMs: 40000
     },
     {
       mechName: 'Naught Wakes First Lines',
       mechType: 'Mechanic',
       mechTag: 'post',
-      startTimeMs: 55000,
+      startTimeMs: 55000
     },
     {
       mechName: 'Naught Wakes Second Lines',
       mechType: 'Mechanic',
       mechTag: 'post',
-      startTimeMs: 66000,
+      startTimeMs: 66000
     },
     {
       mechName: 'Shrouded Holy (LPs)',
       mechType: 'Mechanic',
       mechTag: 'post',
-      startTimeMs: 72000,
+      startTimeMs: 72000
     },
     {
       mechName: 'Naught Grows',
       mechType: 'Mechanic',
       mechTag: 'post',
-      startTimeMs: 87000,
+      startTimeMs: 87000
     },
     {
       mechName: 'Return to Nothing (Orbs)',
       mechType: 'Mechanic',
       mechTag: 'post',
-      startTimeMs: 89000,
+      startTimeMs: 89000
     },
     {
       mechName: 'Dimension Zero',
       mechType: 'Raidwide',
       mechTag: 'post',
-      startTimeMs: 99000,
+      startTimeMs: 99000
     },
     {
       mechName: 'Vacuum: Lines',
@@ -1033,25 +1033,25 @@ export const ex8FightConfig: FightConfig = {
       mechName: 'Naught Grows',
       mechType: 'Mechanic',
       mechTag: 'post',
-      startTimeMs: 293000,
+      startTimeMs: 293000
     },
     {
       mechName: 'Return to Nothing (Orbs)',
       mechType: 'Mechanic',
       mechTag: 'post',
-      startTimeMs: 295000,
+      startTimeMs: 295000
     },
     {
       mechName: 'Naught Wakes (First)',
       mechType: 'Mechanic',
       mechTag: 'post',
-      startTimeMs: 310000,
+      startTimeMs: 310000
     },
     {
       mechName: 'Naught Wakes (Second)',
       mechType: 'Mechanic',
       mechTag: 'post',
-      startTimeMs: 321000,
+      startTimeMs: 321000
     },
     {
       mechName: 'Deep Freeze',
@@ -1063,13 +1063,13 @@ export const ex8FightConfig: FightConfig = {
       mechName: 'Naught Grows',
       mechType: 'Mechanic',
       mechTag: 'post',
-      startTimeMs: 341000,
+      startTimeMs: 341000
     },
     {
       mechName: 'Return to Nothing (Orbs)',
       mechType: 'Mechanic',
       mechTag: 'post',
-      startTimeMs: 343000,
+      startTimeMs: 343000
     },
     {
       mechName: 'Dimension Zero',

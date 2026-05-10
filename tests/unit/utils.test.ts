@@ -9,11 +9,7 @@
  */
 
 import { describe, expect, test } from 'vitest';
-import {
-  formatRoleAbbreviation,
-  resolveMechs,
-  resolveStratItem
-} from '../../src/lib/utils';
+import { formatRoleAbbreviation, resolveMechs, resolveStratItem } from '../../src/lib/utils';
 
 describe('resolveStratItem', () => {
   const empty: Record<string, string | null> = {};

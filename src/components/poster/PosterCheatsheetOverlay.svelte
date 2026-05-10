@@ -40,9 +40,7 @@
   $effect(() => {
     if (!selectedJob && mode === 'role') mode = 'overview';
   });
-  const highlightJob = $derived<PlayerJob | undefined>(
-    mode === 'role' ? selectedJob : undefined
-  );
+  const highlightJob = $derived<PlayerJob | undefined>(mode === 'role' ? selectedJob : undefined);
 
   const baseW = $derived(layout.width ?? 1920);
   const baseH = $derived(layout.height ?? 1080);
