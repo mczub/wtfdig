@@ -14,12 +14,12 @@ const allP1: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'Cyclonic Break (Lightning)',
-        description: 'Lightning = Spreads\nSupports CCW, DPS CW\nCones repeat — dodge Back after 2nd',
+        description: 'Lightning = Spreads\nSupports CCW, DPS CW\nCones repeat - dodge Back after 2nd',
         imageUrl: './fru/naur-cyclonic-lightning.webp'
       },
       {
         mechanic: 'Cyclonic Break (Fire)',
-        description: 'Fire = Partners\nSupports CCW, DPS CW\nCones repeat — dodge Back after 2nd',
+        description: 'Fire = Partners\nSupports CCW, DPS CW\nCones repeat - dodge Back after 2nd',
         imageUrl: './fru/naur-cyclonic-fire.webp'
       }
     ]
@@ -31,7 +31,7 @@ const allP1: PhaseStrats[] = [
       {
         mechanic: 'Utopian Sky (Tank Buster)',
         description:
-          'MT/OT debuff — AoE on expire hits closest player\nTanks stack 1 wall-notch toward each other',
+          'MT/OT debuff - AoE on expire hits closest player\nTanks stack 1 wall-notch toward each other',
         imageUrl: './fru/naur-utopia-tb.webp'
       },
       {
@@ -154,7 +154,7 @@ const allP2: PhaseStrats[] = [
       {
         mechanic: 'Mirror Mirror',
         description:
-          'Move to nearest Red Mirror — repeats Scythe donut + Proteans\nIf 2 Red Mirrors equidistant: rotate CW to Red\nH1/T1 careful not to cleave each other\nR1/M1 point Proteans Middle',
+          'Move to nearest Red Mirror - repeats Scythe donut + Proteans\nIf 2 Red Mirrors equidistant: rotate CW to Red\nH1/T1 careful not to cleave each other\nR1/M1 point Proteans Middle',
         imageUrl: './fru/naur-mirror.webp'
       },
       {
@@ -227,7 +227,7 @@ const allP2: PhaseStrats[] = [
       },
       {
         mechanic: 'Bait + Tether',
-        description: 'Bait AoE, then dodge\nT/M tethered to crystal — leaves puddle\nDon\'t cone Light with Dark',
+        description: 'Bait AoE, then dodge\nT/M tethered to crystal - leaves puddle\nDon\'t cone Light with Dark',
         imageUrl: './fru/naur-iv-bait.webp'
       },
       {
@@ -449,7 +449,7 @@ const allP4: PhaseStrats[] = [
       {
         mechanic: 'Somber Dance',
         description:
-          'TB hits Furthest, then Closest\nT1 Far bait (W or E from Gaia), T2 Close follow\nParty move with Gaia — don\'t break tether',
+          'TB hits Furthest, then Closest\nT1 Far bait (W or E from Gaia), T2 Close follow\nParty move with Gaia - don\'t break tether',
         imageUrl: './fru/naur-dl-somber.webp'
       },
       {

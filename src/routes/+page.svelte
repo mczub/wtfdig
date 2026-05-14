@@ -128,6 +128,11 @@
           {#if openState['ultimates']}
             <div transition:slide class="flex flex-col gap-4">
               <a
+                href="{base}/ultimates/fru"
+                class="btn preset-tonal-secondary border border-secondary-500"
+                >Futures Rewritten (Ultimate)</a
+              >
+              <a
                 href="{base}/ultimates/tea"
                 class="btn preset-tonal-secondary border border-secondary-500"
                 >The Epic of Alexander (Ultimate)</a
