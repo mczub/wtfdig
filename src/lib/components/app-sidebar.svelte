@@ -49,6 +49,11 @@
       defaultOpen: true,
       items: [
         {
+          title: 'Futures Rewritten',
+          subtitle: 'Ultimate',
+          url: '/ultimates/fru'
+        },
+        {
           title: 'The Epic of Alexander',
           subtitle: 'Ultimate',
           url: '/ultimates/tea'
