@@ -1,4 +1,5 @@
 import type { FightConfig, PhaseStrats, Strat } from '$lib/types';
+import { fruPosterLayout } from './posterData';
 
 const allP1: PhaseStrats[] = [
   {
@@ -384,11 +385,15 @@ const allP3: PhaseStrats[] = [
 const allP4: PhaseStrats[] = [
   {
     phaseName: 'Darklit Dragonsong',
-    tag: 'p4',
+    tag: 'p4-am',
     mechs: [
       {
         mechanic: 'Setup',
-        description: 'Memory Crystal spawns N\nTank pull Shiva to Mid',
+        description: {
+          '71': 'Memory Crystal spawns N\nTank pull Shiva to Mid',
+          '62':
+            'Memory Crystal spawns N\nTank pull Shiva to Mid\nBoth Tanks: stance ON, then OFF before Gaia spawns\n→ 1 Tank top aggro on Ryne, 1 DPS top aggro on Gaia'
+        },
         imageUrl: './fru/naur-dl-setup.webp'
       },
       {
@@ -453,15 +458,136 @@ const allP4: PhaseStrats[] = [
         imageUrl: './fru/naur-dl-somber.webp'
       },
       {
-        mechanic: 'Akh Morn 7-1',
-        description:
-          'Party Center, Tank Out\n7 + 1 stacks - discuss which tank baits first\nMT = Shiva aggro, OT = Gaia aggro',
+        mechanic: 'Akh Morn',
+        description: {
+          '71':
+            'Party Center, Tank Out\n7 + 1 stacks - discuss which tank baits first\nMT = Shiva aggro, OT = Gaia aggro',
+          '62':
+            'Both Tanks stack\nRest of party stack\n6 + 2 - allows recovery if a tank dies in CT'
+        },
         imageUrl: './fru/naur-dl-akh-morn.webp'
       },
       {
         mechanic: 'Morn Afah',
         description: 'Full party stack\nRyne/Gaia HP within 5% or wipe\nTargets player with aggro from Ryne',
         imageUrl: './fru/naur-dl-morn-afah.webp'
+      }
+    ]
+  },
+  {
+    phaseName: 'Crystallize Time',
+    tag: 'p4-am',
+    mechs: [
+      {
+        mechanic: 'Debuffs',
+        description:
+          '2x Aero/Red = S Intercards\n2x Ice/Red = E/W\n1x Eruption/Blue = N Intercard (Purple Tether) → Cleanse W (D)\n1x Ice/Blue = S Intercard (Purple Light) → Cleanse SW (4)\n1x Unholy/Blue = S Intercard (Purple Light) → Cleanse E (B)\n1x Water/Blue = S Intercard (Purple Light) → Cleanse SE (3)\n+ X3 Quietus (raid damage), All Rewind 33s',
+        imageUrl: './fru/naur-ct-debuffs.webp'
+      },
+      {
+        mechanic: 'Setup',
+        description:
+          'Support West, DPS East\nAdjust prios (same as Apoc):\nT1 > T2 > H1 > H2\nM1 > M2 > R1 > R2',
+        imageUrl: './fru/naur-ct-setup.webp'
+      },
+      {
+        mechanic: 'Initial Positions',
+        description:
+          'Ice/Red = E/W (Supp W, DPS E)\nAero/Red = SE/SW\nBlue cleanse → static intercards\nIf 2 DPS / 2 Supp same Red combo, G1 adjusts (Apoc prio)',
+        imageUrl: './fru/naur-ct-positions.webp'
+      },
+      {
+        mechanic: 'Tether Intercept',
+        description:
+          'Yellow Speed Tethers always N/S\nPurple Tethers diagonal intercards (NE+SW default, can be NW+SE)\nIntercept dragon heads E/W\nGo S intercards\nN Purple intercard = Eruption, S Purple = Ice/Unholy/Water\nDodge N/S Traffic Light Explosions',
+        imageUrl: './fru/naur-ct-tether.webp'
+      },
+      {
+        mechanic: 'Water Stack',
+        description:
+          'Water stack on group\nS groups shimmy into "Petal" shape for KB\nIce/Aero/Eruption resolve\nS Purple Aero knocks group across',
+        imageUrl: './fru/naur-ct-water.webp'
+      },
+      {
+        mechanic: '2nd Traffic Explosion',
+        description:
+          'Unholy stack on group → stack intercard, then move N\n‼️ Avoid hitting Crystal with Unholy stack\nAeros wait inside S circle for late pops\nIce that dodged S moves N for 2nd traffic dodge',
+        imageUrl: './fru/naur-ct-traffic.webp'
+      },
+      {
+        mechanic: 'Exa-Wave',
+        description:
+          'Shiva teleports E or W, telegraphs Exa-Wave (4 hits)\nGroup position Middle North\nAeros move to pop dragon heads near 3/4 markers',
+        imageUrl: './fru/naur-ct-exa.webp'
+      },
+      {
+        mechanic: 'Cleanse Positions',
+        description:
+          'Dodge into 2nd E/W Exa wave\nBlue debuffs to cleanse:\nWest (D), East (B), Southwest (4), Southeast (3)\nCleanse puddles dropped by intercepted dragon heads — pick up near your waymark',
+        imageUrl: './fru/naur-ct-cleanse.webp'
+      },
+      {
+        mechanic: 'Place Rewinds',
+        description:
+          'Groups use corners of marker\nTanks use edges, several steps out\nG1 → Left facing wall, G2 → Right facing wall\nTanks closest to wall + closest to other party',
+        imageUrl: './fru/naur-ct-rewinds.webp'
+      },
+      {
+        mechanic: 'Spirit Taker',
+        description:
+          'Spread for random Spirit Taker after Rewind placement\nOrient using rewind marker:\nTanks close wall, Healers close mid\nRanged far walls, Melee far mid\nG1 Left, G2 Right',
+        imageUrl: './fru/naur-ct-spirit.webp'
+      },
+      {
+        mechanic: 'Knockback',
+        description:
+          'Get knocked into rewind spot\nIf late: KBI before debuff expires to maybe avoid dying\n2nd KB follows same spots',
+        imageUrl: './fru/naur-ct-kb.webp'
+      },
+      {
+        mechanic: 'Akh Morn',
+        description: {
+          '71': 'Party Center, Tank Out\n7 + 1 stacks — whoever did not bait solo before CT',
+          '62': 'Both Tanks stack\nRest of party stack'
+        },
+        imageUrl: './fru/naur-ct-akh-morn.webp'
+      },
+
+    ]
+  },
+  {
+    phaseName: 'CT Debuff Sequences',
+    tag: 'p4',
+    mechs: [
+      {
+        mechanic: 'Aero/Red',
+        description:
+          'Start: S Intercards (SE or SW, DPS prio E)\n→ Intercept dragon head\n→ Wait in S circle for late Traffic Light pop\n→ Move to pop dragon head near 3/4 marker during Exa-Wave\n→ Rewind, Spirit Taker spread, KB, Akh Morn'
+      },
+      {
+        mechanic: 'Ice/Red',
+        description:
+          'Start: E or W (Supp W, DPS E)\n→ Drop ice puddle dodging N or staying S based on traffic light\n→ Move N to group up after 2nd traffic\n→ Rewind, Spirit Taker spread, KB, Akh Morn'
+      },
+      {
+        mechanic: 'Eruption/Blue',
+        description:
+          'Start: N Intercard (Purple Tether)\n→ Tuck IN to avoid Aero pop AoE\n→ Cleanse West (D) — drop cleanse puddle\n→ Move with group through Exa-Wave\n→ Rewind, Spirit Taker spread, KB, Akh Morn'
+      },
+      {
+        mechanic: 'Ice/Blue',
+        description:
+          'Start: S Intercard (Purple Tether Light)\n→ Stack with group for Water Stack\n→ Dodge slightly S to avoid 2nd Traffic Light Explosion\n→ Cleanse Southwest (4)\n→ Rewind, Spirit Taker spread, KB, Akh Morn'
+      },
+      {
+        mechanic: 'Unholy/Blue',
+        description:
+          'Start: S Intercard (Purple Tether Light)\n→ Stack on group for Water Stack\n→ Stack on intercard for Unholy, then move N\n→ Avoid Crystal with Unholy stack\n→ Cleanse East (B)\n→ Rewind, Spirit Taker spread, KB, Akh Morn'
+      },
+      {
+        mechanic: 'Water/Blue',
+        description:
+          'Start: S Intercard (Purple Tether Light)\n→ Be the Water Stack target — group stacks on you\n→ Move S into "Petal" shape for KB\n→ Cleanse Southeast (3)\n→ Rewind, Spirit Taker spread, KB, Akh Morn'
       }
     ]
   }
@@ -501,19 +627,33 @@ export const fruFightConfig: FightConfig = {
   cheatsheetTitle: 'FRU Cheatsheet',
   strats: {
     naur: {
-      label: 'NAUR'
+      label: 'NAUR',
+      defaults: {
+        'p4-am': '71'
+      }
     }
   },
-  toggles: [],
+  toggles: [
+    {
+      key: 'p4-am',
+      label: 'P4 Akh Morn',
+      defaultValue: '71',
+      options: [
+        { value: '71', label: '7-1 (Default)' },
+        { value: '62', label: '6-2' }
+      ]
+    }
+  ],
   tabTags: {
     'P1: Fatebreaker': ['p1'],
     'P2: Usurper of Frost': ['p2'],
     'P3: Oracle of Darkness': ['p3'],
-    'P4: Roommates': ['p4'],
+    'P4: Roommates': ['p4-am', 'p4'],
     'P5: Pandora': ['p5']
   },
   useMainPageTabs: true,
   defaultStratName: 'naur',
   timeline: [],
-  posterEnabled: false
+  posterEnabled: true,
+  posterLayout: fruPosterLayout
 };
