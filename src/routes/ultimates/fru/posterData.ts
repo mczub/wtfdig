@@ -1,65 +1,87 @@
 import type { PosterLayout } from '$lib/types';
-import { diagram, player, boss, waymark, aoeCircle, text, arrow, tether } from '$lib/arena';
+import {
+  diagram,
+  player,
+  waymark,
+  aoeCircle,
+  aoeRect,
+  text,
+  arrow,
+  tether,
+  polygon,
+  curvedArrow,
+  debuff,
+  arenaShape,
+  boss
+} from '$lib/arena';
+
+// Helper: dark FFXIV-style circle background for sub-arenas inside a section.
+const subArena = (cx: number, cy: number, diameter: number, bgImage?: string) =>
+  arenaShape('circle', cx, cy, diameter, diameter, {
+    bgColor: '#1e2a4a',
+    borderColor: '#3a4a6a',
+    showCrosshairs: false,
+    bgImage
+  });
+
+const P3P4_BG = '/arenas/fru-p3-p4.webp';
 
 export const fruPosterLayout: PosterLayout = {
   cols: 16,
   rows: 9,
   title: 'Futures Rewritten (Ultimate) NA PF Strats',
-  subtitle: 'NAUR',
+  subtitle: 'Based on resources from Tuufless, OCE FRU, and Tenkay',
   sections: [
-    // ─── Top row ────────────────────────────────────────────────────────────
+    // ─── Top row (h=4, viewBox per section: w×25 × 100) ──────────────────────
     {
       title: 'Fatebreaker',
       col: 1,
       row: 1,
       w: 5,
       h: 4,
+      // viewBox 125 × 100
       accentColor: '#f59e0b',
-      arena: diagram(
-        'square',
-        [
-          // Cyclonic block
-          text('Cyclonic', 4, 6, { fontSize: 6, anchor: 'start' }),
-          player('R1', 8, 16),
-          player('MT', 22, 16),
-          player('R2', 36, 16),
-          player('H1', 10, 26),
-          player('OT', 34, 26),
-          player('M1', 8, 36),
-          player('H2', 22, 36),
-          player('M2', 36, 36),
-          arrow(8, 12, 36, 12, { color: '#ec4899', width: 1.5 }),
-          text('Prismatic\nSwap', 50, 18, { fontSize: 4, anchor: 'start', color: '#ec4899' }),
-
-          // Utopian block
-          text('Utopian', 65, 6, { fontSize: 6, anchor: 'start' }),
-          text('G1 - A1D4 Markers\nG2 - 2BC3 Markers\nRole Tethers', 65, 16, {
-            fontSize: 4,
-            anchor: 'start'
-          }),
-
-          // Towers (right column)
-          text('Towers', 90, 6, { fontSize: 6, anchor: 'start' }),
-          player('H1', 92, 16),
-          player('R1', 92, 26),
-          text('Anchors', 78, 26, { fontSize: 4, anchor: 'start' }),
-          player('H2', 92, 36),
-          text('M1>M2>R1\nNorth to South', 78, 42, { fontSize: 4, anchor: 'start' }),
-
-          // Fall of Faith conga
-          text('Fall of Faith', 50, 60, { fontSize: 6 }),
-          player('R1', 12, 72),
-          player('H1', 24, 72),
-          player('M1', 36, 72),
-          player('MT', 48, 72),
-          player('OT', 60, 72),
-          player('M2', 72, 72),
-          player('H2', 84, 72),
-          player('R2', 96, 72),
-          text('W/E', 50, 90, { fontSize: 6 })
-        ],
-        { bgColor: 'transparent', scale: 0.85 }
-      )
+      arena: diagram('square', [
+        text('Cyclonic', 20, 6, { fontSize: 5 }),
+        text('Prismatic\nSwap', 34, 14, { color: '#ec4899', fontSize: 3, anchor: 'start' }),
+        curvedArrow(38, 21, 38, 35, { curvature: -8, color: '#ec4899', heads: 'both' }),
+        player('R1', 9, 22, { size: 5 }),
+        player('MT', 20, 22, { size: 5 }),
+        player('R2', 31, 22, { size: 5 }),
+        player('H1', 9, 33, { size: 5 }),
+        player('OT', 31, 33, { size: 5 }),
+        player('M1', 9, 44, { size: 5 }),
+        player('H2', 20, 44, { size: 5 }),
+        player('M2', 31, 44, { size: 5 }),
+        text('Utopian', 66, 6, { fontSize: 5 }),
+        text('G1', 47, 18, { fontSize: 5, anchor: 'start' }),
+        text('G2', 47, 28, { fontSize: 5, anchor: 'start' }),
+        text('Role Tethers', 66, 38, { fontSize: 5 }),
+        waymark('A', 58, 18),
+        waymark('1', 66, 18),
+        waymark('D', 74, 18),
+        waymark('4', 82, 18),
+        waymark('2', 58, 28),
+        waymark('B', 66, 28),
+        waymark('C', 74, 28),
+        waymark('3', 82, 28),
+        text('Towers', 102, 6, { fontSize: 5 }),
+        player('H1', 102, 17, { size: 5 }),
+        player('R2', 102, 28, { size: 5 }),
+        text('Anchors', 111, 28, { fontSize: 3.5, anchor: 'start' }),
+        player('H2', 102, 39, { size: 5 }),
+        text('M1 > M2 > R1\nNorth to South', 102, 52, { fontSize: 5 }),
+        text('Fall of Faith', 62, 67, { fontSize: 6 }),
+        player('R1', 14, 78),
+        player('H1', 28, 78),
+        player('M1', 42, 78),
+        player('MT', 55, 78),
+        player('OT', 69, 78),
+        player('M2', 83, 78),
+        player('H2', 97, 78),
+        player('R2', 111, 78),
+        text('W/E', 62, 90, { fontSize: 7 }),
+      ], { bgColor: 'transparent' })
     },
     {
       title: 'Shiva',
@@ -67,53 +89,50 @@ export const fruPosterLayout: PosterLayout = {
       row: 1,
       w: 6,
       h: 4,
-      accentColor: '#a855f7',
-      arena: diagram(
-        'square',
-        [
-          // Diamond Dust
-          text('Diamond Dust', 18, 6, { fontSize: 6 }),
-          waymark('1', 6, 14),
-          waymark('A', 18, 14),
-          waymark('2', 30, 14),
-          player('R1', 12, 22),
-          player('MT', 18, 22),
-          player('R2', 24, 22),
-          waymark('D', 6, 28),
-          waymark('B', 30, 28),
-          player('H1', 12, 32),
-          player('OT', 24, 32),
-          player('M1', 12, 42),
-          player('H2', 18, 42),
-          player('M2', 24, 42),
-          waymark('4', 6, 50),
-          waymark('C', 18, 50),
-          waymark('3', 30, 50),
-          arrow(8, 22, 28, 42, { color: '#ec4899', width: 1 }),
-          arrow(28, 22, 8, 42, { color: '#a855f7', width: 1 }),
-          text('Puddle Drops away from\nShiva after KB!', 18, 60, { fontSize: 3.5 }),
-
-          // Mirror Mirror
-          text('Mirror Mirror', 55, 6, { fontSize: 6 }),
-          text('Facing Mirror\nG1 Left - G2 Right', 55, 14, { fontSize: 4 }),
-          player('MT', 50, 28),
-          player('OT', 60, 28),
-          aoeCircle(55, 42, 12, { color: '#dc2626', opacity: 0.3 }),
-          player('M1', 52, 42),
-          player('M2', 58, 42),
-
-          // Light Rampant
-          text('Light Rampant', 86, 6, { fontSize: 6 }),
-          player('H1', 78, 18),
-          player('MT', 86, 18),
-          player('OT', 94, 18),
-          text('E/W Puddles', 86, 32, { fontSize: 4 }),
-          player('R2', 80, 42),
-          player('M2', 92, 42),
-          text('CW if needed\n(4 on same side\nwithout puddle)', 86, 55, { fontSize: 3.5 })
-        ],
-        { bgColor: 'transparent', scale: 0.85 }
-      )
+      // viewBox 150 × 100
+      accentColor: '#3b82f6',
+      arena: diagram('square', [
+        text('Diamond Dust', 26, 9, { fontSize: 5 }),
+        waymark('1', 11, 26, { size: 3.5 }),
+        waymark('A', 26, 18, { size: 3.5 }),
+        waymark('2', 41, 26, { size: 3.5 }),
+        waymark('D', 4, 42, { size: 3.5 }),
+        waymark('B', 48, 42, { size: 3.5 }),
+        waymark('4', 11, 58, { size: 3.5 }),
+        waymark('C', 26, 66, { size: 3.5 }),
+        waymark('3', 41, 58, { size: 3.5 }),
+        player('R1', 17, 33, { size: 4 }),
+        player('MT', 26, 33, { size: 4 }),
+        player('R2', 35, 33, { size: 4 }),
+        player('H1', 17, 42, { size: 4 }),
+        player('OT', 35, 42, { size: 4 }),
+        player('M1', 17, 51, { size: 4 }),
+        player('H2', 26, 51, { size: 4 }),
+        player('M2', 35, 51, { size: 4 }),
+        curvedArrow(17, 28, 26, 28, { curvature: -10, color: '#ec4646', width: 0.8, heads: 'both' }),
+        curvedArrow(12, 42, 12, 51, { curvature: 10, color: '#a855f7', width: 0.8, heads: 'both' }),
+        curvedArrow(26, 56, 35, 56, { curvature: 10, color: '#077bd5', width: 0.8, heads: 'both' }),
+        text('Puddle Drops away from\nShiva after KB!', 26, 77, { color: '#06b6d4', fontSize: 4 }),
+        text('Mirror Mirror', 75, 9, { fontSize: 5 }),
+        text('Facing Mirror\nG1 Left - G2 Right', 75, 26, { fontSize: 3.5 }),
+        player('MT', 62, 53),
+        player('OT', 89, 54),
+        aoeCircle(75, 48, 14, { color: '#ec4899', opacity: 0.35 }),
+        player('M1', 69, 63),
+        player('M2', 81, 63),
+        text('Light Rampant', 122, 9, { fontSize: 5 }),
+        player('H1', 106, 29, { size: 5 }),
+        player('MT', 138, 29, { size: 5 }),
+        player('OT', 128, 22, { size: 5 }),
+        player('H2', 116, 22, { size: 5 }),
+        text('E/W Puddles', 122, 39, { fontSize: 5 }),
+        player('M1', 107, 48, { size: 5 }),
+        player('R1', 116, 55, { size: 5 }),
+        player('R2', 128, 55, { size: 5 }),
+        player('M2', 137, 48, { size: 5 }),
+        text('CW if needed\n(4 on same side\nwithout puddle)', 123, 74, { color: '#06b6d4', fontSize: 5 }),
+        curvedArrow(40, 42, 40, 32, { curvature: 10, color: '#f7bb55', width: 0.8, heads: 'both' }),
+      ], { bgColor: 'transparent' })
     },
     {
       title: 'Gaia',
@@ -121,130 +140,178 @@ export const fruPosterLayout: PosterLayout = {
       row: 1,
       w: 5,
       h: 4,
+      // viewBox 125 × 100
       accentColor: '#a855f7',
-      arena: diagram(
-        'square',
-        [
-          // Header text
-          text('Supports - A1D4\nDPS - 2BC3', 8, 5, { fontSize: 4, anchor: 'start' }),
-          text('T1 > T2 > H1 > H2\nM1 > M2 > R1 > R2', 55, 5, { fontSize: 4, anchor: 'start' }),
-
-          // Ultimate Relativity
-          text('Ultimate Relativity', 25, 20, { fontSize: 5 }),
-          text('G1 Flex', 25, 26, { fontSize: 4 }),
-          player('H1', 14, 38),
-          text('10s', 6, 32, { fontSize: 3.5, color: '#06b6d4' }),
-          player('MT', 36, 38),
-          text('30s', 44, 32, { fontSize: 3.5, color: '#f59e0b' }),
-          text('20s', 6, 50, { fontSize: 3.5, color: '#ec4899' }),
-          text('20s', 44, 50, { fontSize: 3.5, color: '#ec4899' }),
-          arrow(14, 50, 36, 50, { color: '#ec4899', width: 1 }),
-          arrow(25, 38, 25, 32, { color: '#eab308', width: 1 }),
-          arrow(25, 50, 25, 60, { color: '#eab308', width: 1 }),
-          text('30s', 6, 68, { fontSize: 3.5, color: '#f59e0b' }),
-          player('R1', 14, 62),
-          player('M1', 36, 62),
-          text('10s', 44, 68, { fontSize: 3.5, color: '#06b6d4' }),
-
-          // Apocalypse
-          text('Apocalypse', 75, 20, { fontSize: 5 }),
-          text('Static Spreads\nSafe Spot Relative', 75, 28, { fontSize: 3.5 }),
-          aoeCircle(70, 50, 14, { color: '#dc2626', opacity: 0.35 }),
-          aoeCircle(85, 50, 14, { color: '#dc2626', opacity: 0.35 }),
-          player('H1', 64, 48),
-          player('H2', 68, 52),
-          player('M1', 81, 48),
-          player('R1', 85, 48),
-          player('M2', 81, 52),
-          player('R2', 85, 52)
-        ],
-        { bgColor: 'transparent', scale: 0.85 }
-      )
+      arena: diagram('square', [
+        text('Supports', 19, 6, { fontSize: 4, anchor: 'end' }),
+        waymark('A', 26, 6),
+        waymark('1', 34, 6),
+        waymark('D', 42, 6),
+        waymark('4', 50, 6),
+        text('DPS', 19, 15, { fontSize: 4, anchor: 'end' }),
+        waymark('2', 34, 15),
+        waymark('B', 26, 15),
+        waymark('C', 42, 15),
+        waymark('3', 50, 15),
+        text('Ultimate Relativity', 31, 30, { fontSize: 5 }),
+        text('G1 Flex', 31, 36, { fontSize: 4 }),
+        arenaShape('circle', 31, 66, 50, 50, { bgColor: '#1e2a4a', borderColor: '#3a4a6a', showCrosshairs: false, bgImage: '/arenas/fru-p3-p4.webp' }),
+        tether(31, 66, 31, 82, { color: '#eab308', width: 1.5 }),
+        tether(40, 57, 31, 66, { color: '#eab308', width: 1.5 }),
+        tether(21, 56, 31, 66, { color: '#eab308', width: 1.5 }),
+        tether(16, 66, 46, 66, { color: '#ec4899', width: 1.5 }),
+        text('10s/', 32, 47, { color: '#07d5b2', fontSize: 4, anchor: 'end' }),
+        text('20s', 50, 66, { color: '#ec4646', fontSize: 4 }),
+        debuff('dark-blizzard', 35, 85, { size: 6 }),
+        text('Apocalypse', 93, 29, { fontSize: 4.5 }),
+        text('Static Spreads\nSafe Spot Relative', 93, 36, { fontSize: 3 }),
+        arenaShape('circle', 93, 67, 50, 50, { bgColor: '#1e2a4a', borderColor: '#3a4a6a', showCrosshairs: false, bgImage: '/arenas/fru-p4.webp' }),
+        aoeCircle(93, 67, 10, { color: '#dc2626', opacity: 0.45 }),
+        aoeCircle(93, 50, 10, { color: '#dc2626', opacity: 0.45 }),
+        player('H1', 71, 62, { size: 2.5 }),
+        player('MT', 81, 67, { size: 2.5 }),
+        player('H2', 71, 72, { size: 2.5 }),
+        player('OT', 83, 75, { size: 2.5 }),
+        player('M1', 105, 67, { size: 2.5 }),
+        player('R1', 115, 72, { size: 2.5 }),
+        player('M2', 103, 58, { size: 2.5 }),
+        player('R2', 115, 62, { size: 2.5 }),
+        player('DPS', 31, 79, { size: 3 }),
+        player('DPS', 23, 74, { size: 3 }),
+        debuff('dark-blizzard', 34, 47, { size: 6 }),
+        player('DPS', 39, 74, { size: 3 }),
+        player('DPS', 43, 66, { size: 3 }),
+        player('SUP', 39, 58, { size: 3 }),
+        player('SUP', 31, 53, { size: 3 }),
+        player('SUP', 23, 58, { size: 3 }),
+        player('SUP', 19, 66, { size: 3 }),
+        text('10s', 44, 79, { color: '#ec4646', fontSize: 4 }),
+        text('30s/', 33, 85, { color: '#ec4646', fontSize: 4, anchor: 'end' }),
+        text('10s', 18, 79, { color: '#ec4646', fontSize: 4 }),
+        text('30s', 44, 54, { color: '#07d5b2', fontSize: 4 }),
+        text('30s', 18, 54, { color: '#07d5b2', fontSize: 4 }),
+        text('20s', 12, 66, { color: '#07d5b2', fontSize: 4 }),
+        player('MT', 87, 7, { size: 4 }),
+        player('OT', 96, 7, { size: 4 }),
+        player('H1', 105, 7, { size: 4 }),
+        player('H2', 114, 7, { size: 4 }),
+        player('M1', 87, 16, { size: 4 }),
+        player('M2', 96, 16, { size: 4 }),
+        player('R1', 105, 16, { size: 4 }),
+        player('R2', 114, 16, { size: 4 }),
+        text('Flex Prio', 73, 11, { fontSize: 5 }),
+        aoeCircle(93, 83, 10, { color: '#dc2626', opacity: 0.45 }),
+        aoeCircle(81, 55, 10, { color: '#dc2626', opacity: 0.45 }),
+        aoeCircle(105, 79, 10, { color: '#dc2626', opacity: 0.45 }),
+      ], { bgColor: 'transparent' })
     },
 
-    // ─── Bottom row ─────────────────────────────────────────────────────────
+    // ─── Bottom row (h=5, viewBox per section: w×25 × 125) ───────────────────
     {
       title: 'Oracles',
       col: 1,
       row: 5,
-      w: 5,
+      w: 4,
       h: 5,
+      // viewBox 125 × 125
       accentColor: '#06b6d4',
-      arena: diagram(
-        'square',
-        [
-          text('Darklit Dragonsong', 50, 5, { fontSize: 6 }),
-
-          // Box
-          text('Box', 20, 14, { fontSize: 5 }),
-          player('H1', 12, 22),
-          player('MT', 30, 22),
-          player('M1', 12, 38),
-          player('OT', 30, 38),
-          tether(12, 22, 30, 22, { color: '#f59e0b' }),
-          tether(12, 38, 30, 38, { color: '#f59e0b' }),
-          tether(12, 22, 12, 38),
-          tether(30, 22, 30, 38),
-          text('Swap!', 36, 28, { fontSize: 3.5, color: '#f59e0b', anchor: 'start' }),
-
-          // Hourglass
-          text('Hourglass', 70, 14, { fontSize: 5 }),
-          player('H1', 60, 22),
-          player('MT', 80, 22),
-          player('M1', 60, 38),
-          player('OT', 80, 38),
-          tether(60, 22, 80, 38, { color: '#f59e0b' }),
-          tether(80, 22, 60, 38, { color: '#f59e0b' }),
-          text('Swap!', 86, 30, { fontSize: 3.5, color: '#f59e0b', anchor: 'start' }),
-
-          // Bowtie
-          text('Bowtie', 45, 58, { fontSize: 5 }),
-          text('No Swap!', 45, 64, { fontSize: 3.5 }),
-          player('H1', 32, 72),
-          player('MT', 56, 72),
-          player('M1', 32, 88),
-          player('OT', 56, 88),
-          tether(32, 72, 56, 88),
-          tether(56, 72, 32, 88)
-        ],
-        { bgColor: 'transparent', scale: 0.85 }
-      )
+      arena: diagram('square', [
+        text('Darklit Dragonsong', 50, 7, { fontSize: 6 }),
+        text('Box', 25, 19, { fontSize: 4.5 }),
+        tether(18, 27, 33, 27, { color: '#fff' }),
+        tether(18, 52, 33, 52, { color: '#fff' }),
+        tether(18, 27, 18, 52, { color: '#fff' }),
+        tether(33, 27, 33, 52, { color: '#fff' }),
+        curvedArrow(37, 49, 37, 30, { curvature: 5, color: '#f59e0b', width: 0.8, heads: 'both' }),
+        text('Swap!', 41, 39, { color: '#f59e0b', fontSize: 4, anchor: 'start' }),
+        text('No Swap!', 50, 74, { color: '#f59e0b', fontSize: 4, anchor: 'middle' }),
+        player('SUP', 18, 27, { size: 4 }),
+        player('SUP', 33, 27, { size: 4 }),
+        player('DPS', 18, 52, { size: 4.5 }),
+        player('DPS', 33, 52, { size: 4.5 }),
+        text('Hourglass', 75, 19, { fontSize: 4.5 }),
+        tether(68, 27, 83, 27, { color: '#fff' }),
+        tether(68, 52, 83, 52, { color: '#fff' }),
+        tether(83, 27, 68, 52, { color: '#fff' }),
+        tether(68, 27, 83, 52, { color: '#fff' }),
+        curvedArrow(72, 49, 84, 32, { curvature: 5, color: '#f59e0b', width: 0.8, heads: 'both' }),
+        text('Swap!', 84, 40, { color: '#f59e0b', fontSize: 4, anchor: 'start' }),
+        player('SUP', 68, 27, { size: 4 }),
+        player('SUP', 83, 27, { size: 4 }),
+        player('DPS', 68, 52, { size: 4.5 }),
+        player('DPS', 83, 52, { size: 4.5 }),
+        text('Bowtie', 50, 68, { fontSize: 4.5 }),
+        tether(42, 107, 57, 82, { color: '#fff' }),
+        tether(42, 82, 57, 107, { color: '#fff' }),
+        tether(42, 82, 42, 107, { color: '#fff' }),
+        tether(57, 82, 57, 107, { color: '#fff' }),
+        player('SUP', 42, 82, { size: 4 }),
+        player('SUP', 57, 82, { size: 4 }),
+        player('DPS', 42, 107, { size: 4.5 }),
+        player('DPS', 57, 107, { size: 4.5 }),
+      ], { bgColor: 'transparent' })
     },
     {
-      title: '(7×1 Akh Morns) Crystallize Time',
-      col: 6,
+      title: 'Crystallize Time',
+      col: 5,
       row: 5,
-      w: 6,
+      w: 7,
       h: 5,
+      // viewBox 150 × 125 — use 'square' type with transparent bg so we can
+      // place a smaller sub-arena on the LEFT, leaving room for Cleanses panel
+      // on the RIGHT (matching cheatsheet)
       accentColor: '#e5e7eb',
-      arena: diagram(
-        'circle',
-        [
-          waymark('A', 50, 12),
-          waymark('1', 22, 22),
-          waymark('2', 78, 22),
-          waymark('D', 12, 50),
-          waymark('B', 88, 50),
-          waymark('4', 22, 78),
-          waymark('3', 78, 78),
-          waymark('C', 50, 88),
-
-          // Yellow tether (vertical-ish)
-          tether(50, 18, 50, 82, { color: '#eab308', width: 2 }),
-          // Pink tether (diagonal)
-          tether(22, 38, 78, 62, { color: '#ec4899', width: 2 }),
-
-          aoeCircle(22, 38, 3, { color: '#22c55e', opacity: 0.6 }),
-          aoeCircle(78, 62, 3, { color: '#22c55e', opacity: 0.6 }),
-          aoeCircle(50, 18, 3, { color: '#22c55e', opacity: 0.6 }),
-          aoeCircle(50, 82, 3, { color: '#22c55e', opacity: 0.6 }),
-
-          text('Cleanses', 118, 18, { fontSize: 5, anchor: 'start' }),
-          text('Look at purple tethers!', 50, 102, { fontSize: 4 }),
-          text('Red Debuffs\nsame flex prio\nas Apoc!', 118, 48, { fontSize: 4, anchor: 'start' })
-        ],
-        { scale: 0.8 }
-      )
+      arena: diagram('square', [
+        text('Crystallize Time', 59, 14, { fontSize: 6 }),
+        arenaShape('circle', 59, 68, 84, 84, { bgColor: '#1e2a4a', borderColor: '#3a4a6a', showCrosshairs: false, bgImage: '/arenas/fru-p3-p4.webp' }),
+        waymark('A', 59, 36, { size: 3.5 }),
+        waymark('1', 41, 50, { size: 3.5 }),
+        waymark('2', 77, 50, { size: 3.5 }),
+        waymark('D', 29, 68, { size: 3.5 }),
+        waymark('B', 89, 68, { size: 3.5 }),
+        waymark('4', 41, 86, { size: 3.5 }),
+        waymark('3', 77, 86, { size: 3.5 }),
+        waymark('C', 59, 100, { size: 3.5 }),
+        
+        
+        debuff('dark-blizzard', 83, 68, { size: 8 }),
+        debuff('dark-aero', 17, 112, { size: 8 }),
+        arrow(22, 109, 37, 101, { color: '#22c55e', width: 0.5 }),
+        debuff('dark-water', 107, 106, { size: 8 }),
+        debuff('dark-blizzard', 113, 106, { size: 8 }),
+        arrow(92, 105, 81, 101, { color: '#22c55e', width: 0.5 }),
+        text('Look at purple tethers!', 59, 116, { color: '#eab308', fontSize: 5 }),
+        text('Cleanses', 140, 14, { fontSize: 6, anchor: 'middle' }),
+        debuff('dark-eruption', 125, 35, { size: 12 }),
+        waymark('D', 116, 35, { size: 5 }),
+        debuff('unholy-darkness', 155, 35, { size: 12 }),
+        waymark('B', 164, 35, { size: 5 }),
+        debuff('dark-blizzard', 132, 50, { size: 12 }),
+        waymark('4', 128, 58, { size: 5 }),
+        debuff('dark-water', 148, 50, { size: 12 }),
+        waymark('3', 152, 58, { size: 5 }),
+        text('Red Debuffs\nsame flex prio as Apoc!', 140, 80, { color: '#ec4646', fontSize: 6 }),
+        tether(59, 42, 59, 94, { color: '#eab308', width: 1.8 }),
+        tether(37, 55, 81, 81, { color: '#ec4899', width: 1.8 }),
+        aoeCircle(59, 42, 3, { color: '#22c55e', opacity: 0.95 }),
+        aoeCircle(37, 55, 3, { color: '#22c55e', opacity: 0.95 }),
+        aoeCircle(81, 56, 3, { color: '#22c55e', opacity: 0.95 }),
+        aoeCircle(59, 94, 3, { color: '#22c55e', opacity: 0.95 }),
+        aoeCircle(81, 81, 3, { color: '#22c55e', opacity: 0.95 }),
+        aoeCircle(37, 81, 3, { color: '#22c55e', opacity: 0.95 }),
+        
+        debuff('dark-blizzard', 41, 68, { size: 8 }),
+        debuff('unholy-darkness', 119, 106, { size: 8 }),
+        debuff('wyrmclaw', 35, 68, { size: 8 }),
+        debuff('wyrmclaw', 77, 68, { size: 8 }),
+        debuff('wyrmfang', 98, 106, { size: 8 }),
+        debuff('wyrmclaw', 98, 114, { size: 8 }),
+        debuff('dark-aero', 104, 114, { size: 8 }),
+        debuff('wyrmclaw', 11, 112, { size: 8 }),
+        debuff('wyrmfang', 12, 30, { size: 8 }),
+        debuff('dark-eruption', 18, 30, { size: 8 }),
+        arrow(23, 31, 36, 35, { color: '#22c55e', width: 0.5 }),
+      ], { bgColor: 'transparent' })
     },
     {
       title: 'Pandora',
@@ -252,35 +319,35 @@ export const fruPosterLayout: PosterLayout = {
       row: 5,
       w: 5,
       h: 5,
+      // viewBox 125 × 125
       accentColor: '#f59e0b',
-      arena: diagram(
-        'square',
-        [
-          // Wings Dark & Light
-          text('Wings Dark & Light', 25, 6, { fontSize: 5 }),
-          player('M1', 12, 18),
-          player('R1', 22, 18),
-          player('R2', 32, 18),
-          player('M2', 42, 18),
-          player('H1', 22, 32),
-          player('H2', 32, 32),
-          text('1st Tower is South', 25, 44, { fontSize: 3.5 }),
-
-          // Polarizing Strikes
-          text('Polarizing Strikes', 75, 6, { fontSize: 5 }),
-          text('T > M > R > H', 75, 14, { fontSize: 4 }),
-          player('MT', 64, 28),
-          player('M1', 70, 28),
-          player('OT', 80, 28),
-          player('M2', 86, 28),
-          player('R1', 64, 38),
-          player('H1', 70, 38),
-          player('R2', 80, 38),
-          player('H2', 86, 38),
-          text('Boss Relative!', 75, 50, { fontSize: 5, color: '#f59e0b' })
-        ],
-        { bgColor: 'transparent', scale: 0.85 }
-      )
+      arena: diagram('square', [
+        text('Wings Dark & Light', 29, 25, { fontSize: 6 }),
+        aoeCircle(14, 46, 11, { color: '#3b82f6', opacity: 0.25 }),
+        player('M1', 9, 46, { size: 5 }),
+        player('R1', 19, 46, { size: 5 }),
+        aoeCircle(44, 46, 11, { color: '#3b82f6', opacity: 0.25 }),
+        player('R2', 39, 46, { size: 5 }),
+        player('M2', 49, 46, { size: 5 }),
+        aoeCircle(29, 72, 11, { color: '#3b82f6', opacity: 0.25 }),
+        player('H1', 24, 72, { size: 5 }),
+        player('H2', 34, 72, { size: 5 }),
+        text('1st Tower is South', 29, 89, { fontSize: 5 }),
+        text('Polarizing Strikes', 88, 16, { fontSize: 6 }),
+        text('T > M > R > H', 88, 24, { fontSize: 5 }),
+        boss(88, 44),
+        aoeRect(71, 69, 10, 50, { rotation: 30, color: '#eab308', opacity: 0.45 }),
+        aoeRect(105, 69, 10, 50, { rotation: -30, color: '#a855f7', opacity: 0.45 }),
+        player('MT', 78, 57, { size: 5 }),
+        player('M1', 73, 66, { size: 5 }),
+        player('R1', 68, 75, { size: 5 }),
+        player('H1', 62, 84, { size: 5 }),
+        player('OT', 98, 57, { size: 5 }),
+        player('M2', 103, 66, { size: 5 }),
+        player('R2', 108, 75, { size: 5 }),
+        player('H2', 114, 84, { size: 5 }),
+        text('Boss Relative!', 88, 100, { color: '#f59e0b', fontSize: 5 }),
+      ], { bgColor: 'transparent' })
     }
   ]
 };

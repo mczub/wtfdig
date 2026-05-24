@@ -13,10 +13,61 @@
     CIRCLE_MARKERS
   } from '$lib/arena';
   import { DEBUFFS, type DebuffId } from '$lib/debuffs';
-  import { Copy, Crosshair, Trash2, Plus, RotateCcw } from '@lucide/svelte/icons';
+  import type { FightConfig, PosterLayout, PosterSectionDef } from '$lib/types';
+  import { Copy, Crosshair, Trash2, Plus, RotateCcw, Download } from '@lucide/svelte/icons';
 
   const DEBUFF_IDS = Object.keys(DEBUFFS) as DebuffId[];
   const CORNER_KEYS: PlayerCorner[] = ['tl', 'tr', 'bl', 'br'];
+
+  // --- Discover all fight data files that expose a poster layout. ----------
+  // Eager glob: each module's *FightConfig export is checked for posterLayout.
+  // (Eager is fine here — these modules are already in the SvelteKit bundle.)
+  type FightModule = Record<string, unknown>;
+  const fightModules = import.meta.glob<FightModule>('/src/routes/**/data.ts', { eager: true });
+
+  interface FightPosterEntry {
+    label: string; // e.g. "FRU", "UCOB"
+    title: string; // e.g. "Futures Rewritten (Ultimate)"
+    sections: { sectionTitle: string; layout: PosterLayout; section: PosterSectionDef }[];
+  }
+
+  const fightPosters: FightPosterEntry[] = (() => {
+    const out: FightPosterEntry[] = [];
+    for (const mod of Object.values(fightModules)) {
+      for (const [key, val] of Object.entries(mod)) {
+        if (!key.endsWith('FightConfig') || !val) continue;
+        const cfg = val as FightConfig;
+        if (!cfg.posterLayout) continue;
+        out.push({
+          label: cfg.abbreviatedTitle ?? cfg.fightKey?.toUpperCase() ?? key,
+          title: cfg.title ?? key,
+          sections: cfg.posterLayout.sections.map((s) => ({
+            sectionTitle: s.title || '(untitled)',
+            layout: cfg.posterLayout!,
+            section: s
+          }))
+        });
+      }
+    }
+    return out.sort((a, b) => a.label.localeCompare(b.label));
+  })();
+
+  let selectedFightLabel: string = $state('');
+  let selectedSectionIdx: number = $state(-1);
+  let selectedFightEntry = $derived(
+    fightPosters.find((f) => f.label === selectedFightLabel) ?? null
+  );
+
+  function loadSelectedSection() {
+    if (!selectedFightEntry || selectedSectionIdx < 0) return;
+    const sec = selectedFightEntry.sections[selectedSectionIdx];
+    if (!sec) return;
+    // Resize canvas to match the section's grid footprint
+    gridW = sec.section.w;
+    gridH = sec.section.h;
+    applyDiagramData(sec.section.arena);
+    title = sec.section.title;
+  }
 
   // --- State ---
   let arenaShape: ArenaShape = $state('square');
@@ -45,6 +96,39 @@
   // For the property panel: only show when exactly one element is selected
   let selectedIndex = $derived(selected.size === 1 ? [...selected][0] : null);
   let selectedElement = $derived(selectedIndex !== null ? elements[selectedIndex] : null);
+
+  // Canvas display zoom — multiplier on the rendered px size of the canvas.
+  // Doesn't affect coordinates (the inner SVG uses viewBox); user-adjustable
+  // via the resize handle in the bottom-right corner.
+  let canvasZoom: number = $state(1);
+
+  function handleCanvasResizeStart(e: MouseEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+    const startX = e.clientX;
+    const startY = e.clientY;
+    const startZoom = canvasZoom;
+    const basePxW = gridW * 100;
+    const basePxH = gridH * 100;
+    // Use the larger of width/height delta so dragging either axis scales
+    // proportionally. Min zoom 0.25, max zoom 4.
+    function onMove(ev: MouseEvent) {
+      const dx = ev.clientX - startX;
+      const dy = ev.clientY - startY;
+      const newW = basePxW * startZoom + dx;
+      const newH = basePxH * startZoom + dy;
+      const zoomFromW = newW / basePxW;
+      const zoomFromH = newH / basePxH;
+      const next = Math.max(zoomFromW, zoomFromH);
+      canvasZoom = Math.min(4, Math.max(0.25, next));
+    }
+    function onUp() {
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseup', onUp);
+    }
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseup', onUp);
+  }
 
   // --- Coordinate conversion ---
   let svgEl: SVGSVGElement | undefined = $state();
@@ -79,8 +163,8 @@
       const elX = Math.round(coords.x / scale);
       const elY = Math.round(coords.y / scale);
 
-      // Two-point elements: arrow, tether
-      if (placingType === 'arrow' || placingType === 'tether') {
+      // Two-point elements: arrow, tether, curvedArrow
+      if (placingType === 'arrow' || placingType === 'tether' || placingType === 'curvedArrow') {
         if (!twoPointStart) {
           twoPointStart = { x: elX, y: elY };
           return;
@@ -120,6 +204,8 @@
         return { type: 'arrow', x1: from.x, y1: from.y, x2: to.x, y2: to.y };
       case 'tether':
         return { type: 'tether', x1: from.x, y1: from.y, x2: to.x, y2: to.y };
+      case 'curvedArrow':
+        return { type: 'curvedArrow', x1: from.x, y1: from.y, x2: to.x, y2: to.y, curvature: 6 };
       default:
         return null;
     }
@@ -152,6 +238,16 @@
         return { type: 'text', text: 'Label', x, y };
       case 'debuff':
         return { type: 'debuff', debuffId: subtype ?? DEBUFF_IDS[0], x, y };
+      case 'polygon':
+        // Default triangle around click point
+        return {
+          type: 'polygon',
+          points: [
+            [x, y - 10],
+            [x - 9, y + 6],
+            [x + 9, y + 6]
+          ]
+        };
       default:
         return null;
     }
@@ -159,6 +255,73 @@
 
   // --- Dragging ---
   let dragging = $state(false);
+
+  // --- Drag-select (marquee) ---
+  // Stored in SVG viewBox coords (what svgCoords returns). Element positions
+  // are in arena units, so we multiply by `scale` to compare.
+  let marquee: { x1: number; y1: number; x2: number; y2: number } | null = $state(null);
+
+  function elementCenter(el: ArenaElement): { x: number; y: number } | null {
+    if ('points' in el) {
+      const n = el.points.length;
+      if (n === 0) return null;
+      const sx = el.points.reduce((s, p) => s + p[0], 0);
+      const sy = el.points.reduce((s, p) => s + p[1], 0);
+      return { x: sx / n, y: sy / n };
+    }
+    if ('x1' in el) {
+      return { x: (el.x1 + el.x2) / 2, y: (el.y1 + el.y2) / 2 };
+    }
+    if ('x' in el && 'y' in el) {
+      return { x: el.x, y: el.y };
+    }
+    return null;
+  }
+
+  function handleCanvasMouseDown(e: MouseEvent) {
+    // Only start marquee on background clicks. Element overlays stopPropagation,
+    // so this only fires when the mousedown landed on the SVG itself.
+    if (placingType) return;
+    if (e.button !== 0) return;
+    const start = svgCoords(e);
+    if (!start) return;
+    didMouseDownElement = false;
+    const additive = e.shiftKey;
+    const baseSelection = additive ? new Set(selected) : new Set<number>();
+    marquee = { x1: start.x, y1: start.y, x2: start.x, y2: start.y };
+
+    function onMove(me: MouseEvent) {
+      const c = svgCoords(me);
+      if (!c || !marquee) return;
+      marquee = { ...marquee, x2: c.x, y2: c.y };
+    }
+    function onUp() {
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseup', onUp);
+      if (!marquee) return;
+      const { x1, y1, x2, y2 } = marquee;
+      const minX = Math.min(x1, x2);
+      const maxX = Math.max(x1, x2);
+      const minY = Math.min(y1, y2);
+      const maxY = Math.max(y1, y2);
+      // Tiny drag → treat as a click (let handleCanvasClick deselect).
+      const isTinyDrag = maxX - minX < 1 && maxY - minY < 1;
+      marquee = null;
+      if (isTinyDrag) return;
+      didMouseDownElement = true; // suppress the deselect-on-click
+      const hits = new Set(baseSelection);
+      elements.forEach((el, i) => {
+        const c = elementCenter(el);
+        if (!c) return;
+        const cx = c.x * scale;
+        const cy = c.y * scale;
+        if (cx >= minX && cx <= maxX && cy >= minY && cy <= maxY) hits.add(i);
+      });
+      selected = hits;
+    }
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseup', onUp);
+  }
 
   function handleElementMouseDown(index: number, e: MouseEvent) {
     e.stopPropagation();
@@ -184,10 +347,12 @@
     if (!startCoords) return;
 
     // Snapshot positions of all selected elements
-    const startPositions = new Map<number, Record<string, number>>();
+    const startPositions = new Map<number, any>();
     for (const idx of selected) {
       const el = elements[idx] as any;
-      if ('x' in el) {
+      if (el.type === 'polygon') {
+        startPositions.set(idx, { points: el.points.map((p: [number, number]) => [...p]) });
+      } else if ('x' in el) {
         startPositions.set(idx, { x: el.x, y: el.y });
       } else if ('x1' in el) {
         startPositions.set(idx, { x1: el.x1, y1: el.y1, x2: el.x2, y2: el.y2 });
@@ -203,6 +368,15 @@
       elements = elements.map((el, i) => {
         const start = startPositions.get(i);
         if (!start) return el;
+        if (start.points) {
+          return {
+            ...el,
+            points: start.points.map((p: [number, number]) => [
+              round2(p[0] + dx),
+              round2(p[1] + dy)
+            ])
+          } as ArenaElement;
+        }
         if ('x1' in start) {
           return {
             ...el,
@@ -218,6 +392,43 @@
 
     function onUp() {
       dragging = false;
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseup', onUp);
+    }
+
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseup', onUp);
+  }
+
+  function handlePolyVertexDrag(index: number, vertexIdx: number, e: MouseEvent) {
+    e.stopPropagation();
+    e.preventDefault();
+    didMouseDownElement = true;
+    selected = new Set([index]);
+
+    const startCoords = svgCoords(e);
+    if (!startCoords) return;
+    const el = elements[index] as any;
+    const startPos = [el.points[vertexIdx][0], el.points[vertexIdx][1]];
+
+    function onMove(me: MouseEvent) {
+      const coords = svgCoords(me);
+      if (!coords) return;
+      const dx = (coords.x - startCoords!.x) / scale;
+      const dy = (coords.y - startCoords!.y) / scale;
+      elements = elements.map((e, i) => {
+        if (i !== index) return e;
+        const newEl = { ...e } as any;
+        newEl.points = (e as any).points.map((p: [number, number], pi: number) =>
+          pi === vertexIdx
+            ? ([round2(startPos[0] + dx), round2(startPos[1] + dy)] as [number, number])
+            : p
+        );
+        return newEl as ArenaElement;
+      });
+    }
+
+    function onUp() {
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('mouseup', onUp);
     }
@@ -300,9 +511,19 @@
     if (selected.size === 0) return;
     const newEls: ArenaElement[] = [];
     for (const idx of selected) {
-      const el = { ...elements[idx] };
-      if ('x' in el) (el as any).x += 5;
-      if ('y' in el) (el as any).y += 5;
+      const el = { ...elements[idx] } as any;
+      if (el.type === 'polygon') {
+        el.points = el.points.map((p: [number, number]) => [p[0] + 5, p[1] + 5]);
+      } else {
+        if ('x' in el) el.x += 5;
+        if ('y' in el) el.y += 5;
+        if ('x1' in el) {
+          el.x1 += 5;
+          el.y1 += 5;
+          el.x2 += 5;
+          el.y2 += 5;
+        }
+      }
       newEls.push(el);
     }
     const startIdx = elements.length;
@@ -346,11 +567,13 @@
           imports.add('player');
           {
             const hasCorners = el.corners && Object.keys(el.corners).length > 0;
-            const hasOpts = el.marker || el.id || hasCorners;
+            const hasSize = el.size != null && el.size !== 6;
+            const hasOpts = el.marker || el.id || hasCorners || hasSize;
             if (hasOpts) {
               const opts: string[] = [];
               if (el.id) opts.push(`id: '${el.id}'`);
               if (el.marker) opts.push(`marker: '${el.marker}'`);
+              if (hasSize) opts.push(`size: ${el.size}`);
               if (hasCorners) {
                 const cornerStr = Object.entries(el.corners!)
                   .map(([k, v]) => `${k}: '${v}'`)
@@ -366,6 +589,9 @@
           return `  boss(${el.x}, ${el.y}${el.rotation ? `, ${el.rotation}` : ''})`;
         case 'waymark':
           imports.add('waymark');
+          if (el.size != null && el.size !== 4) {
+            return `  waymark('${el.mark}', ${el.x}, ${el.y}, { size: ${el.size} })`;
+          }
           return `  waymark('${el.mark}', ${el.x}, ${el.y})`;
         case 'aoe':
           if (el.shape === 'circle') {
@@ -397,8 +623,32 @@
           const aOpts: string[] = [];
           if (el.color) aOpts.push(`color: '${el.color}'`);
           if (el.width) aOpts.push(`width: ${el.width}`);
+          if (el.heads && el.heads !== 'end') aOpts.push(`heads: '${el.heads}'`);
           const aOptsStr = aOpts.length > 0 ? `, { ${aOpts.join(', ')} }` : '';
           return `  arrow(${el.x1}, ${el.y1}, ${el.x2}, ${el.y2}${aOptsStr})`;
+        case 'curvedArrow':
+          imports.add('curvedArrow');
+          {
+            const opts: string[] = [];
+            if (el.curvature != null && el.curvature !== 6) opts.push(`curvature: ${el.curvature}`);
+            if (el.color) opts.push(`color: '${el.color}'`);
+            if (el.width) opts.push(`width: ${el.width}`);
+            if (el.heads && el.heads !== 'end') opts.push(`heads: '${el.heads}'`);
+            const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
+            return `  curvedArrow(${el.x1}, ${el.y1}, ${el.x2}, ${el.y2}${optsStr})`;
+          }
+        case 'polygon':
+          imports.add('polygon');
+          {
+            const ptsStr = el.points.map((p) => `[${p[0]}, ${p[1]}]`).join(', ');
+            const opts: string[] = [];
+            if (el.color) opts.push(`color: '${el.color}'`);
+            if (el.opacity != null) opts.push(`opacity: ${el.opacity}`);
+            if (el.rotation) opts.push(`rotation: ${el.rotation}`);
+            if (el.outline) opts.push('outline: true');
+            const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
+            return `  polygon([${ptsStr}]${optsStr})`;
+          }
         case 'arena':
           imports.add('arenaShape');
           {
@@ -407,6 +657,7 @@
             if (el.bgColor) opts.push(`bgColor: '${el.bgColor}'`);
             if (el.borderColor) opts.push(`borderColor: '${el.borderColor}'`);
             if (el.showCrosshairs === false) opts.push('showCrosshairs: false');
+            if (el.bgImage) opts.push(`bgImage: '${el.bgImage}'`);
             const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
             return `  arenaShape('${el.shape}', ${el.x}, ${el.y}, ${el.w}, ${el.h}${optsStr})`;
           }
@@ -433,12 +684,25 @@
       }
     });
 
-    // Check if all 8 waymarks are present as standard preset
-    const hasAllWaymarks = (['A', 'B', 'C', 'D', '1', '2', '3', '4'] as const).every((m) =>
-      elements.some((e) => e.type === 'waymark' && e.mark === m)
+    // Only use the SQUARE_MARKERS / CIRCLE_MARKERS shorthand when every waymark
+    // matches the preset exactly (same mark, position, default size). Any custom
+    // size or moved waymark falls back to emitting each waymark individually.
+    const presetMarkers = arenaShape === 'square' ? SQUARE_MARKERS : CIRCLE_MARKERS;
+    const waymarkEls = elements.filter(
+      (e): e is Extract<ArenaElement, { type: 'waymark' }> => e.type === 'waymark'
     );
-    if (hasAllWaymarks) {
+    const matchesPreset =
+      waymarkEls.length === presetMarkers.length &&
+      presetMarkers.every((preset) => {
+        const match = waymarkEls.find((e) => e.mark === preset.mark);
+        if (!match) return false;
+        if (match.size != null && match.size !== 4) return false;
+        return match.x === preset.x && match.y === preset.y;
+      });
+    if (matchesPreset) {
       imports.add(arenaShape === 'square' ? 'SQUARE_MARKERS' : 'CIRCLE_MARKERS');
+    } else if (waymarkEls.length > 0) {
+      imports.add('waymark');
     }
 
     const importStr = `import { ${[...imports].join(', ')} } from '$lib/arena';`;
@@ -452,7 +716,7 @@
 
     lines.push(`diagram('${arenaShape}', [`);
 
-    if (hasAllWaymarks) {
+    if (matchesPreset) {
       lines.push(`  ...${arenaShape === 'square' ? 'SQUARE_MARKERS' : 'CIRCLE_MARKERS'},`);
       for (let idx = 0; idx < elStrs.length; idx++) {
         if (elements[idx].type !== 'waymark') lines.push(elStrs[idx] + ',');
@@ -522,11 +786,21 @@
     )) {
       els.push({ type: 'boss', x: +m[1], y: +m[2], rotation: m[3] ? +m[3] : undefined });
     }
-    // Parse waymark('M', x, y)
+    // Parse waymark('M', x, y) or waymark('M', x, y, { size })
     for (const m of code.matchAll(
-      new RegExp(`waymark\\(\\s*'(\\w)'\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*\\)`, 'g')
+      new RegExp(
+        `waymark\\(\\s*'(\\w)'\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`,
+        'g'
+      )
     )) {
-      els.push({ type: 'waymark', mark: m[1] as WaymarkName, x: +m[2], y: +m[3] });
+      const opts = parseInlineOpts(m[4]);
+      els.push({
+        type: 'waymark',
+        mark: m[1] as WaymarkName,
+        x: +m[2],
+        y: +m[3],
+        size: opts.size as number | undefined
+      });
     }
     // Parse aoeCircle(x, y, r, { opts })
     for (const m of code.matchAll(
@@ -558,15 +832,46 @@
       const opts = parseInlineOpts(m[5]);
       els.push({ type: 'tether', x1: +m[1], y1: +m[2], x2: +m[3], y2: +m[4], ...opts });
     }
-    // Parse arrow(x1, y1, x2, y2, { opts })
+    // Parse arrow(x1, y1, x2, y2, { opts }) — match standalone arrow only, not curvedArrow
     for (const m of code.matchAll(
       new RegExp(
-        `arrow\\(\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`,
+        `(?<!curved)arrow\\(\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`,
         'g'
       )
     )) {
       const opts = parseInlineOpts(m[5]);
       els.push({ type: 'arrow', x1: +m[1], y1: +m[2], x2: +m[3], y2: +m[4], ...opts });
+    }
+    // Parse curvedArrow(x1, y1, x2, y2, { opts })
+    for (const m of code.matchAll(
+      new RegExp(
+        `curvedArrow\\(\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`,
+        'g'
+      )
+    )) {
+      const opts = parseInlineOpts(m[5]);
+      els.push({
+        type: 'curvedArrow',
+        x1: +m[1],
+        y1: +m[2],
+        x2: +m[3],
+        y2: +m[4],
+        ...opts
+      });
+    }
+    // Parse polygon([[x,y], [x,y], ...], { opts })
+    for (const m of code.matchAll(
+      new RegExp(`polygon\\(\\s*\\[([\\s\\S]*?)\\]\\s*(?:,\\s*\\{([^}]*)\\})?\\s*\\)`, 'g')
+    )) {
+      const ptsRaw = m[1];
+      const points: [number, number][] = [];
+      for (const pm of ptsRaw.matchAll(new RegExp(`\\[\\s*(${N})\\s*,\\s*(${N})\\s*\\]`, 'g'))) {
+        points.push([+pm[1], +pm[2]]);
+      }
+      if (points.length >= 3) {
+        const opts = parseInlineOpts(m[2]);
+        els.push({ type: 'polygon', points, ...opts });
+      }
     }
     // Parse arenaShape('shape', x, y, w, h, { opts })
     for (const m of code.matchAll(
@@ -759,7 +1064,7 @@
         class="relative border border-surface-600 rounded-lg overflow-hidden"
         class:cursor-crosshair={placingType !== null}
         class:bg-surface-950={showBackground}
-        style="width: {gridW * 100}px; height: {gridH * 100}px;"
+        style="width: {gridW * 100 * canvasZoom}px; height: {gridH * 100 * canvasZoom}px;"
         style:background={!showBackground
           ? 'repeating-conic-gradient(#333 0% 25%, #222 0% 50%) 0 0 / 20px 20px'
           : undefined}
@@ -776,6 +1081,7 @@
           role="application"
           aria-label="Arena diagram canvas"
           onclick={handleCanvasClick}
+          onmousedown={handleCanvasMouseDown}
         >
           {#each elements as el, i}
             {#if el.type === 'player' || el.type === 'boss' || el.type === 'waymark' || el.type === 'text'}
@@ -783,7 +1089,11 @@
               <circle
                 cx={el.x * scale}
                 cy={el.y * scale}
-                r={el.type === 'boss' ? 14 : el.type === 'player' ? 7 : 4}
+                r={el.type === 'boss'
+                  ? 14
+                  : el.type === 'player'
+                    ? ((el.size ?? 6) + 1) * scale
+                    : 4}
                 fill="transparent"
                 stroke={selected.has(i) ? '#22d3ee' : 'transparent'}
                 stroke-width="0.6"
@@ -865,7 +1175,7 @@
                 class="cursor-move"
                 onmousedown={(e) => handleElementMouseDown(i, e)}
               />
-            {:else if el.type === 'arrow' || el.type === 'tether'}
+            {:else if el.type === 'arrow' || el.type === 'tether' || el.type === 'curvedArrow'}
               <!-- svelte-ignore a11y_no_static_element_interactions -->
               <line
                 x1={el.x1 * scale}
@@ -897,16 +1207,56 @@
                   onmousedown={(e) => handleEndpointDrag(i, 'end', e)}
                 />
               {/if}
+            {:else if el.type === 'polygon'}
+              {@const pts = el.points.map((p) => `${p[0] * scale},${p[1] * scale}`).join(' ')}
+              <!-- svelte-ignore a11y_no_static_element_interactions -->
+              <polygon
+                points={pts}
+                fill="transparent"
+                stroke={selected.has(i) ? '#22d3ee' : 'transparent'}
+                stroke-width="0.6"
+                stroke-dasharray="1.5,1"
+                class="cursor-move"
+                onmousedown={(e) => handleElementMouseDown(i, e)}
+              />
+              {#if selected.has(i)}
+                {#each el.points as p, vi}
+                  <!-- svelte-ignore a11y_no_static_element_interactions -->
+                  <circle
+                    cx={p[0] * scale}
+                    cy={p[1] * scale}
+                    r="2.5"
+                    fill="#22d3ee"
+                    class="cursor-grab"
+                    onmousedown={(e) => handlePolyVertexDrag(i, vi, e)}
+                  />
+                {/each}
+              {/if}
             {/if}
           {/each}
           <!-- Two-point placement preview -->
-          {#if twoPointStart && (placingType === 'arrow' || placingType === 'tether')}
+          {#if twoPointStart && (placingType === 'arrow' || placingType === 'tether' || placingType === 'curvedArrow')}
             <circle
               cx={twoPointStart.x * scale}
               cy={twoPointStart.y * scale}
               r="2"
               fill="#22d3ee"
               opacity="0.7"
+            />
+          {/if}
+          <!-- Drag-select marquee rectangle -->
+          {#if marquee}
+            <rect
+              x={Math.min(marquee.x1, marquee.x2)}
+              y={Math.min(marquee.y1, marquee.y2)}
+              width={Math.abs(marquee.x2 - marquee.x1)}
+              height={Math.abs(marquee.y2 - marquee.y1)}
+              fill="#22d3ee"
+              fill-opacity="0.1"
+              stroke="#22d3ee"
+              stroke-width="0.3"
+              stroke-dasharray="1,0.6"
+              pointer-events="none"
             />
           {/if}
         </svg>
@@ -916,13 +1266,25 @@
             {#if twoPointStart}
               Click to set end point — Esc to cancel
             {:else}
-              Click to {placingType === 'arrow' || placingType === 'tether'
+              Click to {placingType === 'arrow' ||
+              placingType === 'tether' ||
+              placingType === 'curvedArrow'
                 ? 'set start point'
                 : 'place'}
               {placingType}{placingSubtype ? ` (${placingSubtype})` : ''} — Esc to cancel
             {/if}
           </div>
         {/if}
+
+        <!-- Canvas resize handle (bottom-right corner) -->
+        <!-- svelte-ignore a11y_no_static_element_interactions -->
+        <div
+          class="absolute bottom-0 right-0 w-4 h-4 cursor-nwse-resize bg-surface-600 hover:bg-primary-500 z-10"
+          style="clip-path: polygon(100% 0, 100% 100%, 0 100%);"
+          title="Drag to resize canvas (zoom {canvasZoom.toFixed(2)}×) — double-click to reset"
+          onmousedown={handleCanvasResizeStart}
+          ondblclick={() => (canvasZoom = 1)}
+        ></div>
       </div>
 
       <!-- Element Palette -->
@@ -982,7 +1344,15 @@
           >
           <button
             class="btn btn-sm preset-tonal-surface text-xs"
+            onclick={() => startPlace('curvedArrow')}>Curved Arrow</button
+          >
+          <button
+            class="btn btn-sm preset-tonal-surface text-xs"
             onclick={() => startPlace('tether')}>Line/Tether</button
+          >
+          <button
+            class="btn btn-sm preset-tonal-surface text-xs"
+            onclick={() => startPlace('polygon')}>Polygon</button
           >
           <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('text')}
             >Text</button
@@ -1029,6 +1399,55 @@
 
     <!-- Right: Properties + Code -->
     <div class="w-full lg:w-96 space-y-3">
+      <!-- Load section from existing fight poster -->
+      <div class="card border border-surface-600 p-3 bg-surface-900 space-y-2">
+        <div class="text-sm font-semibold text-surface-200">Load Poster Section</div>
+        {#if fightPosters.length === 0}
+          <div class="text-xs text-surface-400">No fights with poster layouts found.</div>
+        {:else}
+          <div class="grid grid-cols-2 gap-2">
+            <label class="text-xs text-surface-400">
+              Fight
+              <select
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                bind:value={selectedFightLabel}
+                onchange={() => (selectedSectionIdx = -1)}
+              >
+                <option value="">—</option>
+                {#each fightPosters as f}
+                  <option value={f.label}>{f.label}</option>
+                {/each}
+              </select>
+            </label>
+            <label class="text-xs text-surface-400">
+              Section
+              <select
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                bind:value={selectedSectionIdx}
+                disabled={!selectedFightEntry}
+              >
+                <option value={-1}>—</option>
+                {#if selectedFightEntry}
+                  {#each selectedFightEntry.sections as s, idx}
+                    <option value={idx}>{s.sectionTitle} ({s.section.w}×{s.section.h})</option>
+                  {/each}
+                {/if}
+              </select>
+            </label>
+          </div>
+          <button
+            class="btn btn-sm preset-tonal-primary text-xs w-full"
+            onclick={loadSelectedSection}
+            disabled={selectedSectionIdx < 0}
+          >
+            <Download size={12} /> Load Section
+          </button>
+          <div class="text-xs text-surface-500">
+            Loading replaces the current canvas and resizes to the section's grid footprint.
+          </div>
+        {/if}
+      </div>
+
       <!-- Selected element properties -->
       {#if selected.size > 1}
         <div class="card border border-surface-600 p-3 space-y-2 bg-surface-900">
@@ -1175,6 +1594,18 @@
 
           {#if selectedElement.type === 'player'}
             <label class="text-xs text-surface-400">
+              Size ({(selectedElement.size ?? 6).toFixed(1)})
+              <input
+                type="range"
+                min="2"
+                max="20"
+                step="0.5"
+                class="w-full accent-primary-500"
+                value={selectedElement.size ?? 6}
+                oninput={(e) => updateElement('size', Number(e.currentTarget.value))}
+              />
+            </label>
+            <label class="text-xs text-surface-400">
               Marker
               <div class="flex gap-1 mt-0.5">
                 <button
@@ -1225,6 +1656,21 @@
               </div>
             </div>
           {/if}
+          {#if selectedElement.type === 'waymark'}
+            <label class="text-xs text-surface-400">
+              Size ({(selectedElement.size ?? 4).toFixed(1)})
+              <input
+                type="range"
+                min="1"
+                max="10"
+                step="0.5"
+                class="w-full accent-primary-500"
+                value={selectedElement.size ?? 4}
+                oninput={(e) => updateElement('size', Number(e.currentTarget.value))}
+              />
+            </label>
+          {/if}
+
           {#if selectedElement.type === 'debuff'}
             <label class="text-xs text-surface-400">
               Debuff
@@ -1386,6 +1832,169 @@
                 />
               </label>
             </div>
+            <label class="text-xs text-surface-400">
+              Arrowheads
+              <select
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                value={selectedElement.heads ?? 'end'}
+                onchange={(e) => updateElement('heads', e.currentTarget.value)}
+              >
+                <option value="end">End only (→)</option>
+                <option value="start">Start only (←)</option>
+                <option value="both">Both (↔)</option>
+                <option value="none">None</option>
+              </select>
+            </label>
+          {/if}
+
+          {#if selectedElement.type === 'curvedArrow'}
+            <div class="grid grid-cols-2 gap-2">
+              <label class="text-xs text-surface-400">
+                Color
+                <input
+                  type="color"
+                  class="w-full h-7 rounded border border-surface-600 bg-surface-800"
+                  value={selectedElement.color ?? '#ffffff'}
+                  oninput={(e) => updateElement('color', e.currentTarget.value)}
+                />
+              </label>
+              <label class="text-xs text-surface-400">
+                Width
+                <input
+                  type="number"
+                  min="0.1"
+                  max="5"
+                  step="0.1"
+                  class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                  value={selectedElement.width ?? 0.5}
+                  oninput={(e) => updateElement('width', Number(e.currentTarget.value))}
+                />
+              </label>
+            </div>
+            <label class="text-xs text-surface-400">
+              Curvature ({(selectedElement.curvature ?? 6).toFixed(1)})
+              <input
+                type="range"
+                min="-30"
+                max="30"
+                step="0.5"
+                class="w-full accent-primary-500"
+                value={selectedElement.curvature ?? 6}
+                oninput={(e) => updateElement('curvature', Number(e.currentTarget.value))}
+              />
+            </label>
+            <label class="text-xs text-surface-400">
+              Arrowheads
+              <select
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                value={selectedElement.heads ?? 'end'}
+                onchange={(e) => updateElement('heads', e.currentTarget.value)}
+              >
+                <option value="end">End only (→)</option>
+                <option value="start">Start only (←)</option>
+                <option value="both">Both (↔)</option>
+                <option value="none">None</option>
+              </select>
+            </label>
+          {/if}
+
+          {#if selectedElement.type === 'polygon'}
+            <div class="text-xs text-surface-400 space-y-1">
+              <div class="flex justify-between items-center">
+                <span>Vertices ({selectedElement.points.length})</span>
+                <div class="flex gap-1">
+                  <button
+                    class="btn btn-sm preset-tonal-surface text-xs px-1.5 py-0.5"
+                    onclick={() => {
+                      const pts = [...selectedElement.points];
+                      const last = pts[pts.length - 1];
+                      pts.push([last[0] + 5, last[1] + 5]);
+                      updateElement('points', pts);
+                    }}>+</button
+                  >
+                  <button
+                    class="btn btn-sm preset-tonal-error text-xs px-1.5 py-0.5"
+                    disabled={selectedElement.points.length <= 3}
+                    onclick={() => {
+                      const pts = selectedElement.points.slice(0, -1);
+                      updateElement('points', pts);
+                    }}>−</button
+                  >
+                </div>
+              </div>
+              <div class="space-y-1 max-h-32 overflow-y-auto">
+                {#each selectedElement.points as p, vi}
+                  <div class="flex gap-1 items-center">
+                    <span class="font-mono text-surface-500 w-6">{vi}:</span>
+                    <input
+                      type="number"
+                      class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs w-full"
+                      value={p[0]}
+                      oninput={(e) => {
+                        const pts = selectedElement.points.map((pp, pi) =>
+                          pi === vi ? ([Number(e.currentTarget.value), pp[1]] as [number, number]) : pp
+                        );
+                        updateElement('points', pts);
+                      }}
+                    />
+                    <input
+                      type="number"
+                      class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs w-full"
+                      value={p[1]}
+                      oninput={(e) => {
+                        const pts = selectedElement.points.map((pp, pi) =>
+                          pi === vi ? ([pp[0], Number(e.currentTarget.value)] as [number, number]) : pp
+                        );
+                        updateElement('points', pts);
+                      }}
+                    />
+                  </div>
+                {/each}
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <label class="text-xs text-surface-400">
+                Color
+                <input
+                  type="color"
+                  class="w-full h-7 rounded border border-surface-600 bg-surface-800"
+                  value={selectedElement.color ?? '#f59e0b'}
+                  oninput={(e) => updateElement('color', e.currentTarget.value)}
+                />
+              </label>
+              <label class="text-xs text-surface-400">
+                Opacity ({(selectedElement.opacity ?? 0.3).toFixed(2)})
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.05"
+                  class="w-full accent-primary-500"
+                  value={selectedElement.opacity ?? 0.3}
+                  oninput={(e) => updateElement('opacity', Number(e.currentTarget.value))}
+                />
+              </label>
+            </div>
+            <label class="text-xs text-surface-400">
+              Rotation
+              <input
+                type="number"
+                min="0"
+                max="360"
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                value={selectedElement.rotation ?? 0}
+                oninput={(e) => updateElement('rotation', Number(e.currentTarget.value))}
+              />
+            </label>
+            <label class="flex items-center gap-2 text-xs text-surface-400 cursor-pointer">
+              <input
+                type="checkbox"
+                class="accent-primary-500"
+                checked={selectedElement.outline ?? false}
+                onchange={(e) => updateElement('outline', e.currentTarget.checked || undefined)}
+              />
+              Outline only
+            </label>
           {/if}
 
           {#if selectedElement.type === 'arena'}
@@ -1467,6 +2076,17 @@
                   updateElement('showCrosshairs', e.currentTarget.checked ? undefined : false)}
               />
               Show crosshairs
+            </label>
+            <label class="text-xs text-surface-400">
+              Background image (URL)
+              <input
+                type="text"
+                placeholder="/arenas/foo.webp"
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                value={selectedElement.bgImage ?? ''}
+                oninput={(e) =>
+                  updateElement('bgImage', e.currentTarget.value || undefined)}
+              />
             </label>
           {/if}
 
@@ -1594,6 +2214,9 @@
                 >{/if}
               {#if 'x1' in el}<span class="text-surface-500 ml-auto font-mono"
                   >({el.x1},{el.y1})→({el.x2},{el.y2})</span
+                >{/if}
+              {#if el.type === 'polygon'}<span class="text-surface-500 ml-auto font-mono"
+                  >{el.points.length} pts</span
                 >{/if}
             </button>
           {/each}

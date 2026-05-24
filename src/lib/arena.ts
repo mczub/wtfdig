@@ -53,6 +53,8 @@ export interface PlayerElement {
   marker?: 'red' | 'green';
   /** Debuff icons attached to player corners (by debuff id from $lib/debuffs). */
   corners?: Partial<Record<PlayerCorner, string>>;
+  /** Radius in arena % units. Default 6. */
+  size?: number;
   id?: string;
 }
 
@@ -69,6 +71,8 @@ export interface WaymarkElement {
   mark: WaymarkName;
   x: number;
   y: number;
+  /** Radius for letter marks / half-side for number marks, in arena % units. Default 4. */
+  size?: number;
   id?: string;
 }
 
@@ -108,6 +112,8 @@ export interface TetherElement {
   id?: string;
 }
 
+export type ArrowHeads = 'start' | 'end' | 'both' | 'none';
+
 export interface ArrowElement {
   type: 'arrow';
   x1: number;
@@ -116,6 +122,8 @@ export interface ArrowElement {
   y2: number;
   color?: string;
   width?: number;
+  /** Which ends get an arrowhead. Default: 'end'. */
+  heads?: ArrowHeads;
   id?: string;
 }
 
@@ -141,6 +149,8 @@ export interface ArenaShapeElement {
   bgColor?: string;
   borderColor?: string;
   showCrosshairs?: boolean; // default true
+  /** Optional URL of an image to use as the arena background (clipped to shape). */
+  bgImage?: string;
   id?: string;
 }
 
@@ -150,6 +160,38 @@ export interface DebuffElement {
   x: number;
   y: number;
   size?: number; // arena % units; default 6
+  id?: string;
+}
+
+export interface PolygonElement {
+  type: 'polygon';
+  /** Array of [x, y] vertex coordinates. */
+  points: [number, number][];
+  color?: string;
+  opacity?: number;
+  /** Rotation in degrees around the polygon's centroid. */
+  rotation?: number;
+  /** If true, render as outline only (no fill). */
+  outline?: boolean;
+  id?: string;
+}
+
+export interface CurvedArrowElement {
+  type: 'curvedArrow';
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  /**
+   * Curvature offset of the midpoint, perpendicular to the chord.
+   * Positive bends to the right of the start→end direction, negative bends left.
+   * Default: 6. Use 0 for a straight line.
+   */
+  curvature?: number;
+  color?: string;
+  width?: number;
+  /** Which ends get an arrowhead. Default: 'end'. */
+  heads?: ArrowHeads;
   id?: string;
 }
 
@@ -163,7 +205,9 @@ export type ArenaElement =
   | ArrowElement
   | TextElement
   | ArenaShapeElement
-  | DebuffElement;
+  | DebuffElement
+  | PolygonElement
+  | CurvedArrowElement;
 
 export interface ArenaDiagramData {
   arena: ArenaShape;
@@ -209,7 +253,7 @@ export function player(
   job: PlayerJob,
   x: number,
   y: number,
-  opts?: string | { id?: string; marker?: 'red' | 'green' }
+  opts?: string | { id?: string; marker?: 'red' | 'green'; size?: number }
 ): PlayerElement {
   if (typeof opts === 'string') return { type: 'player', job, x, y, id: opts };
   return { type: 'player', job, x, y, ...opts };
@@ -219,8 +263,14 @@ export function boss(x: number, y: number, rotation?: number, id?: string): Boss
   return { type: 'boss', x, y, rotation, id };
 }
 
-export function waymark(mark: WaymarkName, x: number, y: number, id?: string): WaymarkElement {
-  return { type: 'waymark', mark, x, y, id };
+export function waymark(
+  mark: WaymarkName,
+  x: number,
+  y: number,
+  opts?: string | { size?: number; id?: string }
+): WaymarkElement {
+  if (typeof opts === 'string') return { type: 'waymark', mark, x, y, id: opts };
+  return { type: 'waymark', mark, x, y, ...opts };
 }
 
 export function aoeCircle(
@@ -257,7 +307,7 @@ export function arrow(
   y1: number,
   x2: number,
   y2: number,
-  opts?: { color?: string; width?: number; id?: string }
+  opts?: { color?: string; width?: number; heads?: ArrowHeads; id?: string }
 ): ArrowElement {
   return { type: 'arrow', x1, y1, x2, y2, ...opts };
 }
@@ -280,6 +330,23 @@ export function debuff(
   return { type: 'debuff', debuffId, x, y, ...opts };
 }
 
+export function polygon(
+  points: [number, number][],
+  opts?: { color?: string; opacity?: number; rotation?: number; outline?: boolean; id?: string }
+): PolygonElement {
+  return { type: 'polygon', points, ...opts };
+}
+
+export function curvedArrow(
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number,
+  opts?: { curvature?: number; color?: string; width?: number; heads?: ArrowHeads; id?: string }
+): CurvedArrowElement {
+  return { type: 'curvedArrow', x1, y1, x2, y2, ...opts };
+}
+
 export function arenaShape(
   shape: 'square' | 'circle' | 'rect',
   x: number,
@@ -291,6 +358,7 @@ export function arenaShape(
     bgColor?: string;
     borderColor?: string;
     showCrosshairs?: boolean;
+    bgImage?: string;
     id?: string;
   }
 ): ArenaShapeElement {

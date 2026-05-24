@@ -49,8 +49,10 @@
   const zOrder: Record<string, number> = {
     arena: -1,
     aoe: 0,
+    polygon: 0,
     tether: 1,
     arrow: 2,
+    curvedArrow: 2,
     waymark: 3,
     boss: 4,
     player: 5,
@@ -74,9 +76,24 @@
 
 <svg viewBox="0 0 {vW} {vH}" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
   <defs>
-    <marker id="ah-{uid}" markerWidth="5" markerHeight="3.5" refX="4" refY="1.75" orient="auto">
-      <polygon points="0 0, 5 1.75, 0 3.5" fill="white" />
+    <marker
+      id="ah-{uid}"
+      markerWidth="5"
+      markerHeight="3.5"
+      refX="4"
+      refY="1.75"
+      orient="auto-start-reverse"
+    >
+      <polygon points="0 0, 5 1.75, 0 3.5" fill="context-stroke" />
     </marker>
+    <!-- Soft colored glow for waymarks so they read on busy/dark backgrounds. -->
+    <filter id="wmGlow-{uid}" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="0.3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
   </defs>
 
   <!-- Arena -->
@@ -109,19 +126,50 @@
   {/if}
 
   <g transform="scale({s})">
-    {#each sortedElements as el}
+    {#each sortedElements as el, ei}
       {#if el.type === 'arena'}
         {@const bg = el.bgColor ?? '#2a2420'}
         {@const bd = el.borderColor ?? '#4a4a4a'}
         {@const showCh = el.showCrosshairs !== false}
+        {@const patId = `arenaBg-${uid}-${ei}`}
+        {@const imgW = el.shape === 'circle' ? el.w : el.w}
+        {@const imgH = el.shape === 'circle' ? el.w : el.h}
         <g
           opacity={dimOpacity(el)}
           transform={el.rotation ? `rotate(${el.rotation} ${el.x} ${el.y})` : undefined}
         >
+          {#if el.bgImage}
+            <defs>
+              <pattern
+                id={patId}
+                patternUnits="userSpaceOnUse"
+                x={el.x - imgW / 2}
+                y={el.y - imgH / 2}
+                width={imgW}
+                height={imgH}
+              >
+                <image
+                  href={el.bgImage}
+                  x="0"
+                  y="0"
+                  width={imgW}
+                  height={imgH}
+                  preserveAspectRatio="xMidYMid slice"
+                />
+              </pattern>
+            </defs>
+          {/if}
           {#if el.shape === 'circle'}
             {@const r = el.w / 2}
-            <circle cx={el.x} cy={el.y} {r} fill={bg} stroke={bd} stroke-width="0.4" />
-            {#if showCh}
+            <circle
+              cx={el.x}
+              cy={el.y}
+              {r}
+              fill={el.bgImage ? `url(#${patId})` : bg}
+              stroke={bd}
+              stroke-width="0.4"
+            />
+            {#if showCh && !el.bgImage}
               <line
                 x1={el.x}
                 y1={el.y - r}
@@ -146,11 +194,11 @@
               width={el.w}
               height={el.h}
               rx="1"
-              fill={bg}
+              fill={el.bgImage ? `url(#${patId})` : bg}
               stroke={bd}
               stroke-width="0.4"
             />
-            {#if showCh}
+            {#if showCh && !el.bgImage}
               <line
                 x1={el.x}
                 y1={el.y - el.h / 2}
@@ -207,6 +255,7 @@
           stroke-dasharray={el.dashed ? '1.5,1' : undefined}
         />
       {:else if el.type === 'arrow'}
+        {@const heads = el.heads ?? 'end'}
         <line
           x1={el.x1}
           y1={el.y1}
@@ -215,24 +264,68 @@
           stroke={el.color ?? '#fff'}
           stroke-width={el.width ?? 0.5}
           stroke-opacity={dimOpacity(el)}
-          marker-end="url(#ah-{uid})"
+          marker-start={heads === 'start' || heads === 'both' ? `url(#ah-${uid})` : undefined}
+          marker-end={heads === 'end' || heads === 'both' ? `url(#ah-${uid})` : undefined}
+        />
+      {:else if el.type === 'curvedArrow'}
+        {@const mx = (el.x1 + el.x2) / 2}
+        {@const my = (el.y1 + el.y2) / 2}
+        {@const dx = el.x2 - el.x1}
+        {@const dy = el.y2 - el.y1}
+        {@const len = Math.max(Math.sqrt(dx * dx + dy * dy), 0.0001)}
+        {@const nx = -dy / len}
+        {@const ny = dx / len}
+        {@const curv = el.curvature ?? 6}
+        {@const cpx = mx + nx * curv}
+        {@const cpy = my + ny * curv}
+        {@const caHeads = el.heads ?? 'end'}
+        <path
+          d="M {el.x1} {el.y1} Q {cpx} {cpy} {el.x2} {el.y2}"
+          fill="none"
+          stroke={el.color ?? '#fff'}
+          stroke-width={el.width ?? 0.5}
+          stroke-opacity={dimOpacity(el)}
+          marker-start={caHeads === 'start' || caHeads === 'both' ? `url(#ah-${uid})` : undefined}
+          marker-end={caHeads === 'end' || caHeads === 'both' ? `url(#ah-${uid})` : undefined}
+        />
+      {:else if el.type === 'polygon'}
+        {@const ptsStr = el.points.map((p) => `${p[0]},${p[1]}`).join(' ')}
+        {@const cx = el.points.reduce((s, p) => s + p[0], 0) / el.points.length}
+        {@const cy = el.points.reduce((s, p) => s + p[1], 0) / el.points.length}
+        <polygon
+          points={ptsStr}
+          fill={el.outline ? 'none' : (el.color ?? '#f59e0b')}
+          fill-opacity={(el.opacity ?? 0.3) * dimOpacity(el)}
+          stroke={el.color ?? '#f59e0b'}
+          stroke-width="0.2"
+          stroke-opacity={dimOpacity(el) * 0.5}
+          transform={el.rotation ? `rotate(${el.rotation} ${cx} ${cy})` : undefined}
         />
       {:else if el.type === 'waymark'}
         {@const isLetter = 'ABCD'.includes(el.mark)}
         {@const color = WAYMARK_COLORS[el.mark]}
-        <g opacity={dimOpacity(el) * 0.6}>
+        {@const wmSize = el.size ?? 4}
+        {@const rectHalf = wmSize * 0.9}
+        <g opacity={dimOpacity(el) * 0.9} filter="url(#wmGlow-{uid})">
           {#if isLetter}
-            <circle cx={el.x} cy={el.y} r="4" fill="none" stroke={color} stroke-width="0.35" />
-          {:else}
-            <rect
-              x={el.x - 3.6}
-              y={el.y - 3.6}
-              width="7.2"
-              height="7.2"
+            <circle
+              cx={el.x}
+              cy={el.y}
+              r={wmSize}
               fill="none"
               stroke={color}
-              stroke-width="0.35"
-              rx="0.3"
+              stroke-width={wmSize * 0.12}
+            />
+          {:else}
+            <rect
+              x={el.x - rectHalf}
+              y={el.y - rectHalf}
+              width={rectHalf * 2}
+              height={rectHalf * 2}
+              fill="none"
+              stroke={color}
+              stroke-width={wmSize * 0.12}
+              rx={wmSize * 0.075}
             />
           {/if}
           <text
@@ -241,7 +334,7 @@
             text-anchor="middle"
             dominant-baseline="central"
             fill={color}
-            font-size="4"
+            font-size={wmSize}
             font-weight="bold"
             font-family="'Noto Sans', sans-serif">{el.mark}</text
           >
@@ -289,15 +382,20 @@
         {@const color = ROLE_COLORS[el.job]}
         {@const roleMatch = isRoleMatch(el.job)}
         {@const jobLabel = jobLabels?.[el.job] ?? el.job}
+        {@const pSize = el.size ?? 6}
+        {@const pScale = pSize / 6}
         <g opacity={dimOpacity(el) * (highlightJob && !roleMatch ? 0.4 : 1)}>
-          <circle
-            cx={el.x}
-            cy={el.y}
-            r="6"
+          <rect
+            x={el.x - pSize}
+            y={el.y - pSize}
+            width={pSize * 2}
+            height={pSize * 2}
+            rx={pSize * 0.5}
+            ry={pSize * 0.5}
             fill={color}
             fill-opacity="0.9"
             stroke={highlightJob && roleMatch ? 'white' : 'white'}
-            stroke-width={highlightJob && roleMatch ? 0.8 : 0.25}
+            stroke-width={(highlightJob && roleMatch ? 0.8 : 0.25) * pScale}
           />
           <text
             x={el.x}
@@ -306,16 +404,17 @@
             dominant-baseline="central"
             baseline-shift="2%"
             fill="white"
-            font-size={jobLabel.length > 2 ? 3.5 : 5}
+            font-size={(jobLabel.length > 2 ? 3.5 : 5) * pScale}
             font-weight="bold"
             font-family="'Noto Sans', sans-serif">{jobLabel}</text
           >
           {#if el.marker}
             <polyline
-              points="{el.x - 2.5},{el.y - 13} {el.x},{el.y - 9} {el.x + 2.5},{el.y - 13}"
+              points="{el.x - 2.5 * pScale},{el.y - 13 * pScale} {el.x},{el.y -
+                9 * pScale} {el.x + 2.5 * pScale},{el.y - 13 * pScale}"
               fill="none"
               stroke={el.marker === 'green' ? '#22c55e' : '#ef4444'}
-              stroke-width="1.5"
+              stroke-width={1.5 * pScale}
               stroke-linecap="round"
               stroke-linejoin="round"
             />
@@ -327,10 +426,10 @@
               {#if def}
                 <image
                   href={`/icons/status/${def.iconFile}`}
-                  x={el.x + off.dx - 2.5}
-                  y={el.y + off.dy - 2.5}
-                  width="5"
-                  height="5"
+                  x={el.x + off.dx * pScale - 2.5 * pScale}
+                  y={el.y + off.dy * pScale - 2.5 * pScale}
+                  width={5 * pScale}
+                  height={5 * pScale}
                 >
                   <title>{def.name}</title>
                 </image>
