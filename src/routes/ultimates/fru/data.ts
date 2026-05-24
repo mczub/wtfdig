@@ -523,7 +523,7 @@ const allP4: PhaseStrats[] = [
       {
         mechanic: 'Cleanse Positions',
         description:
-          'Dodge into 2nd E/W Exa wave\nBlue debuffs to cleanse:\nWest (D), East (B), Southwest (4), Southeast (3)\nCleanse puddles dropped by intercepted dragon heads — pick up near your waymark',
+          'Dodge into 2nd E/W Exa wave\nBlue debuffs to cleanse:\nWest (D), East (B), Southwest (4), Southeast (3)\nCleanse puddles dropped by intercepted dragon heads - pick up near your waymark',
         imageUrl: './fru/naur-ct-cleanse.webp'
       },
       {
@@ -547,7 +547,7 @@ const allP4: PhaseStrats[] = [
       {
         mechanic: 'Akh Morn',
         description: {
-          '71': 'Party Center, Tank Out\n7 + 1 stacks — whoever did not bait solo before CT',
+          '71': 'Party Center, Tank Out\n7 + 1 stacks - whoever did not bait solo before CT',
           '62': 'Both Tanks stack\nRest of party stack'
         },
         imageUrl: './fru/naur-ct-akh-morn.webp'
@@ -572,7 +572,7 @@ const allP4: PhaseStrats[] = [
       {
         mechanic: 'Eruption/Blue',
         description:
-          'Start: N Intercard (Purple Tether)\n→ Tuck IN to avoid Aero pop AoE\n→ Cleanse West (D) — drop cleanse puddle\n→ Move with group through Exa-Wave\n→ Rewind, Spirit Taker spread, KB, Akh Morn'
+          'Start: N Intercard (Purple Tether)\n→ Tuck IN to avoid Aero pop AoE\n→ Cleanse West (D) - drop cleanse puddle\n→ Move with group through Exa-Wave\n→ Rewind, Spirit Taker spread, KB, Akh Morn'
       },
       {
         mechanic: 'Ice/Blue',
@@ -587,7 +587,7 @@ const allP4: PhaseStrats[] = [
       {
         mechanic: 'Water/Blue',
         description:
-          'Start: S Intercard (Purple Tether Light)\n→ Be the Water Stack target — group stacks on you\n→ Move S into "Petal" shape for KB\n→ Cleanse Southeast (3)\n→ Rewind, Spirit Taker spread, KB, Akh Morn'
+          'Start: S Intercard (Purple Tether Light)\n→ Be the Water Stack target - group stacks on you\n→ Move S into "Petal" shape for KB\n→ Cleanse Southeast (3)\n→ Rewind, Spirit Taker spread, KB, Akh Morn'
       }
     ]
   }
