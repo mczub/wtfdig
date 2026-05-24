@@ -2,6 +2,7 @@
   import {
     ROLE_COLORS,
     WAYMARK_COLORS,
+    DEFAULT_JOB_LABELS,
     jobMatchesRole,
     type ArenaDiagramData,
     type ArenaElement,
@@ -381,7 +382,7 @@
       {:else if el.type === 'player'}
         {@const color = ROLE_COLORS[el.job]}
         {@const roleMatch = isRoleMatch(el.job)}
-        {@const jobLabel = jobLabels?.[el.job] ?? el.job}
+        {@const jobLabel = jobLabels?.[el.job] ?? DEFAULT_JOB_LABELS[el.job] ?? el.job}
         {@const pSize = el.size ?? 6}
         {@const pScale = pSize / 6}
         <g opacity={dimOpacity(el) * (highlightJob && !roleMatch ? 0.4 : 1)}>

@@ -990,7 +990,17 @@
   let copiedJson = $state(false);
 
   const playerJobs: PlayerJob[] = ['MT', 'OT', 'H1', 'H2', 'M1', 'M2', 'R1', 'R2'];
-  const genericJobs: PlayerJob[] = ['DPS', 'SUP', 'G1', 'G2', 'ANY'];
+  const genericJobs: PlayerJob[] = [
+    'TANK',
+    'HEALER',
+    'MELEE',
+    'RANGED',
+    'DPS',
+    'SUP',
+    'G1',
+    'G2',
+    'ANY'
+  ];
   const waymarkNames: WaymarkName[] = ['A', 'B', 'C', 'D', '1', '2', '3', '4'];
 </script>
 

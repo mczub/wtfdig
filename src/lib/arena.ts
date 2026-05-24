@@ -17,7 +17,11 @@ export type PlayerJob =
   | 'SUP'
   | 'G1'
   | 'G2'
-  | 'ANY';
+  | 'ANY'
+  | 'TANK'
+  | 'HEALER'
+  | 'MELEE'
+  | 'RANGED';
 
 /** Jobs in group 1 (first of each role pair). */
 export const G1_JOBS: readonly PlayerJob[] = ['MT', 'H1', 'M1', 'R1'];
@@ -27,10 +31,26 @@ export const G2_JOBS: readonly PlayerJob[] = ['OT', 'H2', 'M2', 'R2'];
 export const SUPPORT_JOBS: readonly PlayerJob[] = ['MT', 'OT', 'H1', 'H2'];
 /** DPS jobs (melee + ranged). */
 export const DPS_JOBS: readonly PlayerJob[] = ['M1', 'M2', 'R1', 'R2'];
+/** Tank jobs. */
+export const TANK_JOBS: readonly PlayerJob[] = ['MT', 'OT'];
+/** Healer jobs. */
+export const HEALER_JOBS: readonly PlayerJob[] = ['H1', 'H2'];
+/** Melee DPS jobs. */
+export const MELEE_JOBS: readonly PlayerJob[] = ['M1', 'M2'];
+/** Ranged DPS jobs. */
+export const RANGED_JOBS: readonly PlayerJob[] = ['R1', 'R2'];
+
+/** Short labels for role-generic player icons. */
+export const DEFAULT_JOB_LABELS: Partial<Record<PlayerJob, string>> = {
+  TANK: 'T',
+  HEALER: 'H',
+  MELEE: 'M',
+  RANGED: 'R'
+};
 
 /**
- * Returns true if a generic job icon (DPS/SUP/G1/G2/ANY) should light up
- * when a specific role is selected, or a specific job matches itself.
+ * Returns true if a generic job icon (DPS/SUP/G1/G2/ANY/TANK/HEALER/MELEE/RANGED)
+ * should light up when a specific role is selected, or a specific job matches itself.
  */
 export function jobMatchesRole(iconJob: PlayerJob, selectedJob: PlayerJob): boolean {
   if (iconJob === selectedJob) return true;
@@ -39,6 +59,10 @@ export function jobMatchesRole(iconJob: PlayerJob, selectedJob: PlayerJob): bool
   if (iconJob === 'G2') return G2_JOBS.includes(selectedJob);
   if (iconJob === 'SUP') return SUPPORT_JOBS.includes(selectedJob);
   if (iconJob === 'DPS') return DPS_JOBS.includes(selectedJob);
+  if (iconJob === 'TANK') return TANK_JOBS.includes(selectedJob);
+  if (iconJob === 'HEALER') return HEALER_JOBS.includes(selectedJob);
+  if (iconJob === 'MELEE') return MELEE_JOBS.includes(selectedJob);
+  if (iconJob === 'RANGED') return RANGED_JOBS.includes(selectedJob);
   return false;
 }
 export type WaymarkName = 'A' | 'B' | 'C' | 'D' | '1' | '2' | '3' | '4';
@@ -229,11 +253,15 @@ export const ROLE_COLORS: Record<PlayerJob, string> = {
   M2: '#ef4444', // lighter red
   R1: '#ef4444', // purple
   R2: '#ef4444', // lighter purple
-  DPS: '#ef4444', // red — generic DPS
-  SUP: '#14b8a6', // teal — generic Support (tank/healer)
-  G1: '#a78bfa', // violet — group 1
-  G2: '#f59e0b', // amber — group 2
-  ANY: '#6e7073' // light gray — any player
+  DPS: '#ef4444', // red - generic DPS
+  SUP: '#14b8a6', // teal - generic Support (tank/healer)
+  G1: '#a78bfa', // violet - group 1
+  G2: '#f59e0b', // amber - group 2
+  ANY: '#6e7073', // light gray - any player
+  TANK: '#3b82f6', // blue - any tank
+  HEALER: '#22c55e', // green - any healer
+  MELEE: '#ef4444', // red - any melee DPS
+  RANGED: '#f97316' // orange - any ranged DPS
 };
 
 export const WAYMARK_COLORS: Record<WaymarkName, string> = {

@@ -595,8 +595,90 @@ const allP4: PhaseStrats[] = [
 
 const allP5: PhaseStrats[] = [
   {
-    phaseName: 'P5: Pandora',
-    tag: 'p5'
+    phaseName: 'Fulgent Blade',
+    tag: 'p5',
+    mechs: [
+      {
+        mechanic: 'Exaline Dodges',
+        description:
+          'Orient slightly AWAY from first glow, face overlap\nStep into 2nd-wave corner matching first intersection\nWait 1 wave, then step into next intersection\nFull overlap safe for 3rd wave set'
+      }
+    ]
+  },
+  {
+    phaseName: 'Akh Morn',
+    tag: 'p5',
+    mechs: [
+      {
+        mechanic: 'Light/Dark Stacks',
+        description:
+          'G1 stacks on Pandora\'s LEFT side (Light)\nG2 stacks on RIGHT side (Dark)\nTargets random player on each side of hitbox'
+      }
+    ]
+  },
+  {
+    phaseName: 'Paradise Regained',
+    tag: 'p5',
+    mechs: [
+      {
+        mechanic: 'Tower Soaks',
+        description:
+          'Healers soak 1st tower (treat as South)\nDPS hug sides of S tower\nG1 DPS soak Left tower, G2 DPS soak Right tower'
+      },
+      {
+        mechanic: 'Dark Wing First',
+        description:
+          'MT moves left to NW tower\nOT out, then NE tower\nDark Buster targets highest enmity + closest player'
+      },
+      {
+        mechanic: 'Light Wing First',
+        description:
+          'MT moves right to NE tower\nOT out, then NW tower\nLight Buster targets highest enmity + furthest player'
+      }
+    ]
+  },
+  {
+    phaseName: 'Polarizing Strikes',
+    tag: 'p5',
+    mechs: [
+      {
+        mechanic: 'Wave 1: Tanks Front',
+        description:
+          'Party flanks boss (boss-relative)\nTanks step in front when castbar begins\n2 line AoEs (Light + Dark) target random L/R half\nFront player gets 16s Resist Down II = lethal if hit by same element next wave\nSecondary explosion ~2s after main line - back up after the shimmer sound'
+      },
+      {
+        mechanic: 'Wave 2: Melees Front',
+        description:
+          'Tanks clap mid + swap groups\nMelees move front\nLines + aftershock - step back after shimmer'
+      },
+      {
+        mechanic: 'Wave 3-4: Polarised Paths',
+        description:
+          'Repeats 2 more times (4 lines total)\nRotate who stands front each cast based on element prio\nAvoid same element twice'
+      }
+    ]
+  },
+  {
+    phaseName: 'Pandora\'s Box',
+    tag: 'p5',
+    mechs: [
+      {
+        mechanic: 'Tank LB3',
+        description:
+          'Pop Tank LB3 when "Transcend your Limits" appears'
+      }
+    ]
+  },
+  {
+    phaseName: 'Loop + Enrage',
+    tag: 'p5',
+    mechs: [
+      {
+        mechanic: 'Loop',
+        description:
+          'Mechanics repeat faster: Fulgent Blade → Paradise Regained → Polarizing Strikes → Fulgent Blade'
+      }
+    ]
   }
 ];
 
