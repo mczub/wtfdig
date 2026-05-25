@@ -4,17 +4,29 @@
     type ArenaDiagramData,
     type ArenaElement,
     type ArenaShape,
+    type GroupDef,
     type PlayerCorner,
     type PlayerJob,
+    type VisibilityCondition,
     type WaymarkName,
     ROLE_COLORS,
     WAYMARK_COLORS,
     SQUARE_MARKERS,
-    CIRCLE_MARKERS
+    CIRCLE_MARKERS,
+    evaluateVisibility
   } from '$lib/arena';
   import { DEBUFFS, type DebuffId } from '$lib/debuffs';
   import type { FightConfig, PosterLayout, PosterSectionDef } from '$lib/types';
-  import { Copy, Crosshair, Trash2, Plus, RotateCcw, Download } from '@lucide/svelte/icons';
+  import {
+    Copy,
+    Crosshair,
+    Trash2,
+    Plus,
+    RotateCcw,
+    Download,
+    ChevronDown,
+    ChevronRight
+  } from '@lucide/svelte/icons';
 
   const DEBUFF_IDS = Object.keys(DEBUFFS) as DebuffId[];
   const CORNER_KEYS: PlayerCorner[] = ['tl', 'tr', 'bl', 'br'];
@@ -66,17 +78,16 @@
     gridW = sec.section.w;
     gridH = sec.section.h;
     applyDiagramData(sec.section.arena);
-    title = sec.section.title;
   }
 
   // --- State ---
   let arenaShape: ArenaShape = $state('square');
   let showBackground = $state(true);
-  let title: string = $state('');
   let gridW: number = $state(4);
   let gridH: number = $state(4);
   let scale: number = $state(1);
   let elements: ArenaElement[] = $state([]);
+  let groups: GroupDef[] = $state([]);
   let selected: Set<number> = $state(new Set());
   let placingType: string | null = $state(null);
   let placingSubtype: string | null = $state(null);
@@ -84,13 +95,54 @@
   // For two-point elements (arrow, tether): store first click point
   let twoPointStart: { x: number; y: number } | null = $state(null);
 
+  // Preview state — drives ArenaRenderer's highlightJob so the user can see
+  // how the diagram looks in Overall vs Role-selected modes (also dims
+  // non-matching players and hides group elements whose `visibleWhen` fails).
+  let previewJob: PlayerJob | undefined = $state(undefined);
+
+  // Collapse the Groups panel (state, not derived — survives selection changes).
+  let groupsCollapsed = $state(false);
+
+  // Groups currently hidden by the preview state. Mirrors the renderer's logic
+  // so the editor can also skip interaction (overlay + marquee) on hidden elements.
+  let hiddenGroupIds = $derived.by(() => {
+    const out = new Set<string>();
+    for (const g of groups) {
+      if (!evaluateVisibility(g.visibleWhen, { selectedJob: previewJob })) {
+        out.add(g.id);
+      }
+    }
+    return out;
+  });
+
+  function isElementHidden(el: ArenaElement): boolean {
+    return !!el.groupId && hiddenGroupIds.has(el.groupId);
+  }
+
+  // Drop selected indices whose element became hidden under the current preview,
+  // so the property panel doesn't keep editing something the user can't see.
+  $effect(() => {
+    if (hiddenGroupIds.size === 0) return;
+    let mutated = false;
+    const next = new Set<number>();
+    for (const idx of selected) {
+      const el = elements[idx];
+      if (el && isElementHidden(el)) {
+        mutated = true;
+        continue;
+      }
+      next.add(idx);
+    }
+    if (mutated) selected = next;
+  });
+
   // --- Derived ---
   let diagramData: ArenaDiagramData = $derived({
     arena: arenaShape,
     elements,
-    title: title || undefined,
     bgColor: showBackground ? undefined : 'transparent',
-    scale: scale !== 1 ? scale : undefined
+    scale: scale !== 1 ? scale : undefined,
+    groups: groups.length ? groups : undefined
   });
 
   // For the property panel: only show when exactly one element is selected
@@ -311,6 +363,7 @@
       didMouseDownElement = true; // suppress the deselect-on-click
       const hits = new Set(baseSelection);
       elements.forEach((el, i) => {
+        if (isElementHidden(el)) return;
         const c = elementCenter(el);
         if (!c) return;
         const cx = c.x * scale;
@@ -554,8 +607,104 @@
     selected = new Set();
   }
 
+  // --- Groups management ---
+  function addGroup() {
+    const existing = new Set(groups.map((g) => g.id));
+    let n = groups.length + 1;
+    let id = `group-${n}`;
+    while (existing.has(id)) id = `group-${++n}`;
+    groups = [...groups, { id }];
+  }
+
+  function removeGroup(idx: number) {
+    const removedId = groups[idx]?.id;
+    groups = groups.filter((_, i) => i !== idx);
+    if (removedId) {
+      elements = elements.map((el) => (el.groupId === removedId ? { ...el, groupId: undefined } : el));
+    }
+  }
+
+  function updateGroup(idx: number, patch: Partial<GroupDef>) {
+    const oldId = groups[idx]?.id;
+    groups = groups.map((g, i) => (i === idx ? { ...g, ...patch } : g));
+    // Cascade id rename to elements.
+    if (patch.id && oldId && patch.id !== oldId) {
+      elements = elements.map((el) => (el.groupId === oldId ? { ...el, groupId: patch.id } : el));
+    }
+  }
+
+  function updateGroupCondition(idx: number, patch: Partial<VisibilityCondition>) {
+    const g = groups[idx];
+    if (!g) return;
+    const cond = { ...(g.visibleWhen ?? {}) };
+    for (const [k, v] of Object.entries(patch)) {
+      if (v === undefined) delete (cond as any)[k];
+      else (cond as any)[k] = v;
+    }
+    const isEmpty = Object.keys(cond).length === 0;
+    updateGroup(idx, { visibleWhen: isEmpty ? undefined : cond });
+  }
+
+  function toggleGroupJob(idx: number, job: PlayerJob) {
+    const g = groups[idx];
+    const current = g?.visibleWhen?.jobs ?? [];
+    const next = current.includes(job) ? current.filter((j) => j !== job) : [...current, job];
+    updateGroupCondition(idx, { jobs: next.length ? next : undefined });
+  }
+
+  function parseStratKeyList(s: string): string[] | undefined {
+    const list = s.split(',').map((p) => p.trim()).filter(Boolean);
+    return list.length ? list : undefined;
+  }
+
+  // Jobs offered by the visibility job-picker (specifics + role generics).
+  const VIS_JOBS: PlayerJob[] = [
+    'MT', 'OT', 'H1', 'H2', 'M1', 'M2', 'R1', 'R2',
+    'TANK', 'HEALER', 'MELEE', 'RANGED', 'DPS', 'SUP', 'G1', 'G2',
+    'G1SUP', 'G1DPS', 'G2SUP', 'G2DPS', 'ANY'
+  ];
+
   // --- Code generation ---
   let generatedCode = $derived(generateCode());
+
+  /**
+   * Splice `groupId: 'x'` into a generated element line. Handles both forms:
+   * trailing `)` (no opts) and trailing `})` (existing opts).
+   */
+  function withGroupId(line: string, groupId: string | undefined): string {
+    if (!groupId) return line;
+    const trimmed = line.replace(/\)$/, '');
+    if (trimmed.endsWith('}')) {
+      return trimmed.replace(/\}$/, `, groupId: '${groupId}' }`) + ')';
+    }
+    return trimmed + `, { groupId: '${groupId}' })`;
+  }
+
+  function stringifyCondition(cond: VisibilityCondition): string {
+    const parts: string[] = [];
+    if (cond.whenRoleSelected === true) parts.push(`whenRoleSelected: true`);
+    if (cond.whenRoleSelected === false) parts.push(`whenRoleSelected: false`);
+    if (cond.jobs?.length) {
+      parts.push(`jobs: [${cond.jobs.map((j) => `'${j}'`).join(', ')}]`);
+    }
+    if (cond.strat && Object.keys(cond.strat).length > 0) {
+      const entries = Object.entries(cond.strat).map(
+        ([tag, vals]) => `'${tag}': [${vals.map((v) => `'${v}'`).join(', ')}]`
+      );
+      parts.push(`strat: { ${entries.join(', ')} }`);
+    }
+    if (cond.stratKey?.length) {
+      parts.push(`stratKey: [${cond.stratKey.map((k) => `'${k}'`).join(', ')}]`);
+    }
+    return `{ ${parts.join(', ')} }`;
+  }
+
+  function stringifyGroup(g: GroupDef): string {
+    const parts: string[] = [`id: '${g.id}'`];
+    if (g.label) parts.push(`label: '${g.label}'`);
+    if (g.visibleWhen) parts.push(`visibleWhen: ${stringifyCondition(g.visibleWhen)}`);
+    return `    { ${parts.join(', ')} }`;
+  }
 
   function generateCode(): string {
     const imports = new Set<string>();
@@ -586,6 +735,11 @@
           }
         case 'boss':
           imports.add('boss');
+          // When the element has a groupId, fold rotation into the opts object so
+          // withGroupId can merge groupId into a single trailing `{ ... }`.
+          if (el.groupId && el.rotation) {
+            return `  boss(${el.x}, ${el.y}, { rotation: ${el.rotation} })`;
+          }
           return `  boss(${el.x}, ${el.y}${el.rotation ? `, ${el.rotation}` : ''})`;
         case 'waymark':
           imports.add('waymark');
@@ -597,6 +751,8 @@
           if (el.shape === 'circle') {
             imports.add('aoeCircle');
             const opts: string[] = [];
+            if (el.ry != null && el.ry !== el.r) opts.push(`ry: ${el.ry}`);
+            if (el.rotation) opts.push(`rotation: ${el.rotation}`);
             if (el.color) opts.push(`color: '${el.color}'`);
             if (el.opacity != null) opts.push(`opacity: ${el.opacity}`);
             const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
@@ -682,11 +838,11 @@
         default:
           return `  // unknown element`;
       }
-    });
+    }).map((str, i) => withGroupId(str, elements[i].groupId));
 
     // Only use the SQUARE_MARKERS / CIRCLE_MARKERS shorthand when every waymark
-    // matches the preset exactly (same mark, position, default size). Any custom
-    // size or moved waymark falls back to emitting each waymark individually.
+    // matches the preset exactly (same mark, position, default size, no group).
+    // Any custom size, moved waymark, or group assignment forces individual emission.
     const presetMarkers = arenaShape === 'square' ? SQUARE_MARKERS : CIRCLE_MARKERS;
     const waymarkEls = elements.filter(
       (e): e is Extract<ArenaElement, { type: 'waymark' }> => e.type === 'waymark'
@@ -697,6 +853,7 @@
         const match = waymarkEls.find((e) => e.mark === preset.mark);
         if (!match) return false;
         if (match.size != null && match.size !== 4) return false;
+        if (match.groupId) return false;
         return match.x === preset.x && match.y === preset.y;
       });
     if (matchesPreset) {
@@ -709,10 +866,8 @@
     const lines: string[] = [importStr, '', `// Grid: ${gridW}w × ${gridH}h`];
 
     const diagramOpts: string[] = [];
-    if (title) diagramOpts.push(`title: '${title}'`);
     if (!showBackground) diagramOpts.push(`bgColor: 'transparent'`);
     if (scale !== 1) diagramOpts.push(`scale: ${scale}`);
-    const optsStr = diagramOpts.length > 0 ? `, { ${diagramOpts.join(', ')} }` : '';
 
     lines.push(`diagram('${arenaShape}', [`);
 
@@ -727,7 +882,21 @@
       }
     }
 
-    lines.push(`]${optsStr})`);
+    // Groups are emitted multi-line in the diagram opts; other opts stay inline.
+    if (groups.length > 0) {
+      const optsInline = diagramOpts.length > 0 ? `${diagramOpts.join(', ')}, ` : '';
+      lines.push(`], {`);
+      if (optsInline) lines.push(`  ${optsInline}`);
+      lines.push(`  groups: [`);
+      groups.forEach((g, i) => {
+        lines.push(`${stringifyGroup(g)}${i < groups.length - 1 ? ',' : ''}`);
+      });
+      lines.push(`  ]`);
+      lines.push(`})`);
+    } else {
+      const optsStr = diagramOpts.length > 0 ? `, { ${diagramOpts.join(', ')} }` : '';
+      lines.push(`]${optsStr})`);
+    }
     return lines.join('\n');
   }
 
@@ -777,14 +946,26 @@
         y: +m[3],
         id: m[4] || (opts.id as string | undefined),
         marker: opts.marker as 'red' | 'green' | undefined,
+        size: opts.size as number | undefined,
+        groupId: opts.groupId as string | undefined,
         corners: Object.keys(corners).length ? corners : undefined
       });
     }
-    // Parse boss(x, y, rotation?)
+    // Parse boss(x, y), boss(x, y, rotation), or boss(x, y, { opts })
     for (const m of code.matchAll(
-      new RegExp(`boss\\(\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*(${N}))?\\s*\\)`, 'g')
+      new RegExp(
+        `boss\\(\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*(?:(${N})|\\{([^}]*)\\}))?\\s*\\)`,
+        'g'
+      )
     )) {
-      els.push({ type: 'boss', x: +m[1], y: +m[2], rotation: m[3] ? +m[3] : undefined });
+      const opts = m[4] ? parseInlineOpts(m[4]) : {};
+      els.push({
+        type: 'boss',
+        x: +m[1],
+        y: +m[2],
+        rotation: m[3] ? +m[3] : (opts.rotation as number | undefined),
+        groupId: opts.groupId as string | undefined
+      });
     }
     // Parse waymark('M', x, y) or waymark('M', x, y, { size })
     for (const m of code.matchAll(
@@ -799,7 +980,8 @@
         mark: m[1] as WaymarkName,
         x: +m[2],
         y: +m[3],
-        size: opts.size as number | undefined
+        size: opts.size as number | undefined,
+        groupId: opts.groupId as string | undefined
       });
     }
     // Parse aoeCircle(x, y, r, { opts })
@@ -919,17 +1101,113 @@
       els.push(...CIRCLE_MARKERS.map((w) => ({ ...w })));
     }
 
-    // Parse diagram-level opts
-    const optsMatch = code.match(/\]\s*,\s*\{([^}]*)\}\s*\)/);
-    const diagramOpts = parseInlineOpts(optsMatch?.[1]);
+    // Parse diagram-level opts. Two shapes:
+    //   1) `], { title: '...' })` — single-line, no nested braces.
+    //   2) `], { ..., groups: [{ ... }, ...] })` — multi-line with nested objects.
+    // For (2) we balance-scan for the matching `}` of the diagram opts block.
+    const optsStart = code.search(/\]\s*,\s*\{/);
+    let diagramOptsBody = '';
+    if (optsStart >= 0) {
+      const braceStart = code.indexOf('{', optsStart);
+      if (braceStart >= 0) {
+        let depth = 0;
+        for (let i = braceStart; i < code.length; i++) {
+          const c = code[i];
+          if (c === '{') depth++;
+          else if (c === '}') {
+            depth--;
+            if (depth === 0) {
+              diagramOptsBody = code.slice(braceStart + 1, i);
+              break;
+            }
+          }
+        }
+      }
+    }
+
+    // Extract groups: [ ... ] block first, then strip it before parsing simple opts.
+    const parsedGroups = parseGroupsBlock(diagramOptsBody);
+    const optsWithoutGroups = diagramOptsBody.replace(/groups\s*:\s*\[[\s\S]*?\n\s*\]/, '');
+    const diagramOpts = parseInlineOpts(optsWithoutGroups);
 
     return {
       arena: shape,
       elements: els,
-      title: diagramOpts.title as string | undefined,
       bgColor: diagramOpts.bgColor as string | undefined,
-      scale: diagramOpts.scale as number | undefined
+      scale: diagramOpts.scale as number | undefined,
+      groups: parsedGroups.length ? parsedGroups : undefined
     };
+  }
+
+  /** Parse the `groups: [ ... ]` array body. Tolerant of multi-line layout. */
+  function parseGroupsBlock(optsBody: string): GroupDef[] {
+    if (!optsBody) return [];
+    const arrMatch = optsBody.match(/groups\s*:\s*\[([\s\S]*)\]/);
+    if (!arrMatch) return [];
+    const arrBody = arrMatch[1];
+    // Each group is a `{ ... }` object; balance-scan splits them.
+    const groupBodies: string[] = [];
+    let depth = 0;
+    let start = -1;
+    for (let i = 0; i < arrBody.length; i++) {
+      const c = arrBody[i];
+      if (c === '{') {
+        if (depth === 0) start = i + 1;
+        depth++;
+      } else if (c === '}') {
+        depth--;
+        if (depth === 0 && start >= 0) {
+          groupBodies.push(arrBody.slice(start, i));
+          start = -1;
+        }
+      }
+    }
+    return groupBodies.map(parseGroupBody).filter((g): g is GroupDef => g != null);
+  }
+
+  function parseGroupBody(body: string): GroupDef | null {
+    const idMatch = body.match(/\bid\s*:\s*'([^']+)'/);
+    if (!idMatch) return null;
+    const labelMatch = body.match(/\blabel\s*:\s*'([^']+)'/);
+    const vwMatch = body.match(/\bvisibleWhen\s*:\s*\{([\s\S]*?)\}\s*(,|$)/);
+    let visibleWhen: VisibilityCondition | undefined;
+    if (vwMatch) {
+      visibleWhen = parseConditionBody(vwMatch[1]);
+    }
+    return {
+      id: idMatch[1],
+      label: labelMatch?.[1],
+      visibleWhen
+    };
+  }
+
+  function parseConditionBody(body: string): VisibilityCondition {
+    const out: VisibilityCondition = {};
+    if (/whenRoleSelected\s*:\s*true/.test(body)) out.whenRoleSelected = true;
+    else if (/whenRoleSelected\s*:\s*false/.test(body)) out.whenRoleSelected = false;
+    const jobsMatch = body.match(/\bjobs\s*:\s*\[([^\]]*)\]/);
+    if (jobsMatch) {
+      const jobs: PlayerJob[] = [];
+      for (const jm of jobsMatch[1].matchAll(/'([^']+)'/g)) jobs.push(jm[1] as PlayerJob);
+      if (jobs.length) out.jobs = jobs;
+    }
+    const stratKeyMatch = body.match(/\bstratKey\s*:\s*\[([^\]]*)\]/);
+    if (stratKeyMatch) {
+      const keys: string[] = [];
+      for (const km of stratKeyMatch[1].matchAll(/'([^']+)'/g)) keys.push(km[1]);
+      if (keys.length) out.stratKey = keys;
+    }
+    const stratMatch = body.match(/\bstrat\s*:\s*\{([^}]*)\}/);
+    if (stratMatch) {
+      const strat: Record<string, string[]> = {};
+      for (const em of stratMatch[1].matchAll(/'([^']+)'\s*:\s*\[([^\]]*)\]/g)) {
+        const vals: string[] = [];
+        for (const vm of em[2].matchAll(/'([^']+)'/g)) vals.push(vm[1]);
+        strat[em[1]] = vals;
+      }
+      if (Object.keys(strat).length) out.strat = strat;
+    }
+    return out;
   }
 
   function parseInlineOpts(str: string | undefined): Record<string, any> {
@@ -969,10 +1247,10 @@
 
   function applyDiagramData(data: ArenaDiagramData) {
     arenaShape = data.arena ?? 'square';
-    title = data.title ?? '';
     showBackground = data.bgColor !== 'transparent';
     scale = data.scale ?? 1;
     elements = data.elements ?? [];
+    groups = data.groups ? data.groups.map((g) => ({ ...g })) : [];
     selected = new Set();
     jsonError = '';
     jsonImport = '';
@@ -999,7 +1277,12 @@
     'SUP',
     'G1',
     'G2',
-    'ANY'
+    'G1SUP',
+    'G1DPS',
+    'G2SUP',
+    'G2DPS',
+    'ANY',
+    'X'
   ];
   const waymarkNames: WaymarkName[] = ['A', 'B', 'C', 'D', '1', '2', '3', '4'];
 </script>
@@ -1031,12 +1314,6 @@
           <input type="checkbox" bind:checked={showBackground} class="accent-primary-500" />
           Background
         </label>
-        <input
-          type="text"
-          bind:value={title}
-          placeholder="Title (optional)"
-          class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-2 py-1 text-sm w-40 placeholder:text-surface-500"
-        />
         <div class="flex items-center gap-1">
           <span class="text-sm font-semibold text-surface-300">Grid:</span>
           <input
@@ -1067,6 +1344,27 @@
             class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-16 text-center"
           />
         </div>
+        <div class="flex items-center gap-1 ml-auto">
+          <span class="text-sm font-semibold text-surface-300">Preview:</span>
+          <button
+            class="btn btn-sm text-xs px-2 {previewJob === undefined
+              ? 'preset-filled-primary-500'
+              : 'preset-tonal-surface'}"
+            onclick={() => (previewJob = undefined)}
+            title="Overall (no role highlighted)">Overall</button
+          >
+          {#each playerJobs as job}
+            {@const active = previewJob === job}
+            <button
+              class="text-xs font-bold px-2 py-1 rounded border"
+              style:background-color={active ? ROLE_COLORS[job] : ROLE_COLORS[job] + '22'}
+              style:border-color={ROLE_COLORS[job]}
+              style:color={active ? 'white' : ROLE_COLORS[job]}
+              onclick={() => (previewJob = job)}
+              title={`Preview as ${job}`}>{job}</button
+            >
+          {/each}
+        </div>
       </div>
 
       <!-- Canvas -->
@@ -1079,7 +1377,7 @@
           ? 'repeating-conic-gradient(#333 0% 25%, #222 0% 50%) 0 0 / 20px 20px'
           : undefined}
       >
-        <ArenaRenderer data={diagramData} {gridW} {gridH} />
+        <ArenaRenderer data={diagramData} {gridW} {gridH} highlightJob={previewJob} />
 
         <!-- Interactive overlay — positional click-only input, no keyboard equivalent. -->
         <!-- svelte-ignore a11y_click_events_have_key_events -->
@@ -1094,7 +1392,9 @@
           onmousedown={handleCanvasMouseDown}
         >
           {#each elements as el, i}
-            {#if el.type === 'player' || el.type === 'boss' || el.type === 'waymark' || el.type === 'text'}
+            {#if isElementHidden(el)}
+              <!-- element hidden by preview — skip overlay so it can't be selected -->
+            {:else if el.type === 'player' || el.type === 'boss' || el.type === 'waymark' || el.type === 'text'}
               <!-- svelte-ignore a11y_no_static_element_interactions -->
               <circle
                 cx={el.x * scale}
@@ -1113,14 +1413,18 @@
               />
             {:else if el.type === 'aoe' && el.shape === 'circle'}
               <!-- svelte-ignore a11y_no_static_element_interactions -->
-              <circle
+              <ellipse
                 cx={el.x * scale}
                 cy={el.y * scale}
-                r={el.r * scale}
+                rx={el.r * scale}
+                ry={(el.ry ?? el.r) * scale}
                 fill="transparent"
                 stroke={selected.has(i) ? '#22d3ee' : 'transparent'}
                 stroke-width="0.6"
                 stroke-dasharray="1.5,1"
+                transform={el.rotation
+                  ? `rotate(${el.rotation} ${el.x * scale} ${el.y * scale})`
+                  : undefined}
                 class="cursor-move"
                 onmousedown={(e) => handleElementMouseDown(i, e)}
               />
@@ -1458,6 +1762,175 @@
         {/if}
       </div>
 
+      <!-- Groups (visibility-conditional element sets) -->
+      <div class="card border border-surface-600 p-3 bg-surface-900 space-y-2">
+        <div class="flex justify-between items-center">
+          <button
+            type="button"
+            class="flex items-center gap-1 text-sm font-semibold text-surface-200 hover:text-surface-100"
+            onclick={() => (groupsCollapsed = !groupsCollapsed)}
+          >
+            {#if groupsCollapsed}
+              <ChevronRight size={14} />
+            {:else}
+              <ChevronDown size={14} />
+            {/if}
+            Groups{groups.length > 0 ? ` (${groups.length})` : ''}
+          </button>
+          <button class="btn btn-sm preset-tonal-surface text-xs" onclick={addGroup}>
+            <Plus size={12} /> Add
+          </button>
+        </div>
+        {#if !groupsCollapsed}
+          {#if groups.length === 0}
+            <div class="text-xs text-surface-500">
+              Define a group then assign elements to it (via the property panel) to
+              conditionally hide them based on selected role, strat, or strat toggle.
+            </div>
+          {/if}
+          {#each groups as g, gi}
+          {@const memberCount = elements.filter((e) => e.groupId === g.id).length}
+          <div class="border border-surface-700 rounded p-2 space-y-1.5">
+            <div class="flex gap-1 items-center">
+              <input
+                type="text"
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs flex-1 font-mono"
+                value={g.id}
+                placeholder="group-id"
+                onchange={(e) => updateGroup(gi, { id: e.currentTarget.value.trim() || g.id })}
+              />
+              <input
+                type="text"
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs flex-1"
+                value={g.label ?? ''}
+                placeholder="label (optional)"
+                oninput={(e) => updateGroup(gi, { label: e.currentTarget.value || undefined })}
+              />
+              <button
+                class="btn btn-sm preset-tonal-error p-1"
+                onclick={() => removeGroup(gi)}
+                title="Delete group"
+              >
+                <Trash2 size={12} />
+              </button>
+            </div>
+            <div class="text-xs text-surface-500">
+              {memberCount} element{memberCount === 1 ? '' : 's'} assigned
+            </div>
+            <label class="text-xs text-surface-400">
+              Role mode
+              <select
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs w-full"
+                value={g.visibleWhen?.whenRoleSelected === true
+                  ? 'role'
+                  : g.visibleWhen?.whenRoleSelected === false
+                    ? 'overview'
+                    : 'any'}
+                onchange={(e) => {
+                  const v = e.currentTarget.value;
+                  updateGroupCondition(gi, {
+                    whenRoleSelected: v === 'role' ? true : v === 'overview' ? false : undefined
+                  });
+                }}
+              >
+                <option value="any">Any (no constraint)</option>
+                <option value="role">Only when role selected</option>
+                <option value="overview">Only in overview (no role)</option>
+              </select>
+            </label>
+            <div>
+              <div class="text-xs text-surface-400 mb-0.5">Show only for jobs:</div>
+              <div class="flex flex-wrap gap-0.5">
+                {#each VIS_JOBS as job}
+                  {@const active = g.visibleWhen?.jobs?.includes(job) ?? false}
+                  <button
+                    class="text-[10px] font-bold px-1.5 py-0.5 rounded border"
+                    style:background-color={active ? ROLE_COLORS[job] + '55' : 'transparent'}
+                    style:border-color={ROLE_COLORS[job]}
+                    style:color={ROLE_COLORS[job]}
+                    onclick={() => toggleGroupJob(gi, job)}>{job}</button
+                  >
+                {/each}
+              </div>
+            </div>
+            <label class="text-xs text-surface-400">
+              Active strat keys (comma-separated)
+              <input
+                type="text"
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs w-full font-mono"
+                value={(g.visibleWhen?.stratKey ?? []).join(', ')}
+                placeholder="naur, max1"
+                oninput={(e) =>
+                  updateGroupCondition(gi, { stratKey: parseStratKeyList(e.currentTarget.value) })}
+              />
+            </label>
+            <div class="text-xs text-surface-400">
+              <div class="flex justify-between items-center mb-0.5">
+                <span>Strat-toggle predicate</span>
+                <button
+                  class="btn btn-sm preset-tonal-surface text-[10px] px-1.5 py-0.5"
+                  onclick={() => {
+                    const next = { ...(g.visibleWhen?.strat ?? {}), '': [] };
+                    updateGroupCondition(gi, { strat: next });
+                  }}
+                  title="Add toggle constraint"
+                >
+                  <Plus size={10} />
+                </button>
+              </div>
+              {#each Object.entries(g.visibleWhen?.strat ?? {}) as [tag, vals], si}
+                <div class="flex gap-1 items-center mb-0.5">
+                  <input
+                    type="text"
+                    class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-[10px] font-mono w-20"
+                    value={tag}
+                    placeholder="tag"
+                    onchange={(e) => {
+                      const newTag = e.currentTarget.value.trim();
+                      const entries = Object.entries(g.visibleWhen?.strat ?? {});
+                      const updated = Object.fromEntries(
+                        entries.map(([t, v], i) => (i === si ? [newTag, v] : [t, v]))
+                      ) as Record<string, string[]>;
+                      updateGroupCondition(gi, { strat: updated });
+                    }}
+                  />
+                  <span class="text-surface-500">=</span>
+                  <input
+                    type="text"
+                    class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-[10px] font-mono flex-1"
+                    value={vals.join(', ')}
+                    placeholder="val1, val2"
+                    oninput={(e) => {
+                      const list = e.currentTarget.value.split(',').map((p) => p.trim()).filter(Boolean);
+                      const entries = Object.entries(g.visibleWhen?.strat ?? {});
+                      const updated = Object.fromEntries(
+                        entries.map(([t, v], i) => (i === si ? [t, list] : [t, v]))
+                      ) as Record<string, string[]>;
+                      updateGroupCondition(gi, { strat: updated });
+                    }}
+                  />
+                  <button
+                    class="text-error-500 hover:text-error-400 text-xs px-1"
+                    onclick={() => {
+                      const entries = Object.entries(g.visibleWhen?.strat ?? {}).filter(
+                        (_, i) => i !== si
+                      );
+                      const next = Object.fromEntries(entries) as Record<string, string[]>;
+                      updateGroupCondition(gi, {
+                        strat: Object.keys(next).length ? next : undefined
+                      });
+                    }}
+                  >
+                    ×
+                  </button>
+                </div>
+              {/each}
+            </div>
+          </div>
+          {/each}
+        {/if}
+      </div>
+
       <!-- Selected element properties -->
       {#if selected.size > 1}
         <div class="card border border-surface-600 p-3 space-y-2 bg-surface-900">
@@ -1485,6 +1958,25 @@
           <div class="text-xs text-surface-400">
             Ctrl+click to toggle individual elements. Drag any selected element to move all.
           </div>
+          {#if groups.length > 0}
+            <label class="text-xs text-surface-400">
+              Assign all to group
+              <select
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                onchange={(e) => {
+                  const id = e.currentTarget.value || undefined;
+                  elements = elements.map((el, i) =>
+                    selected.has(i) ? { ...el, groupId: id } : el
+                  );
+                }}
+              >
+                <option value="">— none —</option>
+                {#each groups as g}
+                  <option value={g.id}>{g.label ? `${g.id} (${g.label})` : g.id}</option>
+                {/each}
+              </select>
+            </label>
+          {/if}
         </div>
       {:else if selectedElement && selectedIndex !== null}
         <div class="card border border-surface-600 p-3 space-y-2 bg-surface-900">
@@ -1526,6 +2018,23 @@
               </button>
             </div>
           </div>
+
+          {#if groups.length > 0}
+            <label class="text-xs text-surface-400">
+              Group
+              <select
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                value={selectedElement.groupId ?? ''}
+                onchange={(e) =>
+                  updateElement('groupId', e.currentTarget.value || undefined)}
+              >
+                <option value="">— none —</option>
+                {#each groups as g}
+                  <option value={g.id}>{g.label ? `${g.id} (${g.label})` : g.id}</option>
+                {/each}
+              </select>
+            </label>
+          {/if}
 
           {#if 'x' in selectedElement}
             <div class="grid grid-cols-2 gap-2">
@@ -1603,6 +2112,26 @@
           {/if}
 
           {#if selectedElement.type === 'player'}
+            <label class="text-xs text-surface-400">
+              Job
+              <select
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full font-bold"
+                style:color={ROLE_COLORS[selectedElement.job]}
+                value={selectedElement.job}
+                onchange={(e) => updateElement('job', e.currentTarget.value)}
+              >
+                <optgroup label="Specific">
+                  {#each playerJobs as j}
+                    <option value={j} style:color={ROLE_COLORS[j]}>{j}</option>
+                  {/each}
+                </optgroup>
+                <optgroup label="Generic">
+                  {#each genericJobs as j}
+                    <option value={j} style:color={ROLE_COLORS[j]}>{j}</option>
+                  {/each}
+                </optgroup>
+              </select>
+            </label>
             <label class="text-xs text-surface-400">
               Size ({(selectedElement.size ?? 6).toFixed(1)})
               <input
@@ -1708,15 +2237,48 @@
             </label>
           {/if}
           {#if selectedElement.type === 'aoe' && selectedElement.shape === 'circle'}
+            <div class="grid grid-cols-2 gap-2">
+              <label class="text-xs text-surface-400">
+                Radius X
+                <input
+                  type="number"
+                  min="1"
+                  max="50"
+                  step="0.5"
+                  class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                  value={selectedElement.r}
+                  oninput={(e) => updateElement('r', Number(e.currentTarget.value))}
+                />
+              </label>
+              <label class="text-xs text-surface-400">
+                Radius Y
+                <input
+                  type="number"
+                  min="1"
+                  max="50"
+                  step="0.5"
+                  class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                  value={selectedElement.ry ?? selectedElement.r}
+                  oninput={(e) => {
+                    const v = Number(e.currentTarget.value);
+                    // Drop ry when it matches r — keeps round-tripped code clean.
+                    updateElement('ry', v === selectedElement.r ? undefined : v);
+                  }}
+                />
+              </label>
+            </div>
             <label class="text-xs text-surface-400">
-              Radius
+              Rotation
               <input
                 type="number"
-                min="1"
-                max="50"
+                min="0"
+                max="360"
                 class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
-                value={selectedElement.r}
-                oninput={(e) => updateElement('r', Number(e.currentTarget.value))}
+                value={selectedElement.rotation ?? 0}
+                oninput={(e) => {
+                  const v = Number(e.currentTarget.value);
+                  updateElement('rotation', v ? v : undefined);
+                }}
               />
             </label>
           {/if}

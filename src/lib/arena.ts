@@ -17,11 +17,16 @@ export type PlayerJob =
   | 'SUP'
   | 'G1'
   | 'G2'
+  | 'G1SUP'
+  | 'G1DPS'
+  | 'G2SUP'
+  | 'G2DPS'
   | 'ANY'
   | 'TANK'
   | 'HEALER'
   | 'MELEE'
-  | 'RANGED';
+  | 'RANGED'
+  | 'X';
 
 /** Jobs in group 1 (first of each role pair). */
 export const G1_JOBS: readonly PlayerJob[] = ['MT', 'H1', 'M1', 'R1'];
@@ -39,13 +44,25 @@ export const HEALER_JOBS: readonly PlayerJob[] = ['H1', 'H2'];
 export const MELEE_JOBS: readonly PlayerJob[] = ['M1', 'M2'];
 /** Ranged DPS jobs. */
 export const RANGED_JOBS: readonly PlayerJob[] = ['R1', 'R2'];
+/** G1 supports (MT + H1). */
+export const G1_SUPPORT_JOBS: readonly PlayerJob[] = ['MT', 'H1'];
+/** G2 supports (OT + H2). */
+export const G2_SUPPORT_JOBS: readonly PlayerJob[] = ['OT', 'H2'];
+/** G1 DPS (M1 + R1). */
+export const G1_DPS_JOBS: readonly PlayerJob[] = ['M1', 'R1'];
+/** G2 DPS (M2 + R2). */
+export const G2_DPS_JOBS: readonly PlayerJob[] = ['M2', 'R2'];
 
-/** Short labels for role-generic player icons. */
+/** Short labels for role-generic player icons. Newlines render as stacked tspans. */
 export const DEFAULT_JOB_LABELS: Partial<Record<PlayerJob, string>> = {
   TANK: 'T',
   HEALER: 'H',
   MELEE: 'M',
-  RANGED: 'R'
+  RANGED: 'R',
+  G1SUP: 'G1\nSUP',
+  G1DPS: 'G1\nDPS',
+  G2SUP: 'G2\nSUP',
+  G2DPS: 'G2\nDPS'
 };
 
 /**
@@ -63,6 +80,10 @@ export function jobMatchesRole(iconJob: PlayerJob, selectedJob: PlayerJob): bool
   if (iconJob === 'HEALER') return HEALER_JOBS.includes(selectedJob);
   if (iconJob === 'MELEE') return MELEE_JOBS.includes(selectedJob);
   if (iconJob === 'RANGED') return RANGED_JOBS.includes(selectedJob);
+  if (iconJob === 'G1SUP') return G1_SUPPORT_JOBS.includes(selectedJob);
+  if (iconJob === 'G2SUP') return G2_SUPPORT_JOBS.includes(selectedJob);
+  if (iconJob === 'G1DPS') return G1_DPS_JOBS.includes(selectedJob);
+  if (iconJob === 'G2DPS') return G2_DPS_JOBS.includes(selectedJob);
   return false;
 }
 export type WaymarkName = 'A' | 'B' | 'C' | 'D' | '1' | '2' | '3' | '4';
@@ -105,7 +126,12 @@ export interface AoECircleElement {
   shape: 'circle';
   x: number;
   y: number;
-  r: number; // radius in arena %
+  /** X-axis radius in arena %. (Reused as Y-axis radius when `ry` is unset.) */
+  r: number;
+  /** Optional Y-axis radius for ellipses. Defaults to `r` (circle). */
+  ry?: number;
+  /** Optional rotation in degrees, around the center. */
+  rotation?: number;
   color?: string;
   opacity?: number;
   id?: string;
@@ -219,7 +245,7 @@ export interface CurvedArrowElement {
   id?: string;
 }
 
-export type ArenaElement =
+export type ArenaElement = (
   | PlayerElement
   | BossElement
   | WaymarkElement
@@ -231,15 +257,77 @@ export type ArenaElement =
   | ArenaShapeElement
   | DebuffElement
   | PolygonElement
-  | CurvedArrowElement;
+  | CurvedArrowElement
+) & {
+  /** Optional group membership. Matches a `GroupDef.id` on the diagram. */
+  groupId?: string;
+};
+
+/**
+ * Predicate for conditional visibility on poster sections and arena element
+ * groups. All listed criteria are AND-ed together. Omitted fields = no constraint.
+ */
+export interface VisibilityCondition {
+  /** Tri-state: `true` only when a role is selected, `false` only when no role
+   * is selected (i.e. overview mode), `undefined` = no constraint. */
+  whenRoleSelected?: boolean;
+  /** Show only when the selected job matches one of these (generics resolve via {@link jobMatchesRole}). */
+  jobs?: PlayerJob[];
+  /** Show only when stratState[tag] is one of the listed values, for each tag. */
+  strat?: Record<string, string[]>;
+  /** Show only when the active strat key is one of these. */
+  stratKey?: string[];
+}
+
+/** Named group of arena elements, opt-in via {@link ArenaElement.groupId}. */
+export interface GroupDef {
+  id: string;
+  /** Short label for UI surfaces (defaults to `id`). */
+  label?: string;
+  /** Visibility predicate. When unmet, every element with this groupId is hidden. */
+  visibleWhen?: VisibilityCondition;
+}
+
+export interface VisibilityContext {
+  selectedJob?: PlayerJob;
+  stratState?: Record<string, string | null | undefined>;
+  stratKey?: string;
+}
+
+/** Returns true when `cond` is satisfied (or undefined). */
+export function evaluateVisibility(
+  cond: VisibilityCondition | undefined,
+  ctx: VisibilityContext
+): boolean {
+  if (!cond) return true;
+  if (cond.whenRoleSelected === true && !ctx.selectedJob) return false;
+  if (cond.whenRoleSelected === false && ctx.selectedJob) return false;
+  if (cond.jobs?.length) {
+    if (!ctx.selectedJob) return false;
+    const match = cond.jobs.some((j) => jobMatchesRole(j, ctx.selectedJob!));
+    if (!match) return false;
+  }
+  if (cond.strat) {
+    const state = ctx.stratState ?? {};
+    for (const [tag, allowed] of Object.entries(cond.strat)) {
+      const v = state[tag];
+      if (v == null || !allowed.includes(v)) return false;
+    }
+  }
+  if (cond.stratKey?.length) {
+    if (!ctx.stratKey || !cond.stratKey.includes(ctx.stratKey)) return false;
+  }
+  return true;
+}
 
 export interface ArenaDiagramData {
   arena: ArenaShape;
   bgColor?: string; // default: '#3a2f25' (dark brown)
   elements: ArenaElement[];
   highlight?: string[]; // element IDs to spotlight
-  title?: string;
   scale?: number; // scales all element sizes (default 1)
+  /** Group definitions referenced by `ArenaElement.groupId`. */
+  groups?: GroupDef[];
 }
 
 // --- Color constants ---
@@ -261,7 +349,12 @@ export const ROLE_COLORS: Record<PlayerJob, string> = {
   TANK: '#3b82f6', // blue - any tank
   HEALER: '#22c55e', // green - any healer
   MELEE: '#ef4444', // red - any melee DPS
-  RANGED: '#f97316' // orange - any ranged DPS
+  RANGED: '#f97316', // orange - any ranged DPS
+  X: '#6b7280', // grey - context marker, never matches a role
+  G1SUP: '#14b8a6', // G1 supports (MT + H1) - violet (G1 color)
+  G1DPS: '#ef4444', // G1 DPS (M1 + R1) - violet (G1 color)
+  G2SUP: '#14b8a6', // G2 supports (OT + H2) - amber (G2 color)
+  G2DPS: '#ef4444' // G2 DPS (M2 + R2) - amber (G2 color)
 };
 
 export const WAYMARK_COLORS: Record<WaymarkName, string> = {
@@ -281,21 +374,37 @@ export function player(
   job: PlayerJob,
   x: number,
   y: number,
-  opts?: string | { id?: string; marker?: 'red' | 'green'; size?: number }
+  opts?:
+    | string
+    | {
+        id?: string;
+        marker?: 'red' | 'green';
+        size?: number;
+        corners?: Partial<Record<PlayerCorner, string>>;
+        groupId?: string;
+      }
 ): PlayerElement {
   if (typeof opts === 'string') return { type: 'player', job, x, y, id: opts };
   return { type: 'player', job, x, y, ...opts };
 }
 
-export function boss(x: number, y: number, rotation?: number, id?: string): BossElement {
-  return { type: 'boss', x, y, rotation, id };
+export function boss(
+  x: number,
+  y: number,
+  rotationOrOpts?: number | { rotation?: number; id?: string; groupId?: string },
+  id?: string
+): BossElement {
+  if (typeof rotationOrOpts === 'object' && rotationOrOpts !== null) {
+    return { type: 'boss', x, y, ...rotationOrOpts };
+  }
+  return { type: 'boss', x, y, rotation: rotationOrOpts, id };
 }
 
 export function waymark(
   mark: WaymarkName,
   x: number,
   y: number,
-  opts?: string | { size?: number; id?: string }
+  opts?: string | { size?: number; id?: string; groupId?: string }
 ): WaymarkElement {
   if (typeof opts === 'string') return { type: 'waymark', mark, x, y, id: opts };
   return { type: 'waymark', mark, x, y, ...opts };
@@ -305,7 +414,14 @@ export function aoeCircle(
   x: number,
   y: number,
   r: number,
-  opts?: { color?: string; opacity?: number; id?: string }
+  opts?: {
+    ry?: number;
+    rotation?: number;
+    color?: string;
+    opacity?: number;
+    id?: string;
+    groupId?: string;
+  }
 ): AoECircleElement {
   return { type: 'aoe', shape: 'circle', x, y, r, ...opts };
 }
@@ -315,7 +431,13 @@ export function aoeRect(
   y: number,
   w: number,
   h: number,
-  opts?: { rotation?: number; color?: string; opacity?: number; id?: string }
+  opts?: {
+    rotation?: number;
+    color?: string;
+    opacity?: number;
+    id?: string;
+    groupId?: string;
+  }
 ): AoERectElement {
   return { type: 'aoe', shape: 'rect', x, y, w, h, ...opts };
 }
@@ -325,7 +447,7 @@ export function tether(
   y1: number,
   x2: number,
   y2: number,
-  opts?: { color?: string; width?: number; dashed?: boolean; id?: string }
+  opts?: { color?: string; width?: number; dashed?: boolean; id?: string; groupId?: string }
 ): TetherElement {
   return { type: 'tether', x1, y1, x2, y2, ...opts };
 }
@@ -335,7 +457,13 @@ export function arrow(
   y1: number,
   x2: number,
   y2: number,
-  opts?: { color?: string; width?: number; heads?: ArrowHeads; id?: string }
+  opts?: {
+    color?: string;
+    width?: number;
+    heads?: ArrowHeads;
+    id?: string;
+    groupId?: string;
+  }
 ): ArrowElement {
   return { type: 'arrow', x1, y1, x2, y2, ...opts };
 }
@@ -344,7 +472,13 @@ export function text(
   label: string,
   x: number,
   y: number,
-  opts?: { color?: string; fontSize?: number; anchor?: 'start' | 'middle' | 'end'; id?: string }
+  opts?: {
+    color?: string;
+    fontSize?: number;
+    anchor?: 'start' | 'middle' | 'end';
+    id?: string;
+    groupId?: string;
+  }
 ): TextElement {
   return { type: 'text', text: label, x, y, ...opts };
 }
@@ -353,14 +487,21 @@ export function debuff(
   debuffId: string,
   x: number,
   y: number,
-  opts?: { size?: number; id?: string }
+  opts?: { size?: number; id?: string; groupId?: string }
 ): DebuffElement {
   return { type: 'debuff', debuffId, x, y, ...opts };
 }
 
 export function polygon(
   points: [number, number][],
-  opts?: { color?: string; opacity?: number; rotation?: number; outline?: boolean; id?: string }
+  opts?: {
+    color?: string;
+    opacity?: number;
+    rotation?: number;
+    outline?: boolean;
+    id?: string;
+    groupId?: string;
+  }
 ): PolygonElement {
   return { type: 'polygon', points, ...opts };
 }
@@ -370,7 +511,14 @@ export function curvedArrow(
   y1: number,
   x2: number,
   y2: number,
-  opts?: { curvature?: number; color?: string; width?: number; heads?: ArrowHeads; id?: string }
+  opts?: {
+    curvature?: number;
+    color?: string;
+    width?: number;
+    heads?: ArrowHeads;
+    id?: string;
+    groupId?: string;
+  }
 ): CurvedArrowElement {
   return { type: 'curvedArrow', x1, y1, x2, y2, ...opts };
 }
@@ -388,6 +536,7 @@ export function arenaShape(
     showCrosshairs?: boolean;
     bgImage?: string;
     id?: string;
+    groupId?: string;
   }
 ): ArenaShapeElement {
   return { type: 'arena', shape, x, y, w, h, ...opts };
@@ -396,7 +545,7 @@ export function arenaShape(
 export function diagram(
   arena: ArenaShape,
   elements: ArenaElement[],
-  opts?: { bgColor?: string; highlight?: string[]; title?: string; scale?: number }
+  opts?: { bgColor?: string; highlight?: string[]; scale?: number; groups?: GroupDef[] }
 ): ArenaDiagramData {
   return { arena, elements, ...opts };
 }

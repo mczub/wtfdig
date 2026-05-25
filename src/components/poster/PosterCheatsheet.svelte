@@ -32,6 +32,10 @@
     posterOpenState?: boolean;
     selectedJob?: PlayerJob;
     selectedJobLabel?: string;
+    /** Current strat-toggle state — used to evaluate section/element visibility predicates. */
+    stratState?: Record<string, string | null | undefined>;
+    /** Active strat key (e.g. 'naur') — used for stratKey predicates. */
+    stratKey?: string;
     /** Bindable: external trigger to open the overlay PIP window. */
     overlayPopOut?: () => Promise<void>;
     /** Bindable: external trigger to close the overlay PIP window. */
@@ -47,6 +51,8 @@
     posterOpenState = $bindable(false),
     selectedJob,
     selectedJobLabel,
+    stratState,
+    stratKey,
     overlayPopOut = $bindable<() => Promise<void>>(async () => {}),
     overlayPopIn = $bindable<() => void>(() => {}),
     overlayIsPopped = $bindable(false),
@@ -133,7 +139,8 @@
       h: s.h,
       accentColor: s.accentColor ?? '#555',
       arena: s.arena,
-      highlight: s.arena.highlight
+      highlight: s.arena.highlight,
+      visibleWhen: s.visibleWhen
     }))
   );
 
@@ -302,6 +309,8 @@
           bind:posterRef
           {highlightJob}
           {jobLabels}
+          {stratState}
+          {stratKey}
         />
       </div>
     </div>
@@ -323,6 +332,8 @@
   {selectedJob}
   {selectedJobLabel}
   {jobLabels}
+  {stratState}
+  {stratKey}
   title={`${config.cheatsheetTitle} - Poster`}
   bind:popOut={overlayPopOut}
   bind:popIn={overlayPopIn}

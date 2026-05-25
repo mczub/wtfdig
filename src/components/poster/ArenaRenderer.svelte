@@ -4,6 +4,7 @@
     WAYMARK_COLORS,
     DEFAULT_JOB_LABELS,
     jobMatchesRole,
+    evaluateVisibility,
     type ArenaDiagramData,
     type ArenaElement,
     type PlayerJob
@@ -21,9 +22,36 @@
     highlightJob?: PlayerJob;
     /** Per-job label overrides for player icon text, e.g. { R1: 'C' }. */
     jobLabels?: Partial<Record<PlayerJob, string>>;
+    /** Current strat-toggle state for group `visibleWhen` predicates. */
+    stratState?: Record<string, string | null | undefined>;
+    /** Active strat key for group `visibleWhen` predicates. */
+    stratKey?: string;
   }
 
-  let { data, highlight, gridW = 4, gridH = 4, highlightJob, jobLabels }: Props = $props();
+  let {
+    data,
+    highlight,
+    gridW = 4,
+    gridH = 4,
+    highlightJob,
+    jobLabels,
+    stratState,
+    stratKey
+  }: Props = $props();
+
+  // Groups whose `visibleWhen` predicate currently fails — every element with
+  // a matching `groupId` is filtered out of rendering.
+  let hiddenGroups = $derived.by(() => {
+    const out = new Set<string>();
+    for (const g of data.groups ?? []) {
+      if (
+        !evaluateVisibility(g.visibleWhen, { selectedJob: highlightJob, stratState, stratKey })
+      ) {
+        out.add(g.id);
+      }
+    }
+    return out;
+  });
 
   function isRoleMatch(job: PlayerJob): boolean {
     if (!highlightJob) return true;
@@ -69,7 +97,9 @@
   };
 
   let sortedElements = $derived(
-    [...data.elements].sort((a, b) => (zOrder[a.type] ?? 0) - (zOrder[b.type] ?? 0))
+    [...data.elements]
+      .filter((el) => !(el.groupId && hiddenGroups.has(el.groupId)))
+      .sort((a, b) => (zOrder[a.type] ?? 0) - (zOrder[b.type] ?? 0))
   );
 
   const uid = Math.random().toString(36).slice(2, 8);
@@ -220,15 +250,17 @@
           {/if}
         </g>
       {:else if el.type === 'aoe' && el.shape === 'circle'}
-        <circle
+        <ellipse
           cx={el.x}
           cy={el.y}
-          r={el.r}
+          rx={el.r}
+          ry={el.ry ?? el.r}
           fill={el.color ?? '#f59e0b'}
           fill-opacity={(el.opacity ?? 0.3) * dimOpacity(el)}
           stroke={el.color ?? '#f59e0b'}
           stroke-width="0.2"
           stroke-opacity={dimOpacity(el) * 0.5}
+          transform={el.rotation ? `rotate(${el.rotation} ${el.x} ${el.y})` : undefined}
         />
       {:else if el.type === 'aoe' && el.shape === 'rect'}
         <rect
@@ -383,6 +415,10 @@
         {@const color = ROLE_COLORS[el.job]}
         {@const roleMatch = isRoleMatch(el.job)}
         {@const jobLabel = jobLabels?.[el.job] ?? DEFAULT_JOB_LABELS[el.job] ?? el.job}
+        {@const labelLines = jobLabel.split('\n')}
+        {@const longestLine = labelLines.reduce((m, l) => Math.max(m, l.length), 0)}
+        {@const lineFontSize =
+          (labelLines.length > 1 ? 4 : longestLine > 2 ? 4 : 5) * (el.size ?? 6) / 6}
         {@const pSize = el.size ?? 6}
         {@const pScale = pSize / 6}
         <g opacity={dimOpacity(el) * (highlightJob && !roleMatch ? 0.4 : 1)}>
@@ -405,10 +441,18 @@
             dominant-baseline="central"
             baseline-shift="2%"
             fill="white"
-            font-size={(jobLabel.length > 2 ? 3.5 : 5) * pScale}
+            font-size={lineFontSize}
             font-weight="bold"
-            font-family="'Noto Sans', sans-serif">{jobLabel}</text
+            font-family="'Noto Sans', sans-serif"
           >
+            {#each labelLines as line, li}
+              <tspan
+                x={el.x}
+                dy={li === 0 ? (-lineFontSize * (labelLines.length - 1)) / 2 : lineFontSize}
+                >{line}</tspan
+              >
+            {/each}
+          </text>
           {#if el.marker}
             <polyline
               points="{el.x - 2.5 * pScale},{el.y - 13 * pScale} {el.x},{el.y -
@@ -478,18 +522,5 @@
         </text>
       {/if}
     {/each}
-
-    {#if data.title}
-      <text
-        x={vW / 2}
-        y={pad + 2}
-        text-anchor="middle"
-        dominant-baseline="central"
-        fill="#facc15"
-        font-size="3"
-        font-weight="bold"
-        font-family="'Roboto Condensed', sans-serif">{data.title}</text
-      >
-    {/if}
   </g>
 </svg>

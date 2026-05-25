@@ -85,6 +85,12 @@ export const DEBUFFS = {
     iconFile: '215308-dark-aero-3.png',
     description: 'Aero — knockback on expire'
   },
+  'dark-fire': {
+    id: 'dark-fire',
+    name: 'Spell-in-Waiting: Dark Fire III',
+    iconFile: '215984-dark-fire-3.png',
+    description: 'Fire - spread AOE on expire'
+  },
   'unholy-darkness': {
     id: 'unholy-darkness',
     name: 'Spell-in-Waiting: Unholy Darkness',

@@ -205,6 +205,8 @@ export interface PosterSectionDef {
   accentColor?: string;
   /** The arena diagram data for this section */
   arena: import('$lib/arena').ArenaDiagramData;
+  /** Show this section only when the predicate is met. Omitted = always visible. */
+  visibleWhen?: import('$lib/arena').VisibilityCondition;
 }
 
 export interface PosterLayout {

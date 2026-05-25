@@ -297,6 +297,8 @@
         bind:posterOpenState
         selectedJob={posterJob || undefined}
         selectedJobLabel={posterJobLabel}
+        {stratState}
+        stratKey={stratName}
         bind:overlayPopOut={posterOverlayPopOut}
         bind:overlayPopIn={posterOverlayPopIn}
         bind:overlayIsPopped={posterOverlayIsPopped}
