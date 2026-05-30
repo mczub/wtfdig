@@ -46,7 +46,7 @@
 
 <div
   bind:this={posterRef}
-  class="poster-grid"
+  class="poster-grid select-none"
   style:width={`${width}px`}
   style:height={`${height}px`}
   style:background-color={bgColor}

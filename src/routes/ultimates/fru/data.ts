@@ -599,9 +599,24 @@ const allP5: PhaseStrats[] = [
     tag: 'p5',
     mechs: [
       {
-        mechanic: 'Exaline Dodges',
-        description:
-          'Orient slightly AWAY from first glow, face overlap\nStep into 2nd-wave corner matching first intersection\nWait 1 wave, then step into next intersection\nFull overlap safe for 3rd wave set'
+        mechanic: 'Intersection Order',
+        description: 'Intersections fire CW (left first) or CCW (right first)',
+        imageUrl: './fru/naur-p5-fulgent-1.webp'
+      },
+      {
+        mechanic: 'Step In',
+        description: 'Wait 1 wave, then step into Left or Right corner of overlap',
+        imageUrl: './fru/naur-p5-fulgent-2.webp'
+      },
+      {
+        mechanic: 'Safe Spot',
+        description: 'Safe spot is slightly smaller than half the overlap',
+        imageUrl: './fru/naur-p5-fulgent-3.webp'
+      },
+      {
+        mechanic: 'Next Wave',
+        description: 'Wait 1 wave → look at next intersection, step in',
+        imageUrl: './fru/naur-p5-fulgent-4.webp'
       }
     ]
   },
@@ -611,8 +626,8 @@ const allP5: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'Light/Dark Stacks',
-        description:
-          'G1 stacks on Pandora\'s LEFT side (Light)\nG2 stacks on RIGHT side (Dark)\nTargets random player on each side of hitbox'
+        description: 'G1 LEFT (Light), G2 RIGHT (Dark)\nRandom target each side\nMake sure you are on the correct side of the hitbox',
+        imageUrl: './fru/naur-p5-akh-morn.webp'
       }
     ]
   },
@@ -622,18 +637,18 @@ const allP5: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'Tower Soaks',
-        description:
-          'Healers soak 1st tower (treat as South)\nDPS hug sides of S tower\nG1 DPS soak Left tower, G2 DPS soak Right tower'
+        description: 'Healers 1st tower = South\nDPS hug S tower sides\nG1 Left tower, G2 Right tower',
+        imageUrl: './fru/naur-p5-wings-towers.webp'
       },
       {
         mechanic: 'Dark Wing First',
-        description:
-          'MT moves left to NW tower\nOT out, then NE tower\nDark Buster targets highest enmity + closest player'
+        description: 'MT → NW tower, OT out → NE tower\nDark Buster: highest enmity + closest',
+        imageUrl: './fru/naur-p5-wings-dark.webp'
       },
       {
         mechanic: 'Light Wing First',
-        description:
-          'MT moves right to NE tower\nOT out, then NW tower\nLight Buster targets highest enmity + furthest player'
+        description: 'MT → NE tower, OT out → NW tower\nLight Buster: highest enmity + furthest',
+        imageUrl: './fru/naur-p5-wings-light.webp'
       }
     ]
   },
@@ -642,20 +657,11 @@ const allP5: PhaseStrats[] = [
     tag: 'p5',
     mechs: [
       {
-        mechanic: 'Wave 1: Tanks Front',
+        mechanic: 'Lines',
         description:
-          'Party flanks boss (boss-relative)\nTanks step in front when castbar begins\n2 line AoEs (Light + Dark) target random L/R half\nFront player gets 16s Resist Down II = lethal if hit by same element next wave\nSecondary explosion ~2s after main line - back up after the shimmer sound'
+          'G1 Left flank, G2 Right flank\nLines hit twice, move out of second hit\nFront gets debuff, swap sides after your turn\nT > M > R > H order',
+        imageUrl: './fru/naur-p5-polarizing-tanks.webp'
       },
-      {
-        mechanic: 'Wave 2: Melees Front',
-        description:
-          'Tanks clap mid + swap groups\nMelees move front\nLines + aftershock - step back after shimmer'
-      },
-      {
-        mechanic: 'Wave 3-4: Polarised Paths',
-        description:
-          'Repeats 2 more times (4 lines total)\nRotate who stands front each cast based on element prio\nAvoid same element twice'
-      }
     ]
   },
   {
@@ -664,8 +670,8 @@ const allP5: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'Tank LB3',
-        description:
-          'Pop Tank LB3 when "Transcend your Limits" appears'
+        description: 'Tank LB3 on "Transcend your Limits" ("d" in Pandora\'s Box)',
+        imageUrl: './fru/naur-p5-pandoras-box.webp'
       }
     ]
   },
@@ -675,8 +681,13 @@ const allP5: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'Loop',
-        description:
-          'Mechanics repeat faster: Fulgent Blade → Paradise Regained → Polarizing Strikes → Fulgent Blade'
+        description: 'Fulgent → Wings → Polarizing',
+        imageUrl: './fru/naur-p5-order.webp'
+      },
+      {
+        mechanic: 'Paradise Lost (Enrage)',
+        description: 'Ryne grants ~1.5 LB bars mid-cast\nMelee LB3 on "r" in Paradise Lost',
+        imageUrl: './fru/naur-p5-enrage.webp'
       }
     ]
   }
