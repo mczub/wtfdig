@@ -1,0 +1,48 @@
+/*
+ * Tailwind v4 theme mapping.
+ * Exposes the design tokens as Tailwind color utilities (bg-surface-700,
+ * text-primary, border-border, …) and adds the 3xl breakpoint.
+ * Requires `@import "tailwindcss"` earlier in the consuming entry stylesheet.
+ */
+
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --radius: var(--radius);
+
+  --color-surface-50: hsl(var(--surface-50));
+  --color-surface-100: hsl(var(--surface-100));
+  --color-surface-200: hsl(var(--surface-200));
+  --color-surface-300: hsl(var(--surface-300));
+  --color-surface-400: hsl(var(--surface-400));
+  --color-surface-500: hsl(var(--surface-500));
+  --color-surface-600: hsl(var(--surface-600));
+  --color-surface-700: hsl(var(--surface-700));
+  --color-surface-800: hsl(var(--surface-800));
+  --color-surface-900: hsl(var(--surface-900));
+  --color-surface-950: hsl(var(--surface-950));
+  --color-surface-1000: hsl(var(--surface-1000));
+  --color-primary-500: hsl(var(--primary-500));
+  --color-secondary-500: hsl(var(--secondary-500));
+  --color-warning-500: hsl(var(--warning-500));
+  --color-success-500: hsl(var(--success-500));
+  --color-error-500: hsl(var(--error-500));
+  --breakpoint-3xl: 124rem;
+}

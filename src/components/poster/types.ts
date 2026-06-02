@@ -1,4 +1,4 @@
-import type { ArenaDiagramData } from '$lib/arena';
+import type { ArenaDiagramData, VisibilityCondition } from '$lib/arena';
 
 export interface ResolvedPosterSection {
   title: string;
@@ -9,4 +9,5 @@ export interface ResolvedPosterSection {
   accentColor: string;
   arena: ArenaDiagramData;
   highlight?: string[];
+  visibleWhen?: VisibilityCondition;
 }

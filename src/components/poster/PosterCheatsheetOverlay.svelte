@@ -12,6 +12,8 @@
     selectedJob?: PlayerJob;
     selectedJobLabel?: string;
     jobLabels?: Partial<Record<PlayerJob, string>>;
+    stratState?: Record<string, string | null | undefined>;
+    stratKey?: string;
     title?: string;
     popOut?: () => Promise<void>;
     popIn?: () => void;
@@ -25,6 +27,8 @@
     selectedJob,
     selectedJobLabel,
     jobLabels,
+    stratState,
+    stratKey,
     title = 'Poster Cheatsheet',
     popOut = $bindable<() => Promise<void>>(async () => {}),
     popIn = $bindable<() => void>(() => {}),
@@ -97,7 +101,7 @@
             style:width={`${baseW * scale}px`}
             style:height={`${baseH * scale}px`}
           >
-            <PosterGrid {layout} {sections} {highlightJob} {jobLabels}>
+            <PosterGrid {layout} {sections} {highlightJob} {jobLabels} {stratState} {stratKey}>
               {#snippet titleActions()}
                 <button
                   class={mode === 'overview'

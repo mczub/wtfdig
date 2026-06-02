@@ -1,0 +1,106 @@
+/*
+ * Design tokens — runtime CSS custom properties.
+ * Framework-agnostic: just set `class="dark"` on a root element to switch themes.
+ * Values are HSL channel triplets, consumed as `hsl(var(--token))`.
+ */
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 262.1 83.3% 57.8%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 222.2 84% 4.9%;
+  --radius: 0.75rem;
+
+  --surface-50: 210 40% 98%;
+  --surface-100: 210 38% 96%;
+  --surface-200: 214 32% 91%;
+  --surface-300: 213 27% 84%;
+  --surface-400: 215 20% 65%;
+  --surface-500: 215 16% 50%;
+  --surface-600: 215 16% 40%;
+  --surface-700: 215 20% 30%;
+  --surface-800: 220 28% 22%;
+  --surface-900: 222 35% 15%;
+  --surface-950: 230 45% 10%;
+  --surface-1000: 240 55% 7%;
+
+  --primary-500: 262.1 83.3% 57.8%;
+  --secondary-500: 262.1 83.3% 57.8%;
+  --warning-500: 35 92% 62%;
+  --success-500: 142 70% 45%;
+  --error-500: 0 84% 60%;
+
+  --heading-font-color: hsl(var(--foreground));
+  --heading-font-color-dark: hsl(var(--foreground));
+  --heading-font-family: 'Inter', system-ui, sans-serif;
+  --heading-font-weight: 700;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+  --text-7xl: 4.5rem;
+  --text-8xl: 6rem;
+  --text-9xl: 8rem;
+
+  --breakpoint-xl: 80rem;
+  --color-surface-700-300: hsl(var(--surface-700));
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 6%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 6%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 262.1 83.3% 57.8%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 40%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 24%;
+  --input: 217.2 32.6% 24%;
+  --ring: 212.7 26.8% 70%;
+
+  --surface-50: 220 15% 92%;
+  --surface-100: 220 14% 85%;
+  --surface-200: 220 13% 72%;
+  --surface-300: 220 13% 60%;
+  --surface-400: 220 13% 50%;
+  --surface-500: 220 14% 42%;
+  --surface-600: 220 16% 35%;
+  --surface-700: 220 18% 28%;
+  --surface-800: 222 22% 20%;
+  --surface-900: 225 26% 14%;
+  --surface-950: 230 32% 10%;
+  --surface-1000: 240 40% 7%;
+
+  --color-surface-700-300: hsl(var(--surface-300));
+}

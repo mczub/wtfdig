@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { PosterLayout } from '$lib/types';
-  import type { PlayerJob } from '$lib/arena';
+  import { evaluateVisibility, type PlayerJob } from '$lib/arena';
   import type { ResolvedPosterSection } from './types';
   import type { Snippet } from 'svelte';
   import PosterSection from './PosterSection.svelte';
@@ -11,6 +11,8 @@
     posterRef?: HTMLDivElement;
     highlightJob?: PlayerJob;
     jobLabels?: Partial<Record<PlayerJob, string>>;
+    stratState?: Record<string, string | null | undefined>;
+    stratKey?: string;
     /** Right-aligned controls rendered in the title bar (e.g. mode toggles). */
     titleActions?: Snippet;
   }
@@ -21,8 +23,19 @@
     posterRef = $bindable(),
     highlightJob,
     jobLabels,
+    stratState,
+    stratKey,
     titleActions
   }: Props = $props();
+
+  // Section-level visibility filter. `highlightJob` reflects whether the user
+  // is in "role mode"; section visibility predicates that reference jobs only
+  // resolve when a role is actively selected.
+  let visibleSections = $derived(
+    sections.filter((s) =>
+      evaluateVisibility(s.visibleWhen, { selectedJob: highlightJob, stratState, stratKey })
+    )
+  );
 
   let cols = $derived(layout.cols ?? 16);
   let rows = $derived(layout.rows ?? 9);
@@ -33,7 +46,7 @@
 
 <div
   bind:this={posterRef}
-  class="poster-grid"
+  class="poster-grid select-none"
   style:width={`${width}px`}
   style:height={`${height}px`}
   style:background-color={bgColor}
@@ -60,8 +73,8 @@
     </div>
   {/if}
 
-  {#each sections as section}
-    <PosterSection {section} {highlightJob} {jobLabels} />
+  {#each visibleSections as section}
+    <PosterSection {section} {highlightJob} {jobLabels} {stratState} {stratKey} />
   {/each}
 </div>
 

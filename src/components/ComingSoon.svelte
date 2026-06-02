@@ -5,9 +5,13 @@
 
   interface Props {
     config: FightConfig;
+    message?: string;
   }
 
-  let { config }: Props = $props();
+  let {
+    config,
+    message = 'This fight will be available once the tier is live and PF strategies stabilize.'
+  }: Props = $props();
 </script>
 
 <div class="container mx-auto my-12 flex grow flex-col items-center justify-center gap-8 px-4">
@@ -20,14 +24,14 @@
 
     <div class="flex flex-col gap-2">
       <h1 class="text-2xl font-bold">{config.title}</h1>
-      <p class="text-lg text-surface-400">{config.abbreviatedTitle} • Patch 7.4</p>
+      {#if config.subtitle}
+        <p class="text-lg text-surface-400">{config.subtitle}</p>
+      {/if}
     </div>
 
     <div class="flex flex-col gap-2">
-      <p class="text-xl font-semibold text-warning-500">Coming Soon</p>
-      <p class="text-surface-400">
-        This fight will be available once the tier is live and PF strategies stabilize.
-      </p>
+      <p class="text-xl font-semibold text-warning-500">Under Construction</p>
+      <p class="text-surface-400">{message}</p>
     </div>
 
     <a href="{base}/" class="btn preset-tonal-secondary"> ← Back to Home </a>

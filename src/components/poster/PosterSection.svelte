@@ -7,9 +7,11 @@
     section: ResolvedPosterSection;
     highlightJob?: PlayerJob;
     jobLabels?: Partial<Record<PlayerJob, string>>;
+    stratState?: Record<string, string | null | undefined>;
+    stratKey?: string;
   }
 
-  let { section, highlightJob, jobLabels }: Props = $props();
+  let { section, highlightJob, jobLabels, stratState, stratKey }: Props = $props();
 </script>
 
 <div
@@ -36,6 +38,8 @@
       gridH={section.h}
       {highlightJob}
       {jobLabels}
+      {stratState}
+      {stratKey}
     />
   </div>
 </div>

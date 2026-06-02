@@ -9,7 +9,8 @@
     ChevronRightIcon,
     Grid3x3,
     Hammer,
-    History
+    History,
+    TriangleAlert
   } from '@lucide/svelte';
   import Separator from './ui/separator/separator.svelte';
 
@@ -48,6 +49,17 @@
       url: '#',
       defaultOpen: true,
       items: [
+        {
+          title: 'Dancing Mad',
+          subtitle: 'Ultimate • Under Construction',
+          url: '/ultimates/dmu',
+          icon: TriangleAlert
+        },
+        {
+          title: 'Futures Rewritten',
+          subtitle: 'Ultimate',
+          url: '/ultimates/fru'
+        },
         {
           title: 'The Epic of Alexander',
           subtitle: 'Ultimate',
@@ -194,7 +206,13 @@
                               onclick={handleLinkClick}
                               class="flex flex-col w-full items-start"
                             >
-                              <div class="text-lg">{subItem.title}</div>
+                              <div class="flex flex-row items-center gap-2 text-lg">
+                                {#if 'icon' in subItem}
+                                  {@const Icon = subItem.icon}
+                                  <Icon class="size-4 text-warning-500" />
+                                {/if}
+                                {subItem.title}
+                              </div>
                               <div class="text-base text-surface-400">
                                 {subItem.subtitle}
                               </div>

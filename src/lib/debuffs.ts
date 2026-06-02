@@ -59,6 +59,59 @@ export const DEBUFFS = {
     name: 'Blue Tether (Restraining Order)',
     iconFile: '215742-blue-tether.png',
     description: 'Must remain far'
+  },
+  // FRU — Spell-in-Waiting series (P3 UR + P4 CT)
+  'dark-eruption': {
+    id: 'dark-eruption',
+    name: 'Spell-in-Waiting: Dark Eruption',
+    iconFile: '215305-dark-eruption.png',
+    description: 'Spread AOE on expire'
+  },
+  'dark-water': {
+    id: 'dark-water',
+    name: 'Spell-in-Waiting: Dark Water III',
+    iconFile: '215306-dark-water-3.png',
+    description: 'Stack on expire'
+  },
+  'dark-blizzard': {
+    id: 'dark-blizzard',
+    name: 'Spell-in-Waiting: Dark Blizzard III',
+    iconFile: '215307-dark-blizzard-3.png',
+    description: 'Ice — drops puddle on expire'
+  },
+  'dark-aero': {
+    id: 'dark-aero',
+    name: 'Spell-in-Waiting: Dark Aero III',
+    iconFile: '215308-dark-aero-3.png',
+    description: 'Aero — knockback on expire'
+  },
+  'dark-fire': {
+    id: 'dark-fire',
+    name: 'Spell-in-Waiting: Dark Fire III',
+    iconFile: '215984-dark-fire-3.png',
+    description: 'Fire - spread AOE on expire'
+  },
+  'unholy-darkness': {
+    id: 'unholy-darkness',
+    name: 'Spell-in-Waiting: Unholy Darkness',
+    iconFile: '215983-unholy-darkness.png',
+    description: 'Stack on expire'
+  },
+  return: {
+    id: 'return',
+    name: 'Return',
+    iconFile: '215313-return.png',
+    description: 'Rewind to position when applied'
+  },
+  wyrmclaw: {
+    id: 'wyrmclaw',
+    name: 'Wyrmclaw',
+    iconFile: '215241-wyrmclaw.png'
+  },
+  wyrmfang: {
+    id: 'wyrmfang',
+    name: 'Wyrmfang',
+    iconFile: '215242-wyrmfang.png'
   }
 } as const satisfies Record<string, DebuffDef>;
 

@@ -4,28 +4,90 @@
     type ArenaDiagramData,
     type ArenaElement,
     type ArenaShape,
+    type GroupDef,
     type PlayerCorner,
     type PlayerJob,
+    type VisibilityCondition,
     type WaymarkName,
     ROLE_COLORS,
     WAYMARK_COLORS,
     SQUARE_MARKERS,
-    CIRCLE_MARKERS
+    CIRCLE_MARKERS,
+    evaluateVisibility
   } from '$lib/arena';
   import { DEBUFFS, type DebuffId } from '$lib/debuffs';
-  import { Copy, Crosshair, Trash2, Plus, RotateCcw } from '@lucide/svelte/icons';
+  import type { FightConfig, PosterLayout, PosterSectionDef } from '$lib/types';
+  import {
+    Copy,
+    Crosshair,
+    Trash2,
+    Plus,
+    RotateCcw,
+    Download,
+    ChevronDown,
+    ChevronRight
+  } from '@lucide/svelte/icons';
 
   const DEBUFF_IDS = Object.keys(DEBUFFS) as DebuffId[];
   const CORNER_KEYS: PlayerCorner[] = ['tl', 'tr', 'bl', 'br'];
 
+  // --- Discover all fight data files that expose a poster layout. ----------
+  // Eager glob: each module's *FightConfig export is checked for posterLayout.
+  // (Eager is fine here — these modules are already in the SvelteKit bundle.)
+  type FightModule = Record<string, unknown>;
+  const fightModules = import.meta.glob<FightModule>('/src/routes/**/data.ts', { eager: true });
+
+  interface FightPosterEntry {
+    label: string; // e.g. "FRU", "UCOB"
+    title: string; // e.g. "Futures Rewritten (Ultimate)"
+    sections: { sectionTitle: string; layout: PosterLayout; section: PosterSectionDef }[];
+  }
+
+  const fightPosters: FightPosterEntry[] = (() => {
+    const out: FightPosterEntry[] = [];
+    for (const mod of Object.values(fightModules)) {
+      for (const [key, val] of Object.entries(mod)) {
+        if (!key.endsWith('FightConfig') || !val) continue;
+        const cfg = val as FightConfig;
+        if (!cfg.posterLayout) continue;
+        out.push({
+          label: cfg.abbreviatedTitle ?? cfg.fightKey?.toUpperCase() ?? key,
+          title: cfg.title ?? key,
+          sections: cfg.posterLayout.sections.map((s) => ({
+            sectionTitle: s.title || '(untitled)',
+            layout: cfg.posterLayout!,
+            section: s
+          }))
+        });
+      }
+    }
+    return out.sort((a, b) => a.label.localeCompare(b.label));
+  })();
+
+  let selectedFightLabel: string = $state('');
+  let selectedSectionIdx: number = $state(-1);
+  let selectedFightEntry = $derived(
+    fightPosters.find((f) => f.label === selectedFightLabel) ?? null
+  );
+
+  function loadSelectedSection() {
+    if (!selectedFightEntry || selectedSectionIdx < 0) return;
+    const sec = selectedFightEntry.sections[selectedSectionIdx];
+    if (!sec) return;
+    // Resize canvas to match the section's grid footprint
+    gridW = sec.section.w;
+    gridH = sec.section.h;
+    applyDiagramData(sec.section.arena);
+  }
+
   // --- State ---
   let arenaShape: ArenaShape = $state('square');
   let showBackground = $state(true);
-  let title: string = $state('');
   let gridW: number = $state(4);
   let gridH: number = $state(4);
   let scale: number = $state(1);
   let elements: ArenaElement[] = $state([]);
+  let groups: GroupDef[] = $state([]);
   let selected: Set<number> = $state(new Set());
   let placingType: string | null = $state(null);
   let placingSubtype: string | null = $state(null);
@@ -33,18 +95,92 @@
   // For two-point elements (arrow, tether): store first click point
   let twoPointStart: { x: number; y: number } | null = $state(null);
 
+  // Preview state — drives ArenaRenderer's highlightJob so the user can see
+  // how the diagram looks in Overall vs Role-selected modes (also dims
+  // non-matching players and hides group elements whose `visibleWhen` fails).
+  let previewJob: PlayerJob | undefined = $state(undefined);
+
+  // Collapse the Groups panel (state, not derived — survives selection changes).
+  let groupsCollapsed = $state(false);
+
+  // Groups currently hidden by the preview state. Mirrors the renderer's logic
+  // so the editor can also skip interaction (overlay + marquee) on hidden elements.
+  let hiddenGroupIds = $derived.by(() => {
+    const out = new Set<string>();
+    for (const g of groups) {
+      if (!evaluateVisibility(g.visibleWhen, { selectedJob: previewJob })) {
+        out.add(g.id);
+      }
+    }
+    return out;
+  });
+
+  function isElementHidden(el: ArenaElement): boolean {
+    return !!el.groupId && hiddenGroupIds.has(el.groupId);
+  }
+
+  // Drop selected indices whose element became hidden under the current preview,
+  // so the property panel doesn't keep editing something the user can't see.
+  $effect(() => {
+    if (hiddenGroupIds.size === 0) return;
+    let mutated = false;
+    const next = new Set<number>();
+    for (const idx of selected) {
+      const el = elements[idx];
+      if (el && isElementHidden(el)) {
+        mutated = true;
+        continue;
+      }
+      next.add(idx);
+    }
+    if (mutated) selected = next;
+  });
+
   // --- Derived ---
   let diagramData: ArenaDiagramData = $derived({
     arena: arenaShape,
     elements,
-    title: title || undefined,
     bgColor: showBackground ? undefined : 'transparent',
-    scale: scale !== 1 ? scale : undefined
+    scale: scale !== 1 ? scale : undefined,
+    groups: groups.length ? groups : undefined
   });
 
   // For the property panel: only show when exactly one element is selected
   let selectedIndex = $derived(selected.size === 1 ? [...selected][0] : null);
   let selectedElement = $derived(selectedIndex !== null ? elements[selectedIndex] : null);
+
+  // Canvas display zoom — multiplier on the rendered px size of the canvas.
+  // Doesn't affect coordinates (the inner SVG uses viewBox); user-adjustable
+  // via the resize handle in the bottom-right corner.
+  let canvasZoom: number = $state(1);
+
+  function handleCanvasResizeStart(e: MouseEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+    const startX = e.clientX;
+    const startY = e.clientY;
+    const startZoom = canvasZoom;
+    const basePxW = gridW * 100;
+    const basePxH = gridH * 100;
+    // Use the larger of width/height delta so dragging either axis scales
+    // proportionally. Min zoom 0.25, max zoom 4.
+    function onMove(ev: MouseEvent) {
+      const dx = ev.clientX - startX;
+      const dy = ev.clientY - startY;
+      const newW = basePxW * startZoom + dx;
+      const newH = basePxH * startZoom + dy;
+      const zoomFromW = newW / basePxW;
+      const zoomFromH = newH / basePxH;
+      const next = Math.max(zoomFromW, zoomFromH);
+      canvasZoom = Math.min(4, Math.max(0.25, next));
+    }
+    function onUp() {
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseup', onUp);
+    }
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseup', onUp);
+  }
 
   // --- Coordinate conversion ---
   let svgEl: SVGSVGElement | undefined = $state();
@@ -79,8 +215,8 @@
       const elX = Math.round(coords.x / scale);
       const elY = Math.round(coords.y / scale);
 
-      // Two-point elements: arrow, tether
-      if (placingType === 'arrow' || placingType === 'tether') {
+      // Two-point elements: arrow, tether, curvedArrow
+      if (placingType === 'arrow' || placingType === 'tether' || placingType === 'curvedArrow') {
         if (!twoPointStart) {
           twoPointStart = { x: elX, y: elY };
           return;
@@ -120,6 +256,8 @@
         return { type: 'arrow', x1: from.x, y1: from.y, x2: to.x, y2: to.y };
       case 'tether':
         return { type: 'tether', x1: from.x, y1: from.y, x2: to.x, y2: to.y };
+      case 'curvedArrow':
+        return { type: 'curvedArrow', x1: from.x, y1: from.y, x2: to.x, y2: to.y, curvature: 6 };
       default:
         return null;
     }
@@ -152,6 +290,16 @@
         return { type: 'text', text: 'Label', x, y };
       case 'debuff':
         return { type: 'debuff', debuffId: subtype ?? DEBUFF_IDS[0], x, y };
+      case 'polygon':
+        // Default triangle around click point
+        return {
+          type: 'polygon',
+          points: [
+            [x, y - 10],
+            [x - 9, y + 6],
+            [x + 9, y + 6]
+          ]
+        };
       default:
         return null;
     }
@@ -159,6 +307,74 @@
 
   // --- Dragging ---
   let dragging = $state(false);
+
+  // --- Drag-select (marquee) ---
+  // Stored in SVG viewBox coords (what svgCoords returns). Element positions
+  // are in arena units, so we multiply by `scale` to compare.
+  let marquee: { x1: number; y1: number; x2: number; y2: number } | null = $state(null);
+
+  function elementCenter(el: ArenaElement): { x: number; y: number } | null {
+    if ('points' in el) {
+      const n = el.points.length;
+      if (n === 0) return null;
+      const sx = el.points.reduce((s, p) => s + p[0], 0);
+      const sy = el.points.reduce((s, p) => s + p[1], 0);
+      return { x: sx / n, y: sy / n };
+    }
+    if ('x1' in el) {
+      return { x: (el.x1 + el.x2) / 2, y: (el.y1 + el.y2) / 2 };
+    }
+    if ('x' in el && 'y' in el) {
+      return { x: el.x, y: el.y };
+    }
+    return null;
+  }
+
+  function handleCanvasMouseDown(e: MouseEvent) {
+    // Only start marquee on background clicks. Element overlays stopPropagation,
+    // so this only fires when the mousedown landed on the SVG itself.
+    if (placingType) return;
+    if (e.button !== 0) return;
+    const start = svgCoords(e);
+    if (!start) return;
+    didMouseDownElement = false;
+    const additive = e.shiftKey;
+    const baseSelection = additive ? new Set(selected) : new Set<number>();
+    marquee = { x1: start.x, y1: start.y, x2: start.x, y2: start.y };
+
+    function onMove(me: MouseEvent) {
+      const c = svgCoords(me);
+      if (!c || !marquee) return;
+      marquee = { ...marquee, x2: c.x, y2: c.y };
+    }
+    function onUp() {
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseup', onUp);
+      if (!marquee) return;
+      const { x1, y1, x2, y2 } = marquee;
+      const minX = Math.min(x1, x2);
+      const maxX = Math.max(x1, x2);
+      const minY = Math.min(y1, y2);
+      const maxY = Math.max(y1, y2);
+      // Tiny drag → treat as a click (let handleCanvasClick deselect).
+      const isTinyDrag = maxX - minX < 1 && maxY - minY < 1;
+      marquee = null;
+      if (isTinyDrag) return;
+      didMouseDownElement = true; // suppress the deselect-on-click
+      const hits = new Set(baseSelection);
+      elements.forEach((el, i) => {
+        if (isElementHidden(el)) return;
+        const c = elementCenter(el);
+        if (!c) return;
+        const cx = c.x * scale;
+        const cy = c.y * scale;
+        if (cx >= minX && cx <= maxX && cy >= minY && cy <= maxY) hits.add(i);
+      });
+      selected = hits;
+    }
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseup', onUp);
+  }
 
   function handleElementMouseDown(index: number, e: MouseEvent) {
     e.stopPropagation();
@@ -184,10 +400,12 @@
     if (!startCoords) return;
 
     // Snapshot positions of all selected elements
-    const startPositions = new Map<number, Record<string, number>>();
+    const startPositions = new Map<number, any>();
     for (const idx of selected) {
       const el = elements[idx] as any;
-      if ('x' in el) {
+      if (el.type === 'polygon') {
+        startPositions.set(idx, { points: el.points.map((p: [number, number]) => [...p]) });
+      } else if ('x' in el) {
         startPositions.set(idx, { x: el.x, y: el.y });
       } else if ('x1' in el) {
         startPositions.set(idx, { x1: el.x1, y1: el.y1, x2: el.x2, y2: el.y2 });
@@ -203,6 +421,15 @@
       elements = elements.map((el, i) => {
         const start = startPositions.get(i);
         if (!start) return el;
+        if (start.points) {
+          return {
+            ...el,
+            points: start.points.map((p: [number, number]) => [
+              round2(p[0] + dx),
+              round2(p[1] + dy)
+            ])
+          } as ArenaElement;
+        }
         if ('x1' in start) {
           return {
             ...el,
@@ -218,6 +445,43 @@
 
     function onUp() {
       dragging = false;
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('mouseup', onUp);
+    }
+
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('mouseup', onUp);
+  }
+
+  function handlePolyVertexDrag(index: number, vertexIdx: number, e: MouseEvent) {
+    e.stopPropagation();
+    e.preventDefault();
+    didMouseDownElement = true;
+    selected = new Set([index]);
+
+    const startCoords = svgCoords(e);
+    if (!startCoords) return;
+    const el = elements[index] as any;
+    const startPos = [el.points[vertexIdx][0], el.points[vertexIdx][1]];
+
+    function onMove(me: MouseEvent) {
+      const coords = svgCoords(me);
+      if (!coords) return;
+      const dx = (coords.x - startCoords!.x) / scale;
+      const dy = (coords.y - startCoords!.y) / scale;
+      elements = elements.map((e, i) => {
+        if (i !== index) return e;
+        const newEl = { ...e } as any;
+        newEl.points = (e as any).points.map((p: [number, number], pi: number) =>
+          pi === vertexIdx
+            ? ([round2(startPos[0] + dx), round2(startPos[1] + dy)] as [number, number])
+            : p
+        );
+        return newEl as ArenaElement;
+      });
+    }
+
+    function onUp() {
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('mouseup', onUp);
     }
@@ -300,9 +564,19 @@
     if (selected.size === 0) return;
     const newEls: ArenaElement[] = [];
     for (const idx of selected) {
-      const el = { ...elements[idx] };
-      if ('x' in el) (el as any).x += 5;
-      if ('y' in el) (el as any).y += 5;
+      const el = { ...elements[idx] } as any;
+      if (el.type === 'polygon') {
+        el.points = el.points.map((p: [number, number]) => [p[0] + 5, p[1] + 5]);
+      } else {
+        if ('x' in el) el.x += 5;
+        if ('y' in el) el.y += 5;
+        if ('x1' in el) {
+          el.x1 += 5;
+          el.y1 += 5;
+          el.x2 += 5;
+          el.y2 += 5;
+        }
+      }
       newEls.push(el);
     }
     const startIdx = elements.length;
@@ -333,8 +607,104 @@
     selected = new Set();
   }
 
+  // --- Groups management ---
+  function addGroup() {
+    const existing = new Set(groups.map((g) => g.id));
+    let n = groups.length + 1;
+    let id = `group-${n}`;
+    while (existing.has(id)) id = `group-${++n}`;
+    groups = [...groups, { id }];
+  }
+
+  function removeGroup(idx: number) {
+    const removedId = groups[idx]?.id;
+    groups = groups.filter((_, i) => i !== idx);
+    if (removedId) {
+      elements = elements.map((el) => (el.groupId === removedId ? { ...el, groupId: undefined } : el));
+    }
+  }
+
+  function updateGroup(idx: number, patch: Partial<GroupDef>) {
+    const oldId = groups[idx]?.id;
+    groups = groups.map((g, i) => (i === idx ? { ...g, ...patch } : g));
+    // Cascade id rename to elements.
+    if (patch.id && oldId && patch.id !== oldId) {
+      elements = elements.map((el) => (el.groupId === oldId ? { ...el, groupId: patch.id } : el));
+    }
+  }
+
+  function updateGroupCondition(idx: number, patch: Partial<VisibilityCondition>) {
+    const g = groups[idx];
+    if (!g) return;
+    const cond = { ...(g.visibleWhen ?? {}) };
+    for (const [k, v] of Object.entries(patch)) {
+      if (v === undefined) delete (cond as any)[k];
+      else (cond as any)[k] = v;
+    }
+    const isEmpty = Object.keys(cond).length === 0;
+    updateGroup(idx, { visibleWhen: isEmpty ? undefined : cond });
+  }
+
+  function toggleGroupJob(idx: number, job: PlayerJob) {
+    const g = groups[idx];
+    const current = g?.visibleWhen?.jobs ?? [];
+    const next = current.includes(job) ? current.filter((j) => j !== job) : [...current, job];
+    updateGroupCondition(idx, { jobs: next.length ? next : undefined });
+  }
+
+  function parseStratKeyList(s: string): string[] | undefined {
+    const list = s.split(',').map((p) => p.trim()).filter(Boolean);
+    return list.length ? list : undefined;
+  }
+
+  // Jobs offered by the visibility job-picker (specifics + role generics).
+  const VIS_JOBS: PlayerJob[] = [
+    'MT', 'OT', 'H1', 'H2', 'M1', 'M2', 'R1', 'R2',
+    'TANK', 'HEALER', 'MELEE', 'RANGED', 'DPS', 'SUP', 'G1', 'G2',
+    'G1SUP', 'G1DPS', 'G2SUP', 'G2DPS', 'ANY'
+  ];
+
   // --- Code generation ---
   let generatedCode = $derived(generateCode());
+
+  /**
+   * Splice `groupId: 'x'` into a generated element line. Handles both forms:
+   * trailing `)` (no opts) and trailing `})` (existing opts).
+   */
+  function withGroupId(line: string, groupId: string | undefined): string {
+    if (!groupId) return line;
+    const trimmed = line.replace(/\)$/, '');
+    if (trimmed.endsWith('}')) {
+      return trimmed.replace(/\}$/, `, groupId: '${groupId}' }`) + ')';
+    }
+    return trimmed + `, { groupId: '${groupId}' })`;
+  }
+
+  function stringifyCondition(cond: VisibilityCondition): string {
+    const parts: string[] = [];
+    if (cond.whenRoleSelected === true) parts.push(`whenRoleSelected: true`);
+    if (cond.whenRoleSelected === false) parts.push(`whenRoleSelected: false`);
+    if (cond.jobs?.length) {
+      parts.push(`jobs: [${cond.jobs.map((j) => `'${j}'`).join(', ')}]`);
+    }
+    if (cond.strat && Object.keys(cond.strat).length > 0) {
+      const entries = Object.entries(cond.strat).map(
+        ([tag, vals]) => `'${tag}': [${vals.map((v) => `'${v}'`).join(', ')}]`
+      );
+      parts.push(`strat: { ${entries.join(', ')} }`);
+    }
+    if (cond.stratKey?.length) {
+      parts.push(`stratKey: [${cond.stratKey.map((k) => `'${k}'`).join(', ')}]`);
+    }
+    return `{ ${parts.join(', ')} }`;
+  }
+
+  function stringifyGroup(g: GroupDef): string {
+    const parts: string[] = [`id: '${g.id}'`];
+    if (g.label) parts.push(`label: '${g.label}'`);
+    if (g.visibleWhen) parts.push(`visibleWhen: ${stringifyCondition(g.visibleWhen)}`);
+    return `    { ${parts.join(', ')} }`;
+  }
 
   function generateCode(): string {
     const imports = new Set<string>();
@@ -346,11 +716,13 @@
           imports.add('player');
           {
             const hasCorners = el.corners && Object.keys(el.corners).length > 0;
-            const hasOpts = el.marker || el.id || hasCorners;
+            const hasSize = el.size != null && el.size !== 6;
+            const hasOpts = el.marker || el.id || hasCorners || hasSize;
             if (hasOpts) {
               const opts: string[] = [];
               if (el.id) opts.push(`id: '${el.id}'`);
               if (el.marker) opts.push(`marker: '${el.marker}'`);
+              if (hasSize) opts.push(`size: ${el.size}`);
               if (hasCorners) {
                 const cornerStr = Object.entries(el.corners!)
                   .map(([k, v]) => `${k}: '${v}'`)
@@ -363,14 +735,24 @@
           }
         case 'boss':
           imports.add('boss');
+          // When the element has a groupId, fold rotation into the opts object so
+          // withGroupId can merge groupId into a single trailing `{ ... }`.
+          if (el.groupId && el.rotation) {
+            return `  boss(${el.x}, ${el.y}, { rotation: ${el.rotation} })`;
+          }
           return `  boss(${el.x}, ${el.y}${el.rotation ? `, ${el.rotation}` : ''})`;
         case 'waymark':
           imports.add('waymark');
+          if (el.size != null && el.size !== 4) {
+            return `  waymark('${el.mark}', ${el.x}, ${el.y}, { size: ${el.size} })`;
+          }
           return `  waymark('${el.mark}', ${el.x}, ${el.y})`;
         case 'aoe':
           if (el.shape === 'circle') {
             imports.add('aoeCircle');
             const opts: string[] = [];
+            if (el.ry != null && el.ry !== el.r) opts.push(`ry: ${el.ry}`);
+            if (el.rotation) opts.push(`rotation: ${el.rotation}`);
             if (el.color) opts.push(`color: '${el.color}'`);
             if (el.opacity != null) opts.push(`opacity: ${el.opacity}`);
             const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
@@ -397,8 +779,32 @@
           const aOpts: string[] = [];
           if (el.color) aOpts.push(`color: '${el.color}'`);
           if (el.width) aOpts.push(`width: ${el.width}`);
+          if (el.heads && el.heads !== 'end') aOpts.push(`heads: '${el.heads}'`);
           const aOptsStr = aOpts.length > 0 ? `, { ${aOpts.join(', ')} }` : '';
           return `  arrow(${el.x1}, ${el.y1}, ${el.x2}, ${el.y2}${aOptsStr})`;
+        case 'curvedArrow':
+          imports.add('curvedArrow');
+          {
+            const opts: string[] = [];
+            if (el.curvature != null && el.curvature !== 6) opts.push(`curvature: ${el.curvature}`);
+            if (el.color) opts.push(`color: '${el.color}'`);
+            if (el.width) opts.push(`width: ${el.width}`);
+            if (el.heads && el.heads !== 'end') opts.push(`heads: '${el.heads}'`);
+            const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
+            return `  curvedArrow(${el.x1}, ${el.y1}, ${el.x2}, ${el.y2}${optsStr})`;
+          }
+        case 'polygon':
+          imports.add('polygon');
+          {
+            const ptsStr = el.points.map((p) => `[${p[0]}, ${p[1]}]`).join(', ');
+            const opts: string[] = [];
+            if (el.color) opts.push(`color: '${el.color}'`);
+            if (el.opacity != null) opts.push(`opacity: ${el.opacity}`);
+            if (el.rotation) opts.push(`rotation: ${el.rotation}`);
+            if (el.outline) opts.push('outline: true');
+            const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
+            return `  polygon([${ptsStr}]${optsStr})`;
+          }
         case 'arena':
           imports.add('arenaShape');
           {
@@ -407,6 +813,7 @@
             if (el.bgColor) opts.push(`bgColor: '${el.bgColor}'`);
             if (el.borderColor) opts.push(`borderColor: '${el.borderColor}'`);
             if (el.showCrosshairs === false) opts.push('showCrosshairs: false');
+            if (el.bgImage) opts.push(`bgImage: '${el.bgImage}'`);
             const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
             return `  arenaShape('${el.shape}', ${el.x}, ${el.y}, ${el.w}, ${el.h}${optsStr})`;
           }
@@ -431,28 +838,40 @@
         default:
           return `  // unknown element`;
       }
-    });
+    }).map((str, i) => withGroupId(str, elements[i].groupId));
 
-    // Check if all 8 waymarks are present as standard preset
-    const hasAllWaymarks = (['A', 'B', 'C', 'D', '1', '2', '3', '4'] as const).every((m) =>
-      elements.some((e) => e.type === 'waymark' && e.mark === m)
+    // Only use the SQUARE_MARKERS / CIRCLE_MARKERS shorthand when every waymark
+    // matches the preset exactly (same mark, position, default size, no group).
+    // Any custom size, moved waymark, or group assignment forces individual emission.
+    const presetMarkers = arenaShape === 'square' ? SQUARE_MARKERS : CIRCLE_MARKERS;
+    const waymarkEls = elements.filter(
+      (e): e is Extract<ArenaElement, { type: 'waymark' }> => e.type === 'waymark'
     );
-    if (hasAllWaymarks) {
+    const matchesPreset =
+      waymarkEls.length === presetMarkers.length &&
+      presetMarkers.every((preset) => {
+        const match = waymarkEls.find((e) => e.mark === preset.mark);
+        if (!match) return false;
+        if (match.size != null && match.size !== 4) return false;
+        if (match.groupId) return false;
+        return match.x === preset.x && match.y === preset.y;
+      });
+    if (matchesPreset) {
       imports.add(arenaShape === 'square' ? 'SQUARE_MARKERS' : 'CIRCLE_MARKERS');
+    } else if (waymarkEls.length > 0) {
+      imports.add('waymark');
     }
 
     const importStr = `import { ${[...imports].join(', ')} } from '$lib/arena';`;
     const lines: string[] = [importStr, '', `// Grid: ${gridW}w × ${gridH}h`];
 
     const diagramOpts: string[] = [];
-    if (title) diagramOpts.push(`title: '${title}'`);
     if (!showBackground) diagramOpts.push(`bgColor: 'transparent'`);
     if (scale !== 1) diagramOpts.push(`scale: ${scale}`);
-    const optsStr = diagramOpts.length > 0 ? `, { ${diagramOpts.join(', ')} }` : '';
 
     lines.push(`diagram('${arenaShape}', [`);
 
-    if (hasAllWaymarks) {
+    if (matchesPreset) {
       lines.push(`  ...${arenaShape === 'square' ? 'SQUARE_MARKERS' : 'CIRCLE_MARKERS'},`);
       for (let idx = 0; idx < elStrs.length; idx++) {
         if (elements[idx].type !== 'waymark') lines.push(elStrs[idx] + ',');
@@ -463,7 +882,21 @@
       }
     }
 
-    lines.push(`]${optsStr})`);
+    // Groups are emitted multi-line in the diagram opts; other opts stay inline.
+    if (groups.length > 0) {
+      const optsInline = diagramOpts.length > 0 ? `${diagramOpts.join(', ')}, ` : '';
+      lines.push(`], {`);
+      if (optsInline) lines.push(`  ${optsInline}`);
+      lines.push(`  groups: [`);
+      groups.forEach((g, i) => {
+        lines.push(`${stringifyGroup(g)}${i < groups.length - 1 ? ',' : ''}`);
+      });
+      lines.push(`  ]`);
+      lines.push(`})`);
+    } else {
+      const optsStr = diagramOpts.length > 0 ? `, { ${diagramOpts.join(', ')} }` : '';
+      lines.push(`]${optsStr})`);
+    }
     return lines.join('\n');
   }
 
@@ -513,20 +946,43 @@
         y: +m[3],
         id: m[4] || (opts.id as string | undefined),
         marker: opts.marker as 'red' | 'green' | undefined,
+        size: opts.size as number | undefined,
+        groupId: opts.groupId as string | undefined,
         corners: Object.keys(corners).length ? corners : undefined
       });
     }
-    // Parse boss(x, y, rotation?)
+    // Parse boss(x, y), boss(x, y, rotation), or boss(x, y, { opts })
     for (const m of code.matchAll(
-      new RegExp(`boss\\(\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*(${N}))?\\s*\\)`, 'g')
+      new RegExp(
+        `boss\\(\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*(?:(${N})|\\{([^}]*)\\}))?\\s*\\)`,
+        'g'
+      )
     )) {
-      els.push({ type: 'boss', x: +m[1], y: +m[2], rotation: m[3] ? +m[3] : undefined });
+      const opts = m[4] ? parseInlineOpts(m[4]) : {};
+      els.push({
+        type: 'boss',
+        x: +m[1],
+        y: +m[2],
+        rotation: m[3] ? +m[3] : (opts.rotation as number | undefined),
+        groupId: opts.groupId as string | undefined
+      });
     }
-    // Parse waymark('M', x, y)
+    // Parse waymark('M', x, y) or waymark('M', x, y, { size })
     for (const m of code.matchAll(
-      new RegExp(`waymark\\(\\s*'(\\w)'\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*\\)`, 'g')
+      new RegExp(
+        `waymark\\(\\s*'(\\w)'\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`,
+        'g'
+      )
     )) {
-      els.push({ type: 'waymark', mark: m[1] as WaymarkName, x: +m[2], y: +m[3] });
+      const opts = parseInlineOpts(m[4]);
+      els.push({
+        type: 'waymark',
+        mark: m[1] as WaymarkName,
+        x: +m[2],
+        y: +m[3],
+        size: opts.size as number | undefined,
+        groupId: opts.groupId as string | undefined
+      });
     }
     // Parse aoeCircle(x, y, r, { opts })
     for (const m of code.matchAll(
@@ -558,15 +1014,46 @@
       const opts = parseInlineOpts(m[5]);
       els.push({ type: 'tether', x1: +m[1], y1: +m[2], x2: +m[3], y2: +m[4], ...opts });
     }
-    // Parse arrow(x1, y1, x2, y2, { opts })
+    // Parse arrow(x1, y1, x2, y2, { opts }) — match standalone arrow only, not curvedArrow
     for (const m of code.matchAll(
       new RegExp(
-        `arrow\\(\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`,
+        `(?<!curved)arrow\\(\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`,
         'g'
       )
     )) {
       const opts = parseInlineOpts(m[5]);
       els.push({ type: 'arrow', x1: +m[1], y1: +m[2], x2: +m[3], y2: +m[4], ...opts });
+    }
+    // Parse curvedArrow(x1, y1, x2, y2, { opts })
+    for (const m of code.matchAll(
+      new RegExp(
+        `curvedArrow\\(\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`,
+        'g'
+      )
+    )) {
+      const opts = parseInlineOpts(m[5]);
+      els.push({
+        type: 'curvedArrow',
+        x1: +m[1],
+        y1: +m[2],
+        x2: +m[3],
+        y2: +m[4],
+        ...opts
+      });
+    }
+    // Parse polygon([[x,y], [x,y], ...], { opts })
+    for (const m of code.matchAll(
+      new RegExp(`polygon\\(\\s*\\[([\\s\\S]*?)\\]\\s*(?:,\\s*\\{([^}]*)\\})?\\s*\\)`, 'g')
+    )) {
+      const ptsRaw = m[1];
+      const points: [number, number][] = [];
+      for (const pm of ptsRaw.matchAll(new RegExp(`\\[\\s*(${N})\\s*,\\s*(${N})\\s*\\]`, 'g'))) {
+        points.push([+pm[1], +pm[2]]);
+      }
+      if (points.length >= 3) {
+        const opts = parseInlineOpts(m[2]);
+        els.push({ type: 'polygon', points, ...opts });
+      }
     }
     // Parse arenaShape('shape', x, y, w, h, { opts })
     for (const m of code.matchAll(
@@ -614,17 +1101,113 @@
       els.push(...CIRCLE_MARKERS.map((w) => ({ ...w })));
     }
 
-    // Parse diagram-level opts
-    const optsMatch = code.match(/\]\s*,\s*\{([^}]*)\}\s*\)/);
-    const diagramOpts = parseInlineOpts(optsMatch?.[1]);
+    // Parse diagram-level opts. Two shapes:
+    //   1) `], { title: '...' })` — single-line, no nested braces.
+    //   2) `], { ..., groups: [{ ... }, ...] })` — multi-line with nested objects.
+    // For (2) we balance-scan for the matching `}` of the diagram opts block.
+    const optsStart = code.search(/\]\s*,\s*\{/);
+    let diagramOptsBody = '';
+    if (optsStart >= 0) {
+      const braceStart = code.indexOf('{', optsStart);
+      if (braceStart >= 0) {
+        let depth = 0;
+        for (let i = braceStart; i < code.length; i++) {
+          const c = code[i];
+          if (c === '{') depth++;
+          else if (c === '}') {
+            depth--;
+            if (depth === 0) {
+              diagramOptsBody = code.slice(braceStart + 1, i);
+              break;
+            }
+          }
+        }
+      }
+    }
+
+    // Extract groups: [ ... ] block first, then strip it before parsing simple opts.
+    const parsedGroups = parseGroupsBlock(diagramOptsBody);
+    const optsWithoutGroups = diagramOptsBody.replace(/groups\s*:\s*\[[\s\S]*?\n\s*\]/, '');
+    const diagramOpts = parseInlineOpts(optsWithoutGroups);
 
     return {
       arena: shape,
       elements: els,
-      title: diagramOpts.title as string | undefined,
       bgColor: diagramOpts.bgColor as string | undefined,
-      scale: diagramOpts.scale as number | undefined
+      scale: diagramOpts.scale as number | undefined,
+      groups: parsedGroups.length ? parsedGroups : undefined
     };
+  }
+
+  /** Parse the `groups: [ ... ]` array body. Tolerant of multi-line layout. */
+  function parseGroupsBlock(optsBody: string): GroupDef[] {
+    if (!optsBody) return [];
+    const arrMatch = optsBody.match(/groups\s*:\s*\[([\s\S]*)\]/);
+    if (!arrMatch) return [];
+    const arrBody = arrMatch[1];
+    // Each group is a `{ ... }` object; balance-scan splits them.
+    const groupBodies: string[] = [];
+    let depth = 0;
+    let start = -1;
+    for (let i = 0; i < arrBody.length; i++) {
+      const c = arrBody[i];
+      if (c === '{') {
+        if (depth === 0) start = i + 1;
+        depth++;
+      } else if (c === '}') {
+        depth--;
+        if (depth === 0 && start >= 0) {
+          groupBodies.push(arrBody.slice(start, i));
+          start = -1;
+        }
+      }
+    }
+    return groupBodies.map(parseGroupBody).filter((g): g is GroupDef => g != null);
+  }
+
+  function parseGroupBody(body: string): GroupDef | null {
+    const idMatch = body.match(/\bid\s*:\s*'([^']+)'/);
+    if (!idMatch) return null;
+    const labelMatch = body.match(/\blabel\s*:\s*'([^']+)'/);
+    const vwMatch = body.match(/\bvisibleWhen\s*:\s*\{([\s\S]*?)\}\s*(,|$)/);
+    let visibleWhen: VisibilityCondition | undefined;
+    if (vwMatch) {
+      visibleWhen = parseConditionBody(vwMatch[1]);
+    }
+    return {
+      id: idMatch[1],
+      label: labelMatch?.[1],
+      visibleWhen
+    };
+  }
+
+  function parseConditionBody(body: string): VisibilityCondition {
+    const out: VisibilityCondition = {};
+    if (/whenRoleSelected\s*:\s*true/.test(body)) out.whenRoleSelected = true;
+    else if (/whenRoleSelected\s*:\s*false/.test(body)) out.whenRoleSelected = false;
+    const jobsMatch = body.match(/\bjobs\s*:\s*\[([^\]]*)\]/);
+    if (jobsMatch) {
+      const jobs: PlayerJob[] = [];
+      for (const jm of jobsMatch[1].matchAll(/'([^']+)'/g)) jobs.push(jm[1] as PlayerJob);
+      if (jobs.length) out.jobs = jobs;
+    }
+    const stratKeyMatch = body.match(/\bstratKey\s*:\s*\[([^\]]*)\]/);
+    if (stratKeyMatch) {
+      const keys: string[] = [];
+      for (const km of stratKeyMatch[1].matchAll(/'([^']+)'/g)) keys.push(km[1]);
+      if (keys.length) out.stratKey = keys;
+    }
+    const stratMatch = body.match(/\bstrat\s*:\s*\{([^}]*)\}/);
+    if (stratMatch) {
+      const strat: Record<string, string[]> = {};
+      for (const em of stratMatch[1].matchAll(/'([^']+)'\s*:\s*\[([^\]]*)\]/g)) {
+        const vals: string[] = [];
+        for (const vm of em[2].matchAll(/'([^']+)'/g)) vals.push(vm[1]);
+        strat[em[1]] = vals;
+      }
+      if (Object.keys(strat).length) out.strat = strat;
+    }
+    return out;
   }
 
   function parseInlineOpts(str: string | undefined): Record<string, any> {
@@ -664,10 +1247,10 @@
 
   function applyDiagramData(data: ArenaDiagramData) {
     arenaShape = data.arena ?? 'square';
-    title = data.title ?? '';
     showBackground = data.bgColor !== 'transparent';
     scale = data.scale ?? 1;
     elements = data.elements ?? [];
+    groups = data.groups ? data.groups.map((g) => ({ ...g })) : [];
     selected = new Set();
     jsonError = '';
     jsonImport = '';
@@ -685,7 +1268,22 @@
   let copiedJson = $state(false);
 
   const playerJobs: PlayerJob[] = ['MT', 'OT', 'H1', 'H2', 'M1', 'M2', 'R1', 'R2'];
-  const genericJobs: PlayerJob[] = ['DPS', 'SUP', 'G1', 'G2', 'ANY'];
+  const genericJobs: PlayerJob[] = [
+    'TANK',
+    'HEALER',
+    'MELEE',
+    'RANGED',
+    'DPS',
+    'SUP',
+    'G1',
+    'G2',
+    'G1SUP',
+    'G1DPS',
+    'G2SUP',
+    'G2DPS',
+    'ANY',
+    'X'
+  ];
   const waymarkNames: WaymarkName[] = ['A', 'B', 'C', 'D', '1', '2', '3', '4'];
 </script>
 
@@ -716,12 +1314,6 @@
           <input type="checkbox" bind:checked={showBackground} class="accent-primary-500" />
           Background
         </label>
-        <input
-          type="text"
-          bind:value={title}
-          placeholder="Title (optional)"
-          class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-2 py-1 text-sm w-40 placeholder:text-surface-500"
-        />
         <div class="flex items-center gap-1">
           <span class="text-sm font-semibold text-surface-300">Grid:</span>
           <input
@@ -752,6 +1344,27 @@
             class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-16 text-center"
           />
         </div>
+        <div class="flex items-center gap-1 ml-auto">
+          <span class="text-sm font-semibold text-surface-300">Preview:</span>
+          <button
+            class="btn btn-sm text-xs px-2 {previewJob === undefined
+              ? 'preset-filled-primary-500'
+              : 'preset-tonal-surface'}"
+            onclick={() => (previewJob = undefined)}
+            title="Overall (no role highlighted)">Overall</button
+          >
+          {#each playerJobs as job}
+            {@const active = previewJob === job}
+            <button
+              class="text-xs font-bold px-2 py-1 rounded border"
+              style:background-color={active ? ROLE_COLORS[job] : ROLE_COLORS[job] + '22'}
+              style:border-color={ROLE_COLORS[job]}
+              style:color={active ? 'white' : ROLE_COLORS[job]}
+              onclick={() => (previewJob = job)}
+              title={`Preview as ${job}`}>{job}</button
+            >
+          {/each}
+        </div>
       </div>
 
       <!-- Canvas -->
@@ -759,12 +1372,12 @@
         class="relative border border-surface-600 rounded-lg overflow-hidden"
         class:cursor-crosshair={placingType !== null}
         class:bg-surface-950={showBackground}
-        style="width: {gridW * 100}px; height: {gridH * 100}px;"
+        style="width: {gridW * 100 * canvasZoom}px; height: {gridH * 100 * canvasZoom}px;"
         style:background={!showBackground
           ? 'repeating-conic-gradient(#333 0% 25%, #222 0% 50%) 0 0 / 20px 20px'
           : undefined}
       >
-        <ArenaRenderer data={diagramData} {gridW} {gridH} />
+        <ArenaRenderer data={diagramData} {gridW} {gridH} highlightJob={previewJob} />
 
         <!-- Interactive overlay — positional click-only input, no keyboard equivalent. -->
         <!-- svelte-ignore a11y_click_events_have_key_events -->
@@ -776,14 +1389,21 @@
           role="application"
           aria-label="Arena diagram canvas"
           onclick={handleCanvasClick}
+          onmousedown={handleCanvasMouseDown}
         >
           {#each elements as el, i}
-            {#if el.type === 'player' || el.type === 'boss' || el.type === 'waymark' || el.type === 'text'}
+            {#if isElementHidden(el)}
+              <!-- element hidden by preview — skip overlay so it can't be selected -->
+            {:else if el.type === 'player' || el.type === 'boss' || el.type === 'waymark' || el.type === 'text'}
               <!-- svelte-ignore a11y_no_static_element_interactions -->
               <circle
                 cx={el.x * scale}
                 cy={el.y * scale}
-                r={el.type === 'boss' ? 14 : el.type === 'player' ? 7 : 4}
+                r={el.type === 'boss'
+                  ? 14
+                  : el.type === 'player'
+                    ? ((el.size ?? 6) + 1) * scale
+                    : 4}
                 fill="transparent"
                 stroke={selected.has(i) ? '#22d3ee' : 'transparent'}
                 stroke-width="0.6"
@@ -793,14 +1413,18 @@
               />
             {:else if el.type === 'aoe' && el.shape === 'circle'}
               <!-- svelte-ignore a11y_no_static_element_interactions -->
-              <circle
+              <ellipse
                 cx={el.x * scale}
                 cy={el.y * scale}
-                r={el.r * scale}
+                rx={el.r * scale}
+                ry={(el.ry ?? el.r) * scale}
                 fill="transparent"
                 stroke={selected.has(i) ? '#22d3ee' : 'transparent'}
                 stroke-width="0.6"
                 stroke-dasharray="1.5,1"
+                transform={el.rotation
+                  ? `rotate(${el.rotation} ${el.x * scale} ${el.y * scale})`
+                  : undefined}
                 class="cursor-move"
                 onmousedown={(e) => handleElementMouseDown(i, e)}
               />
@@ -865,7 +1489,7 @@
                 class="cursor-move"
                 onmousedown={(e) => handleElementMouseDown(i, e)}
               />
-            {:else if el.type === 'arrow' || el.type === 'tether'}
+            {:else if el.type === 'arrow' || el.type === 'tether' || el.type === 'curvedArrow'}
               <!-- svelte-ignore a11y_no_static_element_interactions -->
               <line
                 x1={el.x1 * scale}
@@ -897,16 +1521,56 @@
                   onmousedown={(e) => handleEndpointDrag(i, 'end', e)}
                 />
               {/if}
+            {:else if el.type === 'polygon'}
+              {@const pts = el.points.map((p) => `${p[0] * scale},${p[1] * scale}`).join(' ')}
+              <!-- svelte-ignore a11y_no_static_element_interactions -->
+              <polygon
+                points={pts}
+                fill="transparent"
+                stroke={selected.has(i) ? '#22d3ee' : 'transparent'}
+                stroke-width="0.6"
+                stroke-dasharray="1.5,1"
+                class="cursor-move"
+                onmousedown={(e) => handleElementMouseDown(i, e)}
+              />
+              {#if selected.has(i)}
+                {#each el.points as p, vi}
+                  <!-- svelte-ignore a11y_no_static_element_interactions -->
+                  <circle
+                    cx={p[0] * scale}
+                    cy={p[1] * scale}
+                    r="2.5"
+                    fill="#22d3ee"
+                    class="cursor-grab"
+                    onmousedown={(e) => handlePolyVertexDrag(i, vi, e)}
+                  />
+                {/each}
+              {/if}
             {/if}
           {/each}
           <!-- Two-point placement preview -->
-          {#if twoPointStart && (placingType === 'arrow' || placingType === 'tether')}
+          {#if twoPointStart && (placingType === 'arrow' || placingType === 'tether' || placingType === 'curvedArrow')}
             <circle
               cx={twoPointStart.x * scale}
               cy={twoPointStart.y * scale}
               r="2"
               fill="#22d3ee"
               opacity="0.7"
+            />
+          {/if}
+          <!-- Drag-select marquee rectangle -->
+          {#if marquee}
+            <rect
+              x={Math.min(marquee.x1, marquee.x2)}
+              y={Math.min(marquee.y1, marquee.y2)}
+              width={Math.abs(marquee.x2 - marquee.x1)}
+              height={Math.abs(marquee.y2 - marquee.y1)}
+              fill="#22d3ee"
+              fill-opacity="0.1"
+              stroke="#22d3ee"
+              stroke-width="0.3"
+              stroke-dasharray="1,0.6"
+              pointer-events="none"
             />
           {/if}
         </svg>
@@ -916,13 +1580,25 @@
             {#if twoPointStart}
               Click to set end point — Esc to cancel
             {:else}
-              Click to {placingType === 'arrow' || placingType === 'tether'
+              Click to {placingType === 'arrow' ||
+              placingType === 'tether' ||
+              placingType === 'curvedArrow'
                 ? 'set start point'
                 : 'place'}
               {placingType}{placingSubtype ? ` (${placingSubtype})` : ''} — Esc to cancel
             {/if}
           </div>
         {/if}
+
+        <!-- Canvas resize handle (bottom-right corner) -->
+        <!-- svelte-ignore a11y_no_static_element_interactions -->
+        <div
+          class="absolute bottom-0 right-0 w-4 h-4 cursor-nwse-resize bg-surface-600 hover:bg-primary-500 z-10"
+          style="clip-path: polygon(100% 0, 100% 100%, 0 100%);"
+          title="Drag to resize canvas (zoom {canvasZoom.toFixed(2)}×) — double-click to reset"
+          onmousedown={handleCanvasResizeStart}
+          ondblclick={() => (canvasZoom = 1)}
+        ></div>
       </div>
 
       <!-- Element Palette -->
@@ -982,7 +1658,15 @@
           >
           <button
             class="btn btn-sm preset-tonal-surface text-xs"
+            onclick={() => startPlace('curvedArrow')}>Curved Arrow</button
+          >
+          <button
+            class="btn btn-sm preset-tonal-surface text-xs"
             onclick={() => startPlace('tether')}>Line/Tether</button
+          >
+          <button
+            class="btn btn-sm preset-tonal-surface text-xs"
+            onclick={() => startPlace('polygon')}>Polygon</button
           >
           <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('text')}
             >Text</button
@@ -1029,6 +1713,224 @@
 
     <!-- Right: Properties + Code -->
     <div class="w-full lg:w-96 space-y-3">
+      <!-- Load section from existing fight poster -->
+      <div class="card border border-surface-600 p-3 bg-surface-900 space-y-2">
+        <div class="text-sm font-semibold text-surface-200">Load Poster Section</div>
+        {#if fightPosters.length === 0}
+          <div class="text-xs text-surface-400">No fights with poster layouts found.</div>
+        {:else}
+          <div class="grid grid-cols-2 gap-2">
+            <label class="text-xs text-surface-400">
+              Fight
+              <select
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                bind:value={selectedFightLabel}
+                onchange={() => (selectedSectionIdx = -1)}
+              >
+                <option value="">—</option>
+                {#each fightPosters as f}
+                  <option value={f.label}>{f.label}</option>
+                {/each}
+              </select>
+            </label>
+            <label class="text-xs text-surface-400">
+              Section
+              <select
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                bind:value={selectedSectionIdx}
+                disabled={!selectedFightEntry}
+              >
+                <option value={-1}>—</option>
+                {#if selectedFightEntry}
+                  {#each selectedFightEntry.sections as s, idx}
+                    <option value={idx}>{s.sectionTitle} ({s.section.w}×{s.section.h})</option>
+                  {/each}
+                {/if}
+              </select>
+            </label>
+          </div>
+          <button
+            class="btn btn-sm preset-tonal-primary text-xs w-full"
+            onclick={loadSelectedSection}
+            disabled={selectedSectionIdx < 0}
+          >
+            <Download size={12} /> Load Section
+          </button>
+          <div class="text-xs text-surface-500">
+            Loading replaces the current canvas and resizes to the section's grid footprint.
+          </div>
+        {/if}
+      </div>
+
+      <!-- Groups (visibility-conditional element sets) -->
+      <div class="card border border-surface-600 p-3 bg-surface-900 space-y-2">
+        <div class="flex justify-between items-center">
+          <button
+            type="button"
+            class="flex items-center gap-1 text-sm font-semibold text-surface-200 hover:text-surface-100"
+            onclick={() => (groupsCollapsed = !groupsCollapsed)}
+          >
+            {#if groupsCollapsed}
+              <ChevronRight size={14} />
+            {:else}
+              <ChevronDown size={14} />
+            {/if}
+            Groups{groups.length > 0 ? ` (${groups.length})` : ''}
+          </button>
+          <button class="btn btn-sm preset-tonal-surface text-xs" onclick={addGroup}>
+            <Plus size={12} /> Add
+          </button>
+        </div>
+        {#if !groupsCollapsed}
+          {#if groups.length === 0}
+            <div class="text-xs text-surface-500">
+              Define a group then assign elements to it (via the property panel) to
+              conditionally hide them based on selected role, strat, or strat toggle.
+            </div>
+          {/if}
+          {#each groups as g, gi}
+          {@const memberCount = elements.filter((e) => e.groupId === g.id).length}
+          <div class="border border-surface-700 rounded p-2 space-y-1.5">
+            <div class="flex gap-1 items-center">
+              <input
+                type="text"
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs flex-1 font-mono"
+                value={g.id}
+                placeholder="group-id"
+                onchange={(e) => updateGroup(gi, { id: e.currentTarget.value.trim() || g.id })}
+              />
+              <input
+                type="text"
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs flex-1"
+                value={g.label ?? ''}
+                placeholder="label (optional)"
+                oninput={(e) => updateGroup(gi, { label: e.currentTarget.value || undefined })}
+              />
+              <button
+                class="btn btn-sm preset-tonal-error p-1"
+                onclick={() => removeGroup(gi)}
+                title="Delete group"
+              >
+                <Trash2 size={12} />
+              </button>
+            </div>
+            <div class="text-xs text-surface-500">
+              {memberCount} element{memberCount === 1 ? '' : 's'} assigned
+            </div>
+            <label class="text-xs text-surface-400">
+              Role mode
+              <select
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs w-full"
+                value={g.visibleWhen?.whenRoleSelected === true
+                  ? 'role'
+                  : g.visibleWhen?.whenRoleSelected === false
+                    ? 'overview'
+                    : 'any'}
+                onchange={(e) => {
+                  const v = e.currentTarget.value;
+                  updateGroupCondition(gi, {
+                    whenRoleSelected: v === 'role' ? true : v === 'overview' ? false : undefined
+                  });
+                }}
+              >
+                <option value="any">Any (no constraint)</option>
+                <option value="role">Only when role selected</option>
+                <option value="overview">Only in overview (no role)</option>
+              </select>
+            </label>
+            <div>
+              <div class="text-xs text-surface-400 mb-0.5">Show only for jobs:</div>
+              <div class="flex flex-wrap gap-0.5">
+                {#each VIS_JOBS as job}
+                  {@const active = g.visibleWhen?.jobs?.includes(job) ?? false}
+                  <button
+                    class="text-[10px] font-bold px-1.5 py-0.5 rounded border"
+                    style:background-color={active ? ROLE_COLORS[job] + '55' : 'transparent'}
+                    style:border-color={ROLE_COLORS[job]}
+                    style:color={ROLE_COLORS[job]}
+                    onclick={() => toggleGroupJob(gi, job)}>{job}</button
+                  >
+                {/each}
+              </div>
+            </div>
+            <label class="text-xs text-surface-400">
+              Active strat keys (comma-separated)
+              <input
+                type="text"
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs w-full font-mono"
+                value={(g.visibleWhen?.stratKey ?? []).join(', ')}
+                placeholder="naur, max1"
+                oninput={(e) =>
+                  updateGroupCondition(gi, { stratKey: parseStratKeyList(e.currentTarget.value) })}
+              />
+            </label>
+            <div class="text-xs text-surface-400">
+              <div class="flex justify-between items-center mb-0.5">
+                <span>Strat-toggle predicate</span>
+                <button
+                  class="btn btn-sm preset-tonal-surface text-[10px] px-1.5 py-0.5"
+                  onclick={() => {
+                    const next = { ...(g.visibleWhen?.strat ?? {}), '': [] };
+                    updateGroupCondition(gi, { strat: next });
+                  }}
+                  title="Add toggle constraint"
+                >
+                  <Plus size={10} />
+                </button>
+              </div>
+              {#each Object.entries(g.visibleWhen?.strat ?? {}) as [tag, vals], si}
+                <div class="flex gap-1 items-center mb-0.5">
+                  <input
+                    type="text"
+                    class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-[10px] font-mono w-20"
+                    value={tag}
+                    placeholder="tag"
+                    onchange={(e) => {
+                      const newTag = e.currentTarget.value.trim();
+                      const entries = Object.entries(g.visibleWhen?.strat ?? {});
+                      const updated = Object.fromEntries(
+                        entries.map(([t, v], i) => (i === si ? [newTag, v] : [t, v]))
+                      ) as Record<string, string[]>;
+                      updateGroupCondition(gi, { strat: updated });
+                    }}
+                  />
+                  <span class="text-surface-500">=</span>
+                  <input
+                    type="text"
+                    class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-[10px] font-mono flex-1"
+                    value={vals.join(', ')}
+                    placeholder="val1, val2"
+                    oninput={(e) => {
+                      const list = e.currentTarget.value.split(',').map((p) => p.trim()).filter(Boolean);
+                      const entries = Object.entries(g.visibleWhen?.strat ?? {});
+                      const updated = Object.fromEntries(
+                        entries.map(([t, v], i) => (i === si ? [t, list] : [t, v]))
+                      ) as Record<string, string[]>;
+                      updateGroupCondition(gi, { strat: updated });
+                    }}
+                  />
+                  <button
+                    class="text-error-500 hover:text-error-400 text-xs px-1"
+                    onclick={() => {
+                      const entries = Object.entries(g.visibleWhen?.strat ?? {}).filter(
+                        (_, i) => i !== si
+                      );
+                      const next = Object.fromEntries(entries) as Record<string, string[]>;
+                      updateGroupCondition(gi, {
+                        strat: Object.keys(next).length ? next : undefined
+                      });
+                    }}
+                  >
+                    ×
+                  </button>
+                </div>
+              {/each}
+            </div>
+          </div>
+          {/each}
+        {/if}
+      </div>
+
       <!-- Selected element properties -->
       {#if selected.size > 1}
         <div class="card border border-surface-600 p-3 space-y-2 bg-surface-900">
@@ -1056,6 +1958,25 @@
           <div class="text-xs text-surface-400">
             Ctrl+click to toggle individual elements. Drag any selected element to move all.
           </div>
+          {#if groups.length > 0}
+            <label class="text-xs text-surface-400">
+              Assign all to group
+              <select
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                onchange={(e) => {
+                  const id = e.currentTarget.value || undefined;
+                  elements = elements.map((el, i) =>
+                    selected.has(i) ? { ...el, groupId: id } : el
+                  );
+                }}
+              >
+                <option value="">— none —</option>
+                {#each groups as g}
+                  <option value={g.id}>{g.label ? `${g.id} (${g.label})` : g.id}</option>
+                {/each}
+              </select>
+            </label>
+          {/if}
         </div>
       {:else if selectedElement && selectedIndex !== null}
         <div class="card border border-surface-600 p-3 space-y-2 bg-surface-900">
@@ -1097,6 +2018,23 @@
               </button>
             </div>
           </div>
+
+          {#if groups.length > 0}
+            <label class="text-xs text-surface-400">
+              Group
+              <select
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                value={selectedElement.groupId ?? ''}
+                onchange={(e) =>
+                  updateElement('groupId', e.currentTarget.value || undefined)}
+              >
+                <option value="">— none —</option>
+                {#each groups as g}
+                  <option value={g.id}>{g.label ? `${g.id} (${g.label})` : g.id}</option>
+                {/each}
+              </select>
+            </label>
+          {/if}
 
           {#if 'x' in selectedElement}
             <div class="grid grid-cols-2 gap-2">
@@ -1175,6 +2113,38 @@
 
           {#if selectedElement.type === 'player'}
             <label class="text-xs text-surface-400">
+              Job
+              <select
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full font-bold"
+                style:color={ROLE_COLORS[selectedElement.job]}
+                value={selectedElement.job}
+                onchange={(e) => updateElement('job', e.currentTarget.value)}
+              >
+                <optgroup label="Specific">
+                  {#each playerJobs as j}
+                    <option value={j} style:color={ROLE_COLORS[j]}>{j}</option>
+                  {/each}
+                </optgroup>
+                <optgroup label="Generic">
+                  {#each genericJobs as j}
+                    <option value={j} style:color={ROLE_COLORS[j]}>{j}</option>
+                  {/each}
+                </optgroup>
+              </select>
+            </label>
+            <label class="text-xs text-surface-400">
+              Size ({(selectedElement.size ?? 6).toFixed(1)})
+              <input
+                type="range"
+                min="2"
+                max="20"
+                step="0.5"
+                class="w-full accent-primary-500"
+                value={selectedElement.size ?? 6}
+                oninput={(e) => updateElement('size', Number(e.currentTarget.value))}
+              />
+            </label>
+            <label class="text-xs text-surface-400">
               Marker
               <div class="flex gap-1 mt-0.5">
                 <button
@@ -1225,6 +2195,21 @@
               </div>
             </div>
           {/if}
+          {#if selectedElement.type === 'waymark'}
+            <label class="text-xs text-surface-400">
+              Size ({(selectedElement.size ?? 4).toFixed(1)})
+              <input
+                type="range"
+                min="1"
+                max="10"
+                step="0.5"
+                class="w-full accent-primary-500"
+                value={selectedElement.size ?? 4}
+                oninput={(e) => updateElement('size', Number(e.currentTarget.value))}
+              />
+            </label>
+          {/if}
+
           {#if selectedElement.type === 'debuff'}
             <label class="text-xs text-surface-400">
               Debuff
@@ -1252,15 +2237,48 @@
             </label>
           {/if}
           {#if selectedElement.type === 'aoe' && selectedElement.shape === 'circle'}
+            <div class="grid grid-cols-2 gap-2">
+              <label class="text-xs text-surface-400">
+                Radius X
+                <input
+                  type="number"
+                  min="1"
+                  max="50"
+                  step="0.5"
+                  class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                  value={selectedElement.r}
+                  oninput={(e) => updateElement('r', Number(e.currentTarget.value))}
+                />
+              </label>
+              <label class="text-xs text-surface-400">
+                Radius Y
+                <input
+                  type="number"
+                  min="1"
+                  max="50"
+                  step="0.5"
+                  class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                  value={selectedElement.ry ?? selectedElement.r}
+                  oninput={(e) => {
+                    const v = Number(e.currentTarget.value);
+                    // Drop ry when it matches r — keeps round-tripped code clean.
+                    updateElement('ry', v === selectedElement.r ? undefined : v);
+                  }}
+                />
+              </label>
+            </div>
             <label class="text-xs text-surface-400">
-              Radius
+              Rotation
               <input
                 type="number"
-                min="1"
-                max="50"
+                min="0"
+                max="360"
                 class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
-                value={selectedElement.r}
-                oninput={(e) => updateElement('r', Number(e.currentTarget.value))}
+                value={selectedElement.rotation ?? 0}
+                oninput={(e) => {
+                  const v = Number(e.currentTarget.value);
+                  updateElement('rotation', v ? v : undefined);
+                }}
               />
             </label>
           {/if}
@@ -1386,6 +2404,169 @@
                 />
               </label>
             </div>
+            <label class="text-xs text-surface-400">
+              Arrowheads
+              <select
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                value={selectedElement.heads ?? 'end'}
+                onchange={(e) => updateElement('heads', e.currentTarget.value)}
+              >
+                <option value="end">End only (→)</option>
+                <option value="start">Start only (←)</option>
+                <option value="both">Both (↔)</option>
+                <option value="none">None</option>
+              </select>
+            </label>
+          {/if}
+
+          {#if selectedElement.type === 'curvedArrow'}
+            <div class="grid grid-cols-2 gap-2">
+              <label class="text-xs text-surface-400">
+                Color
+                <input
+                  type="color"
+                  class="w-full h-7 rounded border border-surface-600 bg-surface-800"
+                  value={selectedElement.color ?? '#ffffff'}
+                  oninput={(e) => updateElement('color', e.currentTarget.value)}
+                />
+              </label>
+              <label class="text-xs text-surface-400">
+                Width
+                <input
+                  type="number"
+                  min="0.1"
+                  max="5"
+                  step="0.1"
+                  class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                  value={selectedElement.width ?? 0.5}
+                  oninput={(e) => updateElement('width', Number(e.currentTarget.value))}
+                />
+              </label>
+            </div>
+            <label class="text-xs text-surface-400">
+              Curvature ({(selectedElement.curvature ?? 6).toFixed(1)})
+              <input
+                type="range"
+                min="-30"
+                max="30"
+                step="0.5"
+                class="w-full accent-primary-500"
+                value={selectedElement.curvature ?? 6}
+                oninput={(e) => updateElement('curvature', Number(e.currentTarget.value))}
+              />
+            </label>
+            <label class="text-xs text-surface-400">
+              Arrowheads
+              <select
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                value={selectedElement.heads ?? 'end'}
+                onchange={(e) => updateElement('heads', e.currentTarget.value)}
+              >
+                <option value="end">End only (→)</option>
+                <option value="start">Start only (←)</option>
+                <option value="both">Both (↔)</option>
+                <option value="none">None</option>
+              </select>
+            </label>
+          {/if}
+
+          {#if selectedElement.type === 'polygon'}
+            <div class="text-xs text-surface-400 space-y-1">
+              <div class="flex justify-between items-center">
+                <span>Vertices ({selectedElement.points.length})</span>
+                <div class="flex gap-1">
+                  <button
+                    class="btn btn-sm preset-tonal-surface text-xs px-1.5 py-0.5"
+                    onclick={() => {
+                      const pts = [...selectedElement.points];
+                      const last = pts[pts.length - 1];
+                      pts.push([last[0] + 5, last[1] + 5]);
+                      updateElement('points', pts);
+                    }}>+</button
+                  >
+                  <button
+                    class="btn btn-sm preset-tonal-error text-xs px-1.5 py-0.5"
+                    disabled={selectedElement.points.length <= 3}
+                    onclick={() => {
+                      const pts = selectedElement.points.slice(0, -1);
+                      updateElement('points', pts);
+                    }}>−</button
+                  >
+                </div>
+              </div>
+              <div class="space-y-1 max-h-32 overflow-y-auto">
+                {#each selectedElement.points as p, vi}
+                  <div class="flex gap-1 items-center">
+                    <span class="font-mono text-surface-500 w-6">{vi}:</span>
+                    <input
+                      type="number"
+                      class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs w-full"
+                      value={p[0]}
+                      oninput={(e) => {
+                        const pts = selectedElement.points.map((pp, pi) =>
+                          pi === vi ? ([Number(e.currentTarget.value), pp[1]] as [number, number]) : pp
+                        );
+                        updateElement('points', pts);
+                      }}
+                    />
+                    <input
+                      type="number"
+                      class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs w-full"
+                      value={p[1]}
+                      oninput={(e) => {
+                        const pts = selectedElement.points.map((pp, pi) =>
+                          pi === vi ? ([pp[0], Number(e.currentTarget.value)] as [number, number]) : pp
+                        );
+                        updateElement('points', pts);
+                      }}
+                    />
+                  </div>
+                {/each}
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <label class="text-xs text-surface-400">
+                Color
+                <input
+                  type="color"
+                  class="w-full h-7 rounded border border-surface-600 bg-surface-800"
+                  value={selectedElement.color ?? '#f59e0b'}
+                  oninput={(e) => updateElement('color', e.currentTarget.value)}
+                />
+              </label>
+              <label class="text-xs text-surface-400">
+                Opacity ({(selectedElement.opacity ?? 0.3).toFixed(2)})
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.05"
+                  class="w-full accent-primary-500"
+                  value={selectedElement.opacity ?? 0.3}
+                  oninput={(e) => updateElement('opacity', Number(e.currentTarget.value))}
+                />
+              </label>
+            </div>
+            <label class="text-xs text-surface-400">
+              Rotation
+              <input
+                type="number"
+                min="0"
+                max="360"
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                value={selectedElement.rotation ?? 0}
+                oninput={(e) => updateElement('rotation', Number(e.currentTarget.value))}
+              />
+            </label>
+            <label class="flex items-center gap-2 text-xs text-surface-400 cursor-pointer">
+              <input
+                type="checkbox"
+                class="accent-primary-500"
+                checked={selectedElement.outline ?? false}
+                onchange={(e) => updateElement('outline', e.currentTarget.checked || undefined)}
+              />
+              Outline only
+            </label>
           {/if}
 
           {#if selectedElement.type === 'arena'}
@@ -1467,6 +2648,17 @@
                   updateElement('showCrosshairs', e.currentTarget.checked ? undefined : false)}
               />
               Show crosshairs
+            </label>
+            <label class="text-xs text-surface-400">
+              Background image (URL)
+              <input
+                type="text"
+                placeholder="/arenas/foo.webp"
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                value={selectedElement.bgImage ?? ''}
+                oninput={(e) =>
+                  updateElement('bgImage', e.currentTarget.value || undefined)}
+              />
             </label>
           {/if}
 
@@ -1594,6 +2786,9 @@
                 >{/if}
               {#if 'x1' in el}<span class="text-surface-500 ml-auto font-mono"
                   >({el.x1},{el.y1})→({el.x2},{el.y2})</span
+                >{/if}
+              {#if el.type === 'polygon'}<span class="text-surface-500 ml-auto font-mono"
+                  >{el.points.length} pts</span
                 >{/if}
             </button>
           {/each}
