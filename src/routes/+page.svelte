@@ -18,6 +18,10 @@
   }
 </script>
 
+<svelte:head>
+  <title>WTFDIG!?</title>
+</svelte:head>
+
 <div class="container grid grow mx-auto my-6">
   <div class="@container flex flex-col items-center">
     <div class="flex justify-center">

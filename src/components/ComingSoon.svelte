@@ -14,6 +14,10 @@
   }: Props = $props();
 </script>
 
+<svelte:head>
+  <title>WTFDIG!? {config.abbreviatedTitle ?? config.title}</title>
+</svelte:head>
+
 <div class="container mx-auto my-12 flex grow flex-col items-center justify-center gap-8 px-4">
   <div
     class="card preset-filled-surface-100-900 border-[1px] border-surface-200-800 p-8 flex flex-col items-center gap-6 max-w-lg text-center"
