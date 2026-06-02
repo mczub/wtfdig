@@ -1,0 +1,394 @@
+/*
+ * Preset utilities — the distinctive Skeleton-style vocabulary layered on top
+ * of the shadcn tokens. Plain class-based CSS, so it works in any framework:
+ * Svelte, React, or raw HTML. Apply the classes directly to elements.
+ *
+ *   primitives:   .card .btn .btn-icon .chip .badge .anchor .disabled
+ *   color presets: .preset-tonal[-*] .preset-filled-* .preset-outlined-*
+ *   surfaces:     .bg-surface-* .border-surface-* .text-surface-*
+ *   typography:   .preset-typo-display-1..4 / -headline / -title / -subtitle
+ *                 / -body-1 / -body-2 / -caption / -menu / -button
+ */
+
+@layer components {
+  .card {
+    @apply rounded-xl border border-border bg-background text-card-foreground shadow-sm;
+  }
+
+  .anchor {
+    @apply text-blue-500 hover:text-blue-400 font-semibold;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-transparent bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold transition-[colors,scale] active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .btn-lg {
+    @apply h-11 px-5 text-base;
+  }
+
+  .btn-icon {
+    @apply inline-flex items-center justify-center rounded-md border border-border bg-muted text-muted-foreground transition-[colors,scale] active:scale-[0.96] hover:bg-muted/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .btn-icon-sm {
+    @apply h-9 w-9;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full border border-border bg-muted/60 px-3 py-1 text-xs font-medium shadow-sm;
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full border border-border bg-muted px-2 py-0.5 text-xs font-semibold uppercase tracking-wide;
+  }
+
+  .preset-tonal {
+    background-color: hsl(var(--muted));
+    color: hsl(var(--muted-foreground));
+    border-color: hsl(var(--border));
+  }
+
+  .preset-tonal-primary {
+    background-color: hsl(var(--primary) / 0.12);
+    color: hsl(var(--primary));
+    border-color: hsl(var(--primary));
+  }
+
+  .preset-tonal-secondary {
+    background-color: hsl(var(--secondary) / 0.15);
+    color: hsl(var(--secondary-foreground));
+    border-color: hsl(var(--secondary-500));
+  }
+
+  .preset-tonal-surface {
+    background-color: hsl(var(--surface-800));
+    color: hsl(var(--foreground));
+    border-color: hsl(var(--surface-600));
+  }
+
+  .preset-tonal-error {
+    background-color: hsl(var(--error-500) / 0.15);
+    color: hsl(var(--error-500));
+    border-color: hsl(var(--error-500));
+  }
+
+  .preset-tonal-success {
+    background-color: hsl(var(--success-500) / 0.15);
+    color: hsl(var(--success-500));
+    border-color: hsl(var(--success-500));
+  }
+
+  .preset-tonal-warning {
+    background-color: hsl(var(--warning-500) / 0.15);
+    color: hsl(var(--warning-500));
+    border-color: hsl(var(--warning-500));
+  }
+
+  .preset-filled-surface-100-900 {
+    background-color: hsl(var(--surface-100));
+    color: hsl(var(--foreground));
+  }
+
+  .dark .preset-filled-surface-100-900 {
+    background-color: hsl(var(--surface-900));
+    color: hsl(var(--foreground));
+  }
+
+  .preset-outlined-primary-500 {
+    border-color: hsl(var(--primary-500));
+  }
+
+  .preset-outlined-secondary-500 {
+    border-color: hsl(var(--secondary-500));
+  }
+
+  .preset-outlined-warning-500 {
+    border-color: hsl(var(--warning-500));
+  }
+
+  .preset-outlined-error-500 {
+    border-color: hsl(var(--error-500));
+  }
+
+  .preset-outlined-surface-200-800 {
+    background-color: hsl(var(--surface-200));
+    border-color: hsl(var(--surface-400));
+  }
+
+  .dark .preset-outlined-surface-200-800 {
+    background-color: hsl(var(--surface-800));
+    border-color: hsl(var(--surface-600));
+  }
+
+  .preset-filled-primary-500 {
+    background-color: hsl(var(--primary-500));
+    color: hsl(var(--primary-foreground));
+  }
+
+  .preset-filled-success-500 {
+    background-color: hsl(var(--success-500));
+    color: hsl(var(--foreground));
+  }
+
+  .bg-surface-100-900 {
+    background-color: hsl(var(--surface-100));
+    color: hsl(var(--foreground));
+  }
+
+  .dark .bg-surface-100-900 {
+    background-color: hsl(var(--surface-900));
+  }
+
+  .bg-surface-200-800 {
+    background-color: hsl(var(--surface-200));
+    color: hsl(var(--foreground));
+  }
+
+  .dark .bg-surface-200-800 {
+    background-color: hsl(var(--surface-800));
+  }
+
+  .bg-surface-950 {
+    background-color: hsl(var(--surface-950));
+    color: hsl(var(--foreground));
+  }
+
+  .bg-surface-1000 {
+    background-color: hsl(var(--surface-1000));
+    color: hsl(var(--foreground));
+  }
+
+  .border-surface-200-800 {
+    border-color: hsl(var(--surface-200));
+  }
+
+  .dark .border-surface-200-800 {
+    border-color: hsl(var(--surface-800));
+  }
+
+  .border-surface-800 {
+    border-color: hsl(var(--surface-800));
+  }
+
+  .border-surface-700 {
+    border-color: hsl(var(--surface-700));
+  }
+
+  .border-surface-600 {
+    border-color: hsl(var(--surface-600));
+  }
+
+  .border-surface-500 {
+    border-color: hsl(var(--surface-500));
+  }
+
+  .text-surface-50 {
+    color: hsl(var(--surface-50));
+  }
+
+  .text-surface-100 {
+    color: hsl(var(--surface-100));
+  }
+
+  .text-surface-200 {
+    color: hsl(var(--surface-200));
+  }
+
+  .text-surface-300 {
+    color: hsl(var(--surface-300));
+  }
+
+  .text-surface-400 {
+    color: hsl(var(--surface-400));
+  }
+
+  .text-surface-500 {
+    color: hsl(var(--surface-500));
+  }
+
+  .text-surface-600-400 {
+    color: hsl(var(--surface-600));
+  }
+
+  .dark .text-surface-600-400 {
+    color: hsl(var(--surface-400));
+  }
+
+  .dark .text-surface-800 {
+    color: hsl(var(--surface-800));
+  }
+
+  .disabled {
+    @apply opacity-50 pointer-events-none;
+  }
+
+  /* Headings */
+  .preset-typo-display-4,
+  .preset-typo-display-3,
+  .preset-typo-display-2,
+  .preset-typo-display-1,
+  .preset-typo-headline,
+  .preset-typo-title,
+  .preset-typo-subtitle,
+  .preset-typo-caption,
+  .preset-typo-menu,
+  .preset-typo-button {
+    color: var(--heading-font-color);
+    font-family: var(--heading-font-family);
+    font-weight: var(--heading-font-weight);
+  }
+
+  .dark .preset-typo-display-4,
+  .dark .preset-typo-display-3,
+  .dark .preset-typo-display-2,
+  .dark .preset-typo-display-1,
+  .dark .preset-typo-headline,
+  .dark .preset-typo-title,
+  .dark .preset-typo-subtitle,
+  .dark .preset-typo-caption,
+  .dark .preset-typo-menu,
+  .dark .preset-typo-button {
+    color: var(--heading-font-color-dark);
+  }
+
+  /* Body */
+  .preset-typo-body-1,
+  .preset-typo-body-2,
+  .preset-typo-caption,
+  .preset-typo-menu,
+  .preset-typo-button {
+    color: var(--heading-font-color);
+  }
+
+  .dark .preset-typo-body-1,
+  .dark .preset-typo-body-2,
+  .dark .preset-typo-caption,
+  .dark .preset-typo-menu,
+  .dark .preset-typo-button {
+    color: var(--heading-font-color-dark);
+  }
+
+  /* Unique Properties */
+  .preset-typo-display-4 {
+    font-size: var(--text-6xl);
+    line-height: 1.05;
+  }
+
+  @variant lg {
+    .preset-typo-display-4 {
+      font-size: var(--text-8xl);
+    }
+  }
+
+  .preset-typo-display-3 {
+    font-size: var(--text-5xl);
+    line-height: 1.05;
+  }
+
+  @variant lg {
+    .preset-typo-display-3 {
+      font-size: var(--text-7xl);
+    }
+  }
+
+  .preset-typo-display-2 {
+    font-size: var(--text-4xl);
+    line-height: 1.08;
+  }
+
+  @variant lg {
+    .preset-typo-display-2 {
+      font-size: var(--text-6xl);
+    }
+  }
+
+  .preset-typo-display-1 {
+    font-size: var(--text-3xl);
+    line-height: 1.1;
+  }
+
+  @variant lg {
+    .preset-typo-display-1 {
+      font-size: var(--text-5xl);
+    }
+  }
+
+  .preset-typo-headline {
+    font-size: var(--text-xl);
+    line-height: 1.15;
+  }
+
+  @variant lg {
+    .preset-typo-headline {
+      font-size: var(--text-3xl);
+    }
+  }
+
+  .preset-typo-title {
+    font-size: var(--text-lg);
+    line-height: 1.2;
+  }
+
+  @variant lg {
+    .preset-typo-title {
+      font-size: var(--text-2xl);
+    }
+  }
+
+  .preset-typo-subtitle {
+    font-size: var(--text-base);
+    color: var(--color-surface-700-300);
+  }
+
+  @variant lg {
+    .preset-typo-subtitle {
+      font-size: var(--text-lg);
+    }
+  }
+
+  .preset-typo-body-1 {
+    font-size: var(--text-lg);
+    line-height: 1.5;
+  }
+
+  @variant lg {
+    .preset-typo-body-1 {
+      font-size: var(--text-xl);
+    }
+  }
+
+  .preset-typo-body-2 {
+    font-size: var(--text-base);
+  }
+
+  @variant lg {
+    .preset-typo-body-2 {
+      font-size: var(--text-lg);
+    }
+  }
+
+  .preset-typo-caption {
+    font-size: var(--text-sm);
+    color: var(--color-surface-700-300);
+  }
+
+  .preset-typo-menu {
+    font-weight: 700;
+  }
+
+  .preset-typo-button {
+    font-weight: 700;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}

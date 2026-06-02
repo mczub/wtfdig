@@ -637,19 +637,29 @@ const allP5: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'Tower Soaks',
-        description: 'Healers 1st tower = South\nDPS hug S tower sides\nG1 Left tower, G2 Right tower',
+        description: 'Healers 1st tower = South\nDPS hug S tower sides\nG1 DPS Left tower, G2 DPS Right tower',
         imageUrl: './fru/naur-p5-wings-towers.webp'
       },
       {
-        mechanic: 'Dark Wing First',
-        description: 'MT → NW tower, OT out → NE tower\nDark Buster: highest enmity + closest',
-        imageUrl: './fru/naur-p5-wings-dark.webp'
+        mechanic: 'Dark Wing First (First hit)', // https://slides.com/ultiproject/frup5#/26
+        description: 'Tanks Left, MT in NW tower, OT IN\nParty OUT\nOT provoke during castbar',
+        imageUrl: './fru/naur-p5-wings-dark-1.webp'
       },
       {
-        mechanic: 'Light Wing First',
-        description: 'MT → NE tower, OT out → NW tower\nLight Buster: highest enmity + furthest',
-        imageUrl: './fru/naur-p5-wings-light.webp'
-      }
+        mechanic: 'Dark Wing First (Second hit)', // https://slides.com/ultiproject/frup5#/28
+        description: 'G1 DPS Left, G2 DPS Right\nParty IN\nMT OUT, OT opposite NE Tower',
+        imageUrl: './fru/naur-p5-wings-dark-2.webp'
+      },
+      {
+        mechanic: 'Light Wing First (First hit)', // https://slides.com/ultiproject/frup5#/31
+        description: 'Tanks Right, MT in NE tower, OT OUT\nParty IN\nOT provoke during castbar',
+        imageUrl: './fru/naur-p5-wings-light-1.webp'
+      },
+      {
+        mechanic: 'Light Wing First (Second hit)', // https://slides.com/ultiproject/frup5#/33
+        description: 'G1 DPS Left, G2 DPS Right\nParty OUT\nMT IN, OT opposite NW Tower',
+        imageUrl: './fru/naur-p5-wings-light-2.webp'
+      },
     ]
   },
   {

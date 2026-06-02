@@ -1,0 +1,16 @@
+/*
+ * @mczub/wtfdig-ui — framework-agnostic design system.
+ *
+ * Usage (in a Tailwind v4 entry stylesheet, AFTER `@import "tailwindcss"`):
+ *
+ *   @import 'tailwindcss';
+ *   @import '@mczub/wtfdig-ui';
+ *
+ * Pulls in: design tokens (light + dark), the Tailwind v4 theme mapping,
+ * base resets, and the preset utility vocabulary. No JS, no framework.
+ */
+
+@import './tokens.css';
+@import './theme.css';
+@import './base.css';
+@import './presets.css';
