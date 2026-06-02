@@ -386,13 +386,17 @@ const allP4: PhaseStrats[] = [
   {
     phaseName: 'Darklit Dragonsong',
     tag: 'p4-am',
+    description: {
+      '71': '',
+      '62': '‼️ 6-2: Both Tanks put stance ON to start, then OFF before Gaia spawns\n1 Tank top aggro on Ryne, 1 DPS top aggro on Gaia'
+    },
     mechs: [
       {
         mechanic: 'Setup',
         description: {
           '71': 'Memory Crystal spawns N\nTank pull Shiva to Mid',
           '62':
-            'Memory Crystal spawns N\nTank pull Shiva to Mid\nBoth Tanks: stance ON, then OFF before Gaia spawns\n→ 1 Tank top aggro on Ryne, 1 DPS top aggro on Gaia'
+            'Memory Crystal spawns N\nTank pull Shiva to Mid\nBoth Tanks: stance ON, then OFF before Gaia spawns\n1 Tank top aggro on Ryne, 1 DPS top aggro on Gaia'
         },
         imageUrl: './fru/naur-dl-setup.webp'
       },
@@ -405,28 +409,28 @@ const allP4: PhaseStrats[] = [
       {
         mechanic: 'Darklit Start',
         description:
-          '1 Healer, 1 Tank, 2 DPS get tethered\nNeed to form Botwie with tethers',
+          '1 Healer, 1 Tank, 2 DPS get tethered\nNeed to form Bowtie with tethers',
         imageUrl: './fru/naur-dl-akh-rhai.webp'
       },
       {
         mechanic: 'Bowtie',
-        description: 'Tethers start as Bowtie → no swaps',
+        description: 'Tethers start as Bowtie = no swaps',
         imageUrl: './fru/naur-dl-bowtie.webp'
       },
       {
         mechanic: 'Hourglass',
-        description: 'Tethers start as Hourglass → NE + SW swap\n(West DPS + Tank swap)',
+        description: 'Tethers start as Hourglass = NE + SW swap\n(West DPS + Tank swap)',
         imageUrl: './fru/naur-dl-hourglass.webp'
       },
       {
         mechanic: 'Box',
-        description: 'Tethers start as Box → East-most swap\n(East DPS + Tank swap)',
+        description: 'Tethers start as Box = East-most swap\n(East DPS + Tank swap)',
         imageUrl: './fru/naur-dl-box.webp'
       },
       {
         mechanic: 'Protean Adjusts',
         description:
-          'Untethered Tank = always East\nUntethered Healer = always West\nIf 2 DPS untethered: G1 DPS adjust other side\n',
+          'Untethered Tank = always East\nUntethered Healer = always West\nIf 2 DPS untethered: G1 DPS adjust other side',
         imageUrl: './fru/naur-dl-same-role.webp'
       },
       {
@@ -463,7 +467,7 @@ const allP4: PhaseStrats[] = [
           '71':
             'Party Center, Tank Out\n7 + 1 stacks - discuss which tank baits first\nMT = Shiva aggro, OT = Gaia aggro',
           '62':
-            'Both Tanks stack\nRest of party stack\n6 + 2 - allows recovery if a tank dies in CT'
+            'Both Tanks stack\nRest of party stack\nIf a tank died in CT, take as 6 + 1'
         },
         imageUrl: './fru/naur-dl-akh-morn.webp'
       },
@@ -481,7 +485,7 @@ const allP4: PhaseStrats[] = [
       {
         mechanic: 'Debuffs',
         description:
-          '2x Aero/Red = S Intercards\n2x Ice/Red = E/W\n1x Eruption/Blue = N Intercard (Purple Tether) → Cleanse W (D)\n1x Ice/Blue = S Intercard (Purple Light) → Cleanse SW (4)\n1x Unholy/Blue = S Intercard (Purple Light) → Cleanse E (B)\n1x Water/Blue = S Intercard (Purple Light) → Cleanse SE (3)\n+ X3 Quietus (raid damage), All Rewind 33s',
+          '2x Aero/Red = South Intercards\n2x Ice/Red = East/Wwest\n1x Eruption/Blue = North Intercard (Purple Tether) → Cleanse West (D)\n1x Ice/Blue = S Intercard (Purple Light) → Cleanse SW (4)\n1x Unholy/Blue = South Intercard (Purple Light) → Cleanse East (B)\n1x Water/Blue = South Intercard (Purple Light) → Cleanse SE (3)\n3x Quietus (raid damage), Everyone gets Rewind',
         imageUrl: './fru/naur-ct-debuffs.webp'
       },
       {
@@ -562,32 +566,32 @@ const allP4: PhaseStrats[] = [
       {
         mechanic: 'Aero/Red',
         description:
-          'Start: S Intercards (SE or SW, DPS prio E)\n→ Intercept dragon head\n→ Wait in S circle for late Traffic Light pop\n→ Move to pop dragon head near 3/4 marker during Exa-Wave\n→ Rewind, Spirit Taker spread, KB, Akh Morn'
+          'Start: S Intercards (SE or SW, DPS prio E)\nIntercept dragon head\nWait in S circle for late Traffic Light pop\nMove to pop dragon head near 3/4 marker during Exa-Wave\nRewind, Spirit Taker spread, KB, Akh Morn'
       },
       {
         mechanic: 'Ice/Red',
         description:
-          'Start: E or W (Supp W, DPS E)\n→ Drop ice puddle dodging N or staying S based on traffic light\n→ Move N to group up after 2nd traffic\n→ Rewind, Spirit Taker spread, KB, Akh Morn'
+          'Start: E or W (Supp W, DPS E)\nDrop ice puddle dodging N or staying S based on traffic light\nMove N to group up after 2nd traffic\nRewind, Spirit Taker spread, KB, Akh Morn'
       },
       {
         mechanic: 'Eruption/Blue',
         description:
-          'Start: N Intercard (Purple Tether)\n→ Tuck IN to avoid Aero pop AoE\n→ Cleanse West (D) - drop cleanse puddle\n→ Move with group through Exa-Wave\n→ Rewind, Spirit Taker spread, KB, Akh Morn'
+          'Start: N Intercard (Purple Tether)\nTuck IN to avoid Aero pop AoE\nCleanse West (D) - drop cleanse puddle\nMove with group through Exa-Wave\nRewind, Spirit Taker spread, KB, Akh Morn'
       },
       {
         mechanic: 'Ice/Blue',
         description:
-          'Start: S Intercard (Purple Tether Light)\n→ Stack with group for Water Stack\n→ Dodge slightly S to avoid 2nd Traffic Light Explosion\n→ Cleanse Southwest (4)\n→ Rewind, Spirit Taker spread, KB, Akh Morn'
+          'Start: S Intercard (Purple Tether Light)\nStack with group for Water Stack\nDodge slightly S to avoid 2nd Traffic Light Explosion\nCleanse Southwest (4)\nRewind, Spirit Taker spread, KB, Akh Morn'
       },
       {
         mechanic: 'Unholy/Blue',
         description:
-          'Start: S Intercard (Purple Tether Light)\n→ Stack on group for Water Stack\n→ Stack on intercard for Unholy, then move N\n→ Avoid Crystal with Unholy stack\n→ Cleanse East (B)\n→ Rewind, Spirit Taker spread, KB, Akh Morn'
+          'Start: S Intercard (Purple Tether Light)\nStack on group for Water Stack\nStack on intercard for Unholy, then move N\nAvoid Crystal with Unholy stack\n→ Cleanse East (B)\nRewind, Spirit Taker spread, KB, Akh Morn'
       },
       {
         mechanic: 'Water/Blue',
         description:
-          'Start: S Intercard (Purple Tether Light)\n→ Be the Water Stack target - group stacks on you\n→ Move S into "Petal" shape for KB\n→ Cleanse Southeast (3)\n→ Rewind, Spirit Taker spread, KB, Akh Morn'
+          'Start: S Intercard (Purple Tether Light)\nBe the Water Stack target - group stacks on you\nMove S into "Petal" shape for KB\nCleanse Southeast (3)\nRewind, Spirit Taker spread, KB, Akh Morn'
       }
     ]
   }
