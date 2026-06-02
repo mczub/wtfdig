@@ -3,7 +3,7 @@
   import { slide } from 'svelte/transition';
   import ChevronDown from '@lucide/svelte/icons/chevron-down';
   import { Separator } from '$lib/components/ui/separator';
-  import { Grid3x3, History, Hammer } from '@lucide/svelte';
+  import { Grid3x3, History, Hammer, TriangleAlert } from '@lucide/svelte';
 
   let openState = $state({
     savage: true,
@@ -127,6 +127,12 @@
           </button>
           {#if openState['ultimates']}
             <div transition:slide class="flex flex-col gap-4">
+              <a
+                href="{base}/ultimates/dmu"
+                class="btn preset-tonal-secondary border border-secondary-500"
+              >
+                <TriangleAlert class="size-4 text-warning-500" />Dancing Mad (Ultimate)</a
+              >
               <a
                 href="{base}/ultimates/fru"
                 class="btn preset-tonal-secondary border border-secondary-500"
