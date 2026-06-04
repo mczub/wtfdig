@@ -130,7 +130,7 @@ const allP1: PhaseStrats[] = [
         },
         {
           mechanic: 'Arrow Solve',
-          description: "Same Arrows: Place on Letter + 1 CCW of Letter\nDifferent Arrows: Use Le ",
+          description: "Same Arrows: Place on Letter + 1 CCW of Letter\nDifferent Arrows: Use Leftmost debuff to solve side\nPlace depending on debuff timers",
           imageUrl: './umad/arrows-arrow-solve.webp'
         },
         {
