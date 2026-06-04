@@ -144,11 +144,27 @@ const allP1: PhaseStrats[] = [
           imageUrl: './umad/arrows-sleep-confuse.webp'
         },
       ],
-      box: [
-        { mechanic: 'Placement' },
-        { mechanic: 'Sleep/Confuse' },
-        { mechanic: 'Knockback' },
-        { mechanic: 'Arrows' }
+      pinoy: [
+        {
+          mechanic: 'Placement',
+          description: "Everyone gets 2 Arrow debuffs\nOne role gets 2x same, one role gets 2x different\nPlace arrows in a box on intercards",
+          imageUrl: './umad/arrows-pinoy-placement-1.webp'
+        },
+        {
+          mechanic: 'Arrow Solve',
+          description: "Same Arrows: Place on outside intercard facing CCW\nDifferent Arrows: Arrows point towards your corner\nPlace on marker + outside depending on debuff timers",
+          imageUrl: './umad/arrows-pinoy-solve-2.webp'
+        },
+        {
+          mechanic: 'Knockback',
+          description: "Supports North, DPS South Confetti KB\nNon-Confetti on boss hitbox\nGet knocked through boss",
+          imageUrl: './umad/arrows-pinoy-knockback-1.webp'
+        },
+        {
+          mechanic: 'Sleep/Confuse (Fixed positions)',
+          description: "IGNORE DEBUFFS, use fixed spots\nG1 West, G2 East\nTank/Range North, Healer/Melee South\nRanged inside the arrow box, Melees on boss hitbox intercards",
+          imageUrl: './umad/arrows-pinoy-sleep-confuse.webp'
+        },
       ]
     }
   },
@@ -223,7 +239,7 @@ export const dancingMadFightConfig: FightConfig = {
       phaseTag: 'arrows',
       options: [
         { value: 'mgr', label: 'Merry-Go-Round' },
-        { value: 'box', label: 'Filipino Box' }
+        { value: 'pinoy', label: 'Filipino Box', url: {name: 'Filipino Box Graven 3', url: 'https://raidplan.io/plan/5rf2uhud5ztsbud5' }},
       ]
     }
   ],
