@@ -67,12 +67,12 @@ const allP1: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'First Puddle',
-        description: "G1 stack North, G2 stack South in safe quadrant\nCenter tether = Gravity Stack + Puddle\nRight side tether = Rocks",
+        description: "Everyone go North\nCenter tether = Gravity Stack + Puddle\nRight side tether = Rocks",
         imageUrl: './umad/puddles-first-puddle.webp'
       },
       {
         mechanic: 'First Rocks',
-        description: "Gravity goes off, rocks spread on their half\nMelees/Tanks can go E/W of boss hitbox\nGravity players can go middle",
+        description: "G1 go Left, G2 go Right\nMelees/Tanks can go E/W of boss hitbox\nGravity players can go middle",
         imageUrl: './umad/puddles-first-rocks.webp'
       },
       {
@@ -92,7 +92,7 @@ const allP1: PhaseStrats[] = [
       },
       {
         mechanic: 'Second Rocks',
-        description: "Gravity goes off, rocks spread on their half\nMelees/Tanks can go E/W of boss hitbox\nGravity players can go middle",
+        description: "G1 go Left, G2 go Right\nMelees/Tanks can go E/W of boss hitbox\nGravity players can go middle",
         imageUrl: './umad/puddles-second-rocks.webp'
       },
       {
@@ -194,10 +194,101 @@ const allP1: PhaseStrats[] = [
 // P2: God Kefka - placeholder until phases are discovered.
 const allP2: PhaseStrats[] = [
   {
-    phaseName: 'God Kefka',
+    phaseName: 'Forsaken Overview',
     tag: 'p2',
-    description: 'Under construction - phases will be added as teams discover and refine them.'
-  }
+    mechs: [
+      {
+        mechanic: 'Group A (Different Debuffs)',
+        strats: [
+          {
+            role: 'Tank',
+            party: 1,
+            description: '<b>Tower 1 - Take Tower</b><br>Stack → Left Tower, Northwest<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><br><b>Tower 2 - Take Tower</b><br>Cone → HTMR Tower Prio, Front<br>Circle → HTMR Tower, Back<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Tower</b><br>Stack → HTMR Tower Prio, North-ish<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><b>REMEMBER NEW DEBUFF</b><br><br><b>Tower 4 - Bait Clone</b><br>Bait Left Clone Far North<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Stack</b><br>Left Tower, Out + Front edge<br><br><b>Tower 6 - Bait Clone</b><br>Bait Left Clone Far North<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Stack</b><br>Left Tower, Out + Front edge<br><br><b>Tower 8 - Take Tower</b><br>Cone → HTMR Tower Prio, Front<br>Circle → HTMR Tower, Back<br><br><b>BAIT FUTURE/PAST</b>',
+          },
+          {
+            role: 'Tank',
+            party: 2,
+            description: '<b>Tower 1 - Take Tower</b><br>Stack → Left Tower, Northwest<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><br><b>Tower 2 - Take Tower</b><br>Cone → HTMR Tower Prio, Front<br>Circle → HTMR Tower, Back<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Tower</b><br>Stack → HTMR Tower Prio, North-ish<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><b>REMEMBER NEW DEBUFF</b><br><br><b>Tower 4 - Bait Clone</b><br>Bait Left Clone Far North<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Stack</b><br>Left Tower, Out + Front edge<br><br><b>Tower 6 - Bait Clone</b><br>Bait Left Clone Far North<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Stack</b><br>Left Tower, Out + Front edge<br><br><b>Tower 8 - Take Tower</b><br>Cone → HTMR Tower Prio, Front<br>Circle → HTMR Tower, Back<br><br><b>BAIT FUTURE/PAST</b>',
+          },
+          {
+            role: 'Healer',
+            party: 1,
+            description: '<b>Tower 1 - Take Tower</b><br>Stack → Left Tower, Northwest<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><br><b>Tower 2 - Take Tower</b><br>Cone → Left Tower, Front<br>Circle → Left Tower, Back<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Tower</b><br>Stack → Left Tower, North-ish<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><b>REMEMBER NEW DEBUFF</b><br><br><b>Tower 4 - Bait Cone</b><br>Bait Left Cone towards Left<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Cone</b><br>Left Tower, Out + Back edge<br><br><b>Tower 6 - Bait Cone</b><br>Bait Left Cone towards Left<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Cone</b><br>Left Tower, Out + Back edge<br><br><b>Tower 8 - Take Tower</b><br>Cone → Left Tower, Front<br>Circle → Left Tower, Back<br><br><b>BAIT FUTURE/PAST</b>',
+          },
+          {
+            role: 'Healer',
+            party: 2,
+            description: '<b>Tower 1 - Take Tower</b><br>Stack → Left Tower, Northwest<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><br><b>Tower 2 - Take Tower</b><br>Cone → Left Tower, Front<br>Circle → Left Tower, Back<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Tower</b><br>Stack → Left Tower, North-ish<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><b>REMEMBER NEW DEBUFF</b><br><br><b>Tower 4 - Bait Cone</b><br>Bait Left Cone towards Left<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Cone</b><br>Left Tower, Out + Back edge<br><br><b>Tower 6 - Bait Cone</b><br>Bait Left Cone towards Left<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Cone</b><br>Left Tower, Out + Back edge<br><br><b>Tower 8 - Take Tower</b><br>Cone → Left Tower, Front<br>Circle → Left Tower, Back<br><br><b>BAIT FUTURE/PAST</b>',
+          },
+          {
+            role: 'Melee',
+            party: 1,
+            description: '<b>Tower 1 - Take Tower</b><br>Stack → Right Tower, North<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><br><b>Tower 2 - Take Tower</b><br>Cone → HTMR Tower Prio, Front<br>Circle → HTMR Tower Prio, Back<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Tower</b><br>Stack → HTMR Tower Prio, North-ish<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><b>REMEMBER NEW DEBUFF</b><br><br><b>Tower 4 - Bait Clone</b><br>Bait Right Clone Far North<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Stack</b><br>Right Tower, Out + Front edge<br><br><b>Tower 6 - Bait Clone</b><br>Bait Right Clone Far North<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Stack</b><br>Right Tower, Out + Front edge<br><br><b>Tower 8 - Take Tower</b><br>Cone → HTMR Tower Prio, Front<br>Circle → HTMR Tower Prio, Back<br><br><b>BAIT FUTURE/PAST</b>',
+          },
+          {
+            role: 'Melee',
+            party: 2,
+            description: '<b>Tower 1 - Take Tower</b><br>Stack → Right Tower, North<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><br><b>Tower 2 - Take Tower</b><br>Cone → HTMR Tower Prio, Front<br>Circle → HTMR Tower Prio, Back<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Tower</b><br>Stack → HTMR Tower Prio, North-ish<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><b>REMEMBER NEW DEBUFF</b><br><br><b>Tower 4 - Bait Clone</b><br>Bait Right Clone Far North<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Stack</b><br>Right Tower, Out + Front edge<br><br><b>Tower 6 - Bait Clone</b><br>Bait Right Clone Far North<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Stack</b><br>Right Tower, Out + Front edge<br><br><b>Tower 8 - Take Tower</b><br>Cone → HTMR Tower Prio, Front<br>Circle → HTMR Tower Prio, Back<br><br><b>BAIT FUTURE/PAST</b>',
+          },
+          {
+            role: 'Ranged',
+            party: 1,
+            description: '<b>Tower 1 - Take Tower</b><br>Stack → Right Tower, North<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><br><b>Tower 2 - Take Tower</b><br>Cone → Right Tower, Front<br>Circle → Right Tower, Back<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Tower</b><br>Stack → Right Tower, North-ish<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><b>REMEMBER NEW DEBUFF</b><br><br><b>Tower 4 - Bait Cone</b><br>Bait Right Cone towards Right<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Stack</b><br>Right Tower, Out + Front edge<br><br><b>Tower 6 - Bait Cone</b><br>Bait Right Cone towards Right<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Stack</b><br>Right Tower, Out + Front edge<br><br><b>Tower 8 - Take Tower</b><br>Cone → Right Tower, Front<br>Circle → Right Tower, Back<br><br><b>BAIT FUTURE/PAST</b>',
+          },
+          {
+            role: 'Ranged',
+            party: 2,
+            description: '<b>Tower 1 - Take Tower</b><br>Stack → Right Tower, North<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><br><b>Tower 2 - Take Tower</b><br>Cone → Right Tower, Front<br>Circle → Right Tower, Back<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Tower</b><br>Stack → Right Tower, North-ish<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><b>REMEMBER NEW DEBUFF</b><br><br><b>Tower 4 - Bait Cone</b><br>Bait Right Cone towards Right<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Stack</b><br>Right Tower, Out + Front edge<br><br><b>Tower 6 - Bait Cone</b><br>Bait Right Cone towards Right<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Stack</b><br>Right Tower, Out + Front edge<br><br><b>Tower 8 - Take Tower</b><br>Cone → Right Tower, Front<br>Circle → Right Tower, Back<br><br><b>BAIT FUTURE/PAST</b>',
+          }
+        ]
+      },
+      {
+        mechanic: 'Group B (Same Debuffs)',
+        strats: [
+          {
+            role: 'Tank',
+            party: 1,
+            description: '<b>Tower 1 - Take Stack</b><br><b>REMEMBER DEBUFF</b><br>Left Tower, Out + Front edge<br><br><b>Tower 2 - Bait Clone</b><br>Bait Left Clone Far North<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Stack</b><br>Left Tower, Out + Front edge<br><br><b>Tower 4 - Take Tower</b><br>Cone → Right Tower, Front<br>Circle → Right Tower, Back<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Tower</b><br>Stack → HTMR Tower Prio, North-ish<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><br><b>Tower 6 - Take Tower</b><br>Cone → HTMR Tower Prio, Front<br>Circle → HTMR Tower Prio, Back<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Tower</b><br>Stack → HTMR Tower Prio, North-ish<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><br><b>Tower 8 - Bait Clone</b><br>Bait Left Clone Far North<br><br><b>BAIT FUTURE/PAST</b>',
+          },
+          {
+            role: 'Tank',
+            party: 2,
+            description: '<b>Tower 1 - Take Stack</b><br><b>REMEMBER DEBUFF</b><br>Left Tower, Out + Front edge<br><br><b>Tower 2 - Bait Clone</b><br>Bait Left Clone Far North<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Stack</b><br>Left Tower, Out + Front edge<br><br><b>Tower 4 - Take Tower</b><br>Cone → Right Tower, Front<br>Circle → Right Tower, Back<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Tower</b><br>Stack → HTMR Tower Prio, North-ish<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><br><b>Tower 6 - Take Tower</b><br>Cone → HTMR Tower Prio, Front<br>Circle → HTMR Tower Prio, Back<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Tower</b><br>Stack → HTMR Tower Prio, North-ish<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><br><b>Tower 8 - Bait Clone</b><br>Bait Left Clone Far North<br><br><b>BAIT FUTURE/PAST</b>',
+          },
+          {
+            role: 'Healer',
+            party: 1,
+            description: '<b>Tower 1 - Take Cone</b><br><b>REMEMBER DEBUFF</b><br>Left Tower, Out + Back edge<br><br><b>Tower 2 - Bait Cone</b><br>Bait Left Cone towards Left<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Cone</b><br>Left Tower, Out + Back edge<br><br><b>Tower 4 - Take Tower</b><br>Cone → Left Tower, Front<br>Circle → Left Tower, Back<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Tower</b><br>Stack → Left Tower, North-ish<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><br><b>Tower 6 - Take Tower</b><br>Cone → Left Tower, Front<br>Circle → Left Tower, Back<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Tower</b><br>Stack → Left Tower, North-ish<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><br><b>Tower 8 - Bait Cone</b><br>Bait Left Cone towards Left<br><br><b>BAIT FUTURE/PAST</b>',
+          },
+          {
+            role: 'Healer',
+            party: 2,
+            description: '<b>Tower 1 - Take Cone</b><br><b>REMEMBER DEBUFF</b><br>Left Tower, Out + Back edge<br><br><b>Tower 2 - Bait Cone</b><br>Bait Left Cone towards Left<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Cone</b><br>Left Tower, Out + Back edge<br><br><b>Tower 4 - Take Tower</b><br>Cone → Left Tower, Front<br>Circle → Left Tower, Back<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Tower</b><br>Stack → Left Tower, North-ish<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><br><b>Tower 6 - Take Tower</b><br>Cone → Left Tower, Front<br>Circle → Left Tower, Back<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Tower</b><br>Stack → Left Tower, North-ish<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><br><b>Tower 8 - Bait Cone</b><br>Bait Left Cone towards Left<br><br><b>BAIT FUTURE/PAST</b>',
+          },
+          {
+            role: 'Melee',
+            party: 1,
+            description: '<b>Tower 1 - Take Stack</b><br><b>REMEMBER DEBUFF</b><br>Right Tower, Out + Front edge<br><br><b>Tower 2 - Bait Clone</b><br>Bait Right Clone Far North<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Stack</b><br>Right Tower, Out + Front edge<br><br><b>Tower 4 - Take Tower</b><br>Cone → HTMR Tower Prio, Front<br>Circle → HTMR Tower Prio, Back<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Tower</b><br>Stack → HTMR Tower Prio, North-ish<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><br><b>Tower 6 - Take Tower</b><br>Cone → HTMR Tower Prio, Front<br>Circle → HTMR Tower Prio, Back<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Tower</b><br>Stack → HTMR Tower Prio, North-ish<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><br><b>Tower 8 - Bait Clone</b><br>Bait Right Clone Far North<br><br><b>BAIT FUTURE/PAST</b>',
+          },
+          {
+            role: 'Melee',
+            party: 2,
+            description: '<b>Tower 1 - Take Stack</b><br><b>REMEMBER DEBUFF</b><br>Right Tower, Out + Front edge<br><br><b>Tower 2 - Bait Clone</b><br>Bait Right Clone Far North<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Stack</b><br>Right Tower, Out + Front edge<br><br><b>Tower 4 - Take Tower</b><br>Cone → HTMR Tower Prio, Front<br>Circle → HTMR Tower Prio, Back<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Tower</b><br>Stack → HTMR Tower Prio, North-ish<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><br><b>Tower 6 - Take Tower</b><br>Cone → HTMR Tower Prio, Front<br>Circle → HTMR Tower Prio, Back<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Tower</b><br>Stack → HTMR Tower Prio, North-ish<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><br><b>Tower 8 - Bait Clone</b><br>Bait Right Clone Far North<br><br><b>BAIT FUTURE/PAST</b>',
+          },
+          {
+            role: 'Ranged',
+            party: 1,
+            description: '<b>Tower 1 - Take Stack</b><br><b>REMEMBER DEBUFF</b><br>Right Tower, Out + Front edge<br><br><b>Tower 2 - Bait Cone</b><br>Bait Right Cone towards Right<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Stack</b><br>Right Tower, Out + Front edge<br><br><b>Tower 4 - Take Tower</b><br>Cone → Right Tower, Front<br>Circle → Right Tower, Back<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Tower</b><br>Stack → Right Tower, North-ish<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><br><b>Tower 6 - Take Tower</b><br>Cone → Right Tower, Front<br>Circle → Right Tower, Back<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Tower</b><br>Stack → Right Tower, North-ish<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><br><b>Tower 8 - Bait Cone</b><br>Bait Right Cone towards Right<br><br><b>BAIT FUTURE/PAST</b>',
+          },
+          {
+            role: 'Ranged',
+            party: 2,
+            description: '<b>Tower 1 - Take Stack</b><br><b>REMEMBER DEBUFF</b><br>Right Tower, Out + Front edge<br><br><b>Tower 2 - Bait Cone</b><br>Bait Right Cone towards Right<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Stack</b><br>Right Tower, Out + Front edge<br><br><b>Tower 4 - Take Tower</b><br>Cone → Right Tower, Front<br>Circle → Right Tower, Back<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Tower</b><br>Stack → Right Tower, North-ish<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><br><b>Tower 6 - Take Tower</b><br>Cone → Right Tower, Front<br>Circle → Right Tower, Back<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Tower</b><br>Stack → Right Tower, North-ish<br>Cone → Left Tower, South<br>Circle → Right Tower, South<br><br><b>Tower 8 - Bait Cone</b><br>Bait Right Cone towards Right<br><br><b>BAIT FUTURE/PAST</b>',
+          }
+        ]
+      }
+    ]
+  },
 ];
 
 const allP3: PhaseStrats[] = [
