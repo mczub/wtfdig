@@ -184,7 +184,7 @@ const allP1: PhaseStrats[] = [
       },
       {
         mechanic: 'Stack',
-        description: "Supports on 3 > 2 waymark\nDPS on 1 > 4 waymark",
+        description: "Supports on 3\nDPS on 1",
         imageUrl: './umad/gaze-stack.webp'
       }
     ]
