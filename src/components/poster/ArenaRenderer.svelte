@@ -430,7 +430,7 @@
             rx={pSize * 0.5}
             ry={pSize * 0.5}
             fill={color}
-            fill-opacity="0.9"
+            fill-opacity="1.0"
             stroke={highlightJob && roleMatch ? 'white' : 'white'}
             stroke-width={(highlightJob && roleMatch ? 0.8 : 0.25) * pScale}
           />
