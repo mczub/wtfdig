@@ -660,7 +660,7 @@
   // Jobs offered by the visibility job-picker (specifics + role generics).
   const VIS_JOBS: PlayerJob[] = [
     'MT', 'OT', 'H1', 'H2', 'M1', 'M2', 'R1', 'R2',
-    'TANK', 'HEALER', 'MELEE', 'RANGED', 'DPS', 'SUP', 'G1', 'G2',
+    'TANK', 'HEALER', 'MELEE', 'RANGED', 'HTM', 'TMR', 'DPS', 'SUP', 'G1', 'G2',
     'G1SUP', 'G1DPS', 'G2SUP', 'G2DPS', 'ANY'
   ];
 
@@ -717,11 +717,12 @@
           {
             const hasCorners = el.corners && Object.keys(el.corners).length > 0;
             const hasSize = el.size != null && el.size !== 6;
-            const hasOpts = el.marker || el.id || hasCorners || hasSize;
+            const hasOpts = el.marker || el.id || hasCorners || hasSize || el.statusAbove;
             if (hasOpts) {
               const opts: string[] = [];
               if (el.id) opts.push(`id: '${el.id}'`);
               if (el.marker) opts.push(`marker: '${el.marker}'`);
+              if (el.statusAbove) opts.push(`statusAbove: '${el.statusAbove}'`);
               if (hasSize) opts.push(`size: ${el.size}`);
               if (hasCorners) {
                 const cornerStr = Object.entries(el.corners!)
@@ -946,6 +947,7 @@
         y: +m[3],
         id: m[4] || (opts.id as string | undefined),
         marker: opts.marker as 'red' | 'green' | undefined,
+        statusAbove: opts.statusAbove as string | undefined,
         size: opts.size as number | undefined,
         groupId: opts.groupId as string | undefined,
         corners: Object.keys(corners).length ? corners : undefined
@@ -1273,6 +1275,8 @@
     'HEALER',
     'MELEE',
     'RANGED',
+    'HTM',
+    'TMR',
     'DPS',
     'SUP',
     'G1',
@@ -2166,6 +2170,19 @@
                   onclick={() => updateElement('marker', 'green')}>Green ∨</button
                 >
               </div>
+            </label>
+            <label class="text-xs text-surface-400">
+              Status above
+              <select
+                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs w-full mt-0.5"
+                value={selectedElement.statusAbove ?? ''}
+                onchange={(e) => updateElement('statusAbove', e.currentTarget.value || undefined)}
+              >
+                <option value="">—</option>
+                {#each DEBUFF_IDS as id}
+                  <option value={id}>{DEBUFFS[id].name}</option>
+                {/each}
+              </select>
             </label>
             <div class="text-xs text-surface-400 space-y-1">
               <div>Corner debuffs</div>

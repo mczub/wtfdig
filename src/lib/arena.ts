@@ -26,6 +26,8 @@ export type PlayerJob =
   | 'HEALER'
   | 'MELEE'
   | 'RANGED'
+  | 'HTM'
+  | 'TMR'
   | 'X';
 
 /** Jobs in group 1 (first of each role pair). */
@@ -52,6 +54,10 @@ export const G2_SUPPORT_JOBS: readonly PlayerJob[] = ['OT', 'H2'];
 export const G1_DPS_JOBS: readonly PlayerJob[] = ['M1', 'R1'];
 /** G2 DPS (M2 + R2). */
 export const G2_DPS_JOBS: readonly PlayerJob[] = ['M2', 'R2'];
+/** Healer + Tank + Melee jobs. */
+export const HTM_JOBS: readonly PlayerJob[] = ['MT', 'OT', 'H1', 'H2', 'M1', 'M2'];
+/** Tank + Melee + Ranged jobs. */
+export const TMR_JOBS: readonly PlayerJob[] = ['MT', 'OT', 'M1', 'M2', 'R1', 'R2'];
 
 /** Short labels for role-generic player icons. Newlines render as stacked tspans. */
 export const DEFAULT_JOB_LABELS: Partial<Record<PlayerJob, string>> = {
@@ -84,6 +90,8 @@ export function jobMatchesRole(iconJob: PlayerJob, selectedJob: PlayerJob): bool
   if (iconJob === 'G2SUP') return G2_SUPPORT_JOBS.includes(selectedJob);
   if (iconJob === 'G1DPS') return G1_DPS_JOBS.includes(selectedJob);
   if (iconJob === 'G2DPS') return G2_DPS_JOBS.includes(selectedJob);
+  if (iconJob === 'HTM') return HTM_JOBS.includes(selectedJob);
+  if (iconJob === 'TMR') return TMR_JOBS.includes(selectedJob);
   return false;
 }
 export type WaymarkName = 'A' | 'B' | 'C' | 'D' | '1' | '2' | '3' | '4';
@@ -98,6 +106,8 @@ export interface PlayerElement {
   marker?: 'red' | 'green';
   /** Debuff icons attached to player corners (by debuff id from $lib/debuffs). */
   corners?: Partial<Record<PlayerCorner, string>>;
+  /** Status/debuff icon centered above the player (by debuff id from $lib/debuffs), like the chevron marker. */
+  statusAbove?: string;
   /** Radius in arena % units. Default 6. */
   size?: number;
   id?: string;
@@ -350,6 +360,8 @@ export const ROLE_COLORS: Record<PlayerJob, string> = {
   HEALER: '#22c55e', // green - any healer
   MELEE: '#ef4444', // red - any melee DPS
   RANGED: '#f97316', // orange - any ranged DPS
+  HTM: '#06b6d4', // cyan - Healer/Tank/Melee
+  TMR: '#d946ef', // fuchsia - Tank/Melee/Ranged
   X: '#6b7280', // grey - context marker, never matches a role
   G1SUP: '#14b8a6', // G1 supports (MT + H1) - violet (G1 color)
   G1DPS: '#ef4444', // G1 DPS (M1 + R1) - violet (G1 color)
@@ -381,6 +393,7 @@ export function player(
         marker?: 'red' | 'green';
         size?: number;
         corners?: Partial<Record<PlayerCorner, string>>;
+        statusAbove?: string;
         groupId?: string;
       }
 ): PlayerElement {

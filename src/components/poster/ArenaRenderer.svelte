@@ -464,6 +464,22 @@
               stroke-linejoin="round"
             />
           {/if}
+          {#if el.statusAbove}
+            {@const sdef = getDebuff(el.statusAbove)}
+            {#if sdef}
+              {@const sSize = 7 * pScale}
+              {@const sBottom = el.marker ? el.y - 13.5 * pScale : el.y - pSize - 1 * pScale}
+              <image
+                href={`/icons/status/${sdef.iconFile}`}
+                x={el.x - sSize / 2}
+                y={sBottom - sSize}
+                width={sSize}
+                height={sSize}
+              >
+                <title>{sdef.name}</title>
+              </image>
+            {/if}
+          {/if}
           {#if el.corners}
             {#each Object.entries(el.corners) as [corner, debuffId]}
               {@const def = getDebuff(debuffId)}
