@@ -31,11 +31,14 @@ export const umadPosterLayout: PosterLayout = {
   subtitle: '',
   sections: [
     {
-      title: 'P1: Arrows',
+      title: 'P1: Arrows (Merry-go-round)',
       col: 1,
       row: 1,
       w: 4,
       h: 4,
+      visibleWhen: {
+        strat: { arrows: ['mgr'] }
+      },
       // viewBox 125 × 100
       accentColor: '#f59e0b',
       arena: diagram('square', [
@@ -83,9 +86,24 @@ export const umadPosterLayout: PosterLayout = {
       ], { bgColor: 'transparent' })
     },
     {
-      title: 'P2: Forsaken (Kroxy-Rinon)',
+      title: 'P1: Arrows (Filipino)',
       col: 1,
-      row: 5,
+      row: 1,
+      w: 4,
+      h: 4,
+      visibleWhen: {
+        strat: { arrows: ['pinoy'] }
+      },
+      // viewBox 125 × 100
+      accentColor: '#f59e0b',
+      arena: diagram('square', [
+        text('Cheatsheet In Progress', 50, 20, { fontSize: 6 }),
+      ], { bgColor: 'transparent' })
+    },
+    {
+      title: 'P2: Forsaken (Kroxy-Rinon)',
+      col: 5,
+      row: 1,
       w: 7,
       h: 4,
       // viewBox 125 × 100
@@ -619,8 +637,8 @@ export const umadPosterLayout: PosterLayout = {
     },
     {
       title: 'P2: Forsaken (South Adjust)',
-      col: 1,
-      row: 5,
+      col: 5,
+      row: 1,
       w: 7,
       h: 4,
       // viewBox 125 × 100
