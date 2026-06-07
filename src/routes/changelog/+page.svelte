@@ -8,6 +8,7 @@
   </header>
   <article class="prose dark:prose-invert max-w-none">
     <div class="">
+      <div>6/7/2026: umad p1 and p2</div>
       <div>5/7/2026: ex 1, 2, 3</div>
       <div>5/1/2026: updated cheatsheet view</div>
       <div>4/30/2026: ex8</div>
