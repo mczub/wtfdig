@@ -338,11 +338,11 @@ export const umadPosterLayout: PosterLayout = {
         aoeCircle(76, 85, 3, { color: '#0a7cf5' , groupId: 'melee' }),
         aoeCircle(83, 85, 3, { color: '#0a7cf5' , groupId: 'melee' }),
         debuff('forsaken-cone', 71, 85, { size: 4 , groupId: 'melee' }),
-        aoeCircle(82, 83, 1, { opacity: 1 , groupId: 'melee' }),
+        aoeCircle(77, 83, 1, { opacity: 1 , groupId: 'melee' }),
         debuff('forsaken-circle', 71, 92, { size: 4 , groupId: 'melee' }),
         aoeCircle(76, 92, 3, { color: '#0a7cf5' , groupId: 'melee' }),
         aoeCircle(83, 92, 3, { color: '#0a7cf5' , groupId: 'melee' }),
-        aoeCircle(83, 94, 1, { opacity: 1 , groupId: 'melee' }),
+        aoeCircle(76, 94, 1, { opacity: 1 , groupId: 'melee' }),
         aoeCircle(158, 89, 3, { color: '#0a7cf5' , groupId: 'melee' }),
         aoeCircle(165, 89, 3, { color: '#0a7cf5' , groupId: 'melee' }),
         aoeCircle(165, 83, 1, { opacity: 1 , groupId: 'melee' }),
@@ -592,8 +592,8 @@ export const umadPosterLayout: PosterLayout = {
         aoeCircle(119, 84, 1, { opacity: 1 , groupId: 'tank' }),
         aoeCircle(118, 95, 1, { opacity: 1 , groupId: 'tank' }),
         aoeCircle(140, 81, 1, { opacity: 1 , groupId: 'tank' }),
-        aoeCircle(77, 83, 1, { opacity: 1 , groupId: 'tank' }),
-        aoeCircle(76, 94, 1, { opacity: 1 , groupId: 'tank' }),
+        aoeCircle(82, 83, 1, { opacity: 1 , groupId: 'tank' }),
+        aoeCircle(83, 94, 1, { opacity: 1 , groupId: 'tank' }),
         text('Flex', 37.5, 64, { color: '#f59e0b', fontSize: 2 , groupId: 'tank' }),
         text('Flex', 58.5, 62, { color: '#f59e0b', fontSize: 2 , groupId: 'tank' }),
         text('Flex', 37.5, 71, { color: '#f59e0b', fontSize: 2 , groupId: 'tank' }),
@@ -622,7 +622,6 @@ export const umadPosterLayout: PosterLayout = {
           { id: 'overall', visibleWhen: { whenRoleSelected: false } }
         ]
       })
-
     },
     {
       title: 'P2: Forsaken (South Adjust)',
@@ -872,11 +871,11 @@ export const umadPosterLayout: PosterLayout = {
         aoeCircle(76, 85, 3, { color: '#0a7cf5' , groupId: 'melee' }),
         aoeCircle(83, 85, 3, { color: '#0a7cf5' , groupId: 'melee' }),
         debuff('forsaken-cone', 71, 85, { size: 4 , groupId: 'melee' }),
-        aoeCircle(82, 83, 1, { opacity: 1 , groupId: 'melee' }),
+        aoeCircle(77, 83, 1, { opacity: 1 , groupId: 'melee' }),
         debuff('forsaken-circle', 71, 92, { size: 4 , groupId: 'melee' }),
         aoeCircle(76, 92, 3, { color: '#0a7cf5' , groupId: 'melee' }),
         aoeCircle(83, 92, 3, { color: '#0a7cf5' , groupId: 'melee' }),
-        aoeCircle(83, 94, 1, { opacity: 1 , groupId: 'melee' }),
+        aoeCircle(76, 94, 1, { opacity: 1 , groupId: 'melee' }),
         aoeCircle(158, 89, 3, { color: '#0a7cf5' , groupId: 'melee' }),
         aoeCircle(165, 89, 3, { color: '#0a7cf5' , groupId: 'melee' }),
         aoeCircle(165, 83, 1, { opacity: 1 , groupId: 'melee' }),
@@ -1126,8 +1125,8 @@ export const umadPosterLayout: PosterLayout = {
         aoeCircle(119, 84, 1, { opacity: 1 , groupId: 'tank' }),
         aoeCircle(118, 95, 1, { opacity: 1 , groupId: 'tank' }),
         aoeCircle(140, 81, 1, { opacity: 1 , groupId: 'tank' }),
-        aoeCircle(77, 83, 1, { opacity: 1 , groupId: 'tank' }),
-        aoeCircle(76, 94, 1, { opacity: 1 , groupId: 'tank' }),
+        aoeCircle(82, 83, 1, { opacity: 1 , groupId: 'tank' }),
+        aoeCircle(83, 94, 1, { opacity: 1 , groupId: 'tank' }),
         text('Flex', 37.5, 64, { color: '#f59e0b', fontSize: 2 , groupId: 'tank' }),
         text('Flex', 58.5, 62, { color: '#f59e0b', fontSize: 2 , groupId: 'tank' }),
         text('Flex', 37.5, 71, { color: '#f59e0b', fontSize: 2 , groupId: 'tank' }),
@@ -1192,7 +1191,6 @@ export const umadPosterLayout: PosterLayout = {
           { id: 'overall', visibleWhen: { whenRoleSelected: false } }
         ]
       })
-
     },
   ],
 }

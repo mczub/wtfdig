@@ -860,7 +860,7 @@ const allP2: PhaseStrats[] = [
         {
           mechanic: 'Overview',
           description:
-            'AAABBBA order\nOdd towers: Cones Left, Spreads Right\nLeft stack = boss hitbox ring, Right stack = front toward "new north"\nEven towers: one spread, one cone per tower\nTanks/Melees will flex if partner matches',
+            'AAABBBBA order\nOdd towers: Cones Left, Spreads Right\nLeft stack = boss hitbox ring, Right stack = front toward "new north"\nEven towers: one spread, one cone per tower\nTanks/Melees will flex if partner matches',
           imageUrl: './umad/p2-forsaken-kr-0.webp'
         },
         {
@@ -904,7 +904,7 @@ const allP2: PhaseStrats[] = [
         {
           mechanic: 'Overview',
           description:
-            'AAABBBA order\nOdd towers: Cones Left, Spreads Right\nLeft stack = boss hitbox ring, Right stack = front toward "new north"\nEven towers: one spread, one cone per tower',
+            'AAABBBBA order\nOdd towers: Cones Left, Spreads Right\nLeft stack = boss hitbox ring, Right stack = front toward "new north"\nEven towers: one spread, one cone per tower',
           imageUrl: './umad/p2-forsaken-south-0.webp'
         },
         {

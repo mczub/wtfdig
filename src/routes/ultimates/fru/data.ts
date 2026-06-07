@@ -730,7 +730,7 @@ export const fruFightConfig: FightConfig = {
   fightKey: 'fru',
   title: 'Futures Rewritten (Ultimate)',
   abbreviatedTitle: 'FRU',
-  subtitle: 'FRU Patch 7.2',
+  subtitle: 'FRU Patch 7.11',
   cheatsheetTitle: 'FRU Cheatsheet',
   strats: {
     naur: {
