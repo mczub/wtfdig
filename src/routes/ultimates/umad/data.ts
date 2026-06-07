@@ -1011,6 +1011,7 @@ export const dancingMadFightConfig: FightConfig = {
   abbreviatedTitle: 'Kefka',
   subtitle: 'Kefka 7.51',
   cheatsheetTitle: 'Dancing Mad Cheatsheet',
+  showAllToggleUrls: true,
   strats: {
     kefkabin: { label: 'Kefkabin', defaults: { arrows: 'mgr', forsaken: 'kr' } }
   },
