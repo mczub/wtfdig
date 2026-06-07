@@ -403,7 +403,56 @@ const allP1: PhaseStrats[] = [
           mechanic: 'Sleep/Confuse (Fixed positions)',
           description:
             'IGNORE DEBUFFS, use fixed tether spots\nTanks/Melee inside, Healers/Ranged outside',
-          imageUrl: './umad/arrows-sleep-confuse.webp'
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'North, inside',
+              imageUrl: './umad/arrows-sleep-confuse.webp'
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'West, inside',
+              imageUrl: './umad/arrows-sleep-confuse.webp'
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'South, outside',
+              imageUrl: './umad/arrows-sleep-confuse.webp'
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'East, outside',
+              imageUrl: './umad/arrows-sleep-confuse.webp'
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'South, inside',
+              imageUrl: './umad/arrows-sleep-confuse.webp'
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'East, inside',
+              imageUrl: './umad/arrows-sleep-confuse.webp'
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'North, outside',
+              imageUrl: './umad/arrows-sleep-confuse.webp'
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'West, outside',
+              imageUrl: './umad/arrows-sleep-confuse.webp'
+            }
+          ]
         }
       ],
       pinoy: [
