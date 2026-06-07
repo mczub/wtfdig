@@ -36,6 +36,7 @@
     spotlight,
     alignment,
     tabTags = null,
+    inProgressTabs = null,
     useMainPageTabs = false,
     role = null,
     currentTab = $bindable()
@@ -204,7 +205,13 @@
             value={tabName}
             labelBase="btn bg-transparent hover:bg-surface-700"
             classes="px-6 py-2 text-lg rounded-sm transition-all border-surface-700 data-[state=active]:bg-surface-700 data-[state=active]:text-white data-[state=active]:border-surface-400 data-[state=active]:shadow-md"
-            >{tabName}</Tabs.Control
+            >
+            <span class="inline-flex items-center gap-1.5">
+              {#if inProgressTabs?.includes(tabName)}<TriangleAlert
+                  class="size-4 shrink-0 text-warning-500"
+                />{/if}{tabName}
+            </span>
+          </Tabs.Control
           >
         {/each}
       {/snippet}

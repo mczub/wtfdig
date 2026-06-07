@@ -17,6 +17,7 @@
     Settings,
     Shield,
     Siren,
+    TriangleAlert,
     Type,
     Wrench,
     X
@@ -47,6 +48,7 @@
     spotlight: boolean;
     alignment: Alignment;
     tabTags?: Record<string, string[]> | null;
+    inProgressTabs?: string[] | null;
     role?: Role | null;
     splitTimeline?: boolean;
     useEvenTimelineSpacing?: boolean;
@@ -73,6 +75,7 @@
     spotlight,
     alignment,
     tabTags = null,
+    inProgressTabs = null,
     role = null,
     splitTimeline = false,
     useEvenTimelineSpacing: useEvenTimelineSpacingProp = false,
@@ -1288,10 +1291,12 @@
           <div class={`flex gap-1 ${wrap ? 'flex-wrap' : ''}`}>
             {#each Object.keys(tabTags) as tabName}
               <button
-                class={`px-3 py-1 text-sm rounded transition-colors ${tab === tabName ? 'bg-primary-500 text-white' : 'bg-surface-800 hover:bg-surface-700'}`}
+                class={`px-3 py-1 text-sm rounded transition-colors inline-flex items-center gap-1.5 ${tab === tabName ? 'bg-primary-500 text-white' : 'bg-surface-800 hover:bg-surface-700'}`}
                 onclick={() => (tab = tabName)}
               >
-                {tabName}
+                {#if inProgressTabs?.includes(tabName)}<TriangleAlert
+                    class="size-3.5 shrink-0 text-warning-500"
+                  />{/if}{tabName}
               </button>
             {/each}
           </div>

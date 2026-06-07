@@ -17,18 +17,145 @@ const allP1: PhaseStrats[] = [
         mechanic: 'Start',
         description:
           'Supports West, DPS East\nTether = knockback\nFake Fire (top ring) = opposite of stack/spread marker\nFake Ice (bottom ring) = stand in purple',
-        imageUrl: './umad/fireice-start.webp'
+        strats: [
+          {
+            role: 'Tank',
+            party: 1,
+            description: 'West',
+            imageUrl: './umad/fireice-start.webp'
+          },
+          {
+            role: 'Tank',
+            party: 2,
+            description: 'West',
+            imageUrl: './umad/fireice-start.webp'
+          },
+          {
+            role: 'Healer',
+            party: 1,
+            description: 'West',
+            imageUrl: './umad/fireice-start.webp'
+          },
+          {
+            role: 'Healer',
+            party: 2,
+            description: 'West',
+            imageUrl: './umad/fireice-start.webp'
+          },
+          {
+            role: 'Melee',
+            party: 1,
+            description: 'East',
+            imageUrl: './umad/fireice-start.webp'
+          },
+          {
+            role: 'Melee',
+            party: 2,
+            description: 'East',
+            imageUrl: './umad/fireice-start.webp'
+          },
+          {
+            role: 'Ranged',
+            party: 1,
+            description: 'East',
+            imageUrl: './umad/fireice-start.webp'
+          },
+          {
+            role: 'Ranged',
+            party: 2,
+            description: 'East',
+            imageUrl: './umad/fireice-start.webp'
+          }
+        ]
       },
       {
         mechanic: 'Stack',
         description: 'Supports West, DPS East',
-        imageUrl: './umad/fireice-stack.webp'
+        strats: [
+          {
+            role: 'Tank',
+            party: 1,
+            description: 'West',
+            imageUrl: './umad/fireice-stack.webp'
+          },
+          {
+            role: 'Tank',
+            party: 2,
+            description: 'West',
+            imageUrl: './umad/fireice-stack.webp'
+          },
+          {
+            role: 'Healer',
+            party: 1,
+            description: 'West',
+            imageUrl: './umad/fireice-stack.webp'
+          },
+          {
+            role: 'Healer',
+            party: 2,
+            description: 'West',
+            imageUrl: './umad/fireice-stack.webp'
+          },
+          {
+            role: 'Melee',
+            party: 1,
+            description: 'East',
+            imageUrl: './umad/fireice-stack.webp'
+          },
+          {
+            role: 'Melee',
+            party: 2,
+            description: 'East',
+            imageUrl: './umad/fireice-stack.webp'
+          },
+          {
+            role: 'Ranged',
+            party: 1,
+            description: 'East',
+            imageUrl: './umad/fireice-stack.webp'
+          },
+          {
+            role: 'Ranged',
+            party: 2,
+            description: 'East',
+            imageUrl: './umad/fireice-stack.webp'
+          }
+        ]
       },
       {
         mechanic: 'Spread',
         description:
-          'Supports West, DPS East\nMT/M1 spread N/S on hitbox\nOT/M2 spread E/W on hitbox',
-        imageUrl: './umad/fireice-spread.webp'
+          'Supports West, DPS East\nTanks/Melees on hitbox',
+        strats: [
+          {
+            role: 'Tank',
+            party: 1,
+            description: 'West half, N/S on hitbox',
+            imageUrl: './umad/fireice-spread.webp'
+          },
+          {
+            role: 'Tank',
+            party: 2,
+            description: 'West on hitbox',
+            imageUrl: './umad/fireice-spread.webp'
+          },
+          { role: 'Healer', party: 1, description: 'Far West', imageUrl: './umad/fireice-spread.webp' },
+          { role: 'Healer', party: 2, description: 'Far West', imageUrl: './umad/fireice-spread.webp' },
+          {
+            role: 'Melee',
+            party: 1,
+            description: 'West half, N/S on hitbox',
+            imageUrl: './umad/fireice-spread.webp'
+          },
+          {
+            role: 'Melee',
+            party: 2,
+            description: 'East on hitbox',
+            imageUrl: './umad/fireice-spread.webp'
+          },
+          { role: 'Ranged', party: 1, description: 'Far East', imageUrl: './umad/fireice-spread.webp' },
+          { role: 'Ranged', party: 2, description: 'Far East', imageUrl: './umad/fireice-spread.webp' }
+        ]
       }
     ]
   },
@@ -39,7 +166,31 @@ const allP1: PhaseStrats[] = [
       {
         mechanic: 'Conga',
         description: 'HHTTMMRR Conga\n2 DPS + 2 Supports get hit and spawn towers',
-        imageUrl: './umad/lasers-conga.webp'
+        strats: [
+          { role: 'Tank', party: 1, description: '3rd from West', imageUrl: './umad/lasers-conga.webp' },
+          { role: 'Tank', party: 2, description: '4th from West', imageUrl: './umad/lasers-conga.webp' },
+          {
+            role: 'Healer',
+            party: 1,
+            description: '2nd from West',
+            imageUrl: './umad/lasers-conga.webp'
+          },
+          {
+            role: 'Healer',
+            party: 2,
+            description: '1st from West',
+            imageUrl: './umad/lasers-conga.webp'
+          },
+          { role: 'Melee', party: 1, description: '4th from East', imageUrl: './umad/lasers-conga.webp' },
+          { role: 'Melee', party: 2, description: '3rd from East', imageUrl: './umad/lasers-conga.webp' },
+          {
+            role: 'Ranged',
+            party: 1,
+            description: '2nd from East',
+            imageUrl: './umad/lasers-conga.webp'
+          },
+          { role: 'Ranged', party: 2, description: '1st from East', imageUrl: './umad/lasers-conga.webp' }
+        ]
       },
       {
         mechanic: 'Towers',
@@ -79,7 +230,56 @@ const allP1: PhaseStrats[] = [
         mechanic: 'First Rocks',
         description:
           'G1 go Left, G2 go Right\nMelees/Tanks can go E/W of boss hitbox\nGravity players can go middle',
-        imageUrl: './umad/puddles-first-rocks.webp'
+        strats: [
+          {
+            role: 'Tank',
+            party: 1,
+            description: 'Left, on hitbox',
+            imageUrl: './umad/puddles-first-rocks.webp'
+          },
+          {
+            role: 'Tank',
+            party: 2,
+            description: 'Right, on hitbox',
+            imageUrl: './umad/puddles-first-rocks.webp'
+          },
+          {
+            role: 'Healer',
+            party: 1,
+            description: 'Left',
+            imageUrl: './umad/puddles-first-rocks.webp'
+          },
+          {
+            role: 'Healer',
+            party: 2,
+            description: 'Right',
+            imageUrl: './umad/puddles-first-rocks.webp'
+          },
+          {
+            role: 'Melee',
+            party: 1,
+            description: 'Left, on hitbox',
+            imageUrl: './umad/puddles-first-rocks.webp'
+          },
+          {
+            role: 'Melee',
+            party: 2,
+            description: 'Right, on hitbox',
+            imageUrl: './umad/puddles-first-rocks.webp'
+          },
+          {
+            role: 'Ranged',
+            party: 1,
+            description: 'Left',
+            imageUrl: './umad/puddles-first-rocks.webp'
+          },
+          {
+            role: 'Ranged',
+            party: 2,
+            description: 'Right',
+            imageUrl: './umad/puddles-first-rocks.webp'
+          }
+        ]
       },
       {
         mechanic: 'Tankbuster',
@@ -100,7 +300,56 @@ const allP1: PhaseStrats[] = [
         mechanic: 'Second Rocks',
         description:
           'G1 go Left, G2 go Right\nMelees/Tanks can go E/W of boss hitbox\nGravity players can go middle',
-        imageUrl: './umad/puddles-second-rocks.webp'
+        strats: [
+          {
+            role: 'Tank',
+            party: 1,
+            description: 'Left, on hitbox',
+            imageUrl: './umad/puddles-second-rocks.webp'
+          },
+          {
+            role: 'Tank',
+            party: 2,
+            description: 'Right, on hitbox',
+            imageUrl: './umad/puddles-second-rocks.webp'
+          },
+          {
+            role: 'Healer',
+            party: 1,
+            description: 'Left',
+            imageUrl: './umad/puddles-second-rocks.webp'
+          },
+          {
+            role: 'Healer',
+            party: 2,
+            description: 'Right',
+            imageUrl: './umad/puddles-second-rocks.webp'
+          },
+          {
+            role: 'Melee',
+            party: 1,
+            description: 'Left, on hitbox',
+            imageUrl: './umad/puddles-second-rocks.webp'
+          },
+          {
+            role: 'Melee',
+            party: 2,
+            description: 'Right, on hitbox',
+            imageUrl: './umad/puddles-second-rocks.webp'
+          },
+          {
+            role: 'Ranged',
+            party: 1,
+            description: 'Left',
+            imageUrl: './umad/puddles-second-rocks.webp'
+          },
+          {
+            role: 'Ranged',
+            party: 2,
+            description: 'Right',
+            imageUrl: './umad/puddles-second-rocks.webp'
+          }
+        ]
       },
       {
         mechanic: 'Second Half-room',
@@ -192,24 +441,145 @@ const allP1: PhaseStrats[] = [
       {
         mechanic: 'Static Spots',
         description: 'After teleports, preposition in shown spots',
-        imageUrl: './umad/gaze-static-spots.webp'
+        strats: [
+          {
+            role: 'Tank',
+            party: 1,
+            description: 'Northeast, 2 marker',
+            imageUrl: './umad/gaze-static-spots.webp'
+          },
+          {
+            role: 'Tank',
+            party: 2,
+            description: 'Southeast, 3 marker',
+            imageUrl: './umad/gaze-static-spots.webp'
+          },
+          {
+            role: 'Healer',
+            party: 1,
+            description: 'South, far',
+            imageUrl: './umad/gaze-static-spots.webp'
+          },
+          {
+            role: 'Healer',
+            party: 2,
+            description: 'East, far',
+            imageUrl: './umad/gaze-static-spots.webp'
+          },
+          {
+            role: 'Melee',
+            party: 1,
+            description: 'Northwest, 1 marker',
+            imageUrl: './umad/gaze-static-spots.webp'
+          },
+          {
+            role: 'Melee',
+            party: 2,
+            description: 'Southwest, 4 marker',
+            imageUrl: './umad/gaze-static-spots.webp'
+          },
+          {
+            role: 'Ranged',
+            party: 1,
+            description: 'North, far',
+            imageUrl: './umad/gaze-static-spots.webp'
+          },
+          {
+            role: 'Ranged',
+            party: 2,
+            description: 'West, far',
+            imageUrl: './umad/gaze-static-spots.webp'
+          }
+        ]
       },
       {
         mechanic: 'Spread',
         description:
           'Make sure to solve Gaze (on statue) + Lightning lines\nMelee on unsafe half move under boss',
-        imageUrl: './umad/gaze-spread.webp'
+        strats: [
+          {
+            role: 'Tank',
+            party: 1,
+            description: 'Northeast, 2 marker',
+            imageUrl: './umad/gaze-spread.webp'
+          },
+          {
+            role: 'Tank',
+            party: 2,
+            description: 'Southeast, 3 marker',
+            imageUrl: './umad/gaze-spread.webp'
+          },
+          {
+            role: 'Healer',
+            party: 1,
+            description: 'South, far',
+            imageUrl: './umad/gaze-spread.webp'
+          },
+          {
+            role: 'Healer',
+            party: 2,
+            description: 'East, far',
+            imageUrl: './umad/gaze-spread.webp'
+          },
+          {
+            role: 'Melee',
+            party: 1,
+            description: 'Northwest, 1 marker',
+            imageUrl: './umad/gaze-spread.webp'
+          },
+          {
+            role: 'Melee',
+            party: 2,
+            description: 'Southwest, 4 marker',
+            imageUrl: './umad/gaze-spread.webp'
+          },
+          {
+            role: 'Ranged',
+            party: 1,
+            description: 'North, far',
+            imageUrl: './umad/gaze-spread.webp'
+          },
+          {
+            role: 'Ranged',
+            party: 2,
+            description: 'West, far',
+            imageUrl: './umad/gaze-spread.webp'
+          }
+        ]
       },
       {
         mechanic: 'Stack',
         description: 'Supports on 3\nDPS on 1',
-        imageUrl: './umad/gaze-stack.webp'
+        strats: [
+          { role: 'Tank', party: 1, description: 'Southeast, 3 marker', imageUrl: './umad/gaze-stack.webp' },
+          { role: 'Tank', party: 2, description: 'Southeast, 3 marker', imageUrl: './umad/gaze-stack.webp' },
+          {
+            role: 'Healer',
+            party: 1,
+            description: 'Southeast, 3 marker',
+            imageUrl: './umad/gaze-stack.webp'
+          },
+          {
+            role: 'Healer',
+            party: 2,
+            description: 'Southeast, 3 marker',
+            imageUrl: './umad/gaze-stack.webp'
+          },
+          { role: 'Melee', party: 1, description: 'Northwest, 1 marker', imageUrl: './umad/gaze-stack.webp' },
+          { role: 'Melee', party: 2, description: 'Northwest, 1 marker', imageUrl: './umad/gaze-stack.webp' },
+          {
+            role: 'Ranged',
+            party: 1,
+            description: 'Northwest, 1 marker',
+            imageUrl: './umad/gaze-stack.webp'
+          },
+          { role: 'Ranged', party: 2, description: 'Northwest, 1 marker', imageUrl: './umad/gaze-stack.webp' }
+        ]
       }
     ]
   }
 ];
 
-// P2: God Kefka - Forsaken (3 strat variations) + Trines.
 const allP2: PhaseStrats[] = [
   {
     phaseName: 'Forsaken Overview',
@@ -430,7 +800,7 @@ const allP2: PhaseStrats[] = [
             }
           ]
         }
-      ],
+      ]
     }
   },
   {
@@ -471,7 +841,7 @@ const allP2: PhaseStrats[] = [
         {
           mechanic: 'Even Towers (Detailed, Right)',
           description:
-             'Right tower (Boss is North)\nCone = Front edge, Baiter = Right edge\nSpread = Back edge, slightly toward other tower',
+            'Right tower (Boss is North)\nCone = Front edge, Baiter = Right edge\nSpread = Back edge, slightly toward other tower',
           imageUrl: './umad/p2-forsaken-kr-8.webp'
         },
         {
@@ -518,7 +888,7 @@ const allP2: PhaseStrats[] = [
             'Everyone baits Past/Future\nPast = Between towers, Future = Away from towers\nCast after every odd tower, bait after every even tower',
           imageUrl: './umad/p2-forsaken-kr-2.webp'
         }
-      ],
+      ]
     }
   },
   {
@@ -527,12 +897,14 @@ const allP2: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'Overview',
-        description: '3 sets of Trines spawn: 3/1/3\nHalf room while 3rd set is landing\nStart Mid, then dodge into first explosion\nTanks move into 1st CCW from 1\nParty movies into 1st CW from A',
+        description:
+          '3 sets of Trines spawn: 3/1/3\nHalf room while 3rd set is landing\nStart Mid, then dodge into first explosion\nTanks move into 1st CCW from 1\nParty movies into 1st CW from A',
         imageUrl: './umad/p2-trines-0.webp'
       },
       {
         mechanic: 'Tankbusters',
-        description: 'Near/Far tankbuster snapshots at 3rd explosion\n2 arena rings from edge = safe from both for party',
+        description:
+          'Near/Far tankbuster snapshots at 3rd explosion\n2 arena rings from edge = safe from both for party',
         imageUrl: './umad/p2-trines-4.webp'
       },
       {
@@ -617,23 +989,27 @@ export const dancingMadFightConfig: FightConfig = {
         {
           value: 'kr',
           label: 'Kroxy-Rinon',
-          url: { name: 'Kroxy-Rinon 3/4/1 (Center/N Stacks)', url: 'https://raidplan.io/plan/UATE__aDcw1-bgVv' }
+          url: {
+            name: 'Kroxy-Rinon 3/4/1 (Center/N Stacks)',
+            url: 'https://raidplan.io/plan/UATE__aDcw1-bgVv'
+          }
         },
         {
           value: 'south',
           label: 'South Adjust',
           url: { name: 'APHORSAKEN (s.flex)', url: 'https://raidplan.io/plan/uq7zdjvuu7uuw8fj' }
-        },
+        }
       ]
     }
   ],
   tabTags: {
     'P1: Kefka': ['p1', 'arrows'],
-    'P2: God Kefka': ['p2', 'forsaken'],
+    'P2: Forsaken Kefka': ['p2', 'forsaken'],
     'P3: Chaos and Exdeath': ['p3'],
     'P4: Kefka Says': ['p4'],
-    'P5: ???': ['p5'],
+    'P5: ???': ['p5']
   },
+  inProgressTabs: ['P3: Chaos and Exdeath', 'P4: Kefka Says', 'P5: ???'],
   useMainPageTabs: true,
   defaultStratName: 'kefkabin',
   timeline: [],

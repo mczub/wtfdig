@@ -131,6 +131,8 @@ export interface FightConfig {
   strats: FightStratConfig;
   toggles?: FightToggleConfig[];
   tabTags?: Record<string, string[]>;
+  /** Tab names (keys of `tabTags`) to flag with an in-progress / under-construction icon. */
+  inProgressTabs?: string[];
   useMainPageTabs?: boolean;
   defaultStratName?: string;
   timeline?: TimelineItem[];

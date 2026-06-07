@@ -322,6 +322,7 @@
       {innerHeight}
       {innerWidth}
       tabTags={config.tabTags}
+      inProgressTabs={config.inProgressTabs}
       role={normalizedRole}
       fightKey={config.fightKey}
       mechToggles={(config.toggles ?? []).filter((t) => t.isMechToggle)}
@@ -586,6 +587,7 @@
                 {spotlight}
                 {alignment}
                 tabTags={config.tabTags}
+                inProgressTabs={config.inProgressTabs}
                 role={normalizedRole}
                 fightKey={config.fightKey}
                 useMainPageTabs={config.useMainPageTabs}
