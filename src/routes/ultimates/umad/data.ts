@@ -460,25 +460,25 @@ const allP1: PhaseStrats[] = [
           mechanic: 'Placement',
           description:
             'Everyone gets 2 Arrow debuffs\nOne role gets 2x same, one role gets 2x different\nPlace arrows in a box on intercards',
-          imageUrl: './umad/arrows-pinoy-placement-1.webp'
+          imageUrl: './umad/p1-arrows-pinoy-0.webp'
         },
         {
           mechanic: 'Arrow Solve',
           description:
             'Same Arrows: Place on outside intercard facing CCW\nDifferent Arrows: Arrows point towards your corner\nPlace on marker + outside depending on debuff timers',
-          imageUrl: './umad/arrows-pinoy-solve-2.webp'
+          imageUrl: './umad/p1-arrows-pinoy-4.webp'
         },
         {
           mechanic: 'Knockback',
           description:
             'Supports North, DPS South Confetti KB\nNon-Confetti on boss hitbox\nGet knocked through boss',
-          imageUrl: './umad/arrows-pinoy-knockback-1.webp'
+          imageUrl: './umad/p1-arrows-pinoy-5.webp'
         },
         {
           mechanic: 'Sleep/Confuse (Fixed positions)',
           description:
             'IGNORE DEBUFFS, use fixed spots\nG1 West, G2 East\nTank/Range North, Healer/Melee South\nRanged inside the arrow box, Melees on boss hitbox intercards',
-          imageUrl: './umad/arrows-pinoy-sleep-confuse.webp'
+          imageUrl: './umad/p1-arrows-pinoy-7.webp'
         }
       ]
     }
