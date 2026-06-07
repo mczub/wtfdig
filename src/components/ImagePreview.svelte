@@ -64,7 +64,7 @@
       <div class="whitespace-pre-wrap text-xs lg:text-lg shrink-0">
         {@html mech?.description ? renderDebuffTokens(mech.description) : ''}
       </div>
-      <div class="flex items-center gap-1 text-xs lg:text-lg mb-0 shrink-0">
+      <div class="flex items-start gap-1 text-xs lg:text-lg mb-0 shrink-0">
         {#if mech?.strats && mech.strats.length > 0}
           {#if mech.strats[0].toggleKey}
             <span class="shrink-0">⏩</span>

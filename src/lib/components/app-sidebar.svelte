@@ -51,7 +51,7 @@
       items: [
         {
           title: 'Dancing Mad',
-          subtitle: 'Ultimate • Under Construction',
+          subtitle: 'Ultimate • P1 + P2',
           url: '/ultimates/umad',
           icon: TriangleAlert
         },
