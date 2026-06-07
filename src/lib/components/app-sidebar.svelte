@@ -52,7 +52,7 @@
         {
           title: 'Dancing Mad',
           subtitle: 'Ultimate • Under Construction',
-          url: '/ultimates/dmu',
+          url: '/ultimates/umad',
           icon: TriangleAlert
         },
         {

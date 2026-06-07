@@ -15,15 +15,6 @@ import {
   boss
 } from '$lib/arena';
 
-// Helper: dark FFXIV-style circle background for sub-arenas inside a section.
-const subArena = (cx: number, cy: number, diameter: number, bgImage?: string) =>
-  arenaShape('circle', cx, cy, diameter, diameter, {
-    bgColor: '#1e2a4a',
-    borderColor: '#3a4a6a',
-    showCrosshairs: false,
-    bgImage
-  });
-
 export const umadPosterLayout: PosterLayout = {
   cols: 11,
   rows: 4,
@@ -94,7 +85,6 @@ export const umadPosterLayout: PosterLayout = {
       visibleWhen: {
         strat: { arrows: ['pinoy'] }
       },
-      // viewBox 125 × 100
       accentColor: '#f59e0b',
       arena: diagram('square', [
         text('Cheatsheet In Progress', 50, 20, { fontSize: 6 }),
@@ -106,7 +96,6 @@ export const umadPosterLayout: PosterLayout = {
       row: 1,
       w: 7,
       h: 4,
-      // viewBox 125 × 100
       accentColor: '#f59e0b',
       visibleWhen: {
         strat: { forsaken: ['kr'] }
@@ -641,7 +630,6 @@ export const umadPosterLayout: PosterLayout = {
       row: 1,
       w: 7,
       h: 4,
-      // viewBox 125 × 100
       accentColor: '#f59e0b',
       visibleWhen: {
         strat: { forsaken: ['south'] }
