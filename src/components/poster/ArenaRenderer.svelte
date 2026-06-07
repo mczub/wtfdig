@@ -430,7 +430,7 @@
             rx={pSize * 0.5}
             ry={pSize * 0.5}
             fill={color}
-            fill-opacity="0.9"
+            fill-opacity="1.0"
             stroke={highlightJob && roleMatch ? 'white' : 'white'}
             stroke-width={(highlightJob && roleMatch ? 0.8 : 0.25) * pScale}
           />
@@ -463,6 +463,22 @@
               stroke-linecap="round"
               stroke-linejoin="round"
             />
+          {/if}
+          {#if el.statusAbove}
+            {@const sdef = getDebuff(el.statusAbove)}
+            {#if sdef}
+              {@const sSize = 7 * pScale}
+              {@const sBottom = el.marker ? el.y - 13.5 * pScale : el.y - pSize - 1 * pScale}
+              <image
+                href={`/icons/status/${sdef.iconFile}`}
+                x={el.x - sSize / 2}
+                y={sBottom - sSize}
+                width={sSize}
+                height={sSize}
+              >
+                <title>{sdef.name}</title>
+              </image>
+            {/if}
           {/if}
           {#if el.corners}
             {#each Object.entries(el.corners) as [corner, debuffId]}

@@ -1,9 +1,9 @@
 import type { PageLoad } from './$types';
-import { dancingMadFightConfig, dancingMadMessage } from './data';
+import { dancingMadFightConfig, dancingMadStrats } from '../umad/data';
 
 export const load: PageLoad = () => {
   return {
-    config: dancingMadFightConfig,
-    message: dancingMadMessage
+    strats: dancingMadStrats,
+    config: dancingMadFightConfig
   };
 };

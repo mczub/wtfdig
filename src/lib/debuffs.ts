@@ -112,6 +112,25 @@ export const DEBUFFS = {
     id: 'wyrmfang',
     name: 'Wyrmfang',
     iconFile: '215242-wyrmfang.png'
+  },
+  // UMAD — Forsaken (P2) tower assignments
+  'forsaken-circle': {
+    id: 'forsaken-circle',
+    name: 'Forsaken Circle',
+    iconFile: 'umad-forsaken-circle.png',
+    description: 'Circle AOE'
+  },
+  'forsaken-cone': {
+    id: 'forsaken-cone',
+    name: 'Forsaken Cone',
+    iconFile: 'umad-forsaken-cone.png',
+    description: 'Cone AOE'
+  },
+  'forsaken-stack': {
+    id: 'forsaken-stack',
+    name: 'Forsaken Stack',
+    iconFile: 'umad-forsaken-stack.png',
+    description: 'Stack'
   }
 } as const satisfies Record<string, DebuffDef>;
 

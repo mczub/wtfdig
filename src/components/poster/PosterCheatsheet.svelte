@@ -150,6 +150,44 @@
     webp: { mime: 'image/webp', ext: 'webp', quality: 0.85 }
   } as const;
 
+  // The poster fonts load from Google Fonts (cross-origin). html-to-image can't
+  // read their cssRules to embed them, so PNG exports fall back to a system font.
+  // We fetch the @font-face CSS once and inline the woff2 files as data URIs, then
+  // hand it to toPng via fontEmbedCSS (which also skips the failing cross-origin read).
+  const FONT_CSS_URL =
+    'https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Roboto+Condensed:wght@400;700&display=swap';
+  const FONT_URL_RE = /url\(\s*['"]?(https:\/\/[^)'"]+\.woff2?)['"]?\s*\)/g;
+  let fontEmbedCssCache = null;
+
+  function arrayBufferToBase64(buf) {
+    const bytes = new Uint8Array(buf);
+    let binary = '';
+    const chunk = 0x8000;
+    for (let i = 0; i < bytes.length; i += chunk) {
+      binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
+    }
+    return btoa(binary);
+  }
+
+  async function getPosterFontEmbedCss() {
+    if (fontEmbedCssCache !== null) return fontEmbedCssCache;
+    const fullCss = await fetch(FONT_CSS_URL).then((r) => r.text());
+    // Keep only latin subsets - poster text is latin, and inlining every script
+    // (cyrillic, greek, devanagari, ...) would mean dozens of fetches.
+    const blocks = fullCss.split(/(?=\/\*)/).filter((b) => /\/\*\s*latin(-ext)?\s*\*\//.test(b));
+    const css = blocks.length ? blocks.join('') : fullCss;
+    const urls = [...new Set([...css.matchAll(FONT_URL_RE)].map((m) => m[1]))];
+    const dataUrls = new Map();
+    await Promise.all(
+      urls.map(async (u) => {
+        const buf = await fetch(u).then((r) => r.arrayBuffer());
+        dataUrls.set(u, `data:font/woff2;base64,${arrayBufferToBase64(buf)}`);
+      })
+    );
+    fontEmbedCssCache = css.replace(FONT_URL_RE, (m, u) => `url(${dataUrls.get(u) ?? u})`);
+    return fontEmbedCssCache;
+  }
+
   async function exportPoster(format: 'png' | 'jpg' | 'webp') {
     showExportMenu = false;
     if (!posterRef || exporting) return;
@@ -159,11 +197,20 @@
       const { toPng } = await import('html-to-image');
       const w = layout.width ?? 1920;
       const h = layout.height ?? 1080;
+      // Make sure fonts are loaded, then inline them so the export isn't a fallback font.
+      await document.fonts?.ready;
+      let fontEmbedCSS;
+      try {
+        fontEmbedCSS = await getPosterFontEmbedCss();
+      } catch {
+        fontEmbedCSS = undefined; // fall back to html-to-image's default embedding
+      }
       const dataUrl = await toPng(posterRef, {
         width: w,
         height: h,
         pixelRatio: 1,
-        backgroundColor: layout.bgColor ?? '#1a1a2e'
+        backgroundColor: layout.bgColor ?? '#1a1a2e',
+        fontEmbedCSS
       });
       const fmt = formatConfig[exportFormat];
       let downloadUrl = dataUrl;

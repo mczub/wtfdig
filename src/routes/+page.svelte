@@ -132,7 +132,7 @@
           {#if openState['ultimates']}
             <div transition:slide class="flex flex-col gap-4">
               <a
-                href="{base}/ultimates/dmu"
+                href="{base}/ultimates/umad"
                 class="btn preset-tonal-secondary border border-secondary-500"
               >
                 <TriangleAlert class="size-4 text-warning-500" />Dancing Mad (Ultimate)</a
