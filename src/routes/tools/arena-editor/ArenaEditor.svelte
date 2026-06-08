@@ -100,6 +100,10 @@
   // non-matching players and hides group elements whose `visibleWhen` fails).
   let previewJob: PlayerJob | undefined = $state(undefined);
 
+  // "All Elements" preview: render every group regardless of `visibleWhen` so
+  // the whole chart is visible and selectable at once.
+  let previewAll = $state(false);
+
   // Collapse the Groups panel (state, not derived — survives selection changes).
   let groupsCollapsed = $state(false);
 
@@ -107,6 +111,7 @@
   // so the editor can also skip interaction (overlay + marquee) on hidden elements.
   let hiddenGroupIds = $derived.by(() => {
     const out = new Set<string>();
+    if (previewAll) return out;
     for (const g of groups) {
       if (!evaluateVisibility(g.visibleWhen, { selectedJob: previewJob })) {
         out.add(g.id);
@@ -734,14 +739,22 @@
             }
             return `  player('${el.job}', ${el.x}, ${el.y})`;
           }
-        case 'boss':
+        case 'boss': {
           imports.add('boss');
-          // When the element has a groupId, fold rotation into the opts object so
-          // withGroupId can merge groupId into a single trailing `{ ... }`.
-          if (el.groupId && el.rotation) {
-            return `  boss(${el.x}, ${el.y}, { rotation: ${el.rotation} })`;
+          const hasBossSize = el.size != null && el.size !== 12;
+          const hasRing = el.ring != null && el.ring !== 'directional';
+          // Fold options into a trailing `{ ... }` when size/ring is set, or when
+          // a groupId is present alongside rotation, so withGroupId can merge
+          // groupId into a single trailing opts object.
+          if (hasBossSize || hasRing || (el.groupId && el.rotation)) {
+            const bossOpts: string[] = [];
+            if (el.rotation) bossOpts.push(`rotation: ${el.rotation}`);
+            if (hasBossSize) bossOpts.push(`size: ${el.size}`);
+            if (hasRing) bossOpts.push(`ring: '${el.ring}'`);
+            return `  boss(${el.x}, ${el.y}, { ${bossOpts.join(', ')} })`;
           }
           return `  boss(${el.x}, ${el.y}${el.rotation ? `, ${el.rotation}` : ''})`;
+        }
         case 'waymark':
           imports.add('waymark');
           if (el.size != null && el.size !== 4) {
@@ -966,6 +979,8 @@
         x: +m[1],
         y: +m[2],
         rotation: m[3] ? +m[3] : (opts.rotation as number | undefined),
+        size: opts.size as number | undefined,
+        ring: opts.ring as 'directional' | 'circle' | undefined,
         groupId: opts.groupId as string | undefined
       });
     }
@@ -1351,23 +1366,40 @@
         <div class="flex items-center gap-1 ml-auto">
           <span class="text-sm font-semibold text-surface-300">Preview:</span>
           <button
-            class="btn btn-sm text-xs px-2 {previewJob === undefined
+            class="btn btn-sm text-xs px-2 {!previewAll && previewJob === undefined
               ? 'preset-filled-primary-500'
               : 'preset-tonal-surface'}"
-            onclick={() => (previewJob = undefined)}
+            onclick={() => {
+              previewAll = false;
+              previewJob = undefined;
+            }}
             title="Overall (no role highlighted)">Overall</button
           >
           {#each playerJobs as job}
-            {@const active = previewJob === job}
+            {@const active = !previewAll && previewJob === job}
             <button
               class="text-xs font-bold px-2 py-1 rounded border"
               style:background-color={active ? ROLE_COLORS[job] : ROLE_COLORS[job] + '22'}
               style:border-color={ROLE_COLORS[job]}
               style:color={active ? 'white' : ROLE_COLORS[job]}
-              onclick={() => (previewJob = job)}
+              onclick={() => {
+                previewAll = false;
+                previewJob = job;
+              }}
               title={`Preview as ${job}`}>{job}</button
             >
           {/each}
+          <button
+            class="btn btn-sm text-xs px-2 {previewAll
+              ? 'preset-filled-primary-500'
+              : 'preset-tonal-surface'}"
+            onclick={() => {
+              previewAll = true;
+              previewJob = undefined;
+              selectAll();
+            }}
+            title="Show every group and select all elements">All Elements</button
+          >
         </div>
       </div>
 
@@ -1381,7 +1413,13 @@
           ? 'repeating-conic-gradient(#333 0% 25%, #222 0% 50%) 0 0 / 20px 20px'
           : undefined}
       >
-        <ArenaRenderer data={diagramData} {gridW} {gridH} highlightJob={previewJob} />
+        <ArenaRenderer
+          data={diagramData}
+          {gridW}
+          {gridH}
+          highlightJob={previewAll ? undefined : previewJob}
+          showAllGroups={previewAll}
+        />
 
         <!-- Interactive overlay — positional click-only input, no keyboard equivalent. -->
         <!-- svelte-ignore a11y_click_events_have_key_events -->
@@ -1404,7 +1442,7 @@
                 cx={el.x * scale}
                 cy={el.y * scale}
                 r={el.type === 'boss'
-                  ? 14
+                  ? ((el.size ?? 12) + 2) * scale
                   : el.type === 'player'
                     ? ((el.size ?? 6) + 1) * scale
                     : 4}
@@ -2681,15 +2719,40 @@
 
           {#if selectedElement.type === 'boss'}
             <label class="text-xs text-surface-400">
-              Facing (rotation)
-              <input
-                type="number"
-                min="0"
-                max="360"
-                step="45"
+              Ring style
+              <select
                 class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
-                value={selectedElement.rotation ?? 0}
-                oninput={(e) => updateElement('rotation', Number(e.currentTarget.value))}
+                value={selectedElement.ring ?? 'directional'}
+                onchange={(e) => updateElement('ring', e.currentTarget.value)}
+              >
+                <option value="directional">Directional (arc + arrow)</option>
+                <option value="circle">Full circle</option>
+              </select>
+            </label>
+            {#if (selectedElement.ring ?? 'directional') === 'directional'}
+              <label class="text-xs text-surface-400">
+                Facing (rotation)
+                <input
+                  type="number"
+                  min="0"
+                  max="360"
+                  step="45"
+                  class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                  value={selectedElement.rotation ?? 0}
+                  oninput={(e) => updateElement('rotation', Number(e.currentTarget.value))}
+                />
+              </label>
+            {/if}
+            <label class="text-xs text-surface-400">
+              Hitbox size ({(selectedElement.size ?? 12).toFixed(1)})
+              <input
+                type="range"
+                min="2"
+                max="40"
+                step="0.5"
+                class="w-full"
+                value={selectedElement.size ?? 12}
+                oninput={(e) => updateElement('size', Number(e.currentTarget.value))}
               />
             </label>
           {/if}

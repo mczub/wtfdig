@@ -26,6 +26,8 @@
     stratState?: Record<string, string | null | undefined>;
     /** Active strat key for group `visibleWhen` predicates. */
     stratKey?: string;
+    /** Editor override: render every group regardless of its `visibleWhen`. */
+    showAllGroups?: boolean;
   }
 
   let {
@@ -36,13 +38,15 @@
     highlightJob,
     jobLabels,
     stratState,
-    stratKey
+    stratKey,
+    showAllGroups = false
   }: Props = $props();
 
   // Groups whose `visibleWhen` predicate currently fails — every element with
   // a matching `groupId` is filtered out of rendering.
   let hiddenGroups = $derived.by(() => {
     const out = new Set<string>();
+    if (showAllGroups) return out;
     for (const g of data.groups ?? []) {
       if (
         !evaluateVisibility(g.visibleWhen, { selectedJob: highlightJob, stratState, stratKey })
@@ -373,43 +377,58 @@
           >
         </g>
       {:else if el.type === 'boss'}
-        {@const r = 12}
-        {@const cos45 = r * Math.cos(Math.PI / 4)}
-        {@const sin45 = r * Math.sin(Math.PI / 4)}
+        <!-- Directional double-ring hitbox (xivplan-style): two concentric 270deg
+             arcs open at the rear, plus a front-facing arrow. `size` = outer radius. -->
+        {@const r = el.size ?? 12}
+        {@const ir = r * 0.85}
+        {@const outerStroke = Math.max(r / 32, 0.45)}
+        {@const innerStroke = Math.max(r / 64, 0.3)}
+        {@const d45 = r * Math.cos(Math.PI / 4)}
+        {@const id45 = ir * Math.cos(Math.PI / 4)}
+        {@const arrowScale = r / 32}
         <g
           opacity={dimOpacity(el)}
           transform={el.rotation ? `rotate(${el.rotation} ${el.x} ${el.y})` : undefined}
         >
-          <!-- Target ring: 270deg arc with open rear quarter -->
-          <path
-            d="M {el.x + cos45} {el.y + sin45}
-             A {r} {r} 0 1 0 {el.x - cos45} {el.y + sin45}"
-            fill="none"
-            stroke="#dc2626"
-            stroke-width="0.6"
-          />
-          <!-- Flank lines at 3 and 9 o'clock -->
-          <line
-            x1={el.x + r - 0.6}
-            y1={el.y}
-            x2={el.x + r + 0.6}
-            y2={el.y}
-            stroke="#dc2626"
-            stroke-width="0.6"
-          />
-          <line
-            x1={el.x - r - 0.6}
-            y1={el.y}
-            x2={el.x - r + 0.6}
-            y2={el.y}
-            stroke="#dc2626"
-            stroke-width="0.6"
-          />
-          <!-- Front arrow at 12 o'clock -->
-          <polygon
-            points="{el.x},{el.y - r - 3} {el.x - 2},{el.y - r} {el.x + 2},{el.y - r}"
-            fill="#dc2626"
-          />
+          {#if el.ring === 'circle'}
+            <!-- Full double ring, no directional indicator -->
+            <circle
+              cx={el.x}
+              cy={el.y}
+              r={r}
+              fill="none"
+              stroke="#dc2626"
+              stroke-width={outerStroke}
+            />
+            <circle
+              cx={el.x}
+              cy={el.y}
+              r={ir}
+              fill="none"
+              stroke="#dc2626"
+              stroke-width={innerStroke}
+            />
+          {:else}
+            <path
+              d="M {el.x + d45} {el.y + d45}
+               A {r} {r} 0 1 0 {el.x - d45} {el.y + d45}"
+              fill="none"
+              stroke="#dc2626"
+              stroke-width={outerStroke}
+            />
+            <path
+              d="M {el.x + id45} {el.y + id45}
+               A {ir} {ir} 0 1 0 {el.x - id45} {el.y + id45}"
+              fill="none"
+              stroke="#dc2626"
+              stroke-width={innerStroke}
+            />
+            <path
+              d="M0-41c-2 2-4 7-4 10 4 0 4 0 8 0 0-3-2-8-4-10"
+              fill="#dc2626"
+              transform="translate({el.x} {el.y}) scale({arrowScale})"
+            />
+          {/if}
         </g>
       {:else if el.type === 'player'}
         {@const color = ROLE_COLORS[el.job]}

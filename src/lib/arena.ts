@@ -118,6 +118,10 @@ export interface BossElement {
   x: number;
   y: number;
   rotation?: number; // degrees, 0 = facing north (up)
+  /** Target-ring (hitbox) radius in arena % units. Default 12. */
+  size?: number;
+  /** Ring style: 'directional' (270deg arc + facing arrow, default) or 'circle' (full double ring, no direction). */
+  ring?: 'directional' | 'circle';
   id?: string;
 }
 
@@ -404,7 +408,15 @@ export function player(
 export function boss(
   x: number,
   y: number,
-  rotationOrOpts?: number | { rotation?: number; id?: string; groupId?: string },
+  rotationOrOpts?:
+    | number
+    | {
+        rotation?: number;
+        size?: number;
+        ring?: 'directional' | 'circle';
+        id?: string;
+        groupId?: string;
+      },
   id?: string
 ): BossElement {
   if (typeof rotationOrOpts === 'object' && rotationOrOpts !== null) {
