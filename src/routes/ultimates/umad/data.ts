@@ -1042,9 +1042,222 @@ const allP2: PhaseStrats[] = [
 
 const allP3: PhaseStrats[] = [
   {
-    phaseName: 'Chaos and Exdeath',
+    phaseName: 'The Decisive Battle',
     tag: 'p3',
-    description: 'Under construction - phases will be added as teams discover and refine them.'
+    mechs: [
+      {
+        mechanic: 'Opener Split',
+        description: 'G1 Supports + Melee -> Chaos (A)\nG2 Supports + Ranged -> Exdeath (B)'
+      }
+    ]
+  },
+  {
+    phaseName: 'Bowels of Agony',
+    tag: 'bowels',
+    mechs: {
+      tb: [
+        {
+          mechanic: 'Debuffs',
+          description:
+            'Everyone: Headwind or Tailwind (knockback)\n1 Support + 1 DPS: Entropy (spread / fire)\n1 Support + 1 DPS: Dynamic Fluid (donut / water)\nOne element is Short (20s), the other Long (45s)'
+        },
+        {
+          mechanic: 'Head / Tailwind',
+          description:
+            'Headwind = face AWAY from the source (butt on icon)\nTailwind = face TOWARD the source (head on icon)'
+        },
+        {
+          mechanic: 'Crystals',
+          description:
+            '3 crystals on intercards: Wind opposite the empty spot, Fire/Water can swap\nWind = 2+ stack, Fire = donut + KB, Water = spread + KB\nMT: Chaos to wall between Wind and SHORT crystal\nOT: Exdeath to wall on the LONG crystal'
+        },
+        {
+          mechanic: 'First Resolve (Short)',
+          description:
+            'No Fire/Water: stack at Wind crystal, Supports Left / DPS Right facing Chaos (1 closer to bait)\nShort Fire/Water: diagonal, max melee from Chaos\nLong Fire/Water: inside, next to the Short player\nShort explodes; Longs take the crystal AOE (Fire=donut, Water=spread) to get KB to mid, facing to resolve Head/Tailwind'
+        },
+        {
+          mechanic: 'Short Explosion',
+          description:
+            'Short debuffs explode\nLong debuffs get hit by Short AOE + get knocked to mid\nLong debuffs also resolve Headwind/Tailwind from Short player\n'
+        },
+        {
+          mechanic: 'Tankbuster + Reposition',
+          description:
+            'MT drag Chaos middle\nExdeath: Thunder III 2-hit tankbuster on closest\nOT drag Exdeath to wall between Wind and LONG crystal, face Chaos North'
+        },
+        {
+          mechanic: 'Latitude / Longitude',
+          description:
+            'Chaos casts Implosion (2 hits)\nLatitude = sides first, then front/back\nLongitude = front/back first, then sides\nNo debuff: near Wind crystal. Debuff players: by the Long crystal'
+        },
+        {
+          mechanic: 'Second Resolve (Long)',
+          description:
+            'Long explodes; Short ride the crystal AOE (Fire = donut, Water = spread) to mid\nShort resolve Head/Tailwind from Long player\nNo debuff stack the Wind crystal (Sup Left / DPS Right)'
+        }
+      ],
+      sg3k: [
+        {
+          mechanic: 'Debuffs',
+          description:
+            'Everyone Head/Tailwind; 1 Sup + 1 DPS Entropy (fire/spread), 1 Sup + 1 DPS Dynamic Fluid (water/donut)\nIdentify Short (20s) vs Long (45s) element\nHeadwind = face AWAY, Tailwind = face TOWARD the source'
+        },
+        {
+          mechanic: 'Boss Pulls',
+          description:
+            'Exdeath tank: pull AWAY from the Short crystal, hug the wall\nChaos tank: pull between the Wind and Short crystals, hook around the corner to the wall'
+        },
+        {
+          mechanic: 'First Resolve (Short)',
+          description:
+            'Thunder III; Short element resolves\nElement Supports at the wall, element DPS near center beside their crystal (just outside the waymark)\nOther 2 element players stand beside the Short DPS and aim Head/Tailwind\nNon-element bait Wind on Chaos: Supports close (bait nearest), DPS farther out; ranged/G2 away from Chaos'
+        },
+        {
+          mechanic: 'Short Crystal AOE',
+          description:
+            'Short stay put for the second hit (the crystal AOE)\nLong get knocked back: Fire = dead center, Water = inner ring on the floor\nWind baiters line up on the intercard waymark to the Wind crystal (Supports in, DPS a step out)'
+        },
+        {
+          mechanic: 'Tankbuster + Implosion',
+          description:
+            'Exdeath Thunder III 2-hit on closest -> invuln, or Chaos tank eats hit 1 then swap\nChaos tank center, face between Wind and Long crystal\nChaos Implosion: Latitudinal = front/back safe first, Longitudinal = sides safe first\nDodge into the first AOE, on the side next to your crystal'
+        },
+        {
+          mechanic: 'Second Resolve (Long)',
+          description:
+            'Dodge the 2nd cleave into your element spots (same prio)\nLong ride the crystal AOE to mid: Fire = dead center, Water = inner ring; resolve Head/Tailwind\nWind baiters return to the same side and bait again'
+        }
+      ]
+    }
+  },
+  {
+    phaseName: 'Superjump + Dashes',
+    tag: 'bowels',
+    mechs: {
+      tb: [
+        {
+          mechanic: 'Superjump',
+          description:
+            'Drag Exdeath onto the Wind crystal\nChaos Superjumps the furthest player -> Ranged bait out, opposite the Wind crystal\nStack on Exdeath to avoid Chaos AOE'
+        },
+        {
+          mechanic: 'Kefka Dashes',
+          description:
+            'Kefka dashes from a random cardinal/intercard, rotating CW or CCW\nREMEMBER the start point + rotation for Limit Cut'
+        }
+      ],
+      sg3k: [
+        {
+          mechanic: 'Superjump',
+          description:
+            'Pull both bosses off the Wind crystal toward the wall\nPhys range stand at the wall behind the Wind crystal to bait Chaos Superjump (Umbra Smash), rejoin once he turns to cast'
+        },
+        {
+          mechanic: 'Kefka Dashes',
+          description:
+            'Kefka divebombs across the arena, rotating CW or CCW\nREMEMBER his FIRST end spot + rotation (for Limit Cut)'
+        }
+      ]
+    }
+  },
+  {
+    phaseName: 'Vacuum Wave',
+    tag: 'bowels',
+    mechs: {
+      tb: [
+        {
+          mechanic: 'Knockback Pairs',
+          description:
+            'Exdeath Vacuum Wave knocks everyone back\nSupports Left, DPS Right; G1 Left, G2 Right -> 4 pairs\nHead/Tailwind: face toward/away Exdeath\nFire/Water: use knockback immunity\nLand on your Wind stack spot; Ranged stay off the crystal (Red ring = max melee)'
+        }
+      ],
+      sg3k: [
+        {
+          mechanic: 'Static Wind Baits',
+          description:
+            'Exdeath Vacuum Wave knocks everyone back; resolve Head/Tailwind\nDo NOT use knockback immunity (gapclose back if needed)\nAfter the KB, bait Wind in static spots around Chaos: Supports Left / DPS Right (facing wall), 4 Melees closest on Chaos hitbox, LP1 on the wall\nRanged a few steps out, do not greed if Chaos is off-center'
+        }
+      ]
+    }
+  },
+  {
+    phaseName: 'Limit Cut',
+    tag: 'bowels',
+    mechs: {
+      tb: [
+        {
+          mechanic: 'Numbers',
+          description:
+            'Relative North = opposite Kefka’s FIRST dash\nStand on the inter-inter-cardinals in number order from new North, rotating OPPOSITE Kefka’s dash direction\nLine up with waymark\nExdeath Thunder III proximity TB after'
+        }
+      ],
+      sg3k: [
+        {
+          mechanic: 'Numbers',
+          description:
+            'Relative North = Kefka’s first dash end spot\nLC numbers fill from Rel N, rotating OPPOSITE Kefka’s dash direction\nGo to the wall, line up between the cardinal/intercard marks (between markers = safe, spots are small)\nExdeath Thunder III tankbuster after (invuln/swap)'
+        }
+      ]
+    }
+  },
+  {
+    phaseName: 'Earthquake: Conga',
+    tag: 'p3',
+    mechs: [
+      {
+        mechanic: 'Re-split',
+        description:
+          'G1 Supports + Melee -> Chaos\nG2 Supports + Ranged -> Exdeath\nAnother Exdeath Thunder III tankbuster'
+      },
+      {
+        mechanic: 'Conga + Debuffs',
+        description:
+          'Stack bosses mid, then conga; HP set to 1\nAll: Primordial Crust (cleanse by dying -> survive at 1 hp)\n2 players: Accretion (cleanse by full heal)\nEarth Crystal: raidwide + 4s Earth vuln each time an Earth debuff expires\n3x First / 3x Second / 2x Third in Line'
+      },
+      {
+        mechanic: 'Order Setup',
+        description:
+          'Healers top everyone up; single-target the First-in-line Accretion, then the other once its vuln drops\nFirst in Line step forward, Third step back\nRemember Left to Right order of your debuff'
+      }
+    ]
+  },
+  {
+    phaseName: 'Earthquake: Black Holes',
+    tag: 'p3',
+    mechs: [
+      {
+        mechanic: 'Hand Attacks',
+        description:
+          'Kefka raises hand: 3 AOEs on that half, then a center slam\nLeft side unsafe = Party Stack\nRight side unsafe = Role Spread'
+      },
+      {
+        mechanic: 'Laser Tethers',
+        description:
+          '4 tether sets, everyone needs to soak 3\nLeftmost = 1st tower CW from Kefka, Middle = 2nd CW, Rightmost = 3rd CW\nPoint every laser clockwise'
+      },
+      {
+        mechanic: 'Tethers',
+        description:
+          '<b>Set 1 (1 Laser, 1 hit)</b>: I #1\n<b>Set 2 (2 Lasers, 1 hit)</b>: I #1 + I #2\nExdeath Tankbuster\nChaos Edict + Kefka Hand\n<b>Set 3 (3 Lasers, 3 hits)</b>\nSet 3 1st hit: I #1, I #2, I #3\nSet 3 2nd hit: II #1 take 1st tether\nSet 3 3rd hit: II #2 take 2nd tether\nChaos Edict + Kefka Hand + Exdeath Tankbuster\n<b>Set 4 (3 tethers, 3 hits)</b>\nSet 4 1st hit: II #1, II #2, II #3\nSet 4 2nd hit: III #1 take 1st tether\nSet 4 3rd hit: III #2 take 2nd tether'
+      }
+    ]
+  },
+  {
+    phaseName: 'Earthquake: Blizzard',
+    tag: 'p3',
+    mechs: [
+      {
+        mechanic: 'Blizzard Puddles',
+        description:
+          'Party stack mid (Kefka = Relative North)\nBlizzard AOEs under everyone -> move to intercards in partners\nSupports Rel N, DPS Rel S; G1 Rel W/Left, G2 Rel E/Right\n1 Support or 1 DPS gets a stack marker'
+      },
+      {
+        mechanic: 'Towers + Enrage',
+        description:
+          'Stacked role returns mid after the 2nd puddle bait; other role takes the Rel E/W tower (G1 West, G2 East)\nSwap: opposite role gets the stack, take towers again\nBlizzard III = keep moving\nKill both bosses before enrage'
+      }
+    ]
   }
 ];
 
@@ -1071,7 +1284,9 @@ const kefkabinStrat: Strat = {
     'Kefka Bin': 'https://pastebin.com/7fs57PyQ',
     'UMAD P1: Merry Go Round by Fae Fiyaa':
       'https://docs.google.com/presentation/d/1-E2rEKa586KKiVNvtt3EAMQY2YAEVBRGcMX0WzORIq8/edit?usp=sharing',
-    'P2 Trines': 'https://raidplan.io/plan/apkh6ytq72w8pt3v'
+    'P2 Trines': 'https://raidplan.io/plan/apkh6ytq72w8pt3v',
+    'UMAD P3 by Fae Fiyaa':
+      'https://docs.google.com/presentation/d/1HfyKo8SZB3ToEVDEPWn3kl64HBqzs8JojdDsNnGeXoM/edit'
   },
   notes:
     'These strats will likely change! Refer to the original resources for the most up-to-date versions',
@@ -1088,7 +1303,7 @@ export const dancingMadFightConfig: FightConfig = {
   cheatsheetTitle: 'Dancing Mad Cheatsheet',
   showAllToggleUrls: true,
   strats: {
-    kefkabin: { label: 'Kefkabin', defaults: { arrows: 'mgr', forsaken: 'kr' } }
+    kefkabin: { label: 'Kefkabin', defaults: { arrows: 'mgr', forsaken: 'kr', bowels: 'fae' } }
   },
   toggles: [
     {
@@ -1125,12 +1340,29 @@ export const dancingMadFightConfig: FightConfig = {
           url: { name: 'APHORSAKEN (s.flex)', url: 'https://raidplan.io/plan/uq7zdjvuu7uuw8fj' }
         }
       ]
+    },
+    {
+      key: 'bowels',
+      label: 'P3 Bowels/LC',
+      defaultValue: 'tb',
+      phaseTag: 'bowels',
+      options: [
+        {
+          value: 'sg3k',
+          label: 'SG3K',
+          url: {
+            name: 'SG3K Bowels/LC by S’vetha Mako',
+            url: 'https://raidplan.io/plan/9assfrb4fcvwat9e'
+          }
+        },
+        { value: 'fae', label: 'Fae Slides' },
+      ]
     }
   ],
   tabTags: {
     'P1: Kefka': ['p1', 'arrows'],
     'P2: Forsaken Kefka': ['p2', 'forsaken'],
-    'P3: Chaos and Exdeath': ['p3'],
+    'P3: Chaos and Exdeath': ['p3', 'bowels'],
     'P4: Kefka Says': ['p4'],
     'P5: ???': ['p5']
   },
