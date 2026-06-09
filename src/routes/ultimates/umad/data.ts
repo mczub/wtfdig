@@ -524,6 +524,31 @@ const allP1: PhaseStrats[] = [
             'IGNORE DEBUFFS, use fixed spots\nG1 West, G2 East\nTank/Range North, Healer/Melee South\nRanged inside the arrow box, Melees on boss hitbox intercards',
           imageUrl: './umad/p1-arrows-pinoy-7.webp'
         }
+      ],
+      freaky: [
+        {
+          mechanic: 'Placement',
+          description:
+            'Everyone gets 2 Arrow debuffs\nOne role gets 2x same, one role gets 2x different\nPlace arrows in a ring CLOCKWISE, only one spot per player',
+          imageUrl: './umad/p1-arrows-freaky-1.webp'
+        },
+        {
+          mechanic: 'Arrow Solve',
+          description:
+            'Cardinal (Letter) arrows go on the INNER EDGE of the waymark\nSame Arrows: drop 1st on the Letter marker + 1 spot CCW\nDifferent Arrows: use the timer to see which drops first',
+          imageUrl: './umad/p1-arrows-freaky-2.webp'
+        },
+        {
+          mechanic: 'Knockback',
+          description: 'Supports NW, DPS SE for Confetti KB\nConfetti debuffs on the 1/3 markers',
+          imageUrl: './umad/p1-arrows-freaky-5.webp'
+        },
+        {
+          mechanic: 'Sleep/Confuse (Tethers matter)',
+          description:
+            'Each role gets Upper (Outside/Confuse) or Lower (Inside/Sleep)\nLower: stay under boss on your cardinal color spot and get slept\nUpper: go outside cardinal color spot and get confused',
+          imageUrl: './umad/p1-arrows-freaky-6.webp'
+        }
       ]
     }
   },
@@ -1102,6 +1127,14 @@ export const dancingMadFightConfig: FightConfig = {
           value: 'pinoy',
           label: 'Filipino Box',
           url: { name: 'Filipino Box Graven 3', url: 'https://raidplan.io/plan/5rf2uhud5ztsbud5' }
+        },
+        {
+          value: 'freaky',
+          label: 'Freaky MGR',
+          url: {
+            name: 'freaky merry go round arrows',
+            url: 'https://raidplan.io/plan/qD9Y_g1caq3l5gD-'
+          }
         }
       ]
     },
