@@ -546,8 +546,58 @@ const allP1: PhaseStrats[] = [
         {
           mechanic: 'Sleep/Confuse (Tethers matter)',
           description:
-            'Each role gets Upper (Outside/Confuse) or Lower (Inside/Sleep)\nLower: stay under boss on your cardinal color spot and get slept\nUpper: go outside cardinal color spot and get confused',
-          imageUrl: './umad/p1-arrows-freaky-6.webp'
+            'Each role gets Upper (Outside/Confuse) or Lower (Inside/Sleep)\nLower: stay inside and get slept\nUpper: go outside and get confused',
+
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'North',
+              imageUrl: './umad/p1-arrows-freaky-6.webp',
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'West',
+              imageUrl: './umad/p1-arrows-freaky-6.webp',
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'South',
+              imageUrl: './umad/p1-arrows-freaky-6.webp',
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'East',
+              imageUrl: './umad/p1-arrows-freaky-6.webp',
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'South',
+              imageUrl: './umad/p1-arrows-freaky-6.webp',
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'East',
+              imageUrl: './umad/p1-arrows-freaky-6.webp',
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'North',
+              imageUrl: './umad/p1-arrows-freaky-6.webp',
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'West',
+              imageUrl: './umad/p1-arrows-freaky-6.webp',
+            }
+          ]
         }
       ]
     }
