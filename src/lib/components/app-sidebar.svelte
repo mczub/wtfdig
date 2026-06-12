@@ -5,6 +5,7 @@
   import { base } from '$app/paths';
   import {
     ArrowLeftFromLine,
+    ChartColumn,
     ChevronDown,
     ChevronRightIcon,
     Grid3x3,
@@ -51,7 +52,7 @@
       items: [
         {
           title: 'Dancing Mad',
-          subtitle: 'Ultimate • P1 + P2',
+          subtitle: 'Ultimate • P1 - P3',
           url: '/ultimates/umad',
           icon: TriangleAlert
         },
@@ -232,6 +233,21 @@
           <Sidebar.GroupLabel class="flex flex-row items-center gap-2 text-lg font-semibold mb-2"
             ><Hammer class="size-6 text-primary" />Tools</Sidebar.GroupLabel
           >
+          <Sidebar.MenuItem>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://analyzer.wtfdig.info"
+              class="flex flex-col w-full items-start mx-2"
+            >
+              <div class="flex flex-row items-center gap-2 text-lg">
+                <ChartColumn class="size-6 text-primary " /><span class="font-semibold"
+                  >analyzer</span
+                >
+              </div>
+              <div class="text-base text-surface-400">fflogs-based pull analyzer</div>
+            </a>
+          </Sidebar.MenuItem>
           <Sidebar.MenuItem>
             <a
               target="_blank"
