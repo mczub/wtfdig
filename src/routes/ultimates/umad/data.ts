@@ -1376,21 +1376,15 @@ export const dancingMadFightConfig: FightConfig = {
   cheatsheetTitle: 'Dancing Mad Cheatsheet',
   showAllToggleUrls: true,
   strats: {
-    kefkabin: { label: 'Kefkabin', defaults: { arrows: 'mgr', forsaken: 'kr', bowels: 'sg3k' } }
+    kefkabin: { label: 'Kefkabin', defaults: { arrows: 'freaky', forsaken: 'kr', bowels: 'sg3k' } }
   },
   toggles: [
     {
       key: 'arrows',
       label: 'P1 Arrows',
-      defaultValue: 'mgr',
+      defaultValue: 'freaky',
       phaseTag: 'arrows',
       options: [
-        { value: 'mgr', label: 'Merry-Go-Round' },
-        {
-          value: 'pinoy',
-          label: 'Filipino Box',
-          url: { name: 'Filipino Box Graven 3', url: 'https://raidplan.io/plan/5rf2uhud5ztsbud5' }
-        },
         {
           value: 'freaky',
           label: 'Freaky MGR',
@@ -1398,7 +1392,13 @@ export const dancingMadFightConfig: FightConfig = {
             name: 'freaky merry go round arrows',
             url: 'https://raidplan.io/plan/qD9Y_g1caq3l5gD-'
           }
-        }
+        },
+        { value: 'mgr', label: 'Merry-Go-Round' },
+        {
+          value: 'pinoy',
+          label: 'Filipino Box',
+          url: { name: 'Filipino Box Graven 3', url: 'https://raidplan.io/plan/5rf2uhud5ztsbud5' }
+        },
       ]
     },
     {
@@ -1425,7 +1425,7 @@ export const dancingMadFightConfig: FightConfig = {
     {
       key: 'bowels',
       label: 'P3 Bowels/LC',
-      defaultValue: 'sg3k',
+      defaultValue: 'lb',
       phaseTag: 'bowels',
       options: [
         {
@@ -1436,7 +1436,7 @@ export const dancingMadFightConfig: FightConfig = {
             url: 'https://raidplan.io/plan/9assfrb4fcvwat9e'
           }
         },
-        { value: 'lb', label: 'LB3 Cheese' }
+        { value: 'lb', label: 'LB3 Cheese' },
       ]
     }
   ],
