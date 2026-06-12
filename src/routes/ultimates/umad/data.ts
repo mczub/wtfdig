@@ -553,49 +553,49 @@ const allP1: PhaseStrats[] = [
               role: 'Tank',
               party: 1,
               description: 'North',
-              imageUrl: './umad/p1-arrows-freaky-6.webp',
+              imageUrl: './umad/p1-arrows-freaky-6.webp'
             },
             {
               role: 'Tank',
               party: 2,
               description: 'West',
-              imageUrl: './umad/p1-arrows-freaky-6.webp',
+              imageUrl: './umad/p1-arrows-freaky-6.webp'
             },
             {
               role: 'Healer',
               party: 1,
               description: 'South',
-              imageUrl: './umad/p1-arrows-freaky-6.webp',
+              imageUrl: './umad/p1-arrows-freaky-6.webp'
             },
             {
               role: 'Healer',
               party: 2,
               description: 'East',
-              imageUrl: './umad/p1-arrows-freaky-6.webp',
+              imageUrl: './umad/p1-arrows-freaky-6.webp'
             },
             {
               role: 'Melee',
               party: 1,
               description: 'South',
-              imageUrl: './umad/p1-arrows-freaky-6.webp',
+              imageUrl: './umad/p1-arrows-freaky-6.webp'
             },
             {
               role: 'Melee',
               party: 2,
               description: 'East',
-              imageUrl: './umad/p1-arrows-freaky-6.webp',
+              imageUrl: './umad/p1-arrows-freaky-6.webp'
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'North',
-              imageUrl: './umad/p1-arrows-freaky-6.webp',
+              imageUrl: './umad/p1-arrows-freaky-6.webp'
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'West',
-              imageUrl: './umad/p1-arrows-freaky-6.webp',
+              imageUrl: './umad/p1-arrows-freaky-6.webp'
             }
           ]
         }
@@ -1117,9 +1117,220 @@ const allP2: PhaseStrats[] = [
 
 const allP3: PhaseStrats[] = [
   {
-    phaseName: 'Chaos and Exdeath',
+    phaseName: 'The Decisive Battle',
     tag: 'p3',
-    description: 'Under construction - phases will be added as teams discover and refine them.'
+    mechs: [
+      {
+        mechanic: 'Opener Split',
+        description: 'G1 Supports + Melee -> Chaos\nG2 Supports + Ranged -> Exdeath'
+      }
+    ]
+  },
+  {
+    phaseName: 'Bowels of Agony',
+    tag: 'bowels',
+    mechs: {
+      lb: [
+        {
+          mechanic: 'Debuffs',
+          description:
+            '1 Sup + 1 DPS: Entropy (fire/spread)\n1 Sup + 1 DPS: Dynamic Fluid (water/donut)\nOne Short (20s), one Long (45s)\nEveryone gets Headwind or Tailwind\nHeadwind = face AWAY, Tailwind = face TOWARD the source',
+          imageUrl: './umad/p3-lb-4.webp'
+        },
+        {
+          mechanic: 'Setup',
+          description:
+            'MT: drag Chaos to the wall at Wind crystal\nOT: keep Exdeath middle\nMelees + Healers stack at the Wind crystal\nRanged spread at the Short debuff crystal',
+          imageUrl: './umad/p3-lb-5.webp'
+        },
+        {
+          mechanic: 'First Resolve (Short)',
+          description:
+            'Exdeath defam, Firewall debuffs drop, Short element resolves\nShort Fire: Melee spread from Supports\nShort Water: Melee + Supports stack\nCrystal AOE hits ranged',
+          imageUrl: './umad/p3-lb-6.webp'
+        },
+        {
+          mechanic: 'Tankbuster + Implosion',
+          description:
+            'MT drag Chaos to the wall, Exdeath Thunder III 2-hit tankbuster\nRanged swap to the other crystal, stay off Exdeath so you do not bait it\nDrag Exdeath to the wall, Chaos tank point Chaos out on intercard\nLatitude = sides first, Longitude = front/back first',
+          imageUrl: './umad/p3-lb-10.webp'
+        },
+        {
+          mechanic: 'Second Resolve (Long)',
+          description:
+            'Resolve Long debuffs after 2nd implosion hit\nRanged spread, Melee + Supports stack or spread depending on debuff',
+          imageUrl: './umad/p3-lb-11.webp'
+        },
+        {
+          mechanic: 'Superjump',
+          description:
+            'Drag Exdeath on the Wind crystal\nPhys Ranged go opposite Wind crystal to bait Superjump\nEveryone stack on Exdeath',
+          imageUrl: './umad/p3-lb-13.webp'
+        },
+      ],
+      sg3k: [
+        {
+          mechanic: 'Debuffs',
+          description:
+            '1 Sup + 1 DPS: Entropy (fire/spread)\n1 Sup + 1 DPS: Dynamic Fluid (water/donut)\nOne Short (20s), one Long (45s)\nEveryone gets Headwind or Tailwind\nHeadwind = face AWAY, Tailwind = face TOWARD the source',
+          imageUrl: './umad/p3-sg3k-3.webp'
+        },
+        {
+          mechanic: 'Boss Pulls',
+          description:
+            'Pull Exdeath AWAY from the Short crystal, hug the wall\nPull Chaos between Wind and Short crystals, as close to the wall as possible',
+          imageUrl: './umad/p3-sg3k-4.webp'
+        },
+        {
+          mechanic: 'First Resolve (Short)',
+          description:
+            'Exdeath PBAOE + Short element resolves\nShort: Support at the wall, DPS near center next to crystal (just outside the waymark)\nLong: stand beside Short DPS and resolve Head/Tailwind\nNon-element: pairs to bait Wind\nSupports close (bait nearest), DPS further, ranged/G2 away from Chaos',
+          imageUrl: './umad/p3-sg3k-5.webp'
+        },
+        {
+          mechanic: 'Short Crystal AOE',
+          description:
+            'Short: stay for the second hit\nLong: get knocked back\nFire = dead center, Water = inner ring on the floor\nWind baiters align with intercard waymark, DPS slightly further from Wind crystal',
+          imageUrl: './umad/p3-sg3k-6.webp'
+        },
+        {
+          mechanic: 'Tankbuster + Implosion',
+          description:
+            'Exdeath Thunder III Tankbuster on closest\nChaos tank center, face between Wind and Long crystal\nLatitude = sides first, Longitude = front/back first\nDodge into the first AOE, second crystal happens right after second hit',
+          imageUrl: './umad/p3-sg3k-8.webp'
+        },
+        {
+          mechanic: 'Second Resolve (Long)',
+          description:
+            'Dodge 2nd cleave into your element spots (same prio)\nShort: get knocked back by crystal hit\nFire = dead center, Water = inner ring on the floor\nWind baiters return to the same side and bait again',
+          imageUrl: './umad/p3-sg3k-9.webp'
+        },
+        {
+          mechanic: 'Superjump',
+          description:
+            'Drag both bosses opposite wind crystal\nPhys Ranged stand at the wall behind the Wind crystal to bait Superjump',
+          imageUrl: './umad/p3-sg3k-11.webp'
+        },
+      ]
+    }
+  },
+  {
+    phaseName: 'Vacuum Wave + Limit Cut',
+    tag: 'bowels',
+    mechs: {
+      lb: [
+        {
+          mechanic: 'Kefka Dashes',
+          description:
+            'Watch Kefka dashes\nREMEMBER start + CW or CCW rotation for Limit Cut',
+          imageUrl: './umad/p3-lb-14.webp'
+        },
+        {
+          mechanic: 'Vacuum Wave + Tank LB',
+          description:
+            'Exdeath Vacuum Wave KB: Supports Left, DPS Right, each with your role partner\nResolve Head/Tailwind\nTANK LB toward the end of the cast bar\nMove to your Wind stack location',
+          imageUrl: './umad/p3-lb-15.webp'
+        },
+        {
+          mechanic: 'Numbers',
+          description:
+            'Relative North = opposite Kefka’s FIRST dash\nStand on the inter-inter-cardinals in number order from Rel N, rotating OPPOSITE Kefka’s dash direction\nAlign with the waymark or between markers\nExdeath Thunder III tankbuster after',
+          imageUrl: './umad/p3-lb-17.webp'
+        }
+      ],
+      sg3k: [
+        {
+          mechanic: 'Kefka Dashes',
+          description:
+            'Watch Kefka dashes\nREMEMBER start + CW or CCW rotation for Limit Cut',
+          imageUrl: './umad/p3-sg3k-12.webp'
+        },
+        {
+          mechanic: 'Static Wind Baits',
+          description:
+            'Resolve Head/Tailwind with Exdeath Vacuum Wave\nAfter KB, bait Wind in static spots around Chaos\nSupports Left / DPS Right (facing wall), 4 Melees closest on Chaos hitbox, LP1 on the wall, Ranged a few steps out',
+          imageUrl: './umad/p3-sg3k-13.webp'
+        },
+        {
+          mechanic: 'Numbers',
+          description:
+            'Relative North = opposite Kefka’s FIRST dash\nStand on the inter-inter-cardinals in number order from Rel N, rotating OPPOSITE Kefka’s dash direction\nAlign with the waymark or between markers\nExdeath Thunder III tankbuster after',
+          imageUrl: './umad/p3-sg3k-15.webp'
+        }
+      ]
+    }
+  },
+  {
+    phaseName: 'Earthquake: Conga',
+    tag: 'p3',
+    mechs: [
+      {
+        mechanic: 'Re-split',
+        description:
+          'G1 Supports + Melee -> Chaos\nG2 Supports + Ranged -> Exdeath\nExdeath Thunder III tankbuster',
+        imageUrl: './umad/p3-lb-21.webp'
+      },
+      {
+        mechanic: 'Conga + Debuffs',
+        description:
+          'Stack bosses mid, then conga; HP set to 1\nAll: Primordial Crust (cleanse by dying -> survive at 1 hp)\n1 DPS + 1 Healer: Accretion (cleanse by full heal)\nRaidwide + 4s Earth vuln each time an Earth debuff expires\n3x First / 3x Second / 2x Third in Line',
+        imageUrl: './umad/p3-lb-24.webp'
+      },
+      {
+        mechanic: 'Order Setup',
+        description:
+          'Healers top everyone up; single-target the First-in-line Accretion, then the other\nDPS = 1st tether CW from Kefka, Supports = 2nd, Accretion = 3rd',
+        imageUrl: './umad/p3-lb-25.webp'
+      }
+    ]
+  },
+  {
+    phaseName: 'Earthquake: Black Holes',
+    tag: 'p3',
+    mechs: [
+      {
+        mechanic: 'Hand Attacks',
+        description:
+          'Kefka = Relative North\nLeft side unsafe (facing boss) = Party Stack\nRight side unsafe = Role Spread',
+        imageUrl: './umad/p3-lb-26.webp'
+      },
+      {
+        mechanic: 'Laser Tethers',
+        description:
+          '4 tether sets, each player soaks 3 lasers\nDPS = 1st tether CW from Kefka, Supports = 2nd, Accretion = 3rd\nPoint every laser clockwise\nNeed to get hit 3 times to cleanse',
+        imageUrl: './umad/p3-lb-30.webp'
+      },
+      {
+        mechanic: 'Tethers',
+        description:
+          '<b>Tether CW Order = #1 DPS, #2 Supports, #3 Accretion</b>\n<b>Set 1 (1 Laser, 1 hit)</b>: I DPS\n<b>Set 2 (2 Lasers, 1 hit)</b>: I DPS + I Support\nExdeath Tankbuster\nChaos Edict + Kefka Hand\n<b>Set 3 (3 Lasers, 3 hits)</b>\nSet 3 1st hit: I DPS, I Support, I Accretion\nSet 3 2nd hit: II DPS take 1st tether\nSet 3 3rd hit: II Support take 2nd tether\nChaos Edict + Kefka Hand + Exdeath Tankbuster\n<b>Set 4 (3 tethers, 3 hits)</b>\nSet 4 1st hit: II DPS, II Support, II Accretion\nSet 4 2nd hit: III DPS take 1st tether\nSet 4 3rd hit: III Support take 2nd tether',
+        imageUrl: './umad/p3-lb-36.webp'
+      },
+      {
+        mechanic: 'White Hole + Dodges',
+        description:
+          'Dodge Latitude/Longitude then Kefka hand (move to the safe side on the 2nd hit)\nExdeath White Hole: ALL players must be at FULL HP\nKefka Party Stack / Role Spread resolves',
+        imageUrl: './umad/p3-lb-46.webp'
+      }
+    ]
+  },
+  {
+    phaseName: 'Earthquake: Blizzard',
+    tag: 'p3',
+    mechs: [
+      {
+        mechanic: 'Blizzard Puddles',
+        description:
+          'Party stack mid (Kefka = Relative North)\nBlizzard AOEs under everyone -> move to intercards in partners\nSupports Rel N, DPS Rel S; G1 Rel W/Left, G2 Rel E/Right\n1 Support or 1 DPS gets a stack marker',
+        imageUrl: './umad/p3-lb-54.webp'
+      },
+      {
+        mechanic: 'Towers + Enrage',
+        description:
+          'Stacked role returns mid after the 2nd puddle bait; other role takes the Rel E/W tower (G1 West, G2 East)\nSwap: opposite role gets the stack, take towers again\nBlizzard III = keep moving\nKill both bosses before enrage',
+        imageUrl: './umad/p3-lb-56.webp'
+      }
+    ]
   }
 ];
 
@@ -1146,7 +1357,9 @@ const kefkabinStrat: Strat = {
     'Kefka Bin': 'https://pastebin.com/7fs57PyQ',
     'UMAD P1: Merry Go Round by Fae Fiyaa':
       'https://docs.google.com/presentation/d/1-E2rEKa586KKiVNvtt3EAMQY2YAEVBRGcMX0WzORIq8/edit?usp=sharing',
-    'P2 Trines': 'https://raidplan.io/plan/apkh6ytq72w8pt3v'
+    'P2 Trines': 'https://raidplan.io/plan/apkh6ytq72w8pt3v',
+    'UMAD P3 by Fae Fiyaa':
+      'https://docs.google.com/presentation/d/1HfyKo8SZB3ToEVDEPWn3kl64HBqzs8JojdDsNnGeXoM/edit'
   },
   notes:
     'These strats will likely change! Refer to the original resources for the most up-to-date versions',
@@ -1163,21 +1376,15 @@ export const dancingMadFightConfig: FightConfig = {
   cheatsheetTitle: 'Dancing Mad Cheatsheet',
   showAllToggleUrls: true,
   strats: {
-    kefkabin: { label: 'Kefkabin', defaults: { arrows: 'mgr', forsaken: 'kr' } }
+    kefkabin: { label: 'Kefkabin', defaults: { arrows: 'freaky', forsaken: 'kr', bowels: 'sg3k' } }
   },
   toggles: [
     {
       key: 'arrows',
       label: 'P1 Arrows',
-      defaultValue: 'mgr',
+      defaultValue: 'freaky',
       phaseTag: 'arrows',
       options: [
-        { value: 'mgr', label: 'Merry-Go-Round' },
-        {
-          value: 'pinoy',
-          label: 'Filipino Box',
-          url: { name: 'Filipino Box Graven 3', url: 'https://raidplan.io/plan/5rf2uhud5ztsbud5' }
-        },
         {
           value: 'freaky',
           label: 'Freaky MGR',
@@ -1185,7 +1392,13 @@ export const dancingMadFightConfig: FightConfig = {
             name: 'freaky merry go round arrows',
             url: 'https://raidplan.io/plan/qD9Y_g1caq3l5gD-'
           }
-        }
+        },
+        { value: 'mgr', label: 'Merry-Go-Round' },
+        {
+          value: 'pinoy',
+          label: 'Filipino Box',
+          url: { name: 'Filipino Box Graven 3', url: 'https://raidplan.io/plan/5rf2uhud5ztsbud5' }
+        },
       ]
     },
     {
@@ -1208,16 +1421,33 @@ export const dancingMadFightConfig: FightConfig = {
           url: { name: 'APHORSAKEN (s.flex)', url: 'https://raidplan.io/plan/uq7zdjvuu7uuw8fj' }
         }
       ]
+    },
+    {
+      key: 'bowels',
+      label: 'P3 Bowels/LC',
+      defaultValue: 'lb',
+      phaseTag: 'bowels',
+      options: [
+        {
+          value: 'sg3k',
+          label: 'SG3K (No LB)',
+          url: {
+            name: 'SG3K Bowels/LC by S’vetha Mako',
+            url: 'https://raidplan.io/plan/9assfrb4fcvwat9e'
+          }
+        },
+        { value: 'lb', label: 'LB3 Cheese' },
+      ]
     }
   ],
   tabTags: {
     'P1: Kefka': ['p1', 'arrows'],
     'P2: Forsaken Kefka': ['p2', 'forsaken'],
-    'P3: Chaos and Exdeath': ['p3'],
+    'P3: Chaos and Exdeath': ['p3', 'bowels'],
     'P4: Kefka Says': ['p4'],
     'P5: ???': ['p5']
   },
-  inProgressTabs: ['P3: Chaos and Exdeath', 'P4: Kefka Says', 'P5: ???'],
+  inProgressTabs: ['P4: Kefka Says', 'P5: ???'],
   useMainPageTabs: true,
   defaultStratName: 'kefkabin',
   timeline: [],

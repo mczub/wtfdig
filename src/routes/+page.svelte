@@ -3,7 +3,7 @@
   import { slide } from 'svelte/transition';
   import ChevronDown from '@lucide/svelte/icons/chevron-down';
   import { Separator } from '$lib/components/ui/separator';
-  import { Grid3x3, History, Hammer, TriangleAlert } from '@lucide/svelte';
+  import { Grid3x3, History, Hammer, TriangleAlert, ChartColumn } from '@lucide/svelte';
 
   let openState = $state({
     savage: true,
@@ -30,6 +30,20 @@
     <div class="mx-auto w-full max-w-[362px] @2xl:max-w-[708px] flex flex-col gap-4 px-4">
        <div class="flex flex-row items-center gap-2 text-left text-lg font-bold">
           <Hammer class="size-6 text-primary" />Tools
+      </div>
+      <div class="grid grid-cols-2 gap-4">
+      <div class="card preset-outlined-secondary-500 gap-4 p-4 justify-center">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://analyzer.wtfdig.info"
+          class="flex flex-col items-start mx-2"
+        >
+          <div class="flex flex-row items-center gap-2 text-lg">
+            <ChartColumn class="size-6 text-primary " /><span class="font-semibold">analyzer</span>
+          </div>
+          <div class="text-base text-surface-400">fflogs-based pull analyzer</div>
+        </a>
       </div>
       <div class="card preset-outlined-secondary-500 gap-4 p-4 justify-center">
         <a
@@ -67,6 +81,7 @@
           </div>
           <div class="text-base text-surface-400">m12s idyllic dream helper</div>
         </a>
+      </div>
       </div>
     </div>
 
