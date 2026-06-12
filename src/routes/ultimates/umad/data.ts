@@ -1359,7 +1359,7 @@ const kefkabinStrat: Strat = {
       'https://docs.google.com/presentation/d/1-E2rEKa586KKiVNvtt3EAMQY2YAEVBRGcMX0WzORIq8/edit?usp=sharing',
     'P2 Trines': 'https://raidplan.io/plan/apkh6ytq72w8pt3v',
     'UMAD P3 by Fae Fiyaa':
-      'https://docs.google.com/presentation/d/1HfyKo8SZB3ToEVDEPWn3kl64HBqzs8JojdDsNnGeXoM/edit'
+      'https://docs.google.com/presentation/d/1aTnFt8TO4y1P7kd6i-dS2uJobg2auHyu4VWO6Hr6DtM'
   },
   notes:
     'These strats will likely change! Refer to the original resources for the most up-to-date versions',
