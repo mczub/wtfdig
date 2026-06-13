@@ -1134,7 +1134,7 @@ const allP3: PhaseStrats[] = [
         {
           mechanic: 'Debuffs',
           description:
-            '1 Sup + 1 DPS: Entropy (fire/spread)\n1 Sup + 1 DPS: Dynamic Fluid (water/donut)\nOne Short (20s), one Long (45s)\nEveryone gets Headwind or Tailwind\nHeadwind = face AWAY, Tailwind = face TOWARD the source',
+            '1 Sup + 1 DPS: {{entropy}} Entropy (fire/spread)\n1 Sup + 1 DPS: {{dynamic-fluid}} Dynamic Fluid (water/donut)\nOne Short (20s), one Long (45s)\nEveryone gets {{headwind}} Headwind or {{tailwind}} Tailwind\n{{headwind}} Headwind = face AWAY, {{tailwind}} Tailwind = face TOWARD',
           imageUrl: './umad/p3-lb-4.webp'
         },
         {
@@ -1146,7 +1146,7 @@ const allP3: PhaseStrats[] = [
         {
           mechanic: 'First Resolve (Short)',
           description:
-            'Exdeath defam, Firewall debuffs drop, Short element resolves\nShort Fire: Melee spread from Supports\nShort Water: Melee + Supports stack\nCrystal AOE hits ranged',
+            'Exdeath defam, Firewall debuffs drop, Short element resolves\nShort {{entropy}} Fire: Melee spread from Supports\nShort {{dynamic-fluid}} Water: Melee + Supports stack\nCrystal AOE hits Ranged',
           imageUrl: './umad/p3-lb-6.webp'
         },
         {
@@ -1166,13 +1166,13 @@ const allP3: PhaseStrats[] = [
           description:
             'Drag Exdeath on the Wind crystal\nPhys Ranged go opposite Wind crystal to bait Superjump\nEveryone stack on Exdeath',
           imageUrl: './umad/p3-lb-13.webp'
-        },
+        }
       ],
       sg3k: [
         {
           mechanic: 'Debuffs',
           description:
-            '1 Sup + 1 DPS: Entropy (fire/spread)\n1 Sup + 1 DPS: Dynamic Fluid (water/donut)\nOne Short (20s), one Long (45s)\nEveryone gets Headwind or Tailwind\nHeadwind = face AWAY, Tailwind = face TOWARD the source',
+            '1 Sup + 1 DPS: {{entropy}} Entropy (fire/spread)\n1 Sup + 1 DPS: {{dynamic-fluid}} Dynamic Fluid (water/donut)\nOne Short (20s), one Long (45s)\nEveryone gets {{headwind}} Headwind or {{tailwind}} Tailwind\n{{headwind}} Headwind = face AWAY, {{tailwind}} Tailwind = face TOWARD',
           imageUrl: './umad/p3-sg3k-3.webp'
         },
         {
@@ -1190,7 +1190,7 @@ const allP3: PhaseStrats[] = [
         {
           mechanic: 'Short Crystal AOE',
           description:
-            'Short: stay for the second hit\nLong: get knocked back\nFire = dead center, Water = inner ring on the floor\nWind baiters align with intercard waymark, DPS slightly further from Wind crystal',
+            'Short: stay for the second hit\nLong: get knocked back\n{{entropy}} Fire = dead center, {{dynamic-fluid}} Water = inner ring on the floor\nWind baiters align with intercard waymark, DPS slightly further from Wind crystal',
           imageUrl: './umad/p3-sg3k-6.webp'
         },
         {
@@ -1202,7 +1202,7 @@ const allP3: PhaseStrats[] = [
         {
           mechanic: 'Second Resolve (Long)',
           description:
-            'Dodge 2nd cleave into your element spots (same prio)\nShort: get knocked back by crystal hit\nFire = dead center, Water = inner ring on the floor\nWind baiters return to the same side and bait again',
+            'Dodge 2nd cleave into your element spots (same prio)\nShort: get knocked back by crystal hit\n{{entropy}} Fire = dead center, {{dynamic-fluid}} Water = inner ring on the floor\nWind baiters return to the same side and bait again',
           imageUrl: './umad/p3-sg3k-9.webp'
         },
         {
@@ -1210,7 +1210,7 @@ const allP3: PhaseStrats[] = [
           description:
             'Drag both bosses opposite wind crystal\nPhys Ranged stand at the wall behind the Wind crystal to bait Superjump',
           imageUrl: './umad/p3-sg3k-11.webp'
-        },
+        }
       ]
     }
   },
@@ -1221,14 +1221,13 @@ const allP3: PhaseStrats[] = [
       lb: [
         {
           mechanic: 'Kefka Dashes',
-          description:
-            'Watch Kefka dashes\nREMEMBER start + CW or CCW rotation for Limit Cut',
+          description: 'Watch Kefka dashes\nREMEMBER start + CW or CCW rotation for Limit Cut',
           imageUrl: './umad/p3-lb-14.webp'
         },
         {
           mechanic: 'Vacuum Wave + Tank LB',
           description:
-            'Exdeath Vacuum Wave KB: Supports Left, DPS Right, each with your role partner\nResolve Head/Tailwind\nTANK LB toward the end of the cast bar\nMove to your Wind stack location',
+            'Exdeath Vacuum Wave KB: Supports Left, DPS Right, each with your role partner\nResolve {{headwind}}{{tailwind}} Head/Tailwind\nTANK LB toward the end of the cast bar\nMove to your Wind stack location',
           imageUrl: './umad/p3-lb-15.webp'
         },
         {
@@ -1241,8 +1240,7 @@ const allP3: PhaseStrats[] = [
       sg3k: [
         {
           mechanic: 'Kefka Dashes',
-          description:
-            'Watch Kefka dashes\nREMEMBER start + CW or CCW rotation for Limit Cut',
+          description: 'Watch Kefka dashes\nREMEMBER start + CW or CCW rotation for Limit Cut',
           imageUrl: './umad/p3-sg3k-12.webp'
         },
         {
@@ -1273,13 +1271,13 @@ const allP3: PhaseStrats[] = [
       {
         mechanic: 'Conga + Debuffs',
         description:
-          'Stack bosses mid, then conga; HP set to 1\nAll: Primordial Crust (cleanse by dying -> survive at 1 hp)\n1 DPS + 1 Healer: Accretion (cleanse by full heal)\nRaidwide + 4s Earth vuln each time an Earth debuff expires\n3x First / 3x Second / 2x Third in Line',
+          'Stack bosses mid, then conga; HP set to 1\nAll: Primordial Crust (cleanse by dying -> survive at 1 hp)\n1 DPS + 1 Healer: {{accretion}} Accretion (cleanse by full heal)\nRaidwide + 4s Earth vuln each time an Earth debuff expires\n3x {{first-in-line}} First / 3x {{second-in-line}} Second / 2x {{third-in-line}} Third in Line',
         imageUrl: './umad/p3-lb-24.webp'
       },
       {
         mechanic: 'Order Setup',
         description:
-          'Healers top everyone up; single-target the First-in-line Accretion, then the other\nDPS = 1st tether CW from Kefka, Supports = 2nd, Accretion = 3rd',
+          'Healers top everyone up; single-target the First-in-line {{accretion}} Accretion, then the other\nDPS = 1st tether CW from Kefka, Supports = 2nd, {{accretion}} Accretion = 3rd',
         imageUrl: './umad/p3-lb-25.webp'
       }
     ]
@@ -1297,14 +1295,14 @@ const allP3: PhaseStrats[] = [
       {
         mechanic: 'Laser Tethers',
         description:
-          '4 tether sets, each player soaks 3 lasers\nDPS = 1st tether CW from Kefka, Supports = 2nd, Accretion = 3rd\nPoint every laser clockwise\nNeed to get hit 3 times to cleanse',
-        imageUrl: './umad/p3-lb-30.webp'
+          '4 tether sets, each player soaks 3 lasers\nDPS = 1st tether CW from Kefka, Supports = 2nd, {{accretion}} Accretion = 3rd\nPoint every laser clockwise\nNeed to get hit 3 times to cleanse',
+        imageUrl: './umad/p3-lb-36.webp'
       },
       {
         mechanic: 'Tethers',
         description:
-          '<b>Tether CW Order = #1 DPS, #2 Supports, #3 Accretion</b>\n<b>Set 1 (1 Laser, 1 hit)</b>: I DPS\n<b>Set 2 (2 Lasers, 1 hit)</b>: I DPS + I Support\nExdeath Tankbuster\nChaos Edict + Kefka Hand\n<b>Set 3 (3 Lasers, 3 hits)</b>\nSet 3 1st hit: I DPS, I Support, I Accretion\nSet 3 2nd hit: II DPS take 1st tether\nSet 3 3rd hit: II Support take 2nd tether\nChaos Edict + Kefka Hand + Exdeath Tankbuster\n<b>Set 4 (3 tethers, 3 hits)</b>\nSet 4 1st hit: II DPS, II Support, II Accretion\nSet 4 2nd hit: III DPS take 1st tether\nSet 4 3rd hit: III Support take 2nd tether',
-        imageUrl: './umad/p3-lb-36.webp'
+          '<b>Tether CW Order = #1 DPS, #2 Supports, #3 {{accretion}} Accretion</b>\n<b>Set 1 (1 Laser, 1 hit)</b>: {{first-in-line}} DPS\n<b>Set 2 (2 Lasers, 1 hit)</b>: {{first-in-line}} DPS + {{first-in-line}} Support\nExdeath Tankbuster\nChaos Edict + Kefka Hand\n<b>Set 3 (3 Lasers, 3 hits)</b>\nSet 3 1st hit: {{first-in-line}} DPS, {{first-in-line}} Support, {{first-in-line}}{{accretion}} Accretion\nSet 3 2nd hit: {{second-in-line}} DPS take 1st tether\nSet 3 3rd hit: {{second-in-line}} Support take 2nd tether\nChaos Edict + Kefka Hand + Exdeath Tankbuster\n<b>Set 4 (3 tethers, 3 hits)</b>\nSet 4 1st hit: {{second-in-line}} DPS, {{second-in-line}} Support, {{second-in-line}}{{accretion}} Accretion\nSet 4 2nd hit: {{third-in-line}} DPS take 1st tether\nSet 4 3rd hit: {{third-in-line}} Support take 2nd tether\n<b>Set 5 (2 Lasers, 1 hit)</b>: {{third-in-line}} DPS + {{third-in-line}} Support\n<b>Set 6 (1 Laser, 1 hit)</b>: {{third-in-line}} Support',
+        imageUrl: './umad/p3-lb-30.webp'
       },
       {
         mechanic: 'White Hole + Dodges',
@@ -1398,7 +1396,7 @@ export const dancingMadFightConfig: FightConfig = {
           value: 'pinoy',
           label: 'Filipino Box',
           url: { name: 'Filipino Box Graven 3', url: 'https://raidplan.io/plan/5rf2uhud5ztsbud5' }
-        },
+        }
       ]
     },
     {
@@ -1436,7 +1434,7 @@ export const dancingMadFightConfig: FightConfig = {
             url: 'https://raidplan.io/plan/9assfrb4fcvwat9e'
           }
         },
-        { value: 'lb', label: 'LB3 Cheese' },
+        { value: 'lb', label: 'LB3 Cheese' }
       ]
     }
   ],

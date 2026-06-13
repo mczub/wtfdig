@@ -131,6 +131,87 @@ export const DEBUFFS = {
     name: 'Forsaken Stack',
     iconFile: 'umad-forsaken-stack.png',
     description: 'Stack'
+  },
+  // UMAD - Bowels of Agony (P3) elements
+  entropy: {
+    id: 'entropy',
+    name: 'Entropy',
+    iconFile: '215902-entropy.png',
+    description: 'Spread AOE on expire (fire)'
+  },
+  'dynamic-fluid': {
+    id: 'dynamic-fluid',
+    name: 'Dynamic Fluid',
+    iconFile: '215903-dynamic-fluid.png',
+    description: 'Donut AOE on expire (water)'
+  },
+  headwind: {
+    id: 'headwind',
+    name: 'Headwind',
+    iconFile: '215904-headwind.png',
+    description: 'Knockback - face AWAY from the source'
+  },
+  tailwind: {
+    id: 'tailwind',
+    name: 'Tailwind',
+    iconFile: '215905-tailwind.png',
+    description: 'Knockback - face TOWARD the source'
+  },
+  accretion: {
+    id: 'accretion',
+    name: 'Accretion',
+    iconFile: '215906-accretion.png',
+    description: 'Cleanse by healing to full HP'
+  },
+  // UMAD - Earthquake (P3) conga order
+  'first-in-line': {
+    id: 'first-in-line',
+    name: 'First in Line',
+    iconFile: '215401-first-in-line.png',
+    description: 'Resolve first (step forward)'
+  },
+  'second-in-line': {
+    id: 'second-in-line',
+    name: 'Second in Line',
+    iconFile: '215402-second-in-line.png',
+    description: 'Resolve second'
+  },
+  'third-in-line': {
+    id: 'third-in-line',
+    name: 'Third in Line',
+    iconFile: '215403-third-in-line.png',
+    description: 'Resolve third (step back)'
+  },
+  // Misc status icons
+  'cursed-shriek': {
+    id: 'cursed-shriek',
+    name: 'Cursed Shriek',
+    iconFile: '215588-cursed-shriek.png'
+  },
+  'forked-lightning': {
+    id: 'forked-lightning',
+    name: 'Forked Lightning',
+    iconFile: '215623-forked-lightning.png'
+  },
+  'compressed-water': {
+    id: 'compressed-water',
+    name: 'Compressed Water',
+    iconFile: '215696-compressed-water.png'
+  },
+  'accel-bomb': {
+    id: 'accel-bomb',
+    name: 'Accel Bomb',
+    iconFile: '215727-accel-bomb.png'
+  },
+  'white-wound': {
+    id: 'white-wound',
+    name: 'White Wound',
+    iconFile: '215782-white-wound.png'
+  },
+  'black-wound': {
+    id: 'black-wound',
+    name: 'Black Wound',
+    iconFile: '215783-black-wound.png'
   }
 } as const satisfies Record<string, DebuffDef>;
 
