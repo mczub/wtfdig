@@ -8,6 +8,7 @@
   </header>
   <article class="prose dark:prose-invert max-w-none">
     <div class="">
+      <div>6/12/2026 7pm: some small updates to p3, added additional black hole tether info</div>
       <div>6/12/2026: add p3, set defaults on kefkabin to freaky/kroxy/sg3k</div>
       <div>6/8/2026 6:30pm: added freaky arrows to p1</div>
       <div>6/7/2026 5pm: updated both p2 strats to use new marker baits</div>
