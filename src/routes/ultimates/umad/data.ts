@@ -1309,6 +1309,12 @@ const allP3: PhaseStrats[] = [
         imageUrl: './umad/p3-lb-26.webp'
       },
       {
+        mechanic: 'Hand Attacks (Roles)',
+        description:
+          'If Role Spread, Tanks Front, Healers Mid, DPS Back',
+        imageUrl: './umad/p3-lb-roles.webp'
+      },
+      {
         mechanic: 'Laser Tethers',
         description:
           '4 tether sets, each player soaks 3 lasers\nDPS = 1st tether CW from Kefka, Supports = 2nd, {{accretion}} Accretion = 3rd\nPoint every laser clockwise\nNeed to get hit 3 times to cleanse',
@@ -1353,7 +1359,7 @@ const allP4: PhaseStrats[] = [
     phaseName: 'Timeline',
     tag: 'p4',
     description:
-      '<a href="/tools/p4-helper" target="_blank" rel="noopener noreferrer" class="btn preset-filled-primary-500 text-lg font-bold no-underline">Open the P4 Callout Helper<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a>',
+      '<a href="/tools/p4-helper" target="_blank" rel="noopener noreferrer" class="btn preset-filled-primary-500 text-lg font-bold no-underline">Open the P4 Helper<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a>',
     mechs: [
       {
         mechanic: 'Timeline',
@@ -1402,9 +1408,129 @@ const allP4: PhaseStrats[] = [
 
 const allP5: PhaseStrats[] = [
   {
-    phaseName: 'Ultima Kefka',
+    phaseName: 'Autos',
     tag: 'p5',
-    description: 'Under construction - phases will be added as teams discover and refine them.'
+    mechs: [
+      {
+        mechanic: 'Ultima Repeater',
+        description: '4x raidwide\nStand in your role spot to prep for the autos after'
+      },
+      {
+        mechanic: 'Fell Forces',
+        description:
+          'Role-based autos\nTanks N, Healers SW, DPS SE'
+      }
+    ]
+  },
+  {
+    phaseName: 'Chaotic Flood',
+    tag: 'p5',
+    mechs: [
+      {
+        mechanic: 'Rotating Quadrants',
+        description:
+          'Dodge around mid\nLook at first 2 lines for safe cardinals\nCan also do single dodge, 2x dodge is safer',
+        imageUrl: './umad/p5-3.webp'
+      }
+    ]
+  },
+  {
+    phaseName: 'Maddening Orchestra',
+    tag: 'p5',
+    mechs: [
+      {
+        mechanic: 'Spread',
+        description: 'Spread around boss: Tanks N, Healers W, DPS E',
+        imageUrl: './umad/p5-7.webp'
+      },
+      {
+        mechanic: '1st Hit (Random Holy)',
+        description: '1st Holy set is random\nMT gets 1x Surprise Flare, OT gets 1x Surprise Holy',
+        imageUrl: './umad/p5-8.webp'
+      },
+      {
+        mechanic: '2nd Hit (Proximity Holy)',
+        description: '2nd Holy set is proximity\nTanks stack together for the shared buster',
+        imageUrl: './umad/p5-9.webp'
+      },
+      {
+        mechanic: 'Tank Resolve',
+        description:
+          'Holy tank invulns max melee, Flare tank goes to the wall\nOT voke before the resolution to take the next 2 autos with invuln still running',
+        imageUrl: './umad/p5-10.webp'
+      }
+    ]
+  },
+  {
+    phaseName: 'Celestriad (Towers)',
+    tag: 'p5',
+    mechs: [
+      {
+        mechanic: 'Overview',
+        description:
+          '4 towers active per set, 3 sets total\nVulns applied randomly: 2x ice, 2x lightning, 2x fire, 2x nothing\n2x nothing will always fill the double\nWand animation on 1st + 3rd sets: Earth = CHARIOT (in), Wind = DYNAMO (out)',
+        imageUrl: './umad/p5-12.webp'
+      },
+      {
+        mechanic: 'Resolution',
+        description:
+          '1st set: debuff players take the 1st safe tower CW from your vuln\nNo debuff (2x nothing) take the 1st CCW tower of the element with 2x towers\n2nd + 3rd set: Debuff players rotate CW to next element',
+        imageUrl: './umad/p5-13.webp'
+      }
+    ]
+  },
+  {
+    phaseName: 'Stray Apocalypse',
+    tag: 'p5',
+    mechs: [
+      {
+        mechanic: 'Exaflares',
+        description:
+          '6x sets of exaflares, always start NW => NE and repeat\nDodge however you like, just be at your spread spot after',
+        imageUrl: './umad/p5-18.webp'
+      },
+      {
+        mechanic: 'Stray Entropy',
+        description: 'Ends with Stray Entropy = spreads\nSpread out around the arena',
+        imageUrl: './umad/p5-19.webp'
+      }
+    ]
+  },
+  {
+    phaseName: 'Maddening Orchestra 2',
+    tag: 'p5',
+    mechs: [
+      {
+        mechanic: 'Resolve',
+        description:
+          'Resolve the same as the first Maddening Orchestra\nOT should have aggro during the 1st hit to get the flare',
+        imageUrl: './umad/p5-20.webp'
+      }
+    ]
+  },
+  {
+    phaseName: 'Forsaken (Enrage)',
+    tag: 'p5',
+    mechs: [
+      {
+        mechanic: 'Overview',
+        description:
+          'LONG enrage cast (~20%+ at cast start clears)\n4x stacks as Kefka places void holes around the arena\nStep in a hole or get clipped by the orange AOE = shadow realm',
+        imageUrl: './umad/p5-22.webp'
+      },
+      {
+        mechanic: 'Stack Pattern',
+        description:
+          'Always start at C, then rotate inter/cards: 4 - 1 - 2 - 3\nOrange AOE markers bait onto the card/inter closest to a random player\n1st stack is CW from the 1st orange marker, then keep rotating CW\nStay after each stack until the next AOEs show to bait them',
+        imageUrl: './umad/p5-23.webp'
+      },
+      {
+        mechanic: 'Adjusts',
+        description:
+          'If the 3rd set spawns the hole at B, go back toward 1 instead: 4 - 1 - 2 - 1\nIf a void puddle blocks your path, reverse direction',
+        imageUrl: './umad/p5-enrage-9.webp'
+      }
+    ]
   }
 ];
 
@@ -1417,7 +1543,9 @@ const kefkabinStrat: Strat = {
       'https://docs.google.com/presentation/d/1-E2rEKa586KKiVNvtt3EAMQY2YAEVBRGcMX0WzORIq8/edit?usp=sharing',
     'P2 Trines': 'https://raidplan.io/plan/apkh6ytq72w8pt3v',
     'UMAD P3 by Fae Fiyaa':
-      'https://docs.google.com/presentation/d/1aTnFt8TO4y1P7kd6i-dS2uJobg2auHyu4VWO6Hr6DtM'
+      'https://docs.google.com/presentation/d/1aTnFt8TO4y1P7kd6i-dS2uJobg2auHyu4VWO6Hr6DtM',
+    'P5 Raidplan': 'https://raidplan.io/plan/3wqr483tjcsgd6xv',
+    'P5 Forsaken Enrage': 'https://raidplan.io/plan/PFAuAaUViJ3vUjqr'
   },
   notes:
     'These strats will likely change! Refer to the original resources for the most up-to-date versions',
@@ -1505,7 +1633,6 @@ export const dancingMadFightConfig: FightConfig = {
     'P4: Kefka Says': ['p4'],
     'P5: Ultima Kefka': ['p5']
   },
-  inProgressTabs: ['P5: Ultima Kefka'],
   useMainPageTabs: true,
   alignmentOptions: [
     { value: 'original', label: 'Boss North' },
