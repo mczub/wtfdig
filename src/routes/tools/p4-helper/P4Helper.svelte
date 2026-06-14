@@ -20,7 +20,8 @@
     MoveUpRight,
     Clock1,
     Clock4,
-    User
+    User,
+    ChevronDown
   } from '@lucide/svelte';
   import PipPortal from '$lib/components/PipPortal.svelte';
   import { debuffIconUrl } from '$lib/debuffs';
@@ -38,12 +39,15 @@
   }
 
   let s = $state<P4State>({});
+  // Sections manually re-expanded on mobile after auto-collapse (keyed by title).
+  let expanded = $state<Record<string, boolean>>({});
 
   function set(id: string, val: string) {
     applyInput(s, id, val);
   }
   function reset() {
     s = {};
+    expanded = {};
   }
 
   const hasInput = $derived(Object.values(s).some((v) => v != null));
@@ -96,7 +100,7 @@
 <!-- Button icon: status icon for real/fake/fire/water, else a direction arrow -->
 {#snippet optIcon(val: string, idx: number)}
   {@const u = valIcon(val)}
-  <span class="inline-flex w-4 shrink-0 items-center justify-center">
+  <span class="inline-flex w-4 shrink-0 items-center justify-left">
     {#if u}<img src={u} alt="" class="h-4 w-auto" />{:else if val === 'short'}<Clock1
         class="size-4 opacity-60"
       />{:else if val === 'long'}<Clock4 class="size-4 opacity-60" />{:else if val === 'none'}<X
@@ -134,9 +138,40 @@
   </div>
 {/snippet}
 
-<!-- Titled group of inline selectors -->
+<!-- Compact colored pill for a selected option (used in collapsed summaries) -->
+{#snippet pill(o: InputOption)}
+  <span
+    class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-sm text-xs whitespace-nowrap {selClass(
+      o.cls
+    )}"
+  >
+    {@render optIcon(o.val, 0)}
+    {o.text}
+  </span>
+{/snippet}
+
+<!-- Titled group of inline selectors. On phones (< md), once every field is
+     set the section collapses to a one-line summary; tap to re-expand. -->
 {#snippet section(sec: InputSection)}
-  <div class="flex flex-col gap-2">
+  {@const complete = sec.rows.every((r) => s[r.id] != null)}
+  {@const collapsed = complete && !expanded[sec.title]}
+  {#if collapsed}
+    <button
+      type="button"
+      class="md:hidden flex items-center gap-2 w-full text-left"
+      onclick={() => (expanded[sec.title] = true)}
+    >
+      <span class="font-semibold text-base shrink-0">{sec.title}</span>
+      <span class="flex flex-wrap items-center gap-1 min-w-0">
+        {#each sec.rows as row}
+          {@const o = row.opts.find((x) => x.val === s[row.id])}
+          {#if o}{@render pill(o)}{/if}
+        {/each}
+      </span>
+      <ChevronDown class="size-4 opacity-60 ml-auto shrink-0" />
+    </button>
+  {/if}
+  <div class="flex-col gap-2 {collapsed ? 'hidden md:flex' : 'flex'}">
     <div class="font-semibold text-base">{sec.title}</div>
     {#each sec.rows as row}
       {@render selectorRow(row.id, row.label, row.opts)}
@@ -146,7 +181,7 @@
 
 <!-- Output callout box -->
 {#snippet outBox(lines: Line[])}
-  <div class="rounded-xl border border-border p-3 flex flex-col gap-0.5">
+  <div class="rounded-xl border border-border px-2 py-1 md:py-3 flex flex-col gap-0.5">
     {#each lines as line}
       <div class="text-base {toneClass(line.tone)}">{@html line.text}</div>
     {/each}
@@ -182,7 +217,7 @@
     >
       <!-- Header -->
       <header class="flex justify-between items-center gap-2 shrink-0">
-        <h1 class="text-2xl font-bold m-0">UMAD P4 Helper</h1>
+        <h1 class="text-lg md:text-2xl font-bold m-0">UMAD P4 Helper</h1>
         <div class="flex items-center gap-2">
           {#if isSupported}
             <button
@@ -204,7 +239,7 @@
       </header>
 
       <!-- Up-front debuff inputs -->
-      <div class="flex flex-col gap-5">
+      <div class="flex flex-col gap-3 md:gap-5">
         {#each SETUP_SECTIONS as sec}
           {@render section(sec)}
         {/each}
