@@ -8,7 +8,14 @@
   import RoleIcon from '$lib/components/RoleIcon.svelte';
   import { renderDebuffTokens } from '$lib/debuffs';
 
-  let { phase, mech = null, spotlight, imageOpenState = $bindable(), role = null } = $props();
+  let {
+    phase,
+    mech = null,
+    spotlight,
+    imageOpenState = $bindable(),
+    role = null,
+    alignment = 'original'
+  } = $props();
 
   function openImageModal() {
     imageOpenState = true;
@@ -79,10 +86,12 @@
         </div>
       </div>
       {#if getImageModalUrl()}
-        <div class="relative mt-4 inline-grid place-items-center self-center">
+        <div class="relative mt-4 inline-grid place-items-center self-center overflow-hidden">
           <img
-            class="rounded-md object-contain max-w-[90vw] max-h-[75vh]"
-            style="grid-area: 1/1;"
+            class="rounded-md object-contain max-w-[90vw] max-h-[75vh] origin-center"
+            style="grid-area: 1/1;{(mech?.alignmentTransforms?.[alignment] ?? mech?.transform)
+              ? ` transform:${mech.alignmentTransforms?.[alignment] ?? mech.transform};`
+              : ''}"
             src={getImageModalUrl()}
             alt={mech?.mechanic || phase?.phaseName || 'Strategy image'}
           />

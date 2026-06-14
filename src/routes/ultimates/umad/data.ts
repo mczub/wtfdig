@@ -1020,22 +1020,38 @@ const allP2: PhaseStrats[] = [
           imageUrl: './umad/p2-forsaken-kr-4.webp'
         },
         {
+          mechanic: 'Odd Towers (Left)',
+          description:
+            '{{forsaken-stack}} Stack on the boss hitbox (fixed); Stack Tank stands right in front\n{{forsaken-cone}} Cone = away from the Stack, just off the tower edge (not the back wall)\nNo markers here - judge cone vs stack spacing by eye',
+          imageUrl: './umad/p2-forsaken-kr-odd-left.webp',
+          alignmentTransforms: { truenorth: 'rotate(45deg)' }
+        },
+        {
+          mechanic: 'Odd Towers (Right)',
+          description:
+            '{{forsaken-stack}} Stack = between the outer hitbox and tower edge, before the midpoint (not the "eye" corner, not the Even cone spot)\nCorner = clone-kick death; past the midpoint kills the Tank\n{{forsaken-circle}} Spread = South of the tower, away from boss (opposite the Stack)',
+          imageUrl: './umad/p2-forsaken-kr-odd-right.webp',
+          alignmentTransforms: { truenorth: 'rotate(-45deg)' }
+        },
+        {
           mechanic: 'Even Towers (Diamond Box Markers)',
           description:
             'Both Towers: {{forsaken-cone}} Cone North + {{forsaken-circle}} Spread South\nNon-tower Tank/Melee North on OUTER RING of boss hitbox to bait Clones\nNon-Tower Healer/Ranged bait cones on Marker\nNumber Marker = Back corner, Letter Marker = Front edge\nTower Tank/Melee flex if partner matches',
-          imageUrl: './umad/p2-forsaken-kr-6.webp'
+          imageUrl: './umad/p2-forsaken-kr-8.webp'
         },
         {
           mechanic: 'Even Towers (Number Markers, Left)',
           description:
             'Left tower (Boss is North)\nCone = Front edge towards Left on inner hitbox ring, Baiter = Back corner of Number Markers\nSpread = South edge, slightly toward other tower',
-          imageUrl: './umad/p2-forsaken-kr-7.webp'
+          imageUrl: './umad/p2-forsaken-kr-9.webp',
+          alignmentTransforms: { truenorth: 'rotate(45deg)' }
         },
         {
           mechanic: 'Even Towers (Letter Markers, Right)',
           description:
             'Right tower (Boss is North)\nCone = Front edge towards Right on inner hitbox ring, Baiter = Front edge of Letter Markers\nSpread = South edge, slightly toward other tower',
-          imageUrl: './umad/p2-forsaken-kr-10.webp'
+          imageUrl: './umad/p2-forsaken-kr-12.webp',
+          alignmentTransforms: { truenorth: 'rotate(-45deg)' }
         },
         {
           mechanic: 'Future/Past Baits',
@@ -1336,6 +1352,8 @@ const allP4: PhaseStrats[] = [
   {
     phaseName: 'Timeline',
     tag: 'p4',
+    description:
+      '<a href="/tools/p4-helper" target="_blank" rel="noopener noreferrer" class="btn preset-filled-primary-500 text-lg font-bold no-underline">Open the P4 Callout Helper<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"/></svg></a>',
     mechs: [
       {
         mechanic: 'Timeline',
@@ -1351,7 +1369,7 @@ const allP4: PhaseStrats[] = [
       {
         mechanic: 'Overview',
         description:
-          'Kefka targetable, enrages at 25%\nChaos + Neo Exdeath apply debuffs\n{{kefka-fake}} orb on a cast = FAKE (effect reversed), {{kefka-real}} = real\n<a class="underline text-primary-500 font-semibold" href="/tools/p4-helper">Open the P4 callout helper</a>'
+          'Kefka targetable, enrages at 25%\nChaos + Neo Exdeath apply debuffs\n{{kefka-fake}} orb on a cast = FAKE (effect reversed), {{kefka-real}} = real'
       },
       {
         mechanic: 'Neo Exdeath Debuffs',
@@ -1416,7 +1434,7 @@ export const dancingMadFightConfig: FightConfig = {
   cheatsheetTitle: 'Dancing Mad Cheatsheet',
   showAllToggleUrls: true,
   strats: {
-    kefkabin: { label: 'Kefkabin', defaults: { arrows: 'freaky', forsaken: 'kr', bowels: 'sg3k' } }
+    kefkabin: { label: 'Kefkabin', defaults: { arrows: 'freaky', forsaken: 'kr', bowels: 'lb' } }
   },
   toggles: [
     {
@@ -1489,6 +1507,10 @@ export const dancingMadFightConfig: FightConfig = {
   },
   inProgressTabs: ['P5: Ultima Kefka'],
   useMainPageTabs: true,
+  alignmentOptions: [
+    { value: 'original', label: 'Boss North' },
+    { value: 'truenorth', label: 'Tower North' }
+  ],
   defaultStratName: 'kefkabin',
   timeline: [],
   posterEnabled: true,

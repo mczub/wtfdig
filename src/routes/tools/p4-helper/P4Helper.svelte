@@ -100,7 +100,7 @@
 <!-- Button icon: status icon for real/fake/fire/water, else a direction arrow -->
 {#snippet optIcon(val: string, idx: number)}
   {@const u = valIcon(val)}
-  <span class="inline-flex w-4 shrink-0 items-center justify-left">
+  <span class="inline-flex w-4 shrink-0 items-center justify-center">
     {#if u}<img src={u} alt="" class="h-4 w-auto" />{:else if val === 'short'}<Clock1
         class="size-4 opacity-60"
       />{:else if val === 'long'}<Clock4 class="size-4 opacity-60" />{:else if val === 'none'}<X
@@ -181,7 +181,7 @@
 
 <!-- Output callout box -->
 {#snippet outBox(lines: Line[])}
-  <div class="rounded-xl border border-border px-2 py-1 md:py-3 flex flex-col gap-0.5">
+  <div class="rounded-sm md:rounded-lg border border-border px-2 py-1 md:py-3 flex flex-col gap-0.5">
     {#each lines as line}
       <div class="text-base {toneClass(line.tone)}">{@html line.text}</div>
     {/each}

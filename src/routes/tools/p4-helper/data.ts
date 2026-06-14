@@ -32,7 +32,7 @@ const KW_COLOR: Record<string, string> = {
   STAY: 'text-emerald-400',
   MOTION: 'text-cyan-400',
   STILLNESS: 'text-rose-400',
-  'LOOK AT': 'text-purple-400',
+  'LOOK AT': 'text-yellow-300',
   'LOOK AWAY': 'text-purple-400'
 };
 
@@ -209,7 +209,7 @@ function accelLine(s: P4State, window: 'short' | 'long', ord: string): Line {
 function gazeLine(cast: Val, ord: string): Line {
   const g = gazeEffect(cast);
   return g
-    ? { text: `${ic('cursed-shriek')}${kw(g)} ${ord} shrieks`, tone: 'neutral' }
+    ? { text: `${ic('cursed-shriek')}${kw(g)} ${g === 'LOOK AWAY' ? ' from' : ''} ${ord} shrieks`, tone: 'neutral' }
     : { text: `${ic('cursed-shriek')}? ${ord} shrieks`, tone: 'dim' };
 }
 
@@ -236,13 +236,13 @@ export function block1(s: P4State): Line[] {
 /** Fire spread/stay, 2nd spread element, 2nd accel. */
 export function block2(s: P4State): Line[] {
   const { long } = nePos(s);
-  return [chaosLine(s, 'fire', 'Fire'), spreadLine(long, '2nd'), accelLine(s, 'long', '2nd')];
+  return [chaosLine(s, 'fire', 'Inferno'), spreadLine(long, '2nd'), accelLine(s, 'long', '2nd')];
 }
 
 /** 2nd shrieks, Water spread/stay. */
 export function block3(s: P4State): Line[] {
   const { long } = nePos(s);
-  return [gazeLine(long, '2nd'), chaosLine(s, 'water', 'Water')];
+  return [gazeLine(long, '2nd'), chaosLine(s, 'water', 'Tsunami')];
 }
 
 /** Mana Release final tells (double negative). */

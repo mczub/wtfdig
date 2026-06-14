@@ -143,6 +143,7 @@
   phase={imageModalProps.phase}
   {spotlight}
   {role}
+  {alignment}
 />
 
 {#if strat?.notes}
@@ -205,14 +206,13 @@
             value={tabName}
             labelBase="btn bg-transparent hover:bg-surface-700"
             classes="px-6 py-2 text-lg rounded-sm transition-all border-surface-700 data-[state=active]:bg-surface-700 data-[state=active]:text-white data-[state=active]:border-surface-400 data-[state=active]:shadow-md"
-            >
+          >
             <span class="inline-flex items-center gap-1.5">
               {#if inProgressTabs?.includes(tabName)}<TriangleAlert
                   class="size-4 shrink-0 text-warning-500"
                 />{/if}{tabName}
             </span>
-          </Tabs.Control
-          >
+          </Tabs.Control>
         {/each}
       {/snippet}
     </Tabs>
@@ -395,9 +395,11 @@
                         {/if}
 
                         {#if mech?.imageUrl}
+                          {@const tf = mech.alignmentTransforms?.[alignment] ?? mech.transform}
                           <div class="mt-4 overflow-hidden">
                             <img
-                              class="w-auto h-auto rounded-sm object-contain max-w-full max-h-[350px]"
+                              class="w-auto h-auto rounded-sm object-contain max-w-full max-h-[350px] transition-transform duration-300 origin-center"
+                              style:transform={tf || undefined}
                               src={mech.imageUrl}
                               alt={mech.mechanic}
                             />
