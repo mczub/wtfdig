@@ -1334,9 +1334,51 @@ const allP3: PhaseStrats[] = [
 
 const allP4: PhaseStrats[] = [
   {
+    phaseName: 'Timeline',
+    tag: 'p4',
+    mechs: [
+      {
+        mechanic: 'Timeline',
+        description:
+          '<b>1st Debuffs</b>\nKefka Mystery Magic + Neo Exdeath Debuffs {{forked-lightning}}{{compressed-water}}/{{accel-bomb}}/{{cursed-shriek}} + Chaos Debuffs {{entropy}}{{dynamic-fluid}}\nINDIVIDUALS remember if you have Short or Long Spread + Stillness/Motion\nGROUP remember if 1st Shriek is Real/Fake + if Inferno/Tsunami is Real/Fake\n<b>2nd Debuffs</b>\nKefka Mystery Magic + Neo Exdeath Debuffs {{forked-lightning}}{{compressed-water}}/{{accel-bomb}}/{{cursed-shriek}} + Chaos Debuffs {{entropy}}{{dynamic-fluid}}\nINDIVIDUALS remember if you have Short or Long Spread + Stillness/Motion\nGROUP remember if 2nd Shriek is Real/Fake + if Inferno/Tsunami is Real/Fake\n<b>3rd Debuffs</b>\nKefka Mystery Magic + Neo Exdeath Antilight {{white-wound}}{{black-wound}}/{{allagan-field}}{{beyond-death}}\n<b>Flood of Naught</b>\nFollow {{white-wound}}{{black-wound}}/{{allagan-field}}{{beyond-death}}, stand in correct half\n<b>1st Resolve</b>\n1st Stacks N/S + {{forked-lightning}}/{{kefka-fake}}{{compressed-water}} Spreads E/W + {{accel-bomb}} Accel Bombs\n1st Kefka Mana Charge + 1st {{cursed-shriek}} Shrieks\n{{entropy}} Inferno (Can be Fake)\n<b>2nd Resolve</b>\n2nd Kefka Mana Charge + 2nd Stacks N/S + {{forked-lightning}}/{{kefka-fake}}{{compressed-water}} Spreads E/W + {{accel-bomb}} Accel Bombs\n2nd {{cursed-shriek}} Shrieks\nKefka Mana Release + {{dynamic-fluid}} Tsunami (Can be Fake)'
+      }
+    ]
+  },
+  {
     phaseName: 'Kefka Says',
     tag: 'p4',
-    description: 'Under construction - phases will be added as teams discover and refine them.'
+    mechs: [
+      {
+        mechanic: 'Overview',
+        description:
+          'Kefka targetable, enrages at 25%\nChaos + Neo Exdeath apply debuffs\n{{kefka-fake}} orb on a cast = FAKE (effect reversed), {{kefka-real}} = real\n<a class="underline text-primary-500 font-semibold" href="/tools/p4-helper">Open the P4 callout helper</a>'
+      },
+      {
+        mechanic: 'Neo Exdeath Debuffs',
+        description:
+          '{{forked-lightning}}{{compressed-water}} Lightning/Water can have short or long timer\nNeo Exdeath applies 2x Lightning and 2x Water per cast\nOne cast will have Short timer, other will be Long\n{{forked-lightning}} Lightning OR {{kefka-fake}}{{compressed-water}} Fake Water = Spread\n{{compressed-water}} Water OR {{kefka-fake}}{{forked-lightning}} Fake Lightning = Stack\n\nEach player gets 1 {{accel-bomb}} Accel Bomb with a short or long timer\nNeo Exdeath applies 2x Short and 2x Long per cast\n{{accel-bomb}} Accel Bomb = Stillness, {{kefka-fake}} Fake = Motion\n\n1st applied {{cursed-shriek}} Shriek has short timer, 2nd has long timer\n{{cursed-shriek}} Shriek = Look away, {{kefka-fake}} Fake = Look at'
+      },
+      {
+        mechanic: 'Chaos Debuffs',
+        description:
+          '{{entropy}} Entropy resolves 1st, {{dynamic-fluid}} Dynamic resolves 2nd regardless of order applied\n{{entropy}} Entropy OR {{kefka-fake}}{{dynamic-fluid}} Fake Dynamic = Fire/AOE\n{{dynamic-fluid}} Dynamic OR {{kefka-fake}}{{entropy}} Fake Entropy = Water/Donut'
+      },
+      {
+        mechanic: 'Antilight + Flood of Naught',
+        description:
+          'Applies {{white-wound}}/{{black-wound}} Wound + 4 {{allagan-field}} Allagan Field, 4 {{beyond-death}} Beyond Death\n{{allagan-field}} Allagan = Stand in Opposite Color\n{{beyond-death}} Beyond Death = Stand in Same Color\nIgnore the Real/Fake on debuff application\nFollow the Real/Fake on Flood of Naught cast'
+      },
+      {
+        mechanic: 'Mana Charge / Release',
+        description:
+          'Mana Charge banks the next Real/Fake for that element\nMana Release applies the banked Real/Fake along with the displayed one\nTwo {{kefka-fake}} Fakes = {{kefka-real}} Real'
+      },
+      {
+        mechanic: 'Debuff Resolution',
+        description:
+          "Stacks {{compressed-water}}/{{kefka-fake}}{{forked-lightning}}: Supports North, DPS South\nSpreads: {{forked-lightning}}/{{kefka-fake}}{{compressed-water}} Supports West, DPS East\n\nShriek {{cursed-shriek}}: Shrieks in, party look away, debuffs don't look at each other\nFake Shriek {{kefka-fake}}{{cursed-shriek}}: Shrieks in, party look in, debuffs look at each other\n\nInferno {{entropy}}/{{kefka-fake}}{{dynamic-fluid}}: Drop twister AOE middle, then spread\nTsunami {{dynamic-fluid}}/{{kefka-fake}}{{entropy}}: Drop twister donut middle, then stay"
+      }
+    ]
   }
 ];
 
@@ -1443,9 +1485,9 @@ export const dancingMadFightConfig: FightConfig = {
     'P2: Forsaken Kefka': ['p2', 'forsaken'],
     'P3: Chaos and Exdeath': ['p3', 'bowels'],
     'P4: Kefka Says': ['p4'],
-    'P5: ???': ['p5']
+    'P5: Ultima Kefka': ['p5']
   },
-  inProgressTabs: ['P4: Kefka Says', 'P5: ???'],
+  inProgressTabs: ['P5: Ultima Kefka'],
   useMainPageTabs: true,
   defaultStratName: 'kefkabin',
   timeline: [],

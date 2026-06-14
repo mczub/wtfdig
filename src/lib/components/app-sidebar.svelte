@@ -227,9 +227,9 @@
               </Sidebar.MenuItem>
             </Collapsible.Root>
           {/each}
-          
+
           <Separator class="my-2" />
-          
+
           <Sidebar.GroupLabel class="flex flex-row items-center gap-2 text-lg font-semibold mb-2"
             ><Hammer class="size-6 text-primary" />Tools</Sidebar.GroupLabel
           >
@@ -284,6 +284,18 @@
                 <span class="font-semibold">idyllic helper</span>
               </div>
               <div class="text-base text-surface-400">M12S Idyllic Dream helper</div>
+            </a>
+          </Sidebar.MenuItem>
+          <Sidebar.MenuItem>
+            <a
+              href="/tools/p4-helper"
+              onclick={handleLinkClick}
+              class="flex flex-col w-full items-start mx-2"
+            >
+              <div class="flex flex-row items-center gap-2 text-lg">
+                <span class="font-semibold">umad p4 helper</span>
+              </div>
+              <div class="text-base text-surface-400">Dancing Mad P4 Kefka Says helper</div>
             </a>
           </Sidebar.MenuItem>
           <Separator class="my-2" />
