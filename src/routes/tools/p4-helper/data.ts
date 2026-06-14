@@ -24,6 +24,23 @@ function ic(id: string): string {
     : '';
 }
 
+// Keyword -> color (literal classes so Tailwind's scanner keeps them).
+const KW_COLOR: Record<string, string> = {
+  LIGHTNING: 'text-yellow-400',
+  WATER: 'text-blue-400',
+  SPREAD: 'text-orange-400',
+  STAY: 'text-emerald-400',
+  MOTION: 'text-cyan-400',
+  STILLNESS: 'text-rose-400',
+  'LOOK AT': 'text-purple-400',
+  'LOOK AWAY': 'text-purple-400'
+};
+
+/** Render a callout keyword as bold, colored, all-caps. */
+function kw(word: string): string {
+  return `<span class="font-semibold ${KW_COLOR[word] ?? ''}">${word}</span>`;
+}
+
 /** Which element spreads this set: real = Lightning, fake = Water (reversed). */
 function spreadElem(cast: Val): { word: string; id: string } | null {
   if (cast !== 'real' && cast !== 'fake') return null;
@@ -48,7 +65,7 @@ export function gazeEffect(cast: Val): string | null {
 export function chaosEffect(type: Val, cast: Val): string | null {
   if ((type !== 'fire' && type !== 'water') || (cast !== 'real' && cast !== 'fake')) return null;
   const out = (type === 'fire' && cast === 'real') || (type === 'water' && cast === 'fake');
-  return out ? 'Spread' : 'Stay';
+  return out ? 'SPREAD' : 'STAY';
 }
 export function combine(a: Val, b: Val): 'real' | 'fake' | null {
   if (!a || !b) return null;
@@ -80,17 +97,17 @@ export const RF_OPTS: InputOption[] = [
   { val: 'fake', text: 'Fake', cls: 'fake' }
 ];
 const TIMER: InputOption[] = [
-  { val: 'short', text: 'Short', cls: 'plain' },
-  { val: 'long', text: 'Long', cls: 'plain' }
+  { val: 'short', text: 'Short', cls: 'short' },
+  { val: 'long', text: 'Long', cls: 'long' }
 ];
 const BOMB_NE1: InputOption[] = [
-  { val: 'short', text: 'Short', cls: 'plain' },
-  { val: 'long', text: 'Long', cls: 'plain' }
+  { val: 'short', text: 'Short', cls: 'short' },
+  { val: 'long', text: 'Long', cls: 'long' }
 ];
 const BOMB_NE2: InputOption[] = [
-  { val: 'short', text: 'Short', cls: 'plain' },
-  { val: 'long', text: 'Long', cls: 'plain' },
-  { val: 'none', text: 'None', cls: 'plain' }
+  { val: 'short', text: 'Short', cls: 'short' },
+  { val: 'long', text: 'Long', cls: 'long' },
+  { val: 'none', text: 'None', cls: 'none' }
 ];
 const ELEM: InputOption[] = [
   { val: 'fire', text: 'Fire', cls: 'fire' },
@@ -167,33 +184,32 @@ function accelInfo(s: P4State): { timer: string; cast: Val } | null {
 function elemCast(s: P4State, elem: 'fire' | 'water'): Val {
   return s.c1type === elem ? s.c1cast : s.c2type === elem ? s.c2cast : null;
 }
-function rf(cast: Val): 'real' | 'fake' | 'dim' {
-  return cast === 'real' || cast === 'fake' ? cast : 'dim';
-}
-
 // Each line builder ALWAYS returns a line so the timeline reads as a full
-// skeleton; undetermined values render as "?" with a dim tone.
+// skeleton; undetermined values render as "?" with a dim tone. Determined lines
+// use a neutral base so the bold, colored keyword stands out.
 
 function spreadLine(cast: Val, ord: string): Line {
   const sp = spreadElem(cast);
   return sp
-    ? { text: `${ord} spread is ${ic(sp.id)}${sp.word}`, tone: rf(cast) }
+    ? { text: `${ord} spread is ${ic(sp.id)}${kw(sp.word)}`, tone: 'neutral' }
     : { text: `${ord} spread is ?`, tone: 'dim' };
 }
 
 function accelLine(s: P4State, window: 'short' | 'long', ord: string): Line {
-  const head = `${ic('accel-bomb')}${ord} accel: `;
+  const icon = ic('accel-bomb');
   const a = accelInfo(s);
-  if (!a) return { text: head + '?', tone: 'dim' };
-  if (a.timer !== window) return { text: head + 'none', tone: 'dim' };
+  if (!a) return { text: `${icon}Your accel: ?`, tone: 'dim' };
+  if (a.timer !== window) return { text: `${icon}No accel this set`, tone: 'dim' };
   const eff = bombEffect(a.cast);
-  return eff ? { text: head + eff, tone: rf(a.cast) } : { text: head + '?', tone: 'dim' };
+  return eff
+    ? { text: `${icon}Your accel is ${ord} ${kw(eff)}`, tone: 'neutral' }
+    : { text: `${icon}Your accel: ?`, tone: 'dim' };
 }
 
 function gazeLine(cast: Val, ord: string): Line {
   const g = gazeEffect(cast);
   return g
-    ? { text: `${ic('cursed-shriek')}${g} ${ord} shrieks`, tone: rf(cast) }
+    ? { text: `${ic('cursed-shriek')}${kw(g)} ${ord} shrieks`, tone: 'neutral' }
     : { text: `${ic('cursed-shriek')}? ${ord} shrieks`, tone: 'dim' };
 }
 
@@ -201,7 +217,7 @@ function chaosLine(s: P4State, elem: 'fire' | 'water', label: string): Line {
   const cast = elemCast(s, elem);
   const head = `${ic(elem === 'fire' ? 'entropy' : 'dynamic-fluid')}${label}: `;
   const eff = chaosEffect(elem, cast);
-  return eff ? { text: head + eff, tone: rf(cast) } : { text: head + '?', tone: 'dim' };
+  return eff ? { text: head + kw(eff), tone: 'neutral' } : { text: head + '?', tone: 'dim' };
 }
 
 function manaLine(s: P4State, charged: string, released: string, label: string): Line {

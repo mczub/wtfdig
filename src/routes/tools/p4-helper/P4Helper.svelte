@@ -9,9 +9,19 @@
     manaFinal,
     type P4State,
     type InputSection,
+    type InputOption,
     type Line
   } from './data';
-  import { PictureInPicture2, X, RotateCcw, MoveVertical, MoveUpRight } from '@lucide/svelte';
+  import {
+    PictureInPicture2,
+    X,
+    RotateCcw,
+    MoveVertical,
+    MoveUpRight,
+    Clock1,
+    Clock4,
+    User
+  } from '@lucide/svelte';
   import PipPortal from '$lib/components/PipPortal.svelte';
   import { debuffIconUrl } from '$lib/debuffs';
 
@@ -45,15 +55,19 @@
   function selClass(cls: string): string {
     switch (cls) {
       case 'real':
-        return 'bg-emerald-700 text-white';
+        return 'bg-emerald-700 text-white font-semibold';
       case 'fake':
-        return 'bg-fuchsia-700 text-white';
+        return 'bg-fuchsia-700 text-white font-semibold';
       case 'fire':
-        return 'bg-red-700 text-white';
+        return 'bg-red-700 text-white font-semibold';
       case 'water':
-        return 'bg-blue-700 text-white';
+        return 'bg-blue-700 text-white font-semibold';
+      case 'short':
+        return 'bg-amber-600 text-white font-semibold';
+      case 'long':
+        return 'bg-indigo-600 text-white font-semibold';
       default:
-        return 'bg-zinc-600 text-white';
+        return 'bg-zinc-600 text-white font-semibold';
     }
   }
   function toneClass(tone?: string): string {
@@ -82,46 +96,30 @@
 <!-- Button icon: status icon for real/fake/fire/water, else a direction arrow -->
 {#snippet optIcon(val: string, idx: number)}
   {@const u = valIcon(val)}
-  {#if u}<img src={u} alt="" class="h-4 w-auto shrink-0" />{:else if idx === 0}<MoveVertical
-      class="size-4 opacity-60"
-    />{:else}<MoveUpRight class="size-4 opacity-60" />{/if}
+  <span class="inline-flex w-4 shrink-0 items-center justify-center">
+    {#if u}<img src={u} alt="" class="h-4 w-auto" />{:else if val === 'short'}<Clock1
+        class="size-4 opacity-60"
+      />{:else if val === 'long'}<Clock4 class="size-4 opacity-60" />{:else if val === 'none'}<X
+        class="size-4 opacity-60"
+      />{:else if idx === 0}<MoveVertical class="size-4 opacity-60" />{:else}<MoveUpRight
+        class="size-4 opacity-60"
+      />{/if}
+  </span>
 {/snippet}
 
-<!-- Up-front input section: label left, vertical button stacks -->
-{#snippet section(sec: InputSection)}
-  <div class="flex flex-col items-start gap-2">
-    <div class="w-28 shrink-0 font-semibold text-sm">{sec.title}</div>
-    <div class="flex gap-3">
-      {#each sec.rows as row}
-        <div class="flex flex-col gap-2 min-w-24">
-          <div class="text-sm md:text-base text-muted-foreground">{row.label}</div>
-          {#each row.opts as o, idx}
-            <button
-              class="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm md:text-base cursor-pointer transition-colors {s[
-                row.id
-              ] === o.val
-                ? selClass(o.cls)
-                : unsel}"
-              onclick={() => set(row.id, o.val)}
-            >
-              {@render optIcon(o.val, idx)}
-              {o.text}
-            </button>
-          {/each}
-        </div>
-      {/each}
+<!-- Shared inline selector: label on the left, horizontal buttons -->
+{#snippet selectorRow(id: string, label: string, opts: InputOption[])}
+  <div class="flex items-center gap-3">
+    <div
+      class="w-28 md:w-48 shrink-0 text-sm md:text-base text-muted-foreground flex items-center gap-1.5"
+    >
+      {#if id.includes('bomb')}<User class="size-4 shrink-0 opacity-70" />{/if}
+      {label}
     </div>
-  </div>
-{/snippet}
-
-<!-- Inline Real/Fake prompt (interleaved mid-sequence inputs) -->
-{#snippet rfRow(id: string, label: string)}
-  <div class="flex items-start gap-3">
-    <div class="w-44 shrink-0 font-semibold text-sm md:text-base">{label}</div>
-    <div class="flex gap-2">
-      {#each RF_OPTS as o, idx}
+    <div class="flex gap-2 flex-wrap">
+      {#each opts as o, idx}
         <button
-          class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm md:text-base cursor-pointer transition-colors {s[
+          class="flex items-center w-20 gap-1.5 px-2 py-1.5 rounded-lg text-sm md:text-base cursor-pointer transition-colors {s[
             id
           ] === o.val
             ? selClass(o.cls)
@@ -133,6 +131,16 @@
         </button>
       {/each}
     </div>
+  </div>
+{/snippet}
+
+<!-- Titled group of inline selectors -->
+{#snippet section(sec: InputSection)}
+  <div class="flex flex-col gap-2">
+    <div class="font-semibold text-base">{sec.title}</div>
+    {#each sec.rows as row}
+      {@render selectorRow(row.id, row.label, row.opts)}
+    {/each}
   </div>
 {/snippet}
 
@@ -204,13 +212,13 @@
 
       <!-- Resolution sequence (outputs + interleaved mid-fight inputs) -->
       {@render outBox(b1)}
-      {@render rfRow('thunder', 'Mana Charge: Lightning')}
+      {@render selectorRow('thunder', 'Mana Charge: Lightning', RF_OPTS)}
       {@render outBox(b2)}
-      {@render rfRow('blizzard', 'Mana Charge: Ice')}
+      {@render selectorRow('blizzard', 'Mana Charge: Ice', RF_OPTS)}
       {@render outBox(b3)}
       <div class="flex flex-col gap-2">
-        {@render rfRow('rlight', 'Mana Release: Lightning')}
-        {@render rfRow('rbliz', 'Mana Release: Ice')}
+        {@render selectorRow('rlight', 'Mana Release: Lightning', RF_OPTS)}
+        {@render selectorRow('rbliz', 'Mana Release: Ice', RF_OPTS)}
       </div>
       {@render outBox(bFinal)}
     </div>
