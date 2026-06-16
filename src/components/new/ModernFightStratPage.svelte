@@ -363,6 +363,9 @@
       roleOptions={config.roleOptions}
       {spotlight}
       setSpotlight={(val) => (spotlight = val)}
+      {alignment}
+      setAlignment={(val) => (alignment = val)}
+      alignmentOptions={config.alignmentOptions}
       additionalResources={config.additionalResources}
       onOpenCheatsheet={isCheatsheetEnabled ? () => (cheatsheetOpenState = true) : undefined}
       onOpenPoster={config.posterLayout && config.posterEnabled

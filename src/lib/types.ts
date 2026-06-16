@@ -38,6 +38,10 @@ export interface MechanicStrat {
   imageUrl?: string | Record<string, string>;
   arenaData?: import('$lib/arena').ArenaDiagramData;
   url?: string | Record<string, string>;
+  /** CSS transform applied to the mech image regardless of alignment. */
+  transform?: string;
+  /** CSS transform per alignment (e.g. rotate to tower-relative north). */
+  alignmentTransforms?: Partial<Record<Alignment, string>>;
 }
 
 export interface PhaseStrats {

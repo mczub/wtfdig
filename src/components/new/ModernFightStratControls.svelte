@@ -7,7 +7,8 @@
     StratOption,
     FightToggleState,
     FightRoleOption,
-    FightStratConfig
+    FightStratConfig,
+    Alignment
   } from '$lib/types';
   import { formatRoleAbbreviation, buildFightOptionsString } from '$lib/utils';
   import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
@@ -39,6 +40,9 @@
     roleOptions?: FightRoleOption[];
     spotlight: boolean;
     setSpotlight: (value: boolean) => void;
+    alignment?: Alignment;
+    setAlignment?: (value: Alignment) => void;
+    alignmentOptions?: { value: Alignment; label: string }[];
     additionalResources?: {
       title: string;
       description?: string;
@@ -66,6 +70,9 @@
     setParty,
     spotlight,
     setSpotlight,
+    alignment = 'original',
+    setAlignment,
+    alignmentOptions,
     roleOptions,
     additionalResources,
     onOpenCheatsheet,
@@ -680,6 +687,24 @@
                     onCheckedChange={(e) => setSpotlight(e.checked)}
                   />
                 </div>
+                {#if alignmentOptions?.length && setAlignment}
+                  <div class="flex flex-col gap-3">
+                    <span class="font-medium">Image orientation</span>
+                    <div class="flex gap-1">
+                      {#each alignmentOptions as opt}
+                        <button
+                          type="button"
+                          class="flex-1 px-2 py-1 rounded text-sm {alignment === opt.value
+                            ? 'preset-filled-primary-500'
+                            : 'preset-tonal-surface border border-surface-400-600 hover:preset-tonal-primary'}"
+                          onclick={() => setAlignment(opt.value)}
+                        >
+                          {opt.label}
+                        </button>
+                      {/each}
+                    </div>
+                  </div>
+                {/if}
               </div>
             {/snippet}
           </Popover>

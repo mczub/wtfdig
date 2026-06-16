@@ -6,7 +6,7 @@
   import {
     ArrowLeftFromLine,
     ChartColumn,
-    ChevronDown,
+    MessageCircleQuestionMark,
     ChevronRightIcon,
     Grid3x3,
     Hammer,
@@ -52,9 +52,8 @@
       items: [
         {
           title: 'Dancing Mad',
-          subtitle: 'Ultimate • P1 - P3',
-          url: '/ultimates/umad',
-          icon: TriangleAlert
+          subtitle: 'Ultimate',
+          url: '/ultimates/umad'
         },
         {
           title: 'Futures Rewritten',
@@ -182,6 +181,15 @@
       </Sidebar.GroupAction>
       <Sidebar.GroupContent>
         <Sidebar.Menu>
+          <Sidebar.MenuItem>
+            <a
+              href="/changelog"
+              onclick={handleLinkClick}
+              class="flex flex-col w-full items-start mx-2"
+            >
+              <div class="text-lg">Changelog</div>
+            </a>
+          </Sidebar.MenuItem>
           {#each navItems as item, index (index)}
             <Collapsible.Root class="group/collapsible" open={item.defaultOpen}>
               <Sidebar.MenuItem>
@@ -227,9 +235,9 @@
               </Sidebar.MenuItem>
             </Collapsible.Root>
           {/each}
-          
+
           <Separator class="my-2" />
-          
+
           <Sidebar.GroupLabel class="flex flex-row items-center gap-2 text-lg font-semibold mb-2"
             ><Hammer class="size-6 text-primary" />Tools</Sidebar.GroupLabel
           >
@@ -274,6 +282,21 @@
               <div class="text-base text-surface-400">version history for raidplans</div>
             </a>
           </Sidebar.MenuItem>
+          <Sidebar.GroupLabel class="flex flex-row items-center gap-2 text-lg font-semibold my-2"
+            ><MessageCircleQuestionMark class="size-6 text-primary" />Helpers</Sidebar.GroupLabel
+          >
+          <Sidebar.MenuItem>
+            <a
+              href="/tools/p4-helper"
+              onclick={handleLinkClick}
+              class="flex flex-col w-full items-start mx-2"
+            >
+              <div class="flex flex-row items-center gap-2 text-lg">
+                <span class="font-semibold">umad p4 helper</span>
+              </div>
+              <div class="text-base text-surface-400">UMAD P4 Kefka Says helper</div>
+            </a>
+          </Sidebar.MenuItem>
           <Sidebar.MenuItem>
             <a
               href="/tools/idyllic"
@@ -287,15 +310,6 @@
             </a>
           </Sidebar.MenuItem>
           <Separator class="my-2" />
-          <Sidebar.MenuItem>
-            <a
-              href="/changelog"
-              onclick={handleLinkClick}
-              class="flex flex-col w-full items-start mx-2"
-            >
-              <div class="text-lg">Changelog</div>
-            </a>
-          </Sidebar.MenuItem>
         </Sidebar.Menu>
       </Sidebar.GroupContent>
     </Sidebar.Group>

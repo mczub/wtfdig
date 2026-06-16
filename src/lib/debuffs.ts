@@ -212,6 +212,30 @@ export const DEBUFFS = {
     id: 'black-wound',
     name: 'Black Wound',
     iconFile: '215783-black-wound.png'
+  },
+  'allagan-field': {
+    id: 'allagan-field',
+    name: 'Allagan Field',
+    iconFile: '215590-allagan-field.png',
+    description: 'Swap your Wound (opposite color)'
+  },
+  'beyond-death': {
+    id: 'beyond-death',
+    name: 'Beyond Death',
+    iconFile: '215780-beyond-death.png',
+    description: 'Keep your Wound (same color)'
+  },
+  'kefka-fake': {
+    id: 'kefka-fake',
+    name: 'Fake (lying)',
+    iconFile: 'kefka-fake.png',
+    description: 'Cast is fake - the effect is reversed'
+  },
+  'kefka-real': {
+    id: 'kefka-real',
+    name: 'Real',
+    iconFile: 'kefka-real.png',
+    description: 'Cast is real - resolve normally'
   }
 } as const satisfies Record<string, DebuffDef>;
 

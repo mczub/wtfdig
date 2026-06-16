@@ -2,8 +2,7 @@
   import { base } from '$app/paths';
   import { slide } from 'svelte/transition';
   import ChevronDown from '@lucide/svelte/icons/chevron-down';
-  import { Separator } from '$lib/components/ui/separator';
-  import { Grid3x3, History, Hammer, TriangleAlert, ChartColumn } from '@lucide/svelte';
+  import { Grid3x3, History, Hammer, TriangleAlert, ChartColumn, MessageCircleQuestionMark } from '@lucide/svelte';
 
   let openState = $state({
     savage: true,
@@ -28,60 +27,71 @@
       <img class="w-[240px] @2xl:w-[300px]" src="{base}/wtfdig-icon-1024.png" alt="WTFDIG Icon" />
     </div>
     <div class="mx-auto w-full max-w-[362px] @2xl:max-w-[708px] flex flex-col gap-4 px-4">
-       <div class="flex flex-row items-center gap-2 text-left text-lg font-bold">
-          <Hammer class="size-6 text-primary" />Tools
+      <div class="flex flex-row items-center gap-2 text-left text-lg font-bold">
+        <Hammer class="size-6 text-primary" />Tools
       </div>
       <div class="grid grid-cols-2 gap-4">
-      <div class="card preset-outlined-secondary-500 gap-4 p-4 justify-center">
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://analyzer.wtfdig.info"
-          class="flex flex-col items-start mx-2"
-        >
-          <div class="flex flex-row items-center gap-2 text-lg">
-            <ChartColumn class="size-6 text-primary " /><span class="font-semibold">analyzer</span>
-          </div>
-          <div class="text-base text-surface-400">fflogs-based pull analyzer</div>
-        </a>
+        <div class="card preset-outlined-secondary-500 gap-4 p-4 justify-center">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://analyzer.wtfdig.info"
+            class="flex flex-col items-start mx-2"
+          >
+            <div class="flex flex-row items-center gap-2 text-lg">
+              <ChartColumn class="size-6 text-primary " /><span class="font-semibold">analyzer</span
+              >
+            </div>
+            <div class="text-base text-surface-400">fflogs-based pull analyzer</div>
+          </a>
+        </div>
+        <div class="card preset-outlined-secondary-500 gap-4 p-4 justify-center">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://board.wtfdig.info"
+            class="flex flex-col items-start mx-2"
+          >
+            <div class="flex flex-row items-center gap-2 text-lg">
+              <Grid3x3 class="size-6 text-primary " /><span class="font-semibold">board</span>
+            </div>
+            <div class="text-base text-surface-400">view + bundle strategy boards</div>
+          </a>
+        </div>
+        <div class="card preset-outlined-secondary-500 gap-4 p-4 justify-center">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://wayback.wtfdig.info"
+            class="flex flex-col items-start mx-2"
+          >
+            <div class="flex flex-row items-center gap-2 text-lg">
+              <History class="size-6 text-primary " /><span class="font-semibold">wayback</span>
+            </div>
+            <div class="text-base text-surface-400">version history for raidplans</div>
+          </a>
+        </div>
       </div>
-      <div class="card preset-outlined-secondary-500 gap-4 p-4 justify-center">
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://board.wtfdig.info"
-          class="flex flex-col items-start mx-2"
-        >
-          <div class="flex flex-row items-center gap-2 text-lg">
-            <Grid3x3 class="size-6 text-primary " /><span class="font-semibold">board</span>
-          </div>
-          <div class="text-base text-surface-400">view + bundle strategy boards</div>
-        </a>
+      <div class="flex flex-row items-center gap-2 text-left text-lg font-bold">
+        <MessageCircleQuestionMark class="size-6 text-primary" />Helpers
       </div>
-      <div class="card preset-outlined-secondary-500 gap-4 p-4 justify-center">
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://wayback.wtfdig.info"
-          class="flex flex-col items-start mx-2"
-        >
-          <div class="flex flex-row items-center gap-2 text-lg">
-            <History class="size-6 text-primary " /><span class="font-semibold">wayback</span>
-          </div>
-          <div class="text-base text-surface-400">version history for raidplans</div>
-        </a>
-      </div>
-      <div class="card preset-outlined-secondary-500 gap-4 p-4 justify-center">
-        <a
-          href="{base}/tools/idyllic"
-          class="flex flex-col items-start mx-2"
-        >
-          <div class="flex flex-row items-center gap-2 text-lg">
-            <span class="font-semibold">idyllic helper</span>
-          </div>
-          <div class="text-base text-surface-400">m12s idyllic dream helper</div>
-        </a>
-      </div>
+      <div class="grid grid-cols-2 gap-4">
+        <div class="card preset-outlined-secondary-500 gap-4 p-4 justify-center">
+          <a href="{base}/tools/p4-helper" class="flex flex-col items-start mx-2">
+            <div class="flex flex-row items-center gap-2 text-lg">
+              <span class="font-semibold">umad p4 helper</span>
+            </div>
+            <div class="text-base text-surface-400">umad p4 kefka says helper</div>
+          </a>
+        </div>
+        <div class="card preset-outlined-secondary-500 gap-4 p-4 justify-center">
+          <a href="{base}/tools/idyllic" class="flex flex-col items-start mx-2">
+            <div class="flex flex-row items-center gap-2 text-lg">
+              <span class="font-semibold">idyllic helper</span>
+            </div>
+            <div class="text-base text-surface-400">m12s idyllic dream helper</div>
+          </a>
+        </div>
       </div>
     </div>
 
@@ -149,8 +159,7 @@
               <a
                 href="{base}/ultimates/umad"
                 class="btn preset-tonal-secondary border border-secondary-500"
-              >
-                <TriangleAlert class="size-4 text-warning-500" />Dancing Mad (Ultimate)</a
+              >Dancing Mad (Ultimate)</a
               >
               <a
                 href="{base}/ultimates/fru"
