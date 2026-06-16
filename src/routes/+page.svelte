@@ -159,8 +159,7 @@
               <a
                 href="{base}/ultimates/umad"
                 class="btn preset-tonal-secondary border border-secondary-500"
-              >
-                <TriangleAlert class="size-4 text-warning-500" />Dancing Mad (Ultimate)</a
+              >Dancing Mad (Ultimate)</a
               >
               <a
                 href="{base}/ultimates/fru"

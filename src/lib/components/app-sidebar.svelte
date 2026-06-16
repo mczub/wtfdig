@@ -52,9 +52,8 @@
       items: [
         {
           title: 'Dancing Mad',
-          subtitle: 'Ultimate • P1 - P4',
-          url: '/ultimates/umad',
-          icon: TriangleAlert
+          subtitle: 'Ultimate',
+          url: '/ultimates/umad'
         },
         {
           title: 'Futures Rewritten',
