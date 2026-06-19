@@ -549,6 +549,12 @@
   // Cached image aspect ratios (width / height), populated via prefetch
   let imageAspects = $state<Map<string, number>>(new Map());
   let initialPrefetchDone = $state(false);
+  // URLs we've already probed (loaded OR failed). Non-reactive on purpose so
+  // recording a result doesn't re-trigger the prefetch effect. Without this,
+  // a 404 image is never recorded in imageAspects, so each effect re-run (the
+  // effect reassigns imageAspects on completion) re-probes it forever -> a
+  // request storm against missing/renamed images.
+  const probedUrls = new Set<string>();
 
   function getCardImageUrl(phase: any, mech?: any): string | null {
     if (mech?.strats?.[0]?.imageUrl) return mech.strats[0].imageUrl;
@@ -583,10 +589,11 @@
     }
     let cancelled = false;
     const probes = urls
-      .filter((u) => !imageAspects.has(u))
+      .filter((u) => !imageAspects.has(u) && !probedUrls.has(u))
       .map(
         (url) =>
           new Promise<void>((resolve) => {
+            probedUrls.add(url);
             const img = new Image();
             img.onload = () => {
               if (!cancelled && img.naturalWidth > 0 && img.naturalHeight > 0) {

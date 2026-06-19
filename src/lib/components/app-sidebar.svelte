@@ -217,7 +217,7 @@
                             >
                               <div class="flex flex-row items-center gap-2 text-lg">
                                 {#if 'icon' in subItem}
-                                  {@const Icon = subItem.icon}
+                                  {@const Icon = subItem.icon as typeof TriangleAlert}
                                   <Icon class="size-4 text-warning-500" />
                                 {/if}
                                 {subItem.title}

@@ -209,7 +209,10 @@ function accelLine(s: P4State, window: 'short' | 'long', ord: string): Line {
 function gazeLine(cast: Val, ord: string): Line {
   const g = gazeEffect(cast);
   return g
-    ? { text: `${ic('cursed-shriek')}${kw(g)} ${g === 'LOOK AWAY' ? ' from' : ''} ${ord} shrieks`, tone: 'neutral' }
+    ? {
+        text: `${ic('cursed-shriek')}${kw(g)} ${g === 'LOOK AWAY' ? ' from' : ''} ${ord} shrieks`,
+        tone: 'neutral'
+      }
     : { text: `${ic('cursed-shriek')}? ${ord} shrieks`, tone: 'dim' };
 }
 
@@ -227,10 +230,12 @@ function manaLine(s: P4State, charged: string, released: string, label: string):
     : { text: `${label}: ?`, tone: 'dim' };
 }
 
-/** 1st window: 1st spread element, 1st accel, 1st shrieks. */
+/** 1st window: 1st spread element, 1st accel, 1st shrieks.
+ * The 1st shriek is always applied by the 1st Neo Exdeath cast (real/fake only),
+ * independent of which set carries the short/long mark. */
 export function block1(s: P4State): Line[] {
   const { short } = nePos(s);
-  return [spreadLine(short, '1st'), accelLine(s, 'short', '1st'), gazeLine(short, '1st')];
+  return [spreadLine(short, '1st'), accelLine(s, 'short', '1st'), gazeLine(s.ne1cast, '1st')];
 }
 
 /** Fire spread/stay, 2nd spread element, 2nd accel. */
@@ -239,10 +244,10 @@ export function block2(s: P4State): Line[] {
   return [chaosLine(s, 'fire', 'Inferno'), spreadLine(long, '2nd'), accelLine(s, 'long', '2nd')];
 }
 
-/** 2nd shrieks, Water spread/stay. */
+/** 2nd shrieks, Water spread/stay.
+ * The 2nd shriek is always applied by the 2nd Neo Exdeath cast (real/fake only). */
 export function block3(s: P4State): Line[] {
-  const { long } = nePos(s);
-  return [gazeLine(long, '2nd'), chaosLine(s, 'water', 'Tsunami')];
+  return [gazeLine(s.ne2cast, '2nd'), chaosLine(s, 'water', 'Tsunami')];
 }
 
 /** Mana Release final tells (double negative). */
