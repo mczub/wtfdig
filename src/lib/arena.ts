@@ -240,6 +240,18 @@ export interface PolygonElement {
   id?: string;
 }
 
+export interface ArrowTeleporterElement {
+  type: 'arrowTeleporter';
+  x: number;
+  y: number;
+  /** Direction the arrow points, in degrees (0 = north/up, clockwise). Default 0. */
+  rotation?: number;
+  /** AoE radius in arena % units. Default 5. */
+  size?: number;
+  color?: string;
+  id?: string;
+}
+
 export interface CurvedArrowElement {
   type: 'curvedArrow';
   x1: number;
@@ -272,6 +284,7 @@ export type ArenaElement = (
   | DebuffElement
   | PolygonElement
   | CurvedArrowElement
+  | ArrowTeleporterElement
 ) & {
   /** Optional group membership. Matches a `GroupDef.id` on the diagram. */
   groupId?: string;
@@ -529,6 +542,38 @@ export function polygon(
   }
 ): PolygonElement {
   return { type: 'polygon', points, ...opts };
+}
+
+/**
+ * Chevron outline for the arrow-teleporter primitive, in unit space pointing up
+ * (north): a triangular head plus a rectangular shaft with a flat tail. Scale by the
+ * AoE radius and translate to the centre. Matches the wtfdig-analyzer arrow glyph.
+ */
+export const ARROW_TELEPORTER_SHAPE: readonly [number, number][] = [
+  [0, -1], // tip
+  [-0.85, -0.1], // left head wing
+  [-0.4, -0.1], // head/shaft left corner
+  [-0.4, 0.9], // shaft back left
+  [0.4, 0.9], // shaft back right
+  [0.4, -0.1], // head/shaft right corner
+  [0.85, -0.1] // right head wing
+];
+
+/** Default colour for the arrow-teleporter primitive. */
+export const ARROW_TELEPORTER_COLOR = '#f5b700';
+
+export function arrowTeleporter(
+  x: number,
+  y: number,
+  opts?: {
+    rotation?: number;
+    size?: number;
+    color?: string;
+    id?: string;
+    groupId?: string;
+  }
+): ArrowTeleporterElement {
+  return { type: 'arrowTeleporter', x, y, ...opts };
 }
 
 export function curvedArrow(

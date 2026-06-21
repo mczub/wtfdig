@@ -3,7 +3,7 @@
 <script lang="ts">
   // @ts-nocheck
   import { Modal } from '$lib/components/ui';
-  import { X } from '@lucide/svelte/icons';
+  import { X, Play, NotepadText } from '@lucide/svelte/icons';
   import SpotlightOverlay from './SpotlightOverlay.svelte';
   import RoleIcon from '$lib/components/RoleIcon.svelte';
   import { renderDebuffTokens } from '$lib/debuffs';
@@ -14,7 +14,8 @@
     spotlight,
     imageOpenState = $bindable(),
     role = null,
-    alignment = 'original'
+    alignment = 'original',
+    separateDescriptionAction = false
   } = $props();
 
   function openImageModal() {
@@ -68,9 +69,24 @@
     </header>
     <div class="flex flex-col min-h-0">
       <div class="font-bold text-base lg:text-xl shrink-0">{mech ? mech?.mechanic : ''}</div>
-      <div class="whitespace-pre-wrap text-xs lg:text-lg shrink-0">
-        {@html mech?.description ? renderDebuffTokens(mech.description) : ''}
-      </div>
+      {#if separateDescriptionAction}
+        {#if mech?.description}
+          <div class="flex gap-2 text-xs lg:text-lg shrink-0">
+            <NotepadText class="w-4 h-4 lg:w-5 lg:h-5 mt-1 shrink-0 text-surface-400" />
+            <div class="whitespace-pre-wrap">{@html renderDebuffTokens(mech.description)}</div>
+          </div>
+        {/if}
+        {#if mech?.action}
+          <div class="flex gap-2 text-xs lg:text-lg shrink-0">
+            <Play class="w-4 h-4 lg:w-5 lg:h-5 mt-1 shrink-0 text-primary-400" />
+            <div class="whitespace-pre-wrap">{@html renderDebuffTokens(mech.action)}</div>
+          </div>
+        {/if}
+      {:else}
+        <div class="whitespace-pre-wrap text-xs lg:text-lg shrink-0">
+          {@html mech?.description ? renderDebuffTokens(mech.description) : ''}
+        </div>
+      {/if}
       <div class="flex items-start gap-1 text-xs lg:text-lg mb-0 shrink-0">
         {#if mech?.strats && mech.strats.length > 0}
           {#if mech.strats[0].toggleKey}

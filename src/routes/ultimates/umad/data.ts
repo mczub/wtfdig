@@ -16,7 +16,8 @@ const allP1: PhaseStrats[] = [
       {
         mechanic: 'Start',
         description:
-          'Supports West, DPS East\nTether = knockback\nFake Fire (top ring) = opposite of stack/spread marker\nFake Ice (bottom ring) = stand in purple',
+          'Tether = knockback\nFake Fire (top ring) = opposite of stack/spread marker\nFake Ice (bottom ring) = stand in purple',
+        action: 'Supports West, DPS East',
         strats: [
           {
             role: 'Tank',
@@ -70,7 +71,7 @@ const allP1: PhaseStrats[] = [
       },
       {
         mechanic: 'Stack',
-        description: 'Supports West, DPS East',
+        action: 'Supports West, DPS East',
         strats: [
           {
             role: 'Tank',
@@ -124,7 +125,7 @@ const allP1: PhaseStrats[] = [
       },
       {
         mechanic: 'Spread',
-        description: 'Supports West, DPS East\nTanks/Melees on hitbox',
+        action: 'Supports West, DPS East\nTanks/Melees on hitbox',
         strats: [
           {
             role: 'Tank',
@@ -184,7 +185,8 @@ const allP1: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'Conga',
-        description: 'HHTTMMRR Conga\n2 DPS + 2 Supports get hit and spawn towers',
+        description: '2 DPS + 2 Supports get hit and spawn towers',
+        action: 'HHTTMMRR Conga',
         strats: [
           {
             role: 'Tank',
@@ -238,7 +240,7 @@ const allP1: PhaseStrats[] = [
       },
       {
         mechanic: 'Towers',
-        description: "Use same West -> East prio on your half to soak towers if you didn't get hit",
+        action: "Use same West -> East prio on your half to soak towers if you didn't get hit",
         imageUrl: './umad/lasers-towers.webp'
       }
     ]
@@ -266,14 +268,13 @@ const allP1: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'First Puddle',
-        description:
-          'Everyone go North for first puddles\nCenter tether = Gravity Stack + Puddle\nRight side tether = Rocks',
+        description: 'Center tether = Puddle\nRight side tether = Rocks',
+        action: 'North for 1st puddles',
         imageUrl: './umad/puddles-first-puddle.webp'
       },
       {
         mechanic: 'First Rocks',
-        description:
-          'G1 go Left, G2 go Right\nMelees/Tanks can go E/W of boss hitbox\nGravity players can go middle',
+        action: 'G1 Left, G2 Right\nMelees/Tanks can go E/W of boss hitbox\nGravity players can go middle',
         strats: [
           {
             role: 'Tank',
@@ -337,12 +338,12 @@ const allP1: PhaseStrats[] = [
       },
       {
         mechanic: 'Second Puddle',
-        description: 'Go South to place second puddles',
+        action: 'South for 2nd Puddles',
         imageUrl: './umad/puddles-second-puddle.webp'
       },
       {
         mechanic: 'Second Rocks',
-        description:
+        action:
           'G1 go Left, G2 go Right\nMelees/Tanks can go E/W of boss hitbox\nGravity players can go middle',
         strats: [
           {
@@ -409,14 +410,14 @@ const allP1: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'Knockback',
-        description:
-          'Supports North, DPS South\nParty stack on inside of hitbox\nConfetti move out into puddle buttcrack',
+        action:
+          'Supports North, DPS South\nParty stack on inside of hitbox\nConfetti on edge of puddles',
         imageUrl: './umad/confetti2-knockback.webp'
       },
       {
         mechanic: 'Puddle Soak',
-        description:
-          'Get knocked back through the puddles, then stand in the venn diagram to soak\nConfettis step back to help soak',
+        action:
+          'Get knocked back through boss into opposite puddle\nConfettis step back into puddle',
         imageUrl: './umad/confetti2-puddle-soak.webp'
       }
     ]
@@ -540,14 +541,14 @@ const allP1: PhaseStrats[] = [
         },
         {
           mechanic: 'Knockback',
-          description: 'Supports NW, DPS SE for Confetti KB\nConfetti debuffs on the 1/3 markers',
+          action: 'Supports NW, DPS SE for Confetti KB\nConfetti debuffs on the 1/3 markers',
           imageUrl: './umad/p1-arrows-freaky-5.webp'
         },
         {
           mechanic: 'Sleep/Confuse (Tethers matter)',
           description:
-            'Each role gets Upper (Outside/Confuse) or Lower (Inside/Sleep)\nLower: stay inside and get slept\nUpper: go outside and get confused',
-
+            'Each role gets Upper/Left (Outside/Confuse) or Lower/Right (Inside/Sleep) tether',
+          action: 'Sleep = Inside\nConfuse = Outside',
           strats: [
             {
               role: 'Tank',
@@ -608,7 +609,7 @@ const allP1: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'Static Spots',
-        description: 'After teleports, preposition in shown spots',
+        action: 'After teleports, preposition in shown spots',
         strats: [
           {
             role: 'Tank',
@@ -663,7 +664,8 @@ const allP1: PhaseStrats[] = [
       {
         mechanic: 'Spread',
         description:
-          'Make sure to solve Gaze (on statue) + Lightning lines\nMelee on unsafe half move under boss',
+          'Make sure to solve Gaze (on statue) + Lightning lines',
+        action: 'Melee on unsafe half move under boss',
         strats: [
           {
             role: 'Tank',
@@ -717,7 +719,7 @@ const allP1: PhaseStrats[] = [
       },
       {
         mechanic: 'Stack',
-        description: 'Supports on 3\nDPS on 1',
+        action: 'Supports on 3\nDPS on 1',
         strats: [
           {
             role: 'Tank',
@@ -1010,53 +1012,56 @@ const allP2: PhaseStrats[] = [
         {
           mechanic: 'Start',
           description:
-            'Find role/group partner\nGroup A if one has a stack\nGroup B if both the same',
-          imageUrl: './umad/p2-forsaken-kr-3.webp'
+            'Find role/group partner',
+          action: 'Group A if one has a stack\nGroup B if both the same',
+          imageUrl: './umad/p2-forsaken-kr-3.webp',
         },
         {
           mechanic: 'Odd Towers',
           description:
-            'Left Tower: {{forsaken-stack}} Stack + {{forsaken-cone}} Cone, Right Tower: {{forsaken-stack}} Stack + {{forsaken-circle}} Spread\nNon-tower Tank front edge, Non-tower Healer back off edge\nTower Tank/Melee flex if partner matches',
+            'Left Tower: {{forsaken-stack}} Stack + {{forsaken-cone}} Cone, Right Tower: {{forsaken-stack}} Stack + {{forsaken-circle}} Spread',
+          action: 'Non-tower Tank front edge, Non-tower Healer back off edge\nTower Tank/Melee flex if partner matches',
           imageUrl: './umad/p2-forsaken-kr-4.webp'
         },
         {
           mechanic: 'Odd Towers (Left)',
           description:
-            '{{forsaken-stack}} Stack on the boss hitbox (fixed); Stack Tank stands right in front\n{{forsaken-cone}} Cone = away from the Stack, just off the tower edge (not the back wall)\nNo markers here - judge cone vs stack spacing by eye',
+            '{{forsaken-stack}} Stack on the boss hitbox (fixed); Stack Tank stands right in front\n{{forsaken-cone}} Cone = away from the Stack, just off the tower edge (not the back wall)',
           imageUrl: './umad/p2-forsaken-kr-odd-left.webp',
           alignmentTransforms: { truenorth: 'rotate(45deg)' }
         },
         {
           mechanic: 'Odd Towers (Right)',
           description:
-            '{{forsaken-stack}} Stack = between the outer hitbox and tower edge, before the midpoint (not the "eye" corner, not the Even cone spot)\nCorner = clone-kick death; past the midpoint kills the Tank\n{{forsaken-circle}} Spread = South of the tower, away from boss (opposite the Stack)',
+            '{{forsaken-stack}} Stack = between the outer hitbox and tower edge, before the midpoint (not the "eye" corner, not the Even cone spot)\n{{forsaken-circle}} Spread = South of the tower, away from boss (opposite the Stack)',
           imageUrl: './umad/p2-forsaken-kr-odd-right.webp',
           alignmentTransforms: { truenorth: 'rotate(-45deg)' }
         },
         {
           mechanic: 'Even Towers (Diamond Box Markers)',
-          description:
-            'Both Towers: {{forsaken-cone}} Cone North + {{forsaken-circle}} Spread South\nNon-tower Tank/Melee North on OUTER RING of boss hitbox to bait Clones\nNon-Tower Healer/Ranged bait cones on Marker\nNumber Marker = Back corner, Letter Marker = Front edge\nTower Tank/Melee flex if partner matches',
+          description: 'Both Towers: {{forsaken-cone}} Cone North + {{forsaken-circle}} Spread South',
+          action: 'Non-tower Tank/Melee North on OUTER RING of boss hitbox to bait Clones\nNon-Tower Healer/Ranged bait cones on Marker\nNumber Marker = Back corner, Letter Marker = Front edge\nTower Tank/Melee flex if partner matches',
           imageUrl: './umad/p2-forsaken-kr-8.webp'
         },
         {
           mechanic: 'Even Towers (Number Markers, Left)',
           description:
-            'Left tower (Boss is North)\nCone = Front edge towards Left on inner hitbox ring, Baiter = Back corner of Number Markers\nSpread = South edge, slightly toward other tower',
+            'Left tower (Boss is North)\n{{forsaken-cone}} Cone = Front edge towards Left on inner hitbox ring\nBaiter = Back corner of Number Markers\n{{forsaken-circle}} Spread = South edge, slightly toward other tower',
           imageUrl: './umad/p2-forsaken-kr-9.webp',
           alignmentTransforms: { truenorth: 'rotate(45deg)' }
         },
         {
           mechanic: 'Even Towers (Letter Markers, Right)',
           description:
-            'Right tower (Boss is North)\nCone = Front edge towards Right on inner hitbox ring, Baiter = Front edge of Letter Markers\nSpread = South edge, slightly toward other tower',
+            'Right tower (Boss is North)\n{{forsaken-cone}} Cone = Front edge towards Right on inner hitbox ring\nBaiter = Front edge of Letter Markers\n{{forsaken-circle}} Spread = South edge, slightly toward other tower',
           imageUrl: './umad/p2-forsaken-kr-12.webp',
           alignmentTransforms: { truenorth: 'rotate(-45deg)' }
         },
         {
           mechanic: 'Future/Past Baits',
           description:
-            'Everyone baits Past/Future at max melee\nPast = Between towers, Future = Away from towers\nCast after every odd tower, bait after every even tower\nSouth tower players will flex if debuff matches North player',
+            'Everyone baits Past/Future at max melee\nCast after every odd tower, bait after every even tower',
+          action: 'MAX MELEE, Past = Between towers, Future = Away from towers',
           imageUrl: './umad/p2-forsaken-kr-2.webp'
         }
       ],
@@ -1113,7 +1118,8 @@ const allP2: PhaseStrats[] = [
       {
         mechanic: 'Overview',
         description:
-          '3 sets of Trines spawn: 3/1/3\nHalf room while 3rd set is landing\nStart Mid, then dodge into first explosion\nTanks move into 1st CCW from 1\nParty movies into 1st CW from A',
+          '3 sets of Trines spawn: 3/1/3\nHalf room while 3rd set is landing\nStart Mid, then dodge into first explosion',
+        action: 'Wait Mid\nTanks move into 1st CCW from 1\nParty move into 1st CW from A',
         imageUrl: './umad/p2-trines-0.webp'
       },
       {
@@ -1124,7 +1130,7 @@ const allP2: PhaseStrats[] = [
       },
       {
         mechanic: 'Final',
-        description: 'One tank tucked into middle trine, one tank far, party in midrange safespot',
+        action: 'One tank tuck into middle trine, one tank far, party 2 rings from edge',
         imageUrl: './umad/p2-trines-15.webp'
       }
     ]
@@ -1138,7 +1144,7 @@ const allP3: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'Opener Split',
-        description: 'G1 Supports + Melee -> Chaos\nG2 Supports + Ranged -> Exdeath'
+        action: 'G1 Supports + Melee -> Chaos\nG2 Supports + Ranged -> Exdeath'
       }
     ]
   },
@@ -1155,20 +1161,116 @@ const allP3: PhaseStrats[] = [
         },
         {
           mechanic: 'Setup',
-          description:
-            'MT: drag Chaos to the wall at Wind crystal\nOT: keep Exdeath middle\nMelees + Healers stack at the Wind crystal\nRanged spread at the Short debuff crystal',
-          imageUrl: './umad/p3-lb-5.webp'
+          strats: [
+          {
+            role: 'Tank',
+            party: 1,
+            description: 'Drag Chaos to wall at Wind crystal',
+            imageUrl: './umad/p3-lb-5.webp'
+          },
+          {
+            role: 'Tank',
+            party: 2,
+            description: 'Keep Exdeath Middle',
+            imageUrl: './umad/p3-lb-5.webp'
+          },
+          {
+            role: 'Healer',
+            party: 1,
+            description: 'Stack at Wind crystal',
+            imageUrl: './umad/p3-lb-5.webp'
+          },
+          {
+            role: 'Healer',
+            party: 2,
+            description: 'Stack at Wind crystal',
+            imageUrl: './umad/p3-lb-5.webp'
+          },
+          {
+            role: 'Melee',
+            party: 1,
+            description: 'Stack at Wind crystal',
+            imageUrl: './umad/p3-lb-5.webp'
+          },
+          {
+            role: 'Melee',
+            party: 2,
+            description: 'Stack at Wind crystal',
+            imageUrl: './umad/p3-lb-5.webp'
+          },
+          {
+            role: 'Ranged',
+            party: 1,
+            description: 'Spread at wall near short debuff crystal\nFurther from boss',
+            imageUrl: './umad/p3-lb-5.webp'
+          },
+          {
+            role: 'Ranged',
+            party: 2,
+            description: 'Spread at wall near short debuff crystal\nCloser to boss',
+            imageUrl: './umad/p3-lb-5.webp'
+          }
+        ]
         },
         {
           mechanic: 'First Resolve (Short)',
           description:
             'Exdeath defam, Firewall debuffs drop, Short element resolves\nShort {{entropy}} Fire: Melee spread from Supports\nShort {{dynamic-fluid}} Water: Melee + Supports stack\nCrystal AOE hits Ranged',
-          imageUrl: './umad/p3-lb-6.webp'
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
+              imageUrl: './umad/p3-lb-6.webp'
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
+              imageUrl: './umad/p3-lb-6.webp'
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
+              imageUrl: './umad/p3-lb-6.webp'
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
+              imageUrl: './umad/p3-lb-6.webp'
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'If short {{entropy}} Fire, be away from Supports\nIf short {{dynamic-fluid}} Water, stack with Supports',
+              imageUrl: './umad/p3-lb-6.webp'
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'If short {{entropy}} Fire, be away from Supports\nIf short {{dynamic-fluid}} Water, stack with Supports',
+              imageUrl: './umad/p3-lb-6.webp'
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'Stay spread at wall, take crystal AoE',
+              imageUrl: './umad/p3-lb-6.webp'
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'Stay spread at wall, take crystal AoE',
+              imageUrl: './umad/p3-lb-6.webp'
+            }
+          ]
         },
         {
           mechanic: 'Tankbuster + Implosion',
           description:
-            'MT drag Chaos to the wall, Exdeath Thunder III 2-hit tankbuster\nRanged swap to the other crystal, stay off Exdeath so you do not bait it\nDrag Exdeath to the wall, Chaos tank point Chaos out on intercard\nLatitude = sides first, Longitude = front/back first',
+            'Exdeath Thunder III 2-hit tankbuster\nRanged swap to the other crystal, stay off Exdeath so you do not bait it\nDrag Exdeath to the wall, Chaos tank point Chaos out on intercard\nLatitude = sides first, Longitude = front/back first',
           imageUrl: './umad/p3-lb-10.webp'
         },
         {
@@ -1310,8 +1412,7 @@ const allP3: PhaseStrats[] = [
       },
       {
         mechanic: 'Hand Attacks (Roles)',
-        description:
-          'If Role Spread, Tanks Front, Healers Mid, DPS Back',
+        description: 'If Role Spread, Tanks Front, Healers Mid, DPS Back',
         imageUrl: './umad/p3-lb-roles.webp'
       },
       {
@@ -1417,8 +1518,7 @@ const allP5: PhaseStrats[] = [
       },
       {
         mechanic: 'Fell Forces',
-        description:
-          'Role-based autos\nTanks N, Healers SW, DPS SE'
+        description: 'Role-based autos\nTanks N, Healers SW, DPS SE'
       }
     ]
   },
@@ -1634,6 +1734,7 @@ export const dancingMadFightConfig: FightConfig = {
     'P5: Ultima Kefka': ['p5']
   },
   useMainPageTabs: true,
+  separateDescriptionAction: true,
   alignmentOptions: [
     { value: 'original', label: 'Boss North' },
     { value: 'truenorth', label: 'Tower North' }

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { getContext, onMount, onDestroy } from 'svelte';
+  import { browser } from '$app/environment';
   import { fade } from 'svelte/transition';
   import type { ToastLike } from '$lib/utils';
   import { startSolitaireEffect, stopSolitaireEffect } from '$lib/solitaire';
@@ -69,8 +70,52 @@
     }
   });
 
-  let spotlight: boolean = $state(true);
-  let alignment: Alignment = $state('original');
+  // Per-fight view settings (settings popover), persisted in localStorage.
+  function loadFightSettings() {
+    if (!browser) return null;
+    try {
+      const saved = localStorage.getItem(`fightSettings_${config.fightKey}`);
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  }
+
+  // Drop a saved alignment that isn't valid for this fight's options.
+  function normalizeAlignment(value: unknown): Alignment {
+    const options = config.alignmentOptions;
+    if (options && !options.some((o) => o.value === value)) return 'original';
+    return (value as Alignment) ?? 'original';
+  }
+
+  const savedFightSettings = loadFightSettings();
+  let spotlight: boolean = $state(savedFightSettings?.spotlight ?? true);
+  let alignment: Alignment = $state(normalizeAlignment(savedFightSettings?.alignment));
+  let hideDescriptions = $state(savedFightSettings?.hideDescriptions ?? false);
+
+  // Reload when navigating to a different fight without a remount (first run skipped).
+  let lastSettingsFightKey: string | null = null;
+  $effect(() => {
+    const key = config.fightKey;
+    if (lastSettingsFightKey === null) {
+      lastSettingsFightKey = key;
+      return;
+    }
+    if (key === lastSettingsFightKey) return;
+    lastSettingsFightKey = key;
+    const saved = loadFightSettings();
+    spotlight = saved?.spotlight ?? true;
+    alignment = normalizeAlignment(saved?.alignment);
+    hideDescriptions = saved?.hideDescriptions ?? false;
+  });
+
+  // Persist whenever a setting changes.
+  $effect(() => {
+    const state = { spotlight, alignment, hideDescriptions };
+    if (!browser) return;
+    localStorage.setItem(`fightSettings_${config.fightKey}`, JSON.stringify(state));
+  });
+
   let solitaireActive = $state(false);
 
   async function toggleSolitaire() {
@@ -325,6 +370,7 @@
       inProgressTabs={config.inProgressTabs}
       role={normalizedRole}
       fightKey={config.fightKey}
+      separateDescriptionAction={config.separateDescriptionAction}
       mechToggles={(config.toggles ?? []).filter((t) => t.isMechToggle)}
     />
 
@@ -366,6 +412,9 @@
       {alignment}
       setAlignment={(val) => (alignment = val)}
       alignmentOptions={config.alignmentOptions}
+      separateDescriptionAction={config.separateDescriptionAction}
+      {hideDescriptions}
+      setHideDescriptions={(val) => (hideDescriptions = val)}
       additionalResources={config.additionalResources}
       onOpenCheatsheet={isCheatsheetEnabled ? () => (cheatsheetOpenState = true) : undefined}
       onOpenPoster={config.posterLayout && config.posterEnabled
@@ -589,6 +638,8 @@
                 {individualStrat}
                 {spotlight}
                 {alignment}
+                separateDescriptionAction={config.separateDescriptionAction}
+                {hideDescriptions}
                 tabTags={config.tabTags}
                 inProgressTabs={config.inProgressTabs}
                 role={normalizedRole}

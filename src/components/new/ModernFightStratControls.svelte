@@ -43,6 +43,9 @@
     alignment?: Alignment;
     setAlignment?: (value: Alignment) => void;
     alignmentOptions?: { value: Alignment; label: string }[];
+    separateDescriptionAction?: boolean;
+    hideDescriptions?: boolean;
+    setHideDescriptions?: (value: boolean) => void;
     additionalResources?: {
       title: string;
       description?: string;
@@ -73,6 +76,9 @@
     alignment = 'original',
     setAlignment,
     alignmentOptions,
+    separateDescriptionAction = false,
+    hideDescriptions = false,
+    setHideDescriptions,
     roleOptions,
     additionalResources,
     onOpenCheatsheet,
@@ -687,6 +693,16 @@
                     onCheckedChange={(e) => setSpotlight(e.checked)}
                   />
                 </div>
+                {#if separateDescriptionAction && setHideDescriptions}
+                  <div class="flex justify-between items-center">
+                    <span class="font-medium">Hide descriptions</span>
+                    <Switch
+                      name="hide-descriptions-toggle"
+                      checked={hideDescriptions}
+                      onCheckedChange={(e) => setHideDescriptions(e.checked)}
+                    />
+                  </div>
+                {/if}
                 {#if alignmentOptions?.length && setAlignment}
                   <div class="flex flex-col gap-3">
                     <span class="font-medium">Image orientation</span>

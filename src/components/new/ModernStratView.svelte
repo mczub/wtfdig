@@ -7,8 +7,10 @@
   import {
     ChevronsUpDown,
     CircleAlert,
+    Play,
     Expand,
     ExternalLink,
+    NotepadText,
     TriangleAlert
   } from '@lucide/svelte/icons';
   import ImagePreview from '../ImagePreview.svelte';
@@ -35,6 +37,8 @@
     individualStrat,
     spotlight,
     alignment,
+    separateDescriptionAction = false,
+    hideDescriptions = false,
     tabTags = null,
     inProgressTabs = null,
     useMainPageTabs = false,
@@ -144,6 +148,7 @@
   {spotlight}
   {role}
   {alignment}
+  {separateDescriptionAction}
 />
 
 {#if strat?.notes}
@@ -388,7 +393,26 @@
                           </div>
                         {/if}
 
-                        {#if mech?.description}
+                        {#if separateDescriptionAction}
+                          <!-- When hiding descriptions, a description-only mech (no
+                               action to fall back to) still shows so cards aren't blank. -->
+                          {#if mech?.description && !(hideDescriptions && mech?.action)}
+                            <div class="flex gap-2 text-surface-200 text-base leading-relaxed">
+                              <NotepadText size={18} class="shrink-0 mt-1 text-surface-400" />
+                              <p class="whitespace-pre-wrap">
+                                {@html renderDebuffTokens(mech.description)}
+                              </p>
+                            </div>
+                          {/if}
+                          {#if mech?.action}
+                            <div class="flex gap-2 text-surface-100 text-base leading-relaxed">
+                              <Play size={18} class="shrink-0 mt-1 text-primary-400" />
+                              <p class="whitespace-pre-wrap">
+                                {@html renderDebuffTokens(mech.action)}
+                              </p>
+                            </div>
+                          {/if}
+                        {:else if mech?.description}
                           <p class="text-surface-200 text-base leading-relaxed whitespace-pre-wrap">
                             {@html renderDebuffTokens(mech.description)}
                           </p>
