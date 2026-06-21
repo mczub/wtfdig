@@ -394,9 +394,7 @@
                         {/if}
 
                         {#if separateDescriptionAction}
-                          <!-- When hiding descriptions, a description-only mech (no
-                               action to fall back to) still shows so cards aren't blank. -->
-                          {#if mech?.description && !(hideDescriptions && mech?.action)}
+                          {#if mech?.description && !hideDescriptions}
                             <div class="flex gap-2 text-surface-200 text-base leading-relaxed">
                               <NotepadText size={18} class="shrink-0 mt-1 text-surface-400" />
                               <p class="whitespace-pre-wrap">
