@@ -1537,7 +1537,7 @@ export const hector: Strat = {
           strats: getStratArray(runawayStrats, 'spreads'),
           description: {
             alt: '',
-            slide6: '',
+            raidplan: '',
             static:
               'Healers and Melee are static, ignore train direction\nRanged and Tanks will rotate',
             game8: ''
