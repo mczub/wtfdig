@@ -13,9 +13,10 @@
     WAYMARK_COLORS,
     SQUARE_MARKERS,
     CIRCLE_MARKERS,
+    ARROW_TELEPORTER_COLOR,
     evaluateVisibility
   } from '$lib/arena';
-  import { DEBUFFS, type DebuffId } from '$lib/debuffs';
+  import { DEBUFFS, getDebuff, type DebuffId } from '$lib/debuffs';
   import type { FightConfig, PosterLayout, PosterSectionDef } from '$lib/types';
   import {
     Copy,
@@ -295,6 +296,8 @@
         return { type: 'text', text: 'Label', x, y };
       case 'debuff':
         return { type: 'debuff', debuffId: subtype ?? DEBUFF_IDS[0], x, y };
+      case 'arrowTeleporter':
+        return { type: 'arrowTeleporter', x, y, rotation: 0 };
       case 'polygon':
         // Default triangle around click point
         return {
@@ -625,7 +628,9 @@
     const removedId = groups[idx]?.id;
     groups = groups.filter((_, i) => i !== idx);
     if (removedId) {
-      elements = elements.map((el) => (el.groupId === removedId ? { ...el, groupId: undefined } : el));
+      elements = elements.map((el) =>
+        el.groupId === removedId ? { ...el, groupId: undefined } : el
+      );
     }
   }
 
@@ -658,15 +663,38 @@
   }
 
   function parseStratKeyList(s: string): string[] | undefined {
-    const list = s.split(',').map((p) => p.trim()).filter(Boolean);
+    const list = s
+      .split(',')
+      .map((p) => p.trim())
+      .filter(Boolean);
     return list.length ? list : undefined;
   }
 
   // Jobs offered by the visibility job-picker (specifics + role generics).
   const VIS_JOBS: PlayerJob[] = [
-    'MT', 'OT', 'H1', 'H2', 'M1', 'M2', 'R1', 'R2',
-    'TANK', 'HEALER', 'MELEE', 'RANGED', 'HTM', 'TMR', 'DPS', 'SUP', 'G1', 'G2',
-    'G1SUP', 'G1DPS', 'G2SUP', 'G2DPS', 'ANY'
+    'MT',
+    'OT',
+    'H1',
+    'H2',
+    'M1',
+    'M2',
+    'R1',
+    'R2',
+    'TANK',
+    'HEALER',
+    'MELEE',
+    'RANGED',
+    'HTM',
+    'TMR',
+    'DPS',
+    'SUP',
+    'G1',
+    'G2',
+    'G1SUP',
+    'G1DPS',
+    'G2SUP',
+    'G2DPS',
+    'ANY'
   ];
 
   // --- Code generation ---
@@ -715,144 +743,157 @@
     const imports = new Set<string>();
     imports.add('diagram');
 
-    const elStrs = elements.map((el) => {
-      switch (el.type) {
-        case 'player':
-          imports.add('player');
-          {
-            const hasCorners = el.corners && Object.keys(el.corners).length > 0;
-            const hasSize = el.size != null && el.size !== 6;
-            const hasOpts = el.marker || el.id || hasCorners || hasSize || el.statusAbove;
-            if (hasOpts) {
-              const opts: string[] = [];
-              if (el.id) opts.push(`id: '${el.id}'`);
-              if (el.marker) opts.push(`marker: '${el.marker}'`);
-              if (el.statusAbove) opts.push(`statusAbove: '${el.statusAbove}'`);
-              if (hasSize) opts.push(`size: ${el.size}`);
-              if (hasCorners) {
-                const cornerStr = Object.entries(el.corners!)
-                  .map(([k, v]) => `${k}: '${v}'`)
-                  .join(', ');
-                opts.push(`corners: { ${cornerStr} }`);
+    const elStrs = elements
+      .map((el) => {
+        switch (el.type) {
+          case 'player':
+            imports.add('player');
+            {
+              const hasCorners = el.corners && Object.keys(el.corners).length > 0;
+              const hasSize = el.size != null && el.size !== 6;
+              const hasOpts = el.marker || el.id || hasCorners || hasSize || el.statusAbove;
+              if (hasOpts) {
+                const opts: string[] = [];
+                if (el.id) opts.push(`id: '${el.id}'`);
+                if (el.marker) opts.push(`marker: '${el.marker}'`);
+                if (el.statusAbove) opts.push(`statusAbove: '${el.statusAbove}'`);
+                if (hasSize) opts.push(`size: ${el.size}`);
+                if (hasCorners) {
+                  const cornerStr = Object.entries(el.corners!)
+                    .map(([k, v]) => `${k}: '${v}'`)
+                    .join(', ');
+                  opts.push(`corners: { ${cornerStr} }`);
+                }
+                return `  player('${el.job}', ${el.x}, ${el.y}, { ${opts.join(', ')} })`;
               }
-              return `  player('${el.job}', ${el.x}, ${el.y}, { ${opts.join(', ')} })`;
+              return `  player('${el.job}', ${el.x}, ${el.y})`;
             }
-            return `  player('${el.job}', ${el.x}, ${el.y})`;
+          case 'boss': {
+            imports.add('boss');
+            const hasBossSize = el.size != null && el.size !== 12;
+            const hasRing = el.ring != null && el.ring !== 'directional';
+            // Fold options into a trailing `{ ... }` when size/ring is set, or when
+            // a groupId is present alongside rotation, so withGroupId can merge
+            // groupId into a single trailing opts object.
+            if (hasBossSize || hasRing || (el.groupId && el.rotation)) {
+              const bossOpts: string[] = [];
+              if (el.rotation) bossOpts.push(`rotation: ${el.rotation}`);
+              if (hasBossSize) bossOpts.push(`size: ${el.size}`);
+              if (hasRing) bossOpts.push(`ring: '${el.ring}'`);
+              return `  boss(${el.x}, ${el.y}, { ${bossOpts.join(', ')} })`;
+            }
+            return `  boss(${el.x}, ${el.y}${el.rotation ? `, ${el.rotation}` : ''})`;
           }
-        case 'boss': {
-          imports.add('boss');
-          const hasBossSize = el.size != null && el.size !== 12;
-          const hasRing = el.ring != null && el.ring !== 'directional';
-          // Fold options into a trailing `{ ... }` when size/ring is set, or when
-          // a groupId is present alongside rotation, so withGroupId can merge
-          // groupId into a single trailing opts object.
-          if (hasBossSize || hasRing || (el.groupId && el.rotation)) {
-            const bossOpts: string[] = [];
-            if (el.rotation) bossOpts.push(`rotation: ${el.rotation}`);
-            if (hasBossSize) bossOpts.push(`size: ${el.size}`);
-            if (hasRing) bossOpts.push(`ring: '${el.ring}'`);
-            return `  boss(${el.x}, ${el.y}, { ${bossOpts.join(', ')} })`;
-          }
-          return `  boss(${el.x}, ${el.y}${el.rotation ? `, ${el.rotation}` : ''})`;
+          case 'waymark':
+            imports.add('waymark');
+            if (el.size != null && el.size !== 4) {
+              return `  waymark('${el.mark}', ${el.x}, ${el.y}, { size: ${el.size} })`;
+            }
+            return `  waymark('${el.mark}', ${el.x}, ${el.y})`;
+          case 'aoe':
+            if (el.shape === 'circle') {
+              imports.add('aoeCircle');
+              const opts: string[] = [];
+              if (el.ry != null && el.ry !== el.r) opts.push(`ry: ${el.ry}`);
+              if (el.rotation) opts.push(`rotation: ${el.rotation}`);
+              if (el.color) opts.push(`color: '${el.color}'`);
+              if (el.opacity != null) opts.push(`opacity: ${el.opacity}`);
+              const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
+              return `  aoeCircle(${el.x}, ${el.y}, ${el.r}${optsStr})`;
+            } else {
+              imports.add('aoeRect');
+              const opts: string[] = [];
+              if (el.rotation) opts.push(`rotation: ${el.rotation}`);
+              if (el.color) opts.push(`color: '${el.color}'`);
+              if (el.opacity != null) opts.push(`opacity: ${el.opacity}`);
+              const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
+              return `  aoeRect(${el.x}, ${el.y}, ${el.w}, ${el.h}${optsStr})`;
+            }
+          case 'tether':
+            imports.add('tether');
+            const tOpts: string[] = [];
+            if (el.color) tOpts.push(`color: '${el.color}'`);
+            if (el.width) tOpts.push(`width: ${el.width}`);
+            if (el.dashed) tOpts.push('dashed: true');
+            const tOptsStr = tOpts.length > 0 ? `, { ${tOpts.join(', ')} }` : '';
+            return `  tether(${el.x1}, ${el.y1}, ${el.x2}, ${el.y2}${tOptsStr})`;
+          case 'arrow':
+            imports.add('arrow');
+            const aOpts: string[] = [];
+            if (el.color) aOpts.push(`color: '${el.color}'`);
+            if (el.width) aOpts.push(`width: ${el.width}`);
+            if (el.heads && el.heads !== 'end') aOpts.push(`heads: '${el.heads}'`);
+            const aOptsStr = aOpts.length > 0 ? `, { ${aOpts.join(', ')} }` : '';
+            return `  arrow(${el.x1}, ${el.y1}, ${el.x2}, ${el.y2}${aOptsStr})`;
+          case 'curvedArrow':
+            imports.add('curvedArrow');
+            {
+              const opts: string[] = [];
+              if (el.curvature != null && el.curvature !== 6)
+                opts.push(`curvature: ${el.curvature}`);
+              if (el.color) opts.push(`color: '${el.color}'`);
+              if (el.width) opts.push(`width: ${el.width}`);
+              if (el.heads && el.heads !== 'end') opts.push(`heads: '${el.heads}'`);
+              const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
+              return `  curvedArrow(${el.x1}, ${el.y1}, ${el.x2}, ${el.y2}${optsStr})`;
+            }
+          case 'arrowTeleporter':
+            imports.add('arrowTeleporter');
+            {
+              const opts: string[] = [];
+              if (el.rotation) opts.push(`rotation: ${el.rotation}`);
+              if (el.size != null) opts.push(`size: ${el.size}`);
+              if (el.color) opts.push(`color: '${el.color}'`);
+              const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
+              return `  arrowTeleporter(${el.x}, ${el.y}${optsStr})`;
+            }
+          case 'polygon':
+            imports.add('polygon');
+            {
+              const ptsStr = el.points.map((p) => `[${p[0]}, ${p[1]}]`).join(', ');
+              const opts: string[] = [];
+              if (el.color) opts.push(`color: '${el.color}'`);
+              if (el.opacity != null) opts.push(`opacity: ${el.opacity}`);
+              if (el.rotation) opts.push(`rotation: ${el.rotation}`);
+              if (el.outline) opts.push('outline: true');
+              const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
+              return `  polygon([${ptsStr}]${optsStr})`;
+            }
+          case 'arena':
+            imports.add('arenaShape');
+            {
+              const opts: string[] = [];
+              if (el.rotation) opts.push(`rotation: ${el.rotation}`);
+              if (el.bgColor) opts.push(`bgColor: '${el.bgColor}'`);
+              if (el.borderColor) opts.push(`borderColor: '${el.borderColor}'`);
+              if (el.showCrosshairs === false) opts.push('showCrosshairs: false');
+              if (el.bgImage) opts.push(`bgImage: '${el.bgImage}'`);
+              const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
+              return `  arenaShape('${el.shape}', ${el.x}, ${el.y}, ${el.w}, ${el.h}${optsStr})`;
+            }
+          case 'text':
+            imports.add('text');
+            const txtOpts: string[] = [];
+            if (el.color) txtOpts.push(`color: '${el.color}'`);
+            if (el.fontSize) txtOpts.push(`fontSize: ${el.fontSize}`);
+            if (el.anchor) txtOpts.push(`anchor: '${el.anchor}'`);
+            const txtOptsStr = txtOpts.length > 0 ? `, { ${txtOpts.join(', ')} }` : '';
+            const escapedText = el.text.includes('\n') ? el.text.replace(/\n/g, '\\n') : el.text;
+            return `  text('${escapedText}', ${el.x}, ${el.y}${txtOptsStr})`;
+          case 'debuff':
+            imports.add('debuff');
+            {
+              const opts: string[] = [];
+              if (el.size != null) opts.push(`size: ${el.size}`);
+              if (el.id) opts.push(`id: '${el.id}'`);
+              const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
+              return `  debuff('${el.debuffId}', ${el.x}, ${el.y}${optsStr})`;
+            }
+          default:
+            return `  // unknown element`;
         }
-        case 'waymark':
-          imports.add('waymark');
-          if (el.size != null && el.size !== 4) {
-            return `  waymark('${el.mark}', ${el.x}, ${el.y}, { size: ${el.size} })`;
-          }
-          return `  waymark('${el.mark}', ${el.x}, ${el.y})`;
-        case 'aoe':
-          if (el.shape === 'circle') {
-            imports.add('aoeCircle');
-            const opts: string[] = [];
-            if (el.ry != null && el.ry !== el.r) opts.push(`ry: ${el.ry}`);
-            if (el.rotation) opts.push(`rotation: ${el.rotation}`);
-            if (el.color) opts.push(`color: '${el.color}'`);
-            if (el.opacity != null) opts.push(`opacity: ${el.opacity}`);
-            const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
-            return `  aoeCircle(${el.x}, ${el.y}, ${el.r}${optsStr})`;
-          } else {
-            imports.add('aoeRect');
-            const opts: string[] = [];
-            if (el.rotation) opts.push(`rotation: ${el.rotation}`);
-            if (el.color) opts.push(`color: '${el.color}'`);
-            if (el.opacity != null) opts.push(`opacity: ${el.opacity}`);
-            const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
-            return `  aoeRect(${el.x}, ${el.y}, ${el.w}, ${el.h}${optsStr})`;
-          }
-        case 'tether':
-          imports.add('tether');
-          const tOpts: string[] = [];
-          if (el.color) tOpts.push(`color: '${el.color}'`);
-          if (el.width) tOpts.push(`width: ${el.width}`);
-          if (el.dashed) tOpts.push('dashed: true');
-          const tOptsStr = tOpts.length > 0 ? `, { ${tOpts.join(', ')} }` : '';
-          return `  tether(${el.x1}, ${el.y1}, ${el.x2}, ${el.y2}${tOptsStr})`;
-        case 'arrow':
-          imports.add('arrow');
-          const aOpts: string[] = [];
-          if (el.color) aOpts.push(`color: '${el.color}'`);
-          if (el.width) aOpts.push(`width: ${el.width}`);
-          if (el.heads && el.heads !== 'end') aOpts.push(`heads: '${el.heads}'`);
-          const aOptsStr = aOpts.length > 0 ? `, { ${aOpts.join(', ')} }` : '';
-          return `  arrow(${el.x1}, ${el.y1}, ${el.x2}, ${el.y2}${aOptsStr})`;
-        case 'curvedArrow':
-          imports.add('curvedArrow');
-          {
-            const opts: string[] = [];
-            if (el.curvature != null && el.curvature !== 6) opts.push(`curvature: ${el.curvature}`);
-            if (el.color) opts.push(`color: '${el.color}'`);
-            if (el.width) opts.push(`width: ${el.width}`);
-            if (el.heads && el.heads !== 'end') opts.push(`heads: '${el.heads}'`);
-            const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
-            return `  curvedArrow(${el.x1}, ${el.y1}, ${el.x2}, ${el.y2}${optsStr})`;
-          }
-        case 'polygon':
-          imports.add('polygon');
-          {
-            const ptsStr = el.points.map((p) => `[${p[0]}, ${p[1]}]`).join(', ');
-            const opts: string[] = [];
-            if (el.color) opts.push(`color: '${el.color}'`);
-            if (el.opacity != null) opts.push(`opacity: ${el.opacity}`);
-            if (el.rotation) opts.push(`rotation: ${el.rotation}`);
-            if (el.outline) opts.push('outline: true');
-            const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
-            return `  polygon([${ptsStr}]${optsStr})`;
-          }
-        case 'arena':
-          imports.add('arenaShape');
-          {
-            const opts: string[] = [];
-            if (el.rotation) opts.push(`rotation: ${el.rotation}`);
-            if (el.bgColor) opts.push(`bgColor: '${el.bgColor}'`);
-            if (el.borderColor) opts.push(`borderColor: '${el.borderColor}'`);
-            if (el.showCrosshairs === false) opts.push('showCrosshairs: false');
-            if (el.bgImage) opts.push(`bgImage: '${el.bgImage}'`);
-            const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
-            return `  arenaShape('${el.shape}', ${el.x}, ${el.y}, ${el.w}, ${el.h}${optsStr})`;
-          }
-        case 'text':
-          imports.add('text');
-          const txtOpts: string[] = [];
-          if (el.color) txtOpts.push(`color: '${el.color}'`);
-          if (el.fontSize) txtOpts.push(`fontSize: ${el.fontSize}`);
-          if (el.anchor) txtOpts.push(`anchor: '${el.anchor}'`);
-          const txtOptsStr = txtOpts.length > 0 ? `, { ${txtOpts.join(', ')} }` : '';
-          const escapedText = el.text.includes('\n') ? el.text.replace(/\n/g, '\\n') : el.text;
-          return `  text('${escapedText}', ${el.x}, ${el.y}${txtOptsStr})`;
-        case 'debuff':
-          imports.add('debuff');
-          {
-            const opts: string[] = [];
-            if (el.size != null) opts.push(`size: ${el.size}`);
-            if (el.id) opts.push(`id: '${el.id}'`);
-            const optsStr = opts.length > 0 ? `, { ${opts.join(', ')} }` : '';
-            return `  debuff('${el.debuffId}', ${el.x}, ${el.y}${optsStr})`;
-          }
-        default:
-          return `  // unknown element`;
-      }
-    }).map((str, i) => withGroupId(str, elements[i].groupId));
+      })
+      .map((str, i) => withGroupId(str, elements[i].groupId));
 
     // Only use the SQUARE_MARKERS / CIRCLE_MARKERS shorthand when every waymark
     // matches the preset exactly (same mark, position, default size, no group).
@@ -1071,6 +1112,16 @@
         const opts = parseInlineOpts(m[2]);
         els.push({ type: 'polygon', points, ...opts });
       }
+    }
+    // Parse arrowTeleporter(x, y, { opts })
+    for (const m of code.matchAll(
+      new RegExp(
+        `arrowTeleporter\\(\\s*(${N})\\s*,\\s*(${N})(?:\\s*,\\s*\\{([^}]*)\\})?\\s*\\)`,
+        'g'
+      )
+    )) {
+      const opts = parseInlineOpts(m[3]);
+      els.push({ type: 'arrowTeleporter', x: +m[1], y: +m[2], ...opts });
     }
     // Parse arenaShape('shape', x, y, w, h, { opts })
     for (const m of code.matchAll(
@@ -1518,12 +1569,26 @@
                 onmousedown={(e) => handleElementMouseDown(i, e)}
               />
             {:else if el.type === 'debuff'}
+              {@const dSize = el.size ?? getDebuff(el.debuffId)?.defaultSize ?? 6}
               <!-- svelte-ignore a11y_no_static_element_interactions -->
               <rect
-                x={(el.x - (el.size ?? 6) / 2) * scale}
-                y={(el.y - (el.size ?? 6) / 2) * scale}
-                width={(el.size ?? 6) * scale}
-                height={(el.size ?? 6) * scale}
+                x={(el.x - dSize / 2) * scale}
+                y={(el.y - dSize / 2) * scale}
+                width={dSize * scale}
+                height={dSize * scale}
+                fill="transparent"
+                stroke={selected.has(i) ? '#22d3ee' : 'transparent'}
+                stroke-width="0.6"
+                stroke-dasharray="1.5,1"
+                class="cursor-move"
+                onmousedown={(e) => handleElementMouseDown(i, e)}
+              />
+            {:else if el.type === 'arrowTeleporter'}
+              <!-- svelte-ignore a11y_no_static_element_interactions -->
+              <circle
+                cx={el.x * scale}
+                cy={el.y * scale}
+                r={(el.size ?? 5) * scale}
                 fill="transparent"
                 stroke={selected.has(i) ? '#22d3ee' : 'transparent'}
                 stroke-width="0.6"
@@ -1710,6 +1775,10 @@
             class="btn btn-sm preset-tonal-surface text-xs"
             onclick={() => startPlace('polygon')}>Polygon</button
           >
+          <button
+            class="btn btn-sm preset-tonal-surface text-xs"
+            onclick={() => startPlace('arrowTeleporter')}>Arrow Teleporter</button
+          >
           <button class="btn btn-sm preset-tonal-surface text-xs" onclick={() => startPlace('text')}
             >Text</button
           >
@@ -1826,149 +1895,154 @@
         {#if !groupsCollapsed}
           {#if groups.length === 0}
             <div class="text-xs text-surface-500">
-              Define a group then assign elements to it (via the property panel) to
-              conditionally hide them based on selected role, strat, or strat toggle.
+              Define a group then assign elements to it (via the property panel) to conditionally
+              hide them based on selected role, strat, or strat toggle.
             </div>
           {/if}
           {#each groups as g, gi}
-          {@const memberCount = elements.filter((e) => e.groupId === g.id).length}
-          <div class="border border-surface-700 rounded p-2 space-y-1.5">
-            <div class="flex gap-1 items-center">
-              <input
-                type="text"
-                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs flex-1 font-mono"
-                value={g.id}
-                placeholder="group-id"
-                onchange={(e) => updateGroup(gi, { id: e.currentTarget.value.trim() || g.id })}
-              />
-              <input
-                type="text"
-                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs flex-1"
-                value={g.label ?? ''}
-                placeholder="label (optional)"
-                oninput={(e) => updateGroup(gi, { label: e.currentTarget.value || undefined })}
-              />
-              <button
-                class="btn btn-sm preset-tonal-error p-1"
-                onclick={() => removeGroup(gi)}
-                title="Delete group"
-              >
-                <Trash2 size={12} />
-              </button>
-            </div>
-            <div class="text-xs text-surface-500">
-              {memberCount} element{memberCount === 1 ? '' : 's'} assigned
-            </div>
-            <label class="text-xs text-surface-400">
-              Role mode
-              <select
-                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs w-full"
-                value={g.visibleWhen?.whenRoleSelected === true
-                  ? 'role'
-                  : g.visibleWhen?.whenRoleSelected === false
-                    ? 'overview'
-                    : 'any'}
-                onchange={(e) => {
-                  const v = e.currentTarget.value;
-                  updateGroupCondition(gi, {
-                    whenRoleSelected: v === 'role' ? true : v === 'overview' ? false : undefined
-                  });
-                }}
-              >
-                <option value="any">Any (no constraint)</option>
-                <option value="role">Only when role selected</option>
-                <option value="overview">Only in overview (no role)</option>
-              </select>
-            </label>
-            <div>
-              <div class="text-xs text-surface-400 mb-0.5">Show only for jobs:</div>
-              <div class="flex flex-wrap gap-0.5">
-                {#each VIS_JOBS as job}
-                  {@const active = g.visibleWhen?.jobs?.includes(job) ?? false}
+            {@const memberCount = elements.filter((e) => e.groupId === g.id).length}
+            <div class="border border-surface-700 rounded p-2 space-y-1.5">
+              <div class="flex gap-1 items-center">
+                <input
+                  type="text"
+                  class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs flex-1 font-mono"
+                  value={g.id}
+                  placeholder="group-id"
+                  onchange={(e) => updateGroup(gi, { id: e.currentTarget.value.trim() || g.id })}
+                />
+                <input
+                  type="text"
+                  class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs flex-1"
+                  value={g.label ?? ''}
+                  placeholder="label (optional)"
+                  oninput={(e) => updateGroup(gi, { label: e.currentTarget.value || undefined })}
+                />
+                <button
+                  class="btn btn-sm preset-tonal-error p-1"
+                  onclick={() => removeGroup(gi)}
+                  title="Delete group"
+                >
+                  <Trash2 size={12} />
+                </button>
+              </div>
+              <div class="text-xs text-surface-500">
+                {memberCount} element{memberCount === 1 ? '' : 's'} assigned
+              </div>
+              <label class="text-xs text-surface-400">
+                Role mode
+                <select
+                  class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs w-full"
+                  value={g.visibleWhen?.whenRoleSelected === true
+                    ? 'role'
+                    : g.visibleWhen?.whenRoleSelected === false
+                      ? 'overview'
+                      : 'any'}
+                  onchange={(e) => {
+                    const v = e.currentTarget.value;
+                    updateGroupCondition(gi, {
+                      whenRoleSelected: v === 'role' ? true : v === 'overview' ? false : undefined
+                    });
+                  }}
+                >
+                  <option value="any">Any (no constraint)</option>
+                  <option value="role">Only when role selected</option>
+                  <option value="overview">Only in overview (no role)</option>
+                </select>
+              </label>
+              <div>
+                <div class="text-xs text-surface-400 mb-0.5">Show only for jobs:</div>
+                <div class="flex flex-wrap gap-0.5">
+                  {#each VIS_JOBS as job}
+                    {@const active = g.visibleWhen?.jobs?.includes(job) ?? false}
+                    <button
+                      class="text-[10px] font-bold px-1.5 py-0.5 rounded border"
+                      style:background-color={active ? ROLE_COLORS[job] + '55' : 'transparent'}
+                      style:border-color={ROLE_COLORS[job]}
+                      style:color={ROLE_COLORS[job]}
+                      onclick={() => toggleGroupJob(gi, job)}>{job}</button
+                    >
+                  {/each}
+                </div>
+              </div>
+              <label class="text-xs text-surface-400">
+                Active strat keys (comma-separated)
+                <input
+                  type="text"
+                  class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs w-full font-mono"
+                  value={(g.visibleWhen?.stratKey ?? []).join(', ')}
+                  placeholder="naur, max1"
+                  oninput={(e) =>
+                    updateGroupCondition(gi, {
+                      stratKey: parseStratKeyList(e.currentTarget.value)
+                    })}
+                />
+              </label>
+              <div class="text-xs text-surface-400">
+                <div class="flex justify-between items-center mb-0.5">
+                  <span>Strat-toggle predicate</span>
                   <button
-                    class="text-[10px] font-bold px-1.5 py-0.5 rounded border"
-                    style:background-color={active ? ROLE_COLORS[job] + '55' : 'transparent'}
-                    style:border-color={ROLE_COLORS[job]}
-                    style:color={ROLE_COLORS[job]}
-                    onclick={() => toggleGroupJob(gi, job)}>{job}</button
+                    class="btn btn-sm preset-tonal-surface text-[10px] px-1.5 py-0.5"
+                    onclick={() => {
+                      const next = { ...(g.visibleWhen?.strat ?? {}), '': [] };
+                      updateGroupCondition(gi, { strat: next });
+                    }}
+                    title="Add toggle constraint"
                   >
+                    <Plus size={10} />
+                  </button>
+                </div>
+                {#each Object.entries(g.visibleWhen?.strat ?? {}) as [tag, vals], si}
+                  <div class="flex gap-1 items-center mb-0.5">
+                    <input
+                      type="text"
+                      class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-[10px] font-mono w-20"
+                      value={tag}
+                      placeholder="tag"
+                      onchange={(e) => {
+                        const newTag = e.currentTarget.value.trim();
+                        const entries = Object.entries(g.visibleWhen?.strat ?? {});
+                        const updated = Object.fromEntries(
+                          entries.map(([t, v], i) => (i === si ? [newTag, v] : [t, v]))
+                        ) as Record<string, string[]>;
+                        updateGroupCondition(gi, { strat: updated });
+                      }}
+                    />
+                    <span class="text-surface-500">=</span>
+                    <input
+                      type="text"
+                      class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-[10px] font-mono flex-1"
+                      value={vals.join(', ')}
+                      placeholder="val1, val2"
+                      oninput={(e) => {
+                        const list = e.currentTarget.value
+                          .split(',')
+                          .map((p) => p.trim())
+                          .filter(Boolean);
+                        const entries = Object.entries(g.visibleWhen?.strat ?? {});
+                        const updated = Object.fromEntries(
+                          entries.map(([t, v], i) => (i === si ? [t, list] : [t, v]))
+                        ) as Record<string, string[]>;
+                        updateGroupCondition(gi, { strat: updated });
+                      }}
+                    />
+                    <button
+                      class="text-error-500 hover:text-error-400 text-xs px-1"
+                      onclick={() => {
+                        const entries = Object.entries(g.visibleWhen?.strat ?? {}).filter(
+                          (_, i) => i !== si
+                        );
+                        const next = Object.fromEntries(entries) as Record<string, string[]>;
+                        updateGroupCondition(gi, {
+                          strat: Object.keys(next).length ? next : undefined
+                        });
+                      }}
+                    >
+                      ×
+                    </button>
+                  </div>
                 {/each}
               </div>
             </div>
-            <label class="text-xs text-surface-400">
-              Active strat keys (comma-separated)
-              <input
-                type="text"
-                class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-xs w-full font-mono"
-                value={(g.visibleWhen?.stratKey ?? []).join(', ')}
-                placeholder="naur, max1"
-                oninput={(e) =>
-                  updateGroupCondition(gi, { stratKey: parseStratKeyList(e.currentTarget.value) })}
-              />
-            </label>
-            <div class="text-xs text-surface-400">
-              <div class="flex justify-between items-center mb-0.5">
-                <span>Strat-toggle predicate</span>
-                <button
-                  class="btn btn-sm preset-tonal-surface text-[10px] px-1.5 py-0.5"
-                  onclick={() => {
-                    const next = { ...(g.visibleWhen?.strat ?? {}), '': [] };
-                    updateGroupCondition(gi, { strat: next });
-                  }}
-                  title="Add toggle constraint"
-                >
-                  <Plus size={10} />
-                </button>
-              </div>
-              {#each Object.entries(g.visibleWhen?.strat ?? {}) as [tag, vals], si}
-                <div class="flex gap-1 items-center mb-0.5">
-                  <input
-                    type="text"
-                    class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-[10px] font-mono w-20"
-                    value={tag}
-                    placeholder="tag"
-                    onchange={(e) => {
-                      const newTag = e.currentTarget.value.trim();
-                      const entries = Object.entries(g.visibleWhen?.strat ?? {});
-                      const updated = Object.fromEntries(
-                        entries.map(([t, v], i) => (i === si ? [newTag, v] : [t, v]))
-                      ) as Record<string, string[]>;
-                      updateGroupCondition(gi, { strat: updated });
-                    }}
-                  />
-                  <span class="text-surface-500">=</span>
-                  <input
-                    type="text"
-                    class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-[10px] font-mono flex-1"
-                    value={vals.join(', ')}
-                    placeholder="val1, val2"
-                    oninput={(e) => {
-                      const list = e.currentTarget.value.split(',').map((p) => p.trim()).filter(Boolean);
-                      const entries = Object.entries(g.visibleWhen?.strat ?? {});
-                      const updated = Object.fromEntries(
-                        entries.map(([t, v], i) => (i === si ? [t, list] : [t, v]))
-                      ) as Record<string, string[]>;
-                      updateGroupCondition(gi, { strat: updated });
-                    }}
-                  />
-                  <button
-                    class="text-error-500 hover:text-error-400 text-xs px-1"
-                    onclick={() => {
-                      const entries = Object.entries(g.visibleWhen?.strat ?? {}).filter(
-                        (_, i) => i !== si
-                      );
-                      const next = Object.fromEntries(entries) as Record<string, string[]>;
-                      updateGroupCondition(gi, {
-                        strat: Object.keys(next).length ? next : undefined
-                      });
-                    }}
-                  >
-                    ×
-                  </button>
-                </div>
-              {/each}
-            </div>
-          </div>
           {/each}
         {/if}
       </div>
@@ -2067,8 +2141,7 @@
               <select
                 class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
                 value={selectedElement.groupId ?? ''}
-                onchange={(e) =>
-                  updateElement('groupId', e.currentTarget.value || undefined)}
+                onchange={(e) => updateElement('groupId', e.currentTarget.value || undefined)}
               >
                 <option value="">— none —</option>
                 {#each groups as g}
@@ -2525,6 +2598,43 @@
             </label>
           {/if}
 
+          {#if selectedElement.type === 'arrowTeleporter'}
+            <div class="grid grid-cols-2 gap-2">
+              <label class="text-xs text-surface-400">
+                Direction
+                <input
+                  type="number"
+                  min="0"
+                  max="360"
+                  class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                  value={selectedElement.rotation ?? 0}
+                  oninput={(e) => updateElement('rotation', Number(e.currentTarget.value))}
+                />
+              </label>
+              <label class="text-xs text-surface-400">
+                Size
+                <input
+                  type="number"
+                  min="1"
+                  max="30"
+                  step="0.5"
+                  class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
+                  value={selectedElement.size ?? 5}
+                  oninput={(e) => updateElement('size', Number(e.currentTarget.value))}
+                />
+              </label>
+            </div>
+            <label class="text-xs text-surface-400">
+              Color
+              <input
+                type="color"
+                class="w-full h-7 rounded border border-surface-600 bg-surface-800"
+                value={selectedElement.color ?? ARROW_TELEPORTER_COLOR}
+                oninput={(e) => updateElement('color', e.currentTarget.value)}
+              />
+            </label>
+          {/if}
+
           {#if selectedElement.type === 'polygon'}
             <div class="text-xs text-surface-400 space-y-1">
               <div class="flex justify-between items-center">
@@ -2559,7 +2669,9 @@
                       value={p[0]}
                       oninput={(e) => {
                         const pts = selectedElement.points.map((pp, pi) =>
-                          pi === vi ? ([Number(e.currentTarget.value), pp[1]] as [number, number]) : pp
+                          pi === vi
+                            ? ([Number(e.currentTarget.value), pp[1]] as [number, number])
+                            : pp
                         );
                         updateElement('points', pts);
                       }}
@@ -2570,7 +2682,9 @@
                       value={p[1]}
                       oninput={(e) => {
                         const pts = selectedElement.points.map((pp, pi) =>
-                          pi === vi ? ([pp[0], Number(e.currentTarget.value)] as [number, number]) : pp
+                          pi === vi
+                            ? ([pp[0], Number(e.currentTarget.value)] as [number, number])
+                            : pp
                         );
                         updateElement('points', pts);
                       }}
@@ -2711,8 +2825,7 @@
                 placeholder="/arenas/foo.webp"
                 class="bg-surface-800 text-surface-100 border border-surface-600 rounded px-1 py-0.5 text-sm w-full"
                 value={selectedElement.bgImage ?? ''}
-                oninput={(e) =>
-                  updateElement('bgImage', e.currentTarget.value || undefined)}
+                oninput={(e) => updateElement('bgImage', e.currentTarget.value || undefined)}
               />
             </label>
           {/if}

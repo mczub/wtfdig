@@ -13,6 +13,8 @@
     EyeOff,
     Grid2x2,
     Grid3x3,
+    NotepadText,
+    Play,
     RectangleVertical,
     Settings,
     Shield,
@@ -55,6 +57,7 @@
     innerWidth?: number;
     innerHeight?: number;
     fightKey?: string;
+    separateDescriptionAction?: boolean;
     mechToggles?: {
       key: string;
       label: string;
@@ -82,6 +85,7 @@
     innerWidth = 1920,
     innerHeight = 1080,
     fightKey = 'default',
+    separateDescriptionAction = false,
     mechToggles = []
   }: Props = $props();
 
@@ -126,8 +130,9 @@
   // Persisted state — defaults applied here, then overwritten by applySaved()
   // for the current fightKey both on mount and whenever fightKey changes.
   let showTimeline = $state(getDefaultShowTimeline());
-  // Text display mode: 'all' = show all text, 'role' = only role-based text, 'image' = no text
-  let textMode = $state<'all' | 'role' | 'image'>('all');
+  // Text display mode: 'all' = show all text, 'role' = only role-based text,
+  // 'action' = actions + role text (only when separateDescriptionAction), 'image' = no text
+  let textMode = $state<'all' | 'role' | 'image' | 'action'>('all');
   // Where text is placed relative to the image — 'overlay' floats on top, 'stacked' renders above/below
   let textPlacement = $state<'overlay' | 'stacked'>('overlay');
   let sidebarOpen = $state(true);
@@ -142,6 +147,8 @@
   function applySaved(saved: any) {
     showTimeline = saved?.showTimeline ?? getDefaultShowTimeline();
     textMode = saved?.textMode ?? 'all';
+    // 'action' mode only exists when the fight separates description/action.
+    if (textMode === 'action' && !separateDescriptionAction) textMode = 'all';
     textPlacement = saved?.textPlacement ?? 'overlay';
     sidebarOpen = saved?.sidebarOpen ?? true;
     splitPhases = saved?.splitPhases ?? true;
@@ -263,6 +270,12 @@
     // Filter by textMode
     if (textMode === 'role' && !hasImage(phase, mech)) return false;
     if (textMode === 'image' && !hasImage(phase, mech)) return false;
+    // Actions Only: descriptions are hidden, so a card with no image, no action,
+    // and no role text would render empty - hide it.
+    if (textMode === 'action') {
+      const hasActionOrRole = !!(mech?.action || mech?.strats?.[0]?.description);
+      if (!hasImage(phase, mech) && !hasActionOrRole) return false;
+    }
 
     return true;
   }
@@ -530,7 +543,7 @@
     textPlacement === 'stacked'
       ? textMode === 'image'
         ? 0
-        : textMode === 'role'
+        : textMode === 'role' || textMode === 'action'
           ? STACKED_BOTTOM
           : STACKED_HEADER + STACKED_BOTTOM
       : 0
@@ -1006,6 +1019,7 @@
   phase={imageModalProps.phase}
   {spotlight}
   {role}
+  {separateDescriptionAction}
 />
 
 <Modal
@@ -1074,21 +1088,29 @@
 
           <div class="flex flex-col space-y-2">
             <span class="text-sm mb-2">Text Display</span>
-            <div class="flex gap-1">
+            <div class="grid grid-cols-2 gap-1">
               <button
-                class={`flex-1 px-2 py-1 text-xs rounded transition-colors ${textMode === 'all' ? 'bg-primary-500 text-white' : 'bg-surface-800 hover:bg-surface-700'}`}
+                class={`px-2 py-1 text-xs rounded transition-colors ${textMode === 'all' ? 'bg-primary-500 text-white' : 'bg-surface-800 hover:bg-surface-700'}`}
                 onclick={() => (textMode = 'all')}
               >
                 All
               </button>
               <button
-                class={`flex-1 px-2 py-1 text-xs rounded transition-colors ${textMode === 'role' ? 'bg-primary-500 text-white' : 'bg-surface-800 hover:bg-surface-700'}`}
+                class={`px-2 py-1 text-xs rounded transition-colors ${textMode === 'role' ? 'bg-primary-500 text-white' : 'bg-surface-800 hover:bg-surface-700'}`}
                 onclick={() => (textMode = 'role')}
               >
                 Role Only
               </button>
+              {#if separateDescriptionAction}
+                <button
+                  class={`px-2 py-1 text-xs rounded transition-colors ${textMode === 'action' ? 'bg-primary-500 text-white' : 'bg-surface-800 hover:bg-surface-700'}`}
+                  onclick={() => (textMode = 'action')}
+                >
+                  Actions Only
+                </button>
+              {/if}
               <button
-                class={`flex-1 px-2 py-1 text-xs rounded transition-colors ${textMode === 'image' ? 'bg-primary-500 text-white' : 'bg-surface-800 hover:bg-surface-700'}`}
+                class={`px-2 py-1 text-xs rounded transition-colors ${textMode === 'image' ? 'bg-primary-500 text-white' : 'bg-surface-800 hover:bg-surface-700'}`}
                 onclick={() => (textMode = 'image')}
               >
                 Image Only
@@ -1404,10 +1426,14 @@
           {@const stratDesc = mech?.strats?.[0]?.description}
           {@const stratToggleKey = mech?.strats?.[0]?.toggleKey}
           {@const desc = mech?.description ?? (mech ? null : phase?.description)}
+          {@const action = mech?.action}
           {@const showDesc = textMode === 'all' && desc}
-          {@const showStrat = (textMode === 'all' || textMode === 'role') && stratDesc}
+          {@const showAction =
+            (textMode === 'all' || textMode === 'action') && separateDescriptionAction && action}
+          {@const showStrat =
+            (textMode === 'all' || textMode === 'role' || textMode === 'action') && stratDesc}
           {@const showHeader = textMode === 'all'}
-          {@const showBottom = showDesc || showStrat}
+          {@const showBottom = showDesc || showAction || showStrat}
           {@const showWarning =
             phase?.tag && stratState[phase.tag] !== getStratMechs(stratName ?? '')[phase.tag]}
           {@const stacked = textPlacement === 'stacked' && (showHeader || showBottom)}
@@ -1477,10 +1503,31 @@
               >
                 <div class="pointer-events-auto space-y-1 text-left">
                   {#if showDesc}
+                    {#if separateDescriptionAction}
+                      <div
+                        class="flex gap-1.5 text-base text-surface-100 whitespace-pre-wrap leading-snug text-left"
+                      >
+                        <NotepadText size={16} class="shrink-0 mt-0.5 text-surface-400" />
+                        <div class="whitespace-pre-wrap flex-1 min-w-0">
+                          {@html renderDebuffTokens(desc)}
+                        </div>
+                      </div>
+                    {:else}
+                      <div
+                        class="text-base text-surface-100 whitespace-pre-wrap leading-snug text-left"
+                      >
+                        {@html renderDebuffTokens(desc)}
+                      </div>
+                    {/if}
+                  {/if}
+                  {#if showAction}
                     <div
-                      class="text-base text-surface-100 whitespace-pre-wrap leading-snug text-left"
+                      class="flex gap-1.5 text-base text-surface-50 whitespace-pre-wrap leading-snug text-left"
                     >
-                      {@html renderDebuffTokens(desc)}
+                      <Play size={16} class="shrink-0 mt-0.5 text-primary-400" />
+                      <div class="whitespace-pre-wrap flex-1 min-w-0">
+                        {@html renderDebuffTokens(action)}
+                      </div>
                     </div>
                   {/if}
                   {#if showStrat}

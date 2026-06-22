@@ -7,8 +7,10 @@
   import {
     ChevronsUpDown,
     CircleAlert,
+    Play,
     Expand,
     ExternalLink,
+    NotepadText,
     TriangleAlert
   } from '@lucide/svelte/icons';
   import ImagePreview from '../ImagePreview.svelte';
@@ -35,6 +37,8 @@
     individualStrat,
     spotlight,
     alignment,
+    separateDescriptionAction = false,
+    showDescriptions = true,
     tabTags = null,
     inProgressTabs = null,
     useMainPageTabs = false,
@@ -144,11 +148,12 @@
   {spotlight}
   {role}
   {alignment}
+  {separateDescriptionAction}
 />
 
 {#if strat?.notes}
   <div
-    class="card preset-outlined-primary-500 p-4 flex flex-row gap-4 my-6 shadow-lg rounded-xl border-l-4 border-l-primary-500 items-center"
+    class="card preset-outlined-primary-500 p-4 flex flex-row gap-4 my-6 shadow-lg rounded-xl border-l-primary-500 items-center"
   >
     <CircleAlert size={32} class="text-primary-500 shrink-0" />
     <div class="whitespace-pre-wrap text-base lg:text-lg">{strat.notes}</div>
@@ -326,117 +331,147 @@
 
             <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6">
               {#each phase.mechs as mech}
-                {#key [spotlight, alignment]}
-                  <article
-                    class="card border border-surface-700/50 shadow-md hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden flex flex-col h-full group relative"
-                    class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}
-                    class:xl:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}
-                  >
-                    <button
-                      class="flex flex-col h-full text-left w-full"
-                      type="button"
-                      onclick={() => openImageModal(phase, mech)}
+                {@const hasOtherContent =
+                  mech?.action ||
+                  mech?.notes ||
+                  mech?.imageUrl ||
+                  (mech?.alignmentImages && mech.alignmentImages[alignment]) ||
+                  (mech?.strats && mech.strats.length > 0 && mech.strats[0]?.description) ||
+                  (mech?.strats && mech.strats[0]?.imageUrl)}
+                <!-- With descriptions hidden, a tile with nothing else to show would
+                     render as just a title - hide it instead. -->
+                {#if showDescriptions || !separateDescriptionAction || hasOtherContent}
+                  {#key [spotlight, alignment]}
+                    <article
+                      class="card border border-surface-700/50 shadow-md hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden flex flex-col h-full group relative"
+                      class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}
+                      class:xl:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}
                     >
-                      <div class="p-4 flex flex-col h-full gap-1 lg:gap-2">
-                        <div class="flex justify-between items-start">
-                          {#if typeof mech.url === 'string'}
-                            <a
-                              href={mech.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              class="text-lg lg:text-xl font-bold capitalize text-surface-100 hover:text-secondary-400 hover:bg-surface-800/50 rounded-sm px-1 -mx-1 transition-colors inline-flex items-center gap-2"
-                              onclick={(e) => e.stopPropagation()}
-                            >
-                              {mech.mechanic}
-                              <ExternalLink size={16} class="inline-block" />
-                            </a>
-                          {:else}
-                            <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
-                              <h3
-                                class="text-lg lg:text-xl font-bold capitalize text-surface-100 group-hover:text-secondary-400 transition-colors"
+                      <button
+                        class="flex flex-col h-full text-left w-full"
+                        type="button"
+                        onclick={() => openImageModal(phase, mech)}
+                      >
+                        <div class="p-3 flex flex-col h-full gap-1 lg:gap-2">
+                          <div class="flex justify-between items-start">
+                            {#if typeof mech.url === 'string'}
+                              <a
+                                href={mech.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-lg lg:text-xl font-bold capitalize text-surface-100 hover:text-secondary-400 hover:bg-surface-800/50 rounded-sm px-1 -mx-1 transition-colors inline-flex items-center gap-2"
+                                onclick={(e) => e.stopPropagation()}
                               >
                                 {mech.mechanic}
-                              </h3>
-                              {#if typeof mech.url === 'object'}
-                                {#each Object.entries(mech.url) as [linkName, linkUrl]}
-                                  <a
-                                    href={linkUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="text-sm text-blue-400 hover:text-blue-300 hover:underline inline-flex items-center gap-1"
-                                    onclick={(e) => e.stopPropagation()}
-                                  >
-                                    {linkName}
-                                    <ExternalLink size={12} />
-                                  </a>
-                                {/each}
+                                <ExternalLink size={16} class="inline-block" />
+                              </a>
+                            {:else}
+                              <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                <h3
+                                  class="text-lg lg:text-xl font-bold capitalize text-surface-100 group-hover:text-secondary-400 transition-colors"
+                                >
+                                  {mech.mechanic}
+                                </h3>
+                                {#if typeof mech.url === 'object'}
+                                  {#each Object.entries(mech.url) as [linkName, linkUrl]}
+                                    <a
+                                      href={linkUrl}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      class="text-sm text-blue-400 hover:text-blue-300 hover:underline inline-flex items-center gap-1"
+                                      onclick={(e) => e.stopPropagation()}
+                                    >
+                                      {linkName}
+                                      <ExternalLink size={12} />
+                                    </a>
+                                  {/each}
+                                {/if}
+                              </div>
+                            {/if}
+                            <Expand
+                              size={20}
+                              class="text-surface-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                            />
+                          </div>
+
+                          {#if mech?.notes}
+                            <div
+                              class="bg-primary-500/10 border border-primary-500/20 rounded-lg p-3 flex gap-3 text-sm text-primary-200"
+                            >
+                              <CircleAlert size={20} class="shrink-0 mt-0.5" />
+                              <div class="whitespace-pre-wrap">{mech.notes}</div>
+                            </div>
+                          {/if}
+
+                          {#if separateDescriptionAction}
+                            {#if mech?.description && showDescriptions}
+                              <div class="flex gap-2 text-surface-200 text-base leading-relaxed">
+                                <NotepadText size={18} class="shrink-0 mt-1 text-surface-400" />
+                                <p class="whitespace-pre-wrap">
+                                  {@html renderDebuffTokens(mech.description)}
+                                </p>
+                              </div>
+                            {/if}
+                            {#if mech?.action}
+                              <div class="flex gap-2 text-surface-100 text-base leading-relaxed">
+                                <Play size={18} class="shrink-0 mt-1 text-primary-400" />
+                                <p class="whitespace-pre-wrap">
+                                  {@html renderDebuffTokens(mech.action)}
+                                </p>
+                              </div>
+                            {/if}
+                          {:else if mech?.description}
+                            <p
+                              class="text-surface-200 text-base leading-relaxed whitespace-pre-wrap"
+                            >
+                              {@html renderDebuffTokens(mech.description)}
+                            </p>
+                          {/if}
+
+                          {#if mech?.imageUrl}
+                            {@const tf = mech.alignmentTransforms?.[alignment] ?? mech.transform}
+                            <div class="mt-4 overflow-hidden">
+                              <img
+                                class="w-auto h-auto rounded-sm object-contain max-w-full max-h-[350px] transition-transform duration-300 origin-center"
+                                style:transform={tf || undefined}
+                                src={mech.imageUrl}
+                                alt={mech.mechanic}
+                              />
+                            </div>
+                          {/if}
+
+                          <div class="flex items-start gap-1.5 text-base text-surface-100">
+                            {#if mech.strats && mech.strats.length > 0 && mech.strats[0].description}
+                              {#if mech.strats[0].toggleKey}
+                                <span class="shrink-0">⏩</span>
+                              {:else if role}
+                                <RoleIcon {role} class="w-5 h-5 mt-0.5" />
+                              {/if}
+                            {/if}
+                            <div class="whitespace-pre-wrap">
+                              {@html mech?.strats
+                                ? renderDebuffTokens(mech.strats[0].description)
+                                : ''}
+                            </div>
+                          </div>
+
+                          {#if mech?.strats && mech.strats[0]?.imageUrl}
+                            <div class="mt-2 overflow-hidden relative w-fit h-fit">
+                              <img
+                                class="block rounded-sm max-w-full max-h-[350px]"
+                                src={mech.strats[0].imageUrl}
+                                alt={`${mech.mechanic} strategy`}
+                              />
+                              {#if spotlight && mech.strats[0]?.mask}
+                                <SpotlightOverlay mask={mech.strats[0].mask} />
                               {/if}
                             </div>
                           {/if}
-                          <Expand
-                            size={20}
-                            class="text-surface-500 opacity-0 group-hover:opacity-100 transition-opacity"
-                          />
                         </div>
-
-                        {#if mech?.notes}
-                          <div
-                            class="bg-primary-500/10 border border-primary-500/20 rounded-lg p-3 flex gap-3 text-sm text-primary-200"
-                          >
-                            <CircleAlert size={20} class="shrink-0 mt-0.5" />
-                            <div class="whitespace-pre-wrap">{mech.notes}</div>
-                          </div>
-                        {/if}
-
-                        {#if mech?.description}
-                          <p class="text-surface-200 text-base leading-relaxed whitespace-pre-wrap">
-                            {@html renderDebuffTokens(mech.description)}
-                          </p>
-                        {/if}
-
-                        {#if mech?.imageUrl}
-                          {@const tf = mech.alignmentTransforms?.[alignment] ?? mech.transform}
-                          <div class="mt-4 overflow-hidden">
-                            <img
-                              class="w-auto h-auto rounded-sm object-contain max-w-full max-h-[350px] transition-transform duration-300 origin-center"
-                              style:transform={tf || undefined}
-                              src={mech.imageUrl}
-                              alt={mech.mechanic}
-                            />
-                          </div>
-                        {/if}
-
-                        <div class="flex items-start gap-1.5 text-base text-surface-100">
-                          {#if mech.strats && mech.strats.length > 0 && mech.strats[0].description}
-                            {#if mech.strats[0].toggleKey}
-                              <span class="shrink-0">⏩</span>
-                            {:else if role}
-                              <RoleIcon {role} class="w-5 h-5 mt-0.5" />
-                            {/if}
-                          {/if}
-                          <div class="whitespace-pre-wrap">
-                            {@html mech?.strats
-                              ? renderDebuffTokens(mech.strats[0].description)
-                              : ''}
-                          </div>
-                        </div>
-
-                        {#if mech?.strats && mech.strats[0]?.imageUrl}
-                          <div class="mt-2 overflow-hidden relative w-fit h-fit">
-                            <img
-                              class="block rounded-sm max-w-full max-h-[350px]"
-                              src={mech.strats[0].imageUrl}
-                              alt={`${mech.mechanic} strategy`}
-                            />
-                            {#if spotlight && mech.strats[0]?.mask}
-                              <SpotlightOverlay mask={mech.strats[0].mask} />
-                            {/if}
-                          </div>
-                        {/if}
-                      </div>
-                    </button>
-                  </article>
-                {/key}
+                      </button>
+                    </article>
+                  {/key}
+                {/if}
               {/each}
             </div>
           </Collapsible.Content>

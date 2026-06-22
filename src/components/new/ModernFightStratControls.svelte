@@ -11,13 +11,16 @@
     Alignment
   } from '$lib/types';
   import { formatRoleAbbreviation, buildFightOptionsString } from '$lib/utils';
-  import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
-  import ChevronDown from '@lucide/svelte/icons/chevron-down';
-  import ChevronUp from '@lucide/svelte/icons/chevron-up';
-  import Settings from '@lucide/svelte/icons/settings';
-  import Fullscreen from '@lucide/svelte/icons/fullscreen';
-  import Image from '@lucide/svelte/icons/image';
-  import X from '@lucide/svelte/icons/x';
+  import {
+    TriangleAlert,
+    ChevronDown,
+    ChevronUp,
+    Settings,
+    Fullscreen,
+    NotepadText,
+    Image,
+    X
+  } from '@lucide/svelte';
   import * as Select from '$lib/components/ui/select';
   import * as Tooltip from '$lib/components/ui/tooltip';
   import { onMount, onDestroy } from 'svelte';
@@ -43,6 +46,9 @@
     alignment?: Alignment;
     setAlignment?: (value: Alignment) => void;
     alignmentOptions?: { value: Alignment; label: string }[];
+    separateDescriptionAction?: boolean;
+    showDescriptions?: boolean;
+    setShowDescriptions?: (value: boolean) => void;
     additionalResources?: {
       title: string;
       description?: string;
@@ -73,6 +79,9 @@
     alignment = 'original',
     setAlignment,
     alignmentOptions,
+    separateDescriptionAction = false,
+    showDescriptions = true,
+    setShowDescriptions,
     roleOptions,
     additionalResources,
     onOpenCheatsheet,
@@ -687,6 +696,19 @@
                     onCheckedChange={(e) => setSpotlight(e.checked)}
                   />
                 </div>
+                {#if separateDescriptionAction && setShowDescriptions}
+                  <div class="flex justify-between items-center">
+                    <div class="flex gap-2 items-center">
+                      <NotepadText size={16} class="inline-flex" />
+                      <span class="font-medium">Show descriptions</span>
+                    </div>
+                    <Switch
+                      name="show-descriptions-toggle"
+                      checked={showDescriptions}
+                      onCheckedChange={(e) => setShowDescriptions(e.checked)}
+                    />
+                  </div>
+                {/if}
                 {#if alignmentOptions?.length && setAlignment}
                   <div class="flex flex-col gap-3">
                     <span class="font-medium">Image orientation</span>

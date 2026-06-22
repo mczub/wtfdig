@@ -32,7 +32,12 @@ export type StratRecord = Record<string, string | Record<string, string | Player
 
 export interface MechanicStrat {
   mechanic: string;
+  /** What the mechanic does. Shown with a notepad icon (and hideable) when the
+   * fight has `separateDescriptionAction` set. */
   description?: string | Record<string, string>;
+  /** What the player should do. Shown with a play icon when the fight has
+   * `separateDescriptionAction` set. */
+  action?: string | Record<string, string>;
   notes?: string | Record<string, string>;
   strats?: PlayerMechStrat[];
   imageUrl?: string | Record<string, string>;
@@ -154,6 +159,10 @@ export interface FightConfig {
   stratDifferences?: { label: string; description: string }[];
   allianceOptions?: Alliance[];
   alignmentOptions?: { value: Alignment; label: string }[];
+  /** When set, each mechanic's `description` (what happens) and `action` (what to
+   * do) render as separate icon-prefixed blocks, and a "Hide descriptions" toggle
+   * appears in the settings popover. */
+  separateDescriptionAction?: boolean;
 }
 
 export interface StratOption {

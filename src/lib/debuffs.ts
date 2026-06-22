@@ -3,6 +3,13 @@ export interface DebuffDef {
   name: string;
   iconFile: string;
   description?: string;
+  /** Default render size (arena units) when placed as a `debuff()` element and no
+   * explicit `size` is set (falls back to 6). Also sizes the overhead status icon
+   * (`statusAbove`), which otherwise renders at 7. */
+  defaultSize?: number;
+  /** Extra vertical offset (arena units, positive = lower) applied to the overhead
+   * status icon (`statusAbove`). Useful for large markers that float too high. */
+  overheadOffsetY?: number;
 }
 
 export const DEBUFFS = {
@@ -236,6 +243,74 @@ export const DEBUFFS = {
     name: 'Real',
     iconFile: 'kefka-real.png',
     description: 'Cast is real - resolve normally'
+  },
+  // Generic waymarks (relative-north mechanics)
+  'generic-square': {
+    id: 'generic-square',
+    name: 'Square Waymark',
+    iconFile: 'generic-square.svg'
+  },
+  'generic-circle': {
+    id: 'generic-circle',
+    name: 'Circle Waymark',
+    iconFile: 'generic-circle.svg'
+  },
+  // Limit Cut numbers (detail-rich markers, render larger by default)
+  'limit-cut-1': {
+    id: 'limit-cut-1',
+    name: 'Limit Cut 1',
+    iconFile: 'limit-cut-1-small.png',
+    defaultSize: 18,
+    overheadOffsetY: 4
+  },
+  'limit-cut-2': {
+    id: 'limit-cut-2',
+    name: 'Limit Cut 2',
+    iconFile: 'limit-cut-2-small.png',
+    defaultSize: 18,
+    overheadOffsetY: 4
+  },
+  'limit-cut-3': {
+    id: 'limit-cut-3',
+    name: 'Limit Cut 3',
+    iconFile: 'limit-cut-3-small.png',
+    defaultSize: 18,
+    overheadOffsetY: 4
+  },
+  'limit-cut-4': {
+    id: 'limit-cut-4',
+    name: 'Limit Cut 4',
+    iconFile: 'limit-cut-4-small.png',
+    defaultSize: 18,
+    overheadOffsetY: 4
+  },
+  'limit-cut-5': {
+    id: 'limit-cut-5',
+    name: 'Limit Cut 5',
+    iconFile: 'limit-cut-5-small.png',
+    defaultSize: 18,
+    overheadOffsetY: 4
+  },
+  'limit-cut-6': {
+    id: 'limit-cut-6',
+    name: 'Limit Cut 6',
+    iconFile: 'limit-cut-6-small.png',
+    defaultSize: 18,
+    overheadOffsetY: 4
+  },
+  'limit-cut-7': {
+    id: 'limit-cut-7',
+    name: 'Limit Cut 7',
+    iconFile: 'limit-cut-7-small.png',
+    defaultSize: 18,
+    overheadOffsetY: 4
+  },
+  'limit-cut-8': {
+    id: 'limit-cut-8',
+    name: 'Limit Cut 8',
+    iconFile: 'limit-cut-8-small.png',
+    defaultSize: 18,
+    overheadOffsetY: 4
   }
 } as const satisfies Record<string, DebuffDef>;
 

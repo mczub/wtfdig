@@ -3,6 +3,8 @@
     ROLE_COLORS,
     WAYMARK_COLORS,
     DEFAULT_JOB_LABELS,
+    ARROW_TELEPORTER_SHAPE,
+    ARROW_TELEPORTER_COLOR,
     jobMatchesRole,
     evaluateVisibility,
     type ArenaDiagramData,
@@ -48,9 +50,7 @@
     const out = new Set<string>();
     if (showAllGroups) return out;
     for (const g of data.groups ?? []) {
-      if (
-        !evaluateVisibility(g.visibleWhen, { selectedJob: highlightJob, stratState, stratKey })
-      ) {
+      if (!evaluateVisibility(g.visibleWhen, { selectedJob: highlightJob, stratState, stratKey })) {
         out.add(g.id);
       }
     }
@@ -338,6 +338,46 @@
           stroke-opacity={dimOpacity(el) * 0.5}
           transform={el.rotation ? `rotate(${el.rotation} ${cx} ${cy})` : undefined}
         />
+      {:else if el.type === 'arrowTeleporter'}
+        {@const tSize = el.size ?? 5}
+        {@const tColor = el.color ?? ARROW_TELEPORTER_COLOR}
+        {@const tPts = ARROW_TELEPORTER_SHAPE.map(
+          (p) => `${el.x + p[0] * tSize},${el.y + p[1] * tSize}`
+        ).join(' ')}
+        <g
+          transform={el.rotation ? `rotate(${el.rotation} ${el.x} ${el.y})` : undefined}
+          opacity={dimOpacity(el)}
+        >
+          <!-- 2y AoE boundary -->
+          <circle
+            cx={el.x}
+            cy={el.y}
+            r={tSize}
+            fill={tColor}
+            fill-opacity="0.12"
+            stroke={tColor}
+            stroke-width="0.2"
+            stroke-opacity="0.5"
+          />
+          <!-- arrow chevron -->
+          <polygon
+            points={tPts}
+            fill={tColor}
+            fill-opacity="0.85"
+            stroke={tColor}
+            stroke-width="0.2"
+            stroke-linejoin="round"
+          />
+          <!-- teleporter centre point -->
+          <circle
+            cx={el.x}
+            cy={el.y}
+            r={tSize * 0.18}
+            fill={tColor}
+            stroke="#0b0d12"
+            stroke-width="0.15"
+          />
+        </g>
       {:else if el.type === 'waymark'}
         {@const isLetter = 'ABCD'.includes(el.mark)}
         {@const color = WAYMARK_COLORS[el.mark]}
@@ -395,7 +435,7 @@
             <circle
               cx={el.x}
               cy={el.y}
-              r={r}
+              {r}
               fill="none"
               stroke="#dc2626"
               stroke-width={outerStroke}
@@ -437,7 +477,7 @@
         {@const labelLines = jobLabel.split('\n')}
         {@const longestLine = labelLines.reduce((m, l) => Math.max(m, l.length), 0)}
         {@const lineFontSize =
-          (labelLines.length > 1 ? 4 : longestLine > 2 ? 4 : 5) * (el.size ?? 6) / 6}
+          ((labelLines.length > 1 ? 4 : longestLine > 2 ? 4 : 5) * (el.size ?? 6)) / 6}
         {@const pSize = el.size ?? 6}
         {@const pScale = pSize / 6}
         <g opacity={dimOpacity(el) * (highlightJob && !roleMatch ? 0.4 : 1)}>
@@ -474,8 +514,8 @@
           </text>
           {#if el.marker}
             <polyline
-              points="{el.x - 2.5 * pScale},{el.y - 13 * pScale} {el.x},{el.y -
-                9 * pScale} {el.x + 2.5 * pScale},{el.y - 13 * pScale}"
+              points="{el.x - 2.5 * pScale},{el.y - 13 * pScale} {el.x},{el.y - 9 * pScale} {el.x +
+                2.5 * pScale},{el.y - 13 * pScale}"
               fill="none"
               stroke={el.marker === 'green' ? '#22c55e' : '#ef4444'}
               stroke-width={1.5 * pScale}
@@ -486,12 +526,12 @@
           {#if el.statusAbove}
             {@const sdef = getDebuff(el.statusAbove)}
             {#if sdef}
-              {@const sSize = 7 * pScale}
+              {@const sSize = (sdef.defaultSize ?? 7) * pScale}
               {@const sBottom = el.marker ? el.y - 13.5 * pScale : el.y - pSize - 1 * pScale}
               <image
                 href={`/icons/status/${sdef.iconFile}`}
                 x={el.x - sSize / 2}
-                y={sBottom - sSize}
+                y={sBottom - sSize + (sdef.overheadOffsetY ?? 0) * pScale}
                 width={sSize}
                 height={sSize}
               >
@@ -519,7 +559,7 @@
         </g>
       {:else if el.type === 'debuff'}
         {@const def = getDebuff(el.debuffId)}
-        {@const size = el.size ?? 6}
+        {@const size = el.size ?? def?.defaultSize ?? 6}
         {#if def}
           <g opacity={dimOpacity(el)}>
             <image
