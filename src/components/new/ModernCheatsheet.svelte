@@ -270,6 +270,12 @@
     // Filter by textMode
     if (textMode === 'role' && !hasImage(phase, mech)) return false;
     if (textMode === 'image' && !hasImage(phase, mech)) return false;
+    // Actions Only: descriptions are hidden, so a card with no image, no action,
+    // and no role text would render empty - hide it.
+    if (textMode === 'action') {
+      const hasActionOrRole = !!(mech?.action || mech?.strats?.[0]?.description);
+      if (!hasImage(phase, mech) && !hasActionOrRole) return false;
+    }
 
     return true;
   }

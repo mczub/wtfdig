@@ -91,7 +91,7 @@
   const savedFightSettings = loadFightSettings();
   let spotlight: boolean = $state(savedFightSettings?.spotlight ?? true);
   let alignment: Alignment = $state(normalizeAlignment(savedFightSettings?.alignment));
-  let hideDescriptions = $state(savedFightSettings?.hideDescriptions ?? false);
+  let showDescriptions = $state(savedFightSettings?.showDescriptions ?? true);
 
   // Reload when navigating to a different fight without a remount (first run skipped).
   let lastSettingsFightKey: string | null = null;
@@ -106,12 +106,12 @@
     const saved = loadFightSettings();
     spotlight = saved?.spotlight ?? true;
     alignment = normalizeAlignment(saved?.alignment);
-    hideDescriptions = saved?.hideDescriptions ?? false;
+    showDescriptions = saved?.showDescriptions ?? true;
   });
 
   // Persist whenever a setting changes.
   $effect(() => {
-    const state = { spotlight, alignment, hideDescriptions };
+    const state = { spotlight, alignment, showDescriptions };
     if (!browser) return;
     localStorage.setItem(`fightSettings_${config.fightKey}`, JSON.stringify(state));
   });
@@ -413,8 +413,8 @@
       setAlignment={(val) => (alignment = val)}
       alignmentOptions={config.alignmentOptions}
       separateDescriptionAction={config.separateDescriptionAction}
-      {hideDescriptions}
-      setHideDescriptions={(val) => (hideDescriptions = val)}
+      {showDescriptions}
+      setShowDescriptions={(val) => (showDescriptions = val)}
       additionalResources={config.additionalResources}
       onOpenCheatsheet={isCheatsheetEnabled ? () => (cheatsheetOpenState = true) : undefined}
       onOpenPoster={config.posterLayout && config.posterEnabled
@@ -639,7 +639,7 @@
                 {spotlight}
                 {alignment}
                 separateDescriptionAction={config.separateDescriptionAction}
-                {hideDescriptions}
+                {showDescriptions}
                 tabTags={config.tabTags}
                 inProgressTabs={config.inProgressTabs}
                 role={normalizedRole}
