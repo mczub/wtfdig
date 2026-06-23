@@ -441,7 +441,7 @@ const allP1: PhaseStrats[] = [
         },
         {
           mechanic: 'Knockback',
-          description: 'Supports NW, DPS SE for Confetti KB\nConfetti debuffs on the 1/3 markers',
+          action: 'Supports NW, DPS SE for Confetti KB\nConfetti debuffs on the 1/3 markers',
           imageUrl: './umad/arrows-knockback.webp'
         },
         {
@@ -2030,15 +2030,16 @@ export const dancingMadFightConfig: FightConfig = {
   cheatsheetTitle: 'Dancing Mad Cheatsheet',
   showAllToggleUrls: true,
   strats: {
-    kefkabin: { label: 'Kefkabin', defaults: { arrows: 'freaky', forsaken: 'kr', bowels: 'lb' } }
+    kefkabin: { label: 'Kefkabin', defaults: { arrows: 'mgr', forsaken: 'kr', bowels: 'lb' } }
   },
   toggles: [
     {
       key: 'arrows',
       label: 'P1 Arrows',
-      defaultValue: 'freaky',
+      defaultValue: 'mgr',
       phaseTag: 'arrows',
       options: [
+        { value: 'mgr', label: 'Merry-Go-Round' },
         {
           value: 'freaky',
           label: 'Freaky MGR',
@@ -2047,7 +2048,6 @@ export const dancingMadFightConfig: FightConfig = {
             url: 'https://raidplan.io/plan/qD9Y_g1caq3l5gD-'
           }
         },
-        { value: 'mgr', label: 'Merry-Go-Round' },
         {
           value: 'pinoy',
           label: 'Filipino Box',
