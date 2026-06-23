@@ -8,6 +8,7 @@
   </header>
   <article class="prose dark:prose-invert max-w-none">
     <div class="">
+      <div>6/23/2026: free from freaky</div>
       <div>6/21/2026: fix for ex7 error, added a concept of descriptions vs. actions + 'Show description' functionality and update some umad stuff to use it</div>
       <div>6/18/2026: minor fix to p4 helper logic, fix for infinite retry on dead image</div>
       <div>6/15/2026: umad p4 + p5, rotation feature, p4 helper</div>
