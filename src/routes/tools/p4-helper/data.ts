@@ -100,11 +100,7 @@ const TIMER: InputOption[] = [
   { val: 'short', text: 'Short', cls: 'short' },
   { val: 'long', text: 'Long', cls: 'long' }
 ];
-const BOMB_NE1: InputOption[] = [
-  { val: 'short', text: 'Short', cls: 'short' },
-  { val: 'long', text: 'Long', cls: 'long' }
-];
-const BOMB_NE2: InputOption[] = [
+const BOMB_OPTS: InputOption[] = [
   { val: 'short', text: 'Short', cls: 'short' },
   { val: 'long', text: 'Long', cls: 'long' },
   { val: 'none', text: 'None', cls: 'none' }
@@ -120,7 +116,7 @@ export const SETUP_SECTIONS: InputSection[] = [
     rows: [
       { id: 'ne1cast', label: 'Cast', opts: RF_OPTS },
       { id: 'ne1mark', label: 'Water/Lightning', opts: TIMER },
-      { id: 'ne1bomb', label: 'Accel Bomb', opts: BOMB_NE1 }
+      { id: 'ne1bomb', label: 'Accel Bomb', opts: BOMB_OPTS }
     ]
   },
   {
@@ -135,7 +131,7 @@ export const SETUP_SECTIONS: InputSection[] = [
     rows: [
       { id: 'ne2cast', label: 'Cast', opts: RF_OPTS },
       { id: 'ne2mark', label: 'Water/Lightning', opts: TIMER },
-      { id: 'ne2bomb', label: 'Accel Bomb', opts: BOMB_NE2 }
+      { id: 'ne2bomb', label: 'Accel Bomb', opts: BOMB_OPTS }
     ]
   },
   {
@@ -167,6 +163,97 @@ export function applyInput(s: P4State, id: string, val: string): void {
     const other = id === 'c1type' ? 'c2type' : 'c1type';
     s[other] = next === 'fire' ? 'water' : next === 'water' ? 'fire' : null;
   }
+}
+
+// Fields that mirror each other to opposite values (one short, the other long, etc.).
+const OPPOSITE_PAIRS: Record<string, string> = {
+  ne1mark: 'ne2mark',
+  ne2mark: 'ne1mark',
+  c1type: 'c2type',
+  c2type: 'c1type'
+};
+
+// Every field that drives a linked field, mapped to its partner.
+const LINKED: Record<string, string> = {
+  ...OPPOSITE_PAIRS,
+  ne1bomb: 'ne2bomb',
+  ne2bomb: 'ne1bomb'
+};
+
+/** The field auto-driven by this one, if any. */
+export function partnerField(id: string): string | undefined {
+  return LINKED[id];
+}
+
+/**
+ * Whether an option is ruled out by a mutually-exclusive selection in a linked
+ * field. Only the auto-derived partner (not the field the user actually clicked)
+ * is marked, so `sourceField` is the field that drove this group's value.
+ *
+ * Eliminated options are shown crossed-out/faded but stay clickable so the user
+ * can override (which flips the linked field via applyInput).
+ */
+export function isEliminated(
+  s: P4State,
+  id: string,
+  val: string,
+  sourceField: string | undefined
+): boolean {
+  // Only mark the derived field: the user clicked the partner, not this one.
+  if (!sourceField || sourceField === id) return false;
+
+  // Opposite-pair fields: the value matching the linked field is impossible
+  // (can't both be short, both fire, etc.).
+  const opp = OPPOSITE_PAIRS[id];
+  if (opp) return s[opp] != null && s[opp] === val;
+
+  // Accel bomb lives on exactly one set. If the other set carries it
+  // (short/long), this set's short/long are eliminated (only "none" remains).
+  // If the other set is "none", the bomb must be here, so "none" is eliminated.
+  if (id === 'ne1bomb' || id === 'ne2bomb') {
+    const other = id === 'ne1bomb' ? 'ne2bomb' : 'ne1bomb';
+    const ov = s[other];
+    if (ov === 'short' || ov === 'long') return val === 'short' || val === 'long';
+    if (ov === 'none') return val === 'none';
+  }
+  return false;
+}
+
+// Section title / row label lookups, derived from the setup definitions.
+const SECTION_OF: Record<string, string> = {};
+const LABEL_OF: Record<string, string> = {};
+for (const sec of SETUP_SECTIONS) {
+  for (const row of sec.rows) {
+    SECTION_OF[row.id] = sec.title;
+    LABEL_OF[row.id] = row.label;
+  }
+}
+
+function cap(v: string): string {
+  return v.charAt(0).toUpperCase() + v.slice(1);
+}
+
+/** Human-readable reason an eliminated option is unavailable, for a tooltip. */
+export function eliminationReason(
+  s: P4State,
+  id: string,
+  val: string,
+  sourceField: string | undefined
+): string | null {
+  if (!sourceField || !isEliminated(s, id, val, sourceField)) return null;
+  const srcSection = SECTION_OF[sourceField];
+
+  if (id === 'ne1mark' || id === 'ne2mark') {
+    return `${cap(val)} ${LABEL_OF[id]} already assigned in ${srcSection}`;
+  }
+  if (id === 'c1type' || id === 'c2type') {
+    return `${cap(val)} already assigned in ${srcSection}`;
+  }
+  if (id === 'ne1bomb' || id === 'ne2bomb') {
+    if (val === 'none') return `Accel Bomb must be in this set (none in ${srcSection})`;
+    return `Accel Bomb already assigned in ${srcSection}`;
+  }
+  return null;
 }
 
 // --- Resolution helpers ---

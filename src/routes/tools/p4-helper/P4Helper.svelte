@@ -7,6 +7,9 @@
     block2,
     block3,
     manaFinal,
+    isEliminated,
+    eliminationReason,
+    partnerField,
     type P4State,
     type InputSection,
     type InputOption,
@@ -41,13 +44,22 @@
   let s = $state<P4State>({});
   // Sections manually re-expanded on mobile after auto-collapse (keyed by title).
   let expanded = $state<Record<string, boolean>>({});
+  // For each linked field, which field in its group the user actively clicked.
+  // The other (auto-derived) field is the one that shows eliminated options.
+  let sourceOf = $state<Record<string, string>>({});
 
   function set(id: string, val: string) {
     applyInput(s, id, val);
+    const partner = partnerField(id);
+    if (partner) {
+      sourceOf[id] = id;
+      sourceOf[partner] = id;
+    }
   }
   function reset() {
     s = {};
     expanded = {};
+    sourceOf = {};
   }
 
   const hasInput = $derived(Object.values(s).some((v) => v != null));
@@ -87,6 +99,7 @@
     }
   }
   const unsel = 'bg-zinc-800/70 text-muted-foreground hover:bg-zinc-700/70';
+  const BOMB_TIP = 'Accel Bomb is a personal mechanic, use this to mark your own debuff';
 </script>
 
 <svelte:head>
@@ -115,23 +128,36 @@
 {#snippet selectorRow(id: string, label: string, opts: InputOption[])}
   <div class="flex items-center gap-3">
     <div
-      class="w-28 md:w-48 shrink-0 text-sm md:text-base text-muted-foreground flex items-center gap-1.5"
+      class="w-28 md:w-48 shrink-0 text-sm md:text-base text-muted-foreground flex items-center gap-1.5 {id.includes(
+        'bomb'
+      )
+        ? 'cursor-help underline decoration-dotted underline-offset-2 decoration-muted-foreground/50'
+        : ''}"
+      title={id.includes('bomb') ? BOMB_TIP : undefined}
     >
       {#if id.includes('bomb')}<User class="size-4 shrink-0 opacity-70" />{/if}
       {label}
     </div>
     <div class="flex gap-2 flex-wrap">
       {#each opts as o, idx}
+        {@const selected = s[id] === o.val}
+        {@const elim = !selected && isEliminated(s, id, o.val, sourceOf[id])}
         <button
-          class="flex items-center w-20 gap-1.5 px-2 py-1.5 rounded-lg text-sm md:text-base cursor-pointer transition-colors {s[
-            id
-          ] === o.val
+          class="relative flex items-center w-20 gap-1.5 px-2 py-1.5 rounded-lg text-sm md:text-base cursor-pointer transition-colors {selected
             ? selClass(o.cls)
             : unsel}"
+          title={elim ? (eliminationReason(s, id, o.val, sourceOf[id]) ?? undefined) : undefined}
           onclick={() => set(id, o.val)}
         >
-          {@render optIcon(o.val, idx)}
-          {o.text}
+          <span class="flex items-center gap-1.5 {elim ? 'opacity-30' : ''}">
+            {@render optIcon(o.val, idx)}
+            {o.text}
+          </span>
+          {#if elim}
+            <span class="pointer-events-none absolute inset-0 flex items-center justify-center">
+              <X class="size-5 text-foreground/70" />
+            </span>
+          {/if}
         </button>
       {/each}
     </div>
