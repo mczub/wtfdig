@@ -38,7 +38,7 @@
 
   // Overlay owns its own view mode so the user can flip between overall and
   // role view from inside the PIP without touching the (possibly closed) modal.
-  let mode = $state<'overview' | 'role'>('overview');
+  let mode = $state<'overview' | 'role'>('role');
   // If the role selection goes away (e.g. user changes strat), don't leave the
   // overlay stuck in role mode highlighting nothing.
   $effect(() => {

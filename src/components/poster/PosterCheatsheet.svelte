@@ -62,7 +62,7 @@
   let posterRef: HTMLDivElement | undefined = $state();
   let exporting = $state(false);
   let showExportMenu = $state(false);
-  let mode: 'overview' | 'role' = $state('overview');
+  let mode: 'overview' | 'role' = $state('role');
 
   async function toggleOverlay() {
     if (overlayIsPopped) {
@@ -74,6 +74,12 @@
       await overlayPopOut();
     }
   }
+  // Role is the default view, but it requires a selected job; fall back to Overall
+  // when none is chosen so the (disabled) Role button isn't shown active.
+  $effect(() => {
+    if (!selectedJob && mode === 'role') mode = 'overview';
+  });
+
   let highlightJob = $derived<PlayerJob | undefined>(mode === 'role' ? selectedJob : undefined);
 
   // Map PlayerJob → display label from config.roleOptions.
@@ -344,21 +350,25 @@
 
     <!-- Poster (scrollable container) -->
     <div class="flex-1 overflow-auto flex justify-center">
+      <!-- Sizer reserves an integer (ceil'd) footprint for the scaled poster. The
+           transform lives on a separate inner element so fractional DPI rounding of
+           the scaled content can't disagree with the wrapper's box and spawn 1px
+           scrollbars on both axes. -->
       <div
-        class="origin-top-left"
-        style:transform={`scale(${posterScale})`}
-        style:width={`${baseW * posterScale}px`}
-        style:height={`${baseH * posterScale}px`}
+        style:width={`${Math.ceil(baseW * posterScale)}px`}
+        style:height={`${Math.ceil(baseH * posterScale)}px`}
       >
-        <PosterGrid
-          {layout}
-          sections={resolvedSections}
-          bind:posterRef
-          {highlightJob}
-          {jobLabels}
-          {stratState}
-          {stratKey}
-        />
+        <div class="origin-top-left" style:transform={`scale(${posterScale})`}>
+          <PosterGrid
+            {layout}
+            sections={resolvedSections}
+            bind:posterRef
+            {highlightJob}
+            {jobLabels}
+            {stratState}
+            {stratKey}
+          />
+        </div>
       </div>
     </div>
   {/snippet}
