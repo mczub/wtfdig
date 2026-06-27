@@ -354,13 +354,13 @@ const p1: PhaseStrats[] = [
           {
             role: 'Tank',
             party: 1,
-            description: 'Bait boss protean Southwest',
+            description: 'Bait boss protean Southeast',
             imageUrl: './tea/living-liquid-8.webp'
           },
           {
             role: 'Tank',
             party: 2,
-            description: 'Bait boss protean Southeast',
+            description: 'Bait boss protean Southwest',
             imageUrl: './tea/living-liquid-8.webp'
           },
           {
@@ -408,13 +408,13 @@ const p1: PhaseStrats[] = [
           {
             role: 'Tank',
             party: 1,
-            description: 'Stand max melee Southwest',
+            description: 'Stand max melee Southeast',
             imageUrl: './tea/living-liquid-9.webp'
           },
           {
             role: 'Tank',
             party: 2,
-            description: 'Stand max melee Southeast',
+            description: 'Stand max melee Southwest',
             imageUrl: './tea/living-liquid-9.webp'
           },
           {
@@ -2182,7 +2182,7 @@ const elinabinStrat: Strat = {
   stratName: 'naur',
   description: '',
   stratUrl: {
-    Elinabin: 'https://pastebin.com/uxVnJm7R',
+    'NAUR': 'https://naurffxiv.com/ultimate/tea',
     'P1: Living Liquid': 'https://ff14.toolboxgaming.space/?id=725383877116761&preview=1',
     'Intermission: Limit Cut': 'https://ff14.toolboxgaming.space/?id=803293127441961&preview=1',
     'P2: BJCC': 'https://ff14.toolboxgaming.space/?id=492297437831961&preview=1',

@@ -8,6 +8,7 @@
   </header>
   <article class="prose dark:prose-invert max-w-none">
     <div class="">
+      <div>6/27/2026: fixing some minor reported bugs: TEA LL tank wording, elinabin link replaced with NAUR</div>
       <div>6/26/2026: added new P3 changes: new stompy, 2 more black hole strats. kept the default as DSA singles for now, but can change later</div>
       <div>6/23/2026: free from freaky</div>
       <div>6/21/2026: fix for ex7 error, added a concept of descriptions vs. actions + 'Show description' functionality and update some umad stuff to use it</div>

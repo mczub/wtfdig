@@ -30,7 +30,7 @@
       <div class="flex flex-row items-center gap-2 text-left text-lg font-bold">
         <Hammer class="size-6 text-primary" />Tools
       </div>
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="card preset-outlined-secondary-500 gap-4 p-4 justify-center">
           <a
             target="_blank"
@@ -75,7 +75,7 @@
       <div class="flex flex-row items-center gap-2 text-left text-lg font-bold">
         <MessageCircleQuestionMark class="size-6 text-primary" />Helpers
       </div>
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="card preset-outlined-secondary-500 gap-4 p-4 justify-center">
           <a href="{base}/tools/p4-helper" class="flex flex-col items-start mx-2">
             <div class="flex flex-row items-center gap-2 text-lg">
