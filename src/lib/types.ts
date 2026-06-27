@@ -156,7 +156,18 @@ export interface FightConfig {
     description?: string;
     links: { text: string; url: string }[];
   };
-  stratDifferences?: { label: string; description: string }[];
+  /** Explanations of how the toggle strats differ. An optional `tab` scopes an
+   * entry to a single tab (key of `tabTags`); entries without `tab` show on every
+   * tab. The "difference" card shows only the entries relevant to the active tab.
+   * `tag` + `value` tie an entry to a toggle option (toggle key + option value) so
+   * the currently-selected strat is highlighted. */
+  stratDifferences?: {
+    label: string;
+    description: string;
+    tab?: string;
+    tag?: string;
+    value?: string;
+  }[];
   allianceOptions?: Alliance[];
   alignmentOptions?: { value: Alignment; label: string }[];
   /** When set, each mechanic's `description` (what happens) and `action` (what to

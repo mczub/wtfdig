@@ -9,7 +9,6 @@
   import PosterCheatsheet from '../poster/PosterCheatsheet.svelte';
   import {
     ChevronUp,
-    CircleQuestionMark,
     Copy,
     ExternalLink,
     Fullscreen,
@@ -531,24 +530,6 @@
                     </p>
                   </div>
                 </div>
-                {#if config.stratDifferences && config.stratDifferences.length > 0}
-                  <div class="card preset-outlined-secondary-500 p-4 w-fit flex flex-col gap-2">
-                    <div
-                      class="flex flex-row gap-4 items-center text-sm md:text-base font-semibold"
-                    >
-                      <CircleQuestionMark size={24} class="shrink-0" />
-                      <span>What's the difference between the strats?</span>
-                    </div>
-                    <ul class="text-sm md:text-base text-surface-100 flex flex-col gap-1">
-                      {#each config.stratDifferences as diff}
-                        <li>
-                          <span class="font-semibold text-surface">{diff.label}:</span>
-                          {diff.description}
-                        </li>
-                      {/each}
-                    </ul>
-                  </div>
-                {/if}
               </div>
 
               <!-- Action Bar -->
@@ -640,6 +621,7 @@
                 {alignment}
                 separateDescriptionAction={config.separateDescriptionAction}
                 {showDescriptions}
+                stratDifferences={config.stratDifferences}
                 tabTags={config.tabTags}
                 inProgressTabs={config.inProgressTabs}
                 role={normalizedRole}

@@ -7,6 +7,7 @@
   import {
     ChevronsUpDown,
     CircleAlert,
+    CircleQuestionMark,
     Play,
     Expand,
     ExternalLink,
@@ -39,6 +40,7 @@
     alignment,
     separateDescriptionAction = false,
     showDescriptions = true,
+    stratDifferences = [],
     tabTags = null,
     inProgressTabs = null,
     useMainPageTabs = false,
@@ -118,6 +120,18 @@
     currentTab = tab;
   });
 
+  // Strat-difference entries relevant to the active tab (untagged show everywhere).
+  let visibleStratDifferences = $derived(
+    (stratDifferences ?? []).filter((d: any) => !d.tab || d.tab === tab)
+  );
+
+  // True when a difference entry maps to the currently-selected toggle option.
+  function isStratDiffSelected(diff: any): boolean {
+    if (!diff?.tag || diff?.value == null) return false;
+    const current = stratState?.[diff.tag] ?? getStratMechs?.(stratName)?.[diff.tag];
+    return current === diff.value;
+  }
+
   function isPhaseVisible(phase: any) {
     if (tabTags && tabTags[tab] && useMainPageTabs) {
       return tabTags[tab].includes(phase.tag);
@@ -125,15 +139,20 @@
     return true;
   }
 
+  // Collapsible key for the "What's the difference" pane (participates in Collapse All).
+  const STRATDIFF_KEY = '__stratdiff__';
+
   let isAllExpanded = $derived(
-    individualStrat
-      .map((phase: any, index: number) => ({ phase, index }))
-      .filter(({ phase }) => isPhaseVisible(phase))
-      .every(({ phase, index }) => collapsibleState[phaseKey(phase, index)])
+    (visibleStratDifferences.length === 0 || (collapsibleState[STRATDIFF_KEY] ?? true)) &&
+      individualStrat
+        .map((phase: any, index: number) => ({ phase, index }))
+        .filter(({ phase }) => isPhaseVisible(phase))
+        .every(({ phase, index }) => collapsibleState[phaseKey(phase, index)])
   );
 
   function toggleAll() {
     const newState = !isAllExpanded;
+    if (visibleStratDifferences.length > 0) collapsibleState[STRATDIFF_KEY] = newState;
     individualStrat.forEach((phase: any, index: number) => {
       if (!phase?.phaseName || !isPhaseVisible(phase)) return;
       collapsibleState[phaseKey(phase, index)] = newState;
@@ -235,6 +254,43 @@
     </Button>
   </div>
 </div>
+
+{#if visibleStratDifferences.length > 0}
+  <Collapsible.Root
+    class="w-full max-w-2xl mb-6"
+    open={getCollapsibleOpen(STRATDIFF_KEY)}
+    onOpenChange={(open) => setCollapsibleOpen(STRATDIFF_KEY, open)}
+  >
+    <div class="card preset-outlined-secondary-500 p-4 flex flex-col gap-2 w-full">
+      <Collapsible.Trigger
+        class="flex flex-row gap-4 items-center text-sm md:text-base font-semibold cursor-pointer w-full"
+      >
+        <CircleQuestionMark size={24} class="shrink-0" />
+        <span>What's the difference between the strats?</span>
+        <ChevronsUpDown size={18} class="ml-auto shrink-0" />
+      </Collapsible.Trigger>
+      <Collapsible.Content>
+        <ul class="text-sm md:text-base text-surface-100 flex flex-col gap-2 pt-2">
+          {#each visibleStratDifferences as diff}
+            {@const selected = isStratDiffSelected(diff)}
+            <li
+              class="rounded-sm px-2 -mx-2 py-0.5 transition-colors {selected
+                ? 'bg-secondary-500/20 ring-1 ring-secondary-500/50'
+                : ''}"
+            >
+              <span class="font-semibold {selected ? 'text-foreground' : 'text-surface-200'}"
+                >{diff.label}:</span
+              >
+              <span class={selected ? 'text-foreground' : 'text-surface-200'}
+                >{diff.description}</span
+              >
+            </li>
+          {/each}
+        </ul>
+      </Collapsible.Content>
+    </div>
+  </Collapsible.Root>
+{/if}
 
 <div class="space-y-8 lg:space-y-12">
   {#each individualStrat as phase, i (phase.phaseName + '-' + i)}
