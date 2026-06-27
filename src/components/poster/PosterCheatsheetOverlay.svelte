@@ -39,9 +39,15 @@
   // Overlay owns its own view mode so the user can flip between overall and
   // role view from inside the PIP without touching the (possibly closed) modal.
   let mode = $state<'overview' | 'role'>('role');
-  // If the role selection goes away (e.g. user changes strat), don't leave the
-  // overlay stuck in role mode highlighting nothing.
+  // This component mounts at page load (before a role is picked), so default to
+  // Role each time the overlay pops open (when a job is selected, else Overall).
+  let prevPopped = false;
   $effect(() => {
+    if (isPopped && !prevPopped) {
+      mode = selectedJob ? 'role' : 'overview';
+    }
+    prevPopped = isPopped;
+    // If the role selection goes away, don't leave it stuck highlighting nothing.
     if (!selectedJob && mode === 'role') mode = 'overview';
   });
   const highlightJob = $derived<PlayerJob | undefined>(mode === 'role' ? selectedJob : undefined);

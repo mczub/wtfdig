@@ -74,9 +74,16 @@
       await overlayPopOut();
     }
   }
-  // Role is the default view, but it requires a selected job; fall back to Overall
-  // when none is chosen so the (disabled) Role button isn't shown active.
+  // This component mounts at page load (before a role is picked), so we can't rely
+  // on the initial state alone. Each time the poster opens, default to Role when a
+  // job is selected, otherwise Overall (the Role button is disabled without a job).
+  let prevPosterOpen = false;
   $effect(() => {
+    if (posterOpenState && !prevPosterOpen) {
+      mode = selectedJob ? 'role' : 'overview';
+    }
+    prevPosterOpen = posterOpenState;
+    // If the job is cleared while open, don't leave the disabled Role button active.
     if (!selectedJob && mode === 'role') mode = 'overview';
   });
 
