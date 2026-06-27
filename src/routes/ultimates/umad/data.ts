@@ -1042,7 +1042,7 @@ const allP2: PhaseStrats[] = [
           description:
             'Both Towers: {{forsaken-cone}} Cone North + {{forsaken-circle}} Spread South',
           action:
-            'Non-tower Tank/Melee North on OUTER RING of boss hitbox to bait Clones\nNon-Tower Healer/Ranged bait cones on Marker\nNumber Marker = Back corner, Letter Marker = Front edge\nTower Tank/Melee flex if partner matches',
+            'Non-tower Tank/Melee North on OUTER RING of boss hitbox to bait Clones\nNon-tower Healer/Ranged bait cones on Marker\nNumber Marker = Back corner, Letter Marker = Front edge\nTower Tank/Melee flex if partner matches',
           imageUrl: './umad/p2-forsaken-kr-8.webp'
         },
         {
@@ -1089,7 +1089,7 @@ const allP2: PhaseStrats[] = [
         {
           mechanic: 'Even Towers',
           description:
-            'Both Towers: {{forsaken-cone}} Cone (inner ring at tower edge) + {{forsaken-circle}} Spread South\nNon-tower Tank/Melee North on OUTER RING of boss hitbox to bait Clones\nNon-Tower Healer/Ranged bait Cones on Marker\nSpread can cheat slightly away from baiter\nSouth tower players flex for next tower if new debuff matches',
+            'Both Towers: {{forsaken-cone}} Cone (inner ring at tower edge) + {{forsaken-circle}} Spread South\nNon-tower Tank/Melee North on OUTER RING of boss hitbox to bait Clones\nNon-tower Healer/Ranged bait Cones on Marker\nSpread can cheat slightly away from baiter\nSouth tower players flex for next tower if new debuff matches',
           imageUrl: './umad/p2-forsaken-south-7.webp'
         },
         {
@@ -2146,7 +2146,7 @@ export const dancingMadFightConfig: FightConfig = {
         },
         {
           value: 'pinoy',
-          label: 'Filipino Box',
+          label: 'Filipino',
           url: { name: 'Filipino Box Graven 3', url: 'https://raidplan.io/plan/5rf2uhud5ztsbud5' }
         }
       ]
@@ -2205,7 +2205,7 @@ export const dancingMadFightConfig: FightConfig = {
         },
         {
           value: 'dsa',
-          label: 'D>S>A (Original)',
+          label: 'D>S>A (Old)',
           url: {
             name: 'D>S>A Blackhole',
             url: 'https://tinyurl.com/DSAHoles'
@@ -2223,17 +2223,84 @@ export const dancingMadFightConfig: FightConfig = {
     }
   ],
   stratDifferences: [
-    
-    { tab: 'P1: Kefka', label: 'Merry-Go-Round', tag: 'arrows', value: 'mgr', description: 'Arrows arranged in one large box clockwise, aka Big Box.' },
-    { tab: 'P1: Kefka', label: 'Filipino', tag: 'arrows', value: 'pinoy', description: 'Arrows arranged in four small boxes on each intercard, aka Small Box.' },
-    { tab: 'P1: Kefka', label: 'Freaky', tag: 'arrows', value: 'freaky', description: 'Obsolete modification of Merry-Go-Round to compensate for original snapshot behavior. No longer in use, kept here for archival purposes.' },
-    { tab: 'P2: Forsaken Kefka', label: 'Kroxy-Rinon', tag: 'forsaken', value: 'kr', description: 'Tanks and Melees are the only flexers. May be difficult to find original partners to determine flex, but takes burden off healers.' },
-    { tab: 'P2: Forsaken Kefka', label: 'South Adjust', tag: 'forsaken', value: 'south', description: 'If both players in a given tower match after new debuffs, the south player will flex for the next tower they need to soak. Everybody needs to flex + remember, but easier to visualize.' },
-    { tab: 'P3: Chaos and Exdeath', label: 'Bowels: LB3 Cheese', tag: 'bowels', value: 'lb', description: 'All 8 players cleanse their Headwind/Tailwind on Vacuum Wave, then use Tank LB3 to take all 8 Wind AOEs simultaneously. Requires use of LB3 and heavy mit.' },
-    { tab: 'P3: Chaos and Exdeath', label: 'Bowels: SG3K (No LB)', tag: 'bowels', value: 'sg3k', description: '2 players cleanse their Headwind/Tailwind on each crystal activation. The remaining 4 cleanse on Vacuum Wave, taking Wind AOEs as pair stacks. More difficult to execute, but no LB required.' },
-    { tab: 'P3: Chaos and Exdeath', label: 'Black Hole: DSA Double', tag: 'blackhole', value: 'double', description: '2-tether hits in sets 1 and 4 are taken by a single player, D>S>A order otherwise. Avoids boss positioning issues and potential 1HP tank autos.' },
-    { tab: 'P3: Chaos and Exdeath', label: 'Black Hole: D>S>A', tag: 'blackhole', value: 'dsa', description: "Original Kefkabin plan with DPS > Support > Accretion tether order. Watch 2nd-in-Line Tank after Set 3 to make sure they're healed up after going to 1HP." },
-    { tab: 'P3: Chaos and Exdeath', label: 'Black Hole: S>D>A', tag: 'blackhole', value: 'sda', description: "Modified plan with Support > DPS > Accretion tether order. Swaps DPS and Supports from original plan to solve 1HP tank autos." },
+    {
+      tab: 'P1: Kefka',
+      label: 'Merry-Go-Round',
+      tag: 'arrows',
+      value: 'mgr',
+      description: 'Arrows arranged in one large box clockwise, aka Big Box.'
+    },
+    {
+      tab: 'P1: Kefka',
+      label: 'Filipino',
+      tag: 'arrows',
+      value: 'pinoy',
+      description: 'Arrows arranged in four small boxes on each intercard, aka Small Box.'
+    },
+    {
+      tab: 'P1: Kefka',
+      label: 'Freaky',
+      tag: 'arrows',
+      value: 'freaky',
+      description:
+        'Obsolete modification of Merry-Go-Round to compensate for original snapshot behavior. No longer in use, kept here for archival purposes.'
+    },
+    {
+      tab: 'P2: Forsaken Kefka',
+      label: 'Kroxy-Rinon',
+      tag: 'forsaken',
+      value: 'kr',
+      description:
+        'Tanks and Melees are the only flexers. May be difficult to find original partners to determine flex, but takes burden off healers.'
+    },
+    {
+      tab: 'P2: Forsaken Kefka',
+      label: 'South Adjust',
+      tag: 'forsaken',
+      value: 'south',
+      description:
+        'If both players in a given tower match after new debuffs, the south player will flex for the next tower they need to soak. Everybody needs to flex + remember, but easier to visualize.'
+    },
+    {
+      tab: 'P3: Chaos and Exdeath',
+      label: 'Bowels: LB3 Cheese',
+      tag: 'bowels',
+      value: 'lb',
+      description:
+        'All 8 players cleanse their Headwind/Tailwind on Vacuum Wave, then use Tank LB3 to take all 8 Wind AOEs simultaneously. Requires use of LB3 and heavy mit.'
+    },
+    {
+      tab: 'P3: Chaos and Exdeath',
+      label: 'Bowels: SG3K (No LB)',
+      tag: 'bowels',
+      value: 'sg3k',
+      description:
+        '2 players cleanse their Headwind/Tailwind on each crystal activation. The remaining 4 cleanse on Vacuum Wave, taking Wind AOEs as pair stacks. More difficult to execute, but no LB required.'
+    },
+    {
+      tab: 'P3: Chaos and Exdeath',
+      label: 'Black Hole: DSA Double',
+      tag: 'blackhole',
+      value: 'double',
+      description:
+        '2-tether hits in sets 1 and 4 are taken by a single player, D>S>A order otherwise. Avoids boss positioning issues and potential 1HP tank autos.'
+    },
+    {
+      tab: 'P3: Chaos and Exdeath',
+      label: 'Black Hole: D>S>A',
+      tag: 'blackhole',
+      value: 'dsa',
+      description:
+        "Original Kefkabin plan with DPS > Support > Accretion tether order. Watch 2nd-in-Line Tank after Set 3 to make sure they're healed up after going to 1HP."
+    },
+    {
+      tab: 'P3: Chaos and Exdeath',
+      label: 'Black Hole: S>D>A',
+      tag: 'blackhole',
+      value: 'sda',
+      description:
+        'Modified plan with Support > DPS > Accretion tether order. Swaps DPS and Supports from original plan to solve 1HP tank autos.'
+    }
   ],
   tabTags: {
     'P1: Kefka': ['p1', 'arrows'],

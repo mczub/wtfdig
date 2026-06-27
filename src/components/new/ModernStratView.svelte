@@ -274,7 +274,7 @@
           {#each visibleStratDifferences as diff}
             {@const selected = isStratDiffSelected(diff)}
             <li
-              class="rounded-sm px-2 -mx-2 py-0.5 transition-colors {selected
+              class="rounded-xs px-2 -mx-2 py-0.5 transition-colors {selected
                 ? 'bg-secondary-500/20 ring-1 ring-secondary-500/50'
                 : ''}"
             >
