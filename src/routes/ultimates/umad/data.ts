@@ -1221,7 +1221,7 @@ const sdaBH: MechanicStrat[] = [
   {
     mechanic: 'Laser Tethers',
     description:
-      '4 tether sets, each player soaks 3 lasers\nDPS = 1st tether CW from Kefka, Supports = 2nd, {{accretion}} Accretion = 3rd\nPoint every laser clockwise\nNeed to get hit 3 times to cleanse',
+      '4 tether sets, each player soaks 3 lasers\nSupports = 1st tether CW from Kefka, DPS = 2nd, {{accretion}} Accretion = 3rd\nPoint every laser clockwise\nNeed to get hit 3 times to cleanse',
     imageUrl: './umad/p3-lb-36.webp'
   },
   {
