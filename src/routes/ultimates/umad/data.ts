@@ -2098,7 +2098,7 @@ const kefkabinStrat: Strat = {
   stratName: 'kefkabin',
   description: '',
   stratUrl: {
-    'Kefka Bin': 'https://pastebin.com/7fs57PyQ',
+    'Kefka Bin': 'https://tinyurl.com/kefkabin',
     'UMAD P1: Merry Go Round by Fae Fiyaa':
       'https://docs.google.com/presentation/d/1-E2rEKa586KKiVNvtt3EAMQY2YAEVBRGcMX0WzORIq8/edit?usp=sharing',
     'P2 Trines': 'https://raidplan.io/plan/apkh6ytq72w8pt3v',
