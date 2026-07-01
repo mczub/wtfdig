@@ -1824,17 +1824,20 @@ const allP4: PhaseStrats[] = [
       {
         mechanic: 'Neo Exdeath Debuffs',
         description:
-          '{{forked-lightning}}{{compressed-water}} Lightning/Water can have short or long timer\nNeo Exdeath applies 2x Lightning and 2x Water per cast\nOne cast will have Short timer, other will be Long\n{{forked-lightning}} Lightning OR {{kefka-fake}}{{compressed-water}} Fake Water = Spread\n{{compressed-water}} Water OR {{kefka-fake}}{{forked-lightning}} Fake Lightning = Stack\n\nEach player gets 1 {{accel-bomb}} Accel Bomb with a short or long timer\nNeo Exdeath applies 2x Short and 2x Long per cast\n{{accel-bomb}} Accel Bomb = Stillness, {{kefka-fake}} Fake = Motion\n\n1st applied {{cursed-shriek}} Shriek has short timer, 2nd has long timer\n{{cursed-shriek}} Shriek = Look away, {{kefka-fake}} Fake = Look at'
+          '{{forked-lightning}}{{compressed-water}} Lightning/Water can have short or long timer\nNeo Exdeath applies 2x Lightning and 2x Water per cast\nOne cast will have Short timer, other will be Long\n{{forked-lightning}} Lightning OR {{kefka-fake}}{{compressed-water}} Fake Water = Spread\n{{compressed-water}} Water OR {{kefka-fake}}{{forked-lightning}} Fake Lightning = Stack\n\nEach player gets 1 {{accel-bomb}} Accel Bomb with a short or long timer\nNeo Exdeath applies 2x Short and 2x Long per cast\n{{accel-bomb}} Accel Bomb = Stillness, {{kefka-fake}} Fake = Motion\n\n1st applied {{cursed-shriek}} Shriek has short timer, 2nd has long timer\n{{cursed-shriek}} Shriek = Look away, {{kefka-fake}} Fake = Look at',
+        imageUrl: './umad/p4-exdeath-debuffs.webp'
       },
       {
         mechanic: 'Chaos Debuffs',
         description:
-          '{{entropy}} Entropy resolves 1st, {{dynamic-fluid}} Dynamic resolves 2nd regardless of order applied\n{{entropy}} Entropy OR {{kefka-fake}}{{dynamic-fluid}} Fake Dynamic = Fire/AOE\n{{dynamic-fluid}} Dynamic OR {{kefka-fake}}{{entropy}} Fake Entropy = Water/Donut'
+          '{{entropy}} Entropy resolves 1st, {{dynamic-fluid}} Dynamic resolves 2nd regardless of order applied\n{{entropy}} Entropy OR {{kefka-fake}}{{dynamic-fluid}} Fake Dynamic = Fire/AOE\n{{dynamic-fluid}} Dynamic OR {{kefka-fake}}{{entropy}} Fake Entropy = Water/Donut',
+        imageUrl: './umad/p4-chaos-debuffs.webp'
       },
       {
         mechanic: 'Antilight + Flood of Naught',
         description:
-          'Applies {{white-wound}}/{{black-wound}} Wound + 4 {{allagan-field}} Allagan Field, 4 {{beyond-death}} Beyond Death\n{{allagan-field}} Allagan = Stand in Opposite Color\n{{beyond-death}} Beyond Death = Stand in Same Color\nIgnore the Real/Fake on debuff application\nFollow the Real/Fake on Flood of Naught cast'
+          'Applies {{white-wound}}/{{black-wound}} Wound + 4 {{allagan-field}} Allagan Field, 4 {{beyond-death}} Beyond Death\n{{allagan-field}} Allagan = Stand in Opposite Color\n{{beyond-death}} Beyond Death = Stand in Same Color\nIgnore the Real/Fake on debuff application\nFollow the Real/Fake on Flood of Naught cast',
+        imageUrl: './umad/p4-antilight.webp'
       },
       {
         mechanic: 'Mana Charge / Release',
@@ -1857,6 +1860,12 @@ const allP4: PhaseStrats[] = [
         action:
           '{{forked-lightning}} Lightning OR {{kefka-fake}}{{compressed-water}} Fake Water = Spread (Supports West, DPS East)\n{{compressed-water}} Water OR {{kefka-fake}}{{forked-lightning}} Fake Lightning = Stack (Supports North, DPS South)',
         imageUrl: './umad/p4-stack-spread.webp'
+      },
+      {
+        mechanic: 'Gazes',
+        action:
+          'Shrieks {{cursed-shriek}} under boss, Support Left, DPS Right\nIf {{kefka-real}} Real, everyone look away\n If {{kefka-fake}}, party look in, debuffs look at each other',
+        imageUrl: './umad/p4-gazes-1.webp'
       }
     ]
   }
@@ -2104,9 +2113,8 @@ const kefkabinStrat: Strat = {
     'P2 Trines': 'https://raidplan.io/plan/apkh6ytq72w8pt3v',
     'DMU P3: Specify Your Blackhole':
       'https://docs.google.com/presentation/d/1w05ez7GscxTflgaMgVET42gjGryI2QSPR0zqRWXdWgI/edit?usp=sharing',
-    'P4 drate says Raidplan': 'https://raidplan.io/plan/V-r1InYZW7VMRYAU',
-    'P5 Raidplan': 'https://raidplan.io/plan/3wqr483tjcsgd6xv',
-    'P5 Forsaken Enrage': 'https://raidplan.io/plan/PFAuAaUViJ3vUjqr'
+    'P4 Kefka Says Gazes Mid by Dank': 'https://raidplan.io/plan/ChcTBFAcFMZKFVKo',
+    'Kefkabin P5 Raidplan': 'https://raidplan.io/plan/3wODYtApXBtYAdu0',
   },
   notes:
     'These strats will likely change! Refer to the original resources for the most up-to-date versions',
