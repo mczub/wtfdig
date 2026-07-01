@@ -1042,20 +1042,20 @@ const allP2: PhaseStrats[] = [
           description:
             'Both Towers: {{forsaken-cone}} Cone North + {{forsaken-circle}} Spread South',
           action:
-            'Non-tower Tank/Melee North on OUTER RING of boss hitbox to bait Clones\nNon-tower Healer/Ranged bait cones on Marker\nNumber Marker = Back corner, Letter Marker = Front edge\nTower Tank/Melee flex if partner matches',
+            'Non-tower Tank/Melee North on OUTER RING of boss hitbox to bait Clones\n❗<b>BE ON THE OUTER RING, DO NOT GO FURTHER OUT</b>\nNon-tower Healer/Ranged bait cones on Marker\nNumber Marker = Back corner, Letter Marker = Front edge\nTower Tank/Melee flex if partner matches',
           imageUrl: './umad/p2-forsaken-kr-8.webp'
         },
         {
           mechanic: 'Even Towers (Number Markers, Left)',
           description:
-            'Left tower (Boss is North)\n{{forsaken-cone}} Cone = Front edge towards Left on inner hitbox ring\nBaiter = Back corner of Number Markers\n{{forsaken-circle}} Spread = South edge, slightly toward other tower',
+            'Left tower (Boss is North)\n{{forsaken-cone}} Cone = Front edge towards Left on <b>INNER</b> hitbox ring at <b>TOWER EDGE</b>\n{{forsaken-circle}} Spread = South edge, directly across tower from Cone\nBaiter = Back corner of Number Markers',
           imageUrl: './umad/p2-forsaken-kr-9.webp',
           alignmentTransforms: { truenorth: 'rotate(45deg)' }
         },
         {
           mechanic: 'Even Towers (Letter Markers, Right)',
           description:
-            'Right tower (Boss is North)\n{{forsaken-cone}} Cone = Front edge towards Right on inner hitbox ring\nBaiter = Front edge of Letter Markers\n{{forsaken-circle}} Spread = South edge, slightly toward other tower',
+            'Right tower (Boss is North)\n{{forsaken-cone}} Cone = Front edge towards Right on <b>INNER</b> hitbox ring at <b>TOWER EDGE</b>\n{{forsaken-circle}} Spread = South edge, directly across tower from Cone\nBaiter = Front edge of Letter Markers',
           imageUrl: './umad/p2-forsaken-kr-12.webp',
           alignmentTransforms: { truenorth: 'rotate(-45deg)' }
         },
@@ -1063,7 +1063,7 @@ const allP2: PhaseStrats[] = [
           mechanic: 'Future/Past Baits',
           description:
             'Everyone baits Past/Future at max melee\nCast after every odd tower, bait after every even tower',
-          action: 'MAX MELEE, Past = Between towers, Future = Away from towers',
+          action: '<b>BE AT LEAST MAX MELEE</b>\nPast = Between towers, Future = Away from towers',
           imageUrl: './umad/p2-forsaken-kr-2.webp'
         }
       ],
@@ -2103,14 +2103,13 @@ const kefkabinStrat: Strat = {
     'Kefka Bin': 'https://tinyurl.com/kefkabin',
     'UMAD P1: Merry Go Round by Fae Fiyaa':
       'https://docs.google.com/presentation/d/1-E2rEKa586KKiVNvtt3EAMQY2YAEVBRGcMX0WzORIq8/edit?usp=sharing',
+    'Kroxy-Rinon 3/4/1 (Center/N Stacks)': 'https://raidplan.io/plan/UATE__aDcw1-bgVv',
     'P2 Trines': 'https://raidplan.io/plan/apkh6ytq72w8pt3v',
-    'DMU P3: Specify Your Blackhole':
+    'DMU P3: Dank Feet DSA BH':
       'https://docs.google.com/presentation/d/1w05ez7GscxTflgaMgVET42gjGryI2QSPR0zqRWXdWgI/edit?usp=sharing',
     'P4 Kefka Says Gazes Mid by Dank': 'https://raidplan.io/plan/ChcTBFAcFMZKFVKo',
-    'Kefkabin P5 Raidplan': 'https://raidplan.io/plan/3wODYtApXBtYAdu0',
+    'Kefkabin P5': 'https://raidplan.io/plan/3wODYtApXBtYAdu0',
   },
-  notes:
-    'These strats will likely change! Refer to the original resources for the most up-to-date versions',
   strats: [...allP1, ...allP2, ...allP3, ...allP4, ...allP5]
 };
 
@@ -2138,6 +2137,11 @@ export const dancingMadFightConfig: FightConfig = {
       options: [
         { value: 'mgr', label: 'Merry-Go-Round' },
         {
+          value: 'pinoy',
+          label: 'Filipino',
+          url: { name: 'Filipino Box Graven 3', url: 'https://raidplan.io/plan/5rf2uhud5ztsbud5' }
+        },
+        {
           value: 'freaky',
           label: 'Freaky MGR',
           url: {
@@ -2145,11 +2149,6 @@ export const dancingMadFightConfig: FightConfig = {
             url: 'https://raidplan.io/plan/qD9Y_g1caq3l5gD-'
           }
         },
-        {
-          value: 'pinoy',
-          label: 'Filipino',
-          url: { name: 'Filipino Box Graven 3', url: 'https://raidplan.io/plan/5rf2uhud5ztsbud5' }
-        }
       ]
     },
     {
@@ -2161,10 +2160,6 @@ export const dancingMadFightConfig: FightConfig = {
         {
           value: 'kr',
           label: 'Kroxy-Rinon',
-          url: {
-            name: 'Kroxy-Rinon 3/4/1 (Center/N Stacks)',
-            url: 'https://raidplan.io/plan/UATE__aDcw1-bgVv'
-          }
         },
         {
           value: 'south',
@@ -2179,6 +2174,7 @@ export const dancingMadFightConfig: FightConfig = {
       defaultValue: 'lb',
       phaseTag: 'bowels',
       options: [
+        { value: 'lb', label: 'LB3 Cheese' },
         {
           value: 'sg3k',
           label: 'SG3K (No LB)',
@@ -2187,7 +2183,6 @@ export const dancingMadFightConfig: FightConfig = {
             url: 'https://raidplan.io/plan/9assfrb4fcvwat9e'
           }
         },
-        { value: 'lb', label: 'LB3 Cheese' }
       ]
     },
     {
@@ -2197,19 +2192,15 @@ export const dancingMadFightConfig: FightConfig = {
       phaseTag: 'blackhole',
       options: [
         {
+          value: 'dsa',
+          label: 'D>S>A (Old)',
+        },
+        {
           value: 'double',
           label: 'DSA Double',
           url: {
-            name: 'DSA Double Tethers',
+            name: 'DMU - P3 BH Modified DSA (Double Tether)',
             url: 'https://tinyurl.com/DTHoles'
-          }
-        },
-        {
-          value: 'dsa',
-          label: 'D>S>A (Old)',
-          url: {
-            name: 'D>S>A Blackhole',
-            url: 'https://tinyurl.com/DSAHoles'
           }
         },
         {
@@ -2280,19 +2271,19 @@ export const dancingMadFightConfig: FightConfig = {
     },
     {
       tab: 'P3: Chaos and Exdeath',
-      label: 'Black Hole: DSA Double',
-      tag: 'blackhole',
-      value: 'double',
-      description:
-        '2-tether hits in sets 1 and 4 are taken by a single player, D>S>A order otherwise. Avoids boss positioning issues and potential 1HP tank autos.'
-    },
-    {
-      tab: 'P3: Chaos and Exdeath',
       label: 'Black Hole: D>S>A',
       tag: 'blackhole',
       value: 'dsa',
       description:
         "Original Kefkabin plan with DPS > Support > Accretion tether order. Watch 2nd-in-Line Tank after Set 3 to make sure they're healed up after going to 1HP."
+    },
+    {
+      tab: 'P3: Chaos and Exdeath',
+      label: 'Black Hole: DSA Double',
+      tag: 'blackhole',
+      value: 'double',
+      description:
+        '2-tether hits in sets 1 and 4 are taken by a single player, D>S>A order otherwise. Avoids boss positioning issues and potential 1HP tank autos.'
     },
     {
       tab: 'P3: Chaos and Exdeath',
