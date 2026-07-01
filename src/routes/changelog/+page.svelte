@@ -8,6 +8,7 @@
   </header>
   <article class="prose dark:prose-invert max-w-none">
     <div class="">
+      <div>6/30/2026: update umad p4 + p5 with new kefkabin stuff</div>
       <div>6/27/2026: fixing some minor reported bugs: TEA LL tank wording, elinabin link replaced with NAUR, also some updates to the p4 helper</div>
       <div>6/26/2026: added new P3 changes: new stompy, 2 more black hole strats. kept the default as DSA singles for now, but can change later</div>
       <div>6/23/2026: free from freaky</div>

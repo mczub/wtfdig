@@ -1906,7 +1906,7 @@ const allP5: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'Spread',
-        action: 'Spread: Tanks N, Healers W, DPS E',
+        action: 'Spread: Tanks North, Healers South, G1 DPS West, G2 DPS East',
         imageUrl: './umad/p5-7.webp'
       },
       {
@@ -1986,7 +1986,7 @@ const allP5: PhaseStrats[] = [
         mechanic: 'Overview',
         description:
           '4 towers active per set, 3 sets total\nVulns applied randomly: 2x ice, 2x lightning, 2x fire, 2x nothing\n2x nothing will always fill the double',
-        action: 'Earth = IN, Wind = OUT',
+        action: 'For 1st + 3rd, Earth = OUT safe, Wind = IN safe',
         imageUrl: './umad/p5-12.webp'
       },
       {
@@ -2092,13 +2092,6 @@ const allP5: PhaseStrats[] = [
         action: 'Start C, rotate CW (4-1-2-3)',
         imageUrl: './umad/p5-23.webp'
       },
-      {
-        mechanic: 'Adjusts',
-        description:
-          'If the 3rd set spawns the hole at B, go back toward 1 instead: 4 - 1 - 2 - 1\nIf a void puddle blocks your path, reverse direction',
-        action: 'If blocked at B, go back to 1 (4-1-2-1)',
-        imageUrl: './umad/p5-enrage-9.webp'
-      }
     ]
   }
 ];
