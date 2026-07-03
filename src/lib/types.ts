@@ -167,6 +167,11 @@ export interface FightConfig {
     tab?: string;
     tag?: string;
     value?: string;
+    /** Optional sub-category heading within a tab (e.g. 'Bowels', 'Black Hole').
+     * Consecutive entries sharing a category are grouped under one heading. */
+    category?: string;
+    /** Optional badges (e.g. region tags like `{ text: 'NA', class: 'na-badge' }`). */
+    badges?: Badge[];
   }[];
   allianceOptions?: Alliance[];
   alignmentOptions?: { value: Alignment; label: string }[];

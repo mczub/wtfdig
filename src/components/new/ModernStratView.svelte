@@ -54,6 +54,9 @@
     return `${phase?.phaseName ?? ''}-${index}`;
   }
 
+  // Collapsible key for the "What's the difference" pane (participates in Collapse All).
+  const STRATDIFF_KEY = '__stratdiff__';
+
   function getDefaultCollapsibleState() {
     const newState: Record<string, boolean> = {};
     individualStrat.forEach((phase: any, index: number) => {
@@ -61,6 +64,8 @@
         newState[phaseKey(phase, index)] = true;
       }
     });
+    // The "What's the difference" pane defaults closed.
+    newState[STRATDIFF_KEY] = false;
     return newState;
   }
 
@@ -125,6 +130,17 @@
     (stratDifferences ?? []).filter((d: any) => !d.tab || d.tab === tab)
   );
 
+  // Group consecutive entries by sub-category so each group renders under a heading.
+  let groupedStratDifferences = $derived.by(() => {
+    const groups: { category: string | undefined; items: any[] }[] = [];
+    for (const d of visibleStratDifferences) {
+      const last = groups[groups.length - 1];
+      if (!last || last.category !== d.category) groups.push({ category: d.category, items: [d] });
+      else last.items.push(d);
+    }
+    return groups;
+  });
+
   // True when a difference entry maps to the currently-selected toggle option.
   function isStratDiffSelected(diff: any): boolean {
     if (!diff?.tag || diff?.value == null) return false;
@@ -138,9 +154,6 @@
     }
     return true;
   }
-
-  // Collapsible key for the "What's the difference" pane (participates in Collapse All).
-  const STRATDIFF_KEY = '__stratdiff__';
 
   let isAllExpanded = $derived(
     (visibleStratDifferences.length === 0 || (collapsibleState[STRATDIFF_KEY] ?? true)) &&
@@ -257,36 +270,67 @@
 
 {#if visibleStratDifferences.length > 0}
   <Collapsible.Root
-    class="w-full max-w-2xl mb-6"
+    class="w-full max-w-4xl mb-6"
     open={getCollapsibleOpen(STRATDIFF_KEY)}
     onOpenChange={(open) => setCollapsibleOpen(STRATDIFF_KEY, open)}
   >
     <div class="card preset-outlined-secondary-500 p-4 flex flex-col gap-2 w-full">
       <Collapsible.Trigger
-        class="flex flex-row gap-4 items-center text-sm md:text-base font-semibold cursor-pointer w-full"
+        class="flex flex-row gap-4 items-center text-sm md:text-lg font-semibold cursor-pointer w-full"
       >
         <CircleQuestionMark size={24} class="shrink-0" />
         <span>What's the difference between the strats?</span>
         <ChevronsUpDown size={18} class="ml-auto shrink-0" />
       </Collapsible.Trigger>
       <Collapsible.Content>
-        <ul class="text-sm md:text-base text-surface-100 flex flex-col gap-2 pt-2">
-          {#each visibleStratDifferences as diff}
-            {@const selected = isStratDiffSelected(diff)}
-            <li
-              class="rounded-xs px-2 -mx-2 py-0.5 transition-colors {selected
-                ? 'bg-secondary-500/20 ring-1 ring-secondary-500/50'
-                : ''}"
-            >
-              <span class="font-semibold {selected ? 'text-foreground' : 'text-surface-200'}"
-                >{diff.label}:</span
-              >
-              <span class={selected ? 'text-foreground' : 'text-surface-200'}
-                >{diff.description}</span
-              >
-            </li>
-          {/each}
-        </ul>
+        <!-- Below md the rows stack (name over description, description indented);
+             at md+ they render as a real two-column table. -->
+        <table
+          class="mt-2 block w-full text-sm md:table md:border-separate md:border-spacing-x-0 md:border-spacing-y-1 md:text-base"
+        >
+          <tbody class="block md:table-row-group">
+            {#each groupedStratDifferences as group}
+              {#if group.category}
+                <tr class="block md:table-row">
+                  <td
+                    colspan="2"
+                    class="block pt-2 pb-0.5 text-xs font-bold tracking-wide text-secondary-300 uppercase md:table-cell"
+                  >
+                    {group.category}
+                  </td>
+                </tr>
+              {/if}
+              {#each group.items as diff}
+                {@const selected = isStratDiffSelected(diff)}
+                <tr class="mb-2 block transition-colors md:mb-0 md:table-row">
+                  <!-- md:w-px + nowrap collapses the name column to the widest label so
+                       every name cell shares one uniform width (table mode only). -->
+                  <td
+                    class="block rounded-t-md py-1 pl-2 align-top font-semibold whitespace-nowrap md:table-cell md:w-px md:rounded-t-none md:rounded-l-md md:pr-4 {selected
+                      ? 'bg-secondary-500/20 text-foreground'
+                      : 'text-surface-200'}"
+                  >
+                    <div class="flex items-center gap-2">
+                      {#if diff.badges}
+                        {#each diff.badges as badge}
+                          <span class="badge {badge.class} px-1.5 align-middle">{badge.text}</span>
+                        {/each}
+                      {/if}
+                      {diff.label}
+                    </div>
+                  </td>
+                  <td
+                    class="block rounded-b-md pr-2 pb-1 pl-6 align-top md:table-cell md:rounded-r-md md:rounded-b-none md:py-1 md:pl-0 {selected
+                      ? 'bg-secondary-500/20 text-foreground'
+                      : 'text-surface-200'}"
+                  >
+                    {diff.description}
+                  </td>
+                </tr>
+              {/each}
+            {/each}
+          </tbody>
+        </table>
       </Collapsible.Content>
     </div>
   </Collapsible.Root>
