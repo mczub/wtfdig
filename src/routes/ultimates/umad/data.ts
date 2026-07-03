@@ -1,8 +1,6 @@
 import type { FightConfig, MechanicStrat, PhaseStrats, Strat } from '$lib/types';
 import { umadPosterLayout } from './posterData';
 
-// P1: Kefka. Descriptions/images intentionally left blank for now - the phase
-// and mechanic scaffolding goes in first, details get filled in as teams refine.
 const allP1: PhaseStrats[] = [
   {
     phaseName: 'Graven 1: Fire + Ice',
@@ -1437,6 +1435,12 @@ const allP2: PhaseStrats[] = [
           alignmentTransforms: { truenorth: 'rotate(-45deg)' }
         },
         {
+          mechanic: 'Odd Set 1 (Special)',
+          description:
+            'Set 1 ONLY: if you take a tower, FOLLOW your buddy into it (this set is special)\n{{forsaken-stack}} Left Stack sits slightly off-center toward the helper Tank (NEish)\nSets 3/5/7 use the fixed Left/Right spots above',
+          imageUrl: './umad/p2-forsaken-p3Z-4.webp'
+        },
+        {
           mechanic: 'Even Towers (Diamond Box Markers)',
           description:
             'Both Towers: {{forsaken-cone}} Cone North + {{forsaken-circle}} Spread South',
@@ -1502,26 +1506,24 @@ const allP2: PhaseStrats[] = [
           alignmentTransforms: { truenorth: 'rotate(-45deg)' }
         },
         {
-          mechanic: 'Even Towers (Diamond Box Markers)',
+          mechanic: 'Even Towers',
           description:
-            'Both Towers: {{forsaken-cone}} Cone North + {{forsaken-circle}} Spread South',
+            'Both Towers: {{forsaken-cone}} Cone in front + {{forsaken-circle}} Spread in back\n{{forsaken-cone}} Cone = front, on the INNER hitbox ring where the ring meets the tower edge\n{{forsaken-circle}} Spread = opposite side of the tower, max distance from the Cone',
           action:
-            'Non-tower Tank/Melee North on OUTER RING of boss hitbox to bait Clones\n❗<b>BE ON THE OUTER RING, DO NOT GO FURTHER OUT</b>\nNon-tower Healer/Ranged bait cones on Marker\nNumber Marker = Back corner, Letter Marker = Front edge\nTower Tank/Melee flex if partner matches',
-          imageUrl: './umad/p2-forsaken-kr-8.webp'
+            '<b>Big box markers are NOT made for Forsaken - do NOT use the markers to position</b>\nTower Tank/Melee flex if partner matches',
+          imageUrl: './umad/p2-forsaken-lpdu-9.webp'
         },
         {
-          mechanic: 'Even Towers (Number Markers, Left)',
+          mechanic: 'Even Towers (Clone Baits)',
           description:
-            'Left tower (Boss is North)\n{{forsaken-cone}} Cone = Front edge towards Left on <b>INNER</b> hitbox ring at <b>TOWER EDGE</b>\n{{forsaken-circle}} Spread = South edge, directly across tower from Cone\nBaiter = Back corner of Number Markers',
-          imageUrl: './umad/p2-forsaken-kr-9.webp',
-          alignmentTransforms: { truenorth: 'rotate(45deg)' }
+            'Non-tower Tank/Melee (North players) bait Clones on the INNER hitbox ring, NE/NW of the new relative south (the towers)\nFixed spots - keeps the Clones spawning as close to middle as possible',
+          imageUrl: './umad/p2-forsaken-lpdu-10.webp'
         },
         {
-          mechanic: 'Even Towers (Letter Markers, Right)',
+          mechanic: 'Even Towers (Ranged Helpers)',
           description:
-            'Right tower (Boss is North)\n{{forsaken-cone}} Cone = Front edge towards Right on <b>INNER</b> hitbox ring at <b>TOWER EDGE</b>\n{{forsaken-circle}} Spread = South edge, directly across tower from Cone\nBaiter = Front edge of Letter Markers',
-          imageUrl: './umad/p2-forsaken-kr-12.webp',
-          alignmentTransforms: { truenorth: 'rotate(-45deg)' }
+            'Cone baiter (Healer/Ranged): stand at a 90 degree angle from the in-tower Cone player\n<b>Do NOT use the box markers to position</b> - a top-down camera helps you see the angle',
+          imageUrl: './umad/p2-forsaken-lpdu-11.webp'
         },
         {
           mechanic: 'Future/Past Baits',
@@ -1592,6 +1594,119 @@ const doubleBH: MechanicStrat[] = [
     imageUrl: './umad/p3-lb-46.webp'
   }
 ];
+
+const splitStomps: MechanicStrat[] = [
+  {
+    mechanic: 'Blizzard Puddles',
+    description:
+      'Kefka = Relative North\nSupports start Relative North, DPS start Relative South\nBlizzard AOEs under everyone -> move to intercards in partners\nG1 Rel West/Left, G2 Rel East/Right\n1 Support or 1 DPS gets a stack marker',
+    strats: [
+      {
+        role: 'Tank',
+        party: 1,
+        description: 'Start Relative North, Spread Northwest',
+        imageUrl: './umad/p3-lb-54.webp'
+      },
+      {
+        role: 'Tank',
+        party: 2,
+        description: 'Start Relative North, Spread Northeast',
+        imageUrl: './umad/p3-lb-54.webp'
+      },
+      {
+        role: 'Healer',
+        party: 1,
+        description: 'Start Relative North, Spread Northwest',
+        imageUrl: './umad/p3-lb-54.webp'
+      },
+      {
+        role: 'Healer',
+        party: 2,
+        description: 'Start Relative North, Spread Northeast',
+        imageUrl: './umad/p3-lb-54.webp'
+      },
+      {
+        role: 'Melee',
+        party: 1,
+        description: 'Start Relative South, Spread Southwest',
+        imageUrl: './umad/p3-lb-54.webp'
+      },
+      {
+        role: 'Melee',
+        party: 2,
+        description: 'Start Relative South, Spread Southeast',
+        imageUrl: './umad/p3-lb-54.webp'
+      },
+      {
+        role: 'Ranged',
+        party: 1,
+        description: 'Start Relative South, Spread Southwest',
+        imageUrl: './umad/p3-lb-54.webp'
+      },
+      {
+        role: 'Ranged',
+        party: 2,
+        description: 'Start Relative South, Spread Southeast',
+        imageUrl: './umad/p3-lb-54.webp'
+      }
+    ]
+  },
+  {
+    mechanic: 'Towers + Enrage',
+    description:
+      'Stacked role returns mid after the 2nd puddle bait; other role takes towers (G1 West, G2 East)\nSwap: opposite role gets the stack, take towers again\nBlizzard III = keep moving\nKill both bosses before enrage',
+    strats: [
+      {
+        role: 'Tank',
+        party: 1,
+        description: 'West/Left Tower',
+        imageUrl: './umad/p3-lb-56.webp'
+      },
+      {
+        role: 'Tank',
+        party: 2,
+        description: 'East/Right Tower',
+        imageUrl: './umad/p3-lb-56.webp'
+      },
+      {
+        role: 'Healer',
+        party: 1,
+        description: 'West/Left Tower',
+        imageUrl: './umad/p3-lb-56.webp'
+      },
+      {
+        role: 'Healer',
+        party: 2,
+        description: 'East/Right Tower',
+        imageUrl: './umad/p3-lb-56.webp'
+      },
+      {
+        role: 'Melee',
+        party: 1,
+        description: 'West/Left Tower',
+        imageUrl: './umad/p3-lb-56.webp'
+      },
+      {
+        role: 'Melee',
+        party: 2,
+        description: 'East/Right Tower',
+        imageUrl: './umad/p3-lb-56.webp'
+      },
+      {
+        role: 'Ranged',
+        party: 1,
+        description: 'West/Left Tower',
+        imageUrl: './umad/p3-lb-56.webp'
+      },
+      {
+        role: 'Ranged',
+        party: 2,
+        description: 'East/Right Tower',
+        imageUrl: './umad/p3-lb-56.webp'
+      }
+    ]
+  }
+]
 
 const dsaBH: MechanicStrat[] = [
   {
@@ -1689,8 +1804,24 @@ const zsqBH: MechanicStrat[] = [
     description:
       'Dodge Latitude/Longitude then Kefka hand (move to the safe side on the 2nd hit)\nExdeath White Hole: ALL players must be at FULL HP\nKefka Party Stack / Role Spread resolves',
     imageUrl: './umad/p3-lb-46.webp'
-  }
+  },
+
 ];
+
+const zsqStomps: MechanicStrat[] = [
+  {
+    mechanic: 'Earthquake Stomps (Setup)',
+    description:
+      'Drag both bosses middle after the Kefka middle slam\nSupports North, DPS South (orient by Kefka heels: white feet = West, black feet = East)\nKefka = 2 two-person towers East/West, Exdeath = Blizzard III (2 AoEs under all players), Chaos = 4-person stack',
+    imageUrl: './umad/p3-zsq-stomps-setup.webp'
+  },
+  {
+    mechanic: 'Earthquake Stomps (Resolve)',
+    description:
+      'Plant the 4-person stack dead middle (it is BIG, do not clip the tower players)\nG1 Support/DPS move into the tower spots right after the 2nd puddle - the towers resolve at the same time as the stack\nDodge both puddle sets, do NOT cover the towers/stacks, then switch roles for the next set',
+    imageUrl: './umad/p3-zsq-stomps.webp'
+  }
+]
 
 const lpduBH: MechanicStrat[] = [
   {
@@ -1722,8 +1853,23 @@ const lpduBH: MechanicStrat[] = [
     description:
       'Dodge Latitude/Longitude then Kefka hand (move to the safe side on the 2nd hit)\nExdeath White Hole: ALL players must be at FULL HP\nKefka Party Stack / Role Spread resolves',
     imageUrl: './umad/p3-lb-46.webp'
-  }
+  },
 ];
+
+const lpduStomps: MechanicStrat[] = [
+  {
+    mechanic: 'Earthquake Stomps (Setup)',
+    description:
+      'Drag both bosses middle after the Kefka middle slam\nSupports North, DPS South (orient by Kefka heels: white feet = West, black feet = East)\nKefka = 2 two-person towers East/West, Exdeath = Blizzard III (2 AoEs under all players), Chaos = 4-person stack',
+    imageUrl: './umad/p3-lpdu-stomps-setup.webp'
+  },
+  {
+    mechanic: 'Earthquake Stomps (Resolve)',
+    description:
+      'Plant the stack dead middle (it is BIG, do not clip the tower players)\nDodge both puddle sets, do NOT cover the towers/stacks\n<b>Role split:</b> the 4-person stack breaks into two 2-person stacks - Tanks/Melees Left, Healers/Ranged Right\nSwitch roles after the towers and stacks resolve',
+    imageUrl: './umad/p3-lpdu-stomps.webp'
+  }
+]
 
 const allP3: PhaseStrats[] = [
   {
@@ -2089,291 +2235,33 @@ const allP3: PhaseStrats[] = [
         },
         {
           mechanic: 'Setup',
-          strats: [
-            {
-              role: 'Tank',
-              party: 1,
-              description: 'Drag Chaos to wall at Wind crystal',
-              imageUrl: './umad/p3-lb-5.webp'
-            },
-            {
-              role: 'Tank',
-              party: 2,
-              description: 'Keep Exdeath Middle',
-              imageUrl: './umad/p3-lb-5.webp'
-            },
-            {
-              role: 'Healer',
-              party: 1,
-              description: 'Stack at Wind crystal',
-              imageUrl: './umad/p3-lb-5.webp'
-            },
-            {
-              role: 'Healer',
-              party: 2,
-              description: 'Stack at Wind crystal',
-              imageUrl: './umad/p3-lb-5.webp'
-            },
-            {
-              role: 'Melee',
-              party: 1,
-              description: 'Stack at Wind crystal',
-              imageUrl: './umad/p3-lb-5.webp'
-            },
-            {
-              role: 'Melee',
-              party: 2,
-              description: 'Stack at Wind crystal',
-              imageUrl: './umad/p3-lb-5.webp'
-            },
-            {
-              role: 'Ranged',
-              party: 1,
-              description: 'Spread at wall near short debuff crystal\nFurther from boss',
-              imageUrl: './umad/p3-lb-5.webp'
-            },
-            {
-              role: 'Ranged',
-              party: 2,
-              description: 'Spread at wall near short debuff crystal\nCloser to boss',
-              imageUrl: './umad/p3-lb-5.webp'
-            }
-          ]
+          description:
+            'Use the Wind crystal as North for the whole mechanic (ignore debuffs for positioning)\nMT/H1/Melees take Chaos (kept mid), OT/H2/Ranged take Exdeath\nDrag Exdeath relative South (opposite Wind)\nHealers always on the Water side, Ranged always on the Fire side\nMelees stack North with the tanks',
+          imageUrl: './umad/p3-Eq0-3.webp'
         },
         {
           mechanic: 'First Resolve (Short)',
           description:
-            'Exdeath defam, Firewall debuffs drop, Short element resolves\nShort {{entropy}} Fire: Melee spread from Supports\nShort {{dynamic-fluid}} Water: Melee + Supports stack\nCrystal AOE hits Ranged',
-          strats: [
-            {
-              role: 'Tank',
-              party: 1,
-              description:
-                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
-              imageUrl: './umad/p3-lb-6.webp'
-            },
-            {
-              role: 'Tank',
-              party: 2,
-              description:
-                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
-              imageUrl: './umad/p3-lb-6.webp'
-            },
-            {
-              role: 'Healer',
-              party: 1,
-              description:
-                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
-              imageUrl: './umad/p3-lb-6.webp'
-            },
-            {
-              role: 'Healer',
-              party: 2,
-              description:
-                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
-              imageUrl: './umad/p3-lb-6.webp'
-            },
-            {
-              role: 'Melee',
-              party: 1,
-              description:
-                'If short {{entropy}} Fire, be away from Supports\nIf short {{dynamic-fluid}} Water, stack with Supports',
-              imageUrl: './umad/p3-lb-6.webp'
-            },
-            {
-              role: 'Melee',
-              party: 2,
-              description:
-                'If short {{entropy}} Fire, be away from Supports\nIf short {{dynamic-fluid}} Water, stack with Supports',
-              imageUrl: './umad/p3-lb-6.webp'
-            },
-            {
-              role: 'Ranged',
-              party: 1,
-              description: 'Stay spread at wall, take crystal AoE',
-              imageUrl: './umad/p3-lb-6.webp'
-            },
-            {
-              role: 'Ranged',
-              party: 2,
-              description: 'Stay spread at wall, take crystal AoE',
-              imageUrl: './umad/p3-lb-6.webp'
-            }
-          ]
+            'Short element resolves as the Exdeath defamation drops\nShort {{entropy}} Fire: Melees spread away from Supports\nShort {{dynamic-fluid}} Water: Melees + Supports stack\nCrystal AoE hits the Ranged on the Fire side',
+          imageUrl: './umad/p3-Eq0-6.webp'
         },
         {
           mechanic: 'Tankbuster + Implosion',
           description:
-            'Exdeath Thunder III 2-hit tankbuster (TB 1/5)\nDrag Exdeath to the wall, Chaos tank drag Chaos out + position near intercard for Lat/Long\nLatitude = sides first, Longitude = front/back first',
-          strats: [
-            {
-              role: 'Tank',
-              party: 1,
-              description: 'Take Exdeath Tankbuster, then drag Exdeath/Chaos to wall at Wind',
-              imageUrl: './umad/p3-lb-10.webp'
-            },
-            {
-              role: 'Tank',
-              party: 2,
-              description: 'Take Exdeath Tankbuster, then drag Exdeath/Chaos to wall at Wind',
-              imageUrl: './umad/p3-lb-10.webp'
-            },
-            {
-              role: 'Healer',
-              party: 1,
-              description: 'Dodge Lat/Long',
-              imageUrl: './umad/p3-lb-10.webp'
-            },
-            {
-              role: 'Healer',
-              party: 2,
-              description: 'Dodge Lat/Long',
-              imageUrl: './umad/p3-lb-10.webp'
-            },
-            {
-              role: 'Melee',
-              party: 1,
-              description: 'Dodge Lat/Long',
-              imageUrl: './umad/p3-lb-10.webp'
-            },
-            {
-              role: 'Melee',
-              party: 2,
-              description: 'Dodge Lat/Long',
-              imageUrl: './umad/p3-lb-10.webp'
-            },
-            {
-              role: 'Ranged',
-              party: 1,
-              description: 'Move across to other crystal\nWatch Chaos for Lat/Long',
-              imageUrl: './umad/p3-lb-10.webp'
-            },
-            {
-              role: 'Ranged',
-              party: 2,
-              description: 'Move across to other crystal\nWatch Chaos for Lat/Long',
-              imageUrl: './umad/p3-lb-10.webp'
-            }
-          ]
+            'Proximity Tankbuster on Exdeath - one tank invulns both hits (refer to tank mit sheet)\nBe inside or South of Exdeath\nDodge Chaos Implosion: Latitude = sides first, Longitude = front/back first',
+          imageUrl: './umad/p3-Eq0-7.webp'
         },
         {
           mechanic: 'Second Resolve (Long)',
           description:
-            'Long debuffs resolve after 2nd Implosion hit\nRanged spread, Melee + Supports stack or spread depending on debuff',
-          strats: [
-            {
-              role: 'Tank',
-              party: 1,
-              description:
-                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
-              imageUrl: './umad/p3-lb-11.webp'
-            },
-            {
-              role: 'Tank',
-              party: 2,
-              description:
-                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
-              imageUrl: './umad/p3-lb-11.webp'
-            },
-            {
-              role: 'Healer',
-              party: 1,
-              description:
-                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
-              imageUrl: './umad/p3-lb-11.webp'
-            },
-            {
-              role: 'Healer',
-              party: 2,
-              description:
-                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
-              imageUrl: './umad/p3-lb-11.webp'
-            },
-            {
-              role: 'Melee',
-              party: 1,
-              description:
-                'If short {{entropy}} Fire, be away from Supports\nIf short {{dynamic-fluid}} Water, stack with Supports',
-              imageUrl: './umad/p3-lb-11.webp'
-            },
-            {
-              role: 'Melee',
-              party: 2,
-              description:
-                'If short {{entropy}} Fire, be away from Supports\nIf short {{dynamic-fluid}} Water, stack with Supports',
-              imageUrl: './umad/p3-lb-11.webp'
-            },
-            {
-              role: 'Ranged',
-              party: 1,
-              description: 'Stay spread at wall, take crystal AoE',
-              imageUrl: './umad/p3-lb-11.webp'
-            },
-            {
-              role: 'Ranged',
-              party: 2,
-              description: 'Stay spread at wall, take crystal AoE',
-              imageUrl: './umad/p3-lb-11.webp'
-            }
-          ]
+            'Long debuffs resolve after the 2nd Implosion hit\nStay in your static position and resolve the same way as the Short (Fire spread / Water stack)',
+          imageUrl: './umad/p3-Eq0-10.webp'
         },
         {
           mechanic: 'Superjump',
           description:
-            'Drag Exdeath onto the Wind crystal\nPhys Ranged go opposite Wind crystal to bait Superjump\nEveryone stack on Exdeath',
-          strats: [
-            {
-              role: 'Tank',
-              party: 1,
-              description:
-                'Drag Exdeath onto Wind crystal\nWait for Chaos to jump, then stack behind Exdeath',
-              imageUrl: './umad/p3-lb-13.webp'
-            },
-            {
-              role: 'Tank',
-              party: 2,
-              description:
-                'Drag Exdeath onto Wind crystal\nWait for Chaos to jump, then stack behind Exdeath',
-              imageUrl: './umad/p3-lb-13.webp'
-            },
-            {
-              role: 'Healer',
-              party: 1,
-              description: 'Wait for Chaos to jump, then stack behind Exdeath',
-              imageUrl: './umad/p3-lb-13.webp'
-            },
-            {
-              role: 'Healer',
-              party: 2,
-              description: 'Wait for Chaos to jump, then stack behind Exdeath',
-              imageUrl: './umad/p3-lb-13.webp'
-            },
-            {
-              role: 'Melee',
-              party: 1,
-              description: 'Wait for Chaos to jump, then stack behind Exdeath',
-              imageUrl: './umad/p3-lb-13.webp'
-            },
-            {
-              role: 'Melee',
-              party: 2,
-              description: 'Wait for Chaos to jump, then stack behind Exdeath',
-              imageUrl: './umad/p3-lb-13.webp'
-            },
-            {
-              role: 'Ranged',
-              party: 1,
-              description:
-                'Go away from Chaos to bait jump\nAs soon as casts start, stack behind Exdeath',
-              imageUrl: './umad/p3-lb-13.webp'
-            },
-            {
-              role: 'Ranged',
-              party: 2,
-              description: 'Wait for Chaos to jump, then stack behind Exdeath',
-              imageUrl: './umad/p3-lb-13.webp'
-            }
-          ]
+            'Phys Ranged bait the Chaos Superjump, then move back North as the castbar starts\nEveryone stack on Exdeath',
+          imageUrl: './umad/p3-Eq0-11.webp'
         }
       ],
       lpdu: [
@@ -2385,291 +2273,33 @@ const allP3: PhaseStrats[] = [
         },
         {
           mechanic: 'Setup',
-          strats: [
-            {
-              role: 'Tank',
-              party: 1,
-              description: 'Drag Chaos to wall at Wind crystal',
-              imageUrl: './umad/p3-lb-5.webp'
-            },
-            {
-              role: 'Tank',
-              party: 2,
-              description: 'Keep Exdeath Middle',
-              imageUrl: './umad/p3-lb-5.webp'
-            },
-            {
-              role: 'Healer',
-              party: 1,
-              description: 'Stack at Wind crystal',
-              imageUrl: './umad/p3-lb-5.webp'
-            },
-            {
-              role: 'Healer',
-              party: 2,
-              description: 'Stack at Wind crystal',
-              imageUrl: './umad/p3-lb-5.webp'
-            },
-            {
-              role: 'Melee',
-              party: 1,
-              description: 'Stack at Wind crystal',
-              imageUrl: './umad/p3-lb-5.webp'
-            },
-            {
-              role: 'Melee',
-              party: 2,
-              description: 'Stack at Wind crystal',
-              imageUrl: './umad/p3-lb-5.webp'
-            },
-            {
-              role: 'Ranged',
-              party: 1,
-              description: 'Spread at wall near short debuff crystal\nFurther from boss',
-              imageUrl: './umad/p3-lb-5.webp'
-            },
-            {
-              role: 'Ranged',
-              party: 2,
-              description: 'Spread at wall near short debuff crystal\nCloser to boss',
-              imageUrl: './umad/p3-lb-5.webp'
-            }
-          ]
+          description:
+            'Use the Wind crystal as the new North for the whole mechanic (ignore debuffs for positioning)\nMT/H1/Melees take Chaos, OT/H2/Ranged take Exdeath\nKeep both Exdeath AND Chaos stacked mid (Exdeath tank drifts North during the cast)\nHealers always on the Water side, Ranged always on the Fire side\nMelees stack North with the tanks (Water = stay stacked, Fire = Melees NW / Tank NE)',
+          imageUrl: './umad/p3-lpdu-1.webp'
         },
         {
           mechanic: 'First Resolve (Short)',
           description:
-            'Exdeath defam, Firewall debuffs drop, Short element resolves\nShort {{entropy}} Fire: Melee spread from Supports\nShort {{dynamic-fluid}} Water: Melee + Supports stack\nCrystal AOE hits Ranged',
-          strats: [
-            {
-              role: 'Tank',
-              party: 1,
-              description:
-                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
-              imageUrl: './umad/p3-lb-6.webp'
-            },
-            {
-              role: 'Tank',
-              party: 2,
-              description:
-                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
-              imageUrl: './umad/p3-lb-6.webp'
-            },
-            {
-              role: 'Healer',
-              party: 1,
-              description:
-                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
-              imageUrl: './umad/p3-lb-6.webp'
-            },
-            {
-              role: 'Healer',
-              party: 2,
-              description:
-                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
-              imageUrl: './umad/p3-lb-6.webp'
-            },
-            {
-              role: 'Melee',
-              party: 1,
-              description:
-                'If short {{entropy}} Fire, be away from Supports\nIf short {{dynamic-fluid}} Water, stack with Supports',
-              imageUrl: './umad/p3-lb-6.webp'
-            },
-            {
-              role: 'Melee',
-              party: 2,
-              description:
-                'If short {{entropy}} Fire, be away from Supports\nIf short {{dynamic-fluid}} Water, stack with Supports',
-              imageUrl: './umad/p3-lb-6.webp'
-            },
-            {
-              role: 'Ranged',
-              party: 1,
-              description: 'Stay spread at wall, take crystal AoE',
-              imageUrl: './umad/p3-lb-6.webp'
-            },
-            {
-              role: 'Ranged',
-              party: 2,
-              description: 'Stay spread at wall, take crystal AoE',
-              imageUrl: './umad/p3-lb-6.webp'
-            }
-          ]
+            'Short element resolves as the Exdeath defamation drops\nShort {{entropy}} Fire: Melees spread away from Supports\nShort {{dynamic-fluid}} Water: Melees + Supports stack\nCrystal AoE hits the Ranged on the Fire side',
+          imageUrl: './umad/p3-lpdu-4.webp'
         },
         {
           mechanic: 'Tankbuster + Implosion',
           description:
-            'Exdeath Thunder III 2-hit tankbuster (TB 1/5)\nDrag Exdeath to the wall, Chaos tank drag Chaos out + position near intercard for Lat/Long\nLatitude = sides first, Longitude = front/back first',
-          strats: [
-            {
-              role: 'Tank',
-              party: 1,
-              description: 'Take Exdeath Tankbuster, then drag Exdeath/Chaos to wall at Wind',
-              imageUrl: './umad/p3-lb-10.webp'
-            },
-            {
-              role: 'Tank',
-              party: 2,
-              description: 'Take Exdeath Tankbuster, then drag Exdeath/Chaos to wall at Wind',
-              imageUrl: './umad/p3-lb-10.webp'
-            },
-            {
-              role: 'Healer',
-              party: 1,
-              description: 'Dodge Lat/Long',
-              imageUrl: './umad/p3-lb-10.webp'
-            },
-            {
-              role: 'Healer',
-              party: 2,
-              description: 'Dodge Lat/Long',
-              imageUrl: './umad/p3-lb-10.webp'
-            },
-            {
-              role: 'Melee',
-              party: 1,
-              description: 'Dodge Lat/Long',
-              imageUrl: './umad/p3-lb-10.webp'
-            },
-            {
-              role: 'Melee',
-              party: 2,
-              description: 'Dodge Lat/Long',
-              imageUrl: './umad/p3-lb-10.webp'
-            },
-            {
-              role: 'Ranged',
-              party: 1,
-              description: 'Move across to other crystal\nWatch Chaos for Lat/Long',
-              imageUrl: './umad/p3-lb-10.webp'
-            },
-            {
-              role: 'Ranged',
-              party: 2,
-              description: 'Move across to other crystal\nWatch Chaos for Lat/Long',
-              imageUrl: './umad/p3-lb-10.webp'
-            }
-          ]
+            'Proximity Tankbuster on Exdeath (kept mid) - one tank invulns/mits both hits (refer to tank mit sheet)\nBe inside or South of Exdeath\nDodge Chaos Implosion: Latitude = sides first, Longitude = front/back first',
+          imageUrl: './umad/p3-lpdu-8.webp'
         },
         {
           mechanic: 'Second Resolve (Long)',
           description:
-            'Long debuffs resolve after 2nd Implosion hit\nRanged spread, Melee + Supports stack or spread depending on debuff',
-          strats: [
-            {
-              role: 'Tank',
-              party: 1,
-              description:
-                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
-              imageUrl: './umad/p3-lb-11.webp'
-            },
-            {
-              role: 'Tank',
-              party: 2,
-              description:
-                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
-              imageUrl: './umad/p3-lb-11.webp'
-            },
-            {
-              role: 'Healer',
-              party: 1,
-              description:
-                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
-              imageUrl: './umad/p3-lb-11.webp'
-            },
-            {
-              role: 'Healer',
-              party: 2,
-              description:
-                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
-              imageUrl: './umad/p3-lb-11.webp'
-            },
-            {
-              role: 'Melee',
-              party: 1,
-              description:
-                'If short {{entropy}} Fire, be away from Supports\nIf short {{dynamic-fluid}} Water, stack with Supports',
-              imageUrl: './umad/p3-lb-11.webp'
-            },
-            {
-              role: 'Melee',
-              party: 2,
-              description:
-                'If short {{entropy}} Fire, be away from Supports\nIf short {{dynamic-fluid}} Water, stack with Supports',
-              imageUrl: './umad/p3-lb-11.webp'
-            },
-            {
-              role: 'Ranged',
-              party: 1,
-              description: 'Stay spread at wall, take crystal AoE',
-              imageUrl: './umad/p3-lb-11.webp'
-            },
-            {
-              role: 'Ranged',
-              party: 2,
-              description: 'Stay spread at wall, take crystal AoE',
-              imageUrl: './umad/p3-lb-11.webp'
-            }
-          ]
+            'Long debuffs resolve after the 2nd Implosion hit\nStay in your static position and resolve the same way as the Short (Fire spread / Water stack)',
+          imageUrl: './umad/p3-lpdu-12.webp'
         },
         {
           mechanic: 'Superjump',
           description:
-            'Drag Exdeath onto the Wind crystal\nPhys Ranged go opposite Wind crystal to bait Superjump\nEveryone stack on Exdeath',
-          strats: [
-            {
-              role: 'Tank',
-              party: 1,
-              description:
-                'Drag Exdeath onto Wind crystal\nWait for Chaos to jump, then stack behind Exdeath',
-              imageUrl: './umad/p3-lb-13.webp'
-            },
-            {
-              role: 'Tank',
-              party: 2,
-              description:
-                'Drag Exdeath onto Wind crystal\nWait for Chaos to jump, then stack behind Exdeath',
-              imageUrl: './umad/p3-lb-13.webp'
-            },
-            {
-              role: 'Healer',
-              party: 1,
-              description: 'Wait for Chaos to jump, then stack behind Exdeath',
-              imageUrl: './umad/p3-lb-13.webp'
-            },
-            {
-              role: 'Healer',
-              party: 2,
-              description: 'Wait for Chaos to jump, then stack behind Exdeath',
-              imageUrl: './umad/p3-lb-13.webp'
-            },
-            {
-              role: 'Melee',
-              party: 1,
-              description: 'Wait for Chaos to jump, then stack behind Exdeath',
-              imageUrl: './umad/p3-lb-13.webp'
-            },
-            {
-              role: 'Melee',
-              party: 2,
-              description: 'Wait for Chaos to jump, then stack behind Exdeath',
-              imageUrl: './umad/p3-lb-13.webp'
-            },
-            {
-              role: 'Ranged',
-              party: 1,
-              description:
-                'Go away from Chaos to bait jump\nAs soon as casts start, stack behind Exdeath',
-              imageUrl: './umad/p3-lb-13.webp'
-            },
-            {
-              role: 'Ranged',
-              party: 2,
-              description: 'Wait for Chaos to jump, then stack behind Exdeath',
-              imageUrl: './umad/p3-lb-13.webp'
-            }
-          ]
+            'Phys Ranged bait the Chaos Superjump after the 2nd debuffs, then move back North as the castbar starts\nEveryone stack on Exdeath (mid)',
+          imageUrl: './umad/p3-lpdu-16.webp'
         }
       ]
     }
@@ -2726,53 +2356,39 @@ const allP3: PhaseStrats[] = [
       Eq0: [
         {
           mechanic: 'Kefka Dashes',
-          action: 'Watch Kefka dashes\nREMEMBER start + CW or CCW rotation for Limit Cut',
-          imageUrl: './umad/p3-lb-14.webp'
+          description: 'Watch Kefka dashes\nREMEMBER start + CW or CCW rotation for Limit Cut',
+          imageUrl: './umad/p3-Eq0-12.webp'
         },
         {
           mechanic: 'Vacuum Wave + Tank LB',
-          action:
-            'Resolve {{headwind}}{{tailwind}} Head/Tailwind\nStack all 8 players and mit\nNon-LB tank can also step out to 7-1 for extra LB gen',
-          imageUrl: './umad/p3-lb-8stack.webp'
-        },
-        {
-          mechanic: 'Pairs Variant',
-          action:
-            'Supports Left, DPS Right, each with your role partner\nResolve {{headwind}}{{tailwind}} Head/Tailwind\nTANK LB toward the end of the cast bar\nMove to your Wind stack location',
-          imageUrl: './umad/p3-lb-pairs.webp'
+          description:
+            'Resolve {{headwind}}{{tailwind}} Head/Tailwind as you get knocked back\nStand in role pairs (no one uses anti-knockback)\nTank LB3 toward the end of the Vacuum Wave cast',
+          imageUrl: './umad/p3-Eq0-13.webp'
         },
         {
           mechanic: 'Numbers',
           description:
             'Relative North = opposite Kefka’s FIRST dash\nStand on the inter-inter-cardinals in number order from Rel N, rotating OPPOSITE Kefka’s dash direction\nAlign with the waymark or between markers\nExdeath Thunder III tankbuster after (TB 2/5)',
-          action: 'Align with the waymark or between markers',
-          imageUrl: './umad/p3-lb-17.webp'
+          imageUrl: './umad/p3-Eq0-15.webp'
         }
       ],
       lpdu: [
         {
           mechanic: 'Kefka Dashes',
-          action: 'Watch Kefka dashes\nREMEMBER start + CW or CCW rotation for Limit Cut',
-          imageUrl: './umad/p3-lb-14.webp'
+          description: 'Watch Kefka dashes\nREMEMBER start + CW or CCW rotation for Limit Cut',
+          imageUrl: './umad/p3-lpdu-17.webp'
         },
         {
           mechanic: 'Vacuum Wave + Tank LB',
-          action:
-            'Resolve {{headwind}}{{tailwind}} Head/Tailwind\nStack all 8 players and mit\nNon-LB tank can also step out to 7-1 for extra LB gen',
-          imageUrl: './umad/p3-lb-8stack.webp'
-        },
-        {
-          mechanic: 'Pairs Variant',
-          action:
-            'Supports Left, DPS Right, each with your role partner\nResolve {{headwind}}{{tailwind}} Head/Tailwind\nTANK LB toward the end of the cast bar\nMove to your Wind stack location',
-          imageUrl: './umad/p3-lb-pairs.webp'
+          description:
+            'Target Exdeath and resolve {{headwind}}{{tailwind}} Head/Tailwind as you get knocked back\nStand in role pairs (no one uses anti-knockback)\nTank LB3 toward the end of the Vacuum Wave cast',
+          imageUrl: './umad/p3-lpdu-18.webp'
         },
         {
           mechanic: 'Numbers',
           description:
             'Relative North = opposite Kefka’s FIRST dash\nStand on the inter-inter-cardinals in number order from Rel N, rotating OPPOSITE Kefka’s dash direction\nAlign with the waymark or between markers\nExdeath Thunder III tankbuster after (TB 2/5)',
-          action: 'Align with the waymark or between markers',
-          imageUrl: './umad/p3-lb-17.webp'
+          imageUrl: './umad/p3-lpdu-20.webp'
         }
       ]
     }
@@ -2814,119 +2430,14 @@ const allP3: PhaseStrats[] = [
   },
   {
     phaseName: 'Earthquake: Stompies',
-    tag: 'p3',
-    mechs: [
-      {
-        mechanic: 'Blizzard Puddles',
-        description:
-          'Kefka = Relative North\nSupports start Relative North, DPS start Relative South\nBlizzard AOEs under everyone -> move to intercards in partners\nG1 Rel West/Left, G2 Rel East/Right\n1 Support or 1 DPS gets a stack marker',
-        strats: [
-          {
-            role: 'Tank',
-            party: 1,
-            description: 'Start Relative North, Spread Northwest',
-            imageUrl: './umad/p3-lb-54.webp'
-          },
-          {
-            role: 'Tank',
-            party: 2,
-            description: 'Start Relative North, Spread Northeast',
-            imageUrl: './umad/p3-lb-54.webp'
-          },
-          {
-            role: 'Healer',
-            party: 1,
-            description: 'Start Relative North, Spread Northwest',
-            imageUrl: './umad/p3-lb-54.webp'
-          },
-          {
-            role: 'Healer',
-            party: 2,
-            description: 'Start Relative North, Spread Northeast',
-            imageUrl: './umad/p3-lb-54.webp'
-          },
-          {
-            role: 'Melee',
-            party: 1,
-            description: 'Start Relative South, Spread Southwest',
-            imageUrl: './umad/p3-lb-54.webp'
-          },
-          {
-            role: 'Melee',
-            party: 2,
-            description: 'Start Relative South, Spread Southeast',
-            imageUrl: './umad/p3-lb-54.webp'
-          },
-          {
-            role: 'Ranged',
-            party: 1,
-            description: 'Start Relative South, Spread Southwest',
-            imageUrl: './umad/p3-lb-54.webp'
-          },
-          {
-            role: 'Ranged',
-            party: 2,
-            description: 'Start Relative South, Spread Southeast',
-            imageUrl: './umad/p3-lb-54.webp'
-          }
-        ]
-      },
-      {
-        mechanic: 'Towers + Enrage',
-        description:
-          'Stacked role returns mid after the 2nd puddle bait; other role takes towers (G1 West, G2 East)\nSwap: opposite role gets the stack, take towers again\nBlizzard III = keep moving\nKill both bosses before enrage',
-        strats: [
-          {
-            role: 'Tank',
-            party: 1,
-            description: 'West/Left Tower',
-            imageUrl: './umad/p3-lb-56.webp'
-          },
-          {
-            role: 'Tank',
-            party: 2,
-            description: 'East/Right Tower',
-            imageUrl: './umad/p3-lb-56.webp'
-          },
-          {
-            role: 'Healer',
-            party: 1,
-            description: 'West/Left Tower',
-            imageUrl: './umad/p3-lb-56.webp'
-          },
-          {
-            role: 'Healer',
-            party: 2,
-            description: 'East/Right Tower',
-            imageUrl: './umad/p3-lb-56.webp'
-          },
-          {
-            role: 'Melee',
-            party: 1,
-            description: 'West/Left Tower',
-            imageUrl: './umad/p3-lb-56.webp'
-          },
-          {
-            role: 'Melee',
-            party: 2,
-            description: 'East/Right Tower',
-            imageUrl: './umad/p3-lb-56.webp'
-          },
-          {
-            role: 'Ranged',
-            party: 1,
-            description: 'West/Left Tower',
-            imageUrl: './umad/p3-lb-56.webp'
-          },
-          {
-            role: 'Ranged',
-            party: 2,
-            description: 'East/Right Tower',
-            imageUrl: './umad/p3-lb-56.webp'
-          }
-        ]
-      }
-    ]
+    tag: 'blackhole',
+    mechs: {
+      double: splitStomps,
+      dsa: splitStomps,
+      sda: splitStomps,
+      ZsQ: zsqStomps,
+      lpdu: lpduStomps,
+    }
   }
 ];
 
@@ -3247,11 +2758,11 @@ const kefkabinStrat: Strat = {
 
 const euPfStrat: Strat = {
   stratName: 'eupf',
-  description: 'P1: X13 + uptime graven + static freaky, P2: p3Z, P3: Eq0 + ZsQ, P4: 7pj, P5: n4a',
+  description: 'P1: X13 + uptime graven + static freaky, P2: p3Z, P3: Eq0 + ZsQ, P4: 7pj, P5: 4px',
   stratUrl: {
     'P1: X13 (modified xolo)': 'https://raidplan.io/plan/p8JvSSs1_QKMVX13',
     'P1: Static Freaky (LPDU Tele-Trouncing)': 'https://raidplan.io/plan/saC2CjTaXmSApm6y',
-    "P2: p3Z (Meow³'s Braindead P2 Buddy": 'https://raidplan.io/plan/lZWqxfxvyhF9sp3Z',
+    "P2: p3Z (Meow³'s Braindead P2 Buddy)": 'https://raidplan.io/plan/lZWqxfxvyhF9sp3Z',
     'P3: Eq0 (P3 but tank lb)': 'https://raidplan.io/plan/cyHdnCaTdIkh4Eq0',
     'P3: ZsQ (Kefka Relative AM-less Earthquakes)': 'https://raidplan.io/plan/ZhNPOdHVgc48yZsQ',
     'P4: 7pj (UMAD p4)': 'https://raidplan.io/plan/guufe9q559evt7pj',
@@ -3331,7 +2842,7 @@ export const dancingMadFightConfig: FightConfig = {
           label: 'Filipino',
           url: { name: 'Filipino Box Graven 3', url: 'https://raidplan.io/plan/5rf2uhud5ztsbud5' }
         },
-        { value: 'stfr', label: 'Static Freaky' },
+        { value: 'stfr', label: 'Static Freaky', url: { name: 'LPDU Tele-Trouncing', url: 'https://raidplan.io/plan/saC2CjTaXmSApm6y' }},
         {
           value: 'freaky',
           label: 'Freaky MGR',
@@ -3359,11 +2870,13 @@ export const dancingMadFightConfig: FightConfig = {
         },
         {
           value: 'p3Z',
-          label: 'p3Z'
+          label: 'p3Z',
+          url: { name: "Meow³'s Braindead P2 Buddy", url: 'https://raidplan.io/plan/lZWqxfxvyhF9sp3Z' }
         },
         {
           value: 'lpdu',
-          label: 'LPDU'
+          label: 'LPDU',
+          url: { name: "LPDU P2", url: 'https://raidplan.io/plan/142oXOZpPc_jh3dd' }
         }
       ]
     },
@@ -3382,8 +2895,8 @@ export const dancingMadFightConfig: FightConfig = {
             url: 'https://raidplan.io/plan/9assfrb4fcvwat9e'
           }
         },
-        { value: 'Eq0', label: 'Eq0 (Walldeath)' },
-        { value: 'lpdu', label: 'LPDU (Middeath)' }
+        { value: 'Eq0', label: 'Eq0 (Walldeath)', url: { name: "P3 but tank lb", url: 'https://raidplan.io/plan/cyHdnCaTdIkh4Eq0' } },
+        { value: 'lpdu', label: 'LPDU (Middeath)', url: { name: "LPDU P3 - Bowels Exdeath Mid", url: 'https://raidplan.io/plan/-j_AAEyx6yACuTve' } }
       ]
     },
     {
@@ -3414,11 +2927,19 @@ export const dancingMadFightConfig: FightConfig = {
         },
         {
           value: 'ZsQ',
-          label: 'ZsQ (LP Stomps)'
+          label: 'ZsQ (LP Stomps)',
+          url: {
+            name: 'Kefka Relative AM-less Earthquakes',
+            url: 'https://raidplan.io/plan/ZhNPOdHVgc48yZsQ'
+          }
         },
         {
           value: 'lpdu',
-          label: 'LPDU (Role Stomps)'
+          label: 'LPDU (Role Stomps)',
+          url: {
+            name: 'LPDU P3',
+            url: 'https://raidplan.io/plan/vO5T6KpnHKV4tOXo'
+          }
         }
       ]
     }
@@ -3493,7 +3014,7 @@ export const dancingMadFightConfig: FightConfig = {
       tag: 'forsaken',
       value: 'p3Z',
       description:
-        'AAABBBA, Tanks and Melees are the only flexers. Set 1 uses slightly different positioning to the other odd towers.',
+        'AAABBBBA, Tanks and Melees are the only flexers. Set 1 uses slightly different positioning to the other odd towers.',
       badges: [
         {
           text: 'EU',
