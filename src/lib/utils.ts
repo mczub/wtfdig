@@ -10,7 +10,8 @@ import type {
   FightOptionsContext,
   FightToggleUrl,
   FightStratConfig,
-  SpotlightMask
+  SpotlightMask,
+  ImageUrls
 } from './types';
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -178,27 +179,45 @@ export function getStratArray(
   ];
 }
 
+/** An `ImageUrls` object: a `default` image string plus optional per-tag-value
+ * `alt` overrides. Distinguished from a plain `Record<string, string>` by its
+ * required string `default` key. */
+function isImageUrls(value: unknown): value is ImageUrls {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    !Array.isArray(value) &&
+    typeof (value as { default?: unknown }).default === 'string'
+  );
+}
+
 export function resolveStratItem<T>(
-  item: T | Record<string, T> | undefined,
+  item: T | Record<string, T> | ImageUrls | undefined,
   tag: string | undefined,
-  stratState: Record<string, string | null>
+  stratState: Record<string, string | null>,
+  stratName?: string
 ): T | undefined {
   if (!item) return item;
-  if (
-    tag &&
-    stratState?.[tag] &&
-    typeof item === 'object' &&
-    item !== null &&
-    !Array.isArray(item)
-  ) {
+  // The value a tag resolves against: when the tag is a toggle key, its current
+  // value; otherwise (e.g. a phase tag like `p1` that has no toggle) fall back
+  // to the main strat name (kefkabin / eupf / lpdu).
+  const tagValue = tag ? (stratState?.[tag] ?? stratName ?? undefined) : undefined;
+
+  // ImageUrls: a default image with optional per-tag-value alternatives. Keeps
+  // one shared description while swapping only the image per strat/toggle value.
+  if (isImageUrls(item)) {
+    const alt = tagValue ? item.alt?.[tagValue] : undefined;
+    return (alt ?? item.default) as T;
+  }
+
+  if (tagValue && typeof item === 'object' && item !== null && !Array.isArray(item)) {
     const itemRecord = item as Record<string, T>;
-    const stateKey = stratState[tag] as string;
     // Use `in` rather than truthy-checking the value: a toggle variant may
     // legitimately be an empty string (e.g. m12s Idyllic Dream Overview has
     // description "" for several toggles), and `'' || item` would incorrectly
     // return the whole record object back to the consumer.
-    if (stateKey in itemRecord) {
-      return itemRecord[stateKey];
+    if (tagValue in itemRecord) {
+      return itemRecord[tagValue];
     }
   }
   return item as T;
@@ -297,7 +316,7 @@ export interface BoardUrlArgs {
 
 function getBoardCodes({ strat, stratState }: BoardUrlArgs): string[] {
   return (strat?.strats ?? []).flatMap((phaseStrat) => {
-    return resolveStratItem(phaseStrat.boardCode, phaseStrat.tag, stratState) ?? [];
+    return resolveStratItem(phaseStrat.boardCode, phaseStrat.tag, stratState, strat?.stratName) ?? [];
   });
 }
 

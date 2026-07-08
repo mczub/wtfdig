@@ -528,18 +528,6 @@
                             </p>
                           {/if}
 
-                          {#if mech?.imageUrl}
-                            {@const tf = mech.alignmentTransforms?.[alignment] ?? mech.transform}
-                            <div class="mt-4 overflow-hidden">
-                              <img
-                                class="w-auto h-auto rounded-sm object-contain max-w-full max-h-[350px] transition-transform duration-300 origin-center"
-                                style:transform={tf || undefined}
-                                src={mech.imageUrl}
-                                alt={mech.mechanic}
-                              />
-                            </div>
-                          {/if}
-
                           <div class="flex items-start gap-1.5 text-base text-surface-100">
                             {#if mech.strats && mech.strats.length > 0 && mech.strats[0].description}
                               {#if mech.strats[0].toggleKey}
@@ -554,6 +542,27 @@
                                 : ''}
                             </div>
                           </div>
+
+                          {#if mech?.imageUrl}
+                            {@const tf = mech.alignmentTransforms?.[alignment] ?? mech.transform}
+                            <!-- When the image is shared across all roles it lives at the
+                                 mech level; the per-role mask (if any) overlays it, unless a
+                                 role-specific strat image is also present (rendered below). -->
+                            {@const mechMask = mech?.strats?.[0]?.imageUrl
+                              ? undefined
+                              : mech?.strats?.[0]?.mask}
+                            <div class="mt-2 overflow-hidden relative w-fit h-fit">
+                              <img
+                                class="block rounded-sm max-w-full max-h-[350px] transition-transform duration-300 origin-center"
+                                style:transform={tf || undefined}
+                                src={mech.imageUrl}
+                                alt={mech.mechanic}
+                              />
+                              {#if spotlight && mechMask}
+                                <SpotlightOverlay mask={mechMask} />
+                              {/if}
+                            </div>
+                          {/if}
 
                           {#if mech?.strats && mech.strats[0]?.imageUrl}
                             <div class="mt-2 overflow-hidden relative w-fit h-fit">

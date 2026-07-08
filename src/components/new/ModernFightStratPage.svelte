@@ -153,17 +153,22 @@
       const resolvedMechs = resolveMechs(phaseStrat.mechs, phaseStrat.tag, stratState);
       return {
         ...phaseStrat,
-        description: resolveStratItem(phaseStrat.description, phaseStrat.tag, stratState),
-        imageUrl: resolveStratItem(phaseStrat.imageUrl, phaseStrat.tag, stratState),
-        mask: resolveStratItem(phaseStrat.mask, phaseStrat.tag, stratState),
-        url: resolveStratItem(phaseStrat.url, phaseStrat.tag, stratState),
+        description: resolveStratItem(phaseStrat.description, phaseStrat.tag, stratState, stratName),
+        imageUrl: resolveStratItem(phaseStrat.imageUrl, phaseStrat.tag, stratState, stratName),
+        mask: resolveStratItem(phaseStrat.mask, phaseStrat.tag, stratState, stratName),
+        url: resolveStratItem(phaseStrat.url, phaseStrat.tag, stratState, stratName),
         mechs: resolvedMechs?.map((phaseStratMech) => {
           return {
             ...phaseStratMech,
-            description: resolveStratItem(phaseStratMech.description, phaseStrat.tag, stratState),
-            notes: resolveStratItem(phaseStratMech.notes, phaseStrat.tag, stratState),
-            imageUrl: resolveStratItem(phaseStratMech.imageUrl, phaseStrat.tag, stratState),
-            url: resolveStratItem(phaseStratMech.url, phaseStrat.tag, stratState),
+            description: resolveStratItem(
+              phaseStratMech.description,
+              phaseStrat.tag,
+              stratState,
+              stratName
+            ),
+            notes: resolveStratItem(phaseStratMech.notes, phaseStrat.tag, stratState, stratName),
+            imageUrl: resolveStratItem(phaseStratMech.imageUrl, phaseStrat.tag, stratState, stratName),
+            url: resolveStratItem(phaseStratMech.url, phaseStrat.tag, stratState, stratName),
             strats:
               phaseStratMech.strats &&
               phaseStratMech.strats
@@ -185,10 +190,16 @@
                     description: resolveStratItem(
                       playerStrat.description,
                       phaseStrat.tag,
-                      stratState
+                      stratState,
+                      stratName
                     ),
-                    imageUrl: resolveStratItem(playerStrat.imageUrl, phaseStrat.tag, stratState),
-                    mask: resolveStratItem(playerStrat.mask, phaseStrat.tag, stratState)
+                    imageUrl: resolveStratItem(
+                      playerStrat.imageUrl,
+                      phaseStrat.tag,
+                      stratState,
+                      stratName
+                    ),
+                    mask: resolveStratItem(playerStrat.mask, phaseStrat.tag, stratState, stratName)
                   };
                 })
           };

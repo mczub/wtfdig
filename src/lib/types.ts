@@ -19,7 +19,7 @@ export interface PlayerMechStrat {
   toggleKey?: string;
   toggleValue?: string;
   description: string | Record<string, string>;
-  imageUrl?: string | Record<string, string>;
+  imageUrl?: string | Record<string, string> | ImageUrls;
   imageRotated?: string;
   mask?: string | Record<string, string>;
   transform?: string;
@@ -40,7 +40,7 @@ export interface MechanicStrat {
   action?: string | Record<string, string>;
   notes?: string | Record<string, string>;
   strats?: PlayerMechStrat[];
-  imageUrl?: string | Record<string, string>;
+  imageUrl?: string | Record<string, string> | ImageUrls;
   arenaData?: import('$lib/arena').ArenaDiagramData;
   url?: string | Record<string, string>;
   /** CSS transform applied to the mech image regardless of alignment. */
@@ -49,11 +49,17 @@ export interface MechanicStrat {
   alignmentTransforms?: Partial<Record<Alignment, string>>;
 }
 
+export interface ImageUrls {
+  default: string;
+  // tagValue: url; matches on tag defined at mech level
+  alt?: Record<string, string>;
+}
+
 export interface PhaseStrats {
   phaseName: string;
   tag?: string;
   description?: string | Record<string, string>;
-  imageUrl?: string | Record<string, string>;
+  imageUrl?: string | Record<string, string> | ImageUrls;
   mask?: string | Record<string, string>;
   boardCode?: string | string[] | Record<string, string | string[]>;
   mechs?: MechanicStrat[] | Record<string, MechanicStrat[]>;

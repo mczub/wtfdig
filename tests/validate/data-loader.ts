@@ -11,7 +11,8 @@ import type {
   PhaseStrats,
   MechanicStrat,
   PlayerMechStrat,
-  FightToggleConfig
+  FightToggleConfig,
+  ImageUrls
 } from '$lib/types';
 
 // ── Fight data imports ─────────────────────────────────────────────────────
@@ -109,14 +110,25 @@ export interface MechEntry {
 // ── String extraction helpers ──────────────────────────────────────────────
 
 /** Extract all string values from a field that may be string | Record<string, string> */
-function* extractStrings(value: string | Record<string, string> | undefined): Generator<string> {
+function* extractStrings(
+  value: string | Record<string, string> | ImageUrls | undefined
+): Generator<string> {
   if (!value) return;
   if (typeof value === 'string') {
     yield value;
-  } else {
-    for (const v of Object.values(value)) {
+    return;
+  }
+  // ImageUrls: { default, alt? } — yield the default plus every alternative.
+  if (typeof (value as ImageUrls).default === 'string') {
+    const imageUrls = value as ImageUrls;
+    yield imageUrls.default;
+    for (const v of Object.values(imageUrls.alt ?? {})) {
       yield v;
     }
+    return;
+  }
+  for (const v of Object.values(value as Record<string, string>)) {
+    yield v;
   }
 }
 
