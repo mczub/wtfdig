@@ -1824,7 +1824,7 @@ const allP4: PhaseStrats[] = [
       {
         mechanic: 'Neo Exdeath Debuffs',
         description:
-          '{{forked-lightning}}{{compressed-water}} Lightning/Water can have short or long timer\nNeo Exdeath applies 2x Lightning and 2x Water per cast\nOne cast will have Short timer, other will be Long\n{{forked-lightning}} Lightning OR {{kefka-fake}}{{compressed-water}} Fake Water = Spread\n{{compressed-water}} Water OR {{kefka-fake}}{{forked-lightning}} Fake Lightning = Stack\n\nEach player gets 1 {{accel-bomb}} Accel Bomb with a short or long timer\nNeo Exdeath applies 2x Short and 2x Long per cast\n{{accel-bomb}} Accel Bomb = Stillness, {{kefka-fake}} Fake = Motion\n\n1st applied {{cursed-shriek}} Shriek has short timer, 2nd has long timer\n{{cursed-shriek}} Shriek = Look away, {{kefka-fake}} Fake = Look at',
+          '{{forked-lightning}}{{compressed-water}} Lightning/Water can have short or long timer\nNeo Exdeath applies 2x Lightning and 2x Water per cast\nOne cast will have Short timer, other will be Long\n{{forked-lightning}} Lightning OR {{kefka-fake}}{{compressed-water}} Fake Water = Spread\n{{compressed-water}} Water OR {{kefka-fake}}{{forked-lightning}} Fake Lightning = Stack\n\nEach player gets 1 {{accel-bomb}} Accel Bomb with a short or long timer\nNeo Exdeath applies 2x Short and 2x Long per cast\n{{accel-bomb}} Accel Bomb = Stillness, {{kefka-fake}} Fake = Motion\n\n1st applied {{cursed-shriek}} Shriek has short timer, 2nd has long timer\n{{cursed-shriek}} Shriek = Look away, {{kefka-fake}} Fake = Look at\n\nEach timer always goes to 1 Support + 1 DPS ({{forked-lightning}}{{compressed-water}}{{cursed-shriek}}) or 2 Support + 2 DPS ({{accel-bomb}})',
         imageUrl: './umad/p4-exdeath-debuffs.webp'
       },
       {
@@ -1847,7 +1847,7 @@ const allP4: PhaseStrats[] = [
       {
         mechanic: 'Debuff Resolution',
         description:
-          "Stacks {{compressed-water}}/{{kefka-fake}}{{forked-lightning}}: Supports North, DPS South\nSpreads: {{forked-lightning}}/{{kefka-fake}}{{compressed-water}} Supports West, DPS East\n\nShriek {{cursed-shriek}}: Shrieks in, party look away, debuffs don't look at each other\nFake Shriek {{kefka-fake}}{{cursed-shriek}}: Shrieks in, party look in, debuffs look at each other\n\nInferno {{entropy}}/{{kefka-fake}}{{dynamic-fluid}}: Drop twister AOE middle, then spread\nTsunami {{dynamic-fluid}}/{{kefka-fake}}{{entropy}}: Drop twister donut middle, then stay"
+          "Stacks {{compressed-water}}/{{kefka-fake}}{{forked-lightning}}: Supports North, DPS South\nSpreads: {{forked-lightning}}/{{kefka-fake}}{{compressed-water}} Supports West, DPS East\n\nShriek {{cursed-shriek}}: Shrieks in, party out N/S and look away, debuffs don't look at each other\nFake Shriek {{kefka-fake}}{{cursed-shriek}}: Shrieks in, party look in, debuffs look at each other\n\nInferno {{entropy}}/{{kefka-fake}}{{dynamic-fluid}}: Drop twister AOE middle, then spread\nTsunami {{dynamic-fluid}}/{{kefka-fake}}{{entropy}}: Drop twister donut middle, then stay"
       }
     ]
   },
@@ -1864,7 +1864,7 @@ const allP4: PhaseStrats[] = [
       {
         mechanic: 'Gazes',
         action:
-          'Shrieks {{cursed-shriek}} under boss, Support Left, DPS Right\nIf {{kefka-real}} Real, everyone look away\n If {{kefka-fake}}, party look in, debuffs look at each other',
+          'Shrieks {{cursed-shriek}} under boss, Support North, DPS South\nParty out along the thunder edge - gazes are the only players inside the hitbox\nIf {{kefka-real}} Real, everyone look away\nIf {{kefka-fake}}, party look in, debuffs look at each other',
         imageUrl: './umad/p4-gazes-1.webp'
       }
     ]
