@@ -24,10 +24,13 @@
     Clock1,
     Clock4,
     User,
-    ChevronDown
+    ChevronDown,
+    Columns2,
+    Rows3
   } from '@lucide/svelte';
   import PipPortal from '$lib/components/PipPortal.svelte';
   import { debuffIconUrl } from '$lib/debuffs';
+  import { browser } from '$app/environment';
 
   // Option values that map to a status icon (others fall back to arrows).
   const VAL_ICON: Record<string, string> = {
@@ -42,6 +45,14 @@
   }
 
   let s = $state<P4State>({});
+  // Optional 2-column layout for wide screens (lg+ only; PIP window stays vertical).
+  let wide = $state(browser && localStorage.getItem('p4-helper-wide') === '1');
+  // Mirrors PipPortal's isPopped so top-level snippets can compact spacing in the PIP window.
+  let popped = $state(false);
+  function toggleWide() {
+    wide = !wide;
+    if (browser) localStorage.setItem('p4-helper-wide', wide ? '1' : '0');
+  }
   // Sections manually re-expanded on mobile after auto-collapse (keyed by title).
   let expanded = $state<Record<string, boolean>>({});
   // For each linked field, which field in its group the user actively clicked.
@@ -128,7 +139,9 @@
 {#snippet selectorRow(id: string, label: string, opts: InputOption[])}
   <div class="flex items-center gap-3">
     <div
-      class="w-28 md:w-48 shrink-0 text-sm md:text-base text-muted-foreground flex items-center gap-1.5 {id.includes(
+      class="{popped
+        ? 'w-28'
+        : 'w-28 md:w-48'} shrink-0 text-base text-muted-foreground flex items-center gap-1.5 {id.includes(
         'bomb'
       )
         ? 'cursor-help underline decoration-dotted underline-offset-2 decoration-muted-foreground/50'
@@ -143,9 +156,9 @@
         {@const selected = s[id] === o.val}
         {@const elim = !selected && isEliminated(s, id, o.val, sourceOf[id])}
         <button
-          class="relative flex items-center w-20 gap-1.5 px-2 py-1.5 rounded-lg text-sm md:text-base cursor-pointer transition-colors {selected
-            ? selClass(o.cls)
-            : unsel}"
+          class="relative flex items-center w-20 gap-1.5 px-2 rounded-lg text-base cursor-pointer transition-colors {popped
+            ? 'py-1'
+            : 'py-1.5'} {selected ? selClass(o.cls) : unsel}"
           title={elim ? (eliminationReason(s, id, o.val, sourceOf[id]) ?? undefined) : undefined}
           onclick={() => set(id, o.val)}
         >
@@ -197,7 +210,7 @@
       <ChevronDown class="size-4 opacity-60 ml-auto shrink-0" />
     </button>
   {/if}
-  <div class="flex-col gap-2 {collapsed ? 'hidden md:flex' : 'flex'}">
+  <div class="flex-col {popped ? 'gap-1' : 'gap-2'} {collapsed ? 'hidden md:flex' : 'flex'}">
     <div class="font-semibold text-base">{sec.title}</div>
     {#each sec.rows as row}
       {@render selectorRow(row.id, row.label, row.opts)}
@@ -207,14 +220,24 @@
 
 <!-- Output callout box -->
 {#snippet outBox(lines: Line[])}
-  <div class="rounded-sm md:rounded-lg border border-border px-2 py-1 md:py-3 flex flex-col gap-0.5">
+  <div
+    class="border border-border px-2 flex flex-col gap-0.5 {popped
+      ? 'rounded-sm py-1'
+      : 'rounded-sm md:rounded-lg py-1 md:py-3'}"
+  >
     {#each lines as line}
       <div class="text-base {toneClass(line.tone)}">{@html line.text}</div>
     {/each}
   </div>
 {/snippet}
 
-<PipPortal width={440} height={860} title="WTFDIG UMAD P4 Helper" rootFontSize={15}>
+<PipPortal
+  width={368}
+  height={640}
+  title="WTFDIG UMAD P4 Helper"
+  rootFontSize={13}
+  bind:isPopped={popped}
+>
   {#snippet placeholder({ popIn }: { popIn: () => void })}
     <div class="flex flex-col gap-3 p-4 md:p-6 w-full max-w-[640px] mx-auto items-start">
       <p class="text-sm text-muted-foreground m-0">Helper is popped out in a separate window.</p>
@@ -239,15 +262,32 @@
     popIn: () => void;
   })}
     <div
-      class="flex flex-col gap-4 p-4 md:p-6 w-full max-w-[640px] mx-auto box-border overflow-auto"
+      class="flex flex-col w-full mx-auto box-border overflow-auto {popped
+        ? 'gap-2.5 p-2.5'
+        : 'gap-4 p-4 md:p-6'} {wide
+        ? popped
+          ? 'max-w-[1120px]'
+          : 'max-w-[640px] lg:max-w-[1120px]'
+        : 'max-w-[640px]'}"
     >
       <!-- Header -->
       <header class="flex justify-between items-center gap-2 shrink-0">
-        <h1 class="text-lg md:text-2xl font-bold m-0">UMAD P4 Helper</h1>
+        <h1 class="text-xl font-bold m-0">UMAD P4 Helper</h1>
         <div class="flex items-center gap-2">
+          <button
+            class="{popped
+              ? 'hidden min-[680px]:flex py-1.5'
+              : 'hidden lg:flex py-2'} items-center gap-1 px-3 rounded-lg bg-muted hover:bg-accent text-foreground font-semibold cursor-pointer text-sm"
+            title={wide ? 'Switch to single-column layout' : 'Switch to 2-column layout'}
+            onclick={toggleWide}
+          >
+            {#if wide}<Rows3 class="size-4" /> 1 column{:else}<Columns2 class="size-4" /> 2 columns{/if}
+          </button>
           {#if isSupported}
             <button
-              class="flex items-center gap-1 px-3 py-2 rounded-lg bg-muted hover:bg-accent text-foreground font-semibold cursor-pointer text-sm"
+              class="flex items-center gap-1 px-3 {popped
+                ? 'py-1.5'
+                : 'py-2'} rounded-lg bg-muted hover:bg-accent text-foreground font-semibold cursor-pointer text-sm"
               onclick={isPopped ? popIn : popOut}
             >
               {#if isPopped}<X class="size-4" /> Close{:else}<PictureInPicture2 class="size-4" /> Pop
@@ -255,7 +295,9 @@
             </button>
           {/if}
           <button
-            class="flex items-center gap-1 px-4 py-2 rounded-lg bg-destructive text-destructive-foreground font-semibold cursor-pointer text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+            class="flex items-center gap-1 px-4 {popped
+              ? 'py-1.5'
+              : 'py-2'} rounded-lg bg-destructive text-destructive-foreground font-semibold cursor-pointer text-sm disabled:opacity-50 disabled:cursor-not-allowed"
             onclick={reset}
             disabled={!hasInput}
           >
@@ -264,24 +306,34 @@
         </div>
       </header>
 
-      <!-- Up-front debuff inputs -->
-      <div class="flex flex-col gap-3 md:gap-5">
-        {#each SETUP_SECTIONS as sec}
-          {@render section(sec)}
-        {/each}
-      </div>
+      <div
+        class="flex flex-col gap-4 {wide
+          ? popped
+            ? 'min-[680px]:grid min-[680px]:grid-cols-2 min-[680px]:gap-x-6 min-[680px]:items-start'
+            : 'lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start'
+          : ''}"
+      >
+        <!-- Up-front debuff inputs -->
+        <div class="flex flex-col {popped ? 'gap-2' : 'gap-3 md:gap-5'}">
+          {#each SETUP_SECTIONS as sec}
+            {@render section(sec)}
+          {/each}
+        </div>
 
-      <!-- Resolution sequence (outputs + interleaved mid-fight inputs) -->
-      {@render outBox(b1)}
-      {@render selectorRow('thunder', 'Mana Charge: Lightning', RF_OPTS)}
-      {@render outBox(b2)}
-      {@render selectorRow('blizzard', 'Mana Charge: Ice', RF_OPTS)}
-      {@render outBox(b3)}
-      <div class="flex flex-col gap-2">
-        {@render selectorRow('rlight', 'Mana Release: Lightning', RF_OPTS)}
-        {@render selectorRow('rbliz', 'Mana Release: Ice', RF_OPTS)}
+        <!-- Resolution sequence (outputs + interleaved mid-fight inputs) -->
+        <div class="flex flex-col {popped ? 'gap-2.5' : 'gap-4'}">
+          {@render outBox(b1)}
+          {@render selectorRow('thunder', 'Mana Charge: Lightning', RF_OPTS)}
+          {@render outBox(b2)}
+          {@render selectorRow('blizzard', 'Mana Charge: Ice', RF_OPTS)}
+          {@render outBox(b3)}
+          <div class="flex flex-col {popped ? 'gap-1.5' : 'gap-2'}">
+            {@render selectorRow('rlight', 'Mana Release: Lightning', RF_OPTS)}
+            {@render selectorRow('rbliz', 'Mana Release: Ice', RF_OPTS)}
+          </div>
+          {@render outBox(bFinal)}
+        </div>
       </div>
-      {@render outBox(bFinal)}
     </div>
   {/snippet}
 </PipPortal>
