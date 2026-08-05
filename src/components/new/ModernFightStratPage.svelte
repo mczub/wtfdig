@@ -166,6 +166,7 @@
               stratState,
               stratName
             ),
+            action: resolveStratItem(phaseStratMech.action, phaseStrat.tag, stratState, stratName),
             notes: resolveStratItem(phaseStratMech.notes, phaseStrat.tag, stratState, stratName),
             imageUrl: resolveStratItem(phaseStratMech.imageUrl, phaseStrat.tag, stratState, stratName),
             url: resolveStratItem(phaseStratMech.url, phaseStrat.tag, stratState, stratName),

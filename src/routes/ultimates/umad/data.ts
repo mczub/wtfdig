@@ -10,11 +10,7 @@ const allP1: PhaseStrats[] = [
         mechanic: 'Tankbuster',
         description: 'Hits 1st in threat, then 2nd in threat',
         imageUrl: {
-          default: './umad/fireice-tankbuster.webp',
-          alt: {
-            eupf: './umad/fireice-tankbuster-eupf.webp',
-            lpdu: './umad/fireice-tankbuster-lpdu.webp'
-          }
+          default: './umad/fireice-tankbuster.webp'
         }
       },
       {
@@ -78,8 +74,8 @@ const allP1: PhaseStrats[] = [
         imageUrl: {
           default: './umad/fireice-stack.webp',
           alt: {
-            eupf: './umad/fireice-stack-eupf.webp',
-            lpdu: './umad/fireice-stack-lpdu.webp'
+            eupf: './umad/fireice-start-eupf.webp',
+            lpdu: './umad/fireice-start-lpdu.webp'
           }
         },
         strats: [
@@ -237,7 +233,11 @@ const allP1: PhaseStrats[] = [
       },
       {
         mechanic: 'Towers',
-        action: "Use same West -> East prio on your half to soak towers if you didn't get hit",
+        action: {
+          kefkabin: "Use same West -> East prio on your half to soak towers if you didn't get hit",
+          eupf: "Use same West -> East prio on your half to soak towers if you didn't get hit",
+          lpdu: "Soak prio from the middle of the conga outward (MT first for supports, M1 first for DPS) if you didn't get hit"
+        },
         imageUrl: {
           default: './umad/lasers-towers.webp',
           alt: { eupf: './umad/lasers-towers-eupf.webp', lpdu: './umad/lasers-towers-lpdu.webp' }
@@ -292,8 +292,7 @@ const allP1: PhaseStrats[] = [
       },
       {
         mechanic: 'First Rocks',
-        action:
-          'G1 Left, G2 Right\nMelees/Tanks can go E/W of boss hitbox\nGravity players can go middle',
+        action: 'G1 Left, G2 Right facing boss\nMelees/Tanks can go E/W of boss hitbox\nGravity players can go middle',
         imageUrl: {
           default: './umad/puddles-first-rocks.webp',
           alt: {
@@ -379,8 +378,7 @@ const allP1: PhaseStrats[] = [
       },
       {
         mechanic: 'Second Rocks',
-        action:
-          'G1 go Left, G2 go Right\nMelees/Tanks can go E/W of boss hitbox\nGravity players can go middle',
+        action: 'G1 Left, G2 Right facing boss\nMelees/Tanks can go E/W of boss hitbox\nGravity players can go middle',
         imageUrl: {
           default: './umad/puddles-second-rocks.webp',
           alt: {
@@ -451,8 +449,11 @@ const allP1: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'Knockback',
-        action:
-          'Supports North, DPS South\nParty stack on inside of hitbox\nConfetti on edge of puddles',
+        action: {
+          kefkabin: 'Supports North, DPS South\nParty stack on inside of hitbox\nConfetti on edge of puddles',
+          eupf: 'Supports North, DPS South\nNext to puddle on cleave safe side\nParty on hitbox',
+          lpdu: 'Supports North, DPS South\nNext to puddle on cleave safe side\nParty on hitbox'
+        },
         imageUrl: {
           default: './umad/confetti2-knockback.webp',
           alt: {
@@ -463,8 +464,11 @@ const allP1: PhaseStrats[] = [
       },
       {
         mechanic: 'Puddle Soak',
-        action:
-          'Get knocked back through boss into opposite puddle\nConfettis step back into puddle',
+        action: {
+          kefkabin: 'Get knocked back through boss into opposite puddle\nConfettis step back into puddle',
+          eupf: 'Get knocked diagonally through boss to other side\nConfettis join puddle on their side',
+          lpdu: 'Get knocked diagonally through boss to other side\nConfettis join puddle on their side',
+        },
         imageUrl: {
           default: './umad/confetti2-puddle-soak.webp',
           alt: {
@@ -715,7 +719,11 @@ const allP1: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'Static Spots',
-        action: 'After teleports, preposition in shown spots',
+        action: {
+          kefkabin: 'After teleports, preposition in shown spots',
+          eupf: 'Spots are rough - Tanks/Melees spread near boss, Healers/Ranged far\nAdjust based on who got teleported',
+          lpdu: 'After teleports, preposition in shown spots'
+        },
         imageUrl: {
           default: './umad/gaze-static-spots.webp',
           alt: {
@@ -727,49 +735,85 @@ const allP1: PhaseStrats[] = [
           {
             role: 'Tank',
             party: 1,
-            description: 'Northeast, 2 marker'
+            description: {
+              kefkabin: 'Northeast, 2 marker',
+              eupf: 'Near boss, loose spread',
+              lpdu: 'North, inner'
+            }
           },
           {
             role: 'Tank',
             party: 2,
-            description: 'Southeast, 3 marker'
+            description: {
+              kefkabin: 'Southeast, 3 marker',
+              eupf: 'Near boss, loose spread',
+              lpdu: 'West, inner'
+            }
           },
           {
             role: 'Healer',
             party: 1,
-            description: 'South, far'
+            description: {
+              kefkabin: 'South, far',
+              eupf: 'Far, loose spread',
+              lpdu: 'South, far'
+            }
           },
           {
             role: 'Healer',
             party: 2,
-            description: 'East, far'
+            description: {
+              kefkabin: 'East, far',
+              eupf: 'Far, loose spread',
+              lpdu: 'East, far'
+            }
           },
           {
             role: 'Melee',
             party: 1,
-            description: 'Northwest, 1 marker'
+            description: {
+              kefkabin: 'Northwest, 1 marker',
+              eupf: 'Near boss, loose spread',
+              lpdu: 'South, inner'
+            }
           },
           {
             role: 'Melee',
             party: 2,
-            description: 'Southwest, 4 marker'
+            description: {
+              kefkabin: 'Southwest, 4 marker',
+              eupf: 'Near boss, loose spread',
+              lpdu: 'East, inner'
+            }
           },
           {
             role: 'Ranged',
             party: 1,
-            description: 'North, far'
+            description: {
+              kefkabin: 'North, far',
+              eupf: 'Far, loose spread',
+              lpdu: 'North, far'
+            }
           },
           {
             role: 'Ranged',
             party: 2,
-            description: 'West, far'
+            description: {
+              kefkabin: 'West, far',
+              eupf: 'Far, loose spread',
+              lpdu: 'West, far'
+            }
           }
         ]
       },
       {
         mechanic: 'Spread',
         description: 'Make sure to solve Gaze (on statue) + Lightning lines',
-        action: 'Melee on unsafe half move under boss',
+        action: {
+          kefkabin: 'Melee on unsafe half move under boss',
+          eupf: 'Melee on unsafe half move under boss',
+          lpdu: 'Stay in your spot - move only to stack or to dodge into/out of a lightning line'
+        },
         imageUrl: {
           default: './umad/gaze-spread.webp',
           alt: { eupf: './umad/gaze-spread-eupf.webp', lpdu: './umad/gaze-spread-lpdu.webp' }
@@ -778,48 +822,84 @@ const allP1: PhaseStrats[] = [
           {
             role: 'Tank',
             party: 1,
-            description: 'Northeast, 2 marker'
+            description: {
+              kefkabin: 'Northeast, 2 marker',
+              eupf: 'Near boss, loose spread',
+              lpdu: 'North, inner'
+            }
           },
           {
             role: 'Tank',
             party: 2,
-            description: 'Southeast, 3 marker'
+            description: {
+              kefkabin: 'Southeast, 3 marker',
+              eupf: 'Near boss, loose spread',
+              lpdu: 'West, inner'
+            }
           },
           {
             role: 'Healer',
             party: 1,
-            description: 'South, far'
+            description: {
+              kefkabin: 'South, far',
+              eupf: 'Far, loose spread',
+              lpdu: 'South, far'
+            }
           },
           {
             role: 'Healer',
             party: 2,
-            description: 'East, far'
+            description: {
+              kefkabin: 'East, far',
+              eupf: 'Far, loose spread',
+              lpdu: 'East, far'
+            }
           },
           {
             role: 'Melee',
             party: 1,
-            description: 'Northwest, 1 marker'
+            description: {
+              kefkabin: 'Northwest, 1 marker',
+              eupf: 'Near boss, loose spread',
+              lpdu: 'South, inner'
+            }
           },
           {
             role: 'Melee',
             party: 2,
-            description: 'Southwest, 4 marker'
+            description: {
+              kefkabin: 'Southwest, 4 marker',
+              eupf: 'Near boss, loose spread',
+              lpdu: 'East, inner'
+            }
           },
           {
             role: 'Ranged',
             party: 1,
-            description: 'North, far'
+            description: {
+              kefkabin: 'North, far',
+              eupf: 'Far, loose spread',
+              lpdu: 'North, far'
+            }
           },
           {
             role: 'Ranged',
             party: 2,
-            description: 'West, far'
+            description: {
+              kefkabin: 'West, far',
+              eupf: 'Far, loose spread',
+              lpdu: 'West, far'
+            }
           }
         ]
       },
       {
         mechanic: 'Stack',
-        action: 'Supports on 3\nDPS on 1',
+        action: {
+          kefkabin: 'Supports on 3\nDPS on 1',
+          eupf: 'DPS stack North\nSupports stack South',
+          lpdu: 'DPS stack North\nSupports stack South'
+        },
         imageUrl: {
           default: './umad/gaze-stack.webp',
           alt: { eupf: './umad/gaze-stack-eupf.webp', lpdu: './umad/gaze-stack-lpdu.webp' }
@@ -828,42 +908,74 @@ const allP1: PhaseStrats[] = [
           {
             role: 'Tank',
             party: 1,
-            description: 'Southeast, 3 marker'
+            description: {
+              kefkabin: 'Southeast, 3 marker',
+              eupf: 'South of boss',
+              lpdu: 'South of boss'
+            }
           },
           {
             role: 'Tank',
             party: 2,
-            description: 'Southeast, 3 marker'
+            description: {
+              kefkabin: 'Southeast, 3 marker',
+              eupf: 'South of boss',
+              lpdu: 'South of boss'
+            }
           },
           {
             role: 'Healer',
             party: 1,
-            description: 'Southeast, 3 marker'
+            description: {
+              kefkabin: 'Southeast, 3 marker',
+              eupf: 'South of boss',
+              lpdu: 'South of boss'
+            }
           },
           {
             role: 'Healer',
             party: 2,
-            description: 'Southeast, 3 marker'
+            description: {
+              kefkabin: 'Southeast, 3 marker',
+              eupf: 'South of boss',
+              lpdu: 'South of boss'
+            }
           },
           {
             role: 'Melee',
             party: 1,
-            description: 'Northwest, 1 marker'
+            description: {
+              kefkabin: 'Northwest, 1 marker',
+              eupf: 'North of boss',
+              lpdu: 'North of boss'
+            }
           },
           {
             role: 'Melee',
             party: 2,
-            description: 'Northwest, 1 marker'
+            description: {
+              kefkabin: 'Northwest, 1 marker',
+              eupf: 'North of boss',
+              lpdu: 'North of boss'
+            }
           },
           {
             role: 'Ranged',
             party: 1,
-            description: 'Northwest, 1 marker'
+            description: {
+              kefkabin: 'Northwest, 1 marker',
+              eupf: 'North of boss',
+              lpdu: 'North of boss'
+            }
           },
           {
             role: 'Ranged',
             party: 2,
-            description: 'Northwest, 1 marker'
+            description: {
+              kefkabin: 'Northwest, 1 marker',
+              eupf: 'North of boss',
+              lpdu: 'North of boss'
+            }
           }
         ]
       }
@@ -1433,8 +1545,16 @@ const allP2: PhaseStrats[] = [
         {
           mechanic: 'Start',
           description: 'Find role/group partner',
-          action: 'Group A if one has a stack\nGroup B if both the same',
+          action: 'Group A if one has a stack\nGroup B if both the same\nFixed partners',
           imageUrl: './umad/p2-forsaken-p3Z-1.webp'
+        },
+        {
+          mechanic: 'Set 1',
+          description:
+            'Left Tower: {{forsaken-stack}} Stack + {{forsaken-cone}} Cone, Right Tower: {{forsaken-stack}} Stack + {{forsaken-circle}} Spread',
+          action:
+            'Helper Tank front edge of Left tower, Helper Healer back of Left tower\nHelper DPS \nTower Tank/Melee flex if partner matches',
+          imageUrl: './umad/p2-forsaken-p3Z-3.webp'
         },
         {
           mechanic: 'Odd Towers',
@@ -1449,14 +1569,12 @@ const allP2: PhaseStrats[] = [
           description:
             '{{forsaken-stack}} Stack on the boss hitbox (fixed); Stack Tank stands right in front\n{{forsaken-cone}} Cone = away from the Stack, just off the tower edge (not the back wall)',
           imageUrl: './umad/p2-forsaken-p3Z-5.webp',
-          alignmentTransforms: { truenorth: 'rotate(45deg)' }
         },
         {
           mechanic: 'Odd Towers (Right)',
           description:
-            '{{forsaken-stack}} Stack = between the outer hitbox and tower edge, before the midpoint (not the "eye" corner, not the Even cone spot)\n{{forsaken-circle}} Spread = South of the tower, away from boss (opposite the Stack)',
+            '{{forsaken-stack}} Stack = between the outer hitbox and tower edge, before the midpoint (not the "eye" corner, not the Even cone spot)\n{{forsaken-circle}} Spread = East edge of the tower, away from the Stack',
           imageUrl: './umad/p2-forsaken-p3Z-5.webp',
-          alignmentTransforms: { truenorth: 'rotate(-45deg)' }
         },
         {
           mechanic: 'Odd Set 1 (Special)',
@@ -1469,7 +1587,7 @@ const allP2: PhaseStrats[] = [
           description:
             'Both Towers: {{forsaken-cone}} Cone North + {{forsaken-circle}} Spread South',
           action:
-            'Non-tower Tank/Melee North on OUTER RING of boss hitbox to bait Clones\n❗<b>BE ON THE OUTER RING, DO NOT GO FURTHER OUT</b>\nNon-tower Healer/Ranged bait cones on Marker\nNumber Marker = Back corner, Letter Marker = Front edge\nTower Tank/Melee flex if partner matches',
+            'Non-tower Tank/Melee North on OUTER RING of boss hitbox to bait Clones\n❗<b>BE ON THE OUTER RING, DO NOT GO FURTHER OUT</b>\nNon-tower Healer/Ranged bait cones on Marker\nNumber Marker = outside the far corner tip, Letter Marker = Front edge\nTower Tank/Melee flex if partner matches',
           imageUrl: './umad/p2-forsaken-p3Z-9.webp'
         },
         {
@@ -1477,14 +1595,12 @@ const allP2: PhaseStrats[] = [
           description:
             'Left tower (Boss is North)\n{{forsaken-cone}} Cone = Front edge towards Left on <b>INNER</b> hitbox ring at <b>TOWER EDGE</b>\n{{forsaken-circle}} Spread = South edge, directly across tower from Cone\nBaiter = Back corner of Number Markers',
           imageUrl: './umad/p2-forsaken-p3Z-8.webp',
-          alignmentTransforms: { truenorth: 'rotate(45deg)' }
         },
         {
           mechanic: 'Even Towers (Letter Markers, Right)',
           description:
             'Right tower (Boss is North)\n{{forsaken-cone}} Cone = Front edge towards Right on <b>INNER</b> hitbox ring at <b>TOWER EDGE</b>\n{{forsaken-circle}} Spread = South edge, directly across tower from Cone\nBaiter = Front edge of Letter Markers',
           imageUrl: './umad/p2-forsaken-p3Z-8.webp',
-          alignmentTransforms: { truenorth: 'rotate(-45deg)' }
         },
         {
           mechanic: 'Future/Past Baits',
@@ -1520,14 +1636,12 @@ const allP2: PhaseStrats[] = [
           description:
             '{{forsaken-stack}} Stack on the boss hitbox (fixed); Stack Tank stands right in front\n{{forsaken-cone}} Cone = away from the Stack, just off the tower edge (not the back wall)',
           imageUrl: './umad/p2-forsaken-lpdu-5.webp',
-          alignmentTransforms: { truenorth: 'rotate(45deg)' }
         },
         {
           mechanic: 'Odd Towers (Right)',
           description:
-            '{{forsaken-stack}} Stack = between the outer hitbox and tower edge, before the midpoint (not the "eye" corner, not the Even cone spot)\n{{forsaken-circle}} Spread = South of the tower, away from boss (opposite the Stack)',
+            '{{forsaken-stack}} Stack = between the outer hitbox and tower edge, before the midpoint (not the "eye" corner, not the Even cone spot)\n{{forsaken-circle}} Spread = East edge of the tower, away from the Stack',
           imageUrl: './umad/p2-forsaken-lpdu-5.webp',
-          alignmentTransforms: { truenorth: 'rotate(-45deg)' }
         },
         {
           mechanic: 'Even Towers',
@@ -1540,7 +1654,7 @@ const allP2: PhaseStrats[] = [
         {
           mechanic: 'Even Towers (Clone Baits)',
           description:
-            'Non-tower Tank/Melee (North players) bait Clones on the INNER hitbox ring, NE/NW of the new relative south (the towers)\nFixed spots - keeps the Clones spawning as close to middle as possible',
+            'Non-tower Tank/Melee (North players) bait Clones on the OUTER hitbox ring, NE/NW of the new relative south (the towers)\nFixed spots - keeps the Clones spawning as close to middle as possible',
           imageUrl: './umad/p2-forsaken-lpdu-10.webp'
         },
         {
@@ -1848,7 +1962,7 @@ const lpduBH: MechanicStrat[] = [
     mechanic: 'Laser Tethers',
     description:
       '4 tether sets, each player soaks 3 lasers\nDPS = 1st tether CW from Kefka, Supports = 2nd, {{accretion}} Accretion = 3rd\nPoint every laser clockwise\nNeed to get hit 3 times to cleanse',
-    imageUrl: './umad/p3-lpdu-bh-8.webp'
+    imageUrl: './umad/p3-lpdu-bh-7.webp'
   },
   {
     mechanic: 'Tether Timeline (D>S>A)',
@@ -2523,8 +2637,15 @@ const allP5: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'Spread',
-        action: 'Spread: Tanks North, Healers South, G1 DPS West, G2 DPS East',
-        imageUrl: './umad/p5-7.webp'
+        action: {
+          kefkabin: 'Spread: Tanks North, Healers South, G1 DPS West, G2 DPS East',
+          eupf: 'Spread: Tanks North, Ranged NW/NE, Healers West/East, Melees South',
+          lpdu: 'Spread: Tanks North, Ranged NW/NE, Healers West/East, Melees South'
+        },
+        imageUrl: {
+          default: './umad/p5-7.webp',
+          alt: { eupf: './umad/p5-7-eu.webp', lpdu: './umad/p5-7-eu.webp' }
+        }
       },
       {
         mechanic: '1st Hit (Random)',
@@ -2632,7 +2753,10 @@ const allP5: PhaseStrats[] = [
         mechanic: 'Resolve',
         description:
           'Resolve the same as the first Maddening Orchestra\nOT should have aggro during the 1st hit to get the flare',
-        imageUrl: './umad/p5-20.webp',
+        imageUrl: {
+          default: './umad/p5-20.webp',
+          alt: { eupf: './umad/p5-7-eu.webp', lpdu: './umad/p5-7-eu.webp' }
+        },
         strats: [
           {
             role: 'Tank',
@@ -2647,32 +2771,56 @@ const allP5: PhaseStrats[] = [
           {
             role: 'Healer',
             party: 1,
-            description: 'Spread towards West, Close/Far, South'
+            description: {
+              kefkabin: 'Spread towards West, Close/Far, South',
+              eupf: 'West',
+              lpdu: 'West'
+            }
           },
           {
             role: 'Healer',
             party: 2,
-            description: 'Spread towards West, Close/Far, South'
+            description: {
+              kefkabin: 'Spread towards West, Close/Far, South',
+              eupf: 'East',
+              lpdu: 'East'
+            }
           },
           {
             role: 'Melee',
             party: 1,
-            description: 'Spread towards East, Close/Far, South'
+            description: {
+              kefkabin: 'Spread towards East, Close/Far, South',
+              eupf: 'South',
+              lpdu: 'South'
+            }
           },
           {
             role: 'Melee',
             party: 2,
-            description: 'Spread towards East, Close/Far, South'
+            description: {
+              kefkabin: 'Spread towards East, Close/Far, South',
+              eupf: 'South',
+              lpdu: 'South'
+            }
           },
           {
             role: 'Ranged',
             party: 1,
-            description: 'Spread towards East, Close/Far, South'
+            description: {
+              kefkabin: 'Spread towards East, Close/Far, South',
+              eupf: 'Northwest',
+              lpdu: 'Northwest'
+            }
           },
           {
             role: 'Ranged',
             party: 2,
-            description: 'Spread towards East, Close/Far, South'
+            description: {
+              kefkabin: 'Spread towards East, Close/Far, South',
+              eupf: 'Northeast',
+              lpdu: 'Northeast'
+            }
           }
         ]
       }
@@ -2690,10 +2838,21 @@ const allP5: PhaseStrats[] = [
       },
       {
         mechanic: 'Stack Pattern',
-        description:
-          'Always start at C, then rotate inter/cards: 4 - 1 - 2 - 3\nOrange AOE markers bait onto the card/inter closest to a random player\n1st stack is CW from the 1st orange marker, then keep rotating CW\nStay after each stack until the next AOEs show to bait them',
-        action: 'Start C, rotate CW (4-1-2-3)',
-        imageUrl: './umad/p5-23.webp'
+        description: {
+          kefkabin:
+            'Always start at C, then rotate inter/cards: 4 - 1 - 2 - 3\nOrange AOE markers bait onto the card/inter closest to a random player\n1st stack is CW from the 1st orange marker, then keep rotating CW\nStay after each stack until the next AOEs show to bait them',
+          eupf: 'Start at C\nOrange AOE markers bait onto the card/inter closest to a random player\nMove 1 marker CW after the 1st stack, 2 markers CW after the 2nd\nThen 2 markers away from the cardinal puddle spawn, then into the last open cardinal\nStay after each stack until the next AOEs show to bait them',
+          lpdu: 'Always start at C, then rotate inter/cards: 4 - 1 - 2 - 3\nOrange AOE markers bait onto the card/inter closest to a random player\n1st stack is CW from the 1st orange marker, then keep rotating CW\nStay after each stack until the next AOEs show to bait them'
+        },
+        action: {
+          kefkabin: 'Start C, rotate CW (4-1-2-3)',
+          eupf: 'Start C, then 1 CW, 2 CW, then adjust to open spots',
+          lpdu: 'Start C, rotate CW (4-1-2-3)'
+        },
+        imageUrl: {
+          default: './umad/p5-23.webp',
+          alt: { eupf: './umad/p5-23-eupf.webp' }
+        }
       }
     ]
   }
