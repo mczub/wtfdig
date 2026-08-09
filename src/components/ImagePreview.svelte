@@ -53,7 +53,7 @@
 <Modal
   open={imageOpenState}
   onOpenChange={(e) => (imageOpenState = e.open)}
-  contentBase="bg-surface-100 dark:bg-surface-900 p-4 space-y-4 shadow-xl flex flex-col border border-surface-600 max-w-[95vw] max-h-[95vh]"
+  contentBase="bg-surface-900 p-4 space-y-4 shadow-xl flex flex-col border border-surface-600 max-w-[95vw] max-h-[95vh]"
   backdropClasses="backdrop-blur-sm"
   zIndex={'3000'}
 >

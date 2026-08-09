@@ -109,7 +109,8 @@
         return 'text-zinc-200';
     }
   }
-  const unsel = 'bg-zinc-800/70 text-muted-foreground hover:bg-zinc-700/70';
+  const unsel =
+    'bg-zinc-200/70 text-muted-foreground hover:bg-zinc-300/70 dark:bg-zinc-800/70 dark:hover:bg-zinc-700/70';
   const BOMB_TIP = 'Accel Bomb is a personal mechanic, use this to mark your own debuff';
 </script>
 
