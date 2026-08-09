@@ -5,9 +5,9 @@ export type ThemeMode = 'system' | 'light' | 'dark';
 const THEME_LOCALSTORAGE_KEY = 'theme';
 
 function getInitialMode(): ThemeMode {
-  if (!browser) return 'system';
+  if (!browser) return 'dark';
   const stored = localStorage.getItem(THEME_LOCALSTORAGE_KEY);
-  return stored === 'light' || stored === 'dark' ? stored : 'system';
+  return stored === 'light' || stored === 'dark' || stored === 'system' ? stored : 'dark';
 }
 
 const state = $state({ mode: getInitialMode() });
@@ -33,11 +33,7 @@ export const theme = {
   setMode(mode: ThemeMode) {
     state.mode = mode;
     if (browser) {
-      if (mode === 'system') {
-        localStorage.removeItem(THEME_LOCALSTORAGE_KEY);
-      } else {
-        localStorage.setItem(THEME_LOCALSTORAGE_KEY, mode);
-      }
+      localStorage.setItem(THEME_LOCALSTORAGE_KEY, mode);
     }
     applyTheme();
   }
