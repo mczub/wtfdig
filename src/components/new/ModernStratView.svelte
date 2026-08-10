@@ -229,7 +229,7 @@
           <Tabs.Control
             value={tabName}
             labelBase="btn bg-transparent hover:bg-surface-700"
-            classes="px-6 py-2 text-lg rounded-sm transition-all border-surface-700 data-[state=active]:bg-surface-700 data-[state=active]:text-white data-[state=active]:border-surface-400 data-[state=active]:shadow-md"
+            classes="px-6 py-2 text-lg rounded-sm transition-all border-surface-700 data-[state=active]:bg-surface-700 data-[state=active]:text-foreground data-[state=active]:border-surface-400 data-[state=active]:shadow-md"
           >
             <span class="inline-flex items-center gap-1.5">
               {#if inProgressTabs?.includes(tabName)}<TriangleAlert
@@ -246,7 +246,7 @@
 
   <div class="flex justify-end lg:mb-4 w-full lg:w-auto">
     <Button
-      class="border border-border bg-surface-1000/60 shadow-sm hover:bg-muted/60 cursor-pointer"
+      class="border border-border bg-surface-1000/60 text-foreground shadow-sm hover:bg-muted/60 cursor-pointer"
       size="sm"
       onclick={toggleAll}
     >

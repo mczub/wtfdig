@@ -1225,14 +1225,14 @@
                 <span class="text-sm font-medium capitalize truncate">{phase.phaseName}</span>
                 <div class="flex gap-1">
                   <button
-                    class="p-1 hover:bg-surface-700 rounded text-surface-400 hover:text-white transition-colors"
+                    class="p-1 hover:bg-surface-700 rounded text-surface-400 hover:text-foreground transition-colors"
                     onclick={() => showAllInPhase(phase)}
                     title="Show all"
                   >
                     <Eye size={14} />
                   </button>
                   <button
-                    class="p-1 hover:bg-surface-700 rounded text-surface-400 hover:text-white transition-colors"
+                    class="p-1 hover:bg-surface-700 rounded text-surface-400 hover:text-foreground transition-colors"
                     onclick={() => hideAllInPhase(phase)}
                     title="Hide all"
                   >
@@ -1254,7 +1254,7 @@
                       </button>
                       <button
                         disabled={!hasImage(phase, mech)}
-                        class={`p-1 rounded text-xs transition-colors ${!hasImage(phase, mech) ? 'opacity-30 cursor-not-allowed text-surface-600' : getCellSize(mechKey) === 'large' ? 'bg-primary-500 text-white' : 'bg-surface-800 text-surface-400 hover:text-white'}`}
+                        class={`p-1 rounded text-xs transition-colors ${!hasImage(phase, mech) ? 'opacity-30 cursor-not-allowed text-surface-600' : getCellSize(mechKey) === 'large' ? 'bg-primary-500 text-white' : 'bg-surface-800 text-surface-400 hover:text-foreground'}`}
                         onclick={() => toggleCellSize(mechKey)}
                         title={!hasImage(phase, mech)
                           ? 'No image available'
@@ -1286,7 +1286,7 @@
                   </button>
                   <button
                     disabled={!hasImage(phase)}
-                    class={`p-1 rounded text-xs transition-colors ${!hasImage(phase) ? 'opacity-30 cursor-not-allowed text-surface-600' : getCellSize(phaseKey) === 'large' ? 'bg-primary-500 text-white' : 'bg-surface-800 text-surface-400 hover:text-white'}`}
+                    class={`p-1 rounded text-xs transition-colors ${!hasImage(phase) ? 'opacity-30 cursor-not-allowed text-surface-600' : getCellSize(phaseKey) === 'large' ? 'bg-primary-500 text-white' : 'bg-surface-800 text-surface-400 hover:text-foreground'}`}
                     onclick={() => toggleCellSize(phaseKey)}
                     title={!hasImage(phase)
                       ? 'No image available'
@@ -1457,7 +1457,7 @@
                         href={headerUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="capitalize font-semibold text-base text-white hover:text-secondary-400 inline-flex items-center gap-1 leading-tight max-w-full"
+                        class="capitalize font-semibold text-base text-foreground hover:text-secondary-400 inline-flex items-center gap-1 leading-tight max-w-full"
                         onclick={(e) => e.stopPropagation()}
                       >
                         <span class="truncate">{headerName}</span>
@@ -1466,7 +1466,7 @@
                     {:else}
                       <div class="flex items-baseline gap-x-2 min-w-0">
                         <span
-                          class="capitalize font-semibold text-base text-white leading-tight truncate"
+                          class="capitalize font-semibold text-base text-foreground leading-tight truncate"
                         >
                           {headerName}
                         </span>
@@ -1488,7 +1488,7 @@
                     {/if}
                     <Expand
                       size={14}
-                      class="opacity-0 group-hover:opacity-100 transition-opacity text-white"
+                      class="opacity-0 group-hover:opacity-100 transition-opacity text-foreground"
                     />
                   </div>
                 </div>

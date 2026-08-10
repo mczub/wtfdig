@@ -8,6 +8,7 @@
   import * as Sidebar from '$lib/components/ui/sidebar';
   import { useSidebar } from '$lib/components/ui/sidebar/index';
   import AppSidebar from '$lib/components/app-sidebar.svelte';
+  import ThemeToggle from '$lib/components/theme-toggle.svelte';
   import ChevronDown from '@lucide/svelte/icons/chevron-down';
   import PanelLeftIcon from '@lucide/svelte/icons/panel-left';
   import Separator from '$lib/components/ui/separator/separator.svelte';
@@ -32,15 +33,8 @@
             class="flex flex-row items-center text-2xl font-semibold my-4 md:my-0 justify-self-center gap-1"
             >WTFDIG<img width="32px" src="{base}/wtfdig-small-800.png" alt="WTFDIG logo" /></a
           >
-          <div
-            class="card preset-outlined-secondary-500 gap-4 p-4 md:justify-self-end text-sm hidden md:block"
-          >
-            WTFDIG is now at <a
-              target="_blank"
-              rel="noopener noreferrer"
-              class="anchor"
-              href="https://wtfdig.info">WTFDIG.info</a
-            >
+          <div class="flex items-center gap-3 justify-self-end">
+            <ThemeToggle />
           </div>
         </div>
       </header>
@@ -49,7 +43,7 @@
 
       <Separator />
 
-      <footer class="p-4 shadow-sm mt-auto container px-4 lg:px-8 mx-auto my-4">
+      <footer class="p-4 mt-auto container px-4 lg:px-8 mx-auto my-4">
         <div class="grid grid-cols-1 lg:grid-cols-2 w-full justify-between">
           <div class="text-sm text-gray-500 dark:text-gray-400">
             <div>

@@ -16,7 +16,11 @@
   }
 
   .anchor {
-    @apply text-blue-500 hover:text-blue-400 font-semibold;
+    @apply text-blue-600 hover:text-blue-500 font-semibold;
+  }
+
+  .dark .anchor {
+    @apply text-blue-500 hover:text-blue-400;
   }
 
   .btn {
@@ -85,8 +89,12 @@
     border-color: hsl(var(--warning-500));
   }
 
+  /*
+   * With the inverted light surface scale, the light branch of each dual-tone
+   * preset uses the same token as the dark branch: the token itself flips.
+   */
   .preset-filled-surface-100-900 {
-    background-color: hsl(var(--surface-100));
+    background-color: hsl(var(--surface-900));
     color: hsl(var(--foreground));
   }
 
@@ -112,8 +120,8 @@
   }
 
   .preset-outlined-surface-200-800 {
-    background-color: hsl(var(--surface-200));
-    border-color: hsl(var(--surface-400));
+    background-color: hsl(var(--surface-800));
+    border-color: hsl(var(--surface-600));
   }
 
   .dark .preset-outlined-surface-200-800 {
@@ -128,11 +136,11 @@
 
   .preset-filled-success-500 {
     background-color: hsl(var(--success-500));
-    color: hsl(var(--foreground));
+    color: hsl(0 0% 100%);
   }
 
   .bg-surface-100-900 {
-    background-color: hsl(var(--surface-100));
+    background-color: hsl(var(--surface-900));
     color: hsl(var(--foreground));
   }
 
@@ -141,7 +149,7 @@
   }
 
   .bg-surface-200-800 {
-    background-color: hsl(var(--surface-200));
+    background-color: hsl(var(--surface-800));
     color: hsl(var(--foreground));
   }
 
@@ -160,7 +168,7 @@
   }
 
   .border-surface-200-800 {
-    border-color: hsl(var(--surface-200));
+    border-color: hsl(var(--surface-800));
   }
 
   .dark .border-surface-200-800 {
@@ -208,7 +216,7 @@
   }
 
   .text-surface-600-400 {
-    color: hsl(var(--surface-600));
+    color: hsl(var(--surface-400));
   }
 
   .dark .text-surface-600-400 {
