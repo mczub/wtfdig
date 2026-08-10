@@ -8,6 +8,7 @@
   </header>
   <article class="prose dark:prose-invert max-w-none">
     <div class="">
+      <div>8/9/2026: light mode!</div>
       <div>8/4/2026: p4 gaze updates, added 2-column p4 helper</div>
       <div>6/30/2026: update umad p4 + p5 with new kefkabin stuff</div>
       <div>6/27/2026: fixing some minor reported bugs: TEA LL tank wording, elinabin link replaced with NAUR, also some updates to the p4 helper</div>
