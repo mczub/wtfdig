@@ -87,7 +87,7 @@
     {
       title: 'Extreme',
       url: '#',
-      defaultOpen: true,
+      defaultOpen: false,
       items: [
         {
           title: 'The Unmaking (EX8)',
@@ -175,140 +175,186 @@
 <Sidebar.Root>
   <Sidebar.Content class="bg-background">
     <Sidebar.Group>
-      <Sidebar.GroupLabel class="text-lg my-2 font-bold">Fights</Sidebar.GroupLabel>
-      <Sidebar.GroupAction class="my-1" title="Close" onclick={() => sidebar.toggle()}>
-        <div><ArrowLeftFromLine className="size-8" /></div>
-      </Sidebar.GroupAction>
       <Sidebar.GroupContent>
         <Sidebar.Menu>
           <Sidebar.MenuItem>
-            <a
-              href="/changelog"
-              onclick={handleLinkClick}
-              class="flex flex-col w-full items-start mx-2"
-            >
-              <div class="text-lg">Changelog</div>
-            </a>
+            <div class="flex flex-row items-center gap-2 mx-2 my-1">
+              <a
+                href="/changelog"
+                onclick={handleLinkClick}
+                class="btn btn-lg preset-tonal-secondary border border-secondary-500 rounded-lg flex-1"
+                >Changelog</a
+              >
+              <a
+                href="/faq"
+                onclick={handleLinkClick}
+                class="btn btn-lg preset-tonal-secondary border border-secondary-500 rounded-lg flex-1"
+                >FAQ</a
+              >
+              <button
+                class="shrink-0 flex items-center justify-center rounded-md p-1 cursor-pointer text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                title="Close"
+                onclick={() => sidebar.toggle()}
+              >
+                <ArrowLeftFromLine class="size-5" />
+              </button>
+            </div>
           </Sidebar.MenuItem>
-          {#each navItems as item, index (index)}
-            <Collapsible.Root class="group/collapsible" open={item.defaultOpen}>
-              <Sidebar.MenuItem>
-                <Collapsible.Trigger>
-                  {#snippet child({ props })}
-                    <Sidebar.MenuButton {...props}>
-                      <span class="text-lg">{item.title}</span>
-                      <ChevronRightIcon
-                        class="ms-auto transition-transform group-data-[state=open]/collapsible:rotate-90"
-                      />
-                    </Sidebar.MenuButton>
-                  {/snippet}
-                </Collapsible.Trigger>
-                <Collapsible.Content>
-                  <Sidebar.MenuSub>
-                    {#each item.items as subItem, subIndex (subIndex)}
-                      <Sidebar.MenuSubItem>
-                        <Sidebar.MenuSubButton>
-                          {#snippet child({ props })}
-                            <a
-                              href={subItem.url}
-                              {...props}
-                              onclick={handleLinkClick}
-                              class="flex flex-col w-full items-start"
-                            >
-                              <div class="flex flex-row items-center gap-2 text-lg">
-                                {#if 'icon' in subItem}
-                                  {@const Icon = subItem.icon as typeof TriangleAlert}
-                                  <Icon class="size-4 text-warning-500" />
-                                {/if}
-                                {subItem.title}
-                              </div>
-                              <div class="text-base text-surface-400">
-                                {subItem.subtitle}
-                              </div>
-                            </a>
-                          {/snippet}
-                        </Sidebar.MenuSubButton>
-                      </Sidebar.MenuSubItem>
-                    {/each}
-                  </Sidebar.MenuSub>
-                </Collapsible.Content>
-              </Sidebar.MenuItem>
-            </Collapsible.Root>
-          {/each}
 
           <Separator class="my-2" />
 
-          <Sidebar.GroupLabel class="flex flex-row items-center gap-2 text-lg font-semibold mb-2"
-            ><Hammer class="size-6 text-primary" />Tools</Sidebar.GroupLabel
-          >
-          <Sidebar.MenuItem>
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://analyzer.wtfdig.info"
-              class="flex flex-col w-full items-start mx-2"
-            >
-              <div class="flex flex-row items-center gap-2 text-lg">
-                <ChartColumn class="size-6 text-primary " /><span class="font-semibold"
-                  >analyzer</span
+          <Collapsible.Root class="group/section" open={true}>
+            <Sidebar.MenuItem>
+              <Collapsible.Trigger>
+                {#snippet child({ props })}
+                  <Sidebar.MenuButton {...props}>
+                    <span class="text-lg font-bold">Fights</span>
+                    <ChevronRightIcon
+                      class="ms-auto transition-transform group-data-[state=open]/section:rotate-90"
+                    />
+                  </Sidebar.MenuButton>
+                {/snippet}
+              </Collapsible.Trigger>
+              <Collapsible.Content>
+                {#each navItems as item, index (index)}
+                  <Collapsible.Root class="group/collapsible" open={item.defaultOpen}>
+                    <Sidebar.MenuItem>
+                      <Collapsible.Trigger>
+                        {#snippet child({ props })}
+                          <Sidebar.MenuButton {...props}>
+                            <span class="text-lg">{item.title}</span>
+                            <ChevronRightIcon
+                              class="ms-auto transition-transform group-data-[state=open]/collapsible:rotate-90"
+                            />
+                          </Sidebar.MenuButton>
+                        {/snippet}
+                      </Collapsible.Trigger>
+                      <Collapsible.Content>
+                        <Sidebar.MenuSub>
+                          {#each item.items as subItem, subIndex (subIndex)}
+                            <Sidebar.MenuSubItem>
+                              <Sidebar.MenuSubButton>
+                                {#snippet child({ props })}
+                                  <a
+                                    href={subItem.url}
+                                    {...props}
+                                    onclick={handleLinkClick}
+                                    class="flex flex-col w-full items-start"
+                                  >
+                                    <div class="flex flex-row items-center gap-2 text-lg">
+                                      {#if 'icon' in subItem}
+                                        {@const Icon = subItem.icon as typeof TriangleAlert}
+                                        <Icon class="size-4 text-warning-500" />
+                                      {/if}
+                                      {subItem.title}
+                                    </div>
+                                    <div class="text-base text-surface-400">
+                                      {subItem.subtitle}
+                                    </div>
+                                  </a>
+                                {/snippet}
+                              </Sidebar.MenuSubButton>
+                            </Sidebar.MenuSubItem>
+                          {/each}
+                        </Sidebar.MenuSub>
+                      </Collapsible.Content>
+                    </Sidebar.MenuItem>
+                  </Collapsible.Root>
+                {/each}
+              </Collapsible.Content>
+            </Sidebar.MenuItem>
+          </Collapsible.Root>
+
+          <Separator class="my-2" />
+
+          <Collapsible.Root class="group/section" open={true}>
+            <Sidebar.MenuItem>
+              <Collapsible.Trigger>
+                {#snippet child({ props })}
+                  <Sidebar.MenuButton {...props}>
+                    <span class="flex flex-row items-center gap-2 text-lg font-bold">
+                      <Hammer class="size-6 text-primary" />Tools
+                    </span>
+                    <ChevronRightIcon
+                      class="ms-auto transition-transform group-data-[state=open]/section:rotate-90"
+                    />
+                  </Sidebar.MenuButton>
+                {/snippet}
+              </Collapsible.Trigger>
+              <Collapsible.Content>
+                <Sidebar.MenuItem>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://analyzer.wtfdig.info"
+                    class="flex flex-col w-full items-start mx-2"
+                  >
+                    <div class="flex flex-row items-center gap-2 text-lg">
+                      <ChartColumn class="size-6 text-primary " /><span class="font-semibold"
+                        >analyzer</span
+                      >
+                    </div>
+                    <div class="text-base text-surface-400">fflogs-based pull analyzer</div>
+                  </a>
+                </Sidebar.MenuItem>
+                <Sidebar.MenuItem>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://board.wtfdig.info"
+                    class="flex flex-col w-full items-start mx-2"
+                  >
+                    <div class="flex flex-row items-center gap-2 text-lg">
+                      <Grid3x3 class="size-6 text-primary " /><span class="font-semibold">board</span>
+                    </div>
+                    <div class="text-base text-surface-400">view + bundle strategy boards</div>
+                  </a>
+                </Sidebar.MenuItem>
+                <Sidebar.MenuItem>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://wayback.wtfdig.info"
+                    class="flex flex-col w-full items-start mx-2"
+                  >
+                    <div class="flex flex-row items-center gap-2 text-lg">
+                      <History class="size-6 text-primary " /><span class="font-semibold">wayback</span>
+                    </div>
+                    <div class="text-base text-surface-400">version history for raidplans</div>
+                  </a>
+                </Sidebar.MenuItem>
+                <Sidebar.GroupLabel
+                  class="flex flex-row items-center gap-2 text-lg font-semibold my-2"
+                  ><MessageCircleQuestionMark class="size-6 text-primary" />Helpers</Sidebar.GroupLabel
                 >
-              </div>
-              <div class="text-base text-surface-400">fflogs-based pull analyzer</div>
-            </a>
-          </Sidebar.MenuItem>
-          <Sidebar.MenuItem>
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://board.wtfdig.info"
-              class="flex flex-col w-full items-start mx-2"
-            >
-              <div class="flex flex-row items-center gap-2 text-lg">
-                <Grid3x3 class="size-6 text-primary " /><span class="font-semibold">board</span>
-              </div>
-              <div class="text-base text-surface-400">view + bundle strategy boards</div>
-            </a>
-          </Sidebar.MenuItem>
-          <Sidebar.MenuItem>
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://wayback.wtfdig.info"
-              class="flex flex-col w-full items-start mx-2"
-            >
-              <div class="flex flex-row items-center gap-2 text-lg">
-                <History class="size-6 text-primary " /><span class="font-semibold">wayback</span>
-              </div>
-              <div class="text-base text-surface-400">version history for raidplans</div>
-            </a>
-          </Sidebar.MenuItem>
-          <Sidebar.GroupLabel class="flex flex-row items-center gap-2 text-lg font-semibold my-2"
-            ><MessageCircleQuestionMark class="size-6 text-primary" />Helpers</Sidebar.GroupLabel
-          >
-          <Sidebar.MenuItem>
-            <a
-              href="/tools/p4-helper"
-              onclick={handleLinkClick}
-              class="flex flex-col w-full items-start mx-2"
-            >
-              <div class="flex flex-row items-center gap-2 text-lg">
-                <span class="font-semibold">umad p4 helper</span>
-              </div>
-              <div class="text-base text-surface-400">UMAD P4 Kefka Says helper</div>
-            </a>
-          </Sidebar.MenuItem>
-          <Sidebar.MenuItem>
-            <a
-              href="/tools/idyllic"
-              onclick={handleLinkClick}
-              class="flex flex-col w-full items-start mx-2"
-            >
-              <div class="flex flex-row items-center gap-2 text-lg">
-                <span class="font-semibold">idyllic helper</span>
-              </div>
-              <div class="text-base text-surface-400">M12S Idyllic Dream helper</div>
-            </a>
-          </Sidebar.MenuItem>
+                <Sidebar.MenuItem>
+                  <a
+                    href="/tools/p4-helper"
+                    onclick={handleLinkClick}
+                    class="flex flex-col w-full items-start mx-2"
+                  >
+                    <div class="flex flex-row items-center gap-2 text-lg">
+                      <span class="font-semibold">umad p4 helper</span>
+                    </div>
+                    <div class="text-base text-surface-400">UMAD P4 Kefka Says helper</div>
+                  </a>
+                </Sidebar.MenuItem>
+                <Sidebar.MenuItem>
+                  <a
+                    href="/tools/idyllic"
+                    onclick={handleLinkClick}
+                    class="flex flex-col w-full items-start mx-2"
+                  >
+                    <div class="flex flex-row items-center gap-2 text-lg">
+                      <span class="font-semibold">idyllic helper</span>
+                    </div>
+                    <div class="text-base text-surface-400">M12S Idyllic Dream helper</div>
+                  </a>
+                </Sidebar.MenuItem>
+              </Collapsible.Content>
+            </Sidebar.MenuItem>
+          </Collapsible.Root>
+
           <Separator class="my-2" />
         </Sidebar.Menu>
       </Sidebar.GroupContent>

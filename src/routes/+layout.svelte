@@ -47,12 +47,14 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 w-full justify-between">
           <div class="text-sm text-gray-500 dark:text-gray-400">
             <div>
-              Comments? Questions? Something incorrect? <a
+              Comments? Questions? Something incorrect? Check the <a class="anchor" href="{base}/faq"
+                >FAQ</a
+              > or <a
                 target="_blank"
                 rel="noopener noreferrer"
                 class="anchor"
                 href="https://docs.google.com/forms/d/e/1FAIpQLScJEJ43FKjSRJ2MyLuGXznce-P_SQNyPLWga_Xme_CJKPiQIQ/viewform?usp=header"
-                >Let me know.</a
+                >let me know.</a
               >
             </div>
             <div>
