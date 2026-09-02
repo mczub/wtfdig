@@ -183,7 +183,7 @@
               class="absolute top-0 left-0 right-0 bg-surface-950/80 px-3 py-1.5 pointer-events-none"
             >
               <div class="flex items-center justify-between gap-2">
-                <span class="capitalize font-semibold text-base text-white truncate">
+                <span class="capitalize font-semibold text-base text-foreground truncate">
                   {current.headerName}
                 </span>
                 {#if current.mech}

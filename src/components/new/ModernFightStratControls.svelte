@@ -285,7 +285,7 @@
   <Modal
     open={otherOpenState}
     onOpenChange={(e) => (otherOpenState = e.open)}
-    contentBase="bg-surface-100 dark:bg-surface-900 p-4 space-y-4 shadow-xl flex flex-col border border-surface-600 lg:min-w-[600px]"
+    contentBase="bg-surface-900 p-4 space-y-4 shadow-xl flex flex-col border border-surface-600 lg:min-w-[600px]"
     backdropClasses="backdrop-blur-sm"
     zIndex={'3000'}
   >
@@ -681,7 +681,7 @@
             onOpenChange={(e) => (settingsOpen = e.open)}
             positioning={{ placement: 'bottom-end' }}
             triggerBase="btn-icon btn-icon-sm preset-tonal-surface"
-            contentBase="bg-surface-200 dark:bg-surface-800 p-4 space-y-4 shadow-xl min-w-[280px]"
+            contentBase="bg-surface-800 p-4 space-y-4 shadow-xl min-w-[280px]"
           >
             {#snippet trigger()}
               <Settings size={20} />
