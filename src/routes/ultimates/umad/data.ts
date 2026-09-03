@@ -155,7 +155,7 @@ const allP1: PhaseStrats[] = [
           {
             role: 'Melee',
             party: 1,
-            description: 'West half, N/S on hitbox'
+            description: 'East half, N/S on hitbox'
           },
           {
             role: 'Melee',
@@ -192,12 +192,12 @@ const allP1: PhaseStrats[] = [
           {
             role: 'Tank',
             party: 1,
-            description: '3rd from West'
+            description: { kefkabin: '3rd from West', eupf: '4th from West', lpdu: '4th from West' }
           },
           {
             role: 'Tank',
             party: 2,
-            description: '4th from West'
+            description: { kefkabin: '4th from West', eupf: '3rd from West', lpdu: '3rd from West' }
           },
           {
             role: 'Healer',
@@ -235,7 +235,7 @@ const allP1: PhaseStrats[] = [
         mechanic: 'Towers',
         action: {
           kefkabin: "Use same West -> East prio on your half to soak towers if you didn't get hit",
-          eupf: "Use same West -> East prio on your half to soak towers if you didn't get hit",
+          eupf: "Soak prio from the middle of the conga outward (MT first for supports, M1 first for DPS) if you didn't get hit",
           lpdu: "Soak prio from the middle of the conga outward (MT first for supports, M1 first for DPS) if you didn't get hit"
         },
         imageUrl: {
@@ -280,7 +280,11 @@ const allP1: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'First Puddle',
-        description: 'Center tether = Puddle\nRight side tether = Rocks',
+        description: {
+          kefkabin: 'Center tether = Puddle\nRight side tether = Rocks',
+          eupf: 'Left tethers = Puddle (stack)\nRight tethers = Rocks (meteor)',
+          lpdu: 'Middle tethers = Puddle (stack)\nSide tethers = Rocks (meteor)'
+        },
         action: 'North for 1st puddles',
         imageUrl: {
           default: './umad/puddles-first-puddle.webp',
@@ -659,7 +663,8 @@ const allP1: PhaseStrats[] = [
         },
         {
           mechanic: 'Knockback',
-          action: 'Supports NW, DPS SE for Confetti KB\nConfetti debuffs on the 1/3 markers',
+          action:
+            'Supports NW, DPS SE for Confetti KB\nStack inside the arrow ring, between boss and the 1/3 markers',
           imageUrl: './umad/arrows-knockback.webp'
         },
         {
@@ -722,7 +727,7 @@ const allP1: PhaseStrats[] = [
         action: {
           kefkabin: 'After teleports, preposition in shown spots',
           eupf: 'Spots are rough - Tanks/Melees spread near boss, Healers/Ranged far\nAdjust based on who got teleported',
-          lpdu: 'After teleports, preposition in shown spots'
+          lpdu: 'Non-teleported role keeps their tether spot\nTeleported role shifts one cardinal clockwise'
         },
         imageUrl: {
           default: './umad/gaze-static-spots.webp',
@@ -738,7 +743,7 @@ const allP1: PhaseStrats[] = [
             description: {
               kefkabin: 'Northeast, 2 marker',
               eupf: 'Near boss, loose spread',
-              lpdu: 'North, inner'
+              lpdu: 'North, inner (East if Supports teleported)'
             }
           },
           {
@@ -747,7 +752,7 @@ const allP1: PhaseStrats[] = [
             description: {
               kefkabin: 'Southeast, 3 marker',
               eupf: 'Near boss, loose spread',
-              lpdu: 'West, inner'
+              lpdu: 'West, inner (North if Supports teleported)'
             }
           },
           {
@@ -756,7 +761,7 @@ const allP1: PhaseStrats[] = [
             description: {
               kefkabin: 'South, far',
               eupf: 'Far, loose spread',
-              lpdu: 'South, far'
+              lpdu: 'South, far (West if Supports teleported)'
             }
           },
           {
@@ -765,7 +770,7 @@ const allP1: PhaseStrats[] = [
             description: {
               kefkabin: 'East, far',
               eupf: 'Far, loose spread',
-              lpdu: 'East, far'
+              lpdu: 'East, far (South if Supports teleported)'
             }
           },
           {
@@ -774,7 +779,7 @@ const allP1: PhaseStrats[] = [
             description: {
               kefkabin: 'Northwest, 1 marker',
               eupf: 'Near boss, loose spread',
-              lpdu: 'South, inner'
+              lpdu: 'South, inner (West if DPS teleported)'
             }
           },
           {
@@ -783,7 +788,7 @@ const allP1: PhaseStrats[] = [
             description: {
               kefkabin: 'Southwest, 4 marker',
               eupf: 'Near boss, loose spread',
-              lpdu: 'East, inner'
+              lpdu: 'East, inner (South if DPS teleported)'
             }
           },
           {
@@ -792,7 +797,7 @@ const allP1: PhaseStrats[] = [
             description: {
               kefkabin: 'North, far',
               eupf: 'Far, loose spread',
-              lpdu: 'North, far'
+              lpdu: 'North, far (East if DPS teleported)'
             }
           },
           {
@@ -801,7 +806,7 @@ const allP1: PhaseStrats[] = [
             description: {
               kefkabin: 'West, far',
               eupf: 'Far, loose spread',
-              lpdu: 'West, far'
+              lpdu: 'West, far (North if DPS teleported)'
             }
           }
         ]
@@ -811,7 +816,7 @@ const allP1: PhaseStrats[] = [
         description: 'Make sure to solve Gaze (on statue) + Lightning lines',
         action: {
           kefkabin: 'Melee on unsafe half move under boss',
-          eupf: 'Melee on unsafe half move under boss',
+          eupf: 'Tank/Melee in the lightning line move under boss (or dodge outward)',
           lpdu: 'Stay in your spot - move only to stack or to dodge into/out of a lightning line'
         },
         imageUrl: {
@@ -825,7 +830,7 @@ const allP1: PhaseStrats[] = [
             description: {
               kefkabin: 'Northeast, 2 marker',
               eupf: 'Near boss, loose spread',
-              lpdu: 'North, inner'
+              lpdu: 'North, inner (East if Supports teleported)'
             }
           },
           {
@@ -834,7 +839,7 @@ const allP1: PhaseStrats[] = [
             description: {
               kefkabin: 'Southeast, 3 marker',
               eupf: 'Near boss, loose spread',
-              lpdu: 'West, inner'
+              lpdu: 'West, inner (North if Supports teleported)'
             }
           },
           {
@@ -843,7 +848,7 @@ const allP1: PhaseStrats[] = [
             description: {
               kefkabin: 'South, far',
               eupf: 'Far, loose spread',
-              lpdu: 'South, far'
+              lpdu: 'South, far (West if Supports teleported)'
             }
           },
           {
@@ -852,7 +857,7 @@ const allP1: PhaseStrats[] = [
             description: {
               kefkabin: 'East, far',
               eupf: 'Far, loose spread',
-              lpdu: 'East, far'
+              lpdu: 'East, far (South if Supports teleported)'
             }
           },
           {
@@ -861,7 +866,7 @@ const allP1: PhaseStrats[] = [
             description: {
               kefkabin: 'Northwest, 1 marker',
               eupf: 'Near boss, loose spread',
-              lpdu: 'South, inner'
+              lpdu: 'South, inner (West if DPS teleported)'
             }
           },
           {
@@ -870,7 +875,7 @@ const allP1: PhaseStrats[] = [
             description: {
               kefkabin: 'Southwest, 4 marker',
               eupf: 'Near boss, loose spread',
-              lpdu: 'East, inner'
+              lpdu: 'East, inner (South if DPS teleported)'
             }
           },
           {
@@ -879,7 +884,7 @@ const allP1: PhaseStrats[] = [
             description: {
               kefkabin: 'North, far',
               eupf: 'Far, loose spread',
-              lpdu: 'North, far'
+              lpdu: 'North, far (East if DPS teleported)'
             }
           },
           {
@@ -888,7 +893,7 @@ const allP1: PhaseStrats[] = [
             description: {
               kefkabin: 'West, far',
               eupf: 'Far, loose spread',
-              lpdu: 'West, far'
+              lpdu: 'West, far (North if DPS teleported)'
             }
           }
         ]
@@ -1539,22 +1544,23 @@ const allP2: PhaseStrats[] = [
         {
           mechanic: 'Overview',
           description:
-            'AAABBBBA order\nOdd towers: Cones Left, Spreads Right\nLeft stack = boss hitbox ring, Right stack = front toward "new north"\nEven towers: one spread, one cone per tower\nTanks/Melees will flex if partner matches',
+            'AAABBBBA order (Group A = towers 1, 2, 3, 8; Group B = towers 4, 5, 6, 7)\nSupports West, DPS East\nOdd towers: Cones Left, Spreads Right\nLeft stack = on boss hitbox, Right stack = W/SW side of the tower (nearest the DPS helpers)\nEven towers: one spread, one cone per tower\nTanks/Melees will flex if partner matches',
           imageUrl: './umad/p2-forsaken-p3Z-1.webp'
         },
         {
           mechanic: 'Start',
           description: 'Find role/group partner',
-          action: 'Group A if one has a stack\nGroup B if both the same\nFixed partners',
+          action:
+            'Group A if one has a stack\nGroup B if both the same\nFixed partners: H1+MT, OT+H2, R2+M2, M1+R1',
           imageUrl: './umad/p2-forsaken-p3Z-1.webp'
         },
         {
-          mechanic: 'Set 1',
+          mechanic: 'Set 1 (Special)',
           description:
-            'Left Tower: {{forsaken-stack}} Stack + {{forsaken-cone}} Cone, Right Tower: {{forsaken-stack}} Stack + {{forsaken-circle}} Spread',
+            "Left Tower: {{forsaken-stack}} Stack + {{forsaken-cone}} Cone, Right Tower: {{forsaken-stack}} Stack + {{forsaken-circle}} Spread\nSet 1 ONLY: no flex - the {{forsaken-stack}} Stack player FOLLOWS their buddy into the buddy's tower ({{forsaken-cone}} Cone = Left, {{forsaken-circle}} Circle = Right)\nLeft Stack sits slightly off-center toward the helper Tank (NEish)\nSets 3/5/7 use the fixed Left/Right spots below",
           action:
-            'Helper Tank front edge of Left tower, Helper Healer back of Left tower\nHelper DPS \nTower Tank/Melee flex if partner matches',
-          imageUrl: './umad/p2-forsaken-p3Z-3.webp'
+            'Helper Tank front edge of Left tower, Helper Healer back of Left tower\nHelper DPS together just outside the Right tower (W/SW edge, between the towers)',
+          imageUrl: './umad/p2-forsaken-p3Z-4.webp'
         },
         {
           mechanic: 'Odd Towers',
@@ -1567,40 +1573,34 @@ const allP2: PhaseStrats[] = [
         {
           mechanic: 'Odd Towers (Left)',
           description:
-            '{{forsaken-stack}} Stack on the boss hitbox (fixed); Stack Tank stands right in front\n{{forsaken-cone}} Cone = away from the Stack, just off the tower edge (not the back wall)',
-          imageUrl: './umad/p2-forsaken-p3Z-5.webp',
+            '{{forsaken-stack}} Stack on the boss hitbox (fixed); helper Tank stands right in front\n{{forsaken-cone}} Cone = inside the tower at its South edge, away from the Stack (max melee or further out)',
+          imageUrl: './umad/p2-forsaken-p3Z-5.webp'
         },
         {
           mechanic: 'Odd Towers (Right)',
           description:
-            '{{forsaken-stack}} Stack = between the outer hitbox and tower edge, before the midpoint (not the "eye" corner, not the Even cone spot)\n{{forsaken-circle}} Spread = East edge of the tower, away from the Stack',
-          imageUrl: './umad/p2-forsaken-p3Z-5.webp',
-        },
-        {
-          mechanic: 'Odd Set 1 (Special)',
-          description:
-            'Set 1 ONLY: if you take a tower, FOLLOW your buddy into it (this set is special)\n{{forsaken-stack}} Left Stack sits slightly off-center toward the helper Tank (NEish)\nSets 3/5/7 use the fixed Left/Right spots above',
-          imageUrl: './umad/p2-forsaken-p3Z-4.webp'
+            '{{forsaken-stack}} Stack = W/SW side of the tower, nearest the DPS helpers between the towers\n{{forsaken-circle}} Spread = East edge of the tower, away from the Stack',
+          imageUrl: './umad/p2-forsaken-p3Z-5.webp'
         },
         {
           mechanic: 'Even Towers (Diamond Box Markers)',
           description:
             'Both Towers: {{forsaken-cone}} Cone North + {{forsaken-circle}} Spread South',
           action:
-            'Non-tower Tank/Melee North on OUTER RING of boss hitbox to bait Clones\n❗<b>BE ON THE OUTER RING, DO NOT GO FURTHER OUT</b>\nNon-tower Healer/Ranged bait cones on Marker\nNumber Marker = outside the far corner tip, Letter Marker = Front edge\nTower Tank/Melee flex if partner matches',
+            'Non-tower Tank NW / Melee NE on OUTER RING of boss hitbox to bait Clones\n❗<b>BE ON THE OUTER RING, DO NOT GO FURTHER OUT</b>\nNon-tower Healer (always West) / Ranged (always East) bait cones on Marker\nNumber Marker = North, just outside the corner tip; Letter Marker = Front edge\nTower Tank/Melee flex if partner matches (Set 4 is fixed: Healer + Melee Left, Ranged + Tank Right)',
           imageUrl: './umad/p2-forsaken-p3Z-9.webp'
         },
         {
-          mechanic: 'Even Towers (Number Markers, Left)',
+          mechanic: 'Even Towers (Number Markers)',
           description:
-            'Left tower (Boss is North)\n{{forsaken-cone}} Cone = Front edge towards Left on <b>INNER</b> hitbox ring at <b>TOWER EDGE</b>\n{{forsaken-circle}} Spread = South edge, directly across tower from Cone\nBaiter = Back corner of Number Markers',
-          imageUrl: './umad/p2-forsaken-p3Z-8.webp',
+            'Boss is North (marker type rotates each even set)\n{{forsaken-cone}} Cone = Front edge on <b>INNER</b> hitbox ring at <b>TOWER EDGE</b>\n{{forsaken-circle}} Spread = South edge, directly across tower from Cone\nBaiter = North, just outside the corner tip of the Number Marker',
+          imageUrl: './umad/p2-forsaken-p3Z-8.webp'
         },
         {
-          mechanic: 'Even Towers (Letter Markers, Right)',
+          mechanic: 'Even Towers (Letter Markers)',
           description:
-            'Right tower (Boss is North)\n{{forsaken-cone}} Cone = Front edge towards Right on <b>INNER</b> hitbox ring at <b>TOWER EDGE</b>\n{{forsaken-circle}} Spread = South edge, directly across tower from Cone\nBaiter = Front edge of Letter Markers',
-          imageUrl: './umad/p2-forsaken-p3Z-8.webp',
+            'Boss is North (marker type rotates each even set)\n{{forsaken-cone}} Cone = Front edge on <b>INNER</b> hitbox ring at <b>TOWER EDGE</b>\n{{forsaken-circle}} Spread = South edge, directly across tower from Cone\nBaiter = Front edge of the Letter Marker',
+          imageUrl: './umad/p2-forsaken-p3Z-8.webp'
         },
         {
           mechanic: 'Future/Past Baits',
@@ -1614,7 +1614,7 @@ const allP2: PhaseStrats[] = [
         {
           mechanic: 'Overview',
           description:
-            'AAABBBBA order\nOdd towers: Cones Left, Spreads Right\nLeft stack = boss hitbox ring, Right stack = front toward "new north"\nEven towers: one spread, one cone per tower\nTanks/Melees will flex if partner matches',
+            'AAABBBBA order (Group A = towers 1, 2, 3, 8; Group B = towers 4, 5, 6, 7)\nSupports West, DPS East: Support {{forsaken-stack}} Stack = Left tower, DPS {{forsaken-stack}} Stack = Right tower (Set 1 included)\nOdd towers: Cones Left, Spreads Right\nLeft stack = on boss hitbox, Right stack = max melee on the inner (left) side of the tower\nEven towers: one spread, one cone per tower\nRanged never adjust; Melees adjust for their ranged partner',
           imageUrl: './umad/p2-forsaken-lpdu-0.webp'
         },
         {
@@ -1634,21 +1634,21 @@ const allP2: PhaseStrats[] = [
         {
           mechanic: 'Odd Towers (Left)',
           description:
-            '{{forsaken-stack}} Stack on the boss hitbox (fixed); Stack Tank stands right in front\n{{forsaken-cone}} Cone = away from the Stack, just off the tower edge (not the back wall)',
-          imageUrl: './umad/p2-forsaken-lpdu-5.webp',
+            '{{forsaken-stack}} Stack on the boss hitbox (fixed); helper Tank stands right in front, inside the hitbox\n{{forsaken-cone}} Cone = inside the tower at its South edge, slightly shifted right, away from the Stack',
+          imageUrl: './umad/p2-forsaken-lpdu-5.webp'
         },
         {
           mechanic: 'Odd Towers (Right)',
           description:
-            '{{forsaken-stack}} Stack = between the outer hitbox and tower edge, before the midpoint (not the "eye" corner, not the Even cone spot)\n{{forsaken-circle}} Spread = East edge of the tower, away from the Stack',
-          imageUrl: './umad/p2-forsaken-lpdu-5.webp',
+            '{{forsaken-stack}} Stack = max melee on the inner (left) side of the tower\n{{forsaken-circle}} Spread = East-most position of the tower, away from the Stack',
+          imageUrl: './umad/p2-forsaken-lpdu-5.webp'
         },
         {
           mechanic: 'Even Towers',
           description:
             'Both Towers: {{forsaken-cone}} Cone in front + {{forsaken-circle}} Spread in back\n{{forsaken-cone}} Cone = front, on the INNER hitbox ring where the ring meets the tower edge\n{{forsaken-circle}} Spread = opposite side of the tower, max distance from the Cone',
           action:
-            '<b>Big box markers are NOT made for Forsaken - do NOT use the markers to position</b>\nTower Tank/Melee flex if partner matches',
+            '<b>Big box markers are NOT made for Forsaken - do NOT use the markers to position</b>\nEven-set roles are FIXED: Healer + Melee Left tower, Ranged + Tank Right tower\nCone holder goes front',
           imageUrl: './umad/p2-forsaken-lpdu-9.webp'
         },
         {
@@ -1898,54 +1898,6 @@ const sdaBH: MechanicStrat[] = [
   }
 ];
 
-const zsqBH: MechanicStrat[] = [
-  {
-    mechanic: 'Hand Attacks',
-    action:
-      'Kefka = Relative North\nLeft side unsafe (facing boss) = Party Stack\nRight side unsafe = Role Spread',
-    imageUrl: './umad/p3-zsq-13.webp'
-  },
-  {
-    mechanic: 'Hand Attacks (Roles)',
-    action: 'If Role Spread, Tanks Front, Healers Mid, DPS Back',
-    imageUrl: './umad/p3-zsq-17.webp'
-  },
-  {
-    mechanic: 'Laser Tethers',
-    description:
-      '4 tether sets, each player soaks 3 lasers\nDPS = 1st tether CW from Kefka, Supports = 2nd, {{accretion}} Accretion = 3rd\nPoint every laser clockwise\nNeed to get hit 3 times to cleanse',
-    imageUrl: './umad/p3-zsq-7.webp'
-  },
-  {
-    mechanic: 'Tether Timeline (D>S>A)',
-    description: '<b>Tether CW Order = #1 DPS, #2 Supports, #3 {{accretion}} Accretion</b>',
-    action:
-      '<b>Set 1 (1 Laser + 2 Lasers)</b>\nSet 1 1st hit: {{first-in-line}} DPS\nSet 1 2nd hit: {{first-in-line}} DPS + {{first-in-line}} Support\nExdeath Tankbuster (TB 4/5)\nChaos Edict + Kefka Hand\n<b>Set 2 (3 Lasers, 3 hits)</b>\nSet 2 1st hit: {{first-in-line}} DPS, {{first-in-line}} Support, {{first-in-line}}{{accretion}} Accretion\nSet 2 2nd hit: {{second-in-line}} DPS take 1st tether\nSet 2 3rd hit: {{second-in-line}} Support take 2nd tether\nChaos Edict + Kefka Hot Tail + Exdeath Tankbuster (TB 5/5)\n<b>Set 3 (3 tethers, 3 hits)</b>\nSet 3 1st hit: {{second-in-line}} DPS, {{second-in-line}} Support, {{second-in-line}}{{accretion}} Accretion\nSet 3 2nd hit: {{third-in-line}} DPS take 1st tether\nSet 3 3rd hit: {{third-in-line}} Support take 2nd tether\nChaos Lat/Long + Kefka Hand\n<b>Set 4 (2 Lasers + 1 Laser)</b>\nSet 4 1st hit: {{third-in-line}} DPS + {{third-in-line}} Support\nKefka Hot Tail\nSet 4 2nd hit: {{third-in-line}} Support',
-    imageUrl: './umad/p3-zsq-3.webp'
-  },
-  {
-    mechanic: 'White Hole + Dodges',
-    description:
-      'Dodge Latitude/Longitude then Kefka hand (move to the safe side on the 2nd hit)\nExdeath White Hole: ALL players must be at FULL HP\nKefka Party Stack / Role Spread resolves',
-    imageUrl: './umad/p3-zsq-31.webp'
-  }
-];
-
-const zsqStomps: MechanicStrat[] = [
-  {
-    mechanic: 'Earthquake Stomps (Setup)',
-    description:
-      'Drag both bosses middle after the Kefka middle slam\nSupports North, DPS South (orient by Kefka heels: white feet = West, black feet = East)\nKefka = 2 two-person towers East/West, Exdeath = Blizzard III (2 AoEs under all players), Chaos = 4-person stack',
-    imageUrl: './umad/p3-zsq-stomps-setup.webp'
-  },
-  {
-    mechanic: 'Earthquake Stomps (Resolve)',
-    description:
-      'Plant the 4-person stack dead middle (it is BIG, do not clip the tower players)\nG1 Support/DPS move into the tower spots right after the 2nd puddle - the towers resolve at the same time as the stack\nDodge both puddle sets, do NOT cover the towers/stacks, then switch roles for the next set',
-    imageUrl: './umad/p3-zsq-stomps.webp'
-  }
-];
-
 const lpduBH: MechanicStrat[] = [
   {
     mechanic: 'Hand Attacks',
@@ -1968,13 +1920,13 @@ const lpduBH: MechanicStrat[] = [
     mechanic: 'Tether Timeline (D>S>A)',
     description: '<b>Tether CW Order = #1 DPS, #2 Supports, #3 {{accretion}} Accretion</b>',
     action:
-      '<b>Set 1 (1 Laser + 2 Lasers)</b>\nSet 1 1st hit: {{first-in-line}} DPS\nSet 1 2nd hit: {{first-in-line}} DPS + {{first-in-line}} Support\nExdeath Tankbuster (TB 4/5)\nChaos Edict + Kefka Hand\n<b>Set 2 (3 Lasers, 3 hits)</b>\nSet 2 1st hit: {{first-in-line}} DPS, {{first-in-line}} Support, {{first-in-line}}{{accretion}} Accretion\nSet 2 2nd hit: {{second-in-line}} DPS take 1st tether\nSet 2 3rd hit: {{second-in-line}} Support take 2nd tether\nChaos Edict + Kefka Hot Tail + Exdeath Tankbuster (TB 5/5)\n<b>Set 3 (3 tethers, 3 hits)</b>\nSet 3 1st hit: {{second-in-line}} DPS, {{second-in-line}} Support, {{second-in-line}}{{accretion}} Accretion\nSet 3 2nd hit: {{third-in-line}} DPS take 1st tether\nSet 3 3rd hit: {{third-in-line}} Support take 2nd tether\nChaos Lat/Long + Kefka Hand\n<b>Set 4 (2 Lasers + 1 Laser)</b>\nSet 4 1st hit: {{third-in-line}} DPS + {{third-in-line}} Support\nKefka Hot Tail\nSet 4 2nd hit: {{third-in-line}} Support',
+      '<b>Set 1 (1 Laser + 2 Lasers)</b>\nSet 1 1st hit: {{first-in-line}} DPS\nSet 1 2nd hit: {{first-in-line}} DPS + {{first-in-line}} Support\nExdeath Tankbuster (TB 4/5)\nChaos Edict + Kefka Hand\n<b>Set 2 (3 Lasers, 3 hits)</b>\nSet 2 1st hit: {{first-in-line}} DPS, {{first-in-line}} Support, {{first-in-line}}{{accretion}} Accretion\nSet 2 2nd hit: {{second-in-line}} DPS take 1st tether\nSet 2 3rd hit: {{second-in-line}} Support take 2nd tether\nChaos Edict + Kefka Hot Tail + Exdeath Tankbuster (TB 5/5)\n<b>Set 3 (3 tethers, 3 hits)</b>\nSet 3 1st hit: {{second-in-line}} DPS, {{second-in-line}} Support, {{second-in-line}}{{accretion}} Accretion\nSet 3 2nd hit: {{third-in-line}} DPS take 1st tether\nSet 3 3rd hit: {{third-in-line}} Support take 2nd tether\nExdeath White Hole, then Chaos Lat/Long + Kefka Hand\n<b>Set 4 (2 Lasers + 1 Laser)</b>\nSet 4 1st hit: {{third-in-line}} DPS + {{third-in-line}} Support\nSet 4 2nd hit: {{third-in-line}} Support (Kefka mid cleave at the same time - point the laser outward)',
     imageUrl: './umad/p3-lpdu-bh-3.webp'
   },
   {
     mechanic: 'White Hole + Dodges',
     description:
-      'Dodge Latitude/Longitude then Kefka hand (move to the safe side on the 2nd hit)\nExdeath White Hole: ALL players must be at FULL HP\nKefka Party Stack / Role Spread resolves',
+      'Exdeath White Hole: ALL players must be at FULL HP\nThen dodge Chaos Latitude/Longitude + Kefka hand (Chaos tank faces Chaos NW Kefka-relative; party can preposition relative South)\nKefka Party Stack / Role Spread resolves',
     imageUrl: './umad/p3-lpdu-bh-31.webp'
   }
 ];
@@ -1989,7 +1941,7 @@ const lpduStomps: MechanicStrat[] = [
   {
     mechanic: 'Earthquake Stomps (Resolve)',
     description:
-      'Plant the stack dead middle (it is BIG, do not clip the tower players)\nDodge both puddle sets, do NOT cover the towers/stacks\n<b>Role split:</b> the 4-person stack breaks into two 2-person stacks - Tanks/Melees Left, Healers/Ranged Right\nSwitch roles after the towers and stacks resolve',
+      'After the 1st puddles, spread by role to the intercards relative to Big Kefka: Tanks NW, Healers NE, Melees SW, Ranged SE\n<b>Role split:</b> the role pair holding the stack goes back mid as ONE 4-person stack; the other pair of that group takes the towers (Tanks West / Healers East, or Melees West / Ranged East)\nMove into tower/stack right after the 2nd puddle - they resolve together\nPlant the stack dead middle (it is BIG, do not clip the tower players); do NOT cover the towers/stacks\nSwitch roles for the next set',
     imageUrl: './umad/p3-lpdu-stomps.webp'
   }
 ];
@@ -2324,13 +2276,13 @@ const allP3: PhaseStrats[] = [
         {
           mechanic: 'Setup',
           description:
-            'Use the Wind crystal as North for the whole mechanic (ignore debuffs for positioning)\nMT/H1/Melees take Chaos (kept mid), OT/H2/Ranged take Exdeath\nDrag Exdeath relative South (opposite Wind)\nHealers always on the Water side, Ranged always on the Fire side\nMelees stack North with the tanks',
+            'Use the Wind crystal as North for the whole mechanic (ignore debuffs for positioning)\nMT/H1/Melees take Chaos, OT/H2/Ranged take Exdeath\nDrag Chaos North to the Wind crystal, drag Exdeath relative South (opposite Wind)\nHealers always on the Water side, Ranged always on the Fire side\nMelees stack North with MT; OT joins North while Exdeath casts, then Exdeath stacks onto Chaos',
           imageUrl: './umad/p3-Eq0-3.webp'
         },
         {
           mechanic: 'First Resolve (Short)',
           description:
-            'Short element resolves as the Exdeath defamation drops\nShort {{entropy}} Fire: Melees spread away from Supports\nShort {{dynamic-fluid}} Water: Melees + Supports stack\nCrystal AoE hits the Ranged on the Fire side',
+            'Short element resolves as the Exdeath defamation drops\nShort {{entropy}} Fire: Melees NW, Tanks NE of the Wind crystal (away from Supports)\nShort {{dynamic-fluid}} Water: Melees + Supports stack\nNon-debuffed Ranged just takes the Fire spread with their partner',
           imageUrl: './umad/p3-Eq0-6.webp'
         },
         {
@@ -2348,7 +2300,7 @@ const allP3: PhaseStrats[] = [
         {
           mechanic: 'Superjump',
           description:
-            'Phys Ranged bait the Chaos Superjump, then move back North as the castbar starts\nEveryone stack on Exdeath',
+            'Phys Ranged bait the Chaos Superjump, then move back North as the castbar starts\nEveryone else holds their static position',
           imageUrl: './umad/p3-Eq0-11.webp'
         }
       ],
@@ -2362,7 +2314,7 @@ const allP3: PhaseStrats[] = [
         {
           mechanic: 'Setup',
           description:
-            'Use the Wind crystal as the new North for the whole mechanic (ignore debuffs for positioning)\nMT/H1/Melees take Chaos, OT/H2/Ranged take Exdeath\nKeep both Exdeath AND Chaos stacked mid (Exdeath tank drifts North during the cast)\nHealers always on the Water side, Ranged always on the Fire side\nMelees stack North with the tanks (Water = stay stacked, Fire = Melees NW / Tank NE)',
+            'Use the Wind crystal as the new North for the whole mechanic (ignore debuffs for positioning)\nMT/H1/Melees take Chaos, OT/H2/Ranged take Exdeath\nKeep both Exdeath AND Chaos stacked mid; the Exdeath tank runs North to the tank/melee stack while Exdeath casts\nHealers always on the Water side, Ranged always on the Fire side\nMelees stack North with the tanks (Water = stay stacked, Fire = Melees NW / Tank NE)',
           imageUrl: './umad/p3-lpdu-2.webp'
         },
         {
@@ -2374,7 +2326,7 @@ const allP3: PhaseStrats[] = [
         {
           mechanic: 'Tankbuster + Implosion',
           description:
-            'Proximity Tankbuster on Exdeath (kept mid) - one tank invulns/mits both hits (refer to tank mit sheet)\nBe inside or South of Exdeath\nDodge Chaos Implosion: Latitude = sides first, Longitude = front/back first',
+            'Proximity Tankbuster on Exdeath (kept mid) - refer to tank mit sheet (invuln is saved for the post-LC buster)\nBe inside or South of Exdeath\nDodge Chaos Implosion: Latitude = sides first, Longitude = front/back first',
           imageUrl: './umad/p3-lpdu-8.webp'
         },
         {
@@ -2386,7 +2338,7 @@ const allP3: PhaseStrats[] = [
         {
           mechanic: 'Superjump',
           description:
-            'Phys Ranged bait the Chaos Superjump after the 2nd debuffs, then move back North as the castbar starts\nEveryone stack on Exdeath (mid)',
+            'Phys Ranged bait the Chaos Superjump after the 2nd debuffs, then move back North as the castbar starts\nDrag Exdeath to the North wall (1 marker); party lines up just South of Exdeath for Vacuum Wave',
           imageUrl: './umad/p3-lpdu-16.webp'
         }
       ]
@@ -2456,7 +2408,7 @@ const allP3: PhaseStrats[] = [
         {
           mechanic: 'Numbers',
           description:
-            'Relative North = opposite Kefka’s FIRST dash\nStand on the inter-inter-cardinals in number order from Rel N, rotating OPPOSITE Kefka’s dash direction\nAlign with the waymark or between markers\nExdeath Thunder III tankbuster after (TB 2/5)',
+            'Relative North = opposite where Kefka STARTED his dashes\nStand on the inter-inter-cardinals in number order from Rel N, rotating OPPOSITE Kefka’s dash direction\nStand between the markers on the edge\nShared Exdeath tankbuster after (TB 2/5): OT takes the first hit, MT the second',
           imageUrl: './umad/p3-Eq0-15.webp'
         }
       ],
@@ -2475,7 +2427,7 @@ const allP3: PhaseStrats[] = [
         {
           mechanic: 'Numbers',
           description:
-            'Relative North = opposite Kefka’s FIRST dash\nStand on the inter-inter-cardinals in number order from Rel N, rotating OPPOSITE Kefka’s dash direction\nAlign with the waymark or between markers\nExdeath Thunder III tankbuster after (TB 2/5)',
+            'Relative North = opposite where Kefka STARTED his dashes\nStand on the inter-inter-cardinals in number order from Rel N, rotating OPPOSITE Kefka’s dash direction\nStand between the markers on the edge\nExdeath tankbuster after (TB 2/5): invuln per mit sheet, keep the bosses close but not stacked',
           imageUrl: './umad/p3-lpdu-20.webp'
         }
       ]
@@ -2493,14 +2445,22 @@ const allP3: PhaseStrats[] = [
       },
       {
         mechanic: 'Conga + Debuffs',
-        description:
-          'Stack bosses mid, then conga; HP set to 1\nAll: Primordial Crust (cleanse by dying -> survive at 1 hp)\n1 DPS + 1 Healer: {{accretion}} Accretion (cleanse by full heal)\nRaidwide + 4s Earth vuln each time an Earth debuff expires\n3x {{first-in-line}} First / 3x {{second-in-line}} Second / 2x {{third-in-line}} Third in Line',
+        description: {
+          kefkabin:
+            'Stack bosses mid, then conga; HP set to 1\nAll: Primordial Crust (cleanse by dying -> survive at 1 hp)\n1 DPS + 1 Healer: {{accretion}} Accretion (cleanse by full heal)\nRaidwide + 4s Earth vuln each time an Earth debuff expires\n3x {{first-in-line}} First / 3x {{second-in-line}} Second / 2x {{third-in-line}} Third in Line',
+          eupf: 'Stack bosses mid; HP set to 1\nNo conga - assignments are fixed from your own debuff + role\nAll: Primordial Crust (cleanse by dying -> survive at 1 hp)\n1 DPS + 1 Healer: {{accretion}} Accretion (cleanse by full heal) - always one I and one II\nRaidwide + 2s Earth vuln each time an Earth debuff expires\n3x {{first-in-line}} First / 3x {{second-in-line}} Second / 2x {{third-in-line}} Third in Line',
+          lpdu: 'Stack bosses mid; HP set to 1\nNo conga - assignments are fixed from your own debuff + role\nAll: Primordial Crust (cleanse by dying -> survive at 1 hp)\n1 DPS + 1 Healer: {{accretion}} Accretion (cleanse by full heal) - always one I and one II\nRaidwide + 2s Earth vuln each time an Earth debuff expires\n3x {{first-in-line}} First / 3x {{second-in-line}} Second / 2x {{third-in-line}} Third in Line'
+        },
         imageUrl: './umad/p3-lb-24.webp'
       },
       {
         mechanic: 'Tether Order',
-        description:
-          'Healers single-target the First-in-line {{accretion}} Accretion, then the second',
+        description: {
+          kefkabin:
+            'Healers single-target the First-in-line {{accretion}} Accretion, then the second',
+          eupf: 'Healers single-target the Healer {{accretion}} Accretion first, then the DPS Accretion\nWHM: do NOT Benediction on frame 1 (party can wipe from 1 HP)',
+          lpdu: 'Healers single-target the Healer {{accretion}} Accretion first, then the DPS Accretion\nWHM: do NOT Benediction on frame 1 (party can wipe from 1 HP)'
+        },
         imageUrl: './umad/p3-lb-25.webp'
       }
     ]
@@ -2512,7 +2472,6 @@ const allP3: PhaseStrats[] = [
       double: doubleBH,
       dsa: dsaBH,
       sda: sdaBH,
-      ZsQ: zsqBH,
       lpdu: lpduBH
     }
   },
@@ -2523,7 +2482,6 @@ const allP3: PhaseStrats[] = [
       double: splitStomps,
       dsa: splitStomps,
       sda: splitStomps,
-      ZsQ: zsqStomps,
       lpdu: lpduStomps
     }
   }
@@ -2578,7 +2536,7 @@ const allP4: PhaseStrats[] = [
       {
         mechanic: 'Debuff Resolution',
         description:
-          "Stacks {{compressed-water}}/{{kefka-fake}}{{forked-lightning}}: Supports North, DPS South\nSpreads: {{forked-lightning}}/{{kefka-fake}}{{compressed-water}} Supports West, DPS East\n\nShriek {{cursed-shriek}}: Shrieks in, party out N/S and look away, debuffs don't look at each other\nFake Shriek {{kefka-fake}}{{cursed-shriek}}: Shrieks in, party look in, debuffs look at each other\n\nInferno {{entropy}}/{{kefka-fake}}{{dynamic-fluid}}: Drop twister AOE middle, then spread\nTsunami {{dynamic-fluid}}/{{kefka-fake}}{{entropy}}: Drop twister donut middle, then stay"
+          "Stacks {{compressed-water}}/{{kefka-fake}}{{forked-lightning}}: Supports North, DPS South\nSpreads: {{forked-lightning}}/{{kefka-fake}}{{compressed-water}} Supports West, DPS East\n\nShriek {{cursed-shriek}}: Shrieks in, party out along the Thunder line (1st) or N/S (2nd) and look away, debuffs don't look at each other\nFake Shriek {{kefka-fake}}{{cursed-shriek}}: Shrieks in, party look in, debuffs look at each other\n\nInferno {{entropy}}/{{kefka-fake}}{{dynamic-fluid}}: Drop twister AOE middle, then move to the 2nd stack/spread spots\nTsunami {{dynamic-fluid}}/{{kefka-fake}}{{entropy}}: Drop twister donut middle, then stay"
       }
     ]
   },
@@ -2644,25 +2602,39 @@ const allP5: PhaseStrats[] = [
         },
         imageUrl: {
           default: './umad/p5-7.webp',
-          alt: { eupf: './umad/p5-7-eu.webp', lpdu: './umad/p5-7-eu.webp' }
+          alt: { eupf: './umad/p5-7-eu.webp', lpdu: './umad/p5-mo-spread-lpdu.webp' }
         }
       },
       {
         mechanic: '1st Hit (Random)',
         description:
           '1st hit is random\nMT gets 1x Surprise Flare, OT gets 1x Surprise Holy\n3x on Non-tanks',
-        imageUrl: './umad/p5-8.webp'
+        imageUrl: {
+          default: './umad/p5-8.webp',
+          alt: { eupf: './umad/p5-mo-hit1-eupf.webp', lpdu: './umad/p5-mo-hit1-lpdu.webp' }
+        }
       },
       {
         mechanic: '2nd Hit (Proximity)',
         description:
           '2nd hit is proximity\nTanks stack together for the shared buster\nParty go out if you got hit',
-        action: 'Tanks stack together for the shared buster\nNon-tanks go out if you got hit first',
-        imageUrl: './umad/p5-9.webp'
+        action: {
+          kefkabin:
+            'Tanks stack together for the shared buster\nNon-tanks go out if you got hit first',
+          eupf: 'Tanks stack together for the shared buster\nHit players stay outside; un-hit players move inside the hitbox to bait',
+          lpdu: 'Tanks stack together for the shared buster\nHit players stay outside; un-hit players move inside the hitbox to bait'
+        },
+        imageUrl: {
+          default: './umad/p5-9.webp',
+          alt: { eupf: './umad/p5-mo-hit2-eupf.webp', lpdu: './umad/p5-mo-hit2-lpdu.webp' }
+        }
       },
       {
         mechanic: 'Tank Resolve',
-        imageUrl: './umad/p5-10.webp',
+        imageUrl: {
+          default: './umad/p5-10.webp',
+          alt: { eupf: './umad/p5-mo-tank-eupf.webp', lpdu: './umad/p5-mo-tank-lpdu.webp' }
+        },
         strats: [
           {
             role: 'Tank',
@@ -2672,8 +2644,12 @@ const allP5: PhaseStrats[] = [
           {
             role: 'Tank',
             party: 2,
-            description:
-              'Holy; invuln max melee\nHoly tank voke before the resolution to take the next 2 autos with invuln'
+            description: {
+              kefkabin:
+                'Holy; invuln max melee\nHoly tank voke before the resolution to take the next 2 autos with invuln',
+              eupf: 'Holy; invuln max melee\nVoke-swap right after the 1st hit so the Holy tank takes the next 2 autos with invuln',
+              lpdu: 'Holy; invuln max melee\nVoke-swap right after the 1st hit so the Holy tank takes the next 2 autos with invuln'
+            }
           },
           {
             role: 'Healer',
@@ -2722,8 +2698,12 @@ const allP5: PhaseStrats[] = [
       },
       {
         mechanic: 'Resolution',
-        action:
-          'Debuffs: 1st safe tower CW from your vuln, then rotate CW\nNo debuff: 1st CCW of double element',
+        action: {
+          kefkabin:
+            'Debuffs: 1st safe tower CW from your vuln, then rotate CW\nNo debuff: 1st CCW of double element',
+          eupf: 'Debuffs: 1st safe tower CW from your vuln, then rotate CW\nNo debuff: furthest CW tower of the double element',
+          lpdu: 'Debuffs: 1st safe tower CW from your vuln, then rotate CW\nNo debuff: furthest CW tower of the double element'
+        },
         imageUrl: './umad/p5-13.webp'
       }
     ]
@@ -2740,7 +2720,11 @@ const allP5: PhaseStrats[] = [
       },
       {
         mechanic: 'Stray Entropy',
-        description: 'Ends with Stray Entropy = spreads\nSpread out around the arena',
+        description: {
+          kefkabin: 'Ends with Stray Entropy = spreads\nSpread out around the arena',
+          eupf: 'Ends with Stray Entropy = spreads\nHealers on A/C, Ranged on 1/4, Tanks inside hitbox West, Melees inside hitbox NE/SE',
+          lpdu: 'Ends with Stray Entropy = spreads\nSpread out around the arena (no fixed spots); enmity tank stays close so the boss does not move'
+        },
         imageUrl: './umad/p5-19.webp'
       }
     ]
@@ -2755,7 +2739,7 @@ const allP5: PhaseStrats[] = [
           'Resolve the same as the first Maddening Orchestra\nOT should have aggro during the 1st hit to get the flare',
         imageUrl: {
           default: './umad/p5-20.webp',
-          alt: { eupf: './umad/p5-7-eu.webp', lpdu: './umad/p5-7-eu.webp' }
+          alt: { eupf: './umad/p5-7-eu.webp', lpdu: './umad/p5-mo2-lpdu.webp' }
         },
         strats: [
           {
@@ -2877,13 +2861,15 @@ const kefkabinStrat: Strat = {
 
 const euPfStrat: Strat = {
   stratName: 'eupf',
-  description: 'P1: X13 + uptime graven + static freaky, P2: p3Z, P3: Eq0 + ZsQ, P4: 7pj, P5: 4px',
+  description:
+    'P1: X13 + uptime graven + static freaky, P2: p3Z, P3: LPDU Middeath + LPDU Earthquake, P4: 7pj, P5: 4px',
   stratUrl: {
     'P1: X13 (modified xolo)': 'https://raidplan.io/plan/p8JvSSs1_QKMVX13',
     'P1: Static Freaky (LPDU Tele-Trouncing)': 'https://raidplan.io/plan/saC2CjTaXmSApm6y',
     "P2: p3Z (Meow³'s Braindead P2 Buddy)": 'https://raidplan.io/plan/lZWqxfxvyhF9sp3Z',
-    'P3: Eq0 (P3 but tank lb)': 'https://raidplan.io/plan/cyHdnCaTdIkh4Eq0',
-    'P3: ZsQ (Kefka Relative AM-less Earthquakes)': 'https://raidplan.io/plan/ZhNPOdHVgc48yZsQ',
+    'P3: LPDU P3 - Bowels Exdeath Mid': 'https://raidplan.io/plan/-j_AAEyx6yACuTve',
+    'P3: LPDU P3 - Earthquake': 'https://raidplan.io/plan/vO5T6KpnHKV4tOXo',
+    'P3 (alt): Eq0 (P3 but tank lb)': 'https://raidplan.io/plan/cyHdnCaTdIkh4Eq0',
     'P4: 7pj (UMAD p4)': 'https://raidplan.io/plan/guufe9q559evt7pj',
     'P5: 4px (Okayge p5)': 'https://raidplan.io/plan/gkep6rkvtygyk4px'
   },
@@ -2928,8 +2914,8 @@ export const dancingMadFightConfig: FightConfig = {
       ]
     },
     eupf: {
-      label: 'X13/p3Z/eq0/ZsQ',
-      defaults: { arrows: 'stfr', forsaken: 'p3Z', bowels: 'Eq0', blackhole: 'ZsQ' },
+      label: 'X13/p3Z/LPDU P3',
+      defaults: { arrows: 'stfr', forsaken: 'p3Z', bowels: 'lpdu', blackhole: 'lpdu' },
       badges: [
         {
           text: 'EU',
@@ -3060,14 +3046,6 @@ export const dancingMadFightConfig: FightConfig = {
           url: {
             name: 'S>D>A Blackhole',
             url: 'https://tinyurl.com/SDAHoles'
-          }
-        },
-        {
-          value: 'ZsQ',
-          label: 'ZsQ (LP Stomps)',
-          url: {
-            name: 'Kefka Relative AM-less Earthquakes',
-            url: 'https://raidplan.io/plan/ZhNPOdHVgc48yZsQ'
           }
         },
         {
@@ -3268,27 +3246,12 @@ export const dancingMadFightConfig: FightConfig = {
     },
     {
       tab: 'P3: Chaos and Exdeath',
-      label: 'ZsQ (LP Stomps)',
-      category: 'Black Hole',
-      tag: 'blackhole',
-      value: 'ZsQ',
-      description:
-        "DPS > Support > Accretion tether order, Kefka Relative. Watch 2nd-in-Line Tank after Set 3 to make sure they're healed up after going to 1HP. Stomps start Supports N, DPS S, then split G1 Left, G2 Right.",
-      badges: [
-        {
-          text: 'EU',
-          class: 'eu-badge'
-        }
-      ]
-    },
-    {
-      tab: 'P3: Chaos and Exdeath',
       label: 'LPDU (Role Stomps)',
       category: 'Black Hole',
       tag: 'blackhole',
       value: 'lpdu',
       description:
-        'Same DPS > Support > Accretion order as ZsQ, but role-based Left/Right split for stomps (Tanks/Melees Left, Healers/Ranged Right)',
+        "DPS > Support > Accretion tether order, Kefka Relative. Watch 2nd-in-Line Tank after Set 3 to make sure they're healed up after going to 1HP. Stomps start Supports N, DPS S; role-based tower split (Tanks/Melees West, Healers/Ranged East) while the 4-person stack stays mid.",
       badges: [
         {
           text: 'EU',
