@@ -13,15 +13,19 @@
 </script>
 
 <!-- Plan selector for the mitigation panel; state lives in the fight page. -->
-<div class="flex items-center gap-1">
+<div class="flex items-center gap-2">
   <span class="text-sm font-semibold text-surface-600-400 uppercase tracking-wider">Plan</span>
   <Select.Root type="single" value={plan?.planName ?? ''} onValueChange={onSelectPlan}>
-    <Select.Trigger size="sm" class="!py-0.5 !px-2 !min-w-0">
-      <span class="text-sm">{plan?.label ?? 'Select'}</span>
+    <Select.Trigger size="lg">
+      <div class="flex place-items-start text-base overflow-hidden">
+        {plan?.label ?? 'Select a plan'}
+      </div>
     </Select.Trigger>
     <Select.Content>
       {#each plans as p (p.planName)}
-        <Select.Item value={p.planName}><span class="text-sm">{p.label}</span></Select.Item>
+        <Select.Item value={p.planName}>
+          <div class="text-base">{p.label}</div>
+        </Select.Item>
       {/each}
     </Select.Content>
   </Select.Root>

@@ -15,6 +15,7 @@
     Shield,
     TriangleAlert
   } from '@lucide/svelte/icons';
+  import { browser } from '$app/environment';
   import ImagePreview from '../ImagePreview.svelte';
   import SpotlightOverlay from '../SpotlightOverlay.svelte';
   import TimelineIcon from '$lib/components/TimelineIcon.svelte';
@@ -57,6 +58,31 @@
     mitControls = undefined,
     currentTab = $bindable()
   }: Props = $props();
+
+  // The mit panel scrolls with the page until its sticky wrapper actually sticks; only
+  // then is its height capped and its list made scrollable. "Stuck" is detected by the
+  // wrapper being pushed below the in-flow sentinel that precedes it.
+  let mitSentinel = $state<HTMLDivElement | null>(null);
+  let mitWrapper = $state<HTMLDivElement | null>(null);
+  let mitStuck = $state(false);
+  $effect(() => {
+    if (!browser || !mitsOpen) {
+      mitStuck = false;
+      return;
+    }
+    const update = () => {
+      if (!mitSentinel || !mitWrapper) return;
+      mitStuck =
+        mitWrapper.getBoundingClientRect().top > mitSentinel.getBoundingClientRect().bottom + 0.5;
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      window.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
+  });
 
   function phaseKey(phase: any, index: number): string {
     // Recurring phase names (e.g. "Towers" appearing twice in EX6) need a
@@ -247,8 +273,11 @@
         {@render mitsButton()}
         {@render mitControls?.()}
       </div>
+      <div bind:this={mitSentinel} aria-hidden="true"></div>
       <div
-        class="lg:sticky lg:top-[calc(var(--sticky-header-h,0px)+1rem)] lg:max-h-[calc(100vh-var(--sticky-header-h,0px)-2rem)] flex flex-col min-h-0 mb-6 lg:mb-0"
+        bind:this={mitWrapper}
+        data-stuck={mitStuck}
+        class="group/mit lg:sticky lg:top-[calc(var(--sticky-header-h,0px)+1rem)] lg:data-[stuck=true]:max-h-[calc(100vh-var(--sticky-header-h,0px)-2rem)] flex flex-col min-h-0 mb-6 lg:mb-0"
       >
         {@render mitPanel?.()}
       </div>
@@ -257,7 +286,7 @@
 
   <!-- Right column: phase tabs and strat content. -->
   <div class="flex-1 min-w-0 w-full">
-    <div class="flex w-full items-center flex-wrap lg:flex-nowrap">
+    <div class="flex w-full items-start flex-wrap lg:flex-nowrap">
       {#if onToggleMits && !mitsOpen}
         <!-- Panel closed: the toggle sits in the tab row so it lines up with the tabs. -->
         {@render mitsButton()}

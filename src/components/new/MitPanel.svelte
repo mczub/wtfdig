@@ -125,7 +125,7 @@
 </script>
 
 <aside
-  class="card border border-surface-700/50 bg-surface-900/30 backdrop-blur-sm rounded-xl overflow-hidden flex flex-col min-h-0"
+  class="card border border-surface-700/50 bg-surface-900/30 backdrop-blur-sm rounded-md overflow-hidden flex flex-col min-h-0"
 >
   <!-- Panel-level controls (the plan selector lives in the row above the panel) -->
   <div class="p-3 border-b border-surface-700/50">
@@ -186,7 +186,7 @@
         <div class="flex items-center gap-1">
           <span class="text-xs font-medium text-surface-400 uppercase">P3 boss</span>
           <div
-            class="inline-flex rounded-md border border-surface-700 overflow-hidden text-sm"
+            class="inline-flex rounded-sm border border-surface-700 overflow-hidden text-sm"
             role="group"
             aria-label="P3 boss"
           >
@@ -205,7 +205,7 @@
         <div class="flex items-center gap-1">
           <span class="text-xs font-medium text-surface-400 uppercase">P5 invuln</span>
           <div
-            class="inline-flex rounded-md border border-surface-700 overflow-hidden text-sm"
+            class="inline-flex rounded-sm border border-surface-700 overflow-hidden text-sm"
             role="group"
             aria-label="P5 invuln order"
           >
@@ -228,7 +228,7 @@
   <!-- Phase sections: the only part that scrolls, so the controls above stay put. -->
   <div
     bind:this={listEl}
-    class="flex flex-col divide-y divide-surface-700/50 min-h-0 lg:overflow-y-auto lg:overscroll-y-contain [scrollbar-width:thin] [scrollbar-color:hsl(var(--surface-700))_transparent]"
+    class="flex flex-col divide-y divide-surface-700/50 min-h-0 lg:group-data-[stuck=true]/mit:overflow-y-auto lg:group-data-[stuck=true]/mit:overscroll-y-contain [scrollbar-width:thin] [scrollbar-color:hsl(var(--surface-700))_transparent]"
   >
     {#if groups.length === 0}
       <div class="p-4 text-sm text-surface-400">
