@@ -30,10 +30,9 @@ export function defaultTankBoss(party: number | undefined): TankBoss {
   return party === 2 ? 'Exdeath' : 'Chaos';
 }
 
-/** P5 invuln order unless the tank says otherwise. The 2nd invuln starts with the
- * boss, which is the MT, so MT defaults to 2nd and OT to 1st. */
+/** P5 invuln order unless the tank says otherwise: MT 1st, OT 2nd. */
 export function defaultInvulnOrder(party: number | undefined): InvulnOrder {
-  return party === 2 ? 1 : 2;
+  return party === 2 ? 2 : 1;
 }
 
 export function defaultJob(role: Role, party: number | undefined): Job {
