@@ -1,8 +1,7 @@
 import type { Job } from './types';
 
-/** Icon file (under /icons/skills/) for each ability name used in mit plans.
- * Generic names ("Party Mit", "Extra") resolve per job; everything else is
- * one icon regardless of job. Names without an entry render as text only. */
+// Icon file under /icons/skills/ per ability name. Generic names resolve per job;
+// names without an entry render as text only.
 const MIT_ICONS: Record<string, string | Partial<Record<Job, string>>> = {
   // Role generics
   Reprisal: 'reprisal',
@@ -81,12 +80,12 @@ const MIT_ICONS: Record<string, string | Partial<Record<Job, string>>> = {
   Philosophia: 'philosophia'
 };
 
-/** Names that stand for several abilities at once; each resolves through MIT_ICONS. */
+// Names that stand for several abilities at once.
 const COMPOSITES: Record<string, string[]> = {
   'Kitchen Sink': ['Rampart', '40%', '90s', 'Short Mit']
 };
 
-/** Strip a trailing qualifier such as "(7-8th Set)" or "(Chaos)" before lookup. */
+// "Party Mit (7-8th Set)" -> "Party Mit"
 function baseName(segment: string): string {
   return segment.replace(/\s*\(.*\)\s*$/, '').trim();
 }
@@ -96,9 +95,7 @@ function iconFile(name: string, job: Job): string | undefined {
   return typeof entry === 'string' ? entry : entry?.[job];
 }
 
-/** Icon URLs for one "+"-separated segment of a mit string. Usually zero or one;
- * composite names like "Kitchen Sink" yield several. */
-export function mitIconUrls(segment: string, job: Job): string[] {
+function mitIconUrls(segment: string, job: Job): string[] {
   const name = baseName(segment);
   const names = COMPOSITES[name] ?? [name];
   return names
@@ -112,7 +109,7 @@ export interface MitSegment {
   icons: string[];
 }
 
-/** Split a mit string into its abilities, each paired with its icons when known. */
+/** Split a "+"-joined mit string into abilities, each with its icons for the job. */
 export function mitSegments(text: string | undefined, job: Job): MitSegment[] {
   if (!text) return [];
   return text.split(' + ').map((segment) => ({ text: segment, icons: mitIconUrls(segment, job) }));

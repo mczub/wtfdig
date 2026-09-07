@@ -167,8 +167,8 @@
     }
   }
 
-  // Publish the nav's live height as --sticky-header-h so sticky content below it
-  // (e.g. the mitigation panel) can offset itself, even while the collapse animates.
+  // Publish the nav's live height as --sticky-header-h so sticky content below it (the
+  // mit panel) can offset itself, even while the collapse animates.
   $effect(() => {
     if (!browser || !navElement) return;
     const root = document.documentElement;

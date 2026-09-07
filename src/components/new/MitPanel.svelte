@@ -4,22 +4,20 @@
   import * as Collapsible from '$lib/components/ui/collapsible';
   import * as Select from '$lib/components/ui/select';
   import { defaultInvulnOrder, defaultTankBoss, groupMitsByPhase } from '$lib/mits';
-  import { msToTime } from '$lib/utils';
   import { mitSegments } from '$lib/mitIcons';
+  import { msToTime } from '$lib/utils';
   import type { InvulnOrder, Job, MitPlan, Role, TankBoss } from '$lib/types';
 
   interface Props {
-    /** Selected plan (chosen in the page-level controls). */
     plan?: MitPlan;
     role: Role;
     party?: number;
-    /** Jobs selectable for this role slot, the current pick, and the setter. */
     jobs: Job[];
     job: Job;
     onSelectJob: (job: Job) => void;
     fightKey: string;
     tabTags?: Record<string, string[]> | null;
-    /** Active phase tab (key of `tabTags`); its phases open, the rest collapse. */
+    /** Active phase tab; its phases start open, the rest collapsed. */
     currentTab?: string;
   }
 
@@ -28,60 +26,44 @@
     role,
     party,
     jobs,
-    job: effectiveJob,
+    job,
     onSelectJob,
     fightKey,
     tabTags = null,
     currentTab
   }: Props = $props();
 
-  function load(key: string): string | null {
-    if (!browser) return null;
-    try {
-      return localStorage.getItem(`${fightKey}-${key}`);
-    } catch {
-      return null;
-    }
+  // Panel settings are persisted per fight.
+  function load(key: string) {
+    return browser ? localStorage.getItem(`${fightKey}-${key}`) : null;
+  }
+  function save(key: string, value: string) {
+    if (browser) localStorage.setItem(`${fightKey}-${key}`, value);
   }
 
-  function save(key: string, value: string | null) {
-    if (!browser) return;
-    try {
-      if (value === null) localStorage.removeItem(`${fightKey}-${key}`);
-      else localStorage.setItem(`${fightKey}-${key}`, value);
-    } catch {
-      /* ignore */
-    }
-  }
-
-  // "All" shows tank self mits alongside party mits; "Party" hides them.
+  // Tank-only filters. Boss and invuln order are remembered per light party.
   let showSelf = $state(load('mitShowSelf') !== 'false');
-  $effect(() => save('mitShowSelf', showSelf ? 'true' : 'false'));
+  $effect(() => save('mitShowSelf', String(showSelf)));
 
-  // Which boss the tank holds in P3, remembered per light party.
+  let partyKey = $derived(party ?? 1);
   let bossByParty = $state<Record<number, TankBoss>>({});
   let tankBoss = $derived.by(() => {
-    const p = party ?? 1;
-    const stored = bossByParty[p] ?? (load(`mitTankBoss-${p}`) as TankBoss | null);
+    const stored = bossByParty[partyKey] ?? load(`mitTankBoss-${partyKey}`);
     return stored === 'Chaos' || stored === 'Exdeath' ? stored : defaultTankBoss(party);
   });
   function setTankBoss(value: TankBoss) {
-    const p = party ?? 1;
-    bossByParty[p] = value;
-    save(`mitTankBoss-${p}`, value);
+    bossByParty[partyKey] = value;
+    save(`mitTankBoss-${partyKey}`, value);
   }
 
-  // P5 invuln order, remembered per light party.
   let invulnByParty = $state<Record<number, InvulnOrder>>({});
   let invulnOrder = $derived.by(() => {
-    const p = party ?? 1;
-    const stored = invulnByParty[p] ?? Number(load(`mitInvulnOrder-${p}`));
+    const stored = invulnByParty[partyKey] ?? Number(load(`mitInvulnOrder-${partyKey}`));
     return stored === 1 || stored === 2 ? stored : defaultInvulnOrder(party);
   });
   function setInvulnOrder(value: InvulnOrder) {
-    const p = party ?? 1;
-    invulnByParty[p] = value;
-    save(`mitInvulnOrder-${p}`, String(value));
+    invulnByParty[partyKey] = value;
+    save(`mitInvulnOrder-${partyKey}`, String(value));
   }
 
   let groups = $derived(
@@ -89,7 +71,7 @@
       ? groupMitsByPhase(plan, {
           role,
           party,
-          job: effectiveJob,
+          job,
           tabTags,
           includeSelf: showSelf,
           tankBoss,
@@ -98,9 +80,11 @@
       : []
   );
 
-  // Phase sections follow the active tab: its phases open, others collapse, so the
-  // panel usually fits without scrolling. Manual toggles win until the tab changes.
+  // Sections follow the active tab unless "Expand All" is on. Manual toggles win until
+  // the tab changes.
   let activeTags = $derived(currentTab && tabTags ? (tabTags[currentTab] ?? []) : []);
+  let expandAll = $state(load('mitExpandAll') === 'true');
+  $effect(() => save('mitExpandAll', String(expandAll)));
   let openState = $state<Record<string, boolean>>({});
   let listEl = $state<HTMLDivElement | null>(null);
   $effect(() => {
@@ -108,10 +92,6 @@
     openState = {};
     listEl?.scrollTo({ top: 0 });
   });
-  // "Expand All" is a persistent toggle: while on, every phase stays open across tab
-  // changes instead of following the active tab. Manual toggles still apply on top.
-  let expandAll = $state(load('mitExpandAll') === 'true');
-  $effect(() => save('mitExpandAll', expandAll ? 'true' : 'false'));
   function isOpen(phase: string) {
     return openState[phase] ?? (expandAll || activeTags.length === 0 || activeTags.includes(phase));
   }
@@ -120,25 +100,19 @@
     openState = {};
   }
 
-  // Phase-level notes are hidden until the info icon is toggled.
   let noteOpen = $state<Record<string, boolean>>({});
 </script>
 
 <aside
   class="card border border-surface-700/50 bg-surface-900/30 backdrop-blur-sm rounded-md overflow-hidden flex flex-col min-h-0"
 >
-  <!-- Panel-level controls (the plan selector lives in the row above the panel) -->
   <div class="p-3 border-b border-surface-700/50">
     <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
       <div class="flex items-center gap-1">
         <span class="text-xs font-medium text-surface-400 uppercase">Job</span>
-        <Select.Root
-          type="single"
-          value={effectiveJob}
-          onValueChange={(v) => onSelectJob(v as Job)}
-        >
+        <Select.Root type="single" value={job} onValueChange={(v) => onSelectJob(v as Job)}>
           <Select.Trigger size="sm" class="!py-0.5 !px-2 !min-w-0">
-            <span class="text-sm">{effectiveJob}</span>
+            <span class="text-sm">{job}</span>
           </Select.Trigger>
           <Select.Content>
             {#each jobs as j (j)}
@@ -225,14 +199,14 @@
     </div>
   </div>
 
-  <!-- Phase sections: the only part that scrolls, so the controls above stay put. -->
+  <!-- Only the phase list scrolls (once the panel is stuck), so the controls stay put. -->
   <div
     bind:this={listEl}
     class="flex flex-col divide-y divide-surface-700/50 min-h-0 lg:group-data-[stuck=true]/mit:overflow-y-auto lg:group-data-[stuck=true]/mit:overscroll-y-contain [scrollbar-width:thin] [scrollbar-color:hsl(var(--surface-700))_transparent]"
   >
     {#if groups.length === 0}
       <div class="p-4 text-sm text-surface-400">
-        No mitigation entries for {effectiveJob} in this plan yet.
+        No mitigation entries for {job} in this plan yet.
       </div>
     {/if}
     {#each groups as group (group.phase)}
@@ -242,7 +216,11 @@
       >
         <div class="flex items-center justify-between gap-2 px-3 py-2 bg-surface-950/40">
           <div class="flex items-center gap-2 min-w-0">
-            <div class="font-semibold text-surface-50">{group.label}</div>
+            <Collapsible.Trigger
+              class="font-semibold text-surface-50 hover:text-secondary-400 rounded-sm px-1 -mx-1 cursor-pointer truncate"
+            >
+              {group.label}
+            </Collapsible.Trigger>
             {#if group.note}
               <button
                 type="button"
@@ -297,7 +275,7 @@
                         {#if mit.label}
                           <span class="text-xs text-surface-300 capitalize">{mit.label}:</span>
                         {/if}
-                        {#each mitSegments(mit.mitigation, effectiveJob) as seg, i (i)}
+                        {#each mitSegments(mit.mitigation, job) as seg, i (i)}
                           <span class="inline-flex items-center gap-1 font-medium text-surface-50">
                             {#if i > 0}<span class="text-surface-500">+</span>{/if}
                             {#each seg.icons as icon (icon)}
@@ -306,7 +284,7 @@
                             {seg.text}
                           </span>
                         {/each}
-                        {#each mitSegments(mit.carryOver, effectiveJob) as seg, i (i)}
+                        {#each mitSegments(mit.carryOver, job) as seg, i (i)}
                           <span class="inline-flex items-center gap-1 text-sm text-surface-400">
                             <span class="text-surface-500">{i > 0 ? '+' : '➔'}</span>
                             {#each seg.icons as icon (icon)}

@@ -1,10 +1,7 @@
 import type { MitPlan } from '$lib/types';
 
-// Ikuya's Dancing Mad (Ultimate) mitigation sheet.
-// Source: https://tinyurl.com/ikuyamittydmu
-// Generated from the sheet's phase tabs; timestamps are phase-relative (the sheet's second time column).
-// Party mapping: MT/OT = Tank 1/2, D1/D2 = Melee 1/2, D3/D4 = Ranged 1/2.
-// `carryOver` entries are the sheet's arrow rows: a mit still running from an earlier mechanic.
+// Ikuya's Dancing Mad (Ultimate) mitigation plan, generated from the sheet's phase tabs.
+// Times are phase-relative. MT/OT = Tank 1/2, D1/D2 = Melee 1/2, D3/D4 = Ranged 1/2.
 
 export const ikuyaMitPlan: MitPlan = {
   planName: 'ikuya',

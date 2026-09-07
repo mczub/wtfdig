@@ -1,65 +1,52 @@
 import type { InvulnOrder, Job, MechMits, MechRoleMits, MitPlan, Role, TankBoss } from './types';
 
-export const JOBS_BY_ROLE: Record<Role, Job[]> = {
+const JOBS_BY_ROLE: Record<Role, Job[]> = {
   Tank: ['PLD', 'WAR', 'DRK', 'GNB'],
   Healer: ['WHM', 'SCH', 'AST', 'SGE'],
   Melee: ['MNK', 'DRG', 'NIN', 'SAM', 'RPR', 'VPR'],
   Ranged: ['BRD', 'MCH', 'DNC', 'BLM', 'SMN', 'RDM', 'PCT']
 };
+const PHYS_RANGED: Job[] = ['BRD', 'MCH', 'DNC'];
+const CASTERS: Job[] = ['BLM', 'SMN', 'RDM', 'PCT'];
 
-/** Job pre-selected in the mit panel until the player picks one, per role and light party. */
-export const DEFAULT_JOBS: Record<Role, [Job, Job]> = {
+// Default job per role and light party until the player picks one.
+const DEFAULT_JOBS: Record<Role, [Job, Job]> = {
   Tank: ['PLD', 'WAR'],
   Healer: ['WHM', 'SGE'],
   Melee: ['MNK', 'DRG'],
   Ranged: ['BRD', 'BLM']
 };
 
-const PHYS_RANGED: Job[] = ['BRD', 'MCH', 'DNC'];
-const CASTERS: Job[] = ['BLM', 'SMN', 'RDM', 'PCT'];
+// Jobs with a party-wide mitigation (the sheet's "Party Mit"); entries naming it are
+// dropped for everyone else.
+const JOBS_WITH_PARTY_MIT: Job[] = ['PLD', 'WAR', 'DRK', 'GNB', 'BRD', 'MCH', 'DNC', 'RDM', 'PCT'];
 
-/** Jobs selectable for a role slot. The plan's R1 is always a physical ranged
- * and R2 a caster, so the Ranged list depends on the light party. */
+// Jobs with an extra mitigation, shown as "Extra" on mechanics the sheet flags.
+const JOBS_WITH_EXTRAS: Job[] = ['PLD', 'MCH', 'DNC', 'RDM', 'PCT', 'RPR'];
+
+/** R1 is always a physical ranged and R2 a caster, so the Ranged list depends on the party. */
 export function jobsFor(role: Role, party: number | undefined): Job[] {
   if (role === 'Ranged') return party === 2 ? CASTERS : PHYS_RANGED;
   return JOBS_BY_ROLE[role];
-}
-
-/** Which boss a tank holds in P3 unless they say otherwise: MT Chaos, OT Exdeath. */
-export function defaultTankBoss(party: number | undefined): TankBoss {
-  return party === 2 ? 'Exdeath' : 'Chaos';
-}
-
-/** P5 invuln order unless the tank says otherwise: MT 1st, OT 2nd. */
-export function defaultInvulnOrder(party: number | undefined): InvulnOrder {
-  return party === 2 ? 2 : 1;
 }
 
 export function defaultJob(role: Role, party: number | undefined): Job {
   return DEFAULT_JOBS[role][party === 2 ? 1 : 0];
 }
 
-/** Jobs that have a party-wide mitigation the sheet calls "Party Mit". Entries
- * naming it are dropped for other jobs (BLM, SMN, melee). */
-export const JOBS_WITH_PARTY_MIT: Job[] = [
-  'PLD',
-  'WAR',
-  'DRK',
-  'GNB',
-  'BRD',
-  'MCH',
-  'DNC',
-  'RDM',
-  'PCT'
-];
+/** P3 boss: MT holds Chaos, OT holds Exdeath. */
+export function defaultTankBoss(party: number | undefined): TankBoss {
+  return party === 2 ? 'Exdeath' : 'Chaos';
+}
 
-/** Jobs with an extra mitigation on top of the role-generic ones. The sheet's
- * Extras column marks where to use it; it is shown simply as "Extra". */
-export const JOBS_WITH_EXTRAS: Job[] = ['PLD', 'MCH', 'DNC', 'RDM', 'PCT', 'RPR'];
+/** P5 invuln order: MT 1st, OT 2nd. */
+export function defaultInvulnOrder(party: number | undefined): InvulnOrder {
+  return party === 2 ? 2 : 1;
+}
 
-/** Drop "+"-separated segments naming a generic ability the job lacks. Names stay
- * generic; the panel shows the job's actual skill as an icon instead. */
-export function filterMitForJob(text: string | undefined, job: Job): string | undefined {
+// Drop "Party Mit" segments for jobs that have none; names otherwise stay generic and the
+// panel shows the job's actual skill as an icon.
+function filterMitForJob(text: string | undefined, job: Job): string | undefined {
   if (!text) return undefined;
   const kept = text
     .split(' + ')
@@ -67,18 +54,10 @@ export function filterMitForJob(text: string | undefined, job: Job): string | un
   return kept.length ? kept.join(' + ') : undefined;
 }
 
-/** True when a mit entry applies to the given role / party / job selection.
- * A missing `job` matches every job in the role so the panel still has content
- * before the player picks one. */
-export function mitMatches(
-  mit: MechRoleMits,
-  role: Role,
-  party: number | undefined,
-  job: Job | null | undefined
-): boolean {
+function mitMatches(mit: MechRoleMits, role: Role, party: number | undefined, job: Job): boolean {
   if (mit.role !== role) return false;
   if (mit.party && party && mit.party !== party) return false;
-  if (mit.jobs && job && !mit.jobs.includes(job)) return false;
+  if (mit.jobs && !mit.jobs.includes(job)) return false;
   return true;
 }
 
@@ -92,7 +71,7 @@ export interface MitPhaseGroup {
 export interface MitViewOptions {
   role: Role;
   party?: number;
-  job?: Job | null;
+  job: Job;
   tabTags?: Record<string, string[]> | null;
   /** Include tank self (buster) mits. Default true. */
   includeSelf?: boolean;
@@ -102,34 +81,27 @@ export interface MitViewOptions {
   invulnOrder?: InvulnOrder;
 }
 
-/** Filter a plan down to one player's mits and bucket them by phase, keeping
- * the plan's mech order. Phases with nothing left after filtering are dropped. */
+/** One player's mits, bucketed by phase in plan order. A mech with nothing for them is
+ * dropped unless its note applies to their role. */
 export function groupMitsByPhase(plan: MitPlan, opts: MitViewOptions): MitPhaseGroup[] {
   const { role, party, job, tabTags, includeSelf = true, tankBoss, invulnOrder } = opts;
   const groups: MitPhaseGroup[] = [];
   for (const mech of plan.mechs) {
-    const mits = mech.mits
+    const mits: MechRoleMits[] = mech.mits
       .filter((m) => (includeSelf || !m.self) && mitMatches(m, role, party, job))
       .filter((m) => !m.boss || !tankBoss || m.boss === tankBoss)
       .filter((m) => !m.invuln || !invulnOrder || m.invuln === invulnOrder)
-      .map((m) =>
-        job
-          ? {
-              ...m,
-              mitigation: filterMitForJob(m.mitigation, job),
-              carryOver: filterMitForJob(m.carryOver, job)
-            }
-          : m
-      )
+      .map((m) => ({
+        ...m,
+        mitigation: filterMitForJob(m.mitigation, job),
+        carryOver: filterMitForJob(m.carryOver, job)
+      }))
       .filter((m) => m.mitigation || m.carryOver);
-    if (job && mech.extras && JOBS_WITH_EXTRAS.includes(job)) {
+    if (mech.extras && JOBS_WITH_EXTRAS.includes(job)) {
       mits.push({ role, mitigation: 'Extra' });
     }
-    // Mechanic-level notes can be scoped to roles (e.g. healer-only advice). A mech
-    // with a note for this role stays visible even when it has no mits for them.
     const noteVisible = !!mech.note && (!mech.noteRoles || mech.noteRoles.includes(role));
     if (mits.length === 0 && !noteVisible) continue;
-    const shown = noteVisible ? mech : { ...mech, note: undefined };
     let group = groups.find((g) => g.phase === mech.phase);
     if (!group) {
       group = {
@@ -140,15 +112,12 @@ export function groupMitsByPhase(plan: MitPlan, opts: MitViewOptions): MitPhaseG
       };
       groups.push(group);
     }
-    group.mechs.push({ mech: shown, mits });
+    group.mechs.push({ mech: noteVisible ? mech : { ...mech, note: undefined }, mits });
   }
   return groups;
 }
 
 function phaseLabel(phase: string, tabTags?: Record<string, string[]> | null): string {
-  if (tabTags) {
-    const tab = Object.entries(tabTags).find(([, tags]) => tags.includes(phase));
-    if (tab) return tab[0];
-  }
-  return phase.toUpperCase();
+  const tab = tabTags && Object.entries(tabTags).find(([, tags]) => tags.includes(phase));
+  return tab ? tab[0] : phase.toUpperCase();
 }

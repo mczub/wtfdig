@@ -19,9 +19,8 @@
     PictureInPicture,
     PictureInPicture2
   } from '@lucide/svelte';
-  import MitPanel from './MitPanel.svelte';
   import MitControls from './MitControls.svelte';
-  import { defaultJob, jobsFor } from '$lib/mits';
+  import MitPanel from './MitPanel.svelte';
   import ModernStratView from './ModernStratView.svelte';
   import ModernFightStratControls from './ModernFightStratControls.svelte';
   import FightStratState from './FightStratState.svelte';
@@ -35,6 +34,7 @@
     resolveMechs,
     resolveStratItem
   } from '$lib/utils';
+  import { defaultJob, jobsFor } from '$lib/mits';
   import type { PlayerJob } from '$lib/arena';
   import { generateAprilFoolsData, isAprilFools } from '$lib/aprilFools';
 
@@ -273,45 +273,19 @@
 
   let cheatsheetOpenState = $state(false);
   let posterOpenState = $state(false);
-  // Mitigation side panel; hidden by default, toggled by the "Mits" button.
-  // Persisted per fight alongside the other fight settings.
-  function loadMitsOpen(): boolean {
-    if (!browser) return false;
-    try {
-      return localStorage.getItem(`${config.fightKey}-mitsOpen`) === 'true';
-    } catch {
-      return false;
-    }
-  }
-  let mitsOpen = $state(loadMitsOpen());
-  $effect(() => {
-    const value = mitsOpen;
-    if (!browser) return;
-    try {
-      localStorage.setItem(`${config.fightKey}-mitsOpen`, String(value));
-    } catch {
-      /* ignore */
-    }
-  });
-  let hasMitPlans = $derived((config.mitPlans?.length ?? 0) > 0);
-
-  // Mit plan + job selection (shown in the row next to the Mits button), per fight.
-  function loadMitSetting(key: string): string | null {
-    if (!browser) return null;
-    try {
-      return localStorage.getItem(`${config.fightKey}-${key}`);
-    } catch {
-      return null;
-    }
+  // Mit panel: open state, plan and job (per role) are persisted per fight.
+  function loadMitSetting(key: string) {
+    return browser ? localStorage.getItem(`${config.fightKey}-${key}`) : null;
   }
   function saveMitSetting(key: string, value: string) {
-    if (!browser) return;
-    try {
-      localStorage.setItem(`${config.fightKey}-${key}`, value);
-    } catch {
-      /* ignore */
-    }
+    if (browser) localStorage.setItem(`${config.fightKey}-${key}`, value);
   }
+  function loadMitsOpen() {
+    return loadMitSetting('mitsOpen') === 'true';
+  }
+  let mitsOpen = $state(loadMitsOpen());
+  $effect(() => saveMitSetting('mitsOpen', String(mitsOpen)));
+  let hasMitPlans = $derived((config.mitPlans?.length ?? 0) > 0);
   let mitPlanName = $state<string | null>(loadMitSetting('mitPlan'));
   let mitPlan = $derived(
     (config.mitPlans ?? []).find((p) => p.planName === mitPlanName) ?? config.mitPlans?.[0]
@@ -319,12 +293,10 @@
   $effect(() => {
     if (mitPlan) saveMitSetting('mitPlan', mitPlan.planName);
   });
-  // Job is remembered per role so switching Tank -> Healer -> Tank keeps both picks.
   let mitJobByRole = $state<Partial<Record<Role, Job>>>({});
   function mitJobFor(role: Role, party: number | undefined): Job {
-    const jobs = jobsFor(role, party);
     const stored = mitJobByRole[role] ?? (loadMitSetting(`mitJob-${role}`) as Job | null);
-    return stored && jobs.includes(stored) ? stored : defaultJob(role, party);
+    return stored && jobsFor(role, party).includes(stored) ? stored : defaultJob(role, party);
   }
   function setMitJob(role: Role, job: Job) {
     mitJobByRole[role] = job;

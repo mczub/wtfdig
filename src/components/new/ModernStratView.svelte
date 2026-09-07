@@ -47,21 +47,20 @@
     inProgressTabs = null,
     useMainPageTabs = false,
     role = null,
-    /** Cap the mech grid at two columns (used while the mitigation side panel takes a third of the width). */
+    /** Cap the mech grid at two columns (while the mit panel takes a third of the width). */
     maxTwoColumns = false,
-    /** Mitigation panel state; the "Mits" toggle renders in the tab row only when `onToggleMits` is set. */
+    // Mit panel: the "Mits" toggle renders only when `onToggleMits` is set; `mitPanel`
+    // and `mitControls` are snippets for the panel and the plan selector.
     mitsOpen = false,
     onToggleMits = undefined,
-    /** Snippet rendering the mitigation panel underneath the "Mits" button. */
     mitPanel = undefined,
-    /** Snippet rendering the plan / job selectors beside the "Mits" button. */
     mitControls = undefined,
     currentTab = $bindable()
   }: Props = $props();
 
-  // The mit panel scrolls with the page until its sticky wrapper actually sticks; only
-  // then is its height capped and its list made scrollable. "Stuck" is detected by the
-  // wrapper being pushed below the in-flow sentinel that precedes it.
+  // The mit panel scrolls with the page until its sticky wrapper sticks (it has been
+  // pushed below the in-flow sentinel before it); only then is its height capped and
+  // its list made scrollable.
   let mitSentinel = $state<HTMLDivElement | null>(null);
   let mitWrapper = $state<HTMLDivElement | null>(null);
   let mitStuck = $state(false);
@@ -267,7 +266,6 @@
 
 <div class="flex flex-col lg:flex-row gap-x-6 w-full min-w-0">
   {#if onToggleMits && mitsOpen}
-    <!-- Left column (panel open): Mits toggle + plan / job selectors, panel underneath. -->
     <div class="w-full lg:basis-1/3 lg:shrink-0 flex flex-col">
       <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-2">
         {@render mitsButton()}
@@ -284,11 +282,9 @@
     </div>
   {/if}
 
-  <!-- Right column: phase tabs and strat content. -->
   <div class="flex-1 min-w-0 w-full">
     <div class="flex w-full items-start flex-wrap lg:flex-nowrap">
       {#if onToggleMits && !mitsOpen}
-        <!-- Panel closed: the toggle sits in the tab row so it lines up with the tabs. -->
         {@render mitsButton()}
       {/if}
       {#if tabTags && useMainPageTabs}
