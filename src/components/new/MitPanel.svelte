@@ -1,30 +1,39 @@
 <script lang="ts">
   import { browser } from '$app/environment';
-  import { ChevronsUpDown, ExternalLink, Info } from '@lucide/svelte';
+  import { ChevronsUpDown, Info, UserShield } from '@lucide/svelte';
   import * as Collapsible from '$lib/components/ui/collapsible';
   import * as Select from '$lib/components/ui/select';
-  import {
-    defaultInvulnOrder,
-    defaultJob,
-    defaultTankBoss,
-    groupMitsByPhase,
-    jobsFor
-  } from '$lib/mits';
+  import { defaultInvulnOrder, defaultTankBoss, groupMitsByPhase } from '$lib/mits';
   import { msToTime } from '$lib/utils';
   import { mitSegments } from '$lib/mitIcons';
   import type { InvulnOrder, Job, MitPlan, Role, TankBoss } from '$lib/types';
 
   interface Props {
-    plans: MitPlan[];
+    /** Selected plan (chosen in the page-level controls). */
+    plan?: MitPlan;
     role: Role;
     party?: number;
+    /** Jobs selectable for this role slot, the current pick, and the setter. */
+    jobs: Job[];
+    job: Job;
+    onSelectJob: (job: Job) => void;
     fightKey: string;
     tabTags?: Record<string, string[]> | null;
     /** Active phase tab (key of `tabTags`); its phases open, the rest collapse. */
     currentTab?: string;
   }
 
-  let { plans, role, party, fightKey, tabTags = null, currentTab }: Props = $props();
+  let {
+    plan,
+    role,
+    party,
+    jobs,
+    job: effectiveJob,
+    onSelectJob,
+    fightKey,
+    tabTags = null,
+    currentTab
+  }: Props = $props();
 
   function load(key: string): string | null {
     if (!browser) return null;
@@ -44,25 +53,6 @@
       /* ignore */
     }
   }
-
-  // Stored plan name; falls back to the first plan when unset or no longer offered.
-  let planName = $state<string | null>(load('mitPlan'));
-  let plan = $derived(plans.find((p) => p.planName === planName) ?? plans[0]);
-
-  let roleJobs = $derived(jobsFor(role, party));
-  // Job choice is remembered per role so switching Tank -> Healer -> Tank keeps both picks.
-  let jobByRole = $state<Partial<Record<Role, Job>>>({});
-  let effectiveJob = $derived.by(() => {
-    const stored = jobByRole[role] ?? (load(`mitJob-${role}`) as Job | null);
-    return stored && roleJobs.includes(stored) ? stored : defaultJob(role, party);
-  });
-
-  function setJob(value: Job) {
-    jobByRole[role] = value;
-    save(`mitJob-${role}`, value);
-  }
-
-  $effect(() => save('mitPlan', plan?.planName ?? null));
 
   // "All" shows tank self mits alongside party mits; "Party" hides them.
   let showSelf = $state(load('mitShowSelf') !== 'false');
@@ -118,8 +108,16 @@
     openState = {};
     listEl?.scrollTo({ top: 0 });
   });
+  // "Expand All" is a persistent toggle: while on, every phase stays open across tab
+  // changes instead of following the active tab. Manual toggles still apply on top.
+  let expandAll = $state(load('mitExpandAll') === 'true');
+  $effect(() => save('mitExpandAll', expandAll ? 'true' : 'false'));
   function isOpen(phase: string) {
-    return openState[phase] ?? (activeTags.length === 0 || activeTags.includes(phase));
+    return openState[phase] ?? (expandAll || activeTags.length === 0 || activeTags.includes(phase));
+  }
+  function toggleExpandAll() {
+    expandAll = !expandAll;
+    openState = {};
   }
 
   // Phase-level notes are hidden until the info icon is toggled.
@@ -129,50 +127,36 @@
 <aside
   class="card border border-surface-700/50 bg-surface-900/30 backdrop-blur-sm rounded-xl overflow-hidden flex flex-col min-h-0"
 >
-  <!-- Plan / job controls -->
+  <!-- Panel-level controls (the plan selector lives in the row above the panel) -->
   <div class="p-3 border-b border-surface-700/50">
     <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
       <div class="flex items-center gap-1">
-        <span class="text-xs font-medium text-surface-400 uppercase">Plan</span>
+        <span class="text-xs font-medium text-surface-400 uppercase">Job</span>
         <Select.Root
           type="single"
-          value={plan?.planName ?? ''}
-          onValueChange={(v) => (planName = v)}
+          value={effectiveJob}
+          onValueChange={(v) => onSelectJob(v as Job)}
         >
-          <Select.Trigger size="sm" class="!py-0.5 !px-2 !min-w-0">
-            <span class="text-sm">{plan?.label ?? 'Select'}</span>
-          </Select.Trigger>
-          <Select.Content>
-            {#each plans as p (p.planName)}
-              <Select.Item value={p.planName}><span class="text-sm">{p.label}</span></Select.Item>
-            {/each}
-          </Select.Content>
-        </Select.Root>
-        {#if plan?.url}
-          <a
-            href={plan.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="text-blue-400 hover:text-blue-300 p-1"
-            aria-label="Open plan source"
-          >
-            <ExternalLink size={14} />
-          </a>
-        {/if}
-      </div>
-      <div class="flex items-center gap-1">
-        <span class="text-xs font-medium text-surface-400 uppercase">Job</span>
-        <Select.Root type="single" value={effectiveJob} onValueChange={(v) => setJob(v as Job)}>
           <Select.Trigger size="sm" class="!py-0.5 !px-2 !min-w-0">
             <span class="text-sm">{effectiveJob}</span>
           </Select.Trigger>
           <Select.Content>
-            {#each roleJobs as j (j)}
+            {#each jobs as j (j)}
               <Select.Item value={j}><span class="text-sm">{j}</span></Select.Item>
             {/each}
           </Select.Content>
         </Select.Root>
       </div>
+      <button
+        type="button"
+        aria-pressed={expandAll}
+        class={expandAll
+          ? 'ml-auto order-last rounded-sm border border-primary-400/60 bg-surface-700 text-foreground px-2 py-0.5 text-xs shadow-sm cursor-pointer inline-flex items-center gap-1'
+          : 'ml-auto order-last rounded-sm border border-border bg-surface-1000/60 px-2 py-0.5 text-xs shadow-sm hover:bg-muted/60 cursor-pointer inline-flex items-center gap-1'}
+        onclick={toggleExpandAll}
+      >
+        Expand All
+      </button>
       {#if role === 'Tank'}
         <div class="flex items-center gap-1">
           <span class="text-xs font-medium text-surface-400 uppercase">Show</span>
@@ -244,7 +228,7 @@
   <!-- Phase sections: the only part that scrolls, so the controls above stay put. -->
   <div
     bind:this={listEl}
-    class="flex flex-col divide-y divide-surface-700/50 min-h-0 overflow-y-auto overscroll-y-contain [scrollbar-width:thin] [scrollbar-color:hsl(var(--surface-700))_transparent]"
+    class="flex flex-col divide-y divide-surface-700/50 min-h-0 lg:overflow-y-auto lg:overscroll-y-contain [scrollbar-width:thin] [scrollbar-color:hsl(var(--surface-700))_transparent]"
   >
     {#if groups.length === 0}
       <div class="p-4 text-sm text-surface-400">
@@ -282,7 +266,7 @@
         <Collapsible.Content>
           {#if group.note && noteOpen[group.phase]}
             <div
-              class="px-3 py-2 text-xs text-surface-300 border-b border-surface-800/50 whitespace-pre-wrap"
+              class="px-3 py-2 text-sm text-surface-300 border-b border-surface-800/50 whitespace-pre-wrap"
             >
               {group.note}
             </div>
@@ -300,16 +284,15 @@
                 </div>
                 <div class="min-w-0 flex flex-col gap-1">
                   {#if mech.note}
-                    <div class="text-xs text-surface-300 leading-snug">{mech.note}</div>
+                    <div class="text-sm text-surface-300 leading-snug">{mech.note}</div>
                   {/if}
                   {#each mits as mit}
                     <div class="flex flex-col">
                       <div class="flex flex-wrap items-center gap-x-2">
                         {#if mit.self}
-                          <span
-                            class="text-[10px] uppercase tracking-wide text-surface-400 border border-surface-700 rounded px-1"
-                            >Self</span
-                          >
+                          <span class="text-surface-400 shrink-0" title="Self mitigation">
+                            <UserShield class="size-4" aria-label="Self mitigation" />
+                          </span>
                         {/if}
                         {#if mit.label}
                           <span class="text-xs text-surface-300 capitalize">{mit.label}:</span>

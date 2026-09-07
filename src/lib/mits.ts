@@ -126,7 +126,11 @@ export function groupMitsByPhase(plan: MitPlan, opts: MitViewOptions): MitPhaseG
     if (job && mech.extras && JOBS_WITH_EXTRAS.includes(job)) {
       mits.push({ role, mitigation: 'Extra' });
     }
-    if (mits.length === 0) continue;
+    // Mechanic-level notes can be scoped to roles (e.g. healer-only advice). A mech
+    // with a note for this role stays visible even when it has no mits for them.
+    const noteVisible = !!mech.note && (!mech.noteRoles || mech.noteRoles.includes(role));
+    if (mits.length === 0 && !noteVisible) continue;
+    const shown = noteVisible ? mech : { ...mech, note: undefined };
     let group = groups.find((g) => g.phase === mech.phase);
     if (!group) {
       group = {
@@ -137,7 +141,7 @@ export function groupMitsByPhase(plan: MitPlan, opts: MitViewOptions): MitPhaseG
       };
       groups.push(group);
     }
-    group.mechs.push({ mech, mits });
+    group.mechs.push({ mech: shown, mits });
   }
   return groups;
 }

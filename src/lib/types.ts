@@ -296,8 +296,10 @@ export interface MechMits {
   phase: string;
   startTimeMs: number;
   mechanic: string;
-  /** Note that applies to every role for this mechanic. */
+  /** Note shown under the mechanic header. Applies to every role unless `noteRoles` narrows it. */
   note?: string;
+  /** Roles the mechanic `note` is relevant to; omitted means everyone. */
+  noteRoles?: Role[];
   /** Jobs with an extra mitigation (see JOBS_WITH_EXTRAS) should use it here. */
   extras?: boolean;
   mits: MechRoleMits[];

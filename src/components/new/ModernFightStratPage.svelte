@@ -20,10 +20,12 @@
     PictureInPicture2
   } from '@lucide/svelte';
   import MitPanel from './MitPanel.svelte';
+  import MitControls from './MitControls.svelte';
+  import { defaultJob, jobsFor } from '$lib/mits';
   import ModernStratView from './ModernStratView.svelte';
   import ModernFightStratControls from './ModernFightStratControls.svelte';
   import FightStratState from './FightStratState.svelte';
-  import type { Alignment, FightConfig, PhaseStrats, Role, Strat } from '$lib/types';
+  import type { Alignment, FightConfig, Job, PhaseStrats, Role, Strat } from '$lib/types';
   import {
     buildFightOptionsSummary,
     buildFightPFDescription,
@@ -292,6 +294,42 @@
     }
   });
   let hasMitPlans = $derived((config.mitPlans?.length ?? 0) > 0);
+
+  // Mit plan + job selection (shown in the row next to the Mits button), per fight.
+  function loadMitSetting(key: string): string | null {
+    if (!browser) return null;
+    try {
+      return localStorage.getItem(`${config.fightKey}-${key}`);
+    } catch {
+      return null;
+    }
+  }
+  function saveMitSetting(key: string, value: string) {
+    if (!browser) return;
+    try {
+      localStorage.setItem(`${config.fightKey}-${key}`, value);
+    } catch {
+      /* ignore */
+    }
+  }
+  let mitPlanName = $state<string | null>(loadMitSetting('mitPlan'));
+  let mitPlan = $derived(
+    (config.mitPlans ?? []).find((p) => p.planName === mitPlanName) ?? config.mitPlans?.[0]
+  );
+  $effect(() => {
+    if (mitPlan) saveMitSetting('mitPlan', mitPlan.planName);
+  });
+  // Job is remembered per role so switching Tank -> Healer -> Tank keeps both picks.
+  let mitJobByRole = $state<Partial<Record<Role, Job>>>({});
+  function mitJobFor(role: Role, party: number | undefined): Job {
+    const jobs = jobsFor(role, party);
+    const stored = mitJobByRole[role] ?? (loadMitSetting(`mitJob-${role}`) as Job | null);
+    return stored && jobs.includes(stored) ? stored : defaultJob(role, party);
+  }
+  function setMitJob(role: Role, job: Job) {
+    mitJobByRole[role] = job;
+    saveMitSetting(`mitJob-${role}`, job);
+  }
   let currentTab = $state<string | undefined>(undefined);
 
   let overlayPopOut = $state<() => Promise<void>>(async () => {});
@@ -655,11 +693,21 @@
                 onToggleMits={hasMitPlans ? () => (mitsOpen = !mitsOpen) : undefined}
                 bind:currentTab
               >
+                {#snippet mitControls()}
+                  <MitControls
+                    plans={config.mitPlans ?? []}
+                    plan={mitPlan}
+                    onSelectPlan={(name) => (mitPlanName = name)}
+                  />
+                {/snippet}
                 {#snippet mitPanel()}
                   <MitPanel
-                    plans={config.mitPlans ?? []}
+                    plan={mitPlan}
                     role={normalizedRole}
                     {party}
+                    jobs={jobsFor(normalizedRole, party)}
+                    job={mitJobFor(normalizedRole, party)}
+                    onSelectJob={(job) => setMitJob(normalizedRole, job)}
                     fightKey={config.fightKey}
                     tabTags={config.tabTags}
                     {currentTab}

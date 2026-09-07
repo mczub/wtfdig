@@ -53,6 +53,8 @@
     onToggleMits = undefined,
     /** Snippet rendering the mitigation panel underneath the "Mits" button. */
     mitPanel = undefined,
+    /** Snippet rendering the plan / job selectors beside the "Mits" button. */
+    mitControls = undefined,
     currentTab = $bindable()
   }: Props = $props();
 
@@ -230,7 +232,7 @@
     aria-pressed={mitsOpen}
     onclick={onToggleMits}
     class={mitsOpen
-      ? 'btn px-6 py-2 text-lg rounded-sm mb-2 w-fit preset-filled-primary-500 border border-primary-300 shadow-md ring-2 ring-primary-400/60 transition-all cursor-pointer'
+      ? 'btn px-6 py-2 text-lg rounded-sm w-fit preset-filled-primary-500 border border-primary-300 shadow-md ring-2 ring-primary-400/60 transition-all cursor-pointer'
       : 'btn px-6 py-2 text-lg rounded-sm mb-2 mr-2 w-fit bg-transparent border border-surface-700 hover:bg-surface-700 transition-all cursor-pointer'}
   >
     <Shield class="size-5" />Mits
@@ -239,9 +241,12 @@
 
 <div class="flex flex-col lg:flex-row gap-x-6 w-full min-w-0">
   {#if onToggleMits && mitsOpen}
-    <!-- Left column (panel open): Mits toggle with the panel underneath it. -->
+    <!-- Left column (panel open): Mits toggle + plan / job selectors, panel underneath. -->
     <div class="w-full lg:basis-1/3 lg:shrink-0 flex flex-col">
-      {@render mitsButton()}
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-2">
+        {@render mitsButton()}
+        {@render mitControls?.()}
+      </div>
       <div
         class="lg:sticky lg:top-[calc(var(--sticky-header-h,0px)+1rem)] lg:max-h-[calc(100vh-var(--sticky-header-h,0px)-2rem)] flex flex-col min-h-0 mb-6 lg:mb-0"
       >
@@ -427,7 +432,7 @@
 
                 <div
                   class={maxTwoColumns
-                    ? 'grid grid-cols-1 lg:grid-cols-2 gap-6'
+                    ? 'grid grid-cols-1 2xl:grid-cols-2 gap-6'
                     : 'grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6'}
                 >
                   {#each phase.mechs as mech}

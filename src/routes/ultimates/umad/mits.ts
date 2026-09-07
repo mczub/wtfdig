@@ -1,21 +1,21 @@
 import type { MitPlan } from '$lib/types';
 
 // Ikuya's Dancing Mad (Ultimate) mitigation sheet.
-// Source: https://docs.google.com/spreadsheets/d/10C3ytfH3irHqkb45rchIq5oqdAs-v_OKTj57M-Twi3k/htmlview
+// Source: https://tinyurl.com/ikuyamittydmu
 // Generated from the sheet's phase tabs; timestamps are phase-relative (the sheet's second time column).
 // Party mapping: MT/OT = Tank 1/2, D1/D2 = Melee 1/2, D3/D4 = Ranged 1/2.
 // `carryOver` entries are the sheet's arrow rows: a mit still running from an earlier mechanic.
 
 export const ikuyaMitPlan: MitPlan = {
   planName: 'ikuya',
-  label: 'Ikuya',
-  url: 'https://docs.google.com/spreadsheets/d/10C3ytfH3irHqkb45rchIq5oqdAs-v_OKTj57M-Twi3k/htmlview',
+  label: 'Ikuya Mitty (DMU)',
+  url: 'https://tinyurl.com/ikuyamittydmu',
   phaseNotes: {
-    p1: 'All mechanics require shields! Mitigation for the first Mystery Magic should carry over till the first Double-Trouble trap unless there is a different usage timing below. Targeted mitigation does not work on Wave Cannon, but does apply to Double-Trouble Trap. Use mitigation for Light of Judgment late into the castbar so it will cover Hyperdrive.',
+    p1: 'All mechanics require shields!\nMitigation for the first Mystery Magic should carry over till the first Double-Trouble trap unless there is a different usage timing below. Targeted mitigation does not work on Wave Cannon, but does apply to Double-Trouble Trap.\nUse mitigation for Light of Judgment late into the castbar so it will cover Hyperdrive.',
     p2: 'All mechanics require shields!',
-    p3: 'All mechanics require shields! Targeted mitigation must be on your firewalled target unless the firewall is down. For the most part, most targeted mitigation is mostly filler and does not work on raidwides. It is mainly used for minimizing tank autos and/or busters. Both tanks will get attacked for moderately high damage throughout the entire phase, ensure you are rolling mitigation and heals on them. Accretions: Healer Accretion 1st | DPS Accretion 2nd Tanks and DPS should not use any abilities that boosts HP such as Second Wind and Curing Waltz. Tank busters: Regardless of who is MT or OT, the invulnerability priority overrides this. You will still mitigate (Reprisal & Party Mit) based on whether you are MT or OT on the main page. This is for middle Exdeath only. Tank busters: Tanks should use their short mitigation for the autos throughout the phase (WAR use Nascent). Tank busters: Chaos tank priority WAR > DRK > GNB > PLD, Exdeath tank PLD > GNB > DRK > WAR.',
-    p4: 'All mechanics require shields! Targeted mitigation (Reprisal, Addle, etc) only works on Ultima Upsurge, the rest is used to assist in mitigating tank auto attacks. Tank busters: Kefka does not do any busters throughout the phase, but he does continously auto the main threat dealing around 75k without any mitigation. Ensure CDs are available for P5.',
-    p5: 'All mechanics require shields! Forsaken: For Forsaken, use any timed mitigation as late as possible unless otherwise noted. It is important that the new round of mitigation for the 5th hit are applied as the first round of mitigation will fall off. Tank busters: Regardless of who is MT or OT, the invulnerability priority overrides this. You will still mitigate (Reprisal & Party Mit) based on whether you are MT or OT on the main page. The tank who is not invulning first must have main threat to not get Holy. Tank busters: 1st invuln priority WAR > DRK > GNB > PLD, 2nd invuln (starts with boss) PLD > GNB > DRK > WAR.'
+    p3: 'All mechanics require shields!\nTargeted mitigation must be on your firewalled target unless the firewall is down. For the most part, most targeted mitigation is mostly filler and does not work on raidwides. It is mainly used for minimizing tank autos and/or busters.\nBoth tanks will get attacked for moderately high damage throughout the entire phase, ensure you are rolling mitigation and heals on them.\nAccretions: Healer Accretion 1st | DPS Accretion 2nd\nTanks and DPS should not use any abilities that boosts HP such as Second Wind and Curing Waltz.\nTank busters: Regardless of who is MT or OT, the invulnerability priority overrides this. You will still mitigate (Reprisal & Party Mit) based on whether you are MT or OT on the main page. This is for middle Exdeath only.\nTank busters: Tanks should use their short mitigation for the autos throughout the phase (WAR use Nascent).\nTank busters: Chaos tank priority WAR > DRK > GNB > PLD, Exdeath tank PLD > GNB > DRK > WAR.',
+    p4: 'All mechanics require shields!\nTargeted mitigation (Reprisal, Addle, etc) only works on Ultima Upsurge, the rest is used to assist in mitigating tank auto attacks.\nTank busters: Kefka does not do any busters throughout the phase, but he does continously auto the main threat dealing around 75k without any mitigation. Ensure CDs are available for P5.',
+    p5: 'All mechanics require shields!\nForsaken: For Forsaken, use any timed mitigation as late as possible unless otherwise noted.\nIt is important that the new round of mitigation for the 5th hit are applied as the first round of mitigation will fall off.\nTank busters: Regardless of who is MT or OT, the invulnerability priority overrides this. You will still mitigate (Reprisal & Party Mit) based on whether you are MT or OT on the main page.\nThe tank who is not invulning first must have main threat to not get Holy.\nTank busters: 1st invuln priority WAR > DRK > GNB > PLD, 2nd invuln (starts with boss) PLD > GNB > DRK > WAR.'
   },
   mechs: [
     {
@@ -26,6 +26,7 @@ export const ikuyaMitPlan: MitPlan = {
         { role: 'Tank', party: 1, self: true, mitigation: 'Kitchen Sink' },
         { role: 'Tank', party: 2, self: true, mitigation: 'Buddy Mit + Provoke During Castbar' }
       ],
+      noteRoles: ['Tank'],
       note: 'Revolting Ruin III targets first in enmity and retargets to second in enmity when the castbar ends.'
     },
     {
@@ -109,6 +110,7 @@ export const ikuyaMitPlan: MitPlan = {
         { role: 'Tank', party: 1, self: true, mitigation: 'Buddy Mit' },
         { role: 'Tank', party: 2, self: true, mitigation: 'Kitchen Sink' }
       ],
+      noteRoles: ['Tank'],
       note: 'Hyperdrive does not have a castbar and occurs immediately after Light of Judgment.'
     },
     {
@@ -133,6 +135,7 @@ export const ikuyaMitPlan: MitPlan = {
         { role: 'Tank', party: 1, self: true, mitigation: 'Provoke During Castbar' },
         { role: 'Tank', party: 2, self: true, mitigation: 'Invulnerability' }
       ],
+      noteRoles: ['Tank'],
       note: 'Revolting Ruin III targets first in enmity and retargets to second in enmity when the castbar ends.'
     },
     {
@@ -192,6 +195,7 @@ export const ikuyaMitPlan: MitPlan = {
           note: 'WAR can alternatively kitchen sink this and Holmgang the first Ultimate Embrace, let your party know if you plan to do this.'
         }
       ],
+      noteRoles: ['Tank'],
       note: 'Hyperdrive does not have a castbar and occurs immediately after Light of Judgment.'
     },
     {
@@ -407,7 +411,8 @@ export const ikuyaMitPlan: MitPlan = {
         { role: 'Tank', party: 1, self: true, mitigation: 'Rampart + 40% + 90s (Close)' },
         { role: 'Tank', party: 2, self: true, mitigation: 'Rampart + 40% + 90s (Far)' }
       ],
-      note: 'Rampart end of first Wings of Destruction (halfroom) cast, 40% two GCDs later and 10s mitigation at the end of second Wings of Destruction cast. PLD can take the Wings of Destruction at the wall to assist their co-tank with no downtime (discuss beforehand if MT).'
+      note: 'Rampart end of first Wings of Destruction (halfroom) cast, 40% two GCDs later and 10s mitigation at the end of second Wings of Destruction cast. PLD can take the Wings of Destruction at the wall to assist their co-tank with no downtime (discuss beforehand if MT).',
+      noteRoles: ['Tank']
     },
     {
       phase: 'p2',
@@ -435,7 +440,8 @@ export const ikuyaMitPlan: MitPlan = {
           carryOver: 'Rampart + 40% + 90s'
         }
       ],
-      note: 'Short mitigation before Ultimate Embrace finishes casting.'
+      note: 'Short mitigation before Ultimate Embrace finishes casting.',
+      noteRoles: ['Tank']
     },
     {
       phase: 'p3',
@@ -845,11 +851,12 @@ export const ikuyaMitPlan: MitPlan = {
         { role: 'Healer', jobs: ['SGE'], mitigation: 'Kerachole' },
         { role: 'Melee', party: 1, mitigation: 'Feint (Chaos)' }
       ],
-      note: 'Both healers should have instant cast heals prepared to top up the party between the first and second set of stomps.'
+      note: 'Both healers should have instant cast heals prepared to top up the party between the first and second set of stomps.',
+      noteRoles: ['Healer']
     },
     {
       phase: 'p4',
-      startTimeMs: -1000,
+      startTimeMs: 0,
       mechanic: 'Autos',
       mits: [
         { role: 'Tank', party: 1, self: true, mitigation: 'Rampart + 90s + Short Mit' },
@@ -1109,7 +1116,8 @@ export const ikuyaMitPlan: MitPlan = {
         { role: 'Melee', party: 2, carryOver: 'Feint' },
         { role: 'Tank', invuln: 1, self: true, carryOver: 'Invulnerability (Solo)' }
       ],
-      note: 'Healers should monitor the tanks during Maddening Orchestra (especially the Flare tank) and Fell Forces. For WAR/DRK, you will need to have single target burst healing prepared after their invulnerability expires so they can survive the 3rd auto.'
+      note: 'Healers should monitor the tanks during Maddening Orchestra (especially the Flare tank) and Fell Forces. For WAR/DRK, you will need to have single target burst healing prepared after their invulnerability expires so they can survive the 3rd auto.',
+      noteRoles: ['Healer']
     },
     {
       phase: 'p5',
@@ -1274,6 +1282,7 @@ export const ikuyaMitPlan: MitPlan = {
           note: 'Rampart should be pressed just before the Maddening Orchestra cast is complete so it carries over to the 3rd auto.'
         }
       ],
+      noteRoles: ['Tank'],
       note: 'The third auto must be shared as invulnerabilities will run out.'
     },
     {
