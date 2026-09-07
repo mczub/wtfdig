@@ -10,7 +10,11 @@ const allP1: PhaseStrats[] = [
         mechanic: 'Tankbuster',
         description: 'Hits 1st in threat, then 2nd in threat',
         imageUrl: {
-          default: './umad/fireice-tankbuster.webp'
+          default: './umad/fireice-tankbuster.webp',
+          alt: {
+            eupf: './umad/fireice-tankbuster-eupf.webp',
+            lpdu: './umad/fireice-tankbuster-lpdu.webp'
+          }
         }
       },
       {
@@ -253,6 +257,11 @@ const allP1: PhaseStrats[] = [
         mechanic: 'Knockback',
         description:
           'One player from each role will get a Confetti debuff = stack + knockback from that player',
+        action: {
+          kefkabin: '',
+          eupf: 'Supports West, DPS East\nStack on the Confetti player at the hitbox edge (Confetti player outermost)\nThere is time to move after the knockback',
+          lpdu: 'Supports West, DPS East\nStack on the Confetti player at the hitbox edge (Confetti player outermost)\nThere is time to move after the knockback'
+        },
         imageUrl: {
           default: './umad/confetti1-knockback.webp',
           alt: {
@@ -665,7 +674,7 @@ const allP1: PhaseStrats[] = [
           mechanic: 'Knockback',
           action:
             'Supports NW, DPS SE for Confetti KB\nStack inside the arrow ring, between boss and the 1/3 markers',
-          imageUrl: './umad/arrows-knockback.webp'
+          imageUrl: './umad/arrows-stfr-5.webp'
         },
         {
           mechanic: 'Sleep/Confuse (Fixed positions)',
@@ -1449,7 +1458,7 @@ const allP2: PhaseStrats[] = [
           description:
             'Left Tower: {{forsaken-stack}} Stack + {{forsaken-cone}} Cone, Right Tower: {{forsaken-stack}} Stack + {{forsaken-circle}} Spread',
           action:
-            'Non-tower Tank front edge, Non-tower Healer back off edge\nTower Tank/Melee flex if partner matches',
+            "Non-tower Tank front edge, Non-tower Healer back off edge\nTower Tank/Melee flex if partner matches\nAt set end: DON'T GO YET - stay still 1s so Tanks/Melees can read partners, then flex",
           imageUrl: './umad/p2-forsaken-kr-4.webp'
         },
         {
@@ -1492,7 +1501,8 @@ const allP2: PhaseStrats[] = [
           mechanic: 'Future/Past Baits',
           description:
             'Everyone baits Past/Future at max melee\nCast after every odd tower, bait after every even tower',
-          action: '<b>BE AT LEAST MAX MELEE</b>\nPast = Between towers, Future = Away from towers',
+          action:
+            '<b>BE AT LEAST MAX MELEE</b>\nPast = Between towers, Future = Away from towers\nFinal one after Set 8: bait at the A marker - stay for Past, cross over for Future',
           imageUrl: './umad/p2-forsaken-kr-2.webp'
         }
       ],
@@ -1567,7 +1577,7 @@ const allP2: PhaseStrats[] = [
           description:
             'Left Tower: {{forsaken-stack}} Stack + {{forsaken-cone}} Cone, Right Tower: {{forsaken-stack}} Stack + {{forsaken-circle}} Spread',
           action:
-            'Non-tower Tank front edge, Non-tower Healer back off edge\nTower Tank/Melee flex if partner matches',
+            "Non-tower Tank front edge, Non-tower Healer back off edge\nTower Tank/Melee flex if partner matches\nAt set end: DON'T GO YET - stay still 1s so Tanks/Melees can read partners, then flex",
           imageUrl: './umad/p2-forsaken-p3Z-14.webp'
         },
         {
@@ -1606,7 +1616,8 @@ const allP2: PhaseStrats[] = [
           mechanic: 'Future/Past Baits',
           description:
             'Everyone baits Past/Future at max melee\nCast after every odd tower, bait after every even tower',
-          action: '<b>BE AT LEAST MAX MELEE</b>\nPast = Between towers, Future = Away from towers',
+          action:
+            '<b>BE AT LEAST MAX MELEE</b>\nPast = Between towers, Future = Away from towers\nFinal one after Set 8: bait at the A marker - stay for Past, cross over for Future',
           imageUrl: './umad/p2-forsaken-p3Z-13.webp'
         }
       ],
@@ -1628,7 +1639,7 @@ const allP2: PhaseStrats[] = [
           description:
             'Left Tower: {{forsaken-stack}} Stack + {{forsaken-cone}} Cone, Right Tower: {{forsaken-stack}} Stack + {{forsaken-circle}} Spread',
           action:
-            'Non-tower Tank front edge, Non-tower Healer back off edge\nTower Tank/Melee flex if partner matches',
+            "Non-tower Tank front edge, Non-tower Healer back off edge\nTower Tank/Melee flex if partner matches\nAt set end: DON'T GO YET - stay still 1s so Tanks/Melees can read partners, then flex",
           imageUrl: './umad/p2-forsaken-lpdu-5.webp'
         },
         {
@@ -1667,7 +1678,8 @@ const allP2: PhaseStrats[] = [
           mechanic: 'Future/Past Baits',
           description:
             'Everyone baits Past/Future at max melee\nCast after every odd tower, bait after every even tower',
-          action: '<b>BE AT LEAST MAX MELEE</b>\nPast = Between towers, Future = Away from towers',
+          action:
+            '<b>BE AT LEAST MAX MELEE</b>\nPast = Between towers, Future = Away from towers\nFinal one after Set 8: bait at the A marker - stay for Past, cross over for Future',
           imageUrl: './umad/p2-forsaken-lpdu-14.webp'
         }
       ]
@@ -1679,21 +1691,42 @@ const allP2: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'Overview',
-        description:
-          '3 sets of Trines spawn: 3/1/3\nHalf room while 3rd set is landing\nStart Mid, then dodge into first explosion',
+        description: {
+          kefkabin:
+            '3 sets of Trines spawn: 3/1/3\nHalf room while 3rd set is landing\nStart Mid, then dodge into first explosion',
+          eupf: '3 sets of Trines spawn: 3/1/3\nHalf room while 3rd set is landing\nStart Mid, then dodge into first explosion',
+          lpdu: '3 sets of Trines spawn: 3/1/3\nHalf room while 3rd set is landing\nStart Mid, then dodge into first explosion\nLook at A while the trines land; dodge the cleave while identifying your trine\nSame prio for every pattern, even if a bigger gap exists'
+        },
         action: 'Wait Mid\nTanks move into 1st CCW from 1\nParty move into 1st CW from A',
-        imageUrl: './umad/p2-trines-0.webp'
+        imageUrl: {
+          default: './umad/p2-trines-0.webp',
+          alt: { lpdu: './umad/p2-trines-lpdu-3.webp' }
+        }
       },
       {
         mechanic: 'Tankbusters',
-        description:
-          'Near/Far tankbuster snapshots at 3rd explosion\n2 arena rings from edge = safe from both for party',
-        imageUrl: './umad/p2-trines-4.webp'
+        description: {
+          kefkabin:
+            'Near/Far tankbuster snapshots at 3rd explosion\n2 arena rings from edge = safe from both for party',
+          eupf: 'Near/Far tankbuster snapshots at 3rd explosion\n2 arena rings from edge = safe from both for party',
+          lpdu: 'Near/Far tankbuster snapshots at 3rd explosion\n2 arena rings from edge = safe from both for party\nWith big box markers: further out than the cardinal markers, in front of the intercardinal ones'
+        },
+        imageUrl: {
+          default: './umad/p2-trines-4.webp',
+          alt: { lpdu: './umad/p2-trines-lpdu-9.webp' }
+        }
       },
       {
         mechanic: 'Final',
-        action: 'One tank tuck into middle trine, one tank far, party 2 rings from edge',
-        imageUrl: './umad/p2-trines-15.webp'
+        action: {
+          kefkabin: 'One tank tuck into middle trine, one tank far, party 2 rings from edge',
+          eupf: 'One tank tuck into middle trine, one tank far, party 2 rings from edge',
+          lpdu: 'One tank tuck into middle trine, one tank far, party 2 rings from edge\nNear tank: any trine that baits Near, but NEVER the party trine\nFar tank walks along the wall'
+        },
+        imageUrl: {
+          default: './umad/p2-trines-15.webp',
+          alt: { lpdu: './umad/p2-trines-lpdu-13.webp' }
+        }
       }
     ]
   }
@@ -1939,9 +1972,15 @@ const lpduStomps: MechanicStrat[] = [
     imageUrl: './umad/p3-lpdu-stomps-setup.webp'
   },
   {
+    mechanic: 'Earthquake Stomps (Role Spread)',
+    description:
+      'After the 1st puddles, spread by role to the intercards relative to Big Kefka: Tanks NW, Healers NE, Melees SW, Ranged SE\nCheck your role pair: if one of you has the stack, you both go back mid for the 4-person stack; otherwise you take the towers\nPOP SPRINT - do not greed melee uptime',
+    imageUrl: './umad/p3-lpdu-stomps-spread.webp'
+  },
+  {
     mechanic: 'Earthquake Stomps (Resolve)',
     description:
-      'After the 1st puddles, spread by role to the intercards relative to Big Kefka: Tanks NW, Healers NE, Melees SW, Ranged SE\n<b>Role split:</b> the role pair holding the stack goes back mid as ONE 4-person stack; the other pair of that group takes the towers (Tanks West / Healers East, or Melees West / Ranged East)\nMove into tower/stack right after the 2nd puddle - they resolve together\nPlant the stack dead middle (it is BIG, do not clip the tower players); do NOT cover the towers/stacks\nSwitch roles for the next set',
+      '<b>Role split:</b> the stack pair stands mid as ONE 4-person stack; the other pair of that group takes the towers (Tanks West / Healers East, or Melees West / Ranged East)\nMove into tower/stack right after the 2nd puddle - they resolve together\nPlant the stack dead middle (it is BIG, do not clip the tower players); do NOT cover the towers/stacks\nSwitch roles for the next set',
     imageUrl: './umad/p3-lpdu-stomps.webp'
   }
 ];
@@ -2271,18 +2310,18 @@ const allP3: PhaseStrats[] = [
           mechanic: 'Debuffs',
           description:
             '1 Sup + 1 DPS: {{entropy}} Entropy (fire/spread)\n1 Sup + 1 DPS: {{dynamic-fluid}} Dynamic Fluid (water/donut)\nOne Short (20s), one Long (45s)\nEveryone gets {{headwind}} Headwind or {{tailwind}} Tailwind\n{{headwind}} Headwind = face AWAY, {{tailwind}} Tailwind = face TOWARD',
-          imageUrl: './umad/p3-Eq0-4.webp'
+          imageUrl: './umad/p3-Eq0-3.webp'
         },
         {
           mechanic: 'Setup',
           description:
             'Use the Wind crystal as North for the whole mechanic (ignore debuffs for positioning)\nMT/H1/Melees take Chaos, OT/H2/Ranged take Exdeath\nDrag Chaos North to the Wind crystal, drag Exdeath relative South (opposite Wind)\nHealers always on the Water side, Ranged always on the Fire side\nMelees stack North with MT; OT joins North while Exdeath casts, then Exdeath stacks onto Chaos',
-          imageUrl: './umad/p3-Eq0-3.webp'
+          imageUrl: './umad/p3-Eq0-4.webp'
         },
         {
           mechanic: 'First Resolve (Short)',
           description:
-            'Short element resolves as the Exdeath defamation drops\nShort {{entropy}} Fire: Melees NW, Tanks NE of the Wind crystal (away from Supports)\nShort {{dynamic-fluid}} Water: Melees + Supports stack\nNon-debuffed Ranged just takes the Fire spread with their partner',
+            'Short element resolves as the Exdeath defamation drops\nShort {{entropy}} Fire: Melees NW, Tanks NE of the Wind crystal (away from Supports)\nShort {{dynamic-fluid}} Water: Melees + Supports stack - Healers MUST spread (Water healer at the crystal, other healer moves in)\nNon-debuffed Ranged just takes the Fire spread with their partner',
           imageUrl: './umad/p3-Eq0-6.webp'
         },
         {
@@ -2294,7 +2333,7 @@ const allP3: PhaseStrats[] = [
         {
           mechanic: 'Second Resolve (Long)',
           description:
-            'Long debuffs resolve after the 2nd Implosion hit\nStay in your static position and resolve the same way as the Short (Fire spread / Water stack)',
+            'Long debuffs resolve after the 2nd Implosion hit\nStay in your static position and resolve the same way as the Short (Fire spread / Water stack)\nWater: Healers MUST spread again (Water healer at the crystal, other healer moves in)',
           imageUrl: './umad/p3-Eq0-10.webp'
         },
         {
@@ -2320,7 +2359,7 @@ const allP3: PhaseStrats[] = [
         {
           mechanic: 'First Resolve (Short)',
           description:
-            'Short element resolves as the Exdeath defamation drops\nShort {{entropy}} Fire: Melees spread away from Supports\nShort {{dynamic-fluid}} Water: Melees + Supports stack\nCrystal AoE hits the Ranged on the Fire side',
+            'Short element resolves as the Exdeath defamation drops\nShort {{entropy}} Fire: Melees spread away from Supports\nShort {{dynamic-fluid}} Water: Melees + Supports stack - Healers MUST spread (Water healer at the crystal, other healer moves in)\nCrystal AoE hits the Ranged on the Fire side',
           imageUrl: './umad/p3-lpdu-4.webp'
         },
         {
@@ -2332,7 +2371,7 @@ const allP3: PhaseStrats[] = [
         {
           mechanic: 'Second Resolve (Long)',
           description:
-            'Long debuffs resolve after the 2nd Implosion hit\nStay in your static position and resolve the same way as the Short (Fire spread / Water stack)',
+            'Long debuffs resolve after the 2nd Implosion hit\nStay in your static position and resolve the same way as the Short (Fire spread / Water stack)\nWater: Healers MUST spread again (Water healer at the crystal, other healer moves in)',
           imageUrl: './umad/p3-lpdu-12.webp'
         },
         {
@@ -2409,7 +2448,7 @@ const allP3: PhaseStrats[] = [
           mechanic: 'Numbers',
           description:
             'Relative North = opposite where Kefka STARTED his dashes\nStand on the inter-inter-cardinals in number order from Rel N, rotating OPPOSITE Kefka’s dash direction\nStand between the markers on the edge\nShared Exdeath tankbuster after (TB 2/5): OT takes the first hit, MT the second',
-          imageUrl: './umad/p3-Eq0-15.webp'
+          imageUrl: './umad/p3-Eq0-16.webp'
         }
       ],
       lpdu: [
@@ -2694,7 +2733,13 @@ const allP5: PhaseStrats[] = [
         description:
           '4 towers active per set, 3 sets total\nVulns applied randomly: 2x ice, 2x lightning, 2x fire, 2x nothing\n2x nothing will always fill the double',
         action: 'For 1st + 3rd, Earth = OUT safe, Wind = IN safe',
-        imageUrl: './umad/p5-12.webp'
+        imageUrl: {
+          default: './umad/p5-12.webp',
+          alt: {
+            eupf: './umad/p5-celestriad-overview-eupf.webp',
+            lpdu: './umad/p5-celestriad-overview-lpdu.webp'
+          }
+        }
       },
       {
         mechanic: 'Resolution',
@@ -2704,7 +2749,13 @@ const allP5: PhaseStrats[] = [
           eupf: 'Debuffs: 1st safe tower CW from your vuln, then rotate CW\nNo debuff: furthest CW tower of the double element',
           lpdu: 'Debuffs: 1st safe tower CW from your vuln, then rotate CW\nNo debuff: furthest CW tower of the double element'
         },
-        imageUrl: './umad/p5-13.webp'
+        imageUrl: {
+          default: './umad/p5-13.webp',
+          alt: {
+            eupf: './umad/p5-celestriad-resolve-eupf.webp',
+            lpdu: './umad/p5-celestriad-resolve-lpdu.webp'
+          }
+        }
       }
     ]
   },
@@ -2725,7 +2776,10 @@ const allP5: PhaseStrats[] = [
           eupf: 'Ends with Stray Entropy = spreads\nHealers on A/C, Ranged on 1/4, Tanks inside hitbox West, Melees inside hitbox NE/SE',
           lpdu: 'Ends with Stray Entropy = spreads\nSpread out around the arena (no fixed spots); enmity tank stays close so the boss does not move'
         },
-        imageUrl: './umad/p5-19.webp'
+        imageUrl: {
+          default: './umad/p5-19.webp',
+          alt: { eupf: './umad/p5-entropy-eupf.webp', lpdu: './umad/p5-entropy-lpdu.webp' }
+        }
       }
     ]
   },
@@ -2818,7 +2872,10 @@ const allP5: PhaseStrats[] = [
         mechanic: 'Overview',
         description:
           'LONG enrage cast (~20%+ at cast start clears)\n4x stacks as Kefka places void holes around the arena\nStep in a hole or get clipped by the orange AOE = shadow realm',
-        imageUrl: './umad/p5-22.webp'
+        imageUrl: {
+          default: './umad/p5-22.webp',
+          alt: { eupf: './umad/p5-forsaken-overview-eupf.webp' }
+        }
       },
       {
         mechanic: 'Stack Pattern',
