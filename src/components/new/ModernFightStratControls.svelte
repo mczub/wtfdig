@@ -167,6 +167,21 @@
     }
   }
 
+  // Publish the nav's live height as --sticky-header-h so sticky content below it
+  // (e.g. the mitigation panel) can offset itself, even while the collapse animates.
+  $effect(() => {
+    if (!browser || !navElement) return;
+    const root = document.documentElement;
+    const observer = new ResizeObserver(([entry]) => {
+      root.style.setProperty('--sticky-header-h', `${entry.contentRect.height}px`);
+    });
+    observer.observe(navElement);
+    return () => {
+      observer.disconnect();
+      root.style.removeProperty('--sticky-header-h');
+    };
+  });
+
   onMount(() => {
     if (!browser) return;
 

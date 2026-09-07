@@ -12,6 +12,7 @@
     Expand,
     ExternalLink,
     NotepadText,
+    Shield,
     TriangleAlert
   } from '@lucide/svelte/icons';
   import ImagePreview from '../ImagePreview.svelte';
@@ -45,6 +46,13 @@
     inProgressTabs = null,
     useMainPageTabs = false,
     role = null,
+    /** Cap the mech grid at two columns (used while the mitigation side panel takes a third of the width). */
+    maxTwoColumns = false,
+    /** Mitigation panel state; the "Mits" toggle renders in the tab row only when `onToggleMits` is set. */
+    mitsOpen = false,
+    onToggleMits = undefined,
+    /** Snippet rendering the mitigation panel underneath the "Mits" button. */
+    mitPanel = undefined,
     currentTab = $bindable()
   }: Props = $props();
 
@@ -216,415 +224,463 @@
   </div>
 {/if}
 
-<div class="flex w-full items-center flex-wrap lg:flex-nowrap">
-  {#if tabTags && useMainPageTabs}
-    <Tabs
-      value={tab}
-      onValueChange={(e) => (tab = e.value)}
-      classes="mb-2"
-      listClasses="flex-wrap gap-2"
-    >
-      {#snippet list()}
-        {#each Object.keys(tabTags) as tabName}
-          <Tabs.Control
-            value={tabName}
-            labelBase="btn bg-transparent hover:bg-surface-700"
-            classes="px-6 py-2 text-lg rounded-sm transition-all border-surface-700 data-[state=active]:bg-surface-700 data-[state=active]:text-foreground data-[state=active]:border-surface-400 data-[state=active]:shadow-md"
-          >
-            <span class="inline-flex items-center gap-1.5">
-              {#if inProgressTabs?.includes(tabName)}<TriangleAlert
-                  class="size-4 shrink-0 text-warning-500"
-                />{/if}{tabName}
-            </span>
-          </Tabs.Control>
-        {/each}
-      {/snippet}
-    </Tabs>
-  {:else}
-    <div class="flex grow"></div>
+{#snippet mitsButton()}
+  <button
+    type="button"
+    aria-pressed={mitsOpen}
+    onclick={onToggleMits}
+    class={mitsOpen
+      ? 'btn px-6 py-2 text-lg rounded-sm mb-2 w-fit preset-filled-primary-500 border border-primary-300 shadow-md ring-2 ring-primary-400/60 transition-all cursor-pointer'
+      : 'btn px-6 py-2 text-lg rounded-sm mb-2 mr-2 w-fit bg-transparent border border-surface-700 hover:bg-surface-700 transition-all cursor-pointer'}
+  >
+    <Shield class="size-5" />Mits
+  </button>
+{/snippet}
+
+<div class="flex flex-col lg:flex-row gap-x-6 w-full min-w-0">
+  {#if onToggleMits && mitsOpen}
+    <!-- Left column (panel open): Mits toggle with the panel underneath it. -->
+    <div class="w-full lg:basis-1/3 lg:shrink-0 flex flex-col">
+      {@render mitsButton()}
+      <div
+        class="lg:sticky lg:top-[calc(var(--sticky-header-h,0px)+1rem)] lg:max-h-[calc(100vh-var(--sticky-header-h,0px)-2rem)] flex flex-col min-h-0 mb-6 lg:mb-0"
+      >
+        {@render mitPanel?.()}
+      </div>
+    </div>
   {/if}
 
-  <div class="flex justify-end lg:mb-4 w-full lg:w-auto">
-    <Button
-      class="border border-border bg-surface-1000/60 text-foreground shadow-sm hover:bg-muted/60 cursor-pointer"
-      size="sm"
-      onclick={toggleAll}
-    >
-      {isAllExpanded ? 'Collapse All' : 'Expand All'}
-    </Button>
-  </div>
-</div>
-
-{#if visibleStratDifferences.length > 0}
-  <Collapsible.Root
-    class="w-full max-w-2xl mb-6"
-    open={getCollapsibleOpen(STRATDIFF_KEY)}
-    onOpenChange={(open) => setCollapsibleOpen(STRATDIFF_KEY, open)}
-  >
-    <div class="card preset-outlined-secondary-500 p-4 flex flex-col gap-2 w-full">
-      <Collapsible.Trigger
-        class="flex flex-row gap-4 items-center text-sm md:text-base font-semibold cursor-pointer w-full"
-      >
-        <CircleQuestionMark size={24} class="shrink-0" />
-        <span>What's the difference between the strats?</span>
-        <ChevronsUpDown size={18} class="ml-auto shrink-0" />
-      </Collapsible.Trigger>
-      <Collapsible.Content>
-        <ul class="text-sm md:text-base text-surface-100 flex flex-col gap-2 pt-2">
-          {#each visibleStratDifferences as diff}
-            {@const selected = isStratDiffSelected(diff)}
-            <li
-              class="rounded-xs px-2 -mx-2 py-0.5 transition-colors {selected
-                ? 'bg-secondary-500/20 ring-1 ring-secondary-500/50'
-                : ''}"
-            >
-              <span class="font-semibold {selected ? 'text-foreground' : 'text-surface-200'}"
-                >{diff.label}:</span
-              >
-              <span class={selected ? 'text-foreground' : 'text-surface-200'}
-                >{diff.description}</span
-              >
-            </li>
-          {/each}
-        </ul>
-      </Collapsible.Content>
-    </div>
-  </Collapsible.Root>
-{/if}
-
-<div class="space-y-8 lg:space-y-12">
-  {#each individualStrat as phase, i (phase.phaseName + '-' + i)}
-    {#if tabTags && tabTags[tab] && useMainPageTabs ? tabTags[tab].includes(phase.tag) : true}
-      {#if phase?.mechs}
-        <Collapsible.Root
-          class="space-y-4 w-full"
-          open={getCollapsibleOpen(phaseKey(phase, i))}
-          onOpenChange={(open) => setCollapsibleOpen(phaseKey(phase, i), open)}
+  <!-- Right column: phase tabs and strat content. -->
+  <div class="flex-1 min-w-0 w-full">
+    <div class="flex w-full items-center flex-wrap lg:flex-nowrap">
+      {#if onToggleMits && !mitsOpen}
+        <!-- Panel closed: the toggle sits in the tab row so it lines up with the tabs. -->
+        {@render mitsButton()}
+      {/if}
+      {#if tabTags && useMainPageTabs}
+        <Tabs
+          value={tab}
+          onValueChange={(e) => (tab = e.value)}
+          classes="mb-2"
+          listClasses="flex-wrap gap-2"
         >
-          <!-- Phase Header -->
-          <div
-            class="flex items-center gap-3 border-b border-surface-700 pb-2 w-full justify-between"
+          {#snippet list()}
+            {#each Object.keys(tabTags) as tabName}
+              <Tabs.Control
+                value={tabName}
+                labelBase="btn bg-transparent hover:bg-surface-700"
+                classes="px-6 py-2 text-lg rounded-sm transition-all border-surface-700 data-[state=active]:bg-surface-700 data-[state=active]:text-foreground data-[state=active]:border-surface-400 data-[state=active]:shadow-md"
+              >
+                <span class="inline-flex items-center gap-1.5">
+                  {#if inProgressTabs?.includes(tabName)}<TriangleAlert
+                      class="size-4 shrink-0 text-warning-500"
+                    />{/if}{tabName}
+                </span>
+              </Tabs.Control>
+            {/each}
+          {/snippet}
+        </Tabs>
+      {:else}
+        <div class="flex grow"></div>
+      {/if}
+
+      <div class="flex justify-end lg:mb-4 w-full lg:w-auto">
+        <Button
+          class="border border-border bg-surface-1000/60 text-foreground shadow-sm hover:bg-muted/60 cursor-pointer"
+          size="sm"
+          onclick={toggleAll}
+        >
+          {isAllExpanded ? 'Collapse All' : 'Expand All'}
+        </Button>
+      </div>
+    </div>
+
+    {#if visibleStratDifferences.length > 0}
+      <Collapsible.Root
+        class="w-full max-w-2xl mb-6"
+        open={getCollapsibleOpen(STRATDIFF_KEY)}
+        onOpenChange={(open) => setCollapsibleOpen(STRATDIFF_KEY, open)}
+      >
+        <div class="card preset-outlined-secondary-500 p-4 flex flex-col gap-2 w-full">
+          <Collapsible.Trigger
+            class="flex flex-row gap-4 items-center text-sm md:text-base font-semibold cursor-pointer w-full"
           >
-            <div class="flex flex-row space-x-2 items-center">
-              {#if typeof phase.url === 'string'}
-                <a
-                  href={phase.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize hover:text-secondary-400 hover:bg-surface-800/50 rounded-sm px-1 -mx-1 transition-colors inline-flex items-center gap-2"
-                  onclick={(e) => e.stopPropagation()}
+            <CircleQuestionMark size={24} class="shrink-0" />
+            <span>What's the difference between the strats?</span>
+            <ChevronsUpDown size={18} class="ml-auto shrink-0" />
+          </Collapsible.Trigger>
+          <Collapsible.Content>
+            <ul class="text-sm md:text-base text-surface-100 flex flex-col gap-2 pt-2">
+              {#each visibleStratDifferences as diff}
+                {@const selected = isStratDiffSelected(diff)}
+                <li
+                  class="rounded-xs px-2 -mx-2 py-0.5 transition-colors {selected
+                    ? 'bg-secondary-500/20 ring-1 ring-secondary-500/50'
+                    : ''}"
                 >
-                  {phase.phaseName}
-                  <ExternalLink size={18} class="inline-block" />
-                </a>
-              {:else}
-                <h2
-                  class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize"
-                >
-                  {phase.phaseName}
-                </h2>
-                {#if typeof phase.url === 'object'}
-                  {#each Object.entries(phase.url) as [linkName, linkUrl]}
+                  <span class="font-semibold {selected ? 'text-foreground' : 'text-surface-200'}"
+                    >{diff.label}:</span
+                  >
+                  <span class={selected ? 'text-foreground' : 'text-surface-200'}
+                    >{diff.description}</span
+                  >
+                </li>
+              {/each}
+            </ul>
+          </Collapsible.Content>
+        </div>
+      </Collapsible.Root>
+    {/if}
+
+    <div class="space-y-8 lg:space-y-12">
+      {#each individualStrat as phase, i (phase.phaseName + '-' + i)}
+        {#if tabTags && tabTags[tab] && useMainPageTabs ? tabTags[tab].includes(phase.tag) : true}
+          {#if phase?.mechs}
+            <Collapsible.Root
+              class="space-y-4 w-full"
+              open={getCollapsibleOpen(phaseKey(phase, i))}
+              onOpenChange={(open) => setCollapsibleOpen(phaseKey(phase, i), open)}
+            >
+              <!-- Phase Header -->
+              <div
+                class="flex items-center gap-3 border-b border-surface-700 pb-2 w-full justify-between"
+              >
+                <div class="flex flex-row space-x-2 items-center">
+                  {#if typeof phase.url === 'string'}
                     <a
-                      href={linkUrl}
+                      href={phase.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="text-sm text-blue-400 hover:text-blue-300 hover:underline inline-flex items-center gap-1"
+                      class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize hover:text-secondary-400 hover:bg-surface-800/50 rounded-sm px-1 -mx-1 transition-colors inline-flex items-center gap-2"
                       onclick={(e) => e.stopPropagation()}
                     >
-                      {linkName}
-                      <ExternalLink size={12} />
+                      {phase.phaseName}
+                      <ExternalLink size={18} class="inline-block" />
                     </a>
-                  {/each}
-                {/if}
-              {/if}
-              {#if phase?.tag && stratState[phase.tag] !== getStratMechs(stratName)[phase.tag]}
-                <MechDiffWarning
-                  size={24}
-                  message="This mechanic differs from what's in the selected guide."
-                />
-              {/if}
-            </div>
-            <Collapsible.Trigger
-              class="rounded-sm border border-border bg-surface-1000/60 p-1 shadow-sm hover:bg-muted/60 cursor-pointer"
-            >
-              <ChevronsUpDown class="size-4 lg:size-6" />
-            </Collapsible.Trigger>
-          </div>
-
-          <Collapsible.Content class="space-y-4">
-            {#if phase?.description}
-              <div
-                class="text-base lg:text-lg text-surface-200 leading-relaxed max-w-4xl whitespace-pre-wrap"
-              >
-                {@html renderDebuffTokens(phase.description)}
-              </div>
-            {/if}
-
-            {#if phase?.imageUrl}
-              <div
-                class="rounded-xl overflow-hidden shadow-lg border border-surface-700/50 bg-surface-900/50 inline-block"
-              >
-                <button
-                  type="button"
-                  class="block cursor-zoom-in relative group"
-                  onclick={() => openImageModal(phase)}
-                >
-                  <img
-                    class="max-h-[500px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
-                    style:mask-image={spotlight && phase.mask}
-                    src={phase.imageUrl}
-                    alt={phase.phaseName}
-                  />
-                  <div
-                    class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100"
-                  >
-                    <Expand size={48} class="text-white drop-shadow-lg" />
-                  </div>
-                </button>
-              </div>
-            {/if}
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6">
-              {#each phase.mechs as mech}
-                {@const hasOtherContent =
-                  mech?.action ||
-                  mech?.notes ||
-                  mech?.imageUrl ||
-                  (mech?.alignmentImages && mech.alignmentImages[alignment]) ||
-                  (mech?.strats && mech.strats.length > 0 && mech.strats[0]?.description) ||
-                  (mech?.strats && mech.strats[0]?.imageUrl)}
-                <!-- With descriptions hidden, a tile with nothing else to show would
-                     render as just a title - hide it instead. -->
-                {#if showDescriptions || !separateDescriptionAction || hasOtherContent}
-                  {#key [spotlight, alignment]}
-                    <article
-                      class="card border border-surface-700/50 shadow-md hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden flex flex-col h-full group relative"
-                      class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}
-                      class:xl:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}
+                  {:else}
+                    <h2
+                      class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize"
                     >
-                      <button
-                        class="flex flex-col h-full text-left w-full"
-                        type="button"
-                        onclick={() => openImageModal(phase, mech)}
+                      {phase.phaseName}
+                    </h2>
+                    {#if typeof phase.url === 'object'}
+                      {#each Object.entries(phase.url) as [linkName, linkUrl]}
+                        <a
+                          href={linkUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="text-sm text-blue-400 hover:text-blue-300 hover:underline inline-flex items-center gap-1"
+                          onclick={(e) => e.stopPropagation()}
+                        >
+                          {linkName}
+                          <ExternalLink size={12} />
+                        </a>
+                      {/each}
+                    {/if}
+                  {/if}
+                  {#if phase?.tag && stratState[phase.tag] !== getStratMechs(stratName)[phase.tag]}
+                    <MechDiffWarning
+                      size={24}
+                      message="This mechanic differs from what's in the selected guide."
+                    />
+                  {/if}
+                </div>
+                <Collapsible.Trigger
+                  class="rounded-sm border border-border bg-surface-1000/60 p-1 shadow-sm hover:bg-muted/60 cursor-pointer"
+                >
+                  <ChevronsUpDown class="size-4 lg:size-6" />
+                </Collapsible.Trigger>
+              </div>
+
+              <Collapsible.Content class="space-y-4">
+                {#if phase?.description}
+                  <div
+                    class="text-base lg:text-lg text-surface-200 leading-relaxed max-w-4xl whitespace-pre-wrap"
+                  >
+                    {@html renderDebuffTokens(phase.description)}
+                  </div>
+                {/if}
+
+                {#if phase?.imageUrl}
+                  <div
+                    class="rounded-xl overflow-hidden shadow-lg border border-surface-700/50 bg-surface-900/50 inline-block"
+                  >
+                    <button
+                      type="button"
+                      class="block cursor-zoom-in relative group"
+                      onclick={() => openImageModal(phase)}
+                    >
+                      <img
+                        class="max-h-[500px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                        style:mask-image={spotlight && phase.mask}
+                        src={phase.imageUrl}
+                        alt={phase.phaseName}
+                      />
+                      <div
+                        class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100"
                       >
-                        <div class="p-3 flex flex-col h-full gap-1 lg:gap-2">
-                          <div class="flex justify-between items-start">
-                            {#if typeof mech.url === 'string'}
-                              <a
-                                href={mech.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="text-lg lg:text-xl font-bold capitalize text-surface-100 hover:text-secondary-400 hover:bg-surface-800/50 rounded-sm px-1 -mx-1 transition-colors inline-flex items-center gap-2"
-                                onclick={(e) => e.stopPropagation()}
-                              >
-                                {mech.mechanic}
-                                <ExternalLink size={16} class="inline-block" />
-                              </a>
-                            {:else}
-                              <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
-                                <h3
-                                  class="text-lg lg:text-xl font-bold capitalize text-surface-100 group-hover:text-secondary-400 transition-colors"
-                                >
-                                  {mech.mechanic}
-                                </h3>
-                                {#if typeof mech.url === 'object'}
-                                  {#each Object.entries(mech.url) as [linkName, linkUrl]}
-                                    <a
-                                      href={linkUrl}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      class="text-sm text-blue-400 hover:text-blue-300 hover:underline inline-flex items-center gap-1"
-                                      onclick={(e) => e.stopPropagation()}
+                        <Expand size={48} class="text-white drop-shadow-lg" />
+                      </div>
+                    </button>
+                  </div>
+                {/if}
+
+                <div
+                  class={maxTwoColumns
+                    ? 'grid grid-cols-1 lg:grid-cols-2 gap-6'
+                    : 'grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6'}
+                >
+                  {#each phase.mechs as mech}
+                    {@const hasOtherContent =
+                      mech?.action ||
+                      mech?.notes ||
+                      mech?.imageUrl ||
+                      (mech?.alignmentImages && mech.alignmentImages[alignment]) ||
+                      (mech?.strats && mech.strats.length > 0 && mech.strats[0]?.description) ||
+                      (mech?.strats && mech.strats[0]?.imageUrl)}
+                    <!-- With descriptions hidden, a tile with nothing else to show would
+                     render as just a title - hide it instead. -->
+                    {#if showDescriptions || !separateDescriptionAction || hasOtherContent}
+                      {#key [spotlight, alignment]}
+                        <article
+                          class="card border border-surface-700/50 shadow-md hover:shadow-xl transition-all duration-300 rounded-xl overflow-hidden flex flex-col h-full group relative"
+                          class:col-span-2={mech.alignmentImages && mech.alignmentImages[alignment]}
+                          class:xl:col-span-2={mech.alignmentImages &&
+                            mech.alignmentImages[alignment]}
+                        >
+                          <button
+                            class="flex flex-col h-full text-left w-full"
+                            type="button"
+                            onclick={() => openImageModal(phase, mech)}
+                          >
+                            <div class="p-3 flex flex-col h-full gap-1 lg:gap-2">
+                              <div class="flex justify-between items-start">
+                                {#if typeof mech.url === 'string'}
+                                  <a
+                                    href={mech.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="text-lg lg:text-xl font-bold capitalize text-surface-100 hover:text-secondary-400 hover:bg-surface-800/50 rounded-sm px-1 -mx-1 transition-colors inline-flex items-center gap-2"
+                                    onclick={(e) => e.stopPropagation()}
+                                  >
+                                    {mech.mechanic}
+                                    <ExternalLink size={16} class="inline-block" />
+                                  </a>
+                                {:else}
+                                  <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                    <h3
+                                      class="text-lg lg:text-xl font-bold capitalize text-surface-100 group-hover:text-secondary-400 transition-colors"
                                     >
-                                      {linkName}
-                                      <ExternalLink size={12} />
-                                    </a>
-                                  {/each}
+                                      {mech.mechanic}
+                                    </h3>
+                                    {#if typeof mech.url === 'object'}
+                                      {#each Object.entries(mech.url) as [linkName, linkUrl]}
+                                        <a
+                                          href={linkUrl}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          class="text-sm text-blue-400 hover:text-blue-300 hover:underline inline-flex items-center gap-1"
+                                          onclick={(e) => e.stopPropagation()}
+                                        >
+                                          {linkName}
+                                          <ExternalLink size={12} />
+                                        </a>
+                                      {/each}
+                                    {/if}
+                                  </div>
                                 {/if}
+                                <Expand
+                                  size={20}
+                                  class="text-surface-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                                />
                               </div>
-                            {/if}
-                            <Expand
-                              size={20}
-                              class="text-surface-500 opacity-0 group-hover:opacity-100 transition-opacity"
-                            />
-                          </div>
 
-                          {#if mech?.notes}
-                            <div
-                              class="bg-primary-500/10 border border-primary-500/20 rounded-lg p-3 flex gap-3 text-sm text-primary-200"
-                            >
-                              <CircleAlert size={20} class="shrink-0 mt-0.5" />
-                              <div class="whitespace-pre-wrap">{mech.notes}</div>
-                            </div>
-                          {/if}
+                              {#if mech?.notes}
+                                <div
+                                  class="bg-primary-500/10 border border-primary-500/20 rounded-lg p-3 flex gap-3 text-sm text-primary-200"
+                                >
+                                  <CircleAlert size={20} class="shrink-0 mt-0.5" />
+                                  <div class="whitespace-pre-wrap">{mech.notes}</div>
+                                </div>
+                              {/if}
 
-                          {#if separateDescriptionAction}
-                            {#if mech?.description && showDescriptions}
-                              <div class="flex gap-2 text-surface-200 text-base leading-relaxed">
-                                <NotepadText size={18} class="shrink-0 mt-1 text-surface-400" />
-                                <p class="whitespace-pre-wrap">
+                              {#if separateDescriptionAction}
+                                {#if mech?.description && showDescriptions}
+                                  <div
+                                    class="flex gap-2 text-surface-200 text-base leading-relaxed"
+                                  >
+                                    <NotepadText size={18} class="shrink-0 mt-1 text-surface-400" />
+                                    <p class="whitespace-pre-wrap">
+                                      {@html renderDebuffTokens(mech.description)}
+                                    </p>
+                                  </div>
+                                {/if}
+                                {#if mech?.action}
+                                  <div
+                                    class="flex gap-2 text-surface-100 text-base leading-relaxed"
+                                  >
+                                    <Play size={18} class="shrink-0 mt-1 text-primary-400" />
+                                    <p class="whitespace-pre-wrap">
+                                      {@html renderDebuffTokens(mech.action)}
+                                    </p>
+                                  </div>
+                                {/if}
+                              {:else if mech?.description}
+                                <p
+                                  class="text-surface-200 text-base leading-relaxed whitespace-pre-wrap"
+                                >
                                   {@html renderDebuffTokens(mech.description)}
                                 </p>
-                              </div>
-                            {/if}
-                            {#if mech?.action}
-                              <div class="flex gap-2 text-surface-100 text-base leading-relaxed">
-                                <Play size={18} class="shrink-0 mt-1 text-primary-400" />
-                                <p class="whitespace-pre-wrap">
-                                  {@html renderDebuffTokens(mech.action)}
-                                </p>
-                              </div>
-                            {/if}
-                          {:else if mech?.description}
-                            <p
-                              class="text-surface-200 text-base leading-relaxed whitespace-pre-wrap"
-                            >
-                              {@html renderDebuffTokens(mech.description)}
-                            </p>
-                          {/if}
-
-                          {#if mech?.imageUrl}
-                            {@const tf = mech.alignmentTransforms?.[alignment] ?? mech.transform}
-                            <div class="mt-4 overflow-hidden">
-                              <img
-                                class="w-auto h-auto rounded-sm object-contain max-w-full max-h-[350px] transition-transform duration-300 origin-center"
-                                style:transform={tf || undefined}
-                                src={mech.imageUrl}
-                                alt={mech.mechanic}
-                              />
-                            </div>
-                          {/if}
-
-                          <div class="flex items-start gap-1.5 text-base text-surface-100">
-                            {#if mech.strats && mech.strats.length > 0 && mech.strats[0].description}
-                              {#if mech.strats[0].toggleKey}
-                                <span class="shrink-0">⏩</span>
-                              {:else if role}
-                                <RoleIcon {role} class="w-5 h-5 mt-0.5" />
                               {/if}
-                            {/if}
-                            <div class="whitespace-pre-wrap">
-                              {@html mech?.strats
-                                ? renderDebuffTokens(mech.strats[0].description)
-                                : ''}
-                            </div>
-                          </div>
 
-                          {#if mech?.strats && mech.strats[0]?.imageUrl}
-                            <div class="mt-2 overflow-hidden relative w-fit h-fit">
-                              <img
-                                class="block rounded-sm max-w-full max-h-[350px]"
-                                src={mech.strats[0].imageUrl}
-                                alt={`${mech.mechanic} strategy`}
-                              />
-                              {#if spotlight && mech.strats[0]?.mask}
-                                <SpotlightOverlay mask={mech.strats[0].mask} />
+                              {#if mech?.imageUrl}
+                                {@const tf =
+                                  mech.alignmentTransforms?.[alignment] ?? mech.transform}
+                                <div class="mt-4 overflow-hidden">
+                                  <img
+                                    class="w-auto h-auto rounded-sm object-contain max-w-full max-h-[350px] transition-transform duration-300 origin-center"
+                                    style:transform={tf || undefined}
+                                    src={mech.imageUrl}
+                                    alt={mech.mechanic}
+                                  />
+                                </div>
+                              {/if}
+
+                              <div class="flex items-start gap-1.5 text-base text-surface-100">
+                                {#if mech.strats && mech.strats.length > 0 && mech.strats[0].description}
+                                  {#if mech.strats[0].toggleKey}
+                                    <span class="shrink-0">⏩</span>
+                                  {:else if role}
+                                    <RoleIcon {role} class="w-5 h-5 mt-0.5" />
+                                  {/if}
+                                {/if}
+                                <div class="whitespace-pre-wrap">
+                                  {@html mech?.strats
+                                    ? renderDebuffTokens(mech.strats[0].description)
+                                    : ''}
+                                </div>
+                              </div>
+
+                              {#if mech?.strats && mech.strats[0]?.imageUrl}
+                                <div class="mt-2 overflow-hidden relative w-fit h-fit">
+                                  <img
+                                    class="block rounded-sm max-w-full max-h-[350px]"
+                                    src={mech.strats[0].imageUrl}
+                                    alt={`${mech.mechanic} strategy`}
+                                  />
+                                  {#if spotlight && mech.strats[0]?.mask}
+                                    <SpotlightOverlay mask={mech.strats[0].mask} />
+                                  {/if}
+                                </div>
                               {/if}
                             </div>
-                          {/if}
-                        </div>
-                      </button>
-                    </article>
-                  {/key}
-                {/if}
-              {/each}
-            </div>
-          </Collapsible.Content>
-        </Collapsible.Root>
-      {:else}
-        <!-- Fallback for simple phases without mechs array -->
-        <Collapsible.Root
-          class="overflow-hidden"
-          open={getCollapsibleOpen(phaseKey(phase, i))}
-          onOpenChange={(open) => setCollapsibleOpen(phaseKey(phase, i), open)}
-        >
-          <div class="flex justify-between items-center border-b border-surface-700 pb-2">
-            <div class="flex flex-row space-x-2 items-center">
-              {#if typeof phase.url === 'string'}
-                <a
-                  href={phase.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize hover:text-secondary-400 hover:bg-surface-800/50 rounded-sm px-1 -mx-1 transition-colors inline-flex items-center gap-2"
-                  onclick={(e) => e.stopPropagation()}
-                >
-                  {phase.phaseName}
-                  <ExternalLink size={18} class="inline-block" />
-                </a>
-              {:else}
-                <h2
-                  class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize"
-                >
-                  {phase.phaseName}
-                </h2>
-                {#if typeof phase.url === 'object'}
-                  {#each Object.entries(phase.url) as [linkName, linkUrl]}
+                          </button>
+                        </article>
+                      {/key}
+                    {/if}
+                  {/each}
+                </div>
+              </Collapsible.Content>
+            </Collapsible.Root>
+          {:else}
+            <!-- Fallback for simple phases without mechs array -->
+            <Collapsible.Root
+              class="overflow-hidden"
+              open={getCollapsibleOpen(phaseKey(phase, i))}
+              onOpenChange={(open) => setCollapsibleOpen(phaseKey(phase, i), open)}
+            >
+              <div class="flex justify-between items-center border-b border-surface-700 pb-2">
+                <div class="flex flex-row space-x-2 items-center">
+                  {#if typeof phase.url === 'string'}
                     <a
-                      href={linkUrl}
+                      href={phase.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="text-sm text-blue-400 hover:text-blue-300 hover:underline inline-flex items-center gap-1"
+                      class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize hover:text-secondary-400 hover:bg-surface-800/50 rounded-sm px-1 -mx-1 transition-colors inline-flex items-center gap-2"
                       onclick={(e) => e.stopPropagation()}
                     >
-                      {linkName}
-                      <ExternalLink size={12} />
+                      {phase.phaseName}
+                      <ExternalLink size={18} class="inline-block" />
                     </a>
-                  {/each}
-                {/if}
-              {/if}
-            </div>
-            <Collapsible.Trigger
-              class="rounded-sm border border-border bg-surface-1000/60 p-1 shadow-sm hover:bg-muted/60 cursor-pointer"
-            >
-              <ChevronsUpDown class="size-4 lg:size-6" />
-            </Collapsible.Trigger>
-          </div>
-          <Collapsible.Content class="space-y-4 group">
-            <button
-              class="w-full text-left flex flex-col gap-3"
-              onclick={() => openImageModal(phase)}
-            >
-              <div class="flex flex-row mt-4">
-                <div class="flex grow">
-                  {#if phase?.tag && stratState[phase.tag] !== getStratMechs(stratName)[phase.tag]}
-                    <div
-                      class="flex items-center gap-2 text-warning-500 bg-warning-500/10 p-2 rounded-md w-fit"
+                  {:else}
+                    <h2
+                      class="preset-typo-headline font-bold tracking-tight text-surface-50 capitalize"
                     >
-                      <TriangleAlert size={20} />
-                      <span class="text-sm font-medium">Variation from guide</span>
-                    </div>
-                  {/if}
-
-                  {#if phase?.description}
-                    <div
-                      class="text-base lg:text-lg text-surface-200 leading-relaxed whitespace-pre-wrap"
-                    >
-                      {@html renderDebuffTokens(phase.description)}
-                    </div>
-                  {/if}
-                </div>
-                <Expand
-                  size={24}
-                  class="text-surface-500 opacity-0 group-hover:opacity-100 transition-opacity justify-self-end"
-                />
-              </div>
-              {#if phase?.imageUrl}
-                <div
-                  class="rounded-xl overflow-hidden shadow-lg border border-surface-700/50 bg-black/20 self-start"
-                >
-                  <div class="relative w-fit h-fit">
-                    <img class="max-h-[500px] block" src={phase.imageUrl} alt={phase.phaseName} />
-                    {#if spotlight && phase.mask}
-                      <SpotlightOverlay mask={phase.mask} />
+                      {phase.phaseName}
+                    </h2>
+                    {#if typeof phase.url === 'object'}
+                      {#each Object.entries(phase.url) as [linkName, linkUrl]}
+                        <a
+                          href={linkUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="text-sm text-blue-400 hover:text-blue-300 hover:underline inline-flex items-center gap-1"
+                          onclick={(e) => e.stopPropagation()}
+                        >
+                          {linkName}
+                          <ExternalLink size={12} />
+                        </a>
+                      {/each}
                     {/if}
-                  </div>
+                  {/if}
                 </div>
-              {/if}
-            </button>
-          </Collapsible.Content>
-        </Collapsible.Root>
-      {/if}
-    {/if}
-  {/each}
+                <Collapsible.Trigger
+                  class="rounded-sm border border-border bg-surface-1000/60 p-1 shadow-sm hover:bg-muted/60 cursor-pointer"
+                >
+                  <ChevronsUpDown class="size-4 lg:size-6" />
+                </Collapsible.Trigger>
+              </div>
+              <Collapsible.Content class="space-y-4 group">
+                <button
+                  class="w-full text-left flex flex-col gap-3"
+                  onclick={() => openImageModal(phase)}
+                >
+                  <div class="flex flex-row mt-4">
+                    <div class="flex grow">
+                      {#if phase?.tag && stratState[phase.tag] !== getStratMechs(stratName)[phase.tag]}
+                        <div
+                          class="flex items-center gap-2 text-warning-500 bg-warning-500/10 p-2 rounded-md w-fit"
+                        >
+                          <TriangleAlert size={20} />
+                          <span class="text-sm font-medium">Variation from guide</span>
+                        </div>
+                      {/if}
+
+                      {#if phase?.description}
+                        <div
+                          class="text-base lg:text-lg text-surface-200 leading-relaxed whitespace-pre-wrap"
+                        >
+                          {@html renderDebuffTokens(phase.description)}
+                        </div>
+                      {/if}
+                    </div>
+                    <Expand
+                      size={24}
+                      class="text-surface-500 opacity-0 group-hover:opacity-100 transition-opacity justify-self-end"
+                    />
+                  </div>
+                  {#if phase?.imageUrl}
+                    <div
+                      class="rounded-xl overflow-hidden shadow-lg border border-surface-700/50 bg-black/20 self-start"
+                    >
+                      <div class="relative w-fit h-fit">
+                        <img
+                          class="max-h-[500px] block"
+                          src={phase.imageUrl}
+                          alt={phase.phaseName}
+                        />
+                        {#if spotlight && phase.mask}
+                          <SpotlightOverlay mask={phase.mask} />
+                        {/if}
+                      </div>
+                    </div>
+                  {/if}
+                </button>
+              </Collapsible.Content>
+            </Collapsible.Root>
+          {/if}
+        {/if}
+      {/each}
+    </div>
+  </div>
 </div>

@@ -19,6 +19,7 @@
     PictureInPicture,
     PictureInPicture2
   } from '@lucide/svelte';
+  import MitPanel from './MitPanel.svelte';
   import ModernStratView from './ModernStratView.svelte';
   import ModernFightStratControls from './ModernFightStratControls.svelte';
   import FightStratState from './FightStratState.svelte';
@@ -106,6 +107,7 @@
     spotlight = saved?.spotlight ?? true;
     alignment = normalizeAlignment(saved?.alignment);
     showDescriptions = saved?.showDescriptions ?? true;
+    mitsOpen = loadMitsOpen();
   });
 
   // Persist whenever a setting changes.
@@ -269,6 +271,27 @@
 
   let cheatsheetOpenState = $state(false);
   let posterOpenState = $state(false);
+  // Mitigation side panel; hidden by default, toggled by the "Mits" button.
+  // Persisted per fight alongside the other fight settings.
+  function loadMitsOpen(): boolean {
+    if (!browser) return false;
+    try {
+      return localStorage.getItem(`${config.fightKey}-mitsOpen`) === 'true';
+    } catch {
+      return false;
+    }
+  }
+  let mitsOpen = $state(loadMitsOpen());
+  $effect(() => {
+    const value = mitsOpen;
+    if (!browser) return;
+    try {
+      localStorage.setItem(`${config.fightKey}-mitsOpen`, String(value));
+    } catch {
+      /* ignore */
+    }
+  });
+  let hasMitPlans = $derived((config.mitPlans?.length ?? 0) > 0);
   let currentTab = $state<string | undefined>(undefined);
 
   let overlayPopOut = $state<() => Promise<void>>(async () => {});
@@ -537,7 +560,7 @@
                 class="flex flex-col lg:flex-row gap-4 mb-6 items-center justify-between bg-surface-900/30 p-4 rounded-xl border border-surface-800/50 backdrop-blur-sm min-w-0 w-full"
               >
                 <div
-                  class="card flex flex-col lg:flex-row grow border border-surface-700/50 items-center bg-surface-950/50 overflow-hidden w-full lg:w-auto min-w-0 order-first lg:order-last"
+                  class="card flex flex-col lg:flex-row grow border border-surface-700/50 items-center bg-surface-950/50 overflow-hidden w-full lg:w-auto min-w-0 order-first"
                 >
                   <div
                     class="self-start lg:self-center overflow-x-auto max-w-[calc(100vw-5rem)] lg:max-w-none lg:w-0 lg:flex-1 px-2 py-2 [&::-webkit-scrollbar]:hidden"
@@ -627,8 +650,22 @@
                 role={normalizedRole}
                 fightKey={config.fightKey}
                 useMainPageTabs={config.useMainPageTabs}
+                maxTwoColumns={hasMitPlans && mitsOpen}
+                mitsOpen={hasMitPlans ? mitsOpen : undefined}
+                onToggleMits={hasMitPlans ? () => (mitsOpen = !mitsOpen) : undefined}
                 bind:currentTab
-              />
+              >
+                {#snippet mitPanel()}
+                  <MitPanel
+                    plans={config.mitPlans ?? []}
+                    role={normalizedRole}
+                    {party}
+                    fightKey={config.fightKey}
+                    tabTags={config.tabTags}
+                    {currentTab}
+                  />
+                {/snippet}
+              </ModernStratView>
             </div>
           {/if}
         {/if}
