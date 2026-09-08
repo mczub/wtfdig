@@ -109,8 +109,37 @@ export interface MitSegment {
   icons: string[];
 }
 
+// "heart-of-light" -> "Heart of Light"
+function abilityName(file: string): string {
+  return file
+    .split('-')
+    .map((w, i) => (i > 0 && (w === 'of' || w === 'the') ? w : w[0].toUpperCase() + w.slice(1)))
+    .join(' ');
+}
+
+// Job-specific display names that differ from the icon's ability name: DRK and GNB use
+// the same skill on themselves and on their co-tank, so say which.
+const JOB_NAME_OVERRIDES: Record<string, Partial<Record<Job, string>>> = {
+  'Short Mit': { DRK: 'TBN (Self)', GNB: 'Corundum (Self)' },
+  Short: { DRK: 'TBN (Self)', GNB: 'Corundum (Self)' },
+  'Buddy Mit': { DRK: 'TBN (Buddy)', GNB: 'Corundum (Buddy)' }
+};
+
+// Generic names ("Party Mit", "40%") can display as the job's actual ability instead.
+// "Kitchen Sink" stays as is even then.
+function segmentText(segment: string, job: Job, jobNames: boolean): string {
+  const name = baseName(segment);
+  const entry = MIT_ICONS[name];
+  if (!jobNames || typeof entry !== 'object' || !entry[job]) return segment;
+  const label = JOB_NAME_OVERRIDES[name]?.[job] ?? abilityName(entry[job]);
+  return label + segment.slice(name.length);
+}
+
 /** Split a "+"-joined mit string into abilities, each with its icons for the job. */
-export function mitSegments(text: string | undefined, job: Job): MitSegment[] {
+export function mitSegments(text: string | undefined, job: Job, jobNames = false): MitSegment[] {
   if (!text) return [];
-  return text.split(' + ').map((segment) => ({ text: segment, icons: mitIconUrls(segment, job) }));
+  return text.split(' + ').map((segment) => ({
+    text: segmentText(segment, job, jobNames),
+    icons: mitIconUrls(segment, job)
+  }));
 }

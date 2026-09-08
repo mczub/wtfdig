@@ -33,10 +33,10 @@
       href={plan.url}
       target="_blank"
       rel="noopener noreferrer"
-      class="inline-flex text-blue-400 hover:text-blue-300 p-1"
+      class="inline-flex items-center gap-1 text-blue-400 hover:text-blue-300 p-1"
       aria-label="Open plan source"
     >
-      <ExternalLink size={18} />
+      Source <ExternalLink size={18} />
     </a>
   {/if}
 </div>

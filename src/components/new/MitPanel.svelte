@@ -21,6 +21,8 @@
     currentTab?: string;
     /** Rendered in the pop-out window: phase tabs replace the option header. */
     popped?: boolean;
+    /** Show generic names ("Party Mit") as the job's actual ability. */
+    jobNames?: boolean;
   }
 
   let {
@@ -33,7 +35,8 @@
     fightKey,
     tabTags = null,
     currentTab,
-    popped = false
+    popped = false,
+    jobNames = false
   }: Props = $props();
 
   // Panel settings are persisted per fight.
@@ -87,9 +90,17 @@
   // the tab changes. In the pop-out the panel has its own phase tabs.
   let expandAll = $state(load('mitExpandAll') === 'true');
   $effect(() => save('mitExpandAll', String(expandAll)));
+  const ALL = 'all';
   let poppedTab = $state<string | undefined>(undefined);
-  let activeTab = $derived(popped ? (poppedTab ?? currentTab) : currentTab);
+  let poppedSelection = $derived(popped ? (poppedTab ?? currentTab ?? ALL) : undefined);
+  let activeTab = $derived(
+    popped ? (poppedSelection === ALL ? undefined : poppedSelection) : currentTab
+  );
   let activeTags = $derived(activeTab && tabTags ? (tabTags[activeTab] ?? []) : []);
+  // In the pop-out only the selected phase is listed at all (All lists every phase).
+  let visibleGroups = $derived(
+    popped && activeTab ? groups.filter((g) => activeTags.includes(g.phase)) : groups
+  );
   let openState = $state<Record<string, boolean>>({});
   let listEl = $state<HTMLDivElement | null>(null);
   $effect(() => {
@@ -98,6 +109,7 @@
     listEl?.scrollTo({ top: 0 });
   });
   function isOpen(phase: string) {
+    if (popped) return poppedSelection === ALL || activeTags.includes(phase);
     return openState[phase] ?? (expandAll || activeTags.length === 0 || activeTags.includes(phase));
   }
   function toggleExpandAll() {
@@ -127,17 +139,17 @@
   <div class="p-3 border-b border-surface-700/50">
     {#if popped}
       <div class="flex flex-wrap items-center gap-2">
-        {#each Object.keys(tabTags ?? {}) as tabName (tabName)}
+        {#each [...Object.keys(tabTags ?? {}), ALL] as tabName (tabName)}
           <button
             type="button"
-            aria-pressed={activeTab === tabName}
-            class={activeTab === tabName
+            aria-pressed={poppedSelection === tabName}
+            class={poppedSelection === tabName
               ? 'px-2 py-0.5 text-sm rounded-sm border border-surface-500 bg-surface-700 text-foreground cursor-pointer'
               : 'px-2 py-0.5 text-sm rounded-sm border border-surface-700 text-surface-300 hover:bg-surface-800 cursor-pointer'}
-            onclick={() => (poppedTab = tabName)}>{tabName.split(':')[0]}</button
+            onclick={() => (poppedTab = tabName)}
+            >{tabName === ALL ? 'All' : tabName.split(':')[0]}</button
           >
         {/each}
-        {@render expandAllButton()}
       </div>
     {:else}
       <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
@@ -229,23 +241,29 @@
     bind:this={listEl}
     class="flex flex-col divide-y divide-surface-700/50 min-h-0 lg:group-data-[stuck=true]/mit:overflow-y-auto lg:group-data-[stuck=true]/mit:overscroll-y-contain [scrollbar-width:thin] [scrollbar-color:hsl(var(--surface-700))_transparent]"
   >
-    {#if groups.length === 0}
+    {#if visibleGroups.length === 0}
       <div class="p-4 text-sm text-surface-400">
         No mitigation entries for {job} in this plan yet.
       </div>
     {/if}
-    {#each groups as group (group.phase)}
+    {#each visibleGroups as group (group.phase)}
       <Collapsible.Root
         open={isOpen(group.phase)}
-        onOpenChange={(open) => (openState[group.phase] = open)}
+        onOpenChange={(open) => {
+          if (!popped) openState[group.phase] = open;
+        }}
       >
         <div class="flex items-center justify-between gap-2 px-3 py-2 bg-surface-950/40">
           <div class="flex items-center gap-2 min-w-0">
-            <Collapsible.Trigger
-              class="font-semibold text-surface-50 hover:text-secondary-400 rounded-sm px-1 -mx-1 cursor-pointer truncate"
-            >
-              {group.label}
-            </Collapsible.Trigger>
+            {#if popped}
+              <div class="font-semibold text-surface-50 truncate">{group.label}</div>
+            {:else}
+              <Collapsible.Trigger
+                class="font-semibold text-surface-50 hover:text-secondary-400 rounded-sm px-1 -mx-1 cursor-pointer truncate"
+              >
+                {group.label}
+              </Collapsible.Trigger>
+            {/if}
             {#if group.note}
               <button
                 type="button"
@@ -260,11 +278,13 @@
               </button>
             {/if}
           </div>
-          <Collapsible.Trigger
-            class="rounded-sm border border-border bg-surface-1000/60 p-1 shadow-sm hover:bg-muted/60 cursor-pointer"
-          >
-            <ChevronsUpDown class="size-4" />
-          </Collapsible.Trigger>
+          {#if !popped}
+            <Collapsible.Trigger
+              class="rounded-sm border border-border bg-surface-1000/60 p-1 shadow-sm hover:bg-muted/60 cursor-pointer"
+            >
+              <ChevronsUpDown class="size-4" />
+            </Collapsible.Trigger>
+          {/if}
         </div>
         <Collapsible.Content>
           {#if group.note && noteOpen[group.phase]}
@@ -300,7 +320,7 @@
                         {#if mit.label}
                           <span class="text-sm text-surface-300 capitalize">{mit.label}:</span>
                         {/if}
-                        {#each mitSegments(mit.mitigation, job) as seg, i (i)}
+                        {#each mitSegments(mit.mitigation, job, jobNames) as seg, i (i)}
                           <span class="inline-flex items-center gap-1 font-medium text-surface-100">
                             {#if i > 0}<span class="text-surface-500">+</span>{/if}
                             {#each seg.icons as icon (icon)}
@@ -309,7 +329,7 @@
                             {seg.text}
                           </span>
                         {/each}
-                        {#each mitSegments(mit.carryOver, job) as seg, i (i)}
+                        {#each mitSegments(mit.carryOver, job, jobNames) as seg, i (i)}
                           <span class="inline-flex items-center gap-1 text-sm text-surface-400">
                             <span class="text-surface-500">{i > 0 ? '+' : '➔'}</span>
                             {#each seg.icons as icon (icon)}

@@ -94,6 +94,7 @@
   let spotlight: boolean = $state(savedFightSettings?.spotlight ?? true);
   let alignment: Alignment = $state(normalizeAlignment(savedFightSettings?.alignment));
   let showDescriptions = $state(savedFightSettings?.showDescriptions ?? true);
+  let mitJobNames = $state(savedFightSettings?.mitJobNames ?? false);
 
   // Reload when navigating to a different fight without a remount (first run skipped).
   let lastSettingsFightKey: string | null = null;
@@ -109,12 +110,13 @@
     spotlight = saved?.spotlight ?? true;
     alignment = normalizeAlignment(saved?.alignment);
     showDescriptions = saved?.showDescriptions ?? true;
+    mitJobNames = saved?.mitJobNames ?? false;
     mitsOpen = loadMitsOpen();
   });
 
   // Persist whenever a setting changes.
   $effect(() => {
-    const state = { spotlight, alignment, showDescriptions };
+    const state = { spotlight, alignment, showDescriptions, mitJobNames };
     if (!browser) return;
     localStorage.setItem(`fightSettings_${config.fightKey}`, JSON.stringify(state));
   });
@@ -453,6 +455,8 @@
       separateDescriptionAction={config.separateDescriptionAction}
       {showDescriptions}
       setShowDescriptions={(val) => (showDescriptions = val)}
+      {mitJobNames}
+      setMitJobNames={hasMitPlans ? (val) => (mitJobNames = val) : undefined}
       additionalResources={config.additionalResources}
       onOpenCheatsheet={isCheatsheetEnabled ? () => (cheatsheetOpenState = true) : undefined}
       onOpenPoster={config.posterLayout && config.posterEnabled
@@ -681,6 +685,7 @@
                 {#snippet mitPanel(popped: boolean)}
                   <MitPanel
                     {popped}
+                    jobNames={mitJobNames}
                     plan={mitPlan}
                     role={normalizedRole}
                     {party}

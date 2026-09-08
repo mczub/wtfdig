@@ -5,7 +5,7 @@ import type { MitPlan } from '$lib/types';
 
 export const ikuyaMitPlan: MitPlan = {
   planName: 'ikuya',
-  label: 'Ikuya Mitty (DMU)',
+  label: 'Ikuya Mitty',
   url: 'https://tinyurl.com/ikuyamittydmu',
   phaseNotes: {
     p1: 'All mechanics require shields!\nMitigation for the first Mystery Magic should carry over till the first Double-Trouble trap unless there is a different usage timing below. Targeted mitigation does not work on Wave Cannon, but does apply to Double-Trouble Trap.\nUse mitigation for Light of Judgment late into the castbar so it will cover Hyperdrive.',
