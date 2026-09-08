@@ -19,6 +19,8 @@
     tabTags?: Record<string, string[]> | null;
     /** Active phase tab; its phases start open, the rest collapsed. */
     currentTab?: string;
+    /** Rendered in the pop-out window: phase tabs replace the option header. */
+    popped?: boolean;
   }
 
   let {
@@ -30,7 +32,8 @@
     onSelectJob,
     fightKey,
     tabTags = null,
-    currentTab
+    currentTab,
+    popped = false
   }: Props = $props();
 
   // Panel settings are persisted per fight.
@@ -81,14 +84,16 @@
   );
 
   // Sections follow the active tab unless "Expand All" is on. Manual toggles win until
-  // the tab changes.
-  let activeTags = $derived(currentTab && tabTags ? (tabTags[currentTab] ?? []) : []);
+  // the tab changes. In the pop-out the panel has its own phase tabs.
   let expandAll = $state(load('mitExpandAll') === 'true');
   $effect(() => save('mitExpandAll', String(expandAll)));
+  let poppedTab = $state<string | undefined>(undefined);
+  let activeTab = $derived(popped ? (poppedTab ?? currentTab) : currentTab);
+  let activeTags = $derived(activeTab && tabTags ? (tabTags[activeTab] ?? []) : []);
   let openState = $state<Record<string, boolean>>({});
   let listEl = $state<HTMLDivElement | null>(null);
   $effect(() => {
-    currentTab;
+    activeTab;
     openState = {};
     listEl?.scrollTo({ top: 0 });
   });
@@ -103,100 +108,120 @@
   let noteOpen = $state<Record<string, boolean>>({});
 </script>
 
+{#snippet expandAllButton()}
+  <button
+    type="button"
+    aria-pressed={expandAll}
+    class={expandAll
+      ? 'ml-auto order-last rounded-sm border border-primary-400/60 bg-surface-700 text-foreground px-2 py-0.5 text-xs shadow-sm cursor-pointer inline-flex items-center gap-1'
+      : 'ml-auto order-last rounded-sm border border-border bg-surface-1000/60 px-2 py-0.5 text-xs shadow-sm hover:bg-muted/60 cursor-pointer inline-flex items-center gap-1'}
+    onclick={toggleExpandAll}
+  >
+    Expand All
+  </button>
+{/snippet}
+
 <aside
   class="card border border-surface-700/50 bg-surface-900/30 backdrop-blur-sm rounded-md overflow-hidden flex flex-col min-h-0"
 >
   <div class="p-3 border-b border-surface-700/50">
-    <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
-      <div class="flex items-center gap-1">
-        <span class="text-xs font-medium text-surface-400 uppercase">Job</span>
-        <Select.Root type="single" value={job} onValueChange={(v) => onSelectJob(v as Job)}>
-          <Select.Trigger size="sm" class="!py-0.5 !px-2 !min-w-0">
-            <span class="text-sm">{job}</span>
-          </Select.Trigger>
-          <Select.Content>
-            {#each jobs as j (j)}
-              <Select.Item value={j}><span class="text-sm">{j}</span></Select.Item>
-            {/each}
-          </Select.Content>
-        </Select.Root>
+    {#if popped}
+      <div class="flex flex-wrap items-center gap-2">
+        {#each Object.keys(tabTags ?? {}) as tabName (tabName)}
+          <button
+            type="button"
+            aria-pressed={activeTab === tabName}
+            class={activeTab === tabName
+              ? 'px-2 py-0.5 text-sm rounded-sm border border-surface-500 bg-surface-700 text-foreground cursor-pointer'
+              : 'px-2 py-0.5 text-sm rounded-sm border border-surface-700 text-surface-300 hover:bg-surface-800 cursor-pointer'}
+            onclick={() => (poppedTab = tabName)}>{tabName.split(':')[0]}</button
+          >
+        {/each}
+        {@render expandAllButton()}
       </div>
-      <button
-        type="button"
-        aria-pressed={expandAll}
-        class={expandAll
-          ? 'ml-auto order-last rounded-sm border border-primary-400/60 bg-surface-700 text-foreground px-2 py-0.5 text-xs shadow-sm cursor-pointer inline-flex items-center gap-1'
-          : 'ml-auto order-last rounded-sm border border-border bg-surface-1000/60 px-2 py-0.5 text-xs shadow-sm hover:bg-muted/60 cursor-pointer inline-flex items-center gap-1'}
-        onclick={toggleExpandAll}
-      >
-        Expand All
-      </button>
-      {#if role === 'Tank'}
+    {:else}
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
         <div class="flex items-center gap-1">
-          <span class="text-xs font-medium text-surface-400 uppercase">Show</span>
-          <div
-            class="inline-flex rounded-sm border border-surface-700 overflow-hidden text-sm"
-            role="group"
-            aria-label="Mitigation filter"
-          >
-            <button
-              type="button"
-              aria-pressed={showSelf}
-              class={showSelf
-                ? 'px-2 py-0.5 bg-surface-700 text-foreground cursor-pointer'
-                : 'px-2 py-0.5 text-surface-300 hover:bg-surface-800 cursor-pointer'}
-              onclick={() => (showSelf = true)}>All</button
-            >
-            <button
-              type="button"
-              aria-pressed={!showSelf}
-              class={!showSelf
-                ? 'px-2 py-0.5 bg-surface-700 text-foreground cursor-pointer'
-                : 'px-2 py-0.5 text-surface-300 hover:bg-surface-800 cursor-pointer'}
-              onclick={() => (showSelf = false)}>Party</button
-            >
-          </div>
+          <span class="text-xs font-medium text-surface-400 uppercase">Job</span>
+          <Select.Root type="single" value={job} onValueChange={(v) => onSelectJob(v as Job)}>
+            <Select.Trigger size="sm" class="!py-0.5 !px-2 !min-w-0">
+              <span class="text-sm">{job}</span>
+            </Select.Trigger>
+            <Select.Content>
+              {#each jobs as j (j)}
+                <Select.Item value={j}><span class="text-sm">{j}</span></Select.Item>
+              {/each}
+            </Select.Content>
+          </Select.Root>
         </div>
-        <div class="flex items-center gap-1">
-          <span class="text-xs font-medium text-surface-400 uppercase">P3 boss</span>
-          <div
-            class="inline-flex rounded-sm border border-surface-700 overflow-hidden text-sm"
-            role="group"
-            aria-label="P3 boss"
-          >
-            {#each ['Chaos', 'Exdeath'] as const as boss (boss)}
+        {@render expandAllButton()}
+        {#if role === 'Tank'}
+          <div class="flex items-center gap-1">
+            <span class="text-xs font-medium text-surface-400 uppercase">Show</span>
+            <div
+              class="inline-flex rounded-sm border border-surface-700 overflow-hidden text-sm"
+              role="group"
+              aria-label="Mitigation filter"
+            >
               <button
                 type="button"
-                aria-pressed={tankBoss === boss}
-                class={tankBoss === boss
+                aria-pressed={showSelf}
+                class={showSelf
                   ? 'px-2 py-0.5 bg-surface-700 text-foreground cursor-pointer'
                   : 'px-2 py-0.5 text-surface-300 hover:bg-surface-800 cursor-pointer'}
-                onclick={() => setTankBoss(boss)}>{boss}</button
+                onclick={() => (showSelf = true)}>All</button
               >
-            {/each}
-          </div>
-        </div>
-        <div class="flex items-center gap-1">
-          <span class="text-xs font-medium text-surface-400 uppercase">P5 invuln</span>
-          <div
-            class="inline-flex rounded-sm border border-surface-700 overflow-hidden text-sm"
-            role="group"
-            aria-label="P5 invuln order"
-          >
-            {#each [1, 2] as const as order (order)}
               <button
                 type="button"
-                aria-pressed={invulnOrder === order}
-                class={invulnOrder === order
+                aria-pressed={!showSelf}
+                class={!showSelf
                   ? 'px-2 py-0.5 bg-surface-700 text-foreground cursor-pointer'
                   : 'px-2 py-0.5 text-surface-300 hover:bg-surface-800 cursor-pointer'}
-                onclick={() => setInvulnOrder(order)}>{order === 1 ? '1st' : '2nd'}</button
+                onclick={() => (showSelf = false)}>Party</button
               >
-            {/each}
+            </div>
           </div>
-        </div>
-      {/if}
-    </div>
+          <div class="flex items-center gap-1">
+            <span class="text-xs font-medium text-surface-400 uppercase">P3 boss</span>
+            <div
+              class="inline-flex rounded-sm border border-surface-700 overflow-hidden text-sm"
+              role="group"
+              aria-label="P3 boss"
+            >
+              {#each ['Chaos', 'Exdeath'] as const as boss (boss)}
+                <button
+                  type="button"
+                  aria-pressed={tankBoss === boss}
+                  class={tankBoss === boss
+                    ? 'px-2 py-0.5 bg-surface-700 text-foreground cursor-pointer'
+                    : 'px-2 py-0.5 text-surface-300 hover:bg-surface-800 cursor-pointer'}
+                  onclick={() => setTankBoss(boss)}>{boss}</button
+                >
+              {/each}
+            </div>
+          </div>
+          <div class="flex items-center gap-1">
+            <span class="text-xs font-medium text-surface-400 uppercase">P5 invuln</span>
+            <div
+              class="inline-flex rounded-sm border border-surface-700 overflow-hidden text-sm"
+              role="group"
+              aria-label="P5 invuln order"
+            >
+              {#each [1, 2] as const as order (order)}
+                <button
+                  type="button"
+                  aria-pressed={invulnOrder === order}
+                  class={invulnOrder === order
+                    ? 'px-2 py-0.5 bg-surface-700 text-foreground cursor-pointer'
+                    : 'px-2 py-0.5 text-surface-300 hover:bg-surface-800 cursor-pointer'}
+                  onclick={() => setInvulnOrder(order)}>{order === 1 ? '1st' : '2nd'}</button
+                >
+              {/each}
+            </div>
+          </div>
+        {/if}
+      </div>
+    {/if}
   </div>
 
   <!-- Only the phase list scrolls (once the panel is stuck), so the controls stay put. -->

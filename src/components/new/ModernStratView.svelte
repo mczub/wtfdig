@@ -12,9 +12,12 @@
     Expand,
     ExternalLink,
     NotepadText,
+    PictureInPicture,
+    PictureInPicture2,
     Shield,
     TriangleAlert
   } from '@lucide/svelte/icons';
+  import PipPortal from '$lib/components/PipPortal.svelte';
   import { browser } from '$app/environment';
   import ImagePreview from '../ImagePreview.svelte';
   import SpotlightOverlay from '../SpotlightOverlay.svelte';
@@ -61,6 +64,12 @@
   // The mit panel scrolls with the page until its sticky wrapper sticks (it has been
   // pushed below the in-flow sentinel before it); only then is its height capped and
   // its list made scrollable.
+  // Mit panel pop-out (Document Picture-in-Picture), driven from the button in its row.
+  let mitPopOut = $state<() => Promise<void>>(async () => {});
+  let mitPopIn = $state<() => void>(() => {});
+  let mitPopped = $state(false);
+  let mitPipSupported = $state(false);
+
   let mitSentinel = $state<HTMLDivElement | null>(null);
   let mitWrapper = $state<HTMLDivElement | null>(null);
   let mitStuck = $state(false);
@@ -270,6 +279,21 @@
       <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-2">
         {@render mitsButton()}
         {@render mitControls?.()}
+        {#if mitPipSupported}
+          <button
+            type="button"
+            onclick={() => (mitPopped ? mitPopIn() : mitPopOut())}
+            class={mitPopped
+              ? 'btn px-4 py-2 rounded-sm preset-filled-primary-500 border border-primary-300 shadow-lg shadow-primary-500/40 font-semibold ring-2 ring-primary-400/60 transition-colors cursor-pointer'
+              : 'btn px-4 py-2 rounded-sm preset-tonal-secondary border border-secondary-500/50 hover:border-secondary-500 transition-colors cursor-pointer'}
+          >
+            {#if mitPopped}
+              <PictureInPicture size={18} />Restore
+            {:else}
+              <PictureInPicture2 size={18} />Overlay
+            {/if}
+          </button>
+        {/if}
       </div>
       <div bind:this={mitSentinel} aria-hidden="true"></div>
       <div
@@ -277,7 +301,35 @@
         data-stuck={mitStuck}
         class="group/mit lg:sticky lg:top-[calc(var(--sticky-header-h,0px)+1rem)] lg:data-[stuck=true]:max-h-[calc(100vh-var(--sticky-header-h,0px)-2rem)] flex flex-col min-h-0 mb-6 lg:mb-0"
       >
-        {@render mitPanel?.()}
+        <PipPortal
+          bind:popOut={mitPopOut}
+          bind:popIn={mitPopIn}
+          bind:isPopped={mitPopped}
+          bind:isSupported={mitPipSupported}
+          title="Mitigation"
+          width={420}
+          height={640}
+          rootFontSize={14}
+          hostClass="flex flex-col min-h-0"
+          contentClass="flex flex-col min-h-0"
+        >
+          {#snippet children({ isPopped })}
+            <div
+              class={isPopped
+                ? 'min-h-screen w-screen bg-surface-950 text-surface-50'
+                : 'flex flex-col min-h-0'}
+            >
+              {@render mitPanel?.(isPopped)}
+            </div>
+          {/snippet}
+          {#snippet placeholder()}
+            <div
+              class="card border border-surface-700/50 bg-surface-900/30 rounded-md p-4 text-sm text-surface-400"
+            >
+              Mitigation panel is open in the overlay window.
+            </div>
+          {/snippet}
+        </PipPortal>
       </div>
     </div>
   {/if}

@@ -678,8 +678,9 @@
                     onSelectPlan={(name) => (mitPlanName = name)}
                   />
                 {/snippet}
-                {#snippet mitPanel()}
+                {#snippet mitPanel(popped: boolean)}
                   <MitPanel
+                    {popped}
                     plan={mitPlan}
                     role={normalizedRole}
                     {party}
