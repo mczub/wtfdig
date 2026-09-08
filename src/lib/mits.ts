@@ -85,6 +85,7 @@ export interface MitViewOptions {
  * dropped unless its note applies to their role. */
 export function groupMitsByPhase(plan: MitPlan, opts: MitViewOptions): MitPhaseGroup[] {
   const { role, party, job, tabTags, includeSelf = true, tankBoss, invulnOrder } = opts;
+  const displayNames = numberRepeatedMechs(plan.mechs);
   const groups: MitPhaseGroup[] = [];
   for (const mech of plan.mechs) {
     const mits: MechRoleMits[] = mech.mits
@@ -100,7 +101,10 @@ export function groupMitsByPhase(plan: MitPlan, opts: MitViewOptions): MitPhaseG
     if (mech.extras && JOBS_WITH_EXTRAS.includes(job)) {
       mits.push({ role, mitigation: 'Extra' });
     }
-    const noteVisible = !!mech.note && (!mech.noteRoles || mech.noteRoles.includes(role));
+    const noteVisible =
+      !!mech.note &&
+      (includeSelf || !mech.noteSelf) &&
+      (!mech.noteRoles || mech.noteRoles.includes(role));
     if (mits.length === 0 && !noteVisible) continue;
     let group = groups.find((g) => g.phase === mech.phase);
     if (!group) {
@@ -112,9 +116,44 @@ export function groupMitsByPhase(plan: MitPlan, opts: MitViewOptions): MitPhaseG
       };
       groups.push(group);
     }
-    group.mechs.push({ mech: noteVisible ? mech : { ...mech, note: undefined }, mits });
+    group.mechs.push({
+      mech: {
+        ...mech,
+        mechanic: displayNames[plan.mechs.indexOf(mech)],
+        note: noteVisible ? mech.note : undefined
+      },
+      mits
+    });
   }
   return groups;
+}
+
+// "Grand Cross" x3 in a phase -> "Grand Cross 1/2/3". When a name repeats, every mech
+// sharing its base name is numbered in one sequence, so "Fell Forces (3x)" and
+// "Fell Forces (2x)" become "Fell Forces 1 (3x)", "Fell Forces 2 (2x)", ... Names that
+// are already distinct ("Thunder III (1st Set)") are left alone. Counted over the whole
+// plan so every role sees the same numbers.
+function numberRepeatedMechs(mechs: MechMits[]): string[] {
+  const split = (name: string) => {
+    const m = name.match(/^(.*?)(\s*\(.*\))?$/);
+    return { base: m?.[1] ?? name, suffix: m?.[2] ?? '' };
+  };
+  const exact: Record<string, number> = {};
+  for (const m of mechs)
+    exact[`${m.phase}|${m.mechanic}`] = (exact[`${m.phase}|${m.mechanic}`] ?? 0) + 1;
+  const numbered = new Set(
+    mechs
+      .filter((m) => exact[`${m.phase}|${m.mechanic}`] > 1)
+      .map((m) => `${m.phase}|${split(m.mechanic).base}`)
+  );
+  const seen: Record<string, number> = {};
+  return mechs.map((m) => {
+    const { base, suffix } = split(m.mechanic);
+    const key = `${m.phase}|${base}`;
+    if (!numbered.has(key)) return m.mechanic;
+    seen[key] = (seen[key] ?? 0) + 1;
+    return `${base} ${seen[key]}${suffix}`;
+  });
 }
 
 function phaseLabel(phase: string, tabTags?: Record<string, string[]> | null): string {

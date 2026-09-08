@@ -296,6 +296,8 @@ export interface MechMits {
   note?: string;
   /** Roles the `note` applies to; omitted means everyone. */
   noteRoles?: Role[];
+  /** The `note` is tank-buster advice, hidden with the self mits by the "Party" filter. */
+  noteSelf?: boolean;
   /** Jobs with an extra mitigation should use it here. */
   extras?: boolean;
   mits: MechRoleMits[];

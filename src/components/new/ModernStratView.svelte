@@ -266,7 +266,7 @@
 
 <div class="flex flex-col lg:flex-row gap-x-6 w-full min-w-0">
   {#if onToggleMits && mitsOpen}
-    <div class="w-full lg:basis-1/3 lg:shrink-0 flex flex-col">
+    <div class="w-full lg:basis-1/2 xl:basis-1/3 lg:shrink-0 flex flex-col">
       <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mb-2">
         {@render mitsButton()}
         {@render mitControls?.()}

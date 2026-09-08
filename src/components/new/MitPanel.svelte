@@ -256,7 +256,7 @@
                   <span class="font-mono text-md text-surface-400 shrink-0">
                     {msToTime(mech.startTimeMs)}
                   </span>
-                  <span class="text-sm text-surface-100 tracking-wide">
+                  <span class="text-md font-semibold text-surface">
                     {mech.mechanic}
                   </span>
                 </div>
@@ -265,7 +265,7 @@
                     <div class="text-sm text-surface-300 leading-snug">{mech.note}</div>
                   {/if}
                   {#each mits as mit}
-                    <div class="flex flex-col">
+                    <div class="flex flex-col ml-2">
                       <div class="flex flex-wrap items-center gap-x-2">
                         {#if mit.self}
                           <span class="text-surface-400 shrink-0" title="Self mitigation">
@@ -273,10 +273,10 @@
                           </span>
                         {/if}
                         {#if mit.label}
-                          <span class="text-xs text-surface-300 capitalize">{mit.label}:</span>
+                          <span class="text-sm text-surface-300 capitalize">{mit.label}:</span>
                         {/if}
                         {#each mitSegments(mit.mitigation, job) as seg, i (i)}
-                          <span class="inline-flex items-center gap-1 font-medium text-surface-50">
+                          <span class="inline-flex items-center gap-1 font-medium text-surface-100">
                             {#if i > 0}<span class="text-surface-500">+</span>{/if}
                             {#each seg.icons as icon (icon)}
                               <img src={icon} alt="" class="size-5 rounded-xs shrink-0" />

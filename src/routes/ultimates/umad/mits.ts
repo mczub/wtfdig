@@ -18,12 +18,19 @@ export const ikuyaMitPlan: MitPlan = {
     {
       phase: 'p1',
       startTimeMs: 16000,
-      mechanic: 'Revolting Ruin III',
+      mechanic: 'Revolting Ruin',
       mits: [
-        { role: 'Tank', party: 1, self: true, mitigation: 'Kitchen Sink' },
-        { role: 'Tank', party: 2, self: true, mitigation: 'Buddy Mit + Provoke During Castbar' }
+        { role: 'Tank', party: 1, label: '3rd hit', self: true, mitigation: 'Kitchen Sink' },
+        {
+          role: 'Tank',
+          party: 2,
+          label: '3rd hit',
+          self: true,
+          mitigation: 'Buddy Mit + Provoke During Castbar'
+        }
       ],
       noteRoles: ['Tank'],
+      noteSelf: true,
       note: 'Revolting Ruin III targets first in enmity and retargets to second in enmity when the castbar ends.'
     },
     {
@@ -108,6 +115,7 @@ export const ikuyaMitPlan: MitPlan = {
         { role: 'Tank', party: 2, self: true, mitigation: 'Kitchen Sink' }
       ],
       noteRoles: ['Tank'],
+      noteSelf: true,
       note: 'Hyperdrive does not have a castbar and occurs immediately after Light of Judgment.'
     },
     {
@@ -127,12 +135,19 @@ export const ikuyaMitPlan: MitPlan = {
     {
       phase: 'p1',
       startTimeMs: 98000,
-      mechanic: 'Revolting Ruin III',
+      mechanic: 'Revolting Ruin',
       mits: [
-        { role: 'Tank', party: 1, self: true, mitigation: 'Provoke During Castbar' },
-        { role: 'Tank', party: 2, self: true, mitigation: 'Invulnerability' }
+        {
+          role: 'Tank',
+          party: 1,
+          label: '3rd hit',
+          self: true,
+          mitigation: 'Provoke During Castbar'
+        },
+        { role: 'Tank', party: 2, label: '3rd hit', self: true, mitigation: 'Invulnerability' }
       ],
       noteRoles: ['Tank'],
+      noteSelf: true,
       note: 'Revolting Ruin III targets first in enmity and retargets to second in enmity when the castbar ends.'
     },
     {
@@ -193,6 +208,7 @@ export const ikuyaMitPlan: MitPlan = {
         }
       ],
       noteRoles: ['Tank'],
+      noteSelf: true,
       note: 'Hyperdrive does not have a castbar and occurs immediately after Light of Judgment.'
     },
     {
@@ -409,7 +425,8 @@ export const ikuyaMitPlan: MitPlan = {
         { role: 'Tank', party: 2, self: true, mitigation: 'Rampart + 40% + 90s (Far)' }
       ],
       note: 'Rampart end of first Wings of Destruction (halfroom) cast, 40% two GCDs later and 10s mitigation at the end of second Wings of Destruction cast. PLD can take the Wings of Destruction at the wall to assist their co-tank with no downtime (discuss beforehand if MT).',
-      noteRoles: ['Tank']
+      noteRoles: ['Tank'],
+      noteSelf: true
     },
     {
       phase: 'p2',
@@ -438,7 +455,8 @@ export const ikuyaMitPlan: MitPlan = {
         }
       ],
       note: 'Short mitigation before Ultimate Embrace finishes casting.',
-      noteRoles: ['Tank']
+      noteRoles: ['Tank'],
+      noteSelf: true
     },
     {
       phase: 'p3',
@@ -610,8 +628,10 @@ export const ikuyaMitPlan: MitPlan = {
     {
       phase: 'p3',
       startTimeMs: 154000,
-      mechanic: 'Thunder III',
-      mits: [{ role: 'Tank', boss: 'Chaos', self: true, mitigation: 'Invulnerability' }]
+      mechanic: 'Thunder III (2nd Set)',
+      mits: [
+        { role: 'Tank', boss: 'Chaos', label: '3rd hit', self: true, mitigation: 'Invulnerability' }
+      ]
     },
     {
       phase: 'p3',
@@ -631,7 +651,7 @@ export const ikuyaMitPlan: MitPlan = {
     {
       phase: 'p3',
       startTimeMs: 172000,
-      mechanic: 'Thunder III',
+      mechanic: 'Thunder III (3rd Set)',
       mits: [
         {
           role: 'Tank',
@@ -688,8 +708,16 @@ export const ikuyaMitPlan: MitPlan = {
     {
       phase: 'p3',
       startTimeMs: 213000,
-      mechanic: 'Thunder III',
-      mits: [{ role: 'Tank', boss: 'Exdeath', self: true, mitigation: 'Invulnerability' }]
+      mechanic: 'Thunder III (4th Set)',
+      mits: [
+        {
+          role: 'Tank',
+          boss: 'Exdeath',
+          label: '3rd hit',
+          self: true,
+          mitigation: 'Invulnerability'
+        }
+      ]
     },
     {
       phase: 'p3',
@@ -1250,23 +1278,24 @@ export const ikuyaMitPlan: MitPlan = {
           mitigation: 'Assist Tanks',
           note: 'Healers should monitor the tanks during Maddening Orchestra (especially the Flare tank) and Fell Forces. For WAR/DRK, you will need to have single target burst healing prepared after their invulnerability expires so they can survive the 3rd auto.'
         },
-        { role: 'Tank', invuln: 2, self: true, carryOver: 'Invulnerability (Solo)' }
-      ]
-    },
-    {
-      phase: 'p5',
-      startTimeMs: 186000,
-      mechanic: 'Fell Forces II',
-      mits: [{ role: 'Tank', invuln: 2, self: true, carryOver: 'Invulnerability (Solo)' }]
-    },
-    {
-      phase: 'p5',
-      startTimeMs: 189000,
-      mechanic: 'Fell Forces III',
-      mits: [
+        {
+          role: 'Tank',
+          invuln: 2,
+          label: '1st hit',
+          self: true,
+          carryOver: 'Invulnerability (Solo)'
+        },
+        {
+          role: 'Tank',
+          invuln: 2,
+          label: '2nd hit',
+          self: true,
+          carryOver: 'Invulnerability (Solo)'
+        },
         {
           role: 'Tank',
           invuln: 1,
+          label: '3rd hit',
           self: true,
           mitigation: 'Rampart + Short Mit',
           note: 'Rampart should be pressed just before the Maddening Orchestra cast is complete so it carries over to the 3rd auto.'
@@ -1274,13 +1303,15 @@ export const ikuyaMitPlan: MitPlan = {
         {
           role: 'Tank',
           invuln: 2,
+          label: '3rd hit',
           self: true,
           mitigation: 'Rampart + Short Mit',
           note: 'Rampart should be pressed just before the Maddening Orchestra cast is complete so it carries over to the 3rd auto.'
         }
       ],
+      note: 'The third auto must be shared as invulnerabilities will run out.',
       noteRoles: ['Tank'],
-      note: 'The third auto must be shared as invulnerabilities will run out.'
+      noteSelf: true
     },
     {
       phase: 'p5',

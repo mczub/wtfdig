@@ -293,14 +293,20 @@
   $effect(() => {
     if (mitPlan) saveMitSetting('mitPlan', mitPlan.planName);
   });
-  let mitJobByRole = $state<Partial<Record<Role, Job>>>({});
+  // Job is remembered per slot (role + party), so H1 and H2 keep separate picks.
+  let mitJobBySlot = $state<Record<string, Job>>({});
   function mitJobFor(role: Role, party: number | undefined): Job {
-    const stored = mitJobByRole[role] ?? (loadMitSetting(`mitJob-${role}`) as Job | null);
+    const slot = `${role}-${party ?? 1}`;
+    const stored =
+      mitJobBySlot[slot] ??
+      (loadMitSetting(`mitJob-${slot}`) as Job | null) ??
+      (loadMitSetting(`mitJob-${role}`) as Job | null); // pre-slot saves
     return stored && jobsFor(role, party).includes(stored) ? stored : defaultJob(role, party);
   }
-  function setMitJob(role: Role, job: Job) {
-    mitJobByRole[role] = job;
-    saveMitSetting(`mitJob-${role}`, job);
+  function setMitJob(role: Role, party: number | undefined, job: Job) {
+    const slot = `${role}-${party ?? 1}`;
+    mitJobBySlot[slot] = job;
+    saveMitSetting(`mitJob-${slot}`, job);
   }
   let currentTab = $state<string | undefined>(undefined);
 
@@ -570,7 +576,7 @@
                 class="flex flex-col lg:flex-row gap-4 mb-6 items-center justify-between bg-surface-900/30 p-4 rounded-xl border border-surface-800/50 backdrop-blur-sm min-w-0 w-full"
               >
                 <div
-                  class="card flex flex-col lg:flex-row grow border border-surface-700/50 items-center bg-surface-950/50 overflow-hidden w-full lg:w-auto min-w-0 order-first"
+                  class="card flex flex-col lg:flex-row grow border border-surface-700/50 items-center bg-surface-950/50 overflow-hidden w-full lg:w-auto min-w-0 order-first lg:order-last"
                 >
                   <div
                     class="self-start lg:self-center overflow-x-auto max-w-[calc(100vw-5rem)] lg:max-w-none lg:w-0 lg:flex-1 px-2 py-2 [&::-webkit-scrollbar]:hidden"
@@ -679,7 +685,7 @@
                     {party}
                     jobs={jobsFor(normalizedRole, party)}
                     job={mitJobFor(normalizedRole, party)}
-                    onSelectJob={(job) => setMitJob(normalizedRole, job)}
+                    onSelectJob={(job) => setMitJob(normalizedRole, party, job)}
                     fightKey={config.fightKey}
                     tabTags={config.tabTags}
                     {currentTab}
