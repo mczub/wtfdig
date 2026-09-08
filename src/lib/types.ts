@@ -174,6 +174,8 @@ export interface FightConfig {
    * do) render as separate icon-prefixed blocks, and a "Hide descriptions" toggle
    * appears in the settings popover. */
   separateDescriptionAction?: boolean;
+  /** Mitigation plans shown in the collapsible "Mits" side panel. */
+  mitPlans?: MitPlan[];
 }
 
 export interface StratOption {
@@ -252,4 +254,60 @@ export interface PosterLayout {
   subtitle?: string;
   /** Background color (default '#1a1a2e') */
   bgColor?: string;
+}
+
+// Mitigation plan types
+
+export type TankJob = 'PLD' | 'WAR' | 'DRK' | 'GNB';
+export type HealerJob = 'WHM' | 'SCH' | 'AST' | 'SGE';
+export type MeleeJob = 'MNK' | 'DRG' | 'NIN' | 'SAM' | 'RPR' | 'VPR';
+export type RangedJob = 'BRD' | 'MCH' | 'DNC' | 'BLM' | 'SMN' | 'RDM' | 'PCT';
+export type Job = TankJob | HealerJob | MeleeJob | RangedJob;
+
+export type TankBoss = 'Chaos' | 'Exdeath';
+export type InvulnOrder = 1 | 2;
+
+export interface MechRoleMits {
+  role: Role;
+  /** Light party (1 = MT/H1/M1/R1, 2 = OT/H2/M2/R2). Omit when it applies to both. */
+  party?: number;
+  /** Mitigation pressed for this mechanic. Omit when only a carry-over applies. */
+  mitigation?: string;
+  /** Mitigation still running from an earlier mechanic. */
+  carryOver?: string;
+  note?: string;
+  /** Restrict to specific jobs. Omit when it applies to every job in the role. */
+  jobs?: Job[];
+  /** Personal (tank buster) mitigation, hidden by the "Party" filter. */
+  self?: boolean;
+  /** Qualifier shown before the mit, e.g. "first hit". */
+  label?: string;
+  /** P3 only: which boss the tank holding this entry is on. */
+  boss?: TankBoss;
+  /** P5 only: whether this entry is for the tank invulning first or second. */
+  invuln?: InvulnOrder;
+}
+
+export interface MechMits {
+  /** Phase tag, matched against `FightConfig.tabTags` for the section label. */
+  phase: string;
+  startTimeMs: number;
+  mechanic: string;
+  note?: string;
+  /** Roles the `note` applies to; omitted means everyone. */
+  noteRoles?: Role[];
+  /** The `note` is tank-buster advice, hidden with the self mits by the "Party" filter. */
+  noteSelf?: boolean;
+  /** Jobs with an extra mitigation should use it here. */
+  extras?: boolean;
+  mits: MechRoleMits[];
+}
+
+export interface MitPlan {
+  planName: string;
+  label: string;
+  url?: string;
+  /** Notes per phase tag, shown at the top of that phase's section. */
+  phaseNotes?: Record<string, string>;
+  mechs: MechMits[];
 }

@@ -1,5 +1,6 @@
 import type { FightConfig, MechanicStrat, PhaseStrats, Strat } from '$lib/types';
 import { umadPosterLayout } from './posterData';
+import { ikuyaMitPlan } from './mits';
 
 // P1: Kefka. Descriptions/images intentionally left blank for now - the phase
 // and mechanic scaffolding goes in first, details get filled in as teams refine.
@@ -2091,7 +2092,7 @@ const allP5: PhaseStrats[] = [
           'Always start at C, then rotate inter/cards: 4 - 1 - 2 - 3\nOrange AOE markers bait onto the card/inter closest to a random player\n1st stack is CW from the 1st orange marker, then keep rotating CW\nStay after each stack until the next AOEs show to bait them',
         action: 'Start C, rotate CW (4-1-2-3)',
         imageUrl: './umad/p5-23.webp'
-      },
+      }
     ]
   }
 ];
@@ -2108,7 +2109,7 @@ const kefkabinStrat: Strat = {
     'DMU P3: Dank Feet DSA BH':
       'https://docs.google.com/presentation/d/1w05ez7GscxTflgaMgVET42gjGryI2QSPR0zqRWXdWgI/edit?usp=sharing',
     'P4 Kefka Says Gazes Mid by Dank': 'https://raidplan.io/plan/ChcTBFAcFMZKFVKo',
-    'Kefkabin P5': 'https://raidplan.io/plan/3wODYtApXBtYAdu0',
+    'Kefkabin P5': 'https://raidplan.io/plan/3wODYtApXBtYAdu0'
   },
   strats: [...allP1, ...allP2, ...allP3, ...allP4, ...allP5]
 };
@@ -2148,7 +2149,7 @@ export const dancingMadFightConfig: FightConfig = {
             name: 'freaky merry go round arrows',
             url: 'https://raidplan.io/plan/qD9Y_g1caq3l5gD-'
           }
-        },
+        }
       ]
     },
     {
@@ -2159,7 +2160,7 @@ export const dancingMadFightConfig: FightConfig = {
       options: [
         {
           value: 'kr',
-          label: 'Kroxy-Rinon',
+          label: 'Kroxy-Rinon'
         },
         {
           value: 'south',
@@ -2182,7 +2183,7 @@ export const dancingMadFightConfig: FightConfig = {
             name: 'SG3K Bowels/LC by S’vetha Mako',
             url: 'https://raidplan.io/plan/9assfrb4fcvwat9e'
           }
-        },
+        }
       ]
     },
     {
@@ -2193,7 +2194,7 @@ export const dancingMadFightConfig: FightConfig = {
       options: [
         {
           value: 'dsa',
-          label: 'D>S>A (Old)',
+          label: 'D>S>A (Old)'
         },
         {
           value: 'double',
@@ -2310,5 +2311,6 @@ export const dancingMadFightConfig: FightConfig = {
   defaultStratName: 'kefkabin',
   timeline: [],
   posterEnabled: true,
-  posterLayout: umadPosterLayout
+  posterLayout: umadPosterLayout,
+  mitPlans: [ikuyaMitPlan]
 };

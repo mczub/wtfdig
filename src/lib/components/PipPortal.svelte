@@ -38,6 +38,9 @@
     isPopped?: boolean;
     /** Bindable: true if Document Picture-in-Picture is supported. */
     isSupported?: boolean;
+    /** Classes for the host / content wrapper divs (e.g. to keep a flex chain intact). */
+    hostClass?: string;
+    contentClass?: string;
   };
 
   let {
@@ -47,6 +50,8 @@
     rootFontSize = 15,
     children,
     placeholder,
+    hostClass,
+    contentClass,
     onpopout,
     onpopin,
     popOut: popOutBinding = $bindable<() => Promise<void>>(async () => {}),
@@ -145,11 +150,11 @@
   });
 </script>
 
-<div bind:this={hostEl}>
+<div bind:this={hostEl} class={hostClass}>
   {#if api.isPopped && placeholder}
     {@render placeholder(api)}
   {/if}
-  <div bind:this={contentEl}>
+  <div bind:this={contentEl} class={contentClass}>
     {@render children(api)}
   </div>
 </div>

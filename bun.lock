@@ -5,7 +5,7 @@
     "": {
       "name": "wtfdig",
       "dependencies": {
-        "@lucide/svelte": "^1.14.0",
+        "@lucide/svelte": "1.42.0",
         "@mczub/wtfdig-ui": "workspace:*",
         "@tailwindcss/vite": "^4.2.4",
         "bits-ui": "^2.18.0",
@@ -138,7 +138,7 @@
 
     "@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.31", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.1.0", "@jridgewell/sourcemap-codec": "^1.4.14" } }, "sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw=="],
 
-    "@lucide/svelte": ["@lucide/svelte@1.14.0", "", { "peerDependencies": { "svelte": "^5" } }, "sha512-MVuP5VRCBQa2OaIpaRbuEV4k5OV2dy9MyxA6Tf4Sz/IN0v3zzUU72ObHc9r2Zn/wSMXDg6lLrHrczqI7w7gCzQ=="],
+    "@lucide/svelte": ["@lucide/svelte@1.42.0", "", { "peerDependencies": { "svelte": "^5" } }, "sha512-9vOi3EdzJht5aD7F5OraoxrK2GyyL1Y+kVXEtIg4+IAdKmDBrwYK2d/x7akC89uA+cvkfjcw+IuzH0vfd/TuzA=="],
 
     "@mczub/wtfdig-ui": ["@mczub/wtfdig-ui@workspace:packages/ui-theme"],
 

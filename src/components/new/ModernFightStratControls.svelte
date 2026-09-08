@@ -49,6 +49,9 @@
     separateDescriptionAction?: boolean;
     showDescriptions?: boolean;
     setShowDescriptions?: (value: boolean) => void;
+    /** Mit panel: show job-specific ability names instead of the sheet's generic ones. */
+    mitJobNames?: boolean;
+    setMitJobNames?: (value: boolean) => void;
     additionalResources?: {
       title: string;
       description?: string;
@@ -82,6 +85,8 @@
     separateDescriptionAction = false,
     showDescriptions = true,
     setShowDescriptions,
+    mitJobNames = false,
+    setMitJobNames,
     roleOptions,
     additionalResources,
     onOpenCheatsheet,
@@ -166,6 +171,21 @@
       isMultiRow = navElement.getBoundingClientRect().height > 60;
     }
   }
+
+  // Publish the nav's live height as --sticky-header-h so sticky content below it (the
+  // mit panel) can offset itself, even while the collapse animates.
+  $effect(() => {
+    if (!browser || !navElement) return;
+    const root = document.documentElement;
+    const observer = new ResizeObserver(([entry]) => {
+      root.style.setProperty('--sticky-header-h', `${entry.contentRect.height}px`);
+    });
+    observer.observe(navElement);
+    return () => {
+      observer.disconnect();
+      root.style.removeProperty('--sticky-header-h');
+    };
+  });
 
   onMount(() => {
     if (!browser) return;
@@ -724,6 +744,27 @@
                           {opt.label}
                         </button>
                       {/each}
+                    </div>
+                  </div>
+                {/if}
+                {#if setMitJobNames}
+                  <div class="flex flex-col gap-3 border-t border-surface-700 pt-4">
+                    <span class="font-medium">Mits</span>
+                    <div class="flex flex-col gap-2">
+                      <span class="text-sm text-surface-300">Ability names</span>
+                      <div class="flex gap-1">
+                        {#each [{ value: false, label: 'Generic' }, { value: true, label: 'Job-specific' }] as opt (opt.label)}
+                          <button
+                            type="button"
+                            class="flex-1 px-2 py-1 rounded text-sm {mitJobNames === opt.value
+                              ? 'preset-filled-primary-500'
+                              : 'preset-tonal-surface border border-surface-400-600 hover:preset-tonal-primary'}"
+                            onclick={() => setMitJobNames(opt.value)}
+                          >
+                            {opt.label}
+                          </button>
+                        {/each}
+                      </div>
                     </div>
                   </div>
                 {/if}

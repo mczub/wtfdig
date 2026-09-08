@@ -19,10 +19,12 @@
     PictureInPicture,
     PictureInPicture2
   } from '@lucide/svelte';
+  import MitControls from './MitControls.svelte';
+  import MitPanel from './MitPanel.svelte';
   import ModernStratView from './ModernStratView.svelte';
   import ModernFightStratControls from './ModernFightStratControls.svelte';
   import FightStratState from './FightStratState.svelte';
-  import type { Alignment, FightConfig, PhaseStrats, Role, Strat } from '$lib/types';
+  import type { Alignment, FightConfig, Job, PhaseStrats, Role, Strat } from '$lib/types';
   import {
     buildFightOptionsSummary,
     buildFightPFDescription,
@@ -32,6 +34,7 @@
     resolveMechs,
     resolveStratItem
   } from '$lib/utils';
+  import { defaultJob, jobsFor } from '$lib/mits';
   import type { PlayerJob } from '$lib/arena';
   import { generateAprilFoolsData, isAprilFools } from '$lib/aprilFools';
 
@@ -91,6 +94,7 @@
   let spotlight: boolean = $state(savedFightSettings?.spotlight ?? true);
   let alignment: Alignment = $state(normalizeAlignment(savedFightSettings?.alignment));
   let showDescriptions = $state(savedFightSettings?.showDescriptions ?? true);
+  let mitJobNames = $state(savedFightSettings?.mitJobNames ?? false);
 
   // Reload when navigating to a different fight without a remount (first run skipped).
   let lastSettingsFightKey: string | null = null;
@@ -106,11 +110,13 @@
     spotlight = saved?.spotlight ?? true;
     alignment = normalizeAlignment(saved?.alignment);
     showDescriptions = saved?.showDescriptions ?? true;
+    mitJobNames = saved?.mitJobNames ?? false;
+    mitsOpen = loadMitsOpen();
   });
 
   // Persist whenever a setting changes.
   $effect(() => {
-    const state = { spotlight, alignment, showDescriptions };
+    const state = { spotlight, alignment, showDescriptions, mitJobNames };
     if (!browser) return;
     localStorage.setItem(`fightSettings_${config.fightKey}`, JSON.stringify(state));
   });
@@ -269,6 +275,41 @@
 
   let cheatsheetOpenState = $state(false);
   let posterOpenState = $state(false);
+  // Mit panel: open state, plan and job (per role) are persisted per fight.
+  function loadMitSetting(key: string) {
+    return browser ? localStorage.getItem(`${config.fightKey}-${key}`) : null;
+  }
+  function saveMitSetting(key: string, value: string) {
+    if (browser) localStorage.setItem(`${config.fightKey}-${key}`, value);
+  }
+  function loadMitsOpen() {
+    return loadMitSetting('mitsOpen') === 'true';
+  }
+  let mitsOpen = $state(loadMitsOpen());
+  $effect(() => saveMitSetting('mitsOpen', String(mitsOpen)));
+  let hasMitPlans = $derived((config.mitPlans?.length ?? 0) > 0);
+  let mitPlanName = $state<string | null>(loadMitSetting('mitPlan'));
+  let mitPlan = $derived(
+    (config.mitPlans ?? []).find((p) => p.planName === mitPlanName) ?? config.mitPlans?.[0]
+  );
+  $effect(() => {
+    if (mitPlan) saveMitSetting('mitPlan', mitPlan.planName);
+  });
+  // Job is remembered per slot (role + party), so H1 and H2 keep separate picks.
+  let mitJobBySlot = $state<Record<string, Job>>({});
+  function mitJobFor(role: Role, party: number | undefined): Job {
+    const slot = `${role}-${party ?? 1}`;
+    const stored =
+      mitJobBySlot[slot] ??
+      (loadMitSetting(`mitJob-${slot}`) as Job | null) ??
+      (loadMitSetting(`mitJob-${role}`) as Job | null); // pre-slot saves
+    return stored && jobsFor(role, party).includes(stored) ? stored : defaultJob(role, party);
+  }
+  function setMitJob(role: Role, party: number | undefined, job: Job) {
+    const slot = `${role}-${party ?? 1}`;
+    mitJobBySlot[slot] = job;
+    saveMitSetting(`mitJob-${slot}`, job);
+  }
   let currentTab = $state<string | undefined>(undefined);
 
   let overlayPopOut = $state<() => Promise<void>>(async () => {});
@@ -414,6 +455,8 @@
       separateDescriptionAction={config.separateDescriptionAction}
       {showDescriptions}
       setShowDescriptions={(val) => (showDescriptions = val)}
+      {mitJobNames}
+      setMitJobNames={hasMitPlans ? (val) => (mitJobNames = val) : undefined}
       additionalResources={config.additionalResources}
       onOpenCheatsheet={isCheatsheetEnabled ? () => (cheatsheetOpenState = true) : undefined}
       onOpenPoster={config.posterLayout && config.posterEnabled
@@ -627,8 +670,34 @@
                 role={normalizedRole}
                 fightKey={config.fightKey}
                 useMainPageTabs={config.useMainPageTabs}
+                maxTwoColumns={hasMitPlans && mitsOpen}
+                mitsOpen={hasMitPlans ? mitsOpen : undefined}
+                onToggleMits={hasMitPlans ? () => (mitsOpen = !mitsOpen) : undefined}
                 bind:currentTab
-              />
+              >
+                {#snippet mitControls()}
+                  <MitControls
+                    plans={config.mitPlans ?? []}
+                    plan={mitPlan}
+                    onSelectPlan={(name) => (mitPlanName = name)}
+                  />
+                {/snippet}
+                {#snippet mitPanel(popped: boolean)}
+                  <MitPanel
+                    {popped}
+                    jobNames={mitJobNames}
+                    plan={mitPlan}
+                    role={normalizedRole}
+                    {party}
+                    jobs={jobsFor(normalizedRole, party)}
+                    job={mitJobFor(normalizedRole, party)}
+                    onSelectJob={(job) => setMitJob(normalizedRole, party, job)}
+                    fightKey={config.fightKey}
+                    tabTags={config.tabTags}
+                    {currentTab}
+                  />
+                {/snippet}
+              </ModernStratView>
             </div>
           {/if}
         {/if}
