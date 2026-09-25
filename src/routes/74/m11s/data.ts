@@ -687,53 +687,53 @@ const fixedEcliptic: MechanicStrat[] = [
         role: 'Tank',
         party: 1,
         description: 'Join line stack on intercard',
-        imageUrl: './m11s/hector-fixed-stampede-4.webp'
+        imageUrl: './m11s/fixed-ecliptic-3.webp'
       },
       {
         role: 'Tank',
         party: 2,
         description: 'Join line stack on intercard',
-        imageUrl: './m11s/hector-fixed-stampede-4.webp'
+        imageUrl: './m11s/fixed-ecliptic-3.webp'
       },
       {
         role: 'Healer',
         party: 1,
         description:
           'If you baited puddles, bait on hitbox ring\nNorth puddles = Northwest, South puddles = Northeast\nOtherwise join line stack on intercard',
-        imageUrl: './m11s/hector-fixed-stampede-4.webp'
+        imageUrl: './m11s/fixed-ecliptic-3.webp'
       },
       {
         role: 'Healer',
         party: 2,
         description:
           'If you baited puddles, bait on hitbox ring\nNorth puddles = Northwest, South puddles = Northeast\nOtherwise join line stack on intercard',
-        imageUrl: './m11s/hector-fixed-stampede-4.webp'
+        imageUrl: './m11s/fixed-ecliptic-3.webp'
       },
       {
         role: 'Melee',
         party: 1,
         description: 'Bait on hitbox ring Southwest',
-        imageUrl: './m11s/hector-fixed-stampede-4.webp'
+        imageUrl: './m11s/fixed-ecliptic-3.webp'
       },
       {
         role: 'Melee',
         party: 2,
         description: 'Bait on hitbox ring Southeast',
-        imageUrl: './m11s/hector-fixed-stampede-4.webp'
+        imageUrl: './m11s/fixed-ecliptic-3.webp'
       },
       {
         role: 'Ranged',
         party: 1,
         description:
           'If you baited puddles, bait on hitbox ring\nNorth puddles = Northwest, South puddles = Northeast\nOtherwise join line stack on intercard',
-        imageUrl: './m11s/hector-fixed-stampede-4.webp'
+        imageUrl: './m11s/fixed-ecliptic-3.webp'
       },
       {
         role: 'Ranged',
         party: 2,
         description:
           'If you baited puddles, bait on hitbox ring\nNorth puddles = Northwest, South puddles = Northeast\nOtherwise join line stack on intercard',
-        imageUrl: './m11s/hector-fixed-stampede-4.webp'
+        imageUrl: './m11s/fixed-ecliptic-3.webp'
       }
     ]
   }

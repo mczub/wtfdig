@@ -6,6 +6,7 @@
   }
 
   const entries: Entry[] = [
+    { date: '2026-09-25', text: 'assorted fixes for m11s, TEA, UMAD, and the P4 helper' },
     { date: '2026-08-24', text: 'added faq page, cleaned up the changelog' },
     { date: '2026-08-09', text: 'light mode!' },
     { date: '2026-08-04', text: 'p4 gaze updates, added 2-column p4 helper' },
