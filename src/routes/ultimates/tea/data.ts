@@ -468,7 +468,7 @@ const p1: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'N/S Bait',
-        description: 'MT + OT + Regen Healer + Caster N, Shield Healer + Phys Ranged + Melees S',
+        description: 'MT + OT + Regen Healer + Caster N, Regen Healer + Phys Ranged + Melees S',
         strats: [
           {
             role: 'Tank',
@@ -485,13 +485,13 @@ const p1: PhaseStrats[] = [
           {
             role: 'Healer',
             party: 1,
-            description: 'Bait boss protean North',
+            description: 'Bait boss protean South',
             imageUrl: './tea/living-liquid-12.webp'
           },
           {
             role: 'Healer',
             party: 2,
-            description: 'Bait boss protean South',
+            description: 'Bait boss protean North',
             imageUrl: './tea/living-liquid-12.webp'
           },
           {
@@ -1990,13 +1990,13 @@ const p3: PhaseStrats[] = [
       {
         mechanic: '4 Dash',
         description:
-          '2 gets dashed, KB resist, move away from Alex along wall to avoid Sacrament\n5/6 position on NW/NE red dots',
+          '4 gets dashed, KB resist, move away from Alex along wall to avoid Sacrament\n5/6 position on NW/NE red dots',
         imageUrl: './tea/tea-p3-2-10.webp'
       },
       {
         mechanic: 'Sacrament + 5 Slash + 2nd Soak',
         description:
-          'CC spawns behind 5, point cone out of arena\n5/6 soak puddles then move to 3/4 original positions (SW/SE)\n1/2 get ready for soak',
+          'CC spawns behind 5, point cone out of arena\n7/8 soak puddles then move to 3/4 original positions (SW/SE)\n1/2 get ready for soak',
         imageUrl: './tea/tea-p3-2-12.webp'
       },
       {

@@ -8,7 +8,7 @@
 // Neo Exdeath "Short/Long" = which set resolves 1st (short) vs 2nd (long); the two
 // sets are mutually exclusive. Accel bomb sits on exactly one set.
 // Chaos: Fire resolves 1st, Water 2nd (mutually exclusive across the two casts).
-//   fire+real or water+fake = Spread (out), else Stay (in).
+//   fire+real or water+fake = Twister (move), else Donut (wait).
 // Mana Charge/Release is a double negative: same tell twice = real, differing = fake.
 
 import { debuffIconUrl } from '$lib/debuffs';
@@ -28,8 +28,8 @@ function ic(id: string): string {
 const KW_COLOR: Record<string, string> = {
   LIGHTNING: 'text-yellow-400',
   WATER: 'text-blue-400',
-  SPREAD: 'text-orange-400',
-  STAY: 'text-emerald-400',
+  'TWISTER (MOVE)': 'text-orange-400',
+  'DONUT (WAIT)': 'text-emerald-400',
   MOTION: 'text-cyan-400',
   STILLNESS: 'text-rose-400',
   'LOOK AT': 'text-yellow-300',
@@ -65,7 +65,7 @@ export function gazeEffect(cast: Val): string | null {
 export function chaosEffect(type: Val, cast: Val): string | null {
   if ((type !== 'fire' && type !== 'water') || (cast !== 'real' && cast !== 'fake')) return null;
   const out = (type === 'fire' && cast === 'real') || (type === 'water' && cast === 'fake');
-  return out ? 'SPREAD' : 'STAY';
+  return out ? 'TWISTER (MOVE)' : 'DONUT (WAIT)';
 }
 export function combine(a: Val, b: Val): 'real' | 'fake' | null {
   if (!a || !b) return null;
@@ -325,13 +325,13 @@ export function block1(s: P4State): Line[] {
   return [spreadLine(short, '1st'), accelLine(s, 'short', '1st'), gazeLine(s.ne1cast, '1st')];
 }
 
-/** Fire spread/stay, 2nd spread element, 2nd accel. */
+/** Fire twister/donut, 2nd spread element, 2nd accel. */
 export function block2(s: P4State): Line[] {
   const { long } = nePos(s);
   return [chaosLine(s, 'fire', 'Inferno'), spreadLine(long, '2nd'), accelLine(s, 'long', '2nd')];
 }
 
-/** 2nd shrieks, Water spread/stay.
+/** 2nd shrieks, Water twister/donut.
  * The 2nd shriek is always applied by the 2nd Neo Exdeath cast (real/fake only). */
 export function block3(s: P4State): Line[] {
   return [gazeLine(s.ne2cast, '2nd'), chaosLine(s, 'water', 'Tsunami')];
