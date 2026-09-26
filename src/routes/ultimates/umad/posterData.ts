@@ -1722,12 +1722,19 @@ export const umadPosterLayout: PosterLayout = {
         player('MT', 76, 11, { size: 3 }),
         boss(81, 22, { size: 7.5 }),
         player('OT', 86, 11, { size: 3 }),
-        player('M1', 70, 18, { size: 3 }),
-        player('R1', 70, 25, { size: 3 }),
-        player('H1', 77, 31, { size: 3 }),
-        player('H2', 85, 31, { size: 3 }),
-        player('R2', 92, 25, { size: 3 }),
-        player('M2', 92, 18, { size: 3 }),
+        player('M1', 70, 18, { size: 3, groupId: 'na' }),
+        player('R1', 70, 25, { size: 3, groupId: 'na' }),
+        player('H1', 77, 31, { size: 3, groupId: 'na' }),
+        player('H2', 85, 31, { size: 3, groupId: 'na' }),
+        player('R2', 92, 25, { size: 3, groupId: 'na' }),
+        player('M2', 92, 18, { size: 3, groupId: 'na' }),
+        // EU (4px / n4a): Ranged W-NW/E-NE, Healers W-SW/E-SE, Melees South
+        player('R1', 70, 18, { size: 3, groupId: 'eu' }),
+        player('H1', 70, 26, { size: 3, groupId: 'eu' }),
+        player('M1', 78, 32, { size: 3, groupId: 'eu' }),
+        player('M2', 84, 32, { size: 3, groupId: 'eu' }),
+        player('H2', 92, 26, { size: 3, groupId: 'eu' }),
+        player('R2', 92, 18, { size: 3, groupId: 'eu' }),
         text('Maddening Orchestra', 104, 11, { fontSize: 5, anchor: 'start' }),
         text('3x Random\n3x Closest\nParty Out + Invuln', 107, 20, { anchor: 'start' }),
         arenaShape('circle', 123, 72, 50, 50),
@@ -1737,9 +1744,20 @@ export const umadPosterLayout: PosterLayout = {
         waymark('D', 109, 72, { size: 2 }),
         player('ANY', 123, 89, { size: 3 }),
         curvedArrow(108, 76, 119, 89, { curvature: 5, heads: 'start' }),
-        curvedArrow(129, 58, 117, 58, { color: '#737373' }),
+        curvedArrow(129, 58, 117, 58, { color: '#737373', groupId: 'na' }),
         text('Forsaken', 77, 53, { fontSize: 5, anchor: 'start' }),
-        text('Start South\nRotate CW\nReverse if Blocked at B', 79, 62, { anchor: 'start' }),
+        text('Start South\nRotate CW\nReverse if Blocked at B', 79, 62, {
+          anchor: 'start',
+          groupId: 'na'
+        }),
+        text('Start South\nC-4-1-2-3 always CW\nRun through red puddle', 79, 62, {
+          anchor: 'start',
+          groupId: 'lpdu'
+        }),
+        text('Start South\n1 CW, then 2 CW\n2 away from card puddle\nLast open cardinal', 79, 62, {
+          anchor: 'start',
+          groupId: 'eupf'
+        }),
         waymark('4', 115, 80, { size: 2 }),
         waymark('1', 115, 64, { size: 2 }),
         waymark('2', 131, 64, { size: 2 }),
@@ -1765,7 +1783,16 @@ export const umadPosterLayout: PosterLayout = {
         text('Celestriad', 1, 53, { fontSize: 5, anchor: 'start' }),
         text('Earth = AOE\nWind = DONUT', 3, 73, { anchor: 'start' }),
         text('Debuffs 1st CW\nNo Debuff Fill', 3, 60, { anchor: 'start' }),
-      ], { bgColor: 'transparent' })
+      ], {
+        bgColor: 'transparent',
+        // NA and EU strats differ on MO spreads and Forsaken movement
+        groups: [
+          { id: 'na', visibleWhen: { stratKey: ['kefkabin'] } },
+          { id: 'eu', visibleWhen: { stratKey: ['eupf', 'lpdu'] } },
+          { id: 'eupf', visibleWhen: { stratKey: ['eupf'] } },
+          { id: 'lpdu', visibleWhen: { stratKey: ['lpdu'] } }
+        ]
+      })
     }
   ]
 };

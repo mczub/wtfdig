@@ -72,6 +72,10 @@
     save(`mitInvulnOrder-${partyKey}`, String(value));
   }
 
+  // Only show the boss/invuln filters for plans that split tank entries by them.
+  let hasBossEntries = $derived(!!plan?.mechs.some((m) => m.mits.some((x) => x.boss)));
+  let hasInvulnEntries = $derived(!!plan?.mechs.some((m) => m.mits.some((x) => x.invuln)));
+
   let groups = $derived(
     plan
       ? groupMitsByPhase(plan, {
@@ -193,44 +197,48 @@
               >
             </div>
           </div>
-          <div class="flex items-center gap-1">
-            <span class="text-xs font-medium text-surface-400 uppercase">P3 boss</span>
-            <div
-              class="inline-flex rounded-sm border border-surface-700 overflow-hidden text-sm"
-              role="group"
-              aria-label="P3 boss"
-            >
-              {#each ['Chaos', 'Exdeath'] as const as boss (boss)}
-                <button
-                  type="button"
-                  aria-pressed={tankBoss === boss}
-                  class={tankBoss === boss
-                    ? 'px-2 py-0.5 bg-surface-700 text-foreground cursor-pointer'
-                    : 'px-2 py-0.5 text-surface-300 hover:bg-surface-800 cursor-pointer'}
-                  onclick={() => setTankBoss(boss)}>{boss}</button
-                >
-              {/each}
+          {#if hasBossEntries}
+            <div class="flex items-center gap-1">
+              <span class="text-xs font-medium text-surface-400 uppercase">P3 boss</span>
+              <div
+                class="inline-flex rounded-sm border border-surface-700 overflow-hidden text-sm"
+                role="group"
+                aria-label="P3 boss"
+              >
+                {#each ['Chaos', 'Exdeath'] as const as boss (boss)}
+                  <button
+                    type="button"
+                    aria-pressed={tankBoss === boss}
+                    class={tankBoss === boss
+                      ? 'px-2 py-0.5 bg-surface-700 text-foreground cursor-pointer'
+                      : 'px-2 py-0.5 text-surface-300 hover:bg-surface-800 cursor-pointer'}
+                    onclick={() => setTankBoss(boss)}>{boss}</button
+                  >
+                {/each}
+              </div>
             </div>
-          </div>
-          <div class="flex items-center gap-1">
-            <span class="text-xs font-medium text-surface-400 uppercase">P5 invuln</span>
-            <div
-              class="inline-flex rounded-sm border border-surface-700 overflow-hidden text-sm"
-              role="group"
-              aria-label="P5 invuln order"
-            >
-              {#each [1, 2] as const as order (order)}
-                <button
-                  type="button"
-                  aria-pressed={invulnOrder === order}
-                  class={invulnOrder === order
-                    ? 'px-2 py-0.5 bg-surface-700 text-foreground cursor-pointer'
-                    : 'px-2 py-0.5 text-surface-300 hover:bg-surface-800 cursor-pointer'}
-                  onclick={() => setInvulnOrder(order)}>{order === 1 ? '1st' : '2nd'}</button
-                >
-              {/each}
+          {/if}
+          {#if hasInvulnEntries}
+            <div class="flex items-center gap-1">
+              <span class="text-xs font-medium text-surface-400 uppercase">P5 invuln</span>
+              <div
+                class="inline-flex rounded-sm border border-surface-700 overflow-hidden text-sm"
+                role="group"
+                aria-label="P5 invuln order"
+              >
+                {#each [1, 2] as const as order (order)}
+                  <button
+                    type="button"
+                    aria-pressed={invulnOrder === order}
+                    class={invulnOrder === order
+                      ? 'px-2 py-0.5 bg-surface-700 text-foreground cursor-pointer'
+                      : 'px-2 py-0.5 text-surface-300 hover:bg-surface-800 cursor-pointer'}
+                    onclick={() => setInvulnOrder(order)}>{order === 1 ? '1st' : '2nd'}</button
+                  >
+                {/each}
+              </div>
             </div>
-          </div>
+          {/if}
         {/if}
       </div>
     {/if}
