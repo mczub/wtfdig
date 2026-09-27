@@ -133,6 +133,9 @@ export interface FightStratConfig {
     jpRoles?: boolean;
     defaults?: Record<string, string>;
     defaultPfDescription?: string;
+    /** `planName` of the mit plan (from `FightConfig.mitPlans`) to switch to when
+     * this strat is selected. A manual mit-plan pick persists until the strat changes. */
+    mitPlan?: string;
   };
 }
 

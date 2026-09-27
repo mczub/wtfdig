@@ -307,6 +307,13 @@
   $effect(() => {
     if (mitPlan) saveMitSetting('mitPlan', mitPlan.planName);
   });
+  // Selecting a strat with a configured `mitPlan` switches the mit panel to it.
+  function applyStratMitPlan(stratName: string) {
+    const planName = effectiveConfigStrats[stratName]?.mitPlan;
+    if (planName && (config.mitPlans ?? []).some((p) => p.planName === planName)) {
+      mitPlanName = planName;
+    }
+  }
   // Job is remembered per slot (role + party), so H1 and H2 keep separate picks.
   let mitJobBySlot = $state<Record<string, Job>>({});
   function mitJobFor(role: Role, party: number | undefined): Job {
@@ -442,7 +449,10 @@
       strats={effectiveConfigStrats}
       {stratName}
       {stratOptions}
-      onSelectStrat={selectStrat}
+      onSelectStrat={(value) => {
+        selectStrat(value);
+        applyStratMitPlan(value);
+      }}
       {stratState}
       toggles={(config.toggles ?? []).map((toggle) => ({
         key: toggle.key,

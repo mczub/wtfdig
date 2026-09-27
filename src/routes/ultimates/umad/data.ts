@@ -13,7 +13,6 @@ const allP1: PhaseStrats[] = [
         imageUrl: {
           default: './umad/fireice-tankbuster.webp',
           alt: {
-            eupf: './umad/fireice-tankbuster-eupf.webp',
             lpdu: './umad/fireice-tankbuster-lpdu.webp'
           }
         }
@@ -26,7 +25,6 @@ const allP1: PhaseStrats[] = [
         imageUrl: {
           default: './umad/fireice-start.webp',
           alt: {
-            eupf: './umad/fireice-start-eupf.webp',
             lpdu: './umad/fireice-start-lpdu.webp'
           }
         },
@@ -79,7 +77,6 @@ const allP1: PhaseStrats[] = [
         imageUrl: {
           default: './umad/fireice-stack.webp',
           alt: {
-            eupf: './umad/fireice-start-eupf.webp',
             lpdu: './umad/fireice-start-lpdu.webp'
           }
         },
@@ -132,7 +129,6 @@ const allP1: PhaseStrats[] = [
         imageUrl: {
           default: './umad/fireice-spread.webp',
           alt: {
-            eupf: './umad/fireice-spread-eupf.webp',
             lpdu: './umad/fireice-spread-lpdu.webp'
           }
         },
@@ -191,18 +187,18 @@ const allP1: PhaseStrats[] = [
         action: 'HHTTMMRR Conga',
         imageUrl: {
           default: './umad/lasers-conga.webp',
-          alt: { eupf: './umad/lasers-conga-eupf.webp', lpdu: './umad/lasers-conga-lpdu.webp' }
+          alt: { lpdu: './umad/lasers-conga-lpdu.webp' }
         },
         strats: [
           {
             role: 'Tank',
             party: 1,
-            description: { kefkabin: '3rd from West', eupf: '4th from West', lpdu: '4th from West' }
+            description: { kefkabin: '3rd from West', lpdu: '4th from West' }
           },
           {
             role: 'Tank',
             party: 2,
-            description: { kefkabin: '4th from West', eupf: '3rd from West', lpdu: '3rd from West' }
+            description: { kefkabin: '4th from West', lpdu: '3rd from West' }
           },
           {
             role: 'Healer',
@@ -240,12 +236,11 @@ const allP1: PhaseStrats[] = [
         mechanic: 'Towers',
         action: {
           kefkabin: "Use same West -> East prio on your half to soak towers if you didn't get hit",
-          eupf: "Soak prio from the middle of the conga outward (MT first for supports, M1 first for DPS) if you didn't get hit",
           lpdu: "Soak prio from the middle of the conga outward (MT first for supports, M1 first for DPS) if you didn't get hit"
         },
         imageUrl: {
           default: './umad/lasers-towers.webp',
-          alt: { eupf: './umad/lasers-towers-eupf.webp', lpdu: './umad/lasers-towers-lpdu.webp' }
+          alt: { lpdu: './umad/lasers-towers-lpdu.webp' }
         }
       }
     ]
@@ -260,13 +255,11 @@ const allP1: PhaseStrats[] = [
           'One player from each role will get a Confetti debuff = stack + knockback from that player',
         action: {
           kefkabin: '',
-          eupf: 'Supports West, DPS East\nStack on the Confetti player at the hitbox edge (Confetti player outermost)\nThere is time to move after the knockback',
           lpdu: 'Supports West, DPS East\nStack on the Confetti player at the hitbox edge (Confetti player outermost)\nThere is time to move after the knockback'
         },
         imageUrl: {
           default: './umad/confetti1-knockback.webp',
           alt: {
-            eupf: './umad/confetti1-knockback-eupf.webp',
             lpdu: './umad/confetti1-knockback-lpdu.webp'
           }
         }
@@ -277,7 +270,6 @@ const allP1: PhaseStrats[] = [
         imageUrl: {
           default: './umad/confetti1-lightning-ice.webp',
           alt: {
-            eupf: './umad/confetti1-lightning-ice-eupf.webp',
             lpdu: './umad/confetti1-lightning-ice-lpdu.webp'
           }
         }
@@ -292,14 +284,12 @@ const allP1: PhaseStrats[] = [
         mechanic: 'First Puddle',
         description: {
           kefkabin: 'Center tether = Puddle\nRight side tether = Rocks',
-          eupf: 'Left tethers = Puddle (stack)\nRight tethers = Rocks (meteor)',
           lpdu: 'Middle tethers = Puddle (stack)\nSide tethers = Rocks (meteor)'
         },
         action: 'North for 1st puddles',
         imageUrl: {
           default: './umad/puddles-first-puddle.webp',
           alt: {
-            eupf: './umad/puddles-first-puddle-eupf.webp',
             lpdu: './umad/puddles-first-puddle-lpdu.webp'
           }
         }
@@ -310,7 +300,6 @@ const allP1: PhaseStrats[] = [
         imageUrl: {
           default: './umad/puddles-first-rocks.webp',
           alt: {
-            eupf: './umad/puddles-first-rocks-eupf.webp',
             lpdu: './umad/puddles-first-rocks-lpdu.webp'
           }
         },
@@ -363,7 +352,6 @@ const allP1: PhaseStrats[] = [
         imageUrl: {
           default: './umad/puddles-tankbuster.webp',
           alt: {
-            eupf: './umad/puddles-tankbuster-eupf.webp',
             lpdu: './umad/puddles-tankbuster-lpdu.webp'
           }
         }
@@ -374,7 +362,6 @@ const allP1: PhaseStrats[] = [
         imageUrl: {
           default: './umad/puddles-first-halfroom.webp',
           alt: {
-            eupf: './umad/puddles-first-halfroom-eupf.webp',
             lpdu: './umad/puddles-first-halfroom-lpdu.webp'
           }
         }
@@ -385,7 +372,6 @@ const allP1: PhaseStrats[] = [
         imageUrl: {
           default: './umad/puddles-second-puddle.webp',
           alt: {
-            eupf: './umad/puddles-second-puddle-eupf.webp',
             lpdu: './umad/puddles-second-puddle-lpdu.webp'
           }
         }
@@ -396,7 +382,6 @@ const allP1: PhaseStrats[] = [
         imageUrl: {
           default: './umad/puddles-second-rocks.webp',
           alt: {
-            eupf: './umad/puddles-second-rocks-eupf.webp',
             lpdu: './umad/puddles-second-rocks-lpdu.webp'
           }
         },
@@ -450,7 +435,6 @@ const allP1: PhaseStrats[] = [
         imageUrl: {
           default: './umad/puddles-second-halfroom.webp',
           alt: {
-            eupf: './umad/puddles-second-halfroom-eupf.webp',
             lpdu: './umad/puddles-second-halfroom-lpdu.webp'
           }
         }
@@ -465,13 +449,11 @@ const allP1: PhaseStrats[] = [
         mechanic: 'Knockback',
         action: {
           kefkabin: 'Supports North, DPS South\nParty stack on inside of hitbox\nConfetti on edge of puddles',
-          eupf: 'Supports North, DPS South\nNext to puddle on cleave safe side\nParty on hitbox',
           lpdu: 'Supports North, DPS South\nNext to puddle on cleave safe side\nParty on hitbox'
         },
         imageUrl: {
           default: './umad/confetti2-knockback.webp',
           alt: {
-            eupf: './umad/confetti2-knockback-eupf.webp',
             lpdu: './umad/confetti2-knockback-lpdu.webp'
           }
         }
@@ -480,13 +462,11 @@ const allP1: PhaseStrats[] = [
         mechanic: 'Puddle Soak',
         action: {
           kefkabin: 'Get knocked back through boss into opposite puddle\nConfettis step back into puddle',
-          eupf: 'Get knocked diagonally through boss to other side\nConfettis join puddle on their side',
           lpdu: 'Get knocked diagonally through boss to other side\nConfettis join puddle on their side',
         },
         imageUrl: {
           default: './umad/confetti2-puddle-soak.webp',
           alt: {
-            eupf: './umad/confetti2-puddle-soak-eupf.webp',
             lpdu: './umad/confetti2-puddle-soak-lpdu.webp'
           }
         }
@@ -590,74 +570,6 @@ const allP1: PhaseStrats[] = [
           imageUrl: './umad/p1-arrows-pinoy-7.webp'
         }
       ],
-      freaky: [
-        {
-          mechanic: 'Placement',
-          description:
-            'Everyone gets 2 Arrow debuffs\nOne role gets 2x same, one role gets 2x different\nPlace arrows in a ring CLOCKWISE, only one spot per player',
-          imageUrl: './umad/p1-arrows-freaky-1.webp'
-        },
-        {
-          mechanic: 'Arrow Solve',
-          description:
-            'Cardinal (Letter) arrows go on the INNER EDGE of the waymark\nSame Arrows: drop 1st on the Letter marker + 1 spot CCW\nDifferent Arrows: use the timer to see which drops first',
-          imageUrl: './umad/p1-arrows-freaky-2.webp'
-        },
-        {
-          mechanic: 'Knockback',
-          action: 'Supports NW, DPS SE for Confetti KB\nConfetti debuffs on the 1/3 markers',
-          imageUrl: './umad/p1-arrows-freaky-5.webp'
-        },
-        {
-          mechanic: 'Sleep/Confuse (Tethers matter)',
-          description:
-            'Each role gets Upper/Left (Outside/Confuse) or Lower/Right (Inside/Sleep) tether',
-          action: 'Sleep = Inside\nConfuse = Outside',
-          imageUrl: './umad/p1-arrows-freaky-6.webp',
-          strats: [
-            {
-              role: 'Tank',
-              party: 1,
-              description: 'North'
-            },
-            {
-              role: 'Tank',
-              party: 2,
-              description: 'West'
-            },
-            {
-              role: 'Healer',
-              party: 1,
-              description: 'South'
-            },
-            {
-              role: 'Healer',
-              party: 2,
-              description: 'East'
-            },
-            {
-              role: 'Melee',
-              party: 1,
-              description: 'South'
-            },
-            {
-              role: 'Melee',
-              party: 2,
-              description: 'East'
-            },
-            {
-              role: 'Ranged',
-              party: 1,
-              description: 'North'
-            },
-            {
-              role: 'Ranged',
-              party: 2,
-              description: 'West'
-            }
-          ]
-        }
-      ],
       stfr: [
         {
           mechanic: 'Placement',
@@ -736,13 +648,11 @@ const allP1: PhaseStrats[] = [
         mechanic: 'Static Spots',
         action: {
           kefkabin: 'After teleports, preposition in shown spots',
-          eupf: 'Spots are rough - Tanks/Melees spread near boss, Healers/Ranged far\nAdjust based on who got teleported',
           lpdu: 'Non-teleported role keeps their tether spot\nTeleported role shifts one cardinal clockwise'
         },
         imageUrl: {
           default: './umad/gaze-static-spots.webp',
           alt: {
-            eupf: './umad/gaze-static-spots-eupf.webp',
             lpdu: './umad/gaze-static-spots-lpdu.webp'
           }
         },
@@ -752,7 +662,6 @@ const allP1: PhaseStrats[] = [
             party: 1,
             description: {
               kefkabin: 'Northeast, 2 marker',
-              eupf: 'Near boss, loose spread',
               lpdu: 'North, inner (East if Supports teleported)'
             }
           },
@@ -761,7 +670,6 @@ const allP1: PhaseStrats[] = [
             party: 2,
             description: {
               kefkabin: 'Southeast, 3 marker',
-              eupf: 'Near boss, loose spread',
               lpdu: 'West, inner (North if Supports teleported)'
             }
           },
@@ -770,7 +678,6 @@ const allP1: PhaseStrats[] = [
             party: 1,
             description: {
               kefkabin: 'South, far',
-              eupf: 'Far, loose spread',
               lpdu: 'South, far (West if Supports teleported)'
             }
           },
@@ -779,7 +686,6 @@ const allP1: PhaseStrats[] = [
             party: 2,
             description: {
               kefkabin: 'East, far',
-              eupf: 'Far, loose spread',
               lpdu: 'East, far (South if Supports teleported)'
             }
           },
@@ -788,7 +694,6 @@ const allP1: PhaseStrats[] = [
             party: 1,
             description: {
               kefkabin: 'Northwest, 1 marker',
-              eupf: 'Near boss, loose spread',
               lpdu: 'South, inner (West if DPS teleported)'
             }
           },
@@ -797,7 +702,6 @@ const allP1: PhaseStrats[] = [
             party: 2,
             description: {
               kefkabin: 'Southwest, 4 marker',
-              eupf: 'Near boss, loose spread',
               lpdu: 'East, inner (South if DPS teleported)'
             }
           },
@@ -806,7 +710,6 @@ const allP1: PhaseStrats[] = [
             party: 1,
             description: {
               kefkabin: 'North, far',
-              eupf: 'Far, loose spread',
               lpdu: 'North, far (East if DPS teleported)'
             }
           },
@@ -815,7 +718,6 @@ const allP1: PhaseStrats[] = [
             party: 2,
             description: {
               kefkabin: 'West, far',
-              eupf: 'Far, loose spread',
               lpdu: 'West, far (North if DPS teleported)'
             }
           }
@@ -826,12 +728,11 @@ const allP1: PhaseStrats[] = [
         description: 'Make sure to solve Gaze (on statue) + Lightning lines',
         action: {
           kefkabin: 'Melee on unsafe half move under boss',
-          eupf: 'Tank/Melee in the lightning line move under boss (or dodge outward)',
           lpdu: 'Stay in your spot - move only to stack or to dodge into/out of a lightning line'
         },
         imageUrl: {
           default: './umad/gaze-spread.webp',
-          alt: { eupf: './umad/gaze-spread-eupf.webp', lpdu: './umad/gaze-spread-lpdu.webp' }
+          alt: { lpdu: './umad/gaze-spread-lpdu.webp' }
         },
         strats: [
           {
@@ -839,7 +740,6 @@ const allP1: PhaseStrats[] = [
             party: 1,
             description: {
               kefkabin: 'Northeast, 2 marker',
-              eupf: 'Near boss, loose spread',
               lpdu: 'North, inner (East if Supports teleported)'
             }
           },
@@ -848,7 +748,6 @@ const allP1: PhaseStrats[] = [
             party: 2,
             description: {
               kefkabin: 'Southeast, 3 marker',
-              eupf: 'Near boss, loose spread',
               lpdu: 'West, inner (North if Supports teleported)'
             }
           },
@@ -857,7 +756,6 @@ const allP1: PhaseStrats[] = [
             party: 1,
             description: {
               kefkabin: 'South, far',
-              eupf: 'Far, loose spread',
               lpdu: 'South, far (West if Supports teleported)'
             }
           },
@@ -866,7 +764,6 @@ const allP1: PhaseStrats[] = [
             party: 2,
             description: {
               kefkabin: 'East, far',
-              eupf: 'Far, loose spread',
               lpdu: 'East, far (South if Supports teleported)'
             }
           },
@@ -875,7 +772,6 @@ const allP1: PhaseStrats[] = [
             party: 1,
             description: {
               kefkabin: 'Northwest, 1 marker',
-              eupf: 'Near boss, loose spread',
               lpdu: 'South, inner (West if DPS teleported)'
             }
           },
@@ -884,7 +780,6 @@ const allP1: PhaseStrats[] = [
             party: 2,
             description: {
               kefkabin: 'Southwest, 4 marker',
-              eupf: 'Near boss, loose spread',
               lpdu: 'East, inner (South if DPS teleported)'
             }
           },
@@ -893,7 +788,6 @@ const allP1: PhaseStrats[] = [
             party: 1,
             description: {
               kefkabin: 'North, far',
-              eupf: 'Far, loose spread',
               lpdu: 'North, far (East if DPS teleported)'
             }
           },
@@ -902,7 +796,6 @@ const allP1: PhaseStrats[] = [
             party: 2,
             description: {
               kefkabin: 'West, far',
-              eupf: 'Far, loose spread',
               lpdu: 'West, far (North if DPS teleported)'
             }
           }
@@ -912,12 +805,11 @@ const allP1: PhaseStrats[] = [
         mechanic: 'Stack',
         action: {
           kefkabin: 'Supports on 3\nDPS on 1',
-          eupf: 'DPS stack North\nSupports stack South',
           lpdu: 'DPS stack North\nSupports stack South'
         },
         imageUrl: {
           default: './umad/gaze-stack.webp',
-          alt: { eupf: './umad/gaze-stack-eupf.webp', lpdu: './umad/gaze-stack-lpdu.webp' }
+          alt: { lpdu: './umad/gaze-stack-lpdu.webp' }
         },
         strats: [
           {
@@ -925,7 +817,6 @@ const allP1: PhaseStrats[] = [
             party: 1,
             description: {
               kefkabin: 'Southeast, 3 marker',
-              eupf: 'South of boss',
               lpdu: 'South of boss'
             }
           },
@@ -934,7 +825,6 @@ const allP1: PhaseStrats[] = [
             party: 2,
             description: {
               kefkabin: 'Southeast, 3 marker',
-              eupf: 'South of boss',
               lpdu: 'South of boss'
             }
           },
@@ -943,7 +833,6 @@ const allP1: PhaseStrats[] = [
             party: 1,
             description: {
               kefkabin: 'Southeast, 3 marker',
-              eupf: 'South of boss',
               lpdu: 'South of boss'
             }
           },
@@ -952,7 +841,6 @@ const allP1: PhaseStrats[] = [
             party: 2,
             description: {
               kefkabin: 'Southeast, 3 marker',
-              eupf: 'South of boss',
               lpdu: 'South of boss'
             }
           },
@@ -961,7 +849,6 @@ const allP1: PhaseStrats[] = [
             party: 1,
             description: {
               kefkabin: 'Northwest, 1 marker',
-              eupf: 'North of boss',
               lpdu: 'North of boss'
             }
           },
@@ -970,7 +857,6 @@ const allP1: PhaseStrats[] = [
             party: 2,
             description: {
               kefkabin: 'Northwest, 1 marker',
-              eupf: 'North of boss',
               lpdu: 'North of boss'
             }
           },
@@ -979,7 +865,6 @@ const allP1: PhaseStrats[] = [
             party: 1,
             description: {
               kefkabin: 'Northwest, 1 marker',
-              eupf: 'North of boss',
               lpdu: 'North of boss'
             }
           },
@@ -988,7 +873,6 @@ const allP1: PhaseStrats[] = [
             party: 2,
             description: {
               kefkabin: 'Northwest, 1 marker',
-              eupf: 'North of boss',
               lpdu: 'North of boss'
             }
           }
@@ -1695,7 +1579,6 @@ const allP2: PhaseStrats[] = [
         description: {
           kefkabin:
             '3 sets of Trines spawn: 3/1/3\nHalf room while 3rd set is landing\nStart Mid, then dodge into first explosion',
-          eupf: '3 sets of Trines spawn: 3/1/3\nHalf room while 3rd set is landing\nStart Mid, then dodge into first explosion',
           lpdu: '3 sets of Trines spawn: 3/1/3\nHalf room while 3rd set is landing\nStart Mid, then dodge into first explosion\nLook at A while the trines land; dodge the cleave while identifying your trine\nSame prio for every pattern, even if a bigger gap exists'
         },
         action: 'Wait Mid\nTanks move into 1st CCW from 1\nParty move into 1st CW from A',
@@ -1709,7 +1592,6 @@ const allP2: PhaseStrats[] = [
         description: {
           kefkabin:
             'Near/Far tankbuster snapshots at 3rd explosion\n2 arena rings from edge = safe from both for party',
-          eupf: 'Near/Far tankbuster snapshots at 3rd explosion\n2 arena rings from edge = safe from both for party',
           lpdu: 'Near/Far tankbuster snapshots at 3rd explosion\n2 arena rings from edge = safe from both for party\nWith big box markers: further out than the cardinal markers, in front of the intercardinal ones'
         },
         imageUrl: {
@@ -1721,7 +1603,6 @@ const allP2: PhaseStrats[] = [
         mechanic: 'Final',
         action: {
           kefkabin: 'One tank tuck into middle trine, one tank far, party 2 rings from edge',
-          eupf: 'One tank tuck into middle trine, one tank far, party 2 rings from edge',
           lpdu: 'One tank tuck into middle trine, one tank far, party 2 rings from edge\nNear tank: any trine that baits Near, but NEVER the party trine\nFar tank walks along the wall'
         },
         imageUrl: {
@@ -2488,7 +2369,6 @@ const allP3: PhaseStrats[] = [
         description: {
           kefkabin:
             'Stack bosses mid, then conga; HP set to 1\nAll: Primordial Crust (cleanse by dying -> survive at 1 hp)\n1 DPS + 1 Healer: {{accretion}} Accretion (cleanse by full heal)\nRaidwide + 4s Earth vuln each time an Earth debuff expires\n3x {{first-in-line}} First / 3x {{second-in-line}} Second / 2x {{third-in-line}} Third in Line',
-          eupf: 'Keep Chaos dead middle for all of Earthquake; Exdeath close but NOT stacked (Exdeath tank parks it off center, at the intercard CCW from Kefka, during the slams); HP set to 1\nNo conga - assignments are fixed from your own debuff + role\nAll: Primordial Crust (cleanse by dying -> survive at 1 hp)\n1 DPS + 1 Healer: {{accretion}} Accretion (cleanse by full heal) - always one I and one II\nRaidwide + 2s Earth vuln each time an Earth debuff expires\n3x {{first-in-line}} First / 3x {{second-in-line}} Second / 2x {{third-in-line}} Third in Line',
           lpdu: 'Keep Chaos dead middle for all of Earthquake; Exdeath close but NOT stacked (Exdeath tank parks it off center, at the intercard CCW from Kefka, during the slams); HP set to 1\nNo conga - assignments are fixed from your own debuff + role\nAll: Primordial Crust (cleanse by dying -> survive at 1 hp)\n1 DPS + 1 Healer: {{accretion}} Accretion (cleanse by full heal) - always one I and one II\nRaidwide + 2s Earth vuln each time an Earth debuff expires\n3x {{first-in-line}} First / 3x {{second-in-line}} Second / 2x {{third-in-line}} Third in Line'
         },
         imageUrl: './umad/p3-lb-24.webp'
@@ -2498,7 +2378,6 @@ const allP3: PhaseStrats[] = [
         description: {
           kefkabin:
             'Healers single-target the First-in-line {{accretion}} Accretion, then the second',
-          eupf: 'Healers single-target the Healer {{accretion}} Accretion first, then the DPS Accretion\nWHM: do NOT Benediction on frame 1 (party can wipe from 1 HP)',
           lpdu: 'Healers single-target the Healer {{accretion}} Accretion first, then the DPS Accretion\nWHM: do NOT Benediction on frame 1 (party can wipe from 1 HP)'
         },
         imageUrl: './umad/p3-lb-25.webp'
@@ -2637,12 +2516,11 @@ const allP5: PhaseStrats[] = [
         mechanic: 'Spread',
         action: {
           kefkabin: 'Spread: Tanks North, Healers South, G1 DPS West, G2 DPS East',
-          eupf: 'Spread: Tanks North, Ranged NW/NE, Healers West/East, Melees South',
           lpdu: 'Spread: Tanks North, Ranged NW/NE, Healers West/East, Melees South'
         },
         imageUrl: {
           default: './umad/p5-7.webp',
-          alt: { eupf: './umad/p5-7-eu.webp', lpdu: './umad/p5-mo-spread-lpdu.webp' }
+          alt: { lpdu: './umad/p5-mo-spread-lpdu.webp' }
         }
       },
       {
@@ -2651,7 +2529,7 @@ const allP5: PhaseStrats[] = [
           '1st hit is random\nMT gets 1x Surprise Flare, OT gets 1x Surprise Holy\n3x on Non-tanks',
         imageUrl: {
           default: './umad/p5-8.webp',
-          alt: { eupf: './umad/p5-mo-hit1-eupf.webp', lpdu: './umad/p5-mo-hit1-lpdu.webp' }
+          alt: { lpdu: './umad/p5-mo-hit1-lpdu.webp' }
         }
       },
       {
@@ -2661,19 +2539,18 @@ const allP5: PhaseStrats[] = [
         action: {
           kefkabin:
             'Tanks stack together for the shared buster\nNon-tanks go out if you got hit first',
-          eupf: 'Tanks stack together for the shared buster\nHit players stay outside; un-hit players move inside the hitbox to bait',
           lpdu: 'Tanks stack together for the shared buster\nHit players stay outside; un-hit players move inside the hitbox to bait'
         },
         imageUrl: {
           default: './umad/p5-9.webp',
-          alt: { eupf: './umad/p5-mo-hit2-eupf.webp', lpdu: './umad/p5-mo-hit2-lpdu.webp' }
+          alt: { lpdu: './umad/p5-mo-hit2-lpdu.webp' }
         }
       },
       {
         mechanic: 'Tank Resolve',
         imageUrl: {
           default: './umad/p5-10.webp',
-          alt: { eupf: './umad/p5-mo-tank-eupf.webp', lpdu: './umad/p5-mo-tank-lpdu.webp' }
+          alt: { lpdu: './umad/p5-mo-tank-lpdu.webp' }
         },
         strats: [
           {
@@ -2687,7 +2564,6 @@ const allP5: PhaseStrats[] = [
             description: {
               kefkabin:
                 'Holy; invuln max melee\nHoly tank voke before the resolution to take the next 2 autos with invuln',
-              eupf: 'Holy; invuln max melee\nVoke-swap right after the 1st hit so the Holy tank takes the next 2 autos with invuln',
               lpdu: 'Holy; invuln max melee\nVoke-swap right after the 1st hit so the Holy tank takes the next 2 autos with invuln'
             }
           },
@@ -2737,7 +2613,6 @@ const allP5: PhaseStrats[] = [
         imageUrl: {
           default: './umad/p5-12.webp',
           alt: {
-            eupf: './umad/p5-celestriad-overview-eupf.webp',
             lpdu: './umad/p5-celestriad-overview-lpdu.webp'
           }
         }
@@ -2747,13 +2622,11 @@ const allP5: PhaseStrats[] = [
         action: {
           kefkabin:
             'Debuffs: 1st safe tower CW from your vuln, then rotate CW\nNo debuff: 1st CCW of double element',
-          eupf: 'Debuffs: 1st safe tower CW from your vuln, then rotate CW\nNo debuff: furthest CW tower of the double element',
           lpdu: 'Debuffs: 1st safe tower CW from your vuln, then rotate CW\nNo debuff: furthest CW tower of the double element'
         },
         imageUrl: {
           default: './umad/p5-13.webp',
           alt: {
-            eupf: './umad/p5-celestriad-resolve-eupf.webp',
             lpdu: './umad/p5-celestriad-resolve-lpdu.webp'
           }
         }
@@ -2774,12 +2647,11 @@ const allP5: PhaseStrats[] = [
         mechanic: 'Stray Entropy',
         description: {
           kefkabin: 'Ends with Stray Entropy = spreads\nSpread out around the arena',
-          eupf: 'Ends with Stray Entropy = spreads\nHealers on A/C, Ranged on 1/4, Tanks inside hitbox West, Melees inside hitbox NE/SE',
           lpdu: 'Ends with Stray Entropy = spreads\nSpread out around the arena (no fixed spots); enmity tank stays close so the boss does not move'
         },
         imageUrl: {
           default: './umad/p5-19.webp',
-          alt: { eupf: './umad/p5-entropy-eupf.webp', lpdu: './umad/p5-entropy-lpdu.webp' }
+          alt: { lpdu: './umad/p5-entropy-lpdu.webp' }
         }
       }
     ]
@@ -2794,7 +2666,7 @@ const allP5: PhaseStrats[] = [
           'Resolve the same as the first Maddening Orchestra\nOT should have aggro during the 1st hit to get the flare',
         imageUrl: {
           default: './umad/p5-20.webp',
-          alt: { eupf: './umad/p5-7-eu.webp', lpdu: './umad/p5-mo2-lpdu.webp' }
+          alt: { lpdu: './umad/p5-mo2-lpdu.webp' }
         },
         strats: [
           {
@@ -2812,7 +2684,6 @@ const allP5: PhaseStrats[] = [
             party: 1,
             description: {
               kefkabin: 'Spread towards West, Close/Far, South',
-              eupf: 'West',
               lpdu: 'West'
             }
           },
@@ -2821,7 +2692,6 @@ const allP5: PhaseStrats[] = [
             party: 2,
             description: {
               kefkabin: 'Spread towards West, Close/Far, South',
-              eupf: 'East',
               lpdu: 'East'
             }
           },
@@ -2830,7 +2700,6 @@ const allP5: PhaseStrats[] = [
             party: 1,
             description: {
               kefkabin: 'Spread towards East, Close/Far, South',
-              eupf: 'South',
               lpdu: 'South'
             }
           },
@@ -2839,7 +2708,6 @@ const allP5: PhaseStrats[] = [
             party: 2,
             description: {
               kefkabin: 'Spread towards East, Close/Far, South',
-              eupf: 'South',
               lpdu: 'South'
             }
           },
@@ -2848,7 +2716,6 @@ const allP5: PhaseStrats[] = [
             party: 1,
             description: {
               kefkabin: 'Spread towards East, Close/Far, South',
-              eupf: 'Northwest',
               lpdu: 'Northwest'
             }
           },
@@ -2857,7 +2724,6 @@ const allP5: PhaseStrats[] = [
             party: 2,
             description: {
               kefkabin: 'Spread towards East, Close/Far, South',
-              eupf: 'Northeast',
               lpdu: 'Northeast'
             }
           }
@@ -2873,28 +2739,20 @@ const allP5: PhaseStrats[] = [
         mechanic: 'Overview',
         description:
           'LONG enrage cast (~20%+ at cast start clears)\n4x stacks as Kefka places void holes around the arena\nStep in a hole or get clipped by the orange AOE = shadow realm',
-        imageUrl: {
-          default: './umad/p5-22.webp',
-          alt: { eupf: './umad/p5-forsaken-overview-eupf.webp' }
-        }
+        imageUrl: './umad/p5-22.webp'
       },
       {
         mechanic: 'Stack Pattern',
         description: {
           kefkabin:
             'Always start at C, then rotate inter/cards: 4 - 1 - 2 - 3\nOrange AOE markers bait onto the card/inter closest to a random player\n1st stack is CW from the 1st orange marker, then keep rotating CW\nStay after each stack until the next AOEs show to bait them',
-          eupf: 'Start at C\nOrange AOE markers bait onto the card/inter closest to a random player\nMove 1 marker CW after the 1st stack, 2 markers CW after the 2nd\nThen 2 markers away from the cardinal puddle spawn, then into the last open cardinal\nStay after each stack until the next AOEs show to bait them',
           lpdu: 'Always start at C, then rotate inter/cards: 4 - 1 - 2 - 3\nOrange AOE markers bait onto the card/inter closest to a random player\n1st stack is CW from the 1st orange marker, then keep rotating CW\nStay after each stack until the next AOEs show to bait them'
         },
         action: {
           kefkabin: 'Start C, rotate CW (4-1-2-3)',
-          eupf: 'Start C, then 1 CW, 2 CW, then adjust to open spots',
           lpdu: 'Start C, rotate CW (4-1-2-3)'
         },
-        imageUrl: {
-          default: './umad/p5-23.webp',
-          alt: { eupf: './umad/p5-23-eupf.webp' }
-        }
+        imageUrl: './umad/p5-23.webp'
       }
     ]
   }
@@ -2917,23 +2775,6 @@ const kefkabinStrat: Strat = {
   strats: [...allP1, ...allP2, ...allP3, ...allP4, ...allP5]
 };
 
-const euPfStrat: Strat = {
-  stratName: 'eupf',
-  description:
-    'P1: X13 + uptime graven + static freaky, P2: p3Z, P3: LPDU Middeath + LPDU Earthquake, P4: 7pj, P5: 4px',
-  stratUrl: {
-    'P1: X13 (modified xolo)': 'https://raidplan.io/plan/p8JvSSs1_QKMVX13',
-    'P1: Static Freaky (LPDU Tele-Trouncing)': 'https://raidplan.io/plan/saC2CjTaXmSApm6y',
-    "P2: p3Z (Meow³'s Braindead P2 Buddy)": 'https://raidplan.io/plan/lZWqxfxvyhF9sp3Z',
-    'P3: LPDU P3 - Bowels Exdeath Mid': 'https://raidplan.io/plan/-j_AAEyx6yACuTve',
-    'P3: LPDU P3 - Earthquake': 'https://raidplan.io/plan/vO5T6KpnHKV4tOXo',
-    'P3 (alt): Eq0 (P3 but tank lb)': 'https://raidplan.io/plan/cyHdnCaTdIkh4Eq0',
-    'P4: 7pj (UMAD p4)': 'https://raidplan.io/plan/guufe9q559evt7pj',
-    'P5: 4px (Okayge p5)': 'https://raidplan.io/plan/gkep6rkvtygyk4px'
-  },
-  strats: [...allP1, ...allP2, ...allP3, ...allP4, ...allP5]
-};
-
 const lpduStrat: Strat = {
   stratName: 'lpdu',
   description: '',
@@ -2951,7 +2792,7 @@ const lpduStrat: Strat = {
   strats: [...allP1, ...allP2, ...allP3, ...allP4, ...allP5]
 };
 
-export const dancingMadStrats: Strat[] = [kefkabinStrat, euPfStrat, lpduStrat];
+export const dancingMadStrats: Strat[] = [kefkabinStrat, lpduStrat];
 
 export const dancingMadFightConfig: FightConfig = {
   fightKey: 'umad',
@@ -2963,7 +2804,8 @@ export const dancingMadFightConfig: FightConfig = {
   strats: {
     kefkabin: {
       label: 'Kefkabin',
-      defaults: { arrows: 'mgr', forsaken: 'kr', bowels: 'lb', blackhole: 'dsa' },
+      mitPlan: 'ikuya',
+      defaults: { arrows: 'pinoy', forsaken: 'kr', bowels: 'lb', blackhole: 'dsa' },
       badges: [
         {
           text: 'NA',
@@ -2971,18 +2813,9 @@ export const dancingMadFightConfig: FightConfig = {
         }
       ]
     },
-    eupf: {
-      label: 'X13/p3Z/LPDU P3',
-      defaults: { arrows: 'stfr', forsaken: 'p3Z', bowels: 'lpdu', blackhole: 'lpdu' },
-      badges: [
-        {
-          text: 'EU',
-          class: 'eu-badge'
-        }
-      ]
-    },
     lpdu: {
       label: 'LPDU',
+      mitPlan: 'lpdu',
       defaults: { arrows: 'stfr', forsaken: 'lpdu', bowels: 'lpdu', blackhole: 'lpdu' },
       badges: [
         {
@@ -3009,14 +2842,6 @@ export const dancingMadFightConfig: FightConfig = {
           value: 'stfr',
           label: 'Static Freaky',
           url: { name: 'LPDU Tele-Trouncing', url: 'https://raidplan.io/plan/saC2CjTaXmSApm6y' }
-        },
-        {
-          value: 'freaky',
-          label: 'Freaky MGR',
-          url: {
-            name: 'freaky merry go round arrows',
-            url: 'https://raidplan.io/plan/qD9Y_g1caq3l5gD-'
-          }
         }
       ]
     },
@@ -3150,14 +2975,6 @@ export const dancingMadFightConfig: FightConfig = {
       tag: 'arrows',
       value: 'pinoy',
       description: 'Arrows arranged in four small boxes on each intercard, aka Small Box.'
-    },
-    {
-      tab: 'P1: Kefka',
-      label: 'Freaky',
-      tag: 'arrows',
-      value: 'freaky',
-      description:
-        'Obsolete modification of Merry-Go-Round to compensate for original snapshot behavior. No longer in use, kept here for archival purposes.'
     },
     {
       tab: 'P2: Forsaken Kefka',

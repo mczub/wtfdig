@@ -96,74 +96,6 @@ export const umadPosterLayout: PosterLayout = {
       })
     },
     {
-      title: 'P1: Arrows (Freaky)',
-      col: 1,
-      row: 1,
-      w: 4,
-      h: 4,
-      visibleWhen: {
-        strat: { arrows: ['freaky'] }
-      },
-      // viewBox 125 × 100
-      accentColor: '#cbd5e1',
-      arena: diagram(
-        'square',
-        [
-          waymark('A', 48, 22),
-          waymark('B', 78, 52),
-          waymark('C', 48, 82),
-          waymark('D', 18, 52),
-          aoeRect(40.5, 22, 28, 14, { color: '#0a83f5' }),
-          aoeRect(70.5, 22, 28, 14, { color: '#f50aab' }),
-          waymark('1', 33, 37),
-          waymark('2', 63, 37),
-          waymark('3', 63, 67),
-          waymark('4', 33, 67),
-          aoeRect(78, 74.5, 14, 28, { color: '#f50aab' }),
-          aoeRect(18, 59.5, 14, 28, { color: '#0a83f5' }),
-          aoeRect(18, 29.5, 14, 28, { color: '#f50aab' }),
-          aoeRect(25.5, 82, 28, 14, { color: '#f50aab' }),
-          aoeRect(55.5, 82, 28, 14, { color: '#0a83f5' }),
-          aoeRect(78, 44.5, 14, 28, { color: '#0a83f5' }),
-          player('R1', 45, 10, { size: 3 }),
-          boss(48, 52),
-          player('MT', 51, 35, { size: 3 }),
-          player('R2', 6, 55, { size: 3 }),
-          player('H1', 45, 94, { size: 3 }),
-          player('H2', 90, 55, { size: 3 }),
-          player('M2', 64, 49, { size: 3 }),
-          player('M1', 51, 68, { size: 3 }),
-          player('OT', 32, 49, { size: 3 }),
-          arrowTeleporter(48, 26, { rotation: 90 }),
-          arrowTeleporter(63, 22, { rotation: 90 }),
-          arrowTeleporter(78, 22, { rotation: 180 }),
-          arrowTeleporter(78, 37, { rotation: 180 }),
-          arrowTeleporter(74, 52, { rotation: 180 }),
-          arrowTeleporter(78, 67, { rotation: 180 }),
-          arrowTeleporter(78, 82, { rotation: 270 }),
-          arrowTeleporter(63, 82, { rotation: 270 }),
-          arrowTeleporter(48, 78, { rotation: 270 }),
-          arrowTeleporter(33, 82, { rotation: 270 }),
-          arrowTeleporter(18, 82),
-          arrowTeleporter(18, 67),
-          arrowTeleporter(22, 52),
-          arrowTeleporter(18, 37),
-          arrowTeleporter(18, 22, { rotation: 90 }),
-          arrowTeleporter(33, 22, { rotation: 90 }),
-          text('Confuse/Left = OUT\nSleep/Right = IN', 77, 7, { fontSize: 5 }),
-          player('R1', 45, 35, { size: 3 }),
-          player('MT', 51, 10, { size: 3 }),
-          player('M2', 90, 49, { size: 3 }),
-          player('H2', 64, 55, { size: 3 }),
-          player('M1', 51, 94, { size: 3 }),
-          player('H1', 45, 68, { size: 3 }),
-          player('OT', 6, 49, { size: 3 }),
-          player('R2', 32, 55, { size: 3 })
-        ],
-        { bgColor: 'transparent' }
-      )
-    },
-    {
       title: 'P1: Arrows (Static Freaky)',
       col: 1,
       row: 1,
@@ -3001,10 +2933,6 @@ export const umadPosterLayout: PosterLayout = {
           anchor: 'start',
           groupId: 'lpdu'
         }),
-        text('Start S, 1 CW, 2 CW\n2 from card puddle\nLast open card', 79, 62, {
-          anchor: 'start',
-          groupId: 'eupf'
-        }),
         waymark('4', 115, 80, { size: 2 }),
         waymark('1', 115, 64, { size: 2 }),
         waymark('2', 131, 64, { size: 2 }),
@@ -3035,8 +2963,7 @@ export const umadPosterLayout: PosterLayout = {
         // NA and EU strats differ on MO spreads and Forsaken movement
         groups: [
           { id: 'na', visibleWhen: { stratKey: ['kefkabin'] } },
-          { id: 'eu', visibleWhen: { stratKey: ['eupf', 'lpdu'] } },
-          { id: 'eupf', visibleWhen: { stratKey: ['eupf'] } },
+          { id: 'eu', visibleWhen: { stratKey: ['lpdu'] } },
           { id: 'lpdu', visibleWhen: { stratKey: ['lpdu'] } }
         ]
       })

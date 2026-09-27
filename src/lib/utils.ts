@@ -200,7 +200,7 @@ export function resolveStratItem<T>(
   if (!item) return item;
   // The value a tag resolves against: when the tag is a toggle key, its current
   // value; otherwise (e.g. a phase tag like `p1` that has no toggle) fall back
-  // to the main strat name (kefkabin / eupf / lpdu).
+  // to the main strat name (e.g. kefkabin / lpdu).
   const tagValue = tag ? (stratState?.[tag] ?? stratName ?? undefined) : undefined;
 
   // ImageUrls: a default image with optional per-tag-value alternatives. Keeps
