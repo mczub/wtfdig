@@ -1558,13 +1558,13 @@ const allP2: PhaseStrats[] = [
             {
               role: 'Healer',
               party: 1,
-              description: 'Cone baiter stand at a 90 degree angle from the in-tower Cone player',
+              description: 'Bait cone: stand at a 90 degree angle from the in-tower Cone player',
               imageUrl: './umad/p2-forsaken-lpdu-11.webp',
             },
             {
               role: 'Healer',
               party: 2,
-              description: 'Cone baiter stand at a 90 degree angle from the in-tower Cone player',
+              description: 'Bait cone: stand at a 90 degree angle from the in-tower Cone player',
               imageUrl: './umad/p2-forsaken-lpdu-11.webp',
             },
             {
@@ -1582,13 +1582,13 @@ const allP2: PhaseStrats[] = [
             {
               role: 'Ranged',
               party: 1,
-              description: 'Cone baiter stand at a 90 degree angle from the in-tower Cone player',
+              description: 'Bait cone: stand at a 90 degree angle from the in-tower Cone player',
               imageUrl: './umad/p2-forsaken-lpdu-11.webp',
             },
             {
               role: 'Ranged',
               party: 2,
-              description: 'Cone baiter stand at a 90 degree angle from the in-tower Cone player',
+              description: 'Bait cone: stand at a 90 degree angle from the in-tower Cone player',
               imageUrl: './umad/p2-forsaken-lpdu-11.webp',
             }
           ]
@@ -2275,7 +2275,7 @@ const allP3: PhaseStrats[] = [
         {
           mechanic: 'First Resolve (Short)',
           description:
-            'Short element resolves as the Exdeath defamation drops\nShort {{entropy}} Fire: Fire melee spread NW, Fire tank NE; non-Fire melee and tank stay North (Fire healer/ranged spread near their own spot)\nShort {{dynamic-fluid}} Water: Melees + Tanks stack,  Healers spread: H1 S, H2 N of Water crystal',
+            'Short element resolves as the Exdeath defamation drops\nShort {{entropy}} Fire: Fire melee spread NW, Fire tank NE; non-Fire melee and tank stay North (Fire healer/ranged spread near their own spot)\nShort {{dynamic-fluid}} Water: Melees + Tanks stack, Healers spread: H1 S, H2 N of Water crystal',
           imageUrl: './umad/p3-lpdu-4.webp'
         },
         {
