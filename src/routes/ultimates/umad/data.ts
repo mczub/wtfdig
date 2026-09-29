@@ -1,9 +1,7 @@
 import type { FightConfig, MechanicStrat, PhaseStrats, Strat } from '$lib/types';
 import { umadPosterLayout } from './posterData';
-import { ikuyaMitPlan } from './mits';
+import { ikuyaMitPlan, lpduMitPlan } from './mits';
 
-// P1: Kefka. Descriptions/images intentionally left blank for now - the phase
-// and mechanic scaffolding goes in first, details get filled in as teams refine.
 const allP1: PhaseStrats[] = [
   {
     phaseName: 'Graven 1: Fire + Ice',
@@ -12,169 +10,168 @@ const allP1: PhaseStrats[] = [
       {
         mechanic: 'Tankbuster',
         description: 'Hits 1st in threat, then 2nd in threat',
-        imageUrl: './umad/fireice-tankbuster.webp'
+        imageUrl: {
+          default: './umad/fireice-tankbuster.webp',
+          alt: {
+            lpdu: './umad/fireice-tankbuster-lpdu.webp'
+          }
+        }
       },
       {
         mechanic: 'Start',
         description:
           'Tether = knockback\nFake Fire (top ring) = opposite of stack/spread marker\nFake Ice (bottom ring) = stand in purple',
         action: 'Supports West, DPS East',
+        imageUrl: {
+          default: './umad/fireice-start.webp',
+          alt: {
+            lpdu: './umad/fireice-start-lpdu.webp'
+          }
+        },
         strats: [
           {
             role: 'Tank',
             party: 1,
-            description: 'West',
-            imageUrl: './umad/fireice-start.webp'
+            description: 'West'
           },
           {
             role: 'Tank',
             party: 2,
-            description: 'West',
-            imageUrl: './umad/fireice-start.webp'
+            description: 'West'
           },
           {
             role: 'Healer',
             party: 1,
-            description: 'West',
-            imageUrl: './umad/fireice-start.webp'
+            description: 'West'
           },
           {
             role: 'Healer',
             party: 2,
-            description: 'West',
-            imageUrl: './umad/fireice-start.webp'
+            description: 'West'
           },
           {
             role: 'Melee',
             party: 1,
-            description: 'East',
-            imageUrl: './umad/fireice-start.webp'
+            description: 'East'
           },
           {
             role: 'Melee',
             party: 2,
-            description: 'East',
-            imageUrl: './umad/fireice-start.webp'
+            description: 'East'
           },
           {
             role: 'Ranged',
             party: 1,
-            description: 'East',
-            imageUrl: './umad/fireice-start.webp'
+            description: 'East'
           },
           {
             role: 'Ranged',
             party: 2,
-            description: 'East',
-            imageUrl: './umad/fireice-start.webp'
+            description: 'East'
           }
         ]
       },
       {
         mechanic: 'Stack',
         action: 'Supports West, DPS East',
+        imageUrl: {
+          default: './umad/fireice-stack.webp',
+          alt: {
+            lpdu: './umad/fireice-start-lpdu.webp'
+          }
+        },
         strats: [
           {
             role: 'Tank',
             party: 1,
-            description: 'West',
-            imageUrl: './umad/fireice-stack.webp'
+            description: 'West'
           },
           {
             role: 'Tank',
             party: 2,
-            description: 'West',
-            imageUrl: './umad/fireice-stack.webp'
+            description: 'West'
           },
           {
             role: 'Healer',
             party: 1,
-            description: 'West',
-            imageUrl: './umad/fireice-stack.webp'
+            description: 'West'
           },
           {
             role: 'Healer',
             party: 2,
-            description: 'West',
-            imageUrl: './umad/fireice-stack.webp'
+            description: 'West'
           },
           {
             role: 'Melee',
             party: 1,
-            description: 'East',
-            imageUrl: './umad/fireice-stack.webp'
+            description: 'East'
           },
           {
             role: 'Melee',
             party: 2,
-            description: 'East',
-            imageUrl: './umad/fireice-stack.webp'
+            description: 'East'
           },
           {
             role: 'Ranged',
             party: 1,
-            description: 'East',
-            imageUrl: './umad/fireice-stack.webp'
+            description: 'East'
           },
           {
             role: 'Ranged',
             party: 2,
-            description: 'East',
-            imageUrl: './umad/fireice-stack.webp'
+            description: 'East'
           }
         ]
       },
       {
         mechanic: 'Spread',
         action: 'Supports West, DPS East\nTanks/Melees on hitbox',
+        imageUrl: {
+          default: './umad/fireice-spread.webp',
+          alt: {
+            lpdu: './umad/fireice-spread-lpdu.webp'
+          }
+        },
         strats: [
           {
             role: 'Tank',
             party: 1,
-            description: 'West half, N/S on hitbox',
-            imageUrl: './umad/fireice-spread.webp'
+            description: 'West half, N/S on hitbox'
           },
           {
             role: 'Tank',
             party: 2,
-            description: 'West on hitbox',
-            imageUrl: './umad/fireice-spread.webp'
+            description: 'West on hitbox'
           },
           {
             role: 'Healer',
             party: 1,
-            description: 'Far West',
-            imageUrl: './umad/fireice-spread.webp'
+            description: 'West, middle of safe quadrant'
           },
           {
             role: 'Healer',
             party: 2,
-            description: 'Far West',
-            imageUrl: './umad/fireice-spread.webp'
+            description: 'Far West edge'
           },
           {
             role: 'Melee',
             party: 1,
-            description: 'West half, N/S on hitbox',
-            imageUrl: './umad/fireice-spread.webp'
+            description: 'East half, N/S on hitbox'
           },
           {
             role: 'Melee',
             party: 2,
-            description: 'East on hitbox',
-            imageUrl: './umad/fireice-spread.webp'
+            description: 'East on hitbox'
           },
           {
             role: 'Ranged',
             party: 1,
-            description: 'Far East',
-            imageUrl: './umad/fireice-spread.webp'
+            description: 'East, middle of safe quadrant'
           },
           {
             role: 'Ranged',
             party: 2,
-            description: 'Far East',
-            imageUrl: './umad/fireice-spread.webp'
+            description: 'Far East edge'
           }
         ]
       }
@@ -188,61 +185,63 @@ const allP1: PhaseStrats[] = [
         mechanic: 'Conga',
         description: '2 DPS + 2 Supports get hit and spawn towers',
         action: 'HHTTMMRR Conga',
+        imageUrl: {
+          default: './umad/lasers-conga.webp',
+          alt: { lpdu: './umad/lasers-conga-lpdu.webp' }
+        },
         strats: [
           {
             role: 'Tank',
             party: 1,
-            description: '3rd from West',
-            imageUrl: './umad/lasers-conga.webp'
+            description: { kefkabin: '3rd from West', lpdu: '4th from West' }
           },
           {
             role: 'Tank',
             party: 2,
-            description: '4th from West',
-            imageUrl: './umad/lasers-conga.webp'
+            description: { kefkabin: '4th from West', lpdu: '3rd from West' }
           },
           {
             role: 'Healer',
             party: 1,
-            description: '2nd from West',
-            imageUrl: './umad/lasers-conga.webp'
+            description: '2nd from West'
           },
           {
             role: 'Healer',
             party: 2,
-            description: '1st from West',
-            imageUrl: './umad/lasers-conga.webp'
+            description: '1st from West'
           },
           {
             role: 'Melee',
             party: 1,
-            description: '4th from East',
-            imageUrl: './umad/lasers-conga.webp'
+            description: '4th from East'
           },
           {
             role: 'Melee',
             party: 2,
-            description: '3rd from East',
-            imageUrl: './umad/lasers-conga.webp'
+            description: '3rd from East'
           },
           {
             role: 'Ranged',
             party: 1,
-            description: '2nd from East',
-            imageUrl: './umad/lasers-conga.webp'
+            description: '2nd from East'
           },
           {
             role: 'Ranged',
             party: 2,
-            description: '1st from East',
-            imageUrl: './umad/lasers-conga.webp'
+            description: '1st from East'
           }
         ]
       },
       {
         mechanic: 'Towers',
-        action: "Use same West -> East prio on your half to soak towers if you didn't get hit",
-        imageUrl: './umad/lasers-towers.webp'
+        action: {
+          kefkabin: "Use same West -> East prio on your half to soak towers if you didn't get hit",
+          lpdu: "Soak prio from the middle of the conga outward (MT first for supports, M1 first for DPS) if you didn't get hit"
+        },
+        imageUrl: {
+          default: './umad/lasers-towers.webp',
+          alt: { lpdu: './umad/lasers-towers-lpdu.webp' }
+        }
       }
     ]
   },
@@ -254,12 +253,26 @@ const allP1: PhaseStrats[] = [
         mechanic: 'Knockback',
         description:
           'One player from each role will get a Confetti debuff = stack + knockback from that player',
-        imageUrl: './umad/confetti1-knockback.webp'
+        action: {
+          kefkabin: '',
+          lpdu: 'Supports West, DPS East\nStack on the Confetti player at the hitbox edge (Confetti player outermost)\nThere is time to move after the knockback'
+        },
+        imageUrl: {
+          default: './umad/confetti1-knockback.webp',
+          alt: {
+            lpdu: './umad/confetti1-knockback-lpdu.webp'
+          }
+        }
       },
       {
         mechanic: 'Lightning + Ice',
         description: 'Lightning = top ring & lines\nIce = bottom ring & quadrants',
-        imageUrl: './umad/confetti1-lightning-ice.webp'
+        imageUrl: {
+          default: './umad/confetti1-lightning-ice.webp',
+          alt: {
+            lpdu: './umad/confetti1-lightning-ice-lpdu.webp'
+          }
+        }
       }
     ]
   },
@@ -269,132 +282,149 @@ const allP1: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'First Puddle',
-        description: 'Center tether = Puddle\nRight side tether = Rocks',
+        description: {
+          kefkabin: 'Center tether = Puddle\nRight side tether = Rocks',
+          lpdu: 'Middle tethers = Puddle (stack)\nSide tethers = Rocks (meteor)'
+        },
         action: 'North for 1st puddles',
-        imageUrl: './umad/puddles-first-puddle.webp'
+        imageUrl: {
+          default: './umad/puddles-first-puddle.webp',
+          alt: {
+            lpdu: './umad/puddles-first-puddle-lpdu.webp'
+          }
+        }
       },
       {
         mechanic: 'First Rocks',
-        action:
-          'G1 Left, G2 Right\nMelees/Tanks can go E/W of boss hitbox\nGravity players can go middle',
+        action: 'G1 Left, G2 Right facing boss\nMelees/Tanks can go E/W of boss hitbox\nGravity players can go middle',
+        imageUrl: {
+          default: './umad/puddles-first-rocks.webp',
+          alt: {
+            lpdu: './umad/puddles-first-rocks-lpdu.webp'
+          }
+        },
         strats: [
           {
             role: 'Tank',
             party: 1,
-            description: 'Left, on hitbox',
-            imageUrl: './umad/puddles-first-rocks.webp'
+            description: 'Left, on hitbox'
           },
           {
             role: 'Tank',
             party: 2,
-            description: 'Right, on hitbox',
-            imageUrl: './umad/puddles-first-rocks.webp'
+            description: 'Right, on hitbox'
           },
           {
             role: 'Healer',
             party: 1,
-            description: 'Left',
-            imageUrl: './umad/puddles-first-rocks.webp'
+            description: 'Left'
           },
           {
             role: 'Healer',
             party: 2,
-            description: 'Right',
-            imageUrl: './umad/puddles-first-rocks.webp'
+            description: 'Right'
           },
           {
             role: 'Melee',
             party: 1,
-            description: 'Left, on hitbox',
-            imageUrl: './umad/puddles-first-rocks.webp'
+            description: 'Left, on hitbox'
           },
           {
             role: 'Melee',
             party: 2,
-            description: 'Right, on hitbox',
-            imageUrl: './umad/puddles-first-rocks.webp'
+            description: 'Right, on hitbox'
           },
           {
             role: 'Ranged',
             party: 1,
-            description: 'Left',
-            imageUrl: './umad/puddles-first-rocks.webp'
+            description: 'Left'
           },
           {
             role: 'Ranged',
             party: 2,
-            description: 'Right',
-            imageUrl: './umad/puddles-first-rocks.webp'
+            description: 'Right'
           }
         ]
       },
       {
         mechanic: 'Tankbuster',
         description: 'Same conal tankbuster as first one',
-        imageUrl: './umad/puddles-tankbuster.webp'
+        imageUrl: {
+          default: './umad/puddles-tankbuster.webp',
+          alt: {
+            lpdu: './umad/puddles-tankbuster-lpdu.webp'
+          }
+        }
       },
       {
         mechanic: 'First Half-room',
         description: 'Boss orb telegraphs half-room cleave',
-        imageUrl: './umad/puddles-first-halfroom.webp'
+        imageUrl: {
+          default: './umad/puddles-first-halfroom.webp',
+          alt: {
+            lpdu: './umad/puddles-first-halfroom-lpdu.webp'
+          }
+        }
       },
       {
         mechanic: 'Second Puddle',
         action: 'South for 2nd Puddles',
-        imageUrl: './umad/puddles-second-puddle.webp'
+        imageUrl: {
+          default: './umad/puddles-second-puddle.webp',
+          alt: {
+            lpdu: './umad/puddles-second-puddle-lpdu.webp'
+          }
+        }
       },
       {
         mechanic: 'Second Rocks',
-        action:
-          'G1 go Left, G2 go Right\nMelees/Tanks can go E/W of boss hitbox\nGravity players can go middle',
+        action: 'G1 Left, G2 Right facing boss\nMelees/Tanks can go E/W of boss hitbox\nGravity players can go middle',
+        imageUrl: {
+          default: './umad/puddles-second-rocks.webp',
+          alt: {
+            lpdu: './umad/puddles-second-rocks-lpdu.webp'
+          }
+        },
         strats: [
           {
             role: 'Tank',
             party: 1,
-            description: 'Left, on hitbox',
-            imageUrl: './umad/puddles-second-rocks.webp'
+            description: 'Left, on hitbox'
           },
           {
             role: 'Tank',
             party: 2,
-            description: 'Right, on hitbox',
-            imageUrl: './umad/puddles-second-rocks.webp'
+            description: 'Right, on hitbox'
           },
           {
             role: 'Healer',
             party: 1,
-            description: 'Left',
-            imageUrl: './umad/puddles-second-rocks.webp'
+            description: 'Left'
           },
           {
             role: 'Healer',
             party: 2,
-            description: 'Right',
-            imageUrl: './umad/puddles-second-rocks.webp'
+            description: 'Right'
           },
           {
             role: 'Melee',
             party: 1,
-            description: 'Left, on hitbox',
-            imageUrl: './umad/puddles-second-rocks.webp'
+            description: 'Left, on hitbox'
           },
           {
             role: 'Melee',
             party: 2,
-            description: 'Right, on hitbox',
-            imageUrl: './umad/puddles-second-rocks.webp'
+            description: 'Right, on hitbox'
           },
           {
             role: 'Ranged',
             party: 1,
-            description: 'Left',
-            imageUrl: './umad/puddles-second-rocks.webp'
+            description: 'Left'
           },
           {
             role: 'Ranged',
             party: 2,
-            description: 'Right',
-            imageUrl: './umad/puddles-second-rocks.webp'
+            description: 'Right'
           }
         ]
       },
@@ -402,7 +432,12 @@ const allP1: PhaseStrats[] = [
         mechanic: 'Second Half-room',
         description:
           'Boss orb telegraphs half-room cleave\nSupports preposition North\nDPS preposition South',
-        imageUrl: './umad/puddles-second-halfroom.webp'
+        imageUrl: {
+          default: './umad/puddles-second-halfroom.webp',
+          alt: {
+            lpdu: './umad/puddles-second-halfroom-lpdu.webp'
+          }
+        }
       }
     ]
   },
@@ -412,15 +447,29 @@ const allP1: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'Knockback',
-        action:
-          'Supports North, DPS South\nParty stack on inside of hitbox\nConfetti on edge of puddles',
-        imageUrl: './umad/confetti2-knockback.webp'
+        action: {
+          kefkabin: 'Supports North, DPS South\nParty stack on inside of hitbox\nConfetti on edge of puddles',
+          lpdu: 'Supports North, DPS South\nNext to puddle on cleave safe side\nParty on hitbox'
+        },
+        imageUrl: {
+          default: './umad/confetti2-knockback.webp',
+          alt: {
+            lpdu: './umad/confetti2-knockback-lpdu.webp'
+          }
+        }
       },
       {
         mechanic: 'Puddle Soak',
-        action:
-          'Get knocked back through boss into opposite puddle\nConfettis step back into puddle',
-        imageUrl: './umad/confetti2-puddle-soak.webp'
+        action: {
+          kefkabin: 'Get knocked back through boss into opposite puddle\nConfettis step back into puddle',
+          lpdu: 'Get knocked diagonally through boss to other side\nConfettis join puddle on their side',
+        },
+        imageUrl: {
+          default: './umad/confetti2-puddle-soak.webp',
+          alt: {
+            lpdu: './umad/confetti2-puddle-soak-lpdu.webp'
+          }
+        }
       }
     ]
   },
@@ -450,54 +499,47 @@ const allP1: PhaseStrats[] = [
           mechanic: 'Sleep/Confuse (Fixed positions)',
           description:
             'IGNORE DEBUFFS, use fixed tether spots\nTanks/Melee inside, Healers/Ranged outside',
+          imageUrl: './umad/arrows-sleep-confuse.webp',
           strats: [
             {
               role: 'Tank',
               party: 1,
-              description: 'North, inside',
-              imageUrl: './umad/arrows-sleep-confuse.webp'
+              description: 'North, inside'
             },
             {
               role: 'Tank',
               party: 2,
-              description: 'West, inside',
-              imageUrl: './umad/arrows-sleep-confuse.webp'
+              description: 'West, inside'
             },
             {
               role: 'Healer',
               party: 1,
-              description: 'South, outside',
-              imageUrl: './umad/arrows-sleep-confuse.webp'
+              description: 'South, outside'
             },
             {
               role: 'Healer',
               party: 2,
-              description: 'East, outside',
-              imageUrl: './umad/arrows-sleep-confuse.webp'
+              description: 'East, outside'
             },
             {
               role: 'Melee',
               party: 1,
-              description: 'South, inside',
-              imageUrl: './umad/arrows-sleep-confuse.webp'
+              description: 'South, inside'
             },
             {
               role: 'Melee',
               party: 2,
-              description: 'East, inside',
-              imageUrl: './umad/arrows-sleep-confuse.webp'
+              description: 'East, inside'
             },
             {
               role: 'Ranged',
               party: 1,
-              description: 'North, outside',
-              imageUrl: './umad/arrows-sleep-confuse.webp'
+              description: 'North, outside'
             },
             {
               role: 'Ranged',
               party: 2,
-              description: 'West, outside',
-              imageUrl: './umad/arrows-sleep-confuse.webp'
+              description: 'West, outside'
             }
           ]
         }
@@ -528,77 +570,70 @@ const allP1: PhaseStrats[] = [
           imageUrl: './umad/p1-arrows-pinoy-7.webp'
         }
       ],
-      freaky: [
+      stfr: [
         {
           mechanic: 'Placement',
           description:
-            'Everyone gets 2 Arrow debuffs\nOne role gets 2x same, one role gets 2x different\nPlace arrows in a ring CLOCKWISE, only one spot per player',
-          imageUrl: './umad/p1-arrows-freaky-1.webp'
+            'Everyone gets 2 Arrow debuffs\nOne role gets 2x same, one role gets 2x different\nPlace arrows rotating CLOCKWISE using markers',
+          imageUrl: './umad/arrows-stfr-2.webp'
         },
         {
           mechanic: 'Arrow Solve',
           description:
-            'Cardinal (Letter) arrows go on the INNER EDGE of the waymark\nSame Arrows: drop 1st on the Letter marker + 1 spot CCW\nDifferent Arrows: use the timer to see which drops first',
-          imageUrl: './umad/p1-arrows-freaky-2.webp'
+            'Same Arrows: Place on Letter + 1 CCW of Letter\nDifferent Arrows: Use Leftmost debuff to solve side\nPlace depending on debuff timers',
+          imageUrl: './umad/arrows-stfr-3.webp'
         },
         {
           mechanic: 'Knockback',
-          action: 'Supports NW, DPS SE for Confetti KB\nConfetti debuffs on the 1/3 markers',
-          imageUrl: './umad/p1-arrows-freaky-5.webp'
+          action:
+            'Supports NW, DPS SE for Confetti KB\nStack inside the arrow ring, between boss and the 1/3 markers',
+          imageUrl: './umad/arrows-stfr-5.webp'
         },
         {
-          mechanic: 'Sleep/Confuse (Tethers matter)',
+          mechanic: 'Sleep/Confuse (Fixed positions)',
           description:
-            'Each role gets Upper/Left (Outside/Confuse) or Lower/Right (Inside/Sleep) tether',
-          action: 'Sleep = Inside\nConfuse = Outside',
+            'IGNORE DEBUFFS, use fixed tether spots\nTanks/Melee inside, Healers/Ranged outside',
+          imageUrl: './umad/arrows-stfr-6.webp',
           strats: [
             {
               role: 'Tank',
               party: 1,
-              description: 'North',
-              imageUrl: './umad/p1-arrows-freaky-6.webp'
+              description: 'North, inside'
             },
             {
               role: 'Tank',
               party: 2,
-              description: 'West',
-              imageUrl: './umad/p1-arrows-freaky-6.webp'
+              description: 'West, inside'
             },
             {
               role: 'Healer',
               party: 1,
-              description: 'South',
-              imageUrl: './umad/p1-arrows-freaky-6.webp'
+              description: 'South, outside'
             },
             {
               role: 'Healer',
               party: 2,
-              description: 'East',
-              imageUrl: './umad/p1-arrows-freaky-6.webp'
+              description: 'East, outside'
             },
             {
               role: 'Melee',
               party: 1,
-              description: 'South',
-              imageUrl: './umad/p1-arrows-freaky-6.webp'
+              description: 'South, inside'
             },
             {
               role: 'Melee',
               party: 2,
-              description: 'East',
-              imageUrl: './umad/p1-arrows-freaky-6.webp'
+              description: 'East, inside'
             },
             {
               role: 'Ranged',
               party: 1,
-              description: 'North',
-              imageUrl: './umad/p1-arrows-freaky-6.webp'
+              description: 'North, outside'
             },
             {
               role: 'Ranged',
               party: 2,
-              description: 'West',
-              imageUrl: './umad/p1-arrows-freaky-6.webp'
+              description: 'West, outside'
             }
           ]
         }
@@ -611,164 +646,235 @@ const allP1: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'Static Spots',
-        action: 'After teleports, preposition in shown spots',
+        action: {
+          kefkabin: 'After teleports, preposition in shown spots',
+          lpdu: 'Non-teleported role keeps their tether spot\nTeleported role shifts one cardinal clockwise'
+        },
+        imageUrl: {
+          default: './umad/gaze-static-spots.webp',
+          alt: {
+            lpdu: './umad/gaze-static-spots-lpdu.webp'
+          }
+        },
         strats: [
           {
             role: 'Tank',
             party: 1,
-            description: 'Northeast, 2 marker',
-            imageUrl: './umad/gaze-static-spots.webp'
+            description: {
+              kefkabin: 'Northeast, 2 marker',
+              lpdu: 'North, inner (East if Supports teleported)'
+            }
           },
           {
             role: 'Tank',
             party: 2,
-            description: 'Southeast, 3 marker',
-            imageUrl: './umad/gaze-static-spots.webp'
+            description: {
+              kefkabin: 'Southeast, 3 marker',
+              lpdu: 'West, inner (North if Supports teleported)'
+            }
           },
           {
             role: 'Healer',
             party: 1,
-            description: 'South, far',
-            imageUrl: './umad/gaze-static-spots.webp'
+            description: {
+              kefkabin: 'South, far',
+              lpdu: 'South, far (West if Supports teleported)'
+            }
           },
           {
             role: 'Healer',
             party: 2,
-            description: 'East, far',
-            imageUrl: './umad/gaze-static-spots.webp'
+            description: {
+              kefkabin: 'East, far',
+              lpdu: 'East, far (South if Supports teleported)'
+            }
           },
           {
             role: 'Melee',
             party: 1,
-            description: 'Northwest, 1 marker',
-            imageUrl: './umad/gaze-static-spots.webp'
+            description: {
+              kefkabin: 'Northwest, 1 marker',
+              lpdu: 'South, inner (West if DPS teleported)'
+            }
           },
           {
             role: 'Melee',
             party: 2,
-            description: 'Southwest, 4 marker',
-            imageUrl: './umad/gaze-static-spots.webp'
+            description: {
+              kefkabin: 'Southwest, 4 marker',
+              lpdu: 'East, inner (South if DPS teleported)'
+            }
           },
           {
             role: 'Ranged',
             party: 1,
-            description: 'North, far',
-            imageUrl: './umad/gaze-static-spots.webp'
+            description: {
+              kefkabin: 'North, far',
+              lpdu: 'North, far (East if DPS teleported)'
+            }
           },
           {
             role: 'Ranged',
             party: 2,
-            description: 'West, far',
-            imageUrl: './umad/gaze-static-spots.webp'
+            description: {
+              kefkabin: 'West, far',
+              lpdu: 'West, far (North if DPS teleported)'
+            }
           }
         ]
       },
       {
         mechanic: 'Spread',
         description: 'Make sure to solve Gaze (on statue) + Lightning lines',
-        action: 'Melee on unsafe half move under boss',
+        action: {
+          kefkabin: 'Melee on unsafe half move under boss',
+          lpdu: 'Tanks/Melees on intercards near boss\nIf in the lightning line, move under boss or dodge outward\nHealers/Ranged stay far'
+        },
+        imageUrl: {
+          default: './umad/gaze-spread.webp',
+          alt: { lpdu: './umad/gaze-spread-lpdu.webp' }
+        },
         strats: [
           {
             role: 'Tank',
             party: 1,
-            description: 'Northeast, 2 marker',
-            imageUrl: './umad/gaze-spread.webp'
+            description: {
+              kefkabin: 'Northeast, 2 marker',
+              lpdu: 'Southwest, near boss'
+            }
           },
           {
             role: 'Tank',
             party: 2,
-            description: 'Southeast, 3 marker',
-            imageUrl: './umad/gaze-spread.webp'
+            description: {
+              kefkabin: 'Southeast, 3 marker',
+              lpdu: 'Southeast, near boss'
+            }
           },
           {
             role: 'Healer',
             party: 1,
-            description: 'South, far',
-            imageUrl: './umad/gaze-spread.webp'
+            description: {
+              kefkabin: 'South, far',
+              lpdu: 'South, far (West if Supports teleported)'
+            }
           },
           {
             role: 'Healer',
             party: 2,
-            description: 'East, far',
-            imageUrl: './umad/gaze-spread.webp'
+            description: {
+              kefkabin: 'East, far',
+              lpdu: 'East, far (South if Supports teleported)'
+            }
           },
           {
             role: 'Melee',
             party: 1,
-            description: 'Northwest, 1 marker',
-            imageUrl: './umad/gaze-spread.webp'
+            description: {
+              kefkabin: 'Northwest, 1 marker',
+              lpdu: 'Northwest, near boss'
+            }
           },
           {
             role: 'Melee',
             party: 2,
-            description: 'Southwest, 4 marker',
-            imageUrl: './umad/gaze-spread.webp'
+            description: {
+              kefkabin: 'Southwest, 4 marker',
+              lpdu: 'Northeast, near boss'
+            }
           },
           {
             role: 'Ranged',
             party: 1,
-            description: 'North, far',
-            imageUrl: './umad/gaze-spread.webp'
+            description: {
+              kefkabin: 'North, far',
+              lpdu: 'North, far (East if DPS teleported)'
+            }
           },
           {
             role: 'Ranged',
             party: 2,
-            description: 'West, far',
-            imageUrl: './umad/gaze-spread.webp'
+            description: {
+              kefkabin: 'West, far',
+              lpdu: 'West, far (North if DPS teleported)'
+            }
           }
         ]
       },
       {
         mechanic: 'Stack',
-        action: 'Supports on 3\nDPS on 1',
+        action: {
+          kefkabin: 'Supports on 3\nDPS on 1',
+          lpdu: 'DPS stack North\nSupports stack South'
+        },
+        imageUrl: {
+          default: './umad/gaze-stack.webp',
+          alt: { lpdu: './umad/gaze-stack-lpdu.webp' }
+        },
         strats: [
           {
             role: 'Tank',
             party: 1,
-            description: 'Southeast, 3 marker',
-            imageUrl: './umad/gaze-stack.webp'
+            description: {
+              kefkabin: 'Southeast, 3 marker',
+              lpdu: 'South of boss'
+            }
           },
           {
             role: 'Tank',
             party: 2,
-            description: 'Southeast, 3 marker',
-            imageUrl: './umad/gaze-stack.webp'
+            description: {
+              kefkabin: 'Southeast, 3 marker',
+              lpdu: 'South of boss'
+            }
           },
           {
             role: 'Healer',
             party: 1,
-            description: 'Southeast, 3 marker',
-            imageUrl: './umad/gaze-stack.webp'
+            description: {
+              kefkabin: 'Southeast, 3 marker',
+              lpdu: 'South of boss'
+            }
           },
           {
             role: 'Healer',
             party: 2,
-            description: 'Southeast, 3 marker',
-            imageUrl: './umad/gaze-stack.webp'
+            description: {
+              kefkabin: 'Southeast, 3 marker',
+              lpdu: 'South of boss'
+            }
           },
           {
             role: 'Melee',
             party: 1,
-            description: 'Northwest, 1 marker',
-            imageUrl: './umad/gaze-stack.webp'
+            description: {
+              kefkabin: 'Northwest, 1 marker',
+              lpdu: 'North of boss'
+            }
           },
           {
             role: 'Melee',
             party: 2,
-            description: 'Northwest, 1 marker',
-            imageUrl: './umad/gaze-stack.webp'
+            description: {
+              kefkabin: 'Northwest, 1 marker',
+              lpdu: 'North of boss'
+            }
           },
           {
             role: 'Ranged',
             party: 1,
-            description: 'Northwest, 1 marker',
-            imageUrl: './umad/gaze-stack.webp'
+            description: {
+              kefkabin: 'Northwest, 1 marker',
+              lpdu: 'North of boss'
+            }
           },
           {
             role: 'Ranged',
             party: 2,
-            description: 'Northwest, 1 marker',
-            imageUrl: './umad/gaze-stack.webp'
+            description: {
+              kefkabin: 'Northwest, 1 marker',
+              lpdu: 'North of boss'
+            }
           }
         ]
       }
@@ -996,6 +1102,222 @@ const allP2: PhaseStrats[] = [
             }
           ]
         }
+      ],
+      p3Z: [
+        {
+          mechanic: 'Group A (Different Debuffs)',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description:
+                '<b>Tower 1 - Take Tower (Set 1 special)</b><br>{{forsaken-stack}} Stack → FOLLOW your buddy into their tower (buddy {{forsaken-cone}} Cone = Left, buddy {{forsaken-circle}} Circle = Right)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 2 - Take Tower</b><br>{{forsaken-cone}} Cone → HTMR Tower Prio, inner ring at tower edge<br>{{forsaken-circle}} Circle → HTMR Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Tower</b><br>{{forsaken-stack}} Stack → HTMR Tower Prio (Left: on boss hitbox, NE-ish / Right: W/SW side next to the DPS helpers)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><b>REMEMBER NEW DEBUFF</b><br><br><b>Tower 4 - Bait Clone</b><br>Bait Left Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Help Stack</b><br>Left Tower, Out + Front edge<br><br><b>Tower 6 - Bait Clone</b><br>Bait Left Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Help Stack</b><br>Left Tower, Out + Front edge<br><br><b>Tower 8 - Take Tower</b><br>{{forsaken-cone}} Cone → HTMR Tower Prio, inner ring at tower edge<br>{{forsaken-circle}} Circle → HTMR Tower, South<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description:
+                '<b>Tower 1 - Take Tower (Set 1 special)</b><br>{{forsaken-stack}} Stack → FOLLOW your buddy into their tower (buddy {{forsaken-cone}} Cone = Left, buddy {{forsaken-circle}} Circle = Right)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 2 - Take Tower</b><br>{{forsaken-cone}} Cone → HTMR Tower Prio, inner ring at tower edge<br>{{forsaken-circle}} Circle → HTMR Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Tower</b><br>{{forsaken-stack}} Stack → HTMR Tower Prio (Left: on boss hitbox, NE-ish / Right: W/SW side next to the DPS helpers)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><b>REMEMBER NEW DEBUFF</b><br><br><b>Tower 4 - Bait Clone</b><br>Bait Left Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Help Stack</b><br>Left Tower, Out + Front edge<br><br><b>Tower 6 - Bait Clone</b><br>Bait Left Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Help Stack</b><br>Left Tower, Out + Front edge<br><br><b>Tower 8 - Take Tower</b><br>{{forsaken-cone}} Cone → HTMR Tower Prio, inner ring at tower edge<br>{{forsaken-circle}} Circle → HTMR Tower, South<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description:
+                '<b>Tower 1 - Take Tower (Set 1 special)</b><br>{{forsaken-stack}} Stack → FOLLOW your buddy into their tower (buddy {{forsaken-cone}} Cone = Left, buddy {{forsaken-circle}} Circle = Right)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 2 - Take Tower</b><br>{{forsaken-cone}} Cone → Left Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Left Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Tower</b><br>{{forsaken-stack}} Stack → Left Tower, on boss hitbox (NE-ish)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><b>REMEMBER NEW DEBUFF</b><br><br><b>Tower 4 - Bait Cone</b><br>Bait Left Cone onto Left marker<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Bait Cone</b><br>Left Tower, Out + Back edge<br><br><b>Tower 6 - Bait Cone</b><br>Bait Left Cone onto Left marker<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Bait Cone</b><br>Left Tower, Out + Back edge<br><br><b>Tower 8 - Take Tower</b><br>{{forsaken-cone}} Cone → Left Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Left Tower, South<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description:
+                '<b>Tower 1 - Take Tower (Set 1 special)</b><br>{{forsaken-stack}} Stack → FOLLOW your buddy into their tower (buddy {{forsaken-cone}} Cone = Left, buddy {{forsaken-circle}} Circle = Right)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 2 - Take Tower</b><br>{{forsaken-cone}} Cone → Left Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Left Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Tower</b><br>{{forsaken-stack}} Stack → Left Tower, on boss hitbox (NE-ish)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><b>REMEMBER NEW DEBUFF</b><br><br><b>Tower 4 - Bait Cone</b><br>Bait Left Cone onto Left marker<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Bait Cone</b><br>Left Tower, Out + Back edge<br><br><b>Tower 6 - Bait Cone</b><br>Bait Left Cone onto Left marker<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Bait Cone</b><br>Left Tower, Out + Back edge<br><br><b>Tower 8 - Take Tower</b><br>{{forsaken-cone}} Cone → Left Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Left Tower, South<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description:
+                '<b>Tower 1 - Take Tower (Set 1 special)</b><br>{{forsaken-stack}} Stack → FOLLOW your buddy into their tower (buddy {{forsaken-cone}} Cone = Left, buddy {{forsaken-circle}} Circle = Right)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 2 - Take Tower</b><br>{{forsaken-cone}} Cone → HTMR Tower Prio, inner ring at tower edge<br>{{forsaken-circle}} Circle → HTMR Tower Prio, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Tower</b><br>{{forsaken-stack}} Stack → HTMR Tower Prio (Left: on boss hitbox, NE-ish / Right: W/SW side next to the DPS helpers)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><b>REMEMBER NEW DEBUFF</b><br><br><b>Tower 4 - Bait Clone</b><br>Bait Right Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Help Stack</b><br>Right Tower, Out + W/SW edge (between towers, with the Stack)<br><br><b>Tower 6 - Bait Clone</b><br>Bait Right Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Help Stack</b><br>Right Tower, Out + W/SW edge (between towers, with the Stack)<br><br><b>Tower 8 - Take Tower</b><br>{{forsaken-cone}} Cone → HTMR Tower Prio, inner ring at tower edge<br>{{forsaken-circle}} Circle → HTMR Tower Prio, South<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description:
+                '<b>Tower 1 - Take Tower (Set 1 special)</b><br>{{forsaken-stack}} Stack → FOLLOW your buddy into their tower (buddy {{forsaken-cone}} Cone = Left, buddy {{forsaken-circle}} Circle = Right)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 2 - Take Tower</b><br>{{forsaken-cone}} Cone → HTMR Tower Prio, inner ring at tower edge<br>{{forsaken-circle}} Circle → HTMR Tower Prio, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Tower</b><br>{{forsaken-stack}} Stack → HTMR Tower Prio (Left: on boss hitbox, NE-ish / Right: W/SW side next to the DPS helpers)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><b>REMEMBER NEW DEBUFF</b><br><br><b>Tower 4 - Bait Clone</b><br>Bait Right Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Help Stack</b><br>Right Tower, Out + W/SW edge (between towers, with the Stack)<br><br><b>Tower 6 - Bait Clone</b><br>Bait Right Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Help Stack</b><br>Right Tower, Out + W/SW edge (between towers, with the Stack)<br><br><b>Tower 8 - Take Tower</b><br>{{forsaken-cone}} Cone → HTMR Tower Prio, inner ring at tower edge<br>{{forsaken-circle}} Circle → HTMR Tower Prio, South<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description:
+                '<b>Tower 1 - Take Tower (Set 1 special)</b><br>{{forsaken-stack}} Stack → FOLLOW your buddy into their tower (buddy {{forsaken-cone}} Cone = Left, buddy {{forsaken-circle}} Circle = Right)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 2 - Take Tower</b><br>{{forsaken-cone}} Cone → Right Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Right Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Tower</b><br>{{forsaken-stack}} Stack → Right Tower, W/SW side (next to the DPS helpers)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><b>REMEMBER NEW DEBUFF</b><br><br><b>Tower 4 - Bait Cone</b><br>Bait Right Cone onto Right marker<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Help Stack</b><br>Right Tower, Out + W/SW edge (between towers, with the Stack)<br><br><b>Tower 6 - Bait Cone</b><br>Bait Right Cone onto Right marker<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Help Stack</b><br>Right Tower, Out + W/SW edge (between towers, with the Stack)<br><br><b>Tower 8 - Take Tower</b><br>{{forsaken-cone}} Cone → Right Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Right Tower, South<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description:
+                '<b>Tower 1 - Take Tower (Set 1 special)</b><br>{{forsaken-stack}} Stack → FOLLOW your buddy into their tower (buddy {{forsaken-cone}} Cone = Left, buddy {{forsaken-circle}} Circle = Right)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 2 - Take Tower</b><br>{{forsaken-cone}} Cone → Right Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Right Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Tower</b><br>{{forsaken-stack}} Stack → Right Tower, W/SW side (next to the DPS helpers)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><b>REMEMBER NEW DEBUFF</b><br><br><b>Tower 4 - Bait Cone</b><br>Bait Right Cone onto Right marker<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Help Stack</b><br>Right Tower, Out + W/SW edge (between towers, with the Stack)<br><br><b>Tower 6 - Bait Cone</b><br>Bait Right Cone onto Right marker<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Help Stack</b><br>Right Tower, Out + W/SW edge (between towers, with the Stack)<br><br><b>Tower 8 - Take Tower</b><br>{{forsaken-cone}} Cone → Right Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Right Tower, South<br><br><b>BAIT FUTURE/PAST</b>'
+            }
+          ]
+        },
+        {
+          mechanic: 'Group B (Same Debuffs)',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description:
+                '<b>Tower 1 - Help Stack</b><br><b>REMEMBER DEBUFF</b><br>Left Tower, Out + Front edge<br><br><b>Tower 2 - Bait Clone</b><br>Bait Left Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Help Stack</b><br>Left Tower, Out + Front edge<br><br><b>Tower 4 - Take Tower</b><br>{{forsaken-cone}} Cone → Right Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Right Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Tower</b><br>{{forsaken-stack}} Stack → HTMR Tower Prio (Left: on boss hitbox, NE-ish / Right: W/SW side next to the DPS helpers)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 6 - Take Tower</b><br>{{forsaken-cone}} Cone → HTMR Tower Prio, inner ring at tower edge<br>{{forsaken-circle}} Circle → HTMR Tower Prio, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Tower</b><br>{{forsaken-stack}} Stack → HTMR Tower Prio (Left: on boss hitbox, NE-ish / Right: W/SW side next to the DPS helpers)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 8 - Bait Clone</b><br>Bait Left Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description:
+                '<b>Tower 1 - Help Stack</b><br><b>REMEMBER DEBUFF</b><br>Left Tower, Out + Front edge<br><br><b>Tower 2 - Bait Clone</b><br>Bait Left Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Help Stack</b><br>Left Tower, Out + Front edge<br><br><b>Tower 4 - Take Tower</b><br>{{forsaken-cone}} Cone → Right Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Right Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Tower</b><br>{{forsaken-stack}} Stack → HTMR Tower Prio (Left: on boss hitbox, NE-ish / Right: W/SW side next to the DPS helpers)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 6 - Take Tower</b><br>{{forsaken-cone}} Cone → HTMR Tower Prio, inner ring at tower edge<br>{{forsaken-circle}} Circle → HTMR Tower Prio, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Tower</b><br>{{forsaken-stack}} Stack → HTMR Tower Prio (Left: on boss hitbox, NE-ish / Right: W/SW side next to the DPS helpers)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 8 - Bait Clone</b><br>Bait Left Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description:
+                '<b>Tower 1 - Bait Cone</b><br><b>REMEMBER DEBUFF</b><br>Left Tower, Out + Back edge<br><br><b>Tower 2 - Bait Cone</b><br>Bait Left Cone onto Left marker<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Bait Cone</b><br>Left Tower, Out + Back edge<br><br><b>Tower 4 - Take Tower</b><br>{{forsaken-cone}} Cone → Left Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Left Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Tower</b><br>{{forsaken-stack}} Stack → Left Tower, on boss hitbox (NE-ish)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 6 - Take Tower</b><br>{{forsaken-cone}} Cone → Left Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Left Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Tower</b><br>{{forsaken-stack}} Stack → Left Tower, on boss hitbox (NE-ish)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 8 - Bait Cone</b><br>Bait Left Cone onto Left marker<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description:
+                '<b>Tower 1 - Bait Cone</b><br><b>REMEMBER DEBUFF</b><br>Left Tower, Out + Back edge<br><br><b>Tower 2 - Bait Cone</b><br>Bait Left Cone onto Left marker<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Bait Cone</b><br>Left Tower, Out + Back edge<br><br><b>Tower 4 - Take Tower</b><br>{{forsaken-cone}} Cone → Left Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Left Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Tower</b><br>{{forsaken-stack}} Stack → Left Tower, on boss hitbox (NE-ish)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 6 - Take Tower</b><br>{{forsaken-cone}} Cone → Left Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Left Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Tower</b><br>{{forsaken-stack}} Stack → Left Tower, on boss hitbox (NE-ish)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 8 - Bait Cone</b><br>Bait Left Cone onto Left marker<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description:
+                '<b>Tower 1 - Help Stack</b><br><b>REMEMBER DEBUFF</b><br>Right Tower, Out + W/SW edge (between towers, with the Stack)<br><br><b>Tower 2 - Bait Clone</b><br>Bait Right Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Help Stack</b><br>Right Tower, Out + W/SW edge (between towers, with the Stack)<br><br><b>Tower 4 - Take Tower</b><br>{{forsaken-cone}} Cone → Left Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Left Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Tower</b><br>{{forsaken-stack}} Stack → HTMR Tower Prio (Left: on boss hitbox, NE-ish / Right: W/SW side next to the DPS helpers)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 6 - Take Tower</b><br>{{forsaken-cone}} Cone → HTMR Tower Prio, inner ring at tower edge<br>{{forsaken-circle}} Circle → HTMR Tower Prio, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Tower</b><br>{{forsaken-stack}} Stack → HTMR Tower Prio (Left: on boss hitbox, NE-ish / Right: W/SW side next to the DPS helpers)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 8 - Bait Clone</b><br>Bait Right Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description:
+                '<b>Tower 1 - Help Stack</b><br><b>REMEMBER DEBUFF</b><br>Right Tower, Out + W/SW edge (between towers, with the Stack)<br><br><b>Tower 2 - Bait Clone</b><br>Bait Right Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Help Stack</b><br>Right Tower, Out + W/SW edge (between towers, with the Stack)<br><br><b>Tower 4 - Take Tower</b><br>{{forsaken-cone}} Cone → Left Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Left Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Tower</b><br>{{forsaken-stack}} Stack → HTMR Tower Prio (Left: on boss hitbox, NE-ish / Right: W/SW side next to the DPS helpers)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 6 - Take Tower</b><br>{{forsaken-cone}} Cone → HTMR Tower Prio, inner ring at tower edge<br>{{forsaken-circle}} Circle → HTMR Tower Prio, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Tower</b><br>{{forsaken-stack}} Stack → HTMR Tower Prio (Left: on boss hitbox, NE-ish / Right: W/SW side next to the DPS helpers)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 8 - Bait Clone</b><br>Bait Right Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description:
+                '<b>Tower 1 - Help Stack</b><br><b>REMEMBER DEBUFF</b><br>Right Tower, Out + W/SW edge (between towers, with the Stack)<br><br><b>Tower 2 - Bait Cone</b><br>Bait Right Cone onto Right marker<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Help Stack</b><br>Right Tower, Out + W/SW edge (between towers, with the Stack)<br><br><b>Tower 4 - Take Tower</b><br>{{forsaken-cone}} Cone → Right Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Right Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Tower</b><br>{{forsaken-stack}} Stack → Right Tower, W/SW side (next to the DPS helpers)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 6 - Take Tower</b><br>{{forsaken-cone}} Cone → Right Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Right Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Tower</b><br>{{forsaken-stack}} Stack → Right Tower, W/SW side (next to the DPS helpers)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 8 - Bait Cone</b><br>Bait Right Cone onto Right marker<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description:
+                '<b>Tower 1 - Help Stack</b><br><b>REMEMBER DEBUFF</b><br>Right Tower, Out + W/SW edge (between towers, with the Stack)<br><br><b>Tower 2 - Bait Cone</b><br>Bait Right Cone onto Right marker<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Help Stack</b><br>Right Tower, Out + W/SW edge (between towers, with the Stack)<br><br><b>Tower 4 - Take Tower</b><br>{{forsaken-cone}} Cone → Right Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Right Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Tower</b><br>{{forsaken-stack}} Stack → Right Tower, W/SW side (next to the DPS helpers)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 6 - Take Tower</b><br>{{forsaken-cone}} Cone → Right Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Right Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Tower</b><br>{{forsaken-stack}} Stack → Right Tower, W/SW side (next to the DPS helpers)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 8 - Bait Cone</b><br>Bait Right Cone onto Right marker<br><br><b>BAIT FUTURE/PAST</b>'
+            }
+          ]
+        }
+      ],
+      lpdu: [
+        {
+          mechanic: 'Group A (Different Debuffs)',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description:
+                '<b>Tower 1 - Take Tower</b><br>{{forsaken-stack}} Stack → Left Tower, on boss hitbox (NE-ish)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 2 - Take Tower</b><br>{{forsaken-cone}} Cone → HTMR Tower Prio, inner ring at tower edge<br>{{forsaken-circle}} Circle → HTMR Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Tower</b><br>{{forsaken-stack}} Stack → HTMR Tower Prio (Left: on boss hitbox / Right: max melee on the inner left side)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><b>REMEMBER NEW DEBUFF</b><br><br><b>Tower 4 - Bait Clone</b><br>Bait Left Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Help Stack</b><br>Left Tower, Out + Front edge<br><br><b>Tower 6 - Bait Clone</b><br>Bait Left Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Help Stack</b><br>Left Tower, Out + Front edge<br><br><b>Tower 8 - Take Tower</b><br>{{forsaken-cone}} Cone → HTMR Tower Prio, inner ring at tower edge<br>{{forsaken-circle}} Circle → HTMR Tower, South<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description:
+                '<b>Tower 1 - Take Tower</b><br>{{forsaken-stack}} Stack → Left Tower, on boss hitbox (NE-ish)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 2 - Take Tower</b><br>{{forsaken-cone}} Cone → HTMR Tower Prio, inner ring at tower edge<br>{{forsaken-circle}} Circle → HTMR Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Tower</b><br>{{forsaken-stack}} Stack → HTMR Tower Prio (Left: on boss hitbox / Right: max melee on the inner left side)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><b>REMEMBER NEW DEBUFF</b><br><br><b>Tower 4 - Bait Clone</b><br>Bait Left Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Help Stack</b><br>Left Tower, Out + Front edge<br><br><b>Tower 6 - Bait Clone</b><br>Bait Left Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Help Stack</b><br>Left Tower, Out + Front edge<br><br><b>Tower 8 - Take Tower</b><br>{{forsaken-cone}} Cone → HTMR Tower Prio, inner ring at tower edge<br>{{forsaken-circle}} Circle → HTMR Tower, South<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description:
+                '<b>Tower 1 - Take Tower</b><br>{{forsaken-stack}} Stack → Left Tower, on boss hitbox (NE-ish)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 2 - Take Tower</b><br>{{forsaken-cone}} Cone → Left Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Left Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Tower</b><br>{{forsaken-stack}} Stack → Left Tower, on boss hitbox (NE-ish)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><b>REMEMBER NEW DEBUFF</b><br><br><b>Tower 4 - Bait Cone</b><br>Bait Left Cone 90° from the in-tower Cone player (NOT on the marker)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Bait Cone</b><br>Left Tower, Out + Back edge<br><br><b>Tower 6 - Bait Cone</b><br>Bait Left Cone 90° from the in-tower Cone player (NOT on the marker)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Bait Cone</b><br>Left Tower, Out + Back edge<br><br><b>Tower 8 - Take Tower</b><br>{{forsaken-cone}} Cone → Left Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Left Tower, South<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description:
+                '<b>Tower 1 - Take Tower</b><br>{{forsaken-stack}} Stack → Left Tower, on boss hitbox (NE-ish)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 2 - Take Tower</b><br>{{forsaken-cone}} Cone → Left Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Left Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Tower</b><br>{{forsaken-stack}} Stack → Left Tower, on boss hitbox (NE-ish)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><b>REMEMBER NEW DEBUFF</b><br><br><b>Tower 4 - Bait Cone</b><br>Bait Left Cone 90° from the in-tower Cone player (NOT on the marker)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Bait Cone</b><br>Left Tower, Out + Back edge<br><br><b>Tower 6 - Bait Cone</b><br>Bait Left Cone 90° from the in-tower Cone player (NOT on the marker)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Bait Cone</b><br>Left Tower, Out + Back edge<br><br><b>Tower 8 - Take Tower</b><br>{{forsaken-cone}} Cone → Left Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Left Tower, South<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description:
+                '<b>Tower 1 - Take Tower</b><br>{{forsaken-stack}} Stack → Right Tower, max melee on the inner (left) side<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 2 - Take Tower</b><br>{{forsaken-cone}} Cone → HTMR Tower Prio, inner ring at tower edge<br>{{forsaken-circle}} Circle → HTMR Tower Prio, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Tower</b><br>{{forsaken-stack}} Stack → HTMR Tower Prio (Left: on boss hitbox / Right: max melee on the inner left side)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><b>REMEMBER NEW DEBUFF</b><br><br><b>Tower 4 - Bait Clone</b><br>Bait Right Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Help Stack</b><br>Right Tower, Out + inner (left) side at max melee (between towers, with the Stack)<br><br><b>Tower 6 - Bait Clone</b><br>Bait Right Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Help Stack</b><br>Right Tower, Out + inner (left) side at max melee (between towers, with the Stack)<br><br><b>Tower 8 - Take Tower</b><br>{{forsaken-cone}} Cone → HTMR Tower Prio, inner ring at tower edge<br>{{forsaken-circle}} Circle → HTMR Tower Prio, South<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description:
+                '<b>Tower 1 - Take Tower</b><br>{{forsaken-stack}} Stack → Right Tower, max melee on the inner (left) side<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 2 - Take Tower</b><br>{{forsaken-cone}} Cone → HTMR Tower Prio, inner ring at tower edge<br>{{forsaken-circle}} Circle → HTMR Tower Prio, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Tower</b><br>{{forsaken-stack}} Stack → HTMR Tower Prio (Left: on boss hitbox / Right: max melee on the inner left side)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><b>REMEMBER NEW DEBUFF</b><br><br><b>Tower 4 - Bait Clone</b><br>Bait Right Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Help Stack</b><br>Right Tower, Out + inner (left) side at max melee (between towers, with the Stack)<br><br><b>Tower 6 - Bait Clone</b><br>Bait Right Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Help Stack</b><br>Right Tower, Out + inner (left) side at max melee (between towers, with the Stack)<br><br><b>Tower 8 - Take Tower</b><br>{{forsaken-cone}} Cone → HTMR Tower Prio, inner ring at tower edge<br>{{forsaken-circle}} Circle → HTMR Tower Prio, South<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description:
+                '<b>Tower 1 - Take Tower</b><br>{{forsaken-stack}} Stack → Right Tower, max melee on the inner (left) side<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 2 - Take Tower</b><br>{{forsaken-cone}} Cone → Right Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Right Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Tower</b><br>{{forsaken-stack}} Stack → Right Tower, max melee on the inner (left) side<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><b>REMEMBER NEW DEBUFF</b><br><br><b>Tower 4 - Bait Cone</b><br>Bait Right Cone 90° from the in-tower Cone player (NOT on the marker)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Help Stack</b><br>Right Tower, Out + inner (left) side at max melee (between towers, with the Stack)<br><br><b>Tower 6 - Bait Cone</b><br>Bait Right Cone 90° from the in-tower Cone player (NOT on the marker)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Help Stack</b><br>Right Tower, Out + inner (left) side at max melee (between towers, with the Stack)<br><br><b>Tower 8 - Take Tower</b><br>{{forsaken-cone}} Cone → Right Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Right Tower, South<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description:
+                '<b>Tower 1 - Take Tower</b><br>{{forsaken-stack}} Stack → Right Tower, max melee on the inner (left) side<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 2 - Take Tower</b><br>{{forsaken-cone}} Cone → Right Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Right Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Take Tower</b><br>{{forsaken-stack}} Stack → Right Tower, max melee on the inner (left) side<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><b>REMEMBER NEW DEBUFF</b><br><br><b>Tower 4 - Bait Cone</b><br>Bait Right Cone 90° from the in-tower Cone player (NOT on the marker)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Help Stack</b><br>Right Tower, Out + inner (left) side at max melee (between towers, with the Stack)<br><br><b>Tower 6 - Bait Cone</b><br>Bait Right Cone 90° from the in-tower Cone player (NOT on the marker)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Help Stack</b><br>Right Tower, Out + inner (left) side at max melee (between towers, with the Stack)<br><br><b>Tower 8 - Take Tower</b><br>{{forsaken-cone}} Cone → Right Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Right Tower, South<br><br><b>BAIT FUTURE/PAST</b>'
+            }
+          ]
+        },
+        {
+          mechanic: 'Group B (Same Debuffs)',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description:
+                '<b>Tower 1 - Help Stack</b><br><b>REMEMBER DEBUFF</b><br>Left Tower, Out + Front edge<br><br><b>Tower 2 - Bait Clone</b><br>Bait Left Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Help Stack</b><br>Left Tower, Out + Front edge<br><br><b>Tower 4 - Take Tower</b><br>{{forsaken-cone}} Cone → Right Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Right Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Tower</b><br>{{forsaken-stack}} Stack → HTMR Tower Prio (Left: on boss hitbox / Right: max melee on the inner left side)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 6 - Take Tower</b><br>{{forsaken-cone}} Cone → HTMR Tower Prio, inner ring at tower edge<br>{{forsaken-circle}} Circle → HTMR Tower Prio, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Tower</b><br>{{forsaken-stack}} Stack → HTMR Tower Prio (Left: on boss hitbox / Right: max melee on the inner left side)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 8 - Bait Clone</b><br>Bait Left Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description:
+                '<b>Tower 1 - Help Stack</b><br><b>REMEMBER DEBUFF</b><br>Left Tower, Out + Front edge<br><br><b>Tower 2 - Bait Clone</b><br>Bait Left Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Help Stack</b><br>Left Tower, Out + Front edge<br><br><b>Tower 4 - Take Tower</b><br>{{forsaken-cone}} Cone → Right Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Right Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Tower</b><br>{{forsaken-stack}} Stack → HTMR Tower Prio (Left: on boss hitbox / Right: max melee on the inner left side)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 6 - Take Tower</b><br>{{forsaken-cone}} Cone → HTMR Tower Prio, inner ring at tower edge<br>{{forsaken-circle}} Circle → HTMR Tower Prio, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Tower</b><br>{{forsaken-stack}} Stack → HTMR Tower Prio (Left: on boss hitbox / Right: max melee on the inner left side)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 8 - Bait Clone</b><br>Bait Left Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description:
+                '<b>Tower 1 - Bait Cone</b><br><b>REMEMBER DEBUFF</b><br>Left Tower, Out + Back edge<br><br><b>Tower 2 - Bait Cone</b><br>Bait Left Cone 90° from the in-tower Cone player (NOT on the marker)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Bait Cone</b><br>Left Tower, Out + Back edge<br><br><b>Tower 4 - Take Tower</b><br>{{forsaken-cone}} Cone → Left Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Left Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Tower</b><br>{{forsaken-stack}} Stack → Left Tower, on boss hitbox (NE-ish)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 6 - Take Tower</b><br>{{forsaken-cone}} Cone → Left Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Left Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Tower</b><br>{{forsaken-stack}} Stack → Left Tower, on boss hitbox (NE-ish)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 8 - Bait Cone</b><br>Bait Left Cone 90° from the in-tower Cone player (NOT on the marker)<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description:
+                '<b>Tower 1 - Bait Cone</b><br><b>REMEMBER DEBUFF</b><br>Left Tower, Out + Back edge<br><br><b>Tower 2 - Bait Cone</b><br>Bait Left Cone 90° from the in-tower Cone player (NOT on the marker)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Bait Cone</b><br>Left Tower, Out + Back edge<br><br><b>Tower 4 - Take Tower</b><br>{{forsaken-cone}} Cone → Left Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Left Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Tower</b><br>{{forsaken-stack}} Stack → Left Tower, on boss hitbox (NE-ish)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 6 - Take Tower</b><br>{{forsaken-cone}} Cone → Left Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Left Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Tower</b><br>{{forsaken-stack}} Stack → Left Tower, on boss hitbox (NE-ish)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 8 - Bait Cone</b><br>Bait Left Cone 90° from the in-tower Cone player (NOT on the marker)<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description:
+                '<b>Tower 1 - Help Stack</b><br><b>REMEMBER DEBUFF</b><br>Right Tower, Out + inner (left) side at max melee (between towers, with the Stack)<br><br><b>Tower 2 - Bait Clone</b><br>Bait Right Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Help Stack</b><br>Right Tower, Out + inner (left) side at max melee (between towers, with the Stack)<br><br><b>Tower 4 - Take Tower</b><br>{{forsaken-cone}} Cone → Left Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Left Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Tower</b><br>{{forsaken-stack}} Stack → HTMR Tower Prio (Left: on boss hitbox / Right: max melee on the inner left side)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 6 - Take Tower</b><br>{{forsaken-cone}} Cone → HTMR Tower Prio, inner ring at tower edge<br>{{forsaken-circle}} Circle → HTMR Tower Prio, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Tower</b><br>{{forsaken-stack}} Stack → HTMR Tower Prio (Left: on boss hitbox / Right: max melee on the inner left side)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 8 - Bait Clone</b><br>Bait Right Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description:
+                '<b>Tower 1 - Help Stack</b><br><b>REMEMBER DEBUFF</b><br>Right Tower, Out + inner (left) side at max melee (between towers, with the Stack)<br><br><b>Tower 2 - Bait Clone</b><br>Bait Right Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Help Stack</b><br>Right Tower, Out + inner (left) side at max melee (between towers, with the Stack)<br><br><b>Tower 4 - Take Tower</b><br>{{forsaken-cone}} Cone → Left Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Left Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Tower</b><br>{{forsaken-stack}} Stack → HTMR Tower Prio (Left: on boss hitbox / Right: max melee on the inner left side)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 6 - Take Tower</b><br>{{forsaken-cone}} Cone → HTMR Tower Prio, inner ring at tower edge<br>{{forsaken-circle}} Circle → HTMR Tower Prio, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Tower</b><br>{{forsaken-stack}} Stack → HTMR Tower Prio (Left: on boss hitbox / Right: max melee on the inner left side)<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 8 - Bait Clone</b><br>Bait Right Clone, Far North (outer ring)<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description:
+                '<b>Tower 1 - Help Stack</b><br><b>REMEMBER DEBUFF</b><br>Right Tower, Out + inner (left) side at max melee (between towers, with the Stack)<br><br><b>Tower 2 - Bait Cone</b><br>Bait Right Cone 90° from the in-tower Cone player (NOT on the marker)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Help Stack</b><br>Right Tower, Out + inner (left) side at max melee (between towers, with the Stack)<br><br><b>Tower 4 - Take Tower</b><br>{{forsaken-cone}} Cone → Right Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Right Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Tower</b><br>{{forsaken-stack}} Stack → Right Tower, max melee on the inner (left) side<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 6 - Take Tower</b><br>{{forsaken-cone}} Cone → Right Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Right Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Tower</b><br>{{forsaken-stack}} Stack → Right Tower, max melee on the inner (left) side<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 8 - Bait Cone</b><br>Bait Right Cone 90° from the in-tower Cone player (NOT on the marker)<br><br><b>BAIT FUTURE/PAST</b>'
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description:
+                '<b>Tower 1 - Help Stack</b><br><b>REMEMBER DEBUFF</b><br>Right Tower, Out + inner (left) side at max melee (between towers, with the Stack)<br><br><b>Tower 2 - Bait Cone</b><br>Bait Right Cone 90° from the in-tower Cone player (NOT on the marker)<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 3 - Help Stack</b><br>Right Tower, Out + inner (left) side at max melee (between towers, with the Stack)<br><br><b>Tower 4 - Take Tower</b><br>{{forsaken-cone}} Cone → Right Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Right Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 5 - Take Tower</b><br>{{forsaken-stack}} Stack → Right Tower, max melee on the inner (left) side<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 6 - Take Tower</b><br>{{forsaken-cone}} Cone → Right Tower, inner ring at tower edge<br>{{forsaken-circle}} Circle → Right Tower, South<br><br><b>BAIT FUTURE/PAST</b><br><br><b>Tower 7 - Take Tower</b><br>{{forsaken-stack}} Stack → Right Tower, max melee on the inner (left) side<br>{{forsaken-cone}} Cone → Left Tower, South<br>{{forsaken-circle}} Circle → Right Tower, East edge (away from Stack)<br><br><b>Tower 8 - Bait Cone</b><br>Bait Right Cone 90° from the in-tower Cone player (NOT on the marker)<br><br><b>BAIT FUTURE/PAST</b>'
+            }
+          ]
+        }
       ]
     }
   },
@@ -1064,7 +1386,8 @@ const allP2: PhaseStrats[] = [
           mechanic: 'Future/Past Baits',
           description:
             'Everyone baits Past/Future at max melee\nCast after every odd tower, bait after every even tower',
-          action: '<b>BE AT LEAST MAX MELEE</b>\nPast = Between towers, Future = Away from towers',
+          action:
+            '<b>BE AT LEAST MAX MELEE</b>\nPast = Between towers, Future = Away from towers\nFinal one after Set 8: bait at the A marker - stay for Past, cross over for Future',
           imageUrl: './umad/p2-forsaken-kr-2.webp'
         }
       ],
@@ -1111,6 +1434,173 @@ const allP2: PhaseStrats[] = [
             'Everyone baits Past/Future at max melee\nPast = Between towers, Future = Away from towers\nCast after every odd tower, bait after every even tower',
           imageUrl: './umad/p2-forsaken-kr-2.webp'
         }
+      ],
+      p3Z: [
+        {
+          mechanic: 'Overview',
+          description:
+            'AAABBBBA order (Group A = towers 1, 2, 3, 8; Group B = towers 4, 5, 6, 7)\nSupports West, DPS East\nOdd towers: Cones Left, Spreads Right\nLeft stack = on boss hitbox, Right stack = W/SW side of the tower (nearest the DPS helpers)\nEven towers: one spread, one cone per tower\nTanks/Melees will flex if partner matches',
+          imageUrl: './umad/p2-forsaken-p3Z-1.webp'
+        },
+        {
+          mechanic: 'Start',
+          description: 'Find role/group partner',
+          action:
+            'Group A if one has a stack\nGroup B if both the same\nFixed partners: H1+MT, OT+H2, R2+M2, M1+R1',
+          imageUrl: './umad/p2-forsaken-p3Z-1.webp'
+        },
+        {
+          mechanic: 'Set 1 (Special)',
+          description:
+            "Left Tower: {{forsaken-stack}} Stack + {{forsaken-cone}} Cone, Right Tower: {{forsaken-stack}} Stack + {{forsaken-circle}} Spread\nSet 1 ONLY: no flex - the {{forsaken-stack}} Stack player FOLLOWS their buddy into the buddy's tower ({{forsaken-cone}} Cone = Left, {{forsaken-circle}} Circle = Right)\nLeft Stack sits slightly off-center toward the helper Tank (NEish)\nSets 3/5/7 use the fixed Left/Right spots below",
+          action:
+            'Helper Tank front edge of Left tower, Helper Healer back of Left tower\nHelper DPS together just outside the Right tower (W/SW edge, between the towers)',
+          imageUrl: './umad/p2-forsaken-p3Z-4.webp'
+        },
+        {
+          mechanic: 'Odd Towers',
+          description:
+            'Left Tower: {{forsaken-stack}} Stack + {{forsaken-cone}} Cone, Right Tower: {{forsaken-stack}} Stack + {{forsaken-circle}} Spread',
+          action:
+            "Non-tower Tank front edge, Non-tower Healer back off edge\nTower Tank/Melee flex if partner matches\nAt set end: DON'T GO YET - stay still 1s so Tanks/Melees can read partners, then flex",
+          imageUrl: './umad/p2-forsaken-p3Z-14.webp'
+        },
+        {
+          mechanic: 'Odd Towers (Left)',
+          description:
+            '{{forsaken-stack}} Stack on the boss hitbox (fixed); helper Tank stands right in front\n{{forsaken-cone}} Cone = inside the tower at its South edge, away from the Stack (max melee or further out)',
+          imageUrl: './umad/p2-forsaken-p3Z-5.webp'
+        },
+        {
+          mechanic: 'Odd Towers (Right)',
+          description:
+            '{{forsaken-stack}} Stack = W/SW side of the tower, nearest the DPS helpers between the towers\n{{forsaken-circle}} Spread = East edge of the tower, away from the Stack',
+          imageUrl: './umad/p2-forsaken-p3Z-5.webp'
+        },
+        {
+          mechanic: 'Even Towers (Diamond Box Markers)',
+          description:
+            'Both Towers: {{forsaken-cone}} Cone North + {{forsaken-circle}} Spread South',
+          action:
+            'Non-tower Tank NW / Melee NE on OUTER RING of boss hitbox to bait Clones\n❗<b>BE ON THE OUTER RING, DO NOT GO FURTHER OUT</b>\nNon-tower Healer (always West) / Ranged (always East) bait cones on Marker\nNumber Marker = North, just outside the corner tip; Letter Marker = Front edge\nTower Tank/Melee flex if partner matches (Set 4 is fixed: Healer + Melee Left, Ranged + Tank Right)',
+          imageUrl: './umad/p2-forsaken-p3Z-9.webp'
+        },
+        {
+          mechanic: 'Even Towers (Number Markers)',
+          description:
+            'Boss is North (marker type rotates each even set)\n{{forsaken-cone}} Cone = Front edge on <b>INNER</b> hitbox ring at <b>TOWER EDGE</b>\n{{forsaken-circle}} Spread = South edge, directly across tower from Cone\nBaiter = North, just outside the corner tip of the Number Marker',
+          imageUrl: './umad/p2-forsaken-p3Z-8.webp'
+        },
+        {
+          mechanic: 'Even Towers (Letter Markers)',
+          description:
+            'Boss is North (marker type rotates each even set)\n{{forsaken-cone}} Cone = Front edge on <b>INNER</b> hitbox ring at <b>TOWER EDGE</b>\n{{forsaken-circle}} Spread = South edge, directly across tower from Cone\nBaiter = Front edge of the Letter Marker',
+          imageUrl: './umad/p2-forsaken-p3Z-8.webp'
+        },
+        {
+          mechanic: 'Future/Past Baits',
+          description:
+            'Everyone baits Past/Future at max melee\nCast after every odd tower, bait after every even tower',
+          action:
+            '<b>BE AT LEAST MAX MELEE</b>\nPast = Between towers, Future = Away from towers\nFinal one after Set 8: bait at the A marker - stay for Past, cross over for Future',
+          imageUrl: './umad/p2-forsaken-p3Z-13.webp'
+        }
+      ],
+      lpdu: [
+        {
+          mechanic: 'Overview',
+          description:
+            'AAABBBBA order (Group A = towers 1, 2, 3, 8; Group B = towers 4, 5, 6, 7)\nSupports West, DPS East: Support {{forsaken-stack}} Stack = Left tower, DPS {{forsaken-stack}} Stack = Right tower (Set 1 included)\nOdd towers: Cones Left, Spreads Right\nLeft stack = on boss hitbox, Right stack = max melee on the inner (left) side of the tower\nEven towers: one spread, one cone per tower\nRanged never adjust; Melees adjust for their ranged partner',
+          imageUrl: './umad/p2-forsaken-lpdu-0.webp'
+        },
+        {
+          mechanic: 'Start',
+          description: 'Find role/group partner',
+          action: 'Group A if one has a stack\nGroup B if both the same',
+          imageUrl: './umad/p2-forsaken-lpdu-2.webp'
+        },
+        {
+          mechanic: 'Odd (Towers)',
+          description:
+            'Left tower: {{forsaken-stack}} Stack + {{forsaken-cone}} Cone, Right tower: {{forsaken-stack}} Stack + {{forsaken-circle}} Circle\nLeft {{forsaken-stack}} Stack: between the inner light beam and the boss hitbox\n{{forsaken-cone}} Cone: southmost point of the tower, slightly right\nRight {{forsaken-stack}} Stack: max melee on the left side of the tower\n{{forsaken-circle}} Circle: eastmost point of the tower',
+          action: 'Support Stack West, DPS Stack East\nMelees adjust for their Ranged partner',
+          imageUrl: './umad/p2-forsaken-lpdu-5.webp'
+        },
+        {
+          mechanic: 'Odd (Helpers)',
+          description:
+            'Tank: inside the hitbox, between boss center and the Cone tower\nHealer: southmost of the Cone tower, slightly right (like the Cone player)\nDPS pair: between both towers, close to the Circle tower, max melee',
+          imageUrl: './umad/p2-forsaken-lpdu-6.webp'
+        },
+        {
+          mechanic: 'Even (Towers)',
+          description:
+            'Both Towers: {{forsaken-cone}} Cone in front + {{forsaken-circle}} Spread in back\n{{forsaken-cone}} Cone = front, on the INNER hitbox ring where the ring meets the tower edge\n{{forsaken-circle}} Spread = opposite side of the tower, max distance from the Cone',
+          action:
+            'Tower Tank/Melee flex if their partner matches\nCone holder goes front',
+          imageUrl: './umad/p2-forsaken-lpdu-9.webp'
+        },
+        {
+          mechanic: 'Even (Helpers)',
+          strats: [
+            {
+              role: 'Tank',
+              party: 1,
+              description: 'Bait Clones on the OUTER hitbox ring, NE/NW of the new relative south',
+              imageUrl: './umad/p2-forsaken-lpdu-10.webp',
+            },
+            {
+              role: 'Tank',
+              party: 2,
+              description: 'Bait Clones on the OUTER hitbox ring, NE/NW of the new relative south',
+              imageUrl: './umad/p2-forsaken-lpdu-10.webp',
+            },
+            {
+              role: 'Healer',
+              party: 1,
+              description: 'Bait cone: stand at a 90 degree angle from the in-tower Cone player',
+              imageUrl: './umad/p2-forsaken-lpdu-11.webp',
+            },
+            {
+              role: 'Healer',
+              party: 2,
+              description: 'Bait cone: stand at a 90 degree angle from the in-tower Cone player',
+              imageUrl: './umad/p2-forsaken-lpdu-11.webp',
+            },
+            {
+              role: 'Melee',
+              party: 1,
+              description: 'Bait Clones on the OUTER hitbox ring, NE/NW of the new relative south',
+              imageUrl: './umad/p2-forsaken-lpdu-10.webp',
+            },
+            {
+              role: 'Melee',
+              party: 2,
+              description: 'Bait Clones on the OUTER hitbox ring, NE/NW of the new relative south',
+              imageUrl: './umad/p2-forsaken-lpdu-10.webp',
+            },
+            {
+              role: 'Ranged',
+              party: 1,
+              description: 'Bait cone: stand at a 90 degree angle from the in-tower Cone player',
+              imageUrl: './umad/p2-forsaken-lpdu-11.webp',
+            },
+            {
+              role: 'Ranged',
+              party: 2,
+              description: 'Bait cone: stand at a 90 degree angle from the in-tower Cone player',
+              imageUrl: './umad/p2-forsaken-lpdu-11.webp',
+            }
+          ]
+        },
+        {
+          mechanic: 'Future/Past Baits',
+          description:
+            'Everyone baits Past/Future at max melee\nCast after every odd tower, bait after every even tower',
+          action:
+            '<b>BE AT LEAST MAX MELEE</b>\nPast = Between towers, Future = Away from towers\nFinal one after Set 8: bait at the A marker - stay for Past, cross over for Future',
+          imageUrl: './umad/p2-forsaken-lpdu-14.webp'
+        }
       ]
     }
   },
@@ -1120,21 +1610,39 @@ const allP2: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'Overview',
-        description:
-          '3 sets of Trines spawn: 3/1/3\nHalf room while 3rd set is landing\nStart Mid, then dodge into first explosion',
+        description: {
+          kefkabin:
+            '3 sets of Trines spawn: 3/1/3\nHalf room while 3rd set is landing\nStart Mid, then dodge into first explosion',
+          lpdu: '3 sets of Trines spawn: 3/1/3\nHalf room while 3rd set is landing\nStart Mid, then dodge into first explosion\nLook at A while the trines land; dodge the cleave while identifying your trine\nSame prio for every pattern, even if a bigger gap exists'
+        },
         action: 'Wait Mid\nTanks move into 1st CCW from 1\nParty move into 1st CW from A',
-        imageUrl: './umad/p2-trines-0.webp'
+        imageUrl: {
+          default: './umad/p2-trines-0.webp',
+          alt: { lpdu: './umad/p2-trines-lpdu-3.webp' }
+        }
       },
       {
         mechanic: 'Tankbusters',
-        description:
-          'Near/Far tankbuster snapshots at 3rd explosion\n2 arena rings from edge = safe from both for party',
-        imageUrl: './umad/p2-trines-4.webp'
+        description: {
+          kefkabin:
+            'Near/Far tankbuster snapshots at 3rd explosion\n2 arena rings from edge = safe from both for party',
+          lpdu: 'Near/Far tankbuster snapshots at 3rd explosion\n2 arena rings from edge = safe from both for party\nWith big box markers: further out than the cardinal markers, in front of the intercardinal ones'
+        },
+        imageUrl: {
+          default: './umad/p2-trines-4.webp',
+          alt: { lpdu: './umad/p2-trines-lpdu-9.webp' }
+        }
       },
       {
         mechanic: 'Final',
-        action: 'One tank tuck into middle trine, one tank far, party 2 rings from edge',
-        imageUrl: './umad/p2-trines-15.webp'
+        action: {
+          kefkabin: 'One tank tuck into middle trine, one tank far, party 2 rings from edge',
+          lpdu: 'One tank tuck into middle trine, one tank far, party 2 rings from edge\nNear tank: any trine that baits Near, but NEVER the party trine\nFar tank walks along the wall'
+        },
+        imageUrl: {
+          default: './umad/p2-trines-15.webp',
+          alt: { lpdu: './umad/p2-trines-lpdu-13.webp' }
+        }
       }
     ]
   }
@@ -1171,6 +1679,105 @@ const doubleBH: MechanicStrat[] = [
     description:
       'Dodge Latitude/Longitude then Kefka hand (move to the safe side on the 2nd hit)\nExdeath White Hole: ALL players must be at FULL HP\nKefka Party Stack / Role Spread resolves',
     imageUrl: './umad/p3-lb-46.webp'
+  }
+];
+
+const splitStomps: MechanicStrat[] = [
+  {
+    mechanic: 'Blizzard Puddles',
+    description:
+      'Kefka = Relative North\nSupports start Relative North, DPS start Relative South\nBlizzard AOEs under everyone -> move to intercards in partners\nG1 Rel West/Left, G2 Rel East/Right\n1 Support or 1 DPS gets a stack marker',
+    imageUrl: './umad/p3-lb-54.webp',
+    strats: [
+      {
+        role: 'Tank',
+        party: 1,
+        description: 'Start Relative North, Spread Northwest'
+      },
+      {
+        role: 'Tank',
+        party: 2,
+        description: 'Start Relative North, Spread Northeast'
+      },
+      {
+        role: 'Healer',
+        party: 1,
+        description: 'Start Relative North, Spread Northwest'
+      },
+      {
+        role: 'Healer',
+        party: 2,
+        description: 'Start Relative North, Spread Northeast'
+      },
+      {
+        role: 'Melee',
+        party: 1,
+        description: 'Start Relative South, Spread Southwest'
+      },
+      {
+        role: 'Melee',
+        party: 2,
+        description: 'Start Relative South, Spread Southeast'
+      },
+      {
+        role: 'Ranged',
+        party: 1,
+        description: 'Start Relative South, Spread Southwest'
+      },
+      {
+        role: 'Ranged',
+        party: 2,
+        description: 'Start Relative South, Spread Southeast'
+      }
+    ]
+  },
+  {
+    mechanic: 'Towers + Enrage',
+    description:
+      'Stacked role returns mid after the 2nd puddle bait; other role takes towers (G1 West, G2 East)\nSwap: opposite role gets the stack, take towers again\nBlizzard III = keep moving\nKill both bosses before enrage',
+    imageUrl: './umad/p3-lb-56.webp',
+    strats: [
+      {
+        role: 'Tank',
+        party: 1,
+        description: 'West/Left Tower'
+      },
+      {
+        role: 'Tank',
+        party: 2,
+        description: 'East/Right Tower'
+      },
+      {
+        role: 'Healer',
+        party: 1,
+        description: 'West/Left Tower'
+      },
+      {
+        role: 'Healer',
+        party: 2,
+        description: 'East/Right Tower'
+      },
+      {
+        role: 'Melee',
+        party: 1,
+        description: 'West/Left Tower'
+      },
+      {
+        role: 'Melee',
+        party: 2,
+        description: 'East/Right Tower'
+      },
+      {
+        role: 'Ranged',
+        party: 1,
+        description: 'West/Left Tower'
+      },
+      {
+        role: 'Ranged',
+        party: 2,
+        description: 'East/Right Tower'
+      }
+    ]
   }
 ];
 
@@ -1240,6 +1847,60 @@ const sdaBH: MechanicStrat[] = [
   }
 ];
 
+const lpduBH: MechanicStrat[] = [
+  {
+    mechanic: 'Hand Attacks',
+    action:
+      'Kefka = Relative North\nLeft side unsafe (facing boss) = Party Stack\nRight side unsafe = Role Spread',
+    imageUrl: './umad/p3-lpdu-bh-13.webp'
+  },
+  {
+    mechanic: 'Hand Attacks (Roles)',
+    action: 'If Role Spread, Tanks Front, Healers Mid, DPS Back',
+    imageUrl: './umad/p3-lpdu-bh-17.webp'
+  },
+  {
+    mechanic: 'Laser Tethers',
+    description:
+      '4 tether sets, each player soaks 3 lasers\nDPS = 1st tether CW from Kefka, Supports = 2nd, {{accretion}} Accretion = 3rd\nPoint every laser clockwise\nNeed to get hit 3 times to cleanse',
+    imageUrl: './umad/p3-lpdu-bh-7.webp'
+  },
+  {
+    mechanic: 'Tether Timeline (D>S>A)',
+    description: '<b>Tether CW Order = #1 DPS, #2 Supports, #3 {{accretion}} Accretion</b>',
+    action:
+      '<b>Set 1 (1 Laser + 2 Lasers)</b>\nSet 1 1st hit: {{first-in-line}} DPS\nSet 1 2nd hit: {{first-in-line}} DPS + {{first-in-line}} Support\nExdeath Tankbuster (TB 4/5)\nChaos Edict + Kefka Hand\n<b>Set 2 (3 Lasers, 3 hits)</b>\nSet 2 1st hit: {{first-in-line}} DPS, {{first-in-line}} Support, {{first-in-line}}{{accretion}} Accretion\nSet 2 2nd hit: {{second-in-line}} DPS take 1st tether\nSet 2 3rd hit: {{second-in-line}} Support take 2nd tether\nChaos Edict + Kefka Hot Tail + Exdeath Tankbuster (TB 5/5)\n<b>Set 3 (3 tethers, 3 hits)</b>\nSet 3 1st hit: {{second-in-line}} DPS, {{second-in-line}} Support, {{second-in-line}}{{accretion}} Accretion\nSet 3 2nd hit: {{third-in-line}} DPS take 1st tether\nSet 3 3rd hit: {{third-in-line}} Support take 2nd tether\nExdeath White Hole, then Chaos Lat/Long + Kefka Hand\n<b>Set 4 (2 Lasers + 1 Laser)</b>\nSet 4 1st hit: {{third-in-line}} DPS + {{third-in-line}} Support\nSet 4 2nd hit: {{third-in-line}} Support (Kefka mid cleave at the same time - point the laser outward)',
+    imageUrl: './umad/p3-lpdu-bh-3.webp'
+  },
+  {
+    mechanic: 'White Hole + Dodges',
+    description:
+      'Exdeath White Hole: ALL players must be at FULL HP\nThen dodge Chaos Latitude/Longitude + Kefka hand (Chaos tank faces Chaos NW Kefka-relative; party can preposition relative South)\nKefka Party Stack / Role Spread resolves',
+    imageUrl: './umad/p3-lpdu-bh-31.webp'
+  }
+];
+
+const lpduStomps: MechanicStrat[] = [
+  {
+    mechanic: 'Earthquake Stomps (Setup)',
+    description:
+      'Drag both bosses middle after the Kefka middle slam\nSupports North, DPS South (orient by Kefka heels: white feet = West, black feet = East)\nKefka = 2 two-person towers East/West, Exdeath = Blizzard III (2 AoEs under all players), Chaos = 4-person stack',
+    imageUrl: './umad/p3-lpdu-stomps-setup.webp'
+  },
+  {
+    mechanic: 'Earthquake Stomps (Role Spread)',
+    description:
+      'After the 1st puddles, spread by role to the intercards relative to Big Kefka: Tanks NW, Healers NE, Melees SW, Ranged SE\nCheck your role group: stack on a DPS = all 4 DPS go back mid for the stack and Supports take the towers; stack on a Support = all 4 Supports go mid and DPS take the towers\nPOP SPRINT - do not greed melee uptime',
+    imageUrl: './umad/p3-lpdu-stomps-spread.webp'
+  },
+  {
+    mechanic: 'Earthquake Stomps (Resolve)',
+    description:
+      '<b>Role split:</b> the stacked role group (all 4) stands dead middle as ONE stack; the other group takes the two 2-person towers (Supports: Tanks West / Healers East; DPS: Melees West / Ranged East)\nMove into tower/stack right after the 2nd puddle - they resolve together\nPlant the stack dead middle (it is BIG, do not clip the tower players); do NOT cover the towers/stacks\nSwitch roles for the next set',
+    imageUrl: './umad/p3-lpdu-stomps.webp'
+  }
+];
+
 const allP3: PhaseStrats[] = [
   {
     phaseName: 'The Decisive Battle',
@@ -1264,54 +1925,47 @@ const allP3: PhaseStrats[] = [
         },
         {
           mechanic: 'Setup',
+          imageUrl: './umad/p3-lb-5.webp',
           strats: [
             {
               role: 'Tank',
               party: 1,
-              description: 'Drag Chaos to wall at Wind crystal',
-              imageUrl: './umad/p3-lb-5.webp'
+              description: 'Drag Chaos to wall at Wind crystal'
             },
             {
               role: 'Tank',
               party: 2,
-              description: 'Keep Exdeath Middle',
-              imageUrl: './umad/p3-lb-5.webp'
+              description: 'Keep Exdeath Middle'
             },
             {
               role: 'Healer',
               party: 1,
-              description: 'Stack at Wind crystal',
-              imageUrl: './umad/p3-lb-5.webp'
+              description: 'Stack at Wind crystal'
             },
             {
               role: 'Healer',
               party: 2,
-              description: 'Stack at Wind crystal',
-              imageUrl: './umad/p3-lb-5.webp'
+              description: 'Stack at Wind crystal'
             },
             {
               role: 'Melee',
               party: 1,
-              description: 'Stack at Wind crystal',
-              imageUrl: './umad/p3-lb-5.webp'
+              description: 'Stack at Wind crystal'
             },
             {
               role: 'Melee',
               party: 2,
-              description: 'Stack at Wind crystal',
-              imageUrl: './umad/p3-lb-5.webp'
+              description: 'Stack at Wind crystal'
             },
             {
               role: 'Ranged',
               party: 1,
-              description: 'Spread at wall near short debuff crystal\nFurther from boss',
-              imageUrl: './umad/p3-lb-5.webp'
+              description: 'Spread at wall near short debuff crystal\nFurther from boss'
             },
             {
               role: 'Ranged',
               party: 2,
-              description: 'Spread at wall near short debuff crystal\nCloser to boss',
-              imageUrl: './umad/p3-lb-5.webp'
+              description: 'Spread at wall near short debuff crystal\nCloser to boss'
             }
           ]
         },
@@ -1319,60 +1973,53 @@ const allP3: PhaseStrats[] = [
           mechanic: 'First Resolve (Short)',
           description:
             'Exdeath defam, Firewall debuffs drop, Short element resolves\nShort {{entropy}} Fire: Melee spread from Supports\nShort {{dynamic-fluid}} Water: Melee + Supports stack\nCrystal AOE hits Ranged',
+          imageUrl: './umad/p3-lb-6.webp',
           strats: [
             {
               role: 'Tank',
               party: 1,
               description:
-                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
-              imageUrl: './umad/p3-lb-6.webp'
+                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees'
             },
             {
               role: 'Tank',
               party: 2,
               description:
-                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
-              imageUrl: './umad/p3-lb-6.webp'
+                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees'
             },
             {
               role: 'Healer',
               party: 1,
               description:
-                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
-              imageUrl: './umad/p3-lb-6.webp'
+                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees'
             },
             {
               role: 'Healer',
               party: 2,
               description:
-                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
-              imageUrl: './umad/p3-lb-6.webp'
+                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees'
             },
             {
               role: 'Melee',
               party: 1,
               description:
-                'If short {{entropy}} Fire, be away from Supports\nIf short {{dynamic-fluid}} Water, stack with Supports',
-              imageUrl: './umad/p3-lb-6.webp'
+                'If short {{entropy}} Fire, be away from Supports\nIf short {{dynamic-fluid}} Water, stack with Supports'
             },
             {
               role: 'Melee',
               party: 2,
               description:
-                'If short {{entropy}} Fire, be away from Supports\nIf short {{dynamic-fluid}} Water, stack with Supports',
-              imageUrl: './umad/p3-lb-6.webp'
+                'If short {{entropy}} Fire, be away from Supports\nIf short {{dynamic-fluid}} Water, stack with Supports'
             },
             {
               role: 'Ranged',
               party: 1,
-              description: 'Stay spread at wall, take crystal AoE',
-              imageUrl: './umad/p3-lb-6.webp'
+              description: 'Stay spread at wall, take crystal AoE'
             },
             {
               role: 'Ranged',
               party: 2,
-              description: 'Stay spread at wall, take crystal AoE',
-              imageUrl: './umad/p3-lb-6.webp'
+              description: 'Stay spread at wall, take crystal AoE'
             }
           ]
         },
@@ -1380,54 +2027,47 @@ const allP3: PhaseStrats[] = [
           mechanic: 'Tankbuster + Implosion',
           description:
             'Exdeath Thunder III 2-hit tankbuster (TB 1/5)\nDrag Exdeath to the wall, Chaos tank drag Chaos out + position near intercard for Lat/Long\nLatitude = sides first, Longitude = front/back first',
+          imageUrl: './umad/p3-lb-10.webp',
           strats: [
             {
               role: 'Tank',
               party: 1,
-              description: 'Take Exdeath Tankbuster, then drag Exdeath/Chaos to wall at Wind',
-              imageUrl: './umad/p3-lb-10.webp'
+              description: 'Take Exdeath Tankbuster, then drag Exdeath/Chaos to wall at Wind'
             },
             {
               role: 'Tank',
               party: 2,
-              description: 'Take Exdeath Tankbuster, then drag Exdeath/Chaos to wall at Wind',
-              imageUrl: './umad/p3-lb-10.webp'
+              description: 'Take Exdeath Tankbuster, then drag Exdeath/Chaos to wall at Wind'
             },
             {
               role: 'Healer',
               party: 1,
-              description: 'Dodge Lat/Long',
-              imageUrl: './umad/p3-lb-10.webp'
+              description: 'Dodge Lat/Long'
             },
             {
               role: 'Healer',
               party: 2,
-              description: 'Dodge Lat/Long',
-              imageUrl: './umad/p3-lb-10.webp'
+              description: 'Dodge Lat/Long'
             },
             {
               role: 'Melee',
               party: 1,
-              description: 'Dodge Lat/Long',
-              imageUrl: './umad/p3-lb-10.webp'
+              description: 'Dodge Lat/Long'
             },
             {
               role: 'Melee',
               party: 2,
-              description: 'Dodge Lat/Long',
-              imageUrl: './umad/p3-lb-10.webp'
+              description: 'Dodge Lat/Long'
             },
             {
               role: 'Ranged',
               party: 1,
-              description: 'Move across to other crystal\nWatch Chaos for Lat/Long',
-              imageUrl: './umad/p3-lb-10.webp'
+              description: 'Move across to other crystal\nWatch Chaos for Lat/Long'
             },
             {
               role: 'Ranged',
               party: 2,
-              description: 'Move across to other crystal\nWatch Chaos for Lat/Long',
-              imageUrl: './umad/p3-lb-10.webp'
+              description: 'Move across to other crystal\nWatch Chaos for Lat/Long'
             }
           ]
         },
@@ -1435,60 +2075,53 @@ const allP3: PhaseStrats[] = [
           mechanic: 'Second Resolve (Long)',
           description:
             'Long debuffs resolve after 2nd Implosion hit\nRanged spread, Melee + Supports stack or spread depending on debuff',
+          imageUrl: './umad/p3-lb-11.webp',
           strats: [
             {
               role: 'Tank',
               party: 1,
               description:
-                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
-              imageUrl: './umad/p3-lb-11.webp'
+                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees'
             },
             {
               role: 'Tank',
               party: 2,
               description:
-                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
-              imageUrl: './umad/p3-lb-11.webp'
+                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees'
             },
             {
               role: 'Healer',
               party: 1,
               description:
-                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
-              imageUrl: './umad/p3-lb-11.webp'
+                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees'
             },
             {
               role: 'Healer',
               party: 2,
               description:
-                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees',
-              imageUrl: './umad/p3-lb-11.webp'
+                'If short {{entropy}} Fire, be away from Melees\nIf short {{dynamic-fluid}} Water, stack with Melees'
             },
             {
               role: 'Melee',
               party: 1,
               description:
-                'If short {{entropy}} Fire, be away from Supports\nIf short {{dynamic-fluid}} Water, stack with Supports',
-              imageUrl: './umad/p3-lb-11.webp'
+                'If short {{entropy}} Fire, be away from Supports\nIf short {{dynamic-fluid}} Water, stack with Supports'
             },
             {
               role: 'Melee',
               party: 2,
               description:
-                'If short {{entropy}} Fire, be away from Supports\nIf short {{dynamic-fluid}} Water, stack with Supports',
-              imageUrl: './umad/p3-lb-11.webp'
+                'If short {{entropy}} Fire, be away from Supports\nIf short {{dynamic-fluid}} Water, stack with Supports'
             },
             {
               role: 'Ranged',
               party: 1,
-              description: 'Stay spread at wall, take crystal AoE',
-              imageUrl: './umad/p3-lb-11.webp'
+              description: 'Stay spread at wall, take crystal AoE'
             },
             {
               role: 'Ranged',
               party: 2,
-              description: 'Stay spread at wall, take crystal AoE',
-              imageUrl: './umad/p3-lb-11.webp'
+              description: 'Stay spread at wall, take crystal AoE'
             }
           ]
         },
@@ -1496,57 +2129,50 @@ const allP3: PhaseStrats[] = [
           mechanic: 'Superjump',
           description:
             'Drag Exdeath onto the Wind crystal\nPhys Ranged go opposite Wind crystal to bait Superjump\nEveryone stack on Exdeath',
+          imageUrl: './umad/p3-lb-13.webp',
           strats: [
             {
               role: 'Tank',
               party: 1,
               description:
-                'Drag Exdeath onto Wind crystal\nWait for Chaos to jump, then stack behind Exdeath',
-              imageUrl: './umad/p3-lb-13.webp'
+                'Drag Exdeath onto Wind crystal\nWait for Chaos to jump, then stack behind Exdeath'
             },
             {
               role: 'Tank',
               party: 2,
               description:
-                'Drag Exdeath onto Wind crystal\nWait for Chaos to jump, then stack behind Exdeath',
-              imageUrl: './umad/p3-lb-13.webp'
+                'Drag Exdeath onto Wind crystal\nWait for Chaos to jump, then stack behind Exdeath'
             },
             {
               role: 'Healer',
               party: 1,
-              description: 'Wait for Chaos to jump, then stack behind Exdeath',
-              imageUrl: './umad/p3-lb-13.webp'
+              description: 'Wait for Chaos to jump, then stack behind Exdeath'
             },
             {
               role: 'Healer',
               party: 2,
-              description: 'Wait for Chaos to jump, then stack behind Exdeath',
-              imageUrl: './umad/p3-lb-13.webp'
+              description: 'Wait for Chaos to jump, then stack behind Exdeath'
             },
             {
               role: 'Melee',
               party: 1,
-              description: 'Wait for Chaos to jump, then stack behind Exdeath',
-              imageUrl: './umad/p3-lb-13.webp'
+              description: 'Wait for Chaos to jump, then stack behind Exdeath'
             },
             {
               role: 'Melee',
               party: 2,
-              description: 'Wait for Chaos to jump, then stack behind Exdeath',
-              imageUrl: './umad/p3-lb-13.webp'
+              description: 'Wait for Chaos to jump, then stack behind Exdeath'
             },
             {
               role: 'Ranged',
               party: 1,
               description:
-                'Go away from Chaos to bait jump\nAs soon as casts start, stack behind Exdeath',
-              imageUrl: './umad/p3-lb-13.webp'
+                'Go away from Chaos to bait jump\nAs soon as casts start, stack behind Exdeath'
             },
             {
               role: 'Ranged',
               party: 2,
-              description: 'Wait for Chaos to jump, then stack behind Exdeath',
-              imageUrl: './umad/p3-lb-13.webp'
+              description: 'Wait for Chaos to jump, then stack behind Exdeath'
             }
           ]
         }
@@ -1593,6 +2219,82 @@ const allP3: PhaseStrats[] = [
           description:
             'Drag both bosses opposite wind crystal\nPhys Ranged stand at the wall behind the Wind crystal to bait Superjump',
           imageUrl: './umad/p3-sg3k-11.webp'
+        }
+      ],
+      Eq0: [
+        {
+          mechanic: 'Debuffs',
+          description:
+            '1 Sup + 1 DPS: {{entropy}} Entropy (fire/spread)\n1 Sup + 1 DPS: {{dynamic-fluid}} Dynamic Fluid (water/donut)\nOne Short (20s), one Long (45s)\nEveryone gets {{headwind}} Headwind or {{tailwind}} Tailwind\n{{headwind}} Headwind = face AWAY, {{tailwind}} Tailwind = face TOWARD',
+          imageUrl: './umad/p3-Eq0-3.webp'
+        },
+        {
+          mechanic: 'Setup',
+          description:
+            'Use the Wind crystal as North for the whole mechanic (ignore debuffs for positioning)\nMT/H1/Melees take Chaos, OT/H2/Ranged take Exdeath\nDrag Chaos North to the Wind crystal, drag Exdeath relative South (opposite Wind)\nHealers always on the Water side, Ranged always on the Fire side\nMelees stack North with MT; OT joins North while Exdeath casts, then Exdeath stacks onto Chaos',
+          imageUrl: './umad/p3-Eq0-4.webp'
+        },
+        {
+          mechanic: 'First Resolve (Short)',
+          description:
+            'Short element resolves as the Exdeath defamation drops\nShort {{entropy}} Fire: Melees NW, Tanks NE of the Wind crystal (away from Supports)\nShort {{dynamic-fluid}} Water: Melees + Supports stack - Healers MUST spread (Water healer at the crystal, other healer moves in)\nNon-debuffed Ranged just takes the Fire spread with their partner',
+          imageUrl: './umad/p3-Eq0-6.webp'
+        },
+        {
+          mechanic: 'Tankbuster + Implosion',
+          description:
+            'Proximity Tankbuster on Exdeath - one tank invulns both hits (refer to tank mit sheet)\nBe inside or South of Exdeath\nDodge Chaos Implosion: Latitude = sides first, Longitude = front/back first',
+          imageUrl: './umad/p3-Eq0-7.webp'
+        },
+        {
+          mechanic: 'Second Resolve (Long)',
+          description:
+            'Long debuffs resolve after the 2nd Implosion hit\nStay in your static position and resolve the same way as the Short (Fire spread / Water stack)\nWater: Healers MUST spread again (Water healer at the crystal, other healer moves in)',
+          imageUrl: './umad/p3-Eq0-10.webp'
+        },
+        {
+          mechanic: 'Superjump',
+          description:
+            'Phys Ranged bait the Chaos Superjump, then move back North as the castbar starts\nEveryone else holds their static position',
+          imageUrl: './umad/p3-Eq0-11.webp'
+        }
+      ],
+      lpdu: [
+        {
+          mechanic: 'Debuffs',
+          description:
+            '1 Sup + 1 DPS: {{entropy}} Entropy (fire/spread)\n1 Sup + 1 DPS: {{dynamic-fluid}} Dynamic Fluid (water/donut)\nOne Short (20s), one Long (45s)\nEveryone gets {{headwind}} Headwind or {{tailwind}} Tailwind\n{{headwind}} Headwind = face AWAY, {{tailwind}} Tailwind = face TOWARD',
+          imageUrl: './umad/p3-lpdu-1.webp'
+        },
+        {
+          mechanic: 'Setup',
+          description:
+            'Wind crystal is new North\nMT/H1/Melees take Chaos, OT/H2/Ranged take Exdeath\nExdeath dead center; Chaos just North\nDuring AoE cast, Exdeath tank runs North\nHealers always Water side, Ranged always Fire side\nMelees stack North with the tanks (Fire leave stack)',
+          imageUrl: './umad/p3-lpdu-2.webp'
+        },
+        {
+          mechanic: 'First Resolve (Short)',
+          description:
+            'Short element resolves as the Exdeath defamation drops\nShort {{entropy}} Fire: Fire melee spread NW, Fire tank NE; non-Fire melee and tank stay North (Fire healer/ranged spread near their own spot)\nShort {{dynamic-fluid}} Water: Melees + Tanks stack, Healers spread: H1 S, H2 N of Water crystal',
+          imageUrl: './umad/p3-lpdu-4.webp'
+        },
+        {
+          mechanic: 'Tankbuster + Implosion',
+          description:
+            'Proximity Tankbuster from Exdeath - refer to tank mit sheet\nDodge Chaos Implosion: Latitude = sides first, Longitude = front/back first',
+          imageUrl: './umad/p3-lpdu-8.webp'
+        },
+        {
+          mechanic: 'Second Resolve (Long)',
+          description:
+            'Long debuffs resolve after the 2nd Implosion hit\nStay in your static position and resolve the same way as the Short (Fire spread / Water stack)\nWater: Healers MUST spread again, now H1 on the Water crystal and H2 towards mid',
+          imageUrl: './umad/p3-lpdu-12.webp'
+        },
+        {
+          mechanic: 'Superjump',
+          description:
+            'Phys Ranged bait Chaos Superjump after the 2nd debuffs, then move back North as the castbar starts\nDrag Exdeath to the North wall (1 marker); party lines up just South of Exdeath for Vacuum Wave',
+          imageUrl: './umad/p3-lpdu-16.webp'
         }
       ]
     }
@@ -1645,6 +2347,44 @@ const allP3: PhaseStrats[] = [
             'Relative North = opposite Kefka’s FIRST dash\nStand on the inter-inter-cardinals in number order from Rel N, rotating OPPOSITE Kefka’s dash direction\nAlign with the waymark or between markers\nExdeath Thunder III tankbuster after (TB 2/5)',
           imageUrl: './umad/p3-sg3k-15.webp'
         }
+      ],
+      Eq0: [
+        {
+          mechanic: 'Kefka Dashes',
+          description: 'Watch Kefka dashes\nREMEMBER start + CW or CCW rotation for Limit Cut',
+          imageUrl: './umad/p3-Eq0-12.webp'
+        },
+        {
+          mechanic: 'Vacuum Wave + Tank LB',
+          description:
+            'Resolve {{headwind}}{{tailwind}} Head/Tailwind as you get knocked back\nStand in role pairs (no one uses anti-knockback)\nTank LB3 toward the end of the Vacuum Wave cast',
+          imageUrl: './umad/p3-Eq0-13.webp'
+        },
+        {
+          mechanic: 'Numbers',
+          description:
+            'Relative North = opposite where Kefka STARTED his dashes\nStand on the inter-inter-cardinals in number order from Rel N, rotating OPPOSITE Kefka’s dash direction\nStand between the markers on the edge\nShared Exdeath tankbuster after (TB 2/5): OT takes the first hit, MT the second',
+          imageUrl: './umad/p3-Eq0-16.webp'
+        }
+      ],
+      lpdu: [
+        {
+          mechanic: 'Kefka Dashes',
+          description: 'Watch Kefka dashes\nREMEMBER start + CW or CCW rotation for Limit Cut',
+          imageUrl: './umad/p3-lpdu-17.webp'
+        },
+        {
+          mechanic: 'Vacuum Wave + Tank LB',
+          description:
+            'Target Exdeath and resolve {{headwind}}{{tailwind}} Head/Tailwind as you get knocked back\nStand in role pairs\nTank LB3 toward the end of the Vacuum Wave cast',
+          imageUrl: './umad/p3-lpdu-18.webp'
+        },
+        {
+          mechanic: 'Numbers',
+          description:
+            'Relative North = opposite where Kefka STARTED his dashes\nStand on the inter-inter-cardinals in number order from Rel N, rotating OPPOSITE Kefka’s dash direction\nStand between the markers on the edge\nExdeath tankbuster after (TB 2/5): invuln per mit sheet, keep the bosses close but not stacked',
+          imageUrl: './umad/p3-lpdu-20.webp'
+        }
       ]
     }
   },
@@ -1660,14 +2400,20 @@ const allP3: PhaseStrats[] = [
       },
       {
         mechanic: 'Conga + Debuffs',
-        description:
-          'Stack bosses mid, then conga; HP set to 1\nAll: Primordial Crust (cleanse by dying -> survive at 1 hp)\n1 DPS + 1 Healer: {{accretion}} Accretion (cleanse by full heal)\nRaidwide + 4s Earth vuln each time an Earth debuff expires\n3x {{first-in-line}} First / 3x {{second-in-line}} Second / 2x {{third-in-line}} Third in Line',
+        description: {
+          kefkabin:
+            'Stack bosses mid, then conga; HP set to 1\nAll: Primordial Crust (cleanse by dying -> survive at 1 hp)\n1 DPS + 1 Healer: {{accretion}} Accretion (cleanse by full heal)\nRaidwide + 4s Earth vuln each time an Earth debuff expires\n3x {{first-in-line}} First / 3x {{second-in-line}} Second / 2x {{third-in-line}} Third in Line',
+          lpdu: 'Keep Chaos dead middle for all of Earthquake; Exdeath close but NOT stacked (Exdeath tank parks it off center, at the intercard CCW from Kefka, during the slams); HP set to 1\nNo conga - assignments are fixed from your own debuff + role\nAll: Primordial Crust (cleanse by dying -> survive at 1 hp)\n1 DPS + 1 Healer: {{accretion}} Accretion (cleanse by full heal) - always one I and one II\nRaidwide + 2s Earth vuln each time an Earth debuff expires\n3x {{first-in-line}} First / 3x {{second-in-line}} Second / 2x {{third-in-line}} Third in Line'
+        },
         imageUrl: './umad/p3-lb-24.webp'
       },
       {
         mechanic: 'Tether Order',
-        description:
-          'Healers single-target the First-in-line {{accretion}} Accretion, then the second',
+        description: {
+          kefkabin:
+            'Healers single-target the First-in-line {{accretion}} Accretion, then the second',
+          lpdu: 'Healers single-target the Healer {{accretion}} Accretion first, then the DPS Accretion\nWHM: do NOT Benediction on frame 1 (party can wipe from 1 HP)'
+        },
         imageUrl: './umad/p3-lb-25.webp'
       }
     ]
@@ -1678,124 +2424,19 @@ const allP3: PhaseStrats[] = [
     mechs: {
       double: doubleBH,
       dsa: dsaBH,
-      sda: sdaBH
+      sda: sdaBH,
+      lpdu: lpduBH
     }
   },
   {
     phaseName: 'Earthquake: Stompies',
-    tag: 'p3',
-    mechs: [
-      {
-        mechanic: 'Blizzard Puddles',
-        description:
-          'Kefka = Relative North\nSupports start Relative North, DPS start Relative South\nBlizzard AOEs under everyone -> move to intercards in partners\nG1 Rel West/Left, G2 Rel East/Right\n1 Support or 1 DPS gets a stack marker',
-        strats: [
-          {
-            role: 'Tank',
-            party: 1,
-            description: 'Start Relative North, Spread Northwest',
-            imageUrl: './umad/p3-lb-54.webp'
-          },
-          {
-            role: 'Tank',
-            party: 2,
-            description: 'Start Relative North, Spread Northeast',
-            imageUrl: './umad/p3-lb-54.webp'
-          },
-          {
-            role: 'Healer',
-            party: 1,
-            description: 'Start Relative North, Spread Northwest',
-            imageUrl: './umad/p3-lb-54.webp'
-          },
-          {
-            role: 'Healer',
-            party: 2,
-            description: 'Start Relative North, Spread Northeast',
-            imageUrl: './umad/p3-lb-54.webp'
-          },
-          {
-            role: 'Melee',
-            party: 1,
-            description: 'Start Relative South, Spread Southwest',
-            imageUrl: './umad/p3-lb-54.webp'
-          },
-          {
-            role: 'Melee',
-            party: 2,
-            description: 'Start Relative South, Spread Southeast',
-            imageUrl: './umad/p3-lb-54.webp'
-          },
-          {
-            role: 'Ranged',
-            party: 1,
-            description: 'Start Relative South, Spread Southwest',
-            imageUrl: './umad/p3-lb-54.webp'
-          },
-          {
-            role: 'Ranged',
-            party: 2,
-            description: 'Start Relative South, Spread Southeast',
-            imageUrl: './umad/p3-lb-54.webp'
-          }
-        ]
-      },
-      {
-        mechanic: 'Towers + Enrage',
-        description:
-          'Stacked role returns mid after the 2nd puddle bait; other role takes towers (G1 West, G2 East)\nSwap: opposite role gets the stack, take towers again\nBlizzard III = keep moving\nKill both bosses before enrage',
-        strats: [
-          {
-            role: 'Tank',
-            party: 1,
-            description: 'West/Left Tower',
-            imageUrl: './umad/p3-lb-56.webp'
-          },
-          {
-            role: 'Tank',
-            party: 2,
-            description: 'East/Right Tower',
-            imageUrl: './umad/p3-lb-56.webp'
-          },
-          {
-            role: 'Healer',
-            party: 1,
-            description: 'West/Left Tower',
-            imageUrl: './umad/p3-lb-56.webp'
-          },
-          {
-            role: 'Healer',
-            party: 2,
-            description: 'East/Right Tower',
-            imageUrl: './umad/p3-lb-56.webp'
-          },
-          {
-            role: 'Melee',
-            party: 1,
-            description: 'West/Left Tower',
-            imageUrl: './umad/p3-lb-56.webp'
-          },
-          {
-            role: 'Melee',
-            party: 2,
-            description: 'East/Right Tower',
-            imageUrl: './umad/p3-lb-56.webp'
-          },
-          {
-            role: 'Ranged',
-            party: 1,
-            description: 'West/Left Tower',
-            imageUrl: './umad/p3-lb-56.webp'
-          },
-          {
-            role: 'Ranged',
-            party: 2,
-            description: 'East/Right Tower',
-            imageUrl: './umad/p3-lb-56.webp'
-          }
-        ]
-      }
-    ]
+    tag: 'blackhole',
+    mechs: {
+      double: splitStomps,
+      dsa: splitStomps,
+      sda: splitStomps,
+      lpdu: lpduStomps
+    }
   }
 ];
 
@@ -1820,7 +2461,7 @@ const allP4: PhaseStrats[] = [
       {
         mechanic: 'Overview',
         description:
-          'Kefka targetable, enrages at 25%\nChaos + Neo Exdeath apply debuffs\n{{kefka-fake}} orb on a cast = FAKE (effect reversed), {{kefka-real}} = real'
+          'Kefka targetable - get him below 25% before the end of the phase (~2:04) or he enrages\nChaos + Neo Exdeath apply debuffs\n{{kefka-fake}} orb on cast = FAKE (effect reversed), {{kefka-real}} = real'
       },
       {
         mechanic: 'Neo Exdeath Debuffs',
@@ -1831,7 +2472,7 @@ const allP4: PhaseStrats[] = [
       {
         mechanic: 'Chaos Debuffs',
         description:
-          '{{entropy}} Entropy resolves 1st, {{dynamic-fluid}} Dynamic resolves 2nd regardless of order applied\n{{entropy}} Entropy OR {{kefka-fake}}{{dynamic-fluid}} Fake Dynamic = Fire/AOE\n{{dynamic-fluid}} Dynamic OR {{kefka-fake}}{{entropy}} Fake Entropy = Water/Donut',
+          '{{entropy}} Entropy resolves 1st, {{dynamic-fluid}} Fluid resolves 2nd regardless of order applied\n{{entropy}} Entropy: {{kefka-real}} Real = Fire/AOE, {{kefka-fake}} Fake = Donut\n{{dynamic-fluid}} Fluid: {{kefka-real}} Real = Water/Donut, {{kefka-fake}} Fake = AOE',
         imageUrl: './umad/p4-chaos-debuffs.webp'
       },
       {
@@ -1848,7 +2489,7 @@ const allP4: PhaseStrats[] = [
       {
         mechanic: 'Debuff Resolution',
         description:
-          "Stacks {{compressed-water}}/{{kefka-fake}}{{forked-lightning}}: Supports North, DPS South\nSpreads: {{forked-lightning}}/{{kefka-fake}}{{compressed-water}} Supports West, DPS East\n\nShriek {{cursed-shriek}}: Shrieks in, party out N/S and look away, debuffs don't look at each other\nFake Shriek {{kefka-fake}}{{cursed-shriek}}: Shrieks in, party look in, debuffs look at each other\n\nInferno {{entropy}}/{{kefka-fake}}{{dynamic-fluid}}: Drop twister AOE middle, then spread\nTsunami {{dynamic-fluid}}/{{kefka-fake}}{{entropy}}: Drop twister donut middle, then stay"
+          "Stacks {{compressed-water}}/{{kefka-fake}}{{forked-lightning}}: Supports North, DPS South\nSpreads: {{forked-lightning}}/{{kefka-fake}}{{compressed-water}} Supports West, DPS East\n\nShriek {{cursed-shriek}}: Shrieks in, party out along the Thunder line (1st) or N/S (2nd) and look away, debuffs don't look at each other\nFake Shriek {{kefka-fake}}{{cursed-shriek}}: Shrieks in, party look in, debuffs look at each other\n\nInferno {{entropy}} (always resolves 1st): Start Middle\n{{kefka-real}} Real = AOE/Twister: move out to the 2nd stack/spread spots\n{{kefka-fake}} Fake = Donut: stay inside, pre-position, wait for it to go off (ignore the Ultima Upsurge raidwide), then go out\nTsunami {{dynamic-fluid}} (always resolves 2nd, with Mana Release): Start Middle\n{{kefka-real}} Real = Donut: stay close while dodging Release\n{{kefka-fake}} Fake = AOE/Twister: go outside the hitbox and dodge Release"
       }
     ]
   },
@@ -1907,73 +2548,88 @@ const allP5: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'Spread',
-        action: 'Spread: Tanks North, Healers South, G1 DPS West, G2 DPS East',
-        imageUrl: './umad/p5-7.webp'
+        action: {
+          kefkabin: 'Spread: Tanks North, Healers South, G1 DPS West, G2 DPS East',
+          lpdu: 'Spread: Tanks North, Ranged NW/NE, Healers West/East, Melees South'
+        },
+        imageUrl: {
+          default: './umad/p5-7.webp',
+          alt: { lpdu: './umad/p5-mo-spread-lpdu.webp' }
+        }
       },
       {
         mechanic: '1st Hit (Random)',
         description:
           '1st hit is random\nMT gets 1x Surprise Flare, OT gets 1x Surprise Holy\n3x on Non-tanks',
-        imageUrl: './umad/p5-8.webp'
+        imageUrl: {
+          default: './umad/p5-8.webp',
+          alt: { lpdu: './umad/p5-mo-hit1-lpdu.webp' }
+        }
       },
       {
         mechanic: '2nd Hit (Proximity)',
         description:
           '2nd hit is proximity\nTanks stack together for the shared buster\nParty go out if you got hit',
-        action: 'Tanks stack together for the shared buster\nNon-tanks go out if you got hit first',
-        imageUrl: './umad/p5-9.webp'
+        action: {
+          kefkabin:
+            'Tanks stack together for the shared buster\nNon-tanks go out if you got hit first',
+          lpdu: 'Tanks stack together for the shared buster\nHit players stay outside; un-hit players move inside the hitbox to bait'
+        },
+        imageUrl: {
+          default: './umad/p5-9.webp',
+          alt: { lpdu: './umad/p5-mo-hit2-lpdu.webp' }
+        }
       },
       {
         mechanic: 'Tank Resolve',
+        imageUrl: {
+          default: './umad/p5-10.webp',
+          alt: { lpdu: './umad/p5-mo-tank-lpdu.webp' }
+        },
         strats: [
           {
             role: 'Tank',
             party: 1,
-            description: 'Flare; go to the wall North',
-            imageUrl: './umad/p5-10.webp'
+            description: 'Flare; go to the wall North'
           },
           {
             role: 'Tank',
             party: 2,
-            description:
-              'Holy; invuln max melee\nHoly tank voke before the resolution to take the next 2 autos with invuln',
-            imageUrl: './umad/p5-10.webp'
+            description: {
+              kefkabin:
+                'Holy; invuln max melee\nHoly tank voke before the resolution to take the next 2 autos with invuln',
+              lpdu: 'Holy; invuln max melee\nVoke-swap right after the 1st hit so the Holy tank takes the next 2 autos with invuln'
+            }
           },
           {
             role: 'Healer',
             party: 1,
-            description: 'South',
-            imageUrl: './umad/p5-10.webp'
+            description: 'South'
           },
           {
             role: 'Healer',
             party: 2,
-            description: 'South',
-            imageUrl: './umad/p5-10.webp'
+            description: 'South'
           },
           {
             role: 'Melee',
             party: 1,
-            description: 'South',
-            imageUrl: './umad/p5-10.webp'
+            description: 'South'
           },
           {
             role: 'Melee',
             party: 2,
-            description: 'South',
-            imageUrl: './umad/p5-10.webp'
+            description: 'South'
           },
           {
             role: 'Ranged',
             party: 1,
-            description: 'South',
-            imageUrl: './umad/p5-10.webp'
+            description: 'South'
           },
           {
             role: 'Ranged',
             party: 2,
-            description: 'South',
-            imageUrl: './umad/p5-10.webp'
+            description: 'South'
           }
         ]
       }
@@ -1988,13 +2644,26 @@ const allP5: PhaseStrats[] = [
         description:
           '4 towers active per set, 3 sets total\nVulns applied randomly: 2x ice, 2x lightning, 2x fire, 2x nothing\n2x nothing will always fill the double',
         action: 'For 1st + 3rd, Earth = OUT safe, Wind = IN safe',
-        imageUrl: './umad/p5-12.webp'
+        imageUrl: {
+          default: './umad/p5-12.webp',
+          alt: {
+            lpdu: './umad/p5-celestriad-overview-lpdu.webp'
+          }
+        }
       },
       {
         mechanic: 'Resolution',
-        action:
-          'Debuffs: 1st safe tower CW from your vuln, then rotate CW\nNo debuff: 1st CCW of double element',
-        imageUrl: './umad/p5-13.webp'
+        action: {
+          kefkabin:
+            'Debuffs: 1st safe tower CW from your vuln, then rotate CW\nNo debuff: 1st CCW of double element',
+          lpdu: 'Debuffs: 1st safe tower CW from your vuln, then rotate CW\nNo debuff: furthest CW tower of the double element'
+        },
+        imageUrl: {
+          default: './umad/p5-13.webp',
+          alt: {
+            lpdu: './umad/p5-celestriad-resolve-lpdu.webp'
+          }
+        }
       }
     ]
   },
@@ -2010,8 +2679,14 @@ const allP5: PhaseStrats[] = [
       },
       {
         mechanic: 'Stray Entropy',
-        description: 'Ends with Stray Entropy = spreads\nSpread out around the arena',
-        imageUrl: './umad/p5-19.webp'
+        description: {
+          kefkabin: 'Ends with Stray Entropy = spreads\nSpread out around the arena',
+          lpdu: 'Ends with Stray Entropy = spreads\nSpread out around the arena (no fixed spots); enmity tank stays close so the boss does not move'
+        },
+        imageUrl: {
+          default: './umad/p5-19.webp',
+          alt: { lpdu: './umad/p5-entropy-lpdu.webp' }
+        }
       }
     ]
   },
@@ -2023,54 +2698,68 @@ const allP5: PhaseStrats[] = [
         mechanic: 'Resolve',
         description:
           'Resolve the same as the first Maddening Orchestra\nOT should have aggro during the 1st hit to get the flare',
+        imageUrl: {
+          default: './umad/p5-20.webp',
+          alt: { lpdu: './umad/p5-mo2-lpdu.webp' }
+        },
         strats: [
           {
             role: 'Tank',
             party: 1,
-            description: 'Holy; invuln max melee',
-            imageUrl: './umad/p5-20.webp'
+            description: 'Holy; invuln max melee'
           },
           {
             role: 'Tank',
             party: 2,
-            description: 'Flare; go to the wall North',
-            imageUrl: './umad/p5-20.webp'
+            description: 'Flare; go to the wall North'
           },
           {
             role: 'Healer',
             party: 1,
-            description: 'Spread towards West, Close/Far, South',
-            imageUrl: './umad/p5-20.webp'
+            description: {
+              kefkabin: 'Spread towards West, Close/Far, South',
+              lpdu: 'West'
+            }
           },
           {
             role: 'Healer',
             party: 2,
-            description: 'Spread towards West, Close/Far, South',
-            imageUrl: './umad/p5-20.webp'
+            description: {
+              kefkabin: 'Spread towards West, Close/Far, South',
+              lpdu: 'East'
+            }
           },
           {
             role: 'Melee',
             party: 1,
-            description: 'Spread towards East, Close/Far, South',
-            imageUrl: './umad/p5-20.webp'
+            description: {
+              kefkabin: 'Spread towards East, Close/Far, South',
+              lpdu: 'South'
+            }
           },
           {
             role: 'Melee',
             party: 2,
-            description: 'Spread towards East, Close/Far, South',
-            imageUrl: './umad/p5-20.webp'
+            description: {
+              kefkabin: 'Spread towards East, Close/Far, South',
+              lpdu: 'South'
+            }
           },
           {
             role: 'Ranged',
             party: 1,
-            description: 'Spread towards East, Close/Far, South',
-            imageUrl: './umad/p5-20.webp'
+            description: {
+              kefkabin: 'Spread towards East, Close/Far, South',
+              lpdu: 'Northwest'
+            }
           },
           {
             role: 'Ranged',
             party: 2,
-            description: 'Spread towards East, Close/Far, South',
-            imageUrl: './umad/p5-20.webp'
+            description: {
+              kefkabin: 'Spread towards East, Close/Far, South',
+              lpdu: 'Northeast'
+            }
           }
         ]
       }
@@ -2088,9 +2777,15 @@ const allP5: PhaseStrats[] = [
       },
       {
         mechanic: 'Stack Pattern',
-        description:
-          'Always start at C, then rotate inter/cards: 4 - 1 - 2 - 3\nOrange AOE markers bait onto the card/inter closest to a random player\n1st stack is CW from the 1st orange marker, then keep rotating CW\nStay after each stack until the next AOEs show to bait them',
-        action: 'Start C, rotate CW (4-1-2-3)',
+        description: {
+          kefkabin:
+            'Always start at C, then rotate inter/cards: 4 - 1 - 2 - 3\nOrange AOE markers bait onto the card/inter closest to a random player\n1st stack is CW from the 1st orange marker, then keep rotating CW\nStay after each stack until the next AOEs show to bait them',
+          lpdu: 'Always start at C, then rotate inter/cards: 4 - 1 - 2 - 3\nOrange AOE markers bait onto the card/inter closest to a random player\n1st stack is CW from the 1st orange marker, then keep rotating CW\nStay after each stack until the next AOEs show to bait them'
+        },
+        action: {
+          kefkabin: 'Start C, rotate CW (4-1-2-3)',
+          lpdu: 'Start C, rotate CW (4-1-2-3)'
+        },
         imageUrl: './umad/p5-23.webp'
       }
     ]
@@ -2114,7 +2809,24 @@ const kefkabinStrat: Strat = {
   strats: [...allP1, ...allP2, ...allP3, ...allP4, ...allP5]
 };
 
-export const dancingMadStrats: Strat[] = [kefkabinStrat];
+const lpduStrat: Strat = {
+  stratName: 'lpdu',
+  description: '',
+  stratUrl: {
+    'P1: LPDU P1': 'https://raidplan.io/plan/_5FyPYATLhNYkq8S',
+    'P1: LPDU Tele-Trouncing': 'https://raidplan.io/plan/saC2CjTaXmSApm6y',
+    'P2: LPDU P2': 'https://raidplan.io/plan/142oXOZpPc_jh3dd',
+    'P2: LPDU Trines': 'https://raidplan.io/plan/9aBIH3XPTrBlP2H9',
+    'P3: LPDU P3 - Bowels Exdeath Mid': 'https://raidplan.io/plan/-j_AAEyx6yACuTve',
+    'P3: LPDU P3': 'https://raidplan.io/plan/vO5T6KpnHKV4tOXo',
+    'P4: 7pj (UMAD p4)': 'https://raidplan.io/plan/guufe9q559evt7pj',
+    'P4: LPDU Kefka says in a nutshell': 'https://raidplan.io/plan/VvVCuABdEYe1LnGO',
+    'P5: n4a (LPDU P5)': 'https://raidplan.io/plan/oUzw_Lko7EgVVn4a'
+  },
+  strats: [...allP1, ...allP2, ...allP3, ...allP4, ...allP5]
+};
+
+export const dancingMadStrats: Strat[] = [kefkabinStrat, lpduStrat];
 
 export const dancingMadFightConfig: FightConfig = {
   fightKey: 'umad',
@@ -2126,7 +2838,25 @@ export const dancingMadFightConfig: FightConfig = {
   strats: {
     kefkabin: {
       label: 'Kefkabin',
-      defaults: { arrows: 'mgr', forsaken: 'kr', bowels: 'lb', blackhole: 'dsa' }
+      mitPlan: 'ikuya',
+      defaults: { arrows: 'pinoy', forsaken: 'kr', bowels: 'lb', blackhole: 'dsa' },
+      badges: [
+        {
+          text: 'NA',
+          class: 'na-badge'
+        }
+      ]
+    },
+    lpdu: {
+      label: 'LPDU',
+      mitPlan: 'lpdu',
+      defaults: { arrows: 'stfr', forsaken: 'lpdu', bowels: 'lpdu', blackhole: 'lpdu' },
+      badges: [
+        {
+          text: 'EU',
+          class: 'eu-badge'
+        }
+      ]
     }
   },
   toggles: [
@@ -2143,12 +2873,9 @@ export const dancingMadFightConfig: FightConfig = {
           url: { name: 'Filipino Box Graven 3', url: 'https://raidplan.io/plan/5rf2uhud5ztsbud5' }
         },
         {
-          value: 'freaky',
-          label: 'Freaky MGR',
-          url: {
-            name: 'freaky merry go round arrows',
-            url: 'https://raidplan.io/plan/qD9Y_g1caq3l5gD-'
-          }
+          value: 'stfr',
+          label: 'Static Freaky',
+          url: { name: 'LPDU Tele-Trouncing', url: 'https://raidplan.io/plan/saC2CjTaXmSApm6y' }
         }
       ]
     },
@@ -2166,6 +2893,19 @@ export const dancingMadFightConfig: FightConfig = {
           value: 'south',
           label: 'South Adjust',
           url: { name: 'APHORSAKEN (s.flex)', url: 'https://raidplan.io/plan/uq7zdjvuu7uuw8fj' }
+        },
+        {
+          value: 'p3Z',
+          label: 'p3Z',
+          url: {
+            name: "Meow³'s Braindead P2 Buddy",
+            url: 'https://raidplan.io/plan/lZWqxfxvyhF9sp3Z'
+          }
+        },
+        {
+          value: 'lpdu',
+          label: 'LPDU',
+          url: { name: 'LPDU P2', url: 'https://raidplan.io/plan/142oXOZpPc_jh3dd' }
         }
       ]
     },
@@ -2182,6 +2922,19 @@ export const dancingMadFightConfig: FightConfig = {
           url: {
             name: 'SG3K Bowels/LC by S’vetha Mako',
             url: 'https://raidplan.io/plan/9assfrb4fcvwat9e'
+          }
+        },
+        {
+          value: 'Eq0',
+          label: 'Eq0 (Walldeath)',
+          url: { name: 'P3 but tank lb', url: 'https://raidplan.io/plan/cyHdnCaTdIkh4Eq0' }
+        },
+        {
+          value: 'lpdu',
+          label: 'LPDU (Middeath)',
+          url: {
+            name: 'LPDU P3 - Bowels Exdeath Mid',
+            url: 'https://raidplan.io/plan/-j_AAEyx6yACuTve'
           }
         }
       ]
@@ -2211,6 +2964,14 @@ export const dancingMadFightConfig: FightConfig = {
             name: 'S>D>A Blackhole',
             url: 'https://tinyurl.com/SDAHoles'
           }
+        },
+        {
+          value: 'lpdu',
+          label: 'LPDU (Role Stomps)',
+          url: {
+            name: 'LPDU P3',
+            url: 'https://raidplan.io/plan/vO5T6KpnHKV4tOXo'
+          }
         }
       ]
     }
@@ -2221,7 +2982,26 @@ export const dancingMadFightConfig: FightConfig = {
       label: 'Merry-Go-Round',
       tag: 'arrows',
       value: 'mgr',
-      description: 'Arrows arranged in one large box clockwise, aka Big Box.'
+      description: 'Arrows arranged in one large box clockwise, aka Big Box.',
+      badges: [
+        {
+          text: 'NA',
+          class: 'na-badge'
+        }
+      ]
+    },
+    {
+      tab: 'P1: Kefka',
+      label: 'Static Freaky',
+      tag: 'arrows',
+      value: 'stfr',
+      description: 'EU naming for Merry-Go-Round/Big Box',
+      badges: [
+        {
+          text: 'EU',
+          class: 'eu-badge'
+        }
+      ]
     },
     {
       tab: 'P1: Kefka',
@@ -2231,20 +3011,18 @@ export const dancingMadFightConfig: FightConfig = {
       description: 'Arrows arranged in four small boxes on each intercard, aka Small Box.'
     },
     {
-      tab: 'P1: Kefka',
-      label: 'Freaky',
-      tag: 'arrows',
-      value: 'freaky',
-      description:
-        'Obsolete modification of Merry-Go-Round to compensate for original snapshot behavior. No longer in use, kept here for archival purposes.'
-    },
-    {
       tab: 'P2: Forsaken Kefka',
       label: 'Kroxy-Rinon',
       tag: 'forsaken',
       value: 'kr',
       description:
-        'Tanks and Melees are the only flexers. May be difficult to find original partners to determine flex, but takes burden off healers.'
+        'AAABBBBA, Tanks and Melees are the only flexers. May be difficult to find original partners to determine flex, but takes burden off healers.',
+      badges: [
+        {
+          text: 'NA',
+          class: 'na-badge'
+        }
+      ]
     },
     {
       tab: 'P2: Forsaken Kefka',
@@ -2252,19 +3030,55 @@ export const dancingMadFightConfig: FightConfig = {
       tag: 'forsaken',
       value: 'south',
       description:
-        'If both players in a given tower match after new debuffs, the south player will flex for the next tower they need to soak. Everybody needs to flex + remember, but easier to visualize.'
+        'AAABBBBA. If both players in a given tower match after new debuffs, the south player will flex for the next tower they need to soak. Everybody needs to flex + remember, but easier to visualize.'
+    },
+    {
+      tab: 'P2: Forsaken Kefka',
+      label: 'p3Z (Meow)',
+      tag: 'forsaken',
+      value: 'p3Z',
+      description:
+        "AAABBBBA, Tanks and Melees are the only flexers. Set 1 only: the Stack follows their buddy's tower (Cone = Left, Circle = Right), so Supports may end up in the Right tower.",
+      badges: [
+        {
+          text: 'EU',
+          class: 'eu-badge'
+        }
+      ]
+    },
+    {
+      tab: 'P2: Forsaken Kefka',
+      label: 'LPDU',
+      tag: 'forsaken',
+      value: 'lpdu',
+      description:
+        'Mostly identical to p3Z, but Set 1 is fixed like the other odd sets: Support Stack Left, DPS Stack Right.',
+      badges: [
+        {
+          text: 'EU',
+          class: 'eu-badge'
+        }
+      ]
     },
     {
       tab: 'P3: Chaos and Exdeath',
-      label: 'Bowels: LB3 Cheese',
+      label: 'LB3 Cheese',
+      category: 'Bowels',
       tag: 'bowels',
       value: 'lb',
       description:
-        'All 8 players cleanse their Headwind/Tailwind on Vacuum Wave, then use Tank LB3 to take all 8 Wind AOEs simultaneously. Requires use of LB3 and heavy mit.'
+        'All 8 players cleanse their Headwind/Tailwind on Vacuum Wave, then use Tank LB3 to take all 8 Wind AOEs simultaneously. Requires use of LB3 and heavy mit.',
+      badges: [
+        {
+          text: 'NA',
+          class: 'na-badge'
+        }
+      ]
     },
     {
       tab: 'P3: Chaos and Exdeath',
-      label: 'Bowels: SG3K (No LB)',
+      label: 'SG3K (No LB)',
+      category: 'Bowels',
       tag: 'bowels',
       value: 'sg3k',
       description:
@@ -2272,27 +3086,87 @@ export const dancingMadFightConfig: FightConfig = {
     },
     {
       tab: 'P3: Chaos and Exdeath',
-      label: 'Black Hole: D>S>A',
+      label: 'Eq0 (Walldeath)',
+      category: 'Bowels',
+      tag: 'bowels',
+      value: 'Eq0',
+      description:
+        'LB3 Cheese, OT takes Exdeath opposite Wind, Healers on Water, Ranged on Fire. 4x 2-person role stacks for Wind AoEs.',
+      badges: [
+        {
+          text: 'EU',
+          class: 'eu-badge'
+        }
+      ]
+    },
+    {
+      tab: 'P3: Chaos and Exdeath',
+      label: 'LPDU (Middeath)',
+      category: 'Bowels',
+      tag: 'bowels',
+      value: 'lpdu',
+      description:
+        'Modified Eq0 that keeps Exdeath mid instead of far South. Only the Fire-debuffed melee/tank split off for Fire. Otherwise the same (Healers on Water, Ranged on Fire, 4x 2-person role stacks for Wind AoEs).',
+      badges: [
+        {
+          text: 'EU',
+          class: 'eu-badge'
+        }
+      ]
+    },
+    {
+      tab: 'P3: Chaos and Exdeath',
+      label: 'D>S>A',
+      category: 'Black Hole',
       tag: 'blackhole',
       value: 'dsa',
       description:
-        "Original Kefkabin plan with DPS > Support > Accretion tether order. Watch 2nd-in-Line Tank after Set 3 to make sure they're healed up after going to 1HP."
+        "Original Kefkabin plan with DPS > Support > Accretion tether order. Watch 2nd-in-Line Tank after Set 3 to make sure they're healed up after going to 1HP.",
+      badges: [
+        {
+          text: 'NA',
+          class: 'na-badge'
+        }
+      ]
     },
     {
       tab: 'P3: Chaos and Exdeath',
-      label: 'Black Hole: DSA Double',
+      label: 'DSA Double',
+      category: 'Black Hole',
       tag: 'blackhole',
       value: 'double',
       description:
-        '2-tether hits in sets 1 and 4 are taken by a single player, D>S>A order otherwise. Avoids boss positioning issues and potential 1HP tank autos.'
+        '2-tether hits in sets 1 and 4 are taken by a single player, D>S>A order otherwise. Avoids boss positioning issues and potential 1HP tank autos.',
+      badges: [
+        {
+          text: 'NA',
+          class: 'na-badge'
+        }
+      ]
     },
     {
       tab: 'P3: Chaos and Exdeath',
-      label: 'Black Hole: S>D>A',
+      label: 'S>D>A',
+      category: 'Black Hole',
       tag: 'blackhole',
       value: 'sda',
       description:
         'Modified plan with Support > DPS > Accretion tether order. Swaps DPS and Supports from original plan to solve 1HP tank autos.'
+    },
+    {
+      tab: 'P3: Chaos and Exdeath',
+      label: 'LPDU (Role Stomps)',
+      category: 'Black Hole',
+      tag: 'blackhole',
+      value: 'lpdu',
+      description:
+        "DPS > Support > Accretion tether order, Kefka Relative. Watch 2nd-in-Line Tank after Set 3 to make sure they're healed up after going to 1HP. Stomps start Supports N, DPS S; role-based tower split (Tanks/Melees West, Healers/Ranged East) while the 4-person stack stays mid.",
+      badges: [
+        {
+          text: 'EU',
+          class: 'eu-badge'
+        }
+      ]
     }
   ],
   tabTags: {
@@ -2312,5 +3186,5 @@ export const dancingMadFightConfig: FightConfig = {
   timeline: [],
   posterEnabled: true,
   posterLayout: umadPosterLayout,
-  mitPlans: [ikuyaMitPlan]
+  mitPlans: [ikuyaMitPlan, lpduMitPlan]
 };

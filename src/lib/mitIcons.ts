@@ -36,6 +36,8 @@ const MIT_ICONS: Record<string, string | Partial<Record<Job, string>>> = {
     GNB: 'superbolide'
   },
   '40%': { PLD: 'guardian', WAR: 'damnation', DRK: 'shadowed-vigil', GNB: 'great-nebula' },
+  // LPDU's name for the same cooldown
+  '120s': { PLD: 'guardian', WAR: 'damnation', DRK: 'shadowed-vigil', GNB: 'great-nebula' },
   '90s': { PLD: 'bulwark', WAR: 'thrill-of-battle', DRK: 'dark-mind', GNB: 'camouflage' },
   'Short Mit': {
     PLD: 'holy-sheltron',
@@ -77,6 +79,7 @@ const MIT_ICONS: Record<string, string | Partial<Record<Job, string>>> = {
   Holos: 'holos',
   Panhaima: 'panhaima',
   'Zoe Shields': 'zoe',
+  'Zoe Eprog': 'zoe',
   Philosophia: 'philosophia'
 };
 

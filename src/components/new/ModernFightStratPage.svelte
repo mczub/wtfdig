@@ -159,17 +159,23 @@
       const resolvedMechs = resolveMechs(phaseStrat.mechs, phaseStrat.tag, stratState);
       return {
         ...phaseStrat,
-        description: resolveStratItem(phaseStrat.description, phaseStrat.tag, stratState),
-        imageUrl: resolveStratItem(phaseStrat.imageUrl, phaseStrat.tag, stratState),
-        mask: resolveStratItem(phaseStrat.mask, phaseStrat.tag, stratState),
-        url: resolveStratItem(phaseStrat.url, phaseStrat.tag, stratState),
+        description: resolveStratItem(phaseStrat.description, phaseStrat.tag, stratState, stratName),
+        imageUrl: resolveStratItem(phaseStrat.imageUrl, phaseStrat.tag, stratState, stratName),
+        mask: resolveStratItem(phaseStrat.mask, phaseStrat.tag, stratState, stratName),
+        url: resolveStratItem(phaseStrat.url, phaseStrat.tag, stratState, stratName),
         mechs: resolvedMechs?.map((phaseStratMech) => {
           return {
             ...phaseStratMech,
-            description: resolveStratItem(phaseStratMech.description, phaseStrat.tag, stratState),
-            notes: resolveStratItem(phaseStratMech.notes, phaseStrat.tag, stratState),
-            imageUrl: resolveStratItem(phaseStratMech.imageUrl, phaseStrat.tag, stratState),
-            url: resolveStratItem(phaseStratMech.url, phaseStrat.tag, stratState),
+            description: resolveStratItem(
+              phaseStratMech.description,
+              phaseStrat.tag,
+              stratState,
+              stratName
+            ),
+            action: resolveStratItem(phaseStratMech.action, phaseStrat.tag, stratState, stratName),
+            notes: resolveStratItem(phaseStratMech.notes, phaseStrat.tag, stratState, stratName),
+            imageUrl: resolveStratItem(phaseStratMech.imageUrl, phaseStrat.tag, stratState, stratName),
+            url: resolveStratItem(phaseStratMech.url, phaseStrat.tag, stratState, stratName),
             strats:
               phaseStratMech.strats &&
               phaseStratMech.strats
@@ -191,10 +197,16 @@
                     description: resolveStratItem(
                       playerStrat.description,
                       phaseStrat.tag,
-                      stratState
+                      stratState,
+                      stratName
                     ),
-                    imageUrl: resolveStratItem(playerStrat.imageUrl, phaseStrat.tag, stratState),
-                    mask: resolveStratItem(playerStrat.mask, phaseStrat.tag, stratState)
+                    imageUrl: resolveStratItem(
+                      playerStrat.imageUrl,
+                      phaseStrat.tag,
+                      stratState,
+                      stratName
+                    ),
+                    mask: resolveStratItem(playerStrat.mask, phaseStrat.tag, stratState, stratName)
                   };
                 })
           };
@@ -295,6 +307,13 @@
   $effect(() => {
     if (mitPlan) saveMitSetting('mitPlan', mitPlan.planName);
   });
+  // Selecting a strat with a configured `mitPlan` switches the mit panel to it.
+  function applyStratMitPlan(stratName: string) {
+    const planName = effectiveConfigStrats[stratName]?.mitPlan;
+    if (planName && (config.mitPlans ?? []).some((p) => p.planName === planName)) {
+      mitPlanName = planName;
+    }
+  }
   // Job is remembered per slot (role + party), so H1 and H2 keep separate picks.
   let mitJobBySlot = $state<Record<string, Job>>({});
   function mitJobFor(role: Role, party: number | undefined): Job {
@@ -430,7 +449,10 @@
       strats={effectiveConfigStrats}
       {stratName}
       {stratOptions}
-      onSelectStrat={selectStrat}
+      onSelectStrat={(value) => {
+        selectStrat(value);
+        applyStratMitPlan(value);
+      }}
       {stratState}
       toggles={(config.toggles ?? []).map((toggle) => ({
         key: toggle.key,

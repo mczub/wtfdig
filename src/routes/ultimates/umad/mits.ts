@@ -1,4 +1,4 @@
-import type { MitPlan } from '$lib/types';
+import type { MechRoleMits, MitPlan } from '$lib/types';
 
 // Ikuya's Dancing Mad (Ultimate) mitigation plan, generated from the sheet's phase tabs.
 // Times are phase-relative. MT/OT = Tank 1/2, D1/D2 = Melee 1/2, D3/D4 = Ranged 1/2.
@@ -1456,6 +1456,1319 @@ export const ikuyaMitPlan: MitPlan = {
         { role: 'Ranged', party: 1, carryOver: 'Party Mit' },
         { role: 'Ranged', party: 2, carryOver: 'Addle' }
       ]
+    }
+  ]
+};
+
+// LPDU's Dancing Mad (Ultimate) mitigation compile, transcribed from the sheet's phase tabs.
+// Times are phase-relative. MT/OT = Tank 1/2, M1/M2 = Melee 1/2, R1/R2 = Ranged 1/2; healers
+// are per job. The sheet doesn't separate carry-overs from presses, so every entry is a press.
+
+// "Fake Melee Extras": the second caster or phys ranged in a melee slot.
+const FAKE_MELEE_ADDLE: MechRoleMits = {
+  role: 'Melee',
+  label: 'fake melee (double caster)',
+  mitigation: 'Addle'
+};
+const FAKE_MELEE_90S: MechRoleMits = {
+  role: 'Melee',
+  label: 'fake melee (double phys ranged)',
+  mitigation: 'Troubadour/Tactician/Samba'
+};
+
+export const lpduMitPlan: MitPlan = {
+  planName: 'lpdu',
+  label: 'LPDU',
+  url: 'https://tinyurl.com/LPDUmitsheet',
+  phaseNotes: {
+    p1: 'Compile of the LPDU job mitsheets and pastebins, using the LPDU strats for DMU.\nCheck the job pastebins for exact healing; this sheet only shows shields and mitigation/major cooldowns.',
+    p2: 'Check the job pastebins for exact healing; this sheet only shows shields and mitigation/major cooldowns.',
+    p3: 'Paladin is forced Chaos start tank and is the OT from this point of the fight onwards (due to Hallowed Ground timing).\nMT starts on Exdeath and OT on Chaos; from Earthquake on, MT is on Chaos and OT on Exdeath.\nCheck the job pastebins for exact healing; this sheet only shows shields and mitigation/major cooldowns.',
+    p4: 'Check the job pastebins for exact healing; this sheet only shows shields and mitigation/major cooldowns.',
+    p5: 'Check the job pastebins for exact healing; this sheet only shows shields and mitigation/major cooldowns.'
+  },
+  mechs: [
+    // P1: Kefka
+    {
+      phase: 'p1',
+      startTimeMs: 16000,
+      mechanic: 'Revolting Ruin',
+      mits: [
+        { role: 'Tank', party: 1, self: true, mitigation: 'Kitchen Sink' },
+        { role: 'Tank', party: 2, self: true, mitigation: 'Buddy Mit + Provoke' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Benison + Aquaveil (MT)' },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Single-target mits (MT) + Ewer (OT)' },
+        {
+          role: 'Healer',
+          jobs: ['SCH'],
+          mitigation: 'Protraction + Spreadlo (off MT, after 2nd hit) + Excog (OT)'
+        },
+        {
+          role: 'Healer',
+          jobs: ['SGE'],
+          mitigation: 'Haima + Taurochole (MT) + Eprog (between hits)',
+          note: 'Then prep Zoe.'
+        }
+      ]
+    },
+    {
+      phase: 'p1',
+      startTimeMs: 38000,
+      mechanic: 'Mystery Magic',
+      mits: [
+        {
+          role: 'Tank',
+          party: 1,
+          mitigation: 'Party Mit + Reprisal',
+          note: 'Party mit after the buster (Veil in between), Reprisal after the knockback.'
+        },
+        {
+          role: 'Tank',
+          party: 2,
+          mitigation: 'Party Mit',
+          note: 'Party mit after the knockback, Shake/Veil after the stack/spread.'
+        },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Temperance' },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Neutral Sect + Sun Sign' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Expedient' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Panhaima + Physis' },
+        { role: 'Melee', party: 1, mitigation: 'Feint' },
+        { role: 'Ranged', party: 1, mitigation: 'Party Mit' },
+        { role: 'Ranged', party: 2, mitigation: 'Addle' }
+      ]
+    },
+    {
+      phase: 'p1',
+      startTimeMs: 43000,
+      mechanic: 'Wave Cannon',
+      mits: [
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Divine Caress' },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Collective Unconscious' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Zoe Eprog' }
+      ]
+    },
+    {
+      phase: 'p1',
+      startTimeMs: 50000,
+      mechanic: 'Double-Trouble Trap',
+      mits: [
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Plenary Indulgence' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Sacred Soil + Fey Illumination' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Kerachole' }
+      ]
+    },
+    {
+      phase: 'p1',
+      startTimeMs: 63000,
+      mechanic: 'Light of Judgment',
+      mits: [
+        { role: 'Tank', party: 2, mitigation: 'Reprisal' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Asylum' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Sacred Soil' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Kerachole' },
+        { role: 'Melee', party: 2, mitigation: 'Feint' },
+        FAKE_MELEE_ADDLE,
+        FAKE_MELEE_90S
+      ]
+    },
+    {
+      phase: 'p1',
+      startTimeMs: 65000,
+      mechanic: 'Hyperdrive',
+      mits: [
+        { role: 'Tank', party: 1, self: true, mitigation: 'Buddy Mit' },
+        { role: 'Tank', party: 2, self: true, mitigation: 'Kitchen Sink' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Benison (OT)' },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Card mits + Celestial Intersection (OT)' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Aetherpact' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Taurochole (OT)' }
+      ]
+    },
+    {
+      phase: 'p1',
+      startTimeMs: 88000,
+      mechanic: 'Gravitas II (Part I)',
+      mits: [
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Liturgy of the Bell' },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Macrocosmos' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Seraphism + Sacred Soil + Succor' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Philosophia + Eprog + Kerachole' }
+      ]
+    },
+    {
+      phase: 'p1',
+      startTimeMs: 98000,
+      mechanic: 'Revolting Ruin',
+      mits: [
+        { role: 'Tank', party: 1, self: true, mitigation: 'Provoke' },
+        { role: 'Tank', party: 2, self: true, mitigation: 'Invulnerability' },
+        {
+          role: 'Healer',
+          jobs: ['WHM'],
+          mitigation: 'Benediction (OT)',
+          note: 'Only if the OT is DRK.'
+        }
+      ]
+    },
+    {
+      phase: 'p1',
+      startTimeMs: 106000,
+      mechanic: 'Gravitas II (Part II)',
+      mits: [
+        { role: 'Tank', party: 1, mitigation: 'Reprisal (at 14s on the debuff)' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Seraphism + Succor + Seraph' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Philosophia + Eprog + Holos' }
+      ]
+    },
+    {
+      phase: 'p1',
+      startTimeMs: 118000,
+      mechanic: 'Double-Trouble Trap',
+      mits: [
+        {
+          role: 'Tank',
+          party: 1,
+          mitigation: 'Party Mit (at 1s on the debuff)',
+          note: 'Shake/Veil after the knockback.'
+        },
+        { role: 'Tank', party: 2, mitigation: 'Reprisal (on knockback)' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Plenary Indulgence (before knockback)' },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Collective Unconscious' },
+        {
+          role: 'Healer',
+          jobs: ['SCH'],
+          mitigation: 'Succor + Sacred Soil + Seraph (after knockback)'
+        },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Physis + Eprog + Holos + Kerachole' },
+        { role: 'Melee', party: 1, mitigation: 'Feint' },
+        { role: 'Ranged', party: 1, mitigation: 'Party Mit' },
+        { role: 'Ranged', party: 2, mitigation: 'Addle' }
+      ]
+    },
+    {
+      phase: 'p1',
+      startTimeMs: 132000,
+      mechanic: 'Light of Judgment',
+      mits: [
+        { role: 'Tank', party: 2, mitigation: 'Party Mit' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Asylum (off cd)' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Sacred Soil' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Kerachole' }
+      ]
+    },
+    {
+      phase: 'p1',
+      startTimeMs: 136000,
+      mechanic: 'Hyperdrive',
+      mits: [
+        {
+          role: 'Tank',
+          party: 1,
+          jobs: ['PLD', 'DRK', 'GNB'],
+          self: true,
+          mitigation: 'Invulnerability'
+        },
+        { role: 'Tank', party: 1, jobs: ['WAR'], self: true, mitigation: 'Kitchen Sink' },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Neutral Sect (off cd)' }
+      ]
+    },
+    {
+      phase: 'p1',
+      startTimeMs: 168000,
+      mechanic: 'Double-Trouble Trap',
+      mits: [
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Temperance (off cd)' },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Sun Sign' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Expedient + Fey Illumination' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Panhaima + Physis' },
+        { role: 'Melee', party: 2, mitigation: 'Feint' },
+        FAKE_MELEE_ADDLE,
+        FAKE_MELEE_90S
+      ]
+    },
+    {
+      phase: 'p1',
+      startTimeMs: 173000,
+      mechanic: 'Indulgent Will',
+      mits: [
+        { role: 'Tank', party: 1, mitigation: 'Reprisal (on confusion)' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Divine Caress' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog' }
+      ]
+    },
+    {
+      phase: 'p1',
+      startTimeMs: 187000,
+      mechanic: 'Mystery Magic',
+      mits: [
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Sacred Soil' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Kerachole' }
+      ]
+    },
+
+    // P2: Forsaken Kefka
+    {
+      phase: 'p2',
+      startTimeMs: 24000,
+      mechanic: 'Ultimate Embrace',
+      mits: [
+        {
+          role: 'Tank',
+          party: 1,
+          jobs: ['PLD', 'DRK', 'GNB'],
+          self: true,
+          mitigation: 'Kitchen Sink'
+        },
+        {
+          role: 'Tank',
+          party: 1,
+          jobs: ['WAR'],
+          self: true,
+          mitigation: 'Invulnerability',
+          note: 'Take it solo.'
+        },
+        { role: 'Tank', party: 2, self: true, mitigation: 'Kitchen Sink' },
+        { role: 'Tank', party: 2, mitigation: 'Reprisal' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Aquaveil (MT) + Benison (both)' },
+        {
+          role: 'Healer',
+          jobs: ['AST'],
+          mitigation: 'Single-target mits (MT) + Exaltation (OT) + Celestial Intersection (both)'
+        },
+        {
+          role: 'Healer',
+          jobs: ['SCH'],
+          mitigation: 'Spreadlo (off MT) + Sacred Soil (80% cast)'
+        },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Haima (MT) + Taurochole (OT) + Eprog' }
+      ]
+    },
+    {
+      phase: 'p2',
+      startTimeMs: 39000,
+      mechanic: 'Forsaken',
+      mits: [
+        { role: 'Tank', party: 1, mitigation: 'Party Mit + Reprisal' },
+        { role: 'Tank', party: 2, mitigation: 'Party Mit' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Plenary Indulgence + Asylum (off cd)' },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Collective Unconscious' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Spreadlo + Sacred Soil' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Zoe Eprog + Kerachole + Holos + Physis' },
+        { role: 'Melee', party: 1, mitigation: 'Feint' },
+        { role: 'Ranged', party: 1, mitigation: 'Party Mit' },
+        { role: 'Ranged', party: 2, mitigation: 'Addle' }
+      ]
+    },
+    {
+      phase: 'p2',
+      startTimeMs: 53000,
+      mechanic: 'Towers 1 (Stack)',
+      mits: [
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Holos' }
+      ]
+    },
+    {
+      phase: 'p2',
+      startTimeMs: 63000,
+      mechanic: 'Towers 2 (Baits)',
+      mits: [
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Liturgy of the Bell (off cd)' },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Macrocosmos' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Sacred Soil' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Kerachole + Philosophia' }
+      ]
+    },
+    {
+      phase: 'p2',
+      startTimeMs: 74000,
+      mechanic: 'Towers 3 (Stack)',
+      mits: [
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Neutral Sect + Sun Sign' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Sacred Soil + Seraph' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Kerachole + Philosophia' },
+        { role: 'Melee', party: 2, mitigation: 'Feint' },
+        FAKE_MELEE_ADDLE,
+        FAKE_MELEE_90S
+      ]
+    },
+    {
+      phase: 'p2',
+      startTimeMs: 84000,
+      mechanic: 'Towers 4 (Baits)',
+      mits: [
+        { role: 'Tank', party: 2, mitigation: 'Reprisal' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Temperance' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Seraph' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Philosophia' }
+      ]
+    },
+    {
+      phase: 'p2',
+      startTimeMs: 95000,
+      mechanic: 'Towers 5 (Stack)',
+      mits: [
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Divine Caress' },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Collective Unconscious' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Expedient + Fey Illumination' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Panhaima' }
+      ]
+    },
+    {
+      phase: 'p2',
+      startTimeMs: 105000,
+      mechanic: 'Towers 6 (Baits)',
+      mits: [
+        { role: 'Tank', party: 1, mitigation: 'Reprisal' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Plenary Indulgence' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Expedient + Fey Illumination' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Panhaima' }
+      ]
+    },
+    {
+      phase: 'p2',
+      startTimeMs: 115000,
+      mechanic: 'Towers 7 (Stack)',
+      mits: [
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Sacred Soil' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Kerachole' }
+      ]
+    },
+    {
+      phase: 'p2',
+      startTimeMs: 126000,
+      mechanic: 'Towers 8 (Baits)',
+      mits: [
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Sacred Soil' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Kerachole' }
+      ]
+    },
+    {
+      phase: 'p2',
+      startTimeMs: 146000,
+      mechanic: 'Light of Judgment',
+      mits: [
+        { role: 'Tank', party: 1, mitigation: 'Party Mit' },
+        { role: 'Tank', party: 2, mitigation: 'Party Mit + Reprisal' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Asylum (off cd)' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Spreadlo + Sacred Soil' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Zoe Eprog + Kerachole' },
+        { role: 'Melee', party: 1, mitigation: 'Feint' },
+        { role: 'Ranged', party: 1, mitigation: 'Party Mit' },
+        { role: 'Ranged', party: 2, mitigation: 'Addle' }
+      ]
+    },
+    {
+      phase: 'p2',
+      startTimeMs: 174000,
+      mechanic: 'Wings of Destruction',
+      mits: [
+        { role: 'Tank', party: 1, self: true, mitigation: 'Rampart + 120s + 90s' },
+        { role: 'Tank', party: 1, mitigation: 'Reprisal' },
+        { role: 'Tank', party: 2, self: true, mitigation: 'Rampart + 120s + 90s' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Excog (MT)' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Haima + Taurochole (MT)' },
+        { role: 'Melee', party: 2, mitigation: 'Feint' },
+        FAKE_MELEE_ADDLE,
+        FAKE_MELEE_90S
+      ],
+      noteRoles: ['Tank'],
+      noteSelf: true,
+      note: 'Wall priority: PLD > WAR > DRK > GNB. Kitchen sink without shorts.'
+    },
+    {
+      phase: 'p2',
+      startTimeMs: 181000,
+      mechanic: 'Ultimate Embrace',
+      mits: [
+        { role: 'Tank', party: 1, self: true, mitigation: 'Short Mit' },
+        { role: 'Tank', party: 2, self: true, mitigation: 'Short Mit' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Aquaveil (MT) + Benison (both)' },
+        {
+          role: 'Healer',
+          jobs: ['AST'],
+          mitigation: 'Single-target mits (MT) + Exaltation (OT) + Celestial Intersection (both)'
+        },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Adlo (both) + Sacred Soil' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Ediag (both) + Kerachole' }
+      ]
+    },
+
+    // P3: Chaos & Exdeath
+    {
+      phase: 'p3',
+      startTimeMs: 68000,
+      mechanic: 'Bowels of Agony (Chaos)',
+      mits: [
+        {
+          role: 'Tank',
+          party: 1,
+          mitigation: 'Reprisal',
+          note: 'On autos as soon as the boss is targetable.'
+        },
+        {
+          role: 'Healer',
+          jobs: ['WHM'],
+          mitigation: 'Regen (both tanks) + Asylum (on spawn)'
+        },
+        {
+          role: 'Healer',
+          jobs: ['SGE'],
+          mitigation: 'Ediag (both tanks) + Eprog + Kerachole + Physis'
+        },
+        { role: 'Melee', party: 1, mitigation: 'Feint (Chaos autos)' }
+      ]
+    },
+    {
+      phase: 'p3',
+      startTimeMs: 84000,
+      mechanic: 'Stray Flames/Tsunami',
+      mits: [
+        { role: 'Tank', party: 2, mitigation: 'Party Mit' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Plenary Indulgence' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Spreadlo' },
+        {
+          role: 'Healer',
+          jobs: ['SGE'],
+          mitigation: 'Philosophia + Physis + Eprog + Holos',
+          note: 'Prep Zoe.'
+        },
+        { role: 'Melee', party: 2, mitigation: 'Feint (Chaos autos)' }
+      ]
+    },
+    {
+      phase: 'p3',
+      startTimeMs: 97000,
+      mechanic: 'Thunder III (1st Set)',
+      mits: [
+        {
+          role: 'Tank',
+          party: 1,
+          label: 'first hit',
+          self: true,
+          mitigation: 'Short Mit + Rampart + 90s'
+        },
+        {
+          role: 'Tank',
+          party: 2,
+          label: 'second hit',
+          self: true,
+          mitigation: 'Short Mit + Rampart + 90s'
+        },
+        { role: 'Tank', party: 2, mitigation: 'Reprisal' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Aquaveil (MT) + Benison (both)' },
+        {
+          role: 'Healer',
+          jobs: ['AST'],
+          mitigation: 'Single-target mits (MT) + Exaltation (OT) + Celestial Intersection (both)'
+        },
+        {
+          role: 'Healer',
+          jobs: ['SCH'],
+          mitigation: 'Sacred Soil + Expedient',
+          note: 'Soil is buster-free here!'
+        },
+        {
+          role: 'Healer',
+          jobs: ['SGE'],
+          mitigation: 'Pepsis + Zoe Eprog + Kerachole (after 2nd buster)'
+        },
+        { role: 'Ranged', party: 2, mitigation: 'Addle' }
+      ]
+    },
+    {
+      phase: 'p3',
+      startTimeMs: 115000,
+      mechanic: 'Stray Flames/Tsunami',
+      mits: [
+        {
+          role: 'Tank',
+          party: 1,
+          mitigation: 'Reprisal',
+          note: 'During the lat/long cast (make sure it hits Chaos).'
+        },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Temperance + Divine Caress' },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Neutral Sect + Sun Sign' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Expedient' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Zoe Eprog + Kerachole' },
+        FAKE_MELEE_ADDLE,
+        FAKE_MELEE_90S
+      ]
+    },
+    {
+      phase: 'p3',
+      startTimeMs: 125000,
+      mechanic: 'Ultima Blaster',
+      mits: [
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Liturgy of the Bell' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Sacred Soil + Seraphism' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Pneuma + Physis + Panhaima + Eprog' }
+      ]
+    },
+    {
+      phase: 'p3',
+      startTimeMs: 132000,
+      mechanic: 'Vacuum Wave',
+      mits: [
+        { role: 'Tank', mitigation: 'LB3', note: 'Priority: WAR > DRK > PLD > GNB.' },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Collective Unconscious' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Sacred Soil + Seraphism' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Kerachole' },
+        { role: 'Ranged', party: 1, mitigation: 'Party Mit' }
+      ]
+    },
+    {
+      phase: 'p3',
+      startTimeMs: 136000,
+      mechanic: 'Cyclone',
+      mits: [
+        { role: 'Tank', party: 1, mitigation: 'Party Mit' },
+        { role: 'Tank', party: 1, self: true, mitigation: 'Short Mit' },
+        { role: 'Tank', party: 2, self: true, mitigation: 'Short Mit' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Seraphism + Seraph' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Kerachole' }
+      ]
+    },
+    {
+      phase: 'p3',
+      startTimeMs: 154000,
+      mechanic: 'Thunder III (2nd Set)',
+      mits: [
+        { role: 'Tank', party: 1, self: true, mitigation: 'Invulnerability' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Asylum' }
+      ]
+    },
+    {
+      phase: 'p3',
+      startTimeMs: 163000,
+      mechanic: 'The Decisive Battle',
+      mits: [
+        {
+          role: 'Tank',
+          party: 1,
+          self: true,
+          mitigation: 'Provoke (Chaos)',
+          note: "Stand under. Make sure both bosses can't move before moving under."
+        },
+        {
+          role: 'Tank',
+          party: 2,
+          self: true,
+          mitigation: 'Provoke (Exdeath)',
+          note: "Stand under. Make sure both bosses can't move before moving under."
+        }
+      ]
+    },
+    {
+      phase: 'p3',
+      startTimeMs: 172000,
+      mechanic: 'Thunder III (3rd Set)',
+      mits: [
+        {
+          role: 'Tank',
+          party: 1,
+          label: 'second hit',
+          self: true,
+          mitigation: '120s (late) + Short Mit',
+          note: 'Not Corundum.'
+        },
+        {
+          role: 'Tank',
+          party: 2,
+          label: 'first hit',
+          self: true,
+          mitigation: '120s (late)',
+          note: 'Not Corundum.'
+        },
+        { role: 'Tank', party: 2, mitigation: 'Reprisal' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Aquaveil (MT) + Benison (both)' },
+        {
+          role: 'Healer',
+          jobs: ['AST'],
+          mitigation: 'Single-target mits (MT) + Exaltation (OT) + Celestial Intersection (both)'
+        },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Spreadlo' },
+        {
+          role: 'Healer',
+          jobs: ['SGE'],
+          mitigation: 'Zoe Eprog + Haima (MT) + Taurochole (OT) + Ediag (both, after hits)'
+        }
+      ]
+    },
+    {
+      phase: 'p3',
+      startTimeMs: 179000,
+      mechanic: 'Earthquake',
+      mits: [
+        {
+          role: 'Tank',
+          party: 1,
+          self: true,
+          mitigation: 'Short Mit (on 1 HP)',
+          note: 'WAR: Equilibrium after HP drops to 1.'
+        },
+        {
+          role: 'Tank',
+          party: 2,
+          self: true,
+          mitigation: 'Short Mit (on 1 HP)',
+          note: 'WAR: Equilibrium after HP drops to 1.'
+        },
+        {
+          role: 'Healer',
+          jobs: ['WHM'],
+          mitigation: 'Plenary Indulgence + Benediction (healer accretion)',
+          note: 'Check the WHM pastebin (line 107).'
+        },
+        {
+          role: 'Healer',
+          jobs: ['AST'],
+          mitigation: 'Macrocosmos',
+          note: 'Check the AST pastebin.'
+        },
+        {
+          role: 'Healer',
+          jobs: ['SGE'],
+          mitigation: 'Physis + Krasis + Druochole (healer)',
+          note: 'Eprog after the first pop. Pepsis + Prognosis + Ixochole after the vuln for safety.'
+        },
+        { role: 'Melee', party: 1, mitigation: 'Feint (Chaos autos)' }
+      ]
+    },
+    {
+      phase: 'p3',
+      startTimeMs: 195000,
+      mechanic: 'Stack/Roles',
+      mits: [
+        { role: 'Tank', party: 1, mitigation: 'Reprisal (early)' },
+        { role: 'Tank', party: 2, mitigation: 'Party Mit' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Asylum (off cd)' },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Collective Unconscious' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Sacred Soil' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Kerachole' },
+        FAKE_MELEE_ADDLE,
+        FAKE_MELEE_90S
+      ]
+    },
+    {
+      phase: 'p3',
+      startTimeMs: 213000,
+      mechanic: 'Thunder III (4th Set)',
+      mits: [
+        {
+          role: 'Tank',
+          party: 2,
+          self: true,
+          mitigation: 'Invulnerability',
+          note: 'Can be used on either the 1st beams or here if stacking.'
+        }
+      ]
+    },
+    {
+      phase: 'p3',
+      startTimeMs: 225000,
+      mechanic: 'Stack/Roles',
+      mits: [
+        { role: 'Tank', party: 1, mitigation: 'Party Mit' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Temperance + Divine Caress' },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Neutral Sect + Sun Sign' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Sacred Soil' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Kerachole + Holos (late)' }
+      ]
+    },
+    {
+      phase: 'p3',
+      startTimeMs: 234000,
+      mechanic: '2nd Beams',
+      mits: [
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor(s) + Expedient' },
+        {
+          role: 'Healer',
+          jobs: ['SGE'],
+          mitigation: 'Eprog (each set) + Physis + Panhaima (as last beam hits)'
+        },
+        { role: 'Melee', party: 2, mitigation: 'Feint (Chaos autos)' }
+      ]
+    },
+    {
+      phase: 'p3',
+      startTimeMs: 255000,
+      mechanic: 'Sides + Thunder III (5th Set)',
+      mits: [
+        {
+          role: 'Tank',
+          party: 1,
+          label: 'second hit',
+          self: true,
+          mitigation: 'Short Mit + Rampart + 90s'
+        },
+        {
+          role: 'Tank',
+          party: 2,
+          label: 'first hit',
+          self: true,
+          mitigation: 'Short Mit + Rampart + 90s'
+        },
+        { role: 'Tank', party: 2, mitigation: 'Reprisal' },
+        {
+          role: 'Healer',
+          jobs: ['WHM'],
+          mitigation: 'Plenary Indulgence + Aquaveil (MT) + Benison (both)'
+        },
+        {
+          role: 'Healer',
+          jobs: ['AST'],
+          mitigation:
+            'Single-target mits (MT) + Exaltation (OT) + Celestial Intersection (both) + Collective Unconscious'
+        },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Sacred Soil' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Panhaima + Philosophia + Physis + Eprog' },
+        { role: 'Ranged', party: 2, mitigation: 'Addle' }
+      ]
+    },
+    {
+      phase: 'p3',
+      startTimeMs: 268000,
+      mechanic: '3rd Beams',
+      mits: [
+        { role: 'Tank', party: 1, self: true, mitigation: 'Short Mit (on cd from here)' },
+        { role: 'Tank', party: 2, self: true, mitigation: 'Short Mit (on cd from here)' }
+      ]
+    },
+    {
+      phase: 'p3',
+      startTimeMs: 294000,
+      mechanic: 'Lat/Long + Stack/Roles 3',
+      mits: [
+        { role: 'Tank', party: 2, mitigation: 'Party Mit' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Asylum (off cd)' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Sacred Soil' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Pneuma (white hole) + Eprog + Kerachole' },
+        { role: 'Melee', party: 1, mitigation: 'Feint (Chaos autos)' },
+        { role: 'Ranged', party: 1, mitigation: 'Party Mit' }
+      ],
+      noteRoles: ['Tank'],
+      note: 'MT: face the boss NW (Kefka-relative) right after the 3rd beam.'
+    },
+    {
+      phase: 'p3',
+      startTimeMs: 309000,
+      mechanic: '4th Beams',
+      mits: [
+        { role: 'Tank', party: 1, self: true, mitigation: '120s (after last beam)' },
+        { role: 'Tank', party: 2, self: true, mitigation: '120s (after last beam)' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Babysit the beam tank' },
+        {
+          role: 'Healer',
+          jobs: ['SGE'],
+          mitigation: 'Haima (beam tank)',
+          note: 'If not, Haima the Chaos tank.'
+        }
+      ]
+    },
+    {
+      phase: 'p3',
+      startTimeMs: 323000,
+      mechanic: 'Stomp-a-Mole',
+      mits: [
+        { role: 'Tank', party: 1, mitigation: 'Reprisal + Party Mit' },
+        { role: 'Tank', party: 2, mitigation: 'Reprisal' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Plenary Indulgence' },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Collective Unconscious' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Seraphism + Sacred Soil' },
+        {
+          role: 'Healer',
+          jobs: ['SGE'],
+          mitigation: 'Eprog + Kerachole + Physis',
+          note: 'Reshield as necessary between hits.'
+        },
+        { role: 'Melee', party: 2, mitigation: 'Feint' },
+        FAKE_MELEE_ADDLE,
+        FAKE_MELEE_90S
+      ]
+    },
+
+    // P4: Kefka Says
+    {
+      phase: 'p4',
+      startTimeMs: 29000,
+      mechanic: 'Grand Cross',
+      mits: [
+        {
+          role: 'Tank',
+          party: 1,
+          self: true,
+          mitigation: '90s + Short Mit',
+          note: 'Shorts for autos.'
+        },
+        {
+          role: 'Tank',
+          party: 2,
+          self: true,
+          mitigation: '90s',
+          note: 'In case you forgot your tank stance.'
+        },
+        {
+          role: 'Healer',
+          jobs: ['WHM'],
+          mitigation:
+            'Benison + Aquaveil (MT) + Asylum (off cd) + Temperance (80% Grand Cross castbar)'
+        },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Neutral Sect' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Spreadlo + Sacred Soil' },
+        {
+          role: 'Healer',
+          jobs: ['SGE'],
+          mitigation:
+            'Kerachole (end of Kefka Says castbar) + Eprog + Holos (80% Grand Cross castbar)'
+        },
+        { role: 'Melee', party: 1, mitigation: 'Feint (autos)' }
+      ]
+    },
+    {
+      phase: 'p4',
+      startTimeMs: 35000,
+      mechanic: 'Inferno/Tsunami',
+      mits: [
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Temperance + Divine Caress' },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Sun Sign' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Sacred Soil' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Holos' }
+      ]
+    },
+    {
+      phase: 'p4',
+      startTimeMs: 44000,
+      mechanic: 'Grand Cross',
+      mits: [
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Temperance' },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Sun Sign' },
+        {
+          role: 'Healer',
+          jobs: ['SCH'],
+          mitigation: 'Succor + Expedient + Sacred Soil + Fey Illumination'
+        },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Holos + Panhaima' }
+      ]
+    },
+    {
+      phase: 'p4',
+      startTimeMs: 49000,
+      mechanic: 'Inferno/Tsunami',
+      mits: [
+        { role: 'Tank', party: 2, jobs: ['DRK', 'GNB'], mitigation: 'Party Mit' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Expedient + Fey Illumination' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Panhaima + Kerachole' },
+        { role: 'Ranged', party: 1, mitigation: 'Party Mit' }
+      ]
+    },
+    {
+      phase: 'p4',
+      startTimeMs: 59000,
+      mechanic: 'Grand Cross',
+      mits: [
+        { role: 'Tank', party: 1, mitigation: 'Buddy Mit (R1)' },
+        { role: 'Tank', party: 2, jobs: ['PLD', 'WAR'], mitigation: 'Party Mit' },
+        { role: 'Tank', party: 2, mitigation: 'Buddy Mit (R2)' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Plenary Indulgence' },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Collective Unconscious' },
+        {
+          role: 'Healer',
+          jobs: ['SCH'],
+          mitigation: 'Succor + Expedient + Fey Illumination + Seraph'
+        },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Panhaima + Kerachole' }
+      ]
+    },
+    {
+      phase: 'p4',
+      startTimeMs: 71000,
+      mechanic: 'Flood of Naught',
+      mits: [
+        {
+          role: 'Healer',
+          jobs: ['WHM'],
+          mitigation: 'Liturgy of the Bell',
+          note: 'All stacks after the hit.'
+        },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Macrocosmos' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Sacred Soil + Seraph' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Physis' },
+        FAKE_MELEE_90S
+      ]
+    },
+    {
+      phase: 'p4',
+      startTimeMs: 81000,
+      mechanic: 'Death Bolt/Wave',
+      mits: [
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Sacred Soil' },
+        {
+          role: 'Healer',
+          jobs: ['SGE'],
+          mitigation: 'Pneuma + Zoe Eprog (after yellow debuff)'
+        }
+      ]
+    },
+    {
+      phase: 'p4',
+      startTimeMs: 99000,
+      mechanic: 'Ultima Upsurge',
+      mits: [
+        { role: 'Tank', party: 1, mitigation: 'Reprisal' },
+        { role: 'Tank', party: 1, jobs: ['DRK', 'GNB'], mitigation: 'Party Mit' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Sacred Soil' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Philosophia + Eprog + Kerachole' },
+        { role: 'Melee', party: 2, mitigation: 'Feint' },
+        { role: 'Ranged', party: 2, mitigation: 'Addle' }
+      ]
+    },
+    {
+      phase: 'p4',
+      startTimeMs: 106000,
+      mechanic: 'Death Bolt/Wave',
+      mits: [
+        { role: 'Tank', party: 1, jobs: ['WAR'], mitigation: 'Party Mit' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Philosophia + Eprog + Kerachole' }
+      ]
+    },
+    {
+      phase: 'p4',
+      startTimeMs: 138000,
+      mechanic: 'Ultima Upsurge',
+      mits: [
+        { role: 'Tank', party: 2, mitigation: 'Reprisal' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Sacred Soil' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Kerachole' }
+      ]
+    },
+
+    // P5: Ultima Kefka
+    {
+      phase: 'p5',
+      startTimeMs: 49000,
+      mechanic: 'Ultima Repeater',
+      mits: [
+        { role: 'Tank', party: 1, mitigation: 'Reprisal' },
+        {
+          role: 'Tank',
+          party: 2,
+          mitigation: 'Party Mit (at "Smile" quote)',
+          note: 'Start with aggro! Shake/Veil can be used earlier.'
+        },
+        {
+          role: 'Healer',
+          jobs: ['WHM'],
+          mitigation: 'Asylum + Temperance + Plenary Indulgence'
+        },
+        {
+          role: 'Healer',
+          jobs: ['AST'],
+          mitigation: 'Neutral Sect + Collective Unconscious'
+        },
+        {
+          role: 'Healer',
+          jobs: ['SCH'],
+          mitigation: 'Spreadlo + Sacred Soil + Fey Illumination'
+        },
+        {
+          role: 'Healer',
+          jobs: ['SGE'],
+          mitigation: 'Eprog + Kerachole + Physis + Haima (MT)'
+        },
+        { role: 'Melee', party: 1, mitigation: 'Feint' },
+        { role: 'Ranged', party: 1, mitigation: 'Party Mit (at "Smile" quote)' },
+        FAKE_MELEE_ADDLE
+      ]
+    },
+    {
+      phase: 'p5',
+      startTimeMs: 54000,
+      mechanic: 'Fell Forces (3x)',
+      mits: [
+        { role: 'Tank', party: 1, self: true, mitigation: '120s + Short Mit' },
+        { role: 'Tank', party: 2, self: true, mitigation: 'Rampart + 90s + Short Mit' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Benison (MT) + Aquaveil (OT)' },
+        {
+          role: 'Healer',
+          jobs: ['AST'],
+          mitigation: 'Celestial Intersection (MT) + Exaltation (OT)'
+        },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor(s) + Expedient (after 1st hit)' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog(s) + Holos (after 1st hit)' }
+      ]
+    },
+    {
+      phase: 'p5',
+      startTimeMs: 66000,
+      mechanic: 'Chaotic Flood',
+      mits: [
+        { role: 'Tank', party: 2, mitigation: 'Reprisal' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Divine Caress' },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Sun Sign' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Expedient' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Holos' }
+      ]
+    },
+    {
+      phase: 'p5',
+      startTimeMs: 78000,
+      mechanic: 'Maddening Orchestra',
+      mits: [
+        { role: 'Tank', party: 1, self: true, mitigation: 'Rampart + 90s + Short Mit' },
+        { role: 'Tank', party: 1, label: 'flare', self: true, mitigation: 'Invulnerability' },
+        { role: 'Tank', party: 2, label: 'first 2 hits', self: true, mitigation: '120s' },
+        { role: 'Tank', party: 2, label: 'flare', self: true, mitigation: 'Short Mit' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Benison (MT)' },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Celestial Intersection (OT)' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Sacred Soil' },
+        {
+          role: 'Healer',
+          jobs: ['SGE'],
+          mitigation: 'Pneuma + Zoe Eprog + Panhaima + Kerachole'
+        },
+        FAKE_MELEE_90S
+      ]
+    },
+    {
+      phase: 'p5',
+      startTimeMs: 91000,
+      mechanic: 'Fell Forces (2x)',
+      mits: [
+        { role: 'Tank', party: 1, self: true, mitigation: 'Invulnerability' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor(s) + Seraph (on 2nd auto hit)' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog(s)' }
+      ]
+    },
+    {
+      phase: 'p5',
+      startTimeMs: 109000,
+      mechanic: 'Celestriad',
+      mits: [
+        { role: 'Tank', party: 1, mitigation: 'Reprisal' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Plenary Indulgence' },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Collective Unconscious' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor(s) + Seraph' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog(s) + Physis (on 1st tower spawn)' }
+      ]
+    },
+    {
+      phase: 'p5',
+      startTimeMs: 131000,
+      mechanic: 'Ultima Repeater',
+      mits: [
+        { role: 'Tank', party: 1, mitigation: 'Party Mit' },
+        { role: 'Tank', party: 2, mitigation: 'Reprisal + Party Mit' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor(s) + Sacred Soil' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog(s) + Kerachole' },
+        { role: 'Melee', party: 1, label: 'if double caster', mitigation: 'Feint' },
+        { role: 'Melee', party: 2, mitigation: 'Feint' },
+        { role: 'Ranged', party: 1, mitigation: 'Party Mit' },
+        { role: 'Ranged', party: 2, mitigation: 'Addle' }
+      ]
+    },
+    {
+      phase: 'p5',
+      startTimeMs: 136000,
+      mechanic: 'Fell Forces (2x)',
+      mits: [
+        { role: 'Tank', party: 1, self: true, mitigation: 'Short Mit' },
+        { role: 'Tank', party: 2, self: true, mitigation: 'Short Mit' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Benison (MT) + Aquaveil (OT)' },
+        {
+          role: 'Healer',
+          jobs: ['AST'],
+          mitigation: 'Celestial Intersection (MT) + Exaltation (OT)'
+        },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor(s) + Sacred Soil' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog(s) + Kerachole' }
+      ]
+    },
+    {
+      phase: 'p5',
+      startTimeMs: 162000,
+      mechanic: 'Stray Entropy',
+      mits: [
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog' }
+      ]
+    },
+    {
+      phase: 'p5',
+      startTimeMs: 171000,
+      mechanic: 'Maddening Orchestra',
+      mits: [
+        { role: 'Tank', party: 1, self: true, mitigation: 'Rampart + Short Mit' },
+        { role: 'Tank', party: 1, label: 'flare', self: true, mitigation: '120s' },
+        { role: 'Tank', party: 2, self: true, mitigation: 'Rampart + Short Mit' },
+        { role: 'Tank', party: 2, label: 'flare', self: true, mitigation: 'Invulnerability' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Benison (MT)' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor(s) + Sacred Soil (early)' },
+        {
+          role: 'Healer',
+          jobs: ['SGE'],
+          mitigation: 'Eprog(s) + Kerachole (early) + Haima (non-invuln tank)'
+        }
+      ]
+    },
+    {
+      phase: 'p5',
+      startTimeMs: 183000,
+      mechanic: 'Fell Forces (3x)',
+      mits: [
+        {
+          role: 'Tank',
+          party: 1,
+          self: true,
+          mitigation: '90s (3rd auto)',
+          note: 'Share with the OT.'
+        },
+        { role: 'Tank', party: 2, self: true, mitigation: 'Invulnerability + 90s (3rd auto)' },
+        {
+          role: 'Healer',
+          jobs: ['WHM'],
+          mitigation: 'Benediction (invulning WAR/DRK, after 2nd auto)',
+          note: 'Not negotiable, just do it.'
+        },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor(s)' },
+        {
+          role: 'Healer',
+          jobs: ['SGE'],
+          mitigation: 'Eprog(s) + Krasis + Taurochole (invuln tank, after 2nd auto)'
+        }
+      ]
+    },
+    {
+      phase: 'p5',
+      startTimeMs: 200000,
+      mechanic: 'Forsaken',
+      mits: [
+        { role: 'Tank', party: 1, mitigation: 'Reprisal' },
+        {
+          role: 'Healer',
+          jobs: ['WHM'],
+          mitigation: 'Asylum + Plenary Indulgence + Liturgy of the Bell'
+        },
+        {
+          role: 'Healer',
+          jobs: ['AST'],
+          mitigation: 'Neutral Sect + Collective Unconscious'
+        },
+        {
+          role: 'Healer',
+          jobs: ['SCH'],
+          mitigation:
+            'Fey Illumination + Spreadlo + Expedient (80% castbar) + Sacred Soil (80% castbar)'
+        },
+        {
+          role: 'Healer',
+          jobs: ['SGE'],
+          mitigation: 'Zoe Eprog + Holos + Kerachole (80% castbar)'
+        },
+        { role: 'Melee', party: 1, mitigation: 'Feint' },
+        FAKE_MELEE_ADDLE
+      ]
+    },
+    {
+      phase: 'p5',
+      startTimeMs: 205000,
+      mechanic: 'Forsaken Bonds',
+      mits: [
+        {
+          role: 'Healer',
+          jobs: ['SCH'],
+          mitigation: 'Fey Illumination + Succor + Expedient + Sacred Soil'
+        },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Holos + Kerachole' }
+      ]
+    },
+    {
+      phase: 'p5',
+      startTimeMs: 208000,
+      mechanic: 'Forsaken',
+      mits: [
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Temperance' },
+        { role: 'Healer', jobs: ['AST'], mitigation: 'Sun Sign + Macrocosmos' },
+        {
+          role: 'Healer',
+          jobs: ['SCH'],
+          mitigation: 'Fey Illumination + Succor + Expedient + Sacred Soil + Seraphism'
+        },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Holos + Kerachole + Philosophia' }
+      ]
+    },
+    {
+      phase: 'p5',
+      startTimeMs: 214000,
+      mechanic: 'Forsaken Bonds',
+      mits: [
+        {
+          role: 'Healer',
+          jobs: ['SCH'],
+          mitigation: 'Succor + Expedient + Sacred Soil + Seraphism'
+        },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Holos + Philosophia + Panhaima' },
+        FAKE_MELEE_ADDLE,
+        FAKE_MELEE_90S
+      ]
+    },
+    {
+      phase: 'p5',
+      startTimeMs: 217000,
+      mechanic: 'Forsaken',
+      mits: [
+        { role: 'Tank', party: 1, mitigation: 'Party Mit' },
+        { role: 'Tank', party: 2, mitigation: 'Reprisal + Party Mit' },
+        { role: 'Healer', jobs: ['WHM'], mitigation: 'Divine Caress' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Expedient + Seraphism' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Holos + Philosophia + Panhaima' },
+        { role: 'Melee', party: 1, label: 'if double caster', mitigation: 'Feint' },
+        { role: 'Melee', party: 2, mitigation: 'Feint' },
+        { role: 'Ranged', party: 1, mitigation: 'Party Mit' },
+        { role: 'Ranged', party: 2, mitigation: 'Addle' }
+      ]
+    },
+    {
+      phase: 'p5',
+      startTimeMs: 222000,
+      mechanic: 'Forsaken Bonds',
+      mits: [
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Seraphism + Seraph (on cd)' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Philosophia + Panhaima + Physis' }
+      ]
+    },
+    {
+      phase: 'p5',
+      startTimeMs: 225000,
+      mechanic: 'Forsaken',
+      mits: [
+        { role: 'Tank', party: 1, mitigation: 'Buddy Mit (R1)' },
+        { role: 'Tank', party: 2, mitigation: 'Buddy Mit (R2)' },
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Seraph' },
+        {
+          role: 'Healer',
+          jobs: ['SGE'],
+          mitigation: 'Eprog + Panhaima + Physis + Pneuma (after)'
+        }
+      ]
+    },
+    {
+      phase: 'p5',
+      startTimeMs: 230000,
+      mechanic: 'Forsaken Bonds',
+      mits: [
+        { role: 'Healer', jobs: ['SCH'], mitigation: 'Succor + Sacred Soil + Seraph' },
+        { role: 'Healer', jobs: ['SGE'], mitigation: 'Eprog + Kerachole + Physis' }
+      ]
+    },
+    {
+      phase: 'p5',
+      startTimeMs: 264000,
+      mechanic: 'Forsaken Null',
+      mits: [],
+      note: 'Enrage!'
     }
   ]
 };

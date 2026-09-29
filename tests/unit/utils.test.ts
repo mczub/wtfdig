@@ -79,6 +79,31 @@ describe('resolveStratItem', () => {
     const item = { dn: 'a', em: 'b' };
     expect(resolveStratItem(item, 'idyllic', { idyllic: '' })).toEqual(item);
   });
+
+  test('non-toggle tag falls back to the strat name for plain records', () => {
+    // `p1` has no toggle, so the tag resolves against the main strat name.
+    const item = { kefkabin: 'na', eupf: 'eu', lpdu: 'lp' };
+    expect(resolveStratItem(item, 'p1', {}, 'eupf')).toBe('eu');
+    expect(resolveStratItem(item, 'p1', {}, 'kefkabin')).toBe('na');
+  });
+
+  test('ImageUrls: no matching alt (or no alt) → returns default', () => {
+    expect(resolveStratItem({ default: 'base.webp' }, 'p1', {}, 'eupf')).toBe('base.webp');
+    expect(
+      resolveStratItem({ default: 'base.webp', alt: { lpdu: 'lp.webp' } }, 'p1', {}, 'kefkabin')
+    ).toBe('base.webp');
+  });
+
+  test('ImageUrls: tag falls back to strat name and matches an alt', () => {
+    const item = { default: 'base.webp', alt: { eupf: 'eu.webp', lpdu: 'lp.webp' } };
+    expect(resolveStratItem(item, 'p1', {}, 'eupf')).toBe('eu.webp');
+    expect(resolveStratItem(item, 'p1', {}, 'lpdu')).toBe('lp.webp');
+  });
+
+  test('ImageUrls: a real toggle value is used ahead of the strat name', () => {
+    const item = { default: 'base.webp', alt: { stfr: 'stfr.webp' } };
+    expect(resolveStratItem(item, 'arrows', { arrows: 'stfr' }, 'eupf')).toBe('stfr.webp');
+  });
 });
 
 describe('resolveMechs', () => {
