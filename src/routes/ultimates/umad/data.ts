@@ -2839,7 +2839,7 @@ export const dancingMadFightConfig: FightConfig = {
     kefkabin: {
       label: 'Kefkabin',
       mitPlan: 'ikuya',
-      defaults: { arrows: 'pinoy', forsaken: 'kr', bowels: 'lb', blackhole: 'dsa' },
+      defaults: { arrows: 'mgr', forsaken: 'kr', bowels: 'lb', blackhole: 'dsa' },
       badges: [
         {
           text: 'NA',
