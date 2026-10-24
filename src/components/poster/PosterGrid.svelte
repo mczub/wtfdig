@@ -42,41 +42,66 @@
   let bgColor = $derived(layout.bgColor ?? '#1a1a2e');
   let width = $derived(layout.width ?? 1920);
   let height = $derived(layout.height ?? 1080);
+  // Resolve against the main page so relative paths still work when this renders
+  // inside the PIP overlay window (whose document is about:blank).
+  let imageSrc = $derived(
+    layout.imageUrl && typeof window !== 'undefined'
+      ? new URL(layout.imageUrl, window.location.href).href
+      : layout.imageUrl
+  );
 </script>
 
-<div
-  bind:this={posterRef}
-  class="poster-grid select-none"
-  style:width={`${width}px`}
-  style:height={`${height}px`}
-  style:background-color={bgColor}
-  style:grid-template-columns={`repeat(${cols}, 1fr)`}
-  style:grid-template-rows={`repeat(${rows}, 1fr)`}
->
-  <!-- Title bar -->
-  {#if layout.title}
-    <div class="poster-title" style:grid-column={`1 / ${cols + 1}`}>
-      <span
-        class="text-2xl font-bold text-white"
-        style="font-family: 'Roboto Condensed', sans-serif">{layout.title}</span
-      >
-      {#if layout.subtitle}
-        <span class="text-lg text-white/60 ml-4" style="font-family: 'Roboto Condensed', sans-serif"
-          >{layout.subtitle}</span
+{#if imageSrc}
+  <div
+    bind:this={posterRef}
+    class="select-none"
+    style:width={`${width}px`}
+    style:height={`${height}px`}
+    style:background-color={bgColor}
+  >
+    <img
+      src={imageSrc}
+      alt={layout.title ?? 'Cheatsheet'}
+      class="block w-full h-full object-contain"
+      draggable="false"
+    />
+  </div>
+{:else}
+  <div
+    bind:this={posterRef}
+    class="poster-grid select-none"
+    style:width={`${width}px`}
+    style:height={`${height}px`}
+    style:background-color={bgColor}
+    style:grid-template-columns={`repeat(${cols}, 1fr)`}
+    style:grid-template-rows={`repeat(${rows}, 1fr)`}
+  >
+    <!-- Title bar -->
+    {#if layout.title}
+      <div class="poster-title" style:grid-column={`1 / ${cols + 1}`}>
+        <span
+          class="text-2xl font-bold text-white"
+          style="font-family: 'Roboto Condensed', sans-serif">{layout.title}</span
         >
-      {/if}
-      {#if titleActions}
-        <div class="ml-auto flex items-center gap-2">
-          {@render titleActions()}
-        </div>
-      {/if}
-    </div>
-  {/if}
+        {#if layout.subtitle}
+          <span
+            class="text-lg text-white/60 ml-4"
+            style="font-family: 'Roboto Condensed', sans-serif">{layout.subtitle}</span
+          >
+        {/if}
+        {#if titleActions}
+          <div class="ml-auto flex items-center gap-2">
+            {@render titleActions()}
+          </div>
+        {/if}
+      </div>
+    {/if}
 
-  {#each visibleSections as section}
-    <PosterSection {section} {highlightJob} {jobLabels} {stratState} {stratKey} />
-  {/each}
-</div>
+    {#each visibleSections as section}
+      <PosterSection {section} {highlightJob} {jobLabels} {stratState} {stratKey} />
+    {/each}
+  </div>
+{/if}
 
 <style>
   .poster-grid {

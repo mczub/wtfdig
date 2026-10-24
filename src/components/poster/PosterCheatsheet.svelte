@@ -201,6 +201,16 @@
     return fontEmbedCssCache;
   }
 
+  // Image posters download the original file instead of re-rendering it.
+  function downloadPosterImage() {
+    const url = layout.imageUrl!;
+    const ext = url.split('?')[0].split('.').pop() ?? 'png';
+    const link = document.createElement('a');
+    link.download = `${config.fightKey}-cheatsheet.${ext}`;
+    link.href = url;
+    link.click();
+  }
+
   async function exportPoster(format: 'png' | 'jpg' | 'webp') {
     showExportMenu = false;
     if (!posterRef || exporting) return;
@@ -263,8 +273,8 @@
     <header class="flex justify-between items-center shrink-0">
       <div class="text-lg font-bold">{config.cheatsheetTitle} - Poster</div>
       <div class="flex items-center gap-4">
-        <!-- Mode toggle -->
-        <div class="flex items-center gap-1">
+        <!-- Mode toggle (image posters have nothing to highlight) -->
+        <div class="flex items-center gap-1" class:hidden={!!layout.imageUrl}>
           <button
             class="btn btn-sm {mode === 'overview'
               ? 'preset-filled-primary-500'
@@ -317,7 +327,8 @@
         <div class="relative">
           <button
             class="btn btn-sm preset-tonal-secondary"
-            onclick={() => (showExportMenu = !showExportMenu)}
+            onclick={() =>
+              layout.imageUrl ? downloadPosterImage() : (showExportMenu = !showExportMenu)}
             disabled={exporting}
           >
             <Download size={16} />

@@ -1,4 +1,5 @@
 import type { FightConfig, PhaseStrats, Strat } from '$lib/types';
+import { uwuPosterLayout } from './posterData';
 
 const p1: PhaseStrats[] = [
   {
@@ -111,7 +112,8 @@ const p1: PhaseStrats[] = [
       },
       {
         mechanic: 'Mistral Song',
-        description: 'Line AOE on a healer, need tank to intercept\nCyclone drops under the player hit',
+        description:
+          'Line AOE on a healer, need tank to intercept\nCyclone drops under the player hit',
         action: 'OT intercepts, then everyone moves to D',
         strats: [
           {
@@ -186,8 +188,7 @@ const p1: PhaseStrats[] = [
           {
             role: 'Tank',
             party: 2,
-            description:
-              'Hit Spiny Plume first, Reprisal or Provoke also work\nTake it West of D',
+            description: 'Hit Spiny Plume first, Reprisal or Provoke also work\nTake it West of D',
             imageUrl: './uwu/p1-garuda-4.webp'
           },
           {
@@ -365,19 +366,21 @@ const p1: PhaseStrats[] = [
           {
             role: 'Tank',
             party: 2,
-            description: 'Stay out of the bubble for Mistral Shriek',
+            description: 'Dodge AOE, then stay out of the bubble for Mistral Shriek',
             imageUrl: './uwu/p1-garuda-9.webp'
           },
           {
             role: 'Healer',
             party: 1,
-            description: 'Dodge AOE, then stand in bubble for Mistral Shriek\nHeal extra if the bubble is late',
+            description:
+              'Dodge AOE, then stand in bubble for Mistral Shriek\nHeal extra if the bubble is late',
             imageUrl: './uwu/p1-garuda-9.webp'
           },
           {
             role: 'Healer',
             party: 2,
-            description: 'Dodge AOE, then stand in bubble for Mistral Shriek\nHeal extra if the bubble is late',
+            description:
+              'Dodge AOE, then stand in bubble for Mistral Shriek\nHeal extra if the bubble is late',
             imageUrl: './uwu/p1-garuda-9.webp'
           },
           {
@@ -744,7 +747,7 @@ const p1: PhaseStrats[] = [
         description:
           'Sisters tether random players from East + West\nTaking a tether cleanses Thermal Low, 4th charge awakens Garuda\nAwoken Downburst has no cast',
         action: 'OT takes B tether, Caster takes D tether',
-        notes: 'Make sure not to kill before tether goes off',
+        notes: 'Make sure not to kill Garuda before tethers go off',
         strats: [
           {
             role: 'Tank',
@@ -932,7 +935,7 @@ const p2: PhaseStrats[] = [
       {
         mechanic: 'Spawn',
         description: 'Ifrit spawns on a cardinal and dashes',
-        action: 'Safe spot is to his left or right',
+        action: 'Safe spot is to his Left or Right',
         imageUrl: './uwu/p2-ifrit-1.webp'
       },
       {
@@ -1101,13 +1104,13 @@ const p2: PhaseStrats[] = [
           {
             role: 'Ranged',
             party: 1,
-            description: 'Go far toward a far nail to bait 4 Eruptions',
+            description: 'Go out toward a far nail to bait 4 Eruptions',
             imageUrl: './uwu/p2-ifrit-6.webp'
           },
           {
             role: 'Ranged',
             party: 2,
-            description: 'Go far toward a far nail to bait 4 Eruptions',
+            description: 'Go out toward a far nail to bait 4 Eruptions',
             imageUrl: './uwu/p2-ifrit-6.webp'
           }
         ]
@@ -1169,8 +1172,9 @@ const p2: PhaseStrats[] = [
       },
       {
         mechanic: 'Kill Nails',
-        description: 'Dash order is dependent on nail kill order\nIf not skipping consistently, make sure to kill in reverse Z order\nRelative SE > SW > NE > NW',
-        action: 'Some DPS kill nails in order, rest stay on Ifrit\nRemember the last nail killed',
+        description: 'Dash order is dependent on nail kill order',
+        action:
+          'Some DPS kill nails in order, rest stay on Ifrit\nIf not skipping consistently, make sure to kill in reverse Z order\nRelative SE > SW > NE > NW\nRemember the last nail killed',
         imageUrl: './uwu/p2-ifrit-9.webp'
       },
       {
@@ -1184,7 +1188,7 @@ const p2: PhaseStrats[] = [
   {
     phaseName: 'Dashes',
     tag: 'p2',
-    description: 'Boss is usually dead before this on a clean pull',
+    description: 'Boss is usually dead before Dashes go off on a clean pull',
     mechs: [
       {
         mechanic: 'Pull to Intercard',
@@ -1759,56 +1763,56 @@ const p3: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description:
-              'If marked, line up from Titan in marker order (1 closest)\nIf not marked, dodge West and move up West side',
+              'If marked, line up from Titan in marker order (1 closest)\nIf not marked, dodge Left and move up Left side',
             imageUrl: './uwu/p3-titan-11.webp'
           },
           {
             role: 'Tank',
             party: 2,
             description:
-              'If marked, line up from Titan in marker order (1 closest)\nIf not marked, dodge West and move up West side',
+              'If marked, line up from Titan in marker order (1 closest)\nIf not marked, dodge Left and move up Left side',
             imageUrl: './uwu/p3-titan-11.webp'
           },
           {
             role: 'Healer',
             party: 1,
             description:
-              'If marked, line up from Titan in marker order (1 closest)\nIf not marked, dodge West and move up West side',
+              'If marked, line up from Titan in marker order (1 closest)\nIf not marked, dodge Left and move up Left side',
             imageUrl: './uwu/p3-titan-11.webp'
           },
           {
             role: 'Healer',
             party: 2,
             description:
-              'If marked, line up from Titan in marker order (1 closest)\nIf not marked, dodge West and move up West side',
+              'If marked, line up from Titan in marker order (1 closest)\nIf not marked, dodge Left and move up Left side',
             imageUrl: './uwu/p3-titan-11.webp'
           },
           {
             role: 'Melee',
             party: 1,
             description:
-              'If marked, line up from Titan in marker order (1 closest)\nIf not marked, dodge West and move up West side',
+              'If marked, line up from Titan in marker order (1 closest)\nIf not marked, dodge Left and move up Left side',
             imageUrl: './uwu/p3-titan-11.webp'
           },
           {
             role: 'Melee',
             party: 2,
             description:
-              'If marked, line up from Titan in marker order (1 closest)\nIf not marked, dodge West and move up West side',
+              'If marked, line up from Titan in marker order (1 closest)\nIf not marked, dodge Left and move up Left side',
             imageUrl: './uwu/p3-titan-11.webp'
           },
           {
             role: 'Ranged',
             party: 1,
             description:
-              'If marked, line up from Titan in marker order (1 closest)\nIf not marked, dodge West and move up West side',
+              'If marked, line up from Titan in marker order (1 closest)\nIf not marked, dodge Left and move up Left side',
             imageUrl: './uwu/p3-titan-11.webp'
           },
           {
             role: 'Ranged',
             party: 2,
             description:
-              'If marked, line up from Titan in marker order (1 closest)\nIf not marked, dodge West and move up West side',
+              'If marked, line up from Titan in marker order (1 closest)\nIf not marked, dodge Left and move up Left side',
             imageUrl: './uwu/p3-titan-11.webp'
           }
         ]
@@ -2317,7 +2321,8 @@ const intermission: PhaseStrats[] = [
       },
       {
         mechanic: 'Caster LB',
-        description: 'Bits start casting Freefire\nCaster LB3 doesn\'t one-shot, each bit needs extra damage',
+        description:
+          "Bits start casting Freefire\nCaster LB3 doesn't one-shot, each bit needs extra damage",
         action: 'Caster LB3 Center',
         strats: [
           {
@@ -2359,7 +2364,8 @@ const intermission: PhaseStrats[] = [
           {
             role: 'Ranged',
             party: 1,
-            description: 'LB3 Center once Freefire cast appears\nRecommend standing Center and using a self-target LB macro',
+            description:
+              'LB3 Center once Freefire cast appears\nRecommend standing Center and using a self-target LB macro',
             imageUrl: './uwu/intermission-1.webp'
           },
           {
@@ -2537,7 +2543,8 @@ const intermission: PhaseStrats[] = [
       },
       {
         mechanic: 'Preposition',
-        description: '95s of downtime before Ultima is targetable\nPF uses this time to claim Suppression spots on NW wall',
+        description:
+          '95s of downtime before Ultima is targetable\nPF uses this time to claim Suppression spots on NW wall',
         action: 'Heal up, MT moves North',
         strats: [
           {
@@ -2602,9 +2609,9 @@ const predation: PhaseStrats[] = [
     mechs: [
       {
         mechanic: 'Tank Purge',
-        description:
-          'Raidwide',
-        action: 'Optional LB3 cheese: minimal heals after tank LB, mit with shields only to build gauge',
+        description: 'Raidwide',
+        action:
+          'Optional LB3 cheese: minimal heals after tank LB, mit with shields only to build gauge',
         imageUrl: './uwu/p4-predation-0.webp'
       },
       {
@@ -2779,15 +2786,13 @@ const predation: PhaseStrats[] = [
           {
             role: 'Healer',
             party: 1,
-            description:
-              'If baiting, bait Eruptions far South\nElse stack on 2nd line from North',
+            description: 'If baiting, bait Eruptions far South\nElse stack on 2nd line from North',
             imageUrl: './uwu/p4-predation-10.webp'
           },
           {
             role: 'Healer',
             party: 2,
-            description:
-              'If baiting, bait Eruptions far South\nElse stack on 2nd line from North',
+            description: 'If baiting, bait Eruptions far South\nElse stack on 2nd line from North',
             imageUrl: './uwu/p4-predation-10.webp'
           },
           {
@@ -2805,15 +2810,13 @@ const predation: PhaseStrats[] = [
           {
             role: 'Ranged',
             party: 1,
-            description:
-              'If baiting, bait Eruptions far South\nElse stack on 2nd line from North',
+            description: 'If baiting, bait Eruptions far South\nElse stack on 2nd line from North',
             imageUrl: './uwu/p4-predation-10.webp'
           },
           {
             role: 'Ranged',
             party: 2,
-            description:
-              'If baiting, bait Eruptions far South\nElse stack on 2nd line from North',
+            description: 'If baiting, bait Eruptions far South\nElse stack on 2nd line from North',
             imageUrl: './uwu/p4-predation-10.webp'
           }
         ]
@@ -3306,7 +3309,7 @@ const annihilation: PhaseStrats[] = [
       {
         mechanic: 'Tank Purge + Feather Rain',
         description: 'Raidwide, then Feather Rain',
-        action: 'Dodge Feather Rain, move south of boss',
+        action: 'Dodge Feather Rain, move South of boss',
         imageUrl: './uwu/p4-annihilation-14.webp'
       }
     ]
@@ -3625,37 +3628,43 @@ const suppression: PhaseStrats[] = [
           {
             role: 'Healer',
             party: 1,
-            description: "If Gaol, drop it on 4 with the 4th Eruption\nStay away from feathers on walls",
+            description:
+              'If Gaol, drop it on 4 with the 4th Eruption\nStay away from feathers on walls',
             imageUrl: './uwu/p4-suppression-5.webp'
           },
           {
             role: 'Healer',
             party: 2,
-            description: "If Gaol, drop it on 4 with the 4th Eruption\nStay away from feathers on walls",
+            description:
+              'If Gaol, drop it on 4 with the 4th Eruption\nStay away from feathers on walls',
             imageUrl: './uwu/p4-suppression-5.webp'
           },
           {
             role: 'Melee',
             party: 1,
-            description: "If Gaol, drop it on 4 with the 4th Eruption\nStay away from feathers on walls",
+            description:
+              'If Gaol, drop it on 4 with the 4th Eruption\nStay away from feathers on walls',
             imageUrl: './uwu/p4-suppression-5.webp'
           },
           {
             role: 'Melee',
             party: 2,
-            description: "If Gaol, drop it on 4 with the 4th Eruption\nStay away from feathers on walls",
+            description:
+              'If Gaol, drop it on 4 with the 4th Eruption\nStay away from feathers on walls',
             imageUrl: './uwu/p4-suppression-5.webp'
           },
           {
             role: 'Ranged',
             party: 1,
-            description: "If Gaol, drop it on 4 with the 4th Eruption\nStay away from feathers on walls",
+            description:
+              'If Gaol, drop it on 4 with the 4th Eruption\nStay away from feathers on walls',
             imageUrl: './uwu/p4-suppression-5.webp'
           },
           {
             role: 'Ranged',
             party: 2,
-            description: "If Gaol, drop it on 4 with the 4th Eruption\nStay away from feathers on walls",
+            description:
+              'If Gaol, drop it on 4 with the 4th Eruption\nStay away from feathers on walls',
             imageUrl: './uwu/p4-suppression-5.webp'
           }
         ]
@@ -3668,15 +3677,13 @@ const suppression: PhaseStrats[] = [
           {
             role: 'Tank',
             party: 1,
-            description:
-              'Dodge 4th Eruption, group up Mid',
+            description: 'Dodge 4th Eruption, group up Mid',
             imageUrl: './uwu/p4-suppression-6.webp'
           },
           {
             role: 'Tank',
             party: 2,
-            description:
-              'Dodge 4th Eruption, group up Mid',
+            description: 'Dodge 4th Eruption, group up Mid',
             imageUrl: './uwu/p4-suppression-6.webp'
           },
           {
@@ -3895,7 +3902,8 @@ const suppression: PhaseStrats[] = [
       },
       {
         mechanic: 'Aetheroplasm',
-        description: 'Orbs explode for heavy damage when soaked\nShorter tether = less time before they wipe you',
+        description:
+          'Orbs explode for heavy damage when soaked\nShorter tether = less time before they wipe you',
         action: 'Soak South orbs, head North\nHeal up, then soak North orbs',
         strats: [
           {
@@ -4019,7 +4027,7 @@ const suppression: PhaseStrats[] = [
       {
         mechanic: 'Ifrit',
         description: 'Eruptions + dash, then raidwide',
-        action: "Start at 2\nSprint to 3\nStay where you are after Ifrit",
+        action: 'Start at 2\nSprint to 3\nStay where you are after Ifrit',
         imageUrl: './uwu/p4-suppression-24.webp'
       },
       {
@@ -4030,7 +4038,8 @@ const suppression: PhaseStrats[] = [
       },
       {
         mechanic: 'Enrage',
-        description: 'Ultima gains 2 duty gauge per second\nPlayers get popped in order of damage done',
+        description:
+          'Ultima gains 2 duty gauge per second\nPlayers get popped in order of damage done',
         action: 'Burn',
         imageUrl: './uwu/p4-suppression-33.webp'
       }
@@ -4084,7 +4093,8 @@ export const uwuFightConfig: FightConfig = {
   separateDescriptionAction: true,
   defaultStratName: 'naur',
   timeline: [],
-  posterEnabled: false,
+  posterEnabled: true,
+  posterLayout: uwuPosterLayout,
   roleOptions: [
     { label: 'MT', role: 'Tank', party: 1 },
     { label: 'OT', role: 'Tank', party: 2 },

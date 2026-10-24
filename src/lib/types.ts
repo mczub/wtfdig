@@ -268,6 +268,9 @@ export interface PosterLayout {
   subtitle?: string;
   /** Background color (default '#1a1a2e') */
   bgColor?: string;
+  /** Static image shown instead of the section grid (e.g. a community cheatsheet
+   * until a programmatic poster exists). Set width/height to the image size. */
+  imageUrl?: string;
 }
 
 // Mitigation plan types
