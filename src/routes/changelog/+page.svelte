@@ -6,6 +6,7 @@
   }
 
   const entries: Entry[] = [
+    { date: '2026-10-24', text: 'added UWU' },
     { date: '2026-09-25', text: 'assorted fixes for m11s, TEA, UMAD, and the P4 helper' },
     { date: '2026-08-24', text: 'added faq page, cleaned up the changelog' },
     { date: '2026-08-09', text: 'light mode!' },
@@ -24,9 +25,15 @@
       date: '2026-06-21',
       text: "fix for ex7 error, added a concept of descriptions vs. actions + 'Show description' functionality and update some umad stuff to use it"
     },
-    { date: '2026-06-18', text: 'minor fix to p4 helper logic, fix for infinite retry on dead image' },
+    {
+      date: '2026-06-18',
+      text: 'minor fix to p4 helper logic, fix for infinite retry on dead image'
+    },
     { date: '2026-06-15', text: 'umad p4 + p5, rotation feature, p4 helper' },
-    { date: '2026-06-12', text: 'some small updates to p3, added additional black hole tether info' },
+    {
+      date: '2026-06-12',
+      text: 'some small updates to p3, added additional black hole tether info'
+    },
     { date: '2026-06-12', text: 'add p3, set defaults on kefkabin to freaky/kroxy/sg3k' },
     { date: '2026-06-08', text: 'added freaky arrows to p1' },
     { date: '2026-06-07', text: 'updated both p2 strats to use new marker baits' },

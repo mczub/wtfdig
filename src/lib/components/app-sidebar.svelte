@@ -66,6 +66,11 @@
           url: '/ultimates/tea'
         },
         {
+          title: "The Weapon's Refrain",
+          subtitle: 'Ultimate',
+          url: '/ultimates/uwu'
+        },
+        {
           title: 'The Unending Coil of Bahamut',
           subtitle: 'Ultimate',
           url: '/ultimates/ucob'
@@ -305,7 +310,9 @@
                     class="flex flex-col w-full items-start mx-2"
                   >
                     <div class="flex flex-row items-center gap-2 text-lg">
-                      <Grid3x3 class="size-6 text-primary " /><span class="font-semibold">board</span>
+                      <Grid3x3 class="size-6 text-primary " /><span class="font-semibold"
+                        >board</span
+                      >
                     </div>
                     <div class="text-base text-surface-400">view + bundle strategy boards</div>
                   </a>
@@ -318,14 +325,18 @@
                     class="flex flex-col w-full items-start mx-2"
                   >
                     <div class="flex flex-row items-center gap-2 text-lg">
-                      <History class="size-6 text-primary " /><span class="font-semibold">wayback</span>
+                      <History class="size-6 text-primary " /><span class="font-semibold"
+                        >wayback</span
+                      >
                     </div>
                     <div class="text-base text-surface-400">version history for raidplans</div>
                   </a>
                 </Sidebar.MenuItem>
                 <Sidebar.GroupLabel
                   class="flex flex-row items-center gap-2 text-lg font-semibold my-2"
-                  ><MessageCircleQuestionMark class="size-6 text-primary" />Helpers</Sidebar.GroupLabel
+                  ><MessageCircleQuestionMark
+                    class="size-6 text-primary"
+                  />Helpers</Sidebar.GroupLabel
                 >
                 <Sidebar.MenuItem>
                   <a

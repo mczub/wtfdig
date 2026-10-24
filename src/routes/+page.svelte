@@ -2,7 +2,14 @@
   import { base } from '$app/paths';
   import { slide } from 'svelte/transition';
   import ChevronDown from '@lucide/svelte/icons/chevron-down';
-  import { Grid3x3, History, Hammer, TriangleAlert, ChartColumn, MessageCircleQuestionMark } from '@lucide/svelte';
+  import {
+    Grid3x3,
+    History,
+    Hammer,
+    TriangleAlert,
+    ChartColumn,
+    MessageCircleQuestionMark
+  } from '@lucide/svelte';
 
   let openState = $state({
     savage: true,
@@ -159,7 +166,7 @@
               <a
                 href="{base}/ultimates/umad"
                 class="btn preset-tonal-secondary border border-secondary-500"
-              >Dancing Mad (Ultimate)</a
+                >Dancing Mad (Ultimate)</a
               >
               <a
                 href="{base}/ultimates/fru"
@@ -170,6 +177,11 @@
                 href="{base}/ultimates/tea"
                 class="btn preset-tonal-secondary border border-secondary-500"
                 >The Epic of Alexander (Ultimate)</a
+              >
+              <a
+                href="{base}/ultimates/uwu"
+                class="btn preset-tonal-secondary border border-secondary-500"
+                >The Weapon's Refrain (Ultimate)</a
               >
               <a
                 href="{base}/ultimates/ucob"
