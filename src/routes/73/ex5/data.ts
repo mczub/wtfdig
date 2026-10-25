@@ -657,7 +657,7 @@ const hectorStrat: Strat = {
             {
               role: 'Healer',
               party: 2,
-              description: 'Go to light side, avoid hands\nSpread towards left middle',
+              description: 'Go to light side, avoid hands\nSpread towards right middle',
               imageUrl: './ex5/mm1.webp'
             },
             {
@@ -1202,34 +1202,34 @@ const hectorStrat: Strat = {
             {
               role: 'Healer',
               party: 1,
-              description: 'W of center, Back',
+              description: 'West of center, Back',
               imageUrl: './ex5/ee2-specter.webp'
             },
             {
               role: 'Healer',
               party: 2,
-              description: 'E of center, Back',
+              description: 'East of center, Back',
               imageUrl: './ex5/ee2-specter.webp'
             },
             {
               role: 'Melee',
               party: 1,
-              description: 'E of center, Front',
+              description: 'West of center, Front',
               imageUrl: './ex5/ee2-specter.webp'
             },
             {
               role: 'Melee',
               party: 2,
-              description: 'W of center, Front',
+              description: 'East of center, Front',
               imageUrl: './ex5/ee2-specter.webp'
             },
             {
               role: 'Ranged',
               party: 1,
-              description: 'E, Back',
+              description: 'West, Back',
               imageUrl: './ex5/ee2-specter.webp'
             },
-            { role: 'Ranged', party: 2, description: 'W, Back', imageUrl: './ex5/ee2-specter.webp' }
+            { role: 'Ranged', party: 2, description: 'East, Back', imageUrl: './ex5/ee2-specter.webp' }
           ]
         },
         {

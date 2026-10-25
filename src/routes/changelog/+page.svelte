@@ -6,6 +6,7 @@
   }
 
   const entries: Entry[] = [
+    { date: '2026-10-25', text: 'EX5 fixes' },
     { date: '2026-09-25', text: 'assorted fixes for m11s, TEA, UMAD, and the P4 helper' },
     { date: '2026-08-24', text: 'added faq page, cleaned up the changelog' },
     { date: '2026-08-09', text: 'light mode!' },
