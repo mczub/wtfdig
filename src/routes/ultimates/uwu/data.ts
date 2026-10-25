@@ -1,4 +1,5 @@
 import type { FightConfig, PhaseStrats, Strat } from '$lib/types';
+import { getCircleMaskUrl, getMultiCircleMaskUrl } from '$lib/utils';
 import { uwuPosterLayout } from './posterData';
 
 const p1: PhaseStrats[] = [
@@ -14,49 +15,57 @@ const p1: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Pull Garuda Center, face boss North',
-            imageUrl: './uwu/p1-garuda-0.webp'
+            imageUrl: './uwu/p1-garuda-0.webp',
+            mask: getCircleMaskUrl(50, 42.8, 7)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Stand East with Healers\nPosition to intercept line AOE',
-            imageUrl: './uwu/p1-garuda-0.webp'
+            imageUrl: './uwu/p1-garuda-0.webp',
+            mask: getCircleMaskUrl(66.8, 49.6, 7)
           },
           {
             role: 'Healer',
             party: 1,
             description: 'Stand East behind OT',
-            imageUrl: './uwu/p1-garuda-0.webp'
+            imageUrl: './uwu/p1-garuda-0.webp',
+            mask: getCircleMaskUrl(74.2, 49.9, 7)
           },
           {
             role: 'Healer',
             party: 2,
             description: 'Stand East behind OT',
-            imageUrl: './uwu/p1-garuda-0.webp'
+            imageUrl: './uwu/p1-garuda-0.webp',
+            mask: getCircleMaskUrl(74.2, 49.9, 7)
           },
           {
             role: 'Melee',
             party: 1,
             description: 'Stand South behind Garuda',
-            imageUrl: './uwu/p1-garuda-0.webp'
+            imageUrl: './uwu/p1-garuda-0.webp',
+            mask: getCircleMaskUrl(50, 60.6, 8.8)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'Stand South behind Garuda',
-            imageUrl: './uwu/p1-garuda-0.webp'
+            imageUrl: './uwu/p1-garuda-0.webp',
+            mask: getCircleMaskUrl(50, 60.6, 8.8)
           },
           {
             role: 'Ranged',
             party: 1,
             description: 'Stand South behind Garuda',
-            imageUrl: './uwu/p1-garuda-0.webp'
+            imageUrl: './uwu/p1-garuda-0.webp',
+            mask: getCircleMaskUrl(50, 60.6, 8.8)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'Stand South behind Garuda',
-            imageUrl: './uwu/p1-garuda-0.webp'
+            imageUrl: './uwu/p1-garuda-0.webp',
+            mask: getCircleMaskUrl(50, 60.6, 8.8)
           }
         ]
       },
@@ -69,44 +78,57 @@ const p1: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Sidestep the frontal cone during cast',
-            imageUrl: './uwu/p1-garuda-1.webp'
+            imageUrl: './uwu/p1-garuda-1.webp',
+            mask: getCircleMaskUrl(42, 49.9, 7)
           },
-          { role: 'Tank', party: 2, description: 'Stay East', imageUrl: './uwu/p1-garuda-1.webp' },
+          {
+            role: 'Tank',
+            party: 2,
+            description: 'Stay East',
+            imageUrl: './uwu/p1-garuda-1.webp',
+            mask: getCircleMaskUrl(70.7, 49.9, 8.7)
+          },
           {
             role: 'Healer',
             party: 1,
             description: 'Stay East',
-            imageUrl: './uwu/p1-garuda-1.webp'
+            imageUrl: './uwu/p1-garuda-1.webp',
+            mask: getCircleMaskUrl(70.7, 49.9, 8.7)
           },
           {
             role: 'Healer',
             party: 2,
             description: 'Stay East',
-            imageUrl: './uwu/p1-garuda-1.webp'
+            imageUrl: './uwu/p1-garuda-1.webp',
+            mask: getCircleMaskUrl(70.7, 49.9, 8.7)
           },
           {
             role: 'Melee',
             party: 1,
             description: 'Stay South behind Garuda',
-            imageUrl: './uwu/p1-garuda-1.webp'
+            imageUrl: './uwu/p1-garuda-1.webp',
+            mask: getCircleMaskUrl(50, 60.6, 8.8)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'Stay South behind Garuda',
-            imageUrl: './uwu/p1-garuda-1.webp'
+            imageUrl: './uwu/p1-garuda-1.webp',
+            mask: getCircleMaskUrl(50, 60.6, 8.8)
           },
           {
             role: 'Ranged',
             party: 1,
             description: 'Stay South behind Garuda',
-            imageUrl: './uwu/p1-garuda-1.webp'
+            imageUrl: './uwu/p1-garuda-1.webp',
+            mask: getCircleMaskUrl(50, 60.6, 8.8)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'Stay South behind Garuda',
-            imageUrl: './uwu/p1-garuda-1.webp'
+            imageUrl: './uwu/p1-garuda-1.webp',
+            mask: getCircleMaskUrl(50, 60.6, 8.8)
           }
         ]
       },
@@ -120,50 +142,58 @@ const p1: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Hold Garuda, then move her to D',
-            imageUrl: './uwu/p1-garuda-2.webp'
+            imageUrl: './uwu/p1-garuda-2.webp',
+            mask: getCircleMaskUrl(34.1, 49.3, 7)
           },
           {
             role: 'Tank',
             party: 2,
             description:
               'Stand between Garuda and the marked healer\nMit Mistral Song, move out of Cyclone to D',
-            imageUrl: './uwu/p1-garuda-2.webp'
+            imageUrl: './uwu/p1-garuda-2.webp',
+            mask: getCircleMaskUrl(65.1, 49.6, 7)
           },
           {
             role: 'Healer',
             party: 1,
             description: 'If marked, stay behind OT\nMove to D after Cyclone',
-            imageUrl: './uwu/p1-garuda-2.webp'
+            imageUrl: './uwu/p1-garuda-2.webp',
+            mask: getCircleMaskUrl(74.2, 49.9, 7)
           },
           {
             role: 'Healer',
             party: 2,
             description: 'If marked, stay behind OT\nMove to D after Cyclone',
-            imageUrl: './uwu/p1-garuda-2.webp'
+            imageUrl: './uwu/p1-garuda-2.webp',
+            mask: getCircleMaskUrl(74.2, 49.9, 7)
           },
           {
             role: 'Melee',
             party: 1,
             description: 'Move to D after Cyclone drops',
-            imageUrl: './uwu/p1-garuda-2.webp'
+            imageUrl: './uwu/p1-garuda-2.webp',
+            mask: getCircleMaskUrl(50, 60.6, 8.8)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'Move to D after Cyclone drops',
-            imageUrl: './uwu/p1-garuda-2.webp'
+            imageUrl: './uwu/p1-garuda-2.webp',
+            mask: getCircleMaskUrl(50, 60.6, 8.8)
           },
           {
             role: 'Ranged',
             party: 1,
             description: 'Move to D after Cyclone drops',
-            imageUrl: './uwu/p1-garuda-2.webp'
+            imageUrl: './uwu/p1-garuda-2.webp',
+            mask: getCircleMaskUrl(50, 60.6, 8.8)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'Move to D after Cyclone drops',
-            imageUrl: './uwu/p1-garuda-2.webp'
+            imageUrl: './uwu/p1-garuda-2.webp',
+            mask: getCircleMaskUrl(50, 60.6, 8.8)
           }
         ]
       }
@@ -601,35 +631,58 @@ const p1: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Go to 1st Sister CW from North\nMit Mistral Song',
-            imageUrl: './uwu/p1-garuda-23.webp'
+            imageUrl: './uwu/p1-garuda-23.webp',
+            mask: getCircleMaskUrl(49.5, 78.9, 7)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Go to 1st Sister CCW from North\nMit Mistral Song',
-            imageUrl: './uwu/p1-garuda-23.webp'
+            imageUrl: './uwu/p1-garuda-23.webp',
+            mask: getCircleMaskUrl(19.9, 50.3, 7)
           },
           {
             role: 'Healer',
             party: 1,
             description: 'Stack SE',
-            imageUrl: './uwu/p1-garuda-23.webp'
+            imageUrl: './uwu/p1-garuda-23.webp',
+            mask: getCircleMaskUrl(71, 71.3, 7)
           },
           {
             role: 'Healer',
             party: 2,
             description: 'Stack SE',
-            imageUrl: './uwu/p1-garuda-23.webp'
+            imageUrl: './uwu/p1-garuda-23.webp',
+            mask: getCircleMaskUrl(71, 71.3, 7)
           },
-          { role: 'Melee', party: 1, description: 'Stack SE', imageUrl: './uwu/p1-garuda-23.webp' },
-          { role: 'Melee', party: 2, description: 'Stack SE', imageUrl: './uwu/p1-garuda-23.webp' },
+          {
+            role: 'Melee',
+            party: 1,
+            description: 'Stack SE',
+            imageUrl: './uwu/p1-garuda-23.webp',
+            mask: getCircleMaskUrl(71, 71.3, 7)
+          },
+          {
+            role: 'Melee',
+            party: 2,
+            description: 'Stack SE',
+            imageUrl: './uwu/p1-garuda-23.webp',
+            mask: getCircleMaskUrl(71, 71.3, 7)
+          },
           {
             role: 'Ranged',
             party: 1,
             description: 'Stack SE',
-            imageUrl: './uwu/p1-garuda-23.webp'
+            imageUrl: './uwu/p1-garuda-23.webp',
+            mask: getCircleMaskUrl(71, 71.3, 7)
           },
-          { role: 'Ranged', party: 2, description: 'Stack SE', imageUrl: './uwu/p1-garuda-23.webp' }
+          {
+            role: 'Ranged',
+            party: 2,
+            description: 'Stack SE',
+            imageUrl: './uwu/p1-garuda-23.webp',
+            mask: getCircleMaskUrl(71, 71.3, 7)
+          }
         ]
       },
       {
@@ -701,7 +754,7 @@ const p1: PhaseStrats[] = [
           {
             role: 'Tank',
             party: 2,
-            description: 'AOE Plumes\nGet ready to take the B tether',
+            description: 'AOE Plumes\nGet ready to take the D tether',
             imageUrl: './uwu/p1-garuda-27.webp'
           },
           {
@@ -731,7 +784,7 @@ const p1: PhaseStrats[] = [
           {
             role: 'Ranged',
             party: 1,
-            description: 'AOE Plumes\nGet ready to take the D tether',
+            description: 'AOE Plumes\nGet ready to take the B tether',
             imageUrl: './uwu/p1-garuda-27.webp'
           },
           {
@@ -746,56 +799,64 @@ const p1: PhaseStrats[] = [
         mechanic: 'Mesohigh',
         description:
           'Sisters tether random players from East + West\nTaking a tether cleanses Thermal Low, 4th charge awakens Garuda\nAwoken Downburst has no cast',
-        action: 'OT takes B tether, Caster takes D tether',
+        action: 'OT takes D tether, Caster takes B tether',
         notes: 'Make sure not to kill Garuda before tethers go off',
         strats: [
           {
             role: 'Tank',
             party: 1,
             description: 'Take Downburst TB alone\n2+ mits + shields',
-            imageUrl: './uwu/p1-garuda-28.webp'
+            imageUrl: './uwu/p1-garuda-28.webp',
+            mask: getCircleMaskUrl(49.5, 41.4, 7)
           },
           {
             role: 'Tank',
             party: 2,
-            description: 'Grab tether, take Mesohigh at B',
-            imageUrl: './uwu/p1-garuda-28.webp'
+            description: 'Grab tether, take Mesohigh at D',
+            imageUrl: './uwu/p1-garuda-28.webp',
+            mask: getCircleMaskUrl(34.9, 49.1, 7)
           },
           {
             role: 'Healer',
             party: 1,
             description: 'Shield + heal MT for Downburst',
-            imageUrl: './uwu/p1-garuda-28.webp'
+            imageUrl: './uwu/p1-garuda-28.webp',
+            mask: getCircleMaskUrl(50.2, 56.7, 10.1)
           },
           {
             role: 'Healer',
             party: 2,
             description: 'Shield + heal MT for Downburst',
-            imageUrl: './uwu/p1-garuda-28.webp'
+            imageUrl: './uwu/p1-garuda-28.webp',
+            mask: getCircleMaskUrl(50.2, 56.7, 10.1)
           },
           {
             role: 'Melee',
             party: 1,
             description: 'AOE Plumes behind Garuda',
-            imageUrl: './uwu/p1-garuda-28.webp'
+            imageUrl: './uwu/p1-garuda-28.webp',
+            mask: getCircleMaskUrl(50.2, 56.7, 10.1)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'AOE Plumes behind Garuda',
-            imageUrl: './uwu/p1-garuda-28.webp'
+            imageUrl: './uwu/p1-garuda-28.webp',
+            mask: getCircleMaskUrl(50.2, 56.7, 10.1)
           },
           {
             role: 'Ranged',
             party: 1,
-            description: 'Grab tether, take Mesohigh at D',
-            imageUrl: './uwu/p1-garuda-28.webp'
+            description: 'Grab tether, take Mesohigh at B',
+            imageUrl: './uwu/p1-garuda-28.webp',
+            mask: getCircleMaskUrl(64.7, 49.5, 7)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'AOE Plumes behind Garuda\nKeep your Thermal Low stack',
-            imageUrl: './uwu/p1-garuda-28.webp'
+            imageUrl: './uwu/p1-garuda-28.webp',
+            mask: getCircleMaskUrl(50.2, 56.7, 10.1)
           }
         ]
       }
@@ -814,49 +875,57 @@ const p1: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Pull Garuda North\nSidestep Slipstream',
-            imageUrl: './uwu/p1-garuda-30.webp'
+            imageUrl: './uwu/p1-garuda-31.webp',
+            mask: getCircleMaskUrl(50, 14.2, 7)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Dodge puddles, stay behind Garuda',
-            imageUrl: './uwu/p1-garuda-30.webp'
+            imageUrl: './uwu/p1-garuda-31.webp',
+            mask: getCircleMaskUrl(50.4, 30.9, 13.8)
           },
           {
             role: 'Healer',
             party: 1,
             description: 'Dodge puddles, stay behind Garuda',
-            imageUrl: './uwu/p1-garuda-30.webp'
+            imageUrl: './uwu/p1-garuda-31.webp',
+            mask: getCircleMaskUrl(50.4, 30.9, 13.8)
           },
           {
             role: 'Healer',
             party: 2,
             description: 'Dodge puddles, stay behind Garuda',
-            imageUrl: './uwu/p1-garuda-30.webp'
+            imageUrl: './uwu/p1-garuda-31.webp',
+            mask: getCircleMaskUrl(50.4, 30.9, 13.8)
           },
           {
             role: 'Melee',
             party: 1,
             description: 'Dodge puddles, stay behind Garuda',
-            imageUrl: './uwu/p1-garuda-30.webp'
+            imageUrl: './uwu/p1-garuda-31.webp',
+            mask: getCircleMaskUrl(50.4, 30.9, 13.8)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'Dodge puddles, stay behind Garuda',
-            imageUrl: './uwu/p1-garuda-30.webp'
+            imageUrl: './uwu/p1-garuda-31.webp',
+            mask: getCircleMaskUrl(50.4, 30.9, 13.8)
           },
           {
             role: 'Ranged',
             party: 1,
             description: 'Dodge puddles, stay behind Garuda',
-            imageUrl: './uwu/p1-garuda-30.webp'
+            imageUrl: './uwu/p1-garuda-31.webp',
+            mask: getCircleMaskUrl(50.4, 30.9, 13.8)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'Dodge puddles, stay behind Garuda',
-            imageUrl: './uwu/p1-garuda-30.webp'
+            imageUrl: './uwu/p1-garuda-31.webp',
+            mask: getCircleMaskUrl(50.4, 30.9, 13.8)
           }
         ]
       },
@@ -1081,13 +1150,15 @@ const p2: PhaseStrats[] = [
             role: 'Healer',
             party: 1,
             description: 'If Searing Wind, go opposite MT\nElse stay with party',
-            imageUrl: './uwu/p2-ifrit-6.webp'
+            imageUrl: './uwu/p2-ifrit-6.webp',
+            mask: getCircleMaskUrl(46.1, 64.8, 7.8)
           },
           {
             role: 'Healer',
             party: 2,
             description: 'If Searing Wind, go opposite MT\nElse stay with party',
-            imageUrl: './uwu/p2-ifrit-6.webp'
+            imageUrl: './uwu/p2-ifrit-6.webp',
+            mask: getCircleMaskUrl(46.1, 64.8, 7.8)
           },
           {
             role: 'Melee',
@@ -1105,13 +1176,15 @@ const p2: PhaseStrats[] = [
             role: 'Ranged',
             party: 1,
             description: 'Go out toward a far nail to bait 4 Eruptions',
-            imageUrl: './uwu/p2-ifrit-6.webp'
+            imageUrl: './uwu/p2-ifrit-6.webp',
+            mask: getCircleMaskUrl(3.8, 59.9, 7)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'Go out toward a far nail to bait 4 Eruptions',
-            imageUrl: './uwu/p2-ifrit-6.webp'
+            imageUrl: './uwu/p2-ifrit-6.webp',
+            mask: getCircleMaskUrl(78.2, 88.1, 7)
           }
         ]
       },
@@ -1136,13 +1209,15 @@ const p2: PhaseStrats[] = [
             role: 'Healer',
             party: 1,
             description: 'If Searing Wind, stay away from party',
-            imageUrl: './uwu/p2-ifrit-7.webp'
+            imageUrl: './uwu/p2-ifrit-7.webp',
+            mask: getCircleMaskUrl(30.2, 86.4, 7)
           },
           {
             role: 'Healer',
             party: 2,
             description: 'If Searing Wind, stay away from party',
-            imageUrl: './uwu/p2-ifrit-7.webp'
+            imageUrl: './uwu/p2-ifrit-7.webp',
+            mask: getCircleMaskUrl(30.2, 86.4, 7)
           },
           {
             role: 'Melee',
@@ -1160,13 +1235,15 @@ const p2: PhaseStrats[] = [
             role: 'Ranged',
             party: 1,
             description: 'Drop 2+ Eruptions on each far nail',
-            imageUrl: './uwu/p2-ifrit-7.webp'
+            imageUrl: './uwu/p2-ifrit-7.webp',
+            mask: getCircleMaskUrl(13.1, 35.8, 7)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'Drop 2+ Eruptions on each far nail',
-            imageUrl: './uwu/p2-ifrit-7.webp'
+            imageUrl: './uwu/p2-ifrit-7.webp',
+            mask: getCircleMaskUrl(86, 60.8, 7)
           }
         ]
       },
@@ -1199,49 +1276,57 @@ const p2: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Pull Ifrit to the intercard where the last nail died',
-            imageUrl: './uwu/p2-ifrit-14.webp'
+            imageUrl: './uwu/p2-ifrit-14.webp',
+            mask: getCircleMaskUrl(75.9, 10.6, 7.7)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Pull Ifrit to the intercard where the last nail died',
-            imageUrl: './uwu/p2-ifrit-14.webp'
+            imageUrl: './uwu/p2-ifrit-14.webp',
+            mask: getCircleMaskUrl(75.9, 10.6, 7.7)
           },
           {
             role: 'Healer',
             party: 1,
             description: 'If Searing Wind, get ready to bait',
-            imageUrl: './uwu/p2-ifrit-14.webp'
+            imageUrl: './uwu/p2-ifrit-14.webp',
+            mask: getCircleMaskUrl(54.2, 44.1, 7.4)
           },
           {
             role: 'Healer',
             party: 2,
             description: 'If Searing Wind, get ready to bait',
-            imageUrl: './uwu/p2-ifrit-14.webp'
+            imageUrl: './uwu/p2-ifrit-14.webp',
+            mask: getCircleMaskUrl(54.2, 44.1, 7.4)
           },
           {
             role: 'Melee',
             party: 1,
             description: 'Follow Ifrit to the intercard',
-            imageUrl: './uwu/p2-ifrit-14.webp'
+            imageUrl: './uwu/p2-ifrit-14.webp',
+            mask: getCircleMaskUrl(75.9, 10.6, 7.7)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'Follow Ifrit to the intercard',
-            imageUrl: './uwu/p2-ifrit-14.webp'
+            imageUrl: './uwu/p2-ifrit-14.webp',
+            mask: getCircleMaskUrl(75.9, 10.6, 7.7)
           },
           {
             role: 'Ranged',
             party: 1,
             description: 'Get ready to bait Eruptions',
-            imageUrl: './uwu/p2-ifrit-14.webp'
+            imageUrl: './uwu/p2-ifrit-14.webp',
+            mask: getCircleMaskUrl(46.5, 53.5, 7.7)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'Get ready to bait Eruptions',
-            imageUrl: './uwu/p2-ifrit-14.webp'
+            imageUrl: './uwu/p2-ifrit-14.webp',
+            mask: getCircleMaskUrl(46.5, 53.5, 7.7)
           }
         ]
       },
@@ -1254,49 +1339,57 @@ const p2: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Hold Ifrit on the intercard',
-            imageUrl: './uwu/p2-ifrit-15.webp'
+            imageUrl: './uwu/p2-ifrit-15.webp',
+            mask: getCircleMaskUrl(77.2, 10.6, 8.7)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Hold Ifrit on the intercard',
-            imageUrl: './uwu/p2-ifrit-15.webp'
+            imageUrl: './uwu/p2-ifrit-15.webp',
+            mask: getCircleMaskUrl(77.2, 10.6, 8.7)
           },
           {
             role: 'Healer',
             party: 1,
             description: 'If Searing Wind, go to intercard CCW of party\nElse stay with party',
-            imageUrl: './uwu/p2-ifrit-15.webp'
+            imageUrl: './uwu/p2-ifrit-15.webp',
+            mask: getMultiCircleMaskUrl([22.7, 11.2, 7], [77.2, 10.6, 8.7])
           },
           {
             role: 'Healer',
             party: 2,
             description: 'If Searing Wind, go to intercard CCW of party\nElse stay with party',
-            imageUrl: './uwu/p2-ifrit-15.webp'
+            imageUrl: './uwu/p2-ifrit-15.webp',
+            mask: getMultiCircleMaskUrl([22.7, 11.2, 7], [77.2, 10.6, 8.7])
           },
           {
             role: 'Melee',
             party: 1,
             description: 'Stay with party',
-            imageUrl: './uwu/p2-ifrit-15.webp'
+            imageUrl: './uwu/p2-ifrit-15.webp',
+            mask: getCircleMaskUrl(77.2, 10.6, 8.7)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'Stay with party',
-            imageUrl: './uwu/p2-ifrit-15.webp'
+            imageUrl: './uwu/p2-ifrit-15.webp',
+            mask: getCircleMaskUrl(77.2, 10.6, 8.7)
           },
           {
             role: 'Ranged',
             party: 1,
             description: 'Bait Eruptions on cardinal CW of party, then move back',
-            imageUrl: './uwu/p2-ifrit-15.webp'
+            imageUrl: './uwu/p2-ifrit-15.webp',
+            mask: getCircleMaskUrl(73.8, 88.5, 7.4)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'Bait Eruptions on cardinal CW of party, then move back',
-            imageUrl: './uwu/p2-ifrit-15.webp'
+            imageUrl: './uwu/p2-ifrit-15.webp',
+            mask: getCircleMaskUrl(73.8, 88.5, 7.4)
           }
         ]
       },
@@ -1310,49 +1403,57 @@ const p2: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Stack for Flaming Crush',
-            imageUrl: './uwu/p2-ifrit-19.webp'
+            imageUrl: './uwu/p2-ifrit-19.webp',
+            mask: getCircleMaskUrl(77.5, 11.8, 9.7)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Stack for Flaming Crush',
-            imageUrl: './uwu/p2-ifrit-19.webp'
+            imageUrl: './uwu/p2-ifrit-19.webp',
+            mask: getCircleMaskUrl(77.5, 11.8, 9.7)
           },
           {
             role: 'Healer',
             party: 1,
             description: 'If 2nd Searing Wind, move away from party\nElse stack for Flaming Crush',
-            imageUrl: './uwu/p2-ifrit-19.webp'
+            imageUrl: './uwu/p2-ifrit-19.webp',
+            mask: getMultiCircleMaskUrl([78.9, 45.6, 7], [76, 11.4, 9])
           },
           {
             role: 'Healer',
             party: 2,
             description: 'If 2nd Searing Wind, move away from party\nElse stack for Flaming Crush',
-            imageUrl: './uwu/p2-ifrit-19.webp'
+            imageUrl: './uwu/p2-ifrit-19.webp',
+            mask: getMultiCircleMaskUrl([78.9, 45.6, 7], [76, 11.4, 9])
           },
           {
             role: 'Melee',
             party: 1,
             description: 'Stack for Flaming Crush',
-            imageUrl: './uwu/p2-ifrit-19.webp'
+            imageUrl: './uwu/p2-ifrit-19.webp',
+            mask: getCircleMaskUrl(77.5, 11.8, 9.7)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'Stack for Flaming Crush',
-            imageUrl: './uwu/p2-ifrit-19.webp'
+            imageUrl: './uwu/p2-ifrit-19.webp',
+            mask: getCircleMaskUrl(77.5, 11.8, 9.7)
           },
           {
             role: 'Ranged',
             party: 1,
             description: 'Stack for Flaming Crush',
-            imageUrl: './uwu/p2-ifrit-19.webp'
+            imageUrl: './uwu/p2-ifrit-19.webp',
+            mask: getCircleMaskUrl(77.5, 11.8, 9.7)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'Stack for Flaming Crush',
-            imageUrl: './uwu/p2-ifrit-19.webp'
+            imageUrl: './uwu/p2-ifrit-19.webp',
+            mask: getCircleMaskUrl(77.5, 11.8, 9.7)
           }
         ]
       },
@@ -1365,51 +1466,59 @@ const p2: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Go to the slice where the last nail died',
-            imageUrl: './uwu/p2-ifrit-20.webp'
+            imageUrl: './uwu/p2-ifrit-20.webp',
+            mask: getCircleMaskUrl(49.4, 4.8, 9)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Go to the slice where the last nail died',
-            imageUrl: './uwu/p2-ifrit-20.webp'
+            imageUrl: './uwu/p2-ifrit-20.webp',
+            mask: getCircleMaskUrl(49.4, 4.8, 9)
           },
           {
             role: 'Healer',
             party: 1,
             description:
               'If Searing Wind, mirror the party on the opposite side\nElse go with party',
-            imageUrl: './uwu/p2-ifrit-20.webp'
+            imageUrl: './uwu/p2-ifrit-20.webp',
+            mask: getMultiCircleMaskUrl([49.4, 4.8, 9], [50.4, 96.4, 7])
           },
           {
             role: 'Healer',
             party: 2,
             description:
               'If Searing Wind, mirror the party on the opposite side\nElse go with party',
-            imageUrl: './uwu/p2-ifrit-20.webp'
+            imageUrl: './uwu/p2-ifrit-20.webp',
+            mask: getMultiCircleMaskUrl([49.4, 4.8, 9], [50.4, 96.4, 7])
           },
           {
             role: 'Melee',
             party: 1,
             description: 'Go to the slice where the last nail died',
-            imageUrl: './uwu/p2-ifrit-20.webp'
+            imageUrl: './uwu/p2-ifrit-20.webp',
+            mask: getCircleMaskUrl(49.4, 4.8, 9)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'Go to the slice where the last nail died',
-            imageUrl: './uwu/p2-ifrit-20.webp'
+            imageUrl: './uwu/p2-ifrit-20.webp',
+            mask: getCircleMaskUrl(49.4, 4.8, 9)
           },
           {
             role: 'Ranged',
             party: 1,
             description: 'Go to the slice where the last nail died',
-            imageUrl: './uwu/p2-ifrit-20.webp'
+            imageUrl: './uwu/p2-ifrit-20.webp',
+            mask: getCircleMaskUrl(49.4, 4.8, 9)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'Go to the slice where the last nail died',
-            imageUrl: './uwu/p2-ifrit-20.webp'
+            imageUrl: './uwu/p2-ifrit-20.webp',
+            mask: getCircleMaskUrl(49.4, 4.8, 9)
           }
         ]
       },
@@ -1435,49 +1544,57 @@ const p2: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Pull Ifrit to a wall, away from healer + party',
-            imageUrl: './uwu/p2-ifrit-27.webp'
+            imageUrl: './uwu/p2-ifrit-27.webp',
+            mask: getCircleMaskUrl(28.9, 50.5, 7)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Wait for Searing Wind before moving in',
-            imageUrl: './uwu/p2-ifrit-27.webp'
+            imageUrl: './uwu/p2-ifrit-27.webp',
+            mask: getCircleMaskUrl(17.4, 49.7, 11.8)
           },
           {
             role: 'Healer',
             party: 1,
             description: 'If Searing Wind, stay away until it goes off',
-            imageUrl: './uwu/p2-ifrit-27.webp'
+            imageUrl: './uwu/p2-ifrit-27.webp',
+            mask: getMultiCircleMaskUrl([6.2, 50.1, 7], [96.5, 51.5, 7])
           },
           {
             role: 'Healer',
             party: 2,
             description: 'If Searing Wind, stay away until it goes off',
-            imageUrl: './uwu/p2-ifrit-27.webp'
+            imageUrl: './uwu/p2-ifrit-27.webp',
+            mask: getMultiCircleMaskUrl([6.2, 50.1, 7], [96.5, 51.5, 7])
           },
           {
             role: 'Melee',
             party: 1,
             description: 'Wait for Searing Wind before moving in',
-            imageUrl: './uwu/p2-ifrit-27.webp'
+            imageUrl: './uwu/p2-ifrit-27.webp',
+            mask: getCircleMaskUrl(17.4, 49.7, 11.8)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'Wait for Searing Wind before moving in',
-            imageUrl: './uwu/p2-ifrit-27.webp'
+            imageUrl: './uwu/p2-ifrit-27.webp',
+            mask: getCircleMaskUrl(17.4, 49.7, 11.8)
           },
           {
             role: 'Ranged',
             party: 1,
             description: 'Wait for Searing Wind before moving in',
-            imageUrl: './uwu/p2-ifrit-27.webp'
+            imageUrl: './uwu/p2-ifrit-27.webp',
+            mask: getCircleMaskUrl(5.8, 45.2, 7)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'Wait for Searing Wind before moving in',
-            imageUrl: './uwu/p2-ifrit-27.webp'
+            imageUrl: './uwu/p2-ifrit-27.webp',
+            mask: getCircleMaskUrl(17.4, 49.7, 11.8)
           }
         ]
       },
@@ -1490,49 +1607,57 @@ const p2: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Face Ifrit into the wall\nInvuln or tank swap for triple TB',
-            imageUrl: './uwu/p2-ifrit-28.webp'
+            imageUrl: './uwu/p2-ifrit-28.webp',
+            mask: getCircleMaskUrl(9.8, 25, 7)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Provoke if swapping',
-            imageUrl: './uwu/p2-ifrit-28.webp'
+            imageUrl: './uwu/p2-ifrit-28.webp',
+            mask: getCircleMaskUrl(22.7, 44.9, 7)
           },
           {
             role: 'Healer',
             party: 1,
             description: 'Stay with party',
-            imageUrl: './uwu/p2-ifrit-28.webp'
+            imageUrl: './uwu/p2-ifrit-28.webp',
+            mask: getCircleMaskUrl(15, 46.5, 7.7)
           },
           {
             role: 'Healer',
             party: 2,
             description: 'Stay with party',
-            imageUrl: './uwu/p2-ifrit-28.webp'
+            imageUrl: './uwu/p2-ifrit-28.webp',
+            mask: getCircleMaskUrl(15, 46.5, 7.7)
           },
           {
             role: 'Melee',
             party: 1,
             description: 'Stay with party',
-            imageUrl: './uwu/p2-ifrit-28.webp'
+            imageUrl: './uwu/p2-ifrit-28.webp',
+            mask: getCircleMaskUrl(27.4, 43.8, 7)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'Stay with party',
-            imageUrl: './uwu/p2-ifrit-28.webp'
+            imageUrl: './uwu/p2-ifrit-28.webp',
+            mask: getCircleMaskUrl(15, 46.5, 7.7)
           },
           {
             role: 'Ranged',
             party: 1,
             description: 'Bait Eruptions opposite the tank',
-            imageUrl: './uwu/p2-ifrit-28.webp'
+            imageUrl: './uwu/p2-ifrit-28.webp',
+            mask: getCircleMaskUrl(37.6, 71.8, 8.9)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'Bait Eruptions opposite the tank',
-            imageUrl: './uwu/p2-ifrit-28.webp'
+            imageUrl: './uwu/p2-ifrit-28.webp',
+            mask: getCircleMaskUrl(37.6, 71.8, 8.9)
           }
         ]
       },
@@ -2112,49 +2237,57 @@ const p3: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Dodge, then move into safe spot behind Titan',
-            imageUrl: './uwu/p3-titan-35.webp'
+            imageUrl: './uwu/p3-titan-35.webp',
+            mask: getCircleMaskUrl(32.9, 32.5, 7)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Dodge, then move into safe spot behind Titan',
-            imageUrl: './uwu/p3-titan-35.webp'
+            imageUrl: './uwu/p3-titan-35.webp',
+            mask: getCircleMaskUrl(32.9, 32.5, 7)
           },
           {
             role: 'Healer',
             party: 1,
             description: 'Bait Landslide, then dodge',
-            imageUrl: './uwu/p3-titan-35.webp'
+            imageUrl: './uwu/p3-titan-35.webp',
+            mask: getCircleMaskUrl(35.6, 71.9, 9.6)
           },
           {
             role: 'Healer',
             party: 2,
             description: 'Bait Landslide, then dodge',
-            imageUrl: './uwu/p3-titan-35.webp'
+            imageUrl: './uwu/p3-titan-35.webp',
+            mask: getCircleMaskUrl(35.6, 71.9, 9.6)
           },
           {
             role: 'Melee',
             party: 1,
             description: 'Dodge, then move into safe spot behind Titan\nAdjust for boulders',
-            imageUrl: './uwu/p3-titan-35.webp'
+            imageUrl: './uwu/p3-titan-35.webp',
+            mask: getCircleMaskUrl(32.9, 32.5, 7)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'Dodge, then move into safe spot behind Titan\nAdjust for boulders',
-            imageUrl: './uwu/p3-titan-35.webp'
+            imageUrl: './uwu/p3-titan-35.webp',
+            mask: getCircleMaskUrl(32.9, 32.5, 7)
           },
           {
             role: 'Ranged',
             party: 1,
             description: 'Bait Landslide, then dodge',
-            imageUrl: './uwu/p3-titan-35.webp'
+            imageUrl: './uwu/p3-titan-35.webp',
+            mask: getCircleMaskUrl(35.6, 71.9, 9.6)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'Bait Landslide, then dodge',
-            imageUrl: './uwu/p3-titan-35.webp'
+            imageUrl: './uwu/p3-titan-35.webp',
+            mask: getCircleMaskUrl(35.6, 71.9, 9.6)
           }
         ]
       },
@@ -2775,49 +2908,57 @@ const predation: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Pull Ultima slightly NW to bait Titan',
-            imageUrl: './uwu/p4-predation-10.webp'
+            imageUrl: './uwu/p4-predation-10.webp',
+            mask: getCircleMaskUrl(48.5, 26.5, 11.5)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Stack on 2nd line from North',
-            imageUrl: './uwu/p4-predation-10.webp'
+            imageUrl: './uwu/p4-predation-10.webp',
+            mask: getCircleMaskUrl(48.5, 26.5, 11.5)
           },
           {
             role: 'Healer',
             party: 1,
             description: 'If baiting, bait Eruptions far South\nElse stack on 2nd line from North',
-            imageUrl: './uwu/p4-predation-10.webp'
+            imageUrl: './uwu/p4-predation-10.webp',
+            mask: getMultiCircleMaskUrl([28.4, 89.6, 7], [48.5, 26.5, 11.5], [71.8, 89.6, 7])
           },
           {
             role: 'Healer',
             party: 2,
             description: 'If baiting, bait Eruptions far South\nElse stack on 2nd line from North',
-            imageUrl: './uwu/p4-predation-10.webp'
+            imageUrl: './uwu/p4-predation-10.webp',
+            mask: getMultiCircleMaskUrl([28.4, 89.6, 7], [48.5, 26.5, 11.5], [71.8, 89.6, 7])
           },
           {
             role: 'Melee',
             party: 1,
             description: 'Stack on 2nd line from North',
-            imageUrl: './uwu/p4-predation-10.webp'
+            imageUrl: './uwu/p4-predation-10.webp',
+            mask: getCircleMaskUrl(48.5, 26.5, 11.5)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'Stack on 2nd line from North',
-            imageUrl: './uwu/p4-predation-10.webp'
+            imageUrl: './uwu/p4-predation-10.webp',
+            mask: getCircleMaskUrl(48.5, 26.5, 11.5)
           },
           {
             role: 'Ranged',
             party: 1,
             description: 'If baiting, bait Eruptions far South\nElse stack on 2nd line from North',
-            imageUrl: './uwu/p4-predation-10.webp'
+            imageUrl: './uwu/p4-predation-10.webp',
+            mask: getMultiCircleMaskUrl([28.4, 89.6, 7], [48.5, 26.5, 11.5], [71.8, 89.6, 7])
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'If baiting, bait Eruptions far South\nElse stack on 2nd line from North',
-            imageUrl: './uwu/p4-predation-10.webp'
+            imageUrl: './uwu/p4-predation-10.webp',
+            mask: getMultiCircleMaskUrl([28.4, 89.6, 7], [48.5, 26.5, 11.5], [71.8, 89.6, 7])
           }
         ]
       },
@@ -2897,49 +3038,57 @@ const predation: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'East side of Ultima',
-            imageUrl: './uwu/p4-predation-17.webp'
+            imageUrl: './uwu/p4-predation-17.webp',
+            mask: getCircleMaskUrl(55.6, 18.9, 7)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'West side of Ultima\nAvoid boulders in Center',
-            imageUrl: './uwu/p4-predation-17.webp'
+            imageUrl: './uwu/p4-predation-17.webp',
+            mask: getCircleMaskUrl(42.2, 18.4, 7)
           },
           {
             role: 'Healer',
             party: 1,
             description: 'West side of Ultima\nAvoid boulders in Center',
-            imageUrl: './uwu/p4-predation-17.webp'
+            imageUrl: './uwu/p4-predation-17.webp',
+            mask: getCircleMaskUrl(42.2, 18.4, 7)
           },
           {
             role: 'Healer',
             party: 2,
             description: 'West side of Ultima\nAvoid boulders in Center',
-            imageUrl: './uwu/p4-predation-17.webp'
+            imageUrl: './uwu/p4-predation-17.webp',
+            mask: getCircleMaskUrl(42.2, 18.4, 7)
           },
           {
             role: 'Melee',
             party: 1,
             description: 'West side of Ultima\nAvoid boulders in Center',
-            imageUrl: './uwu/p4-predation-17.webp'
+            imageUrl: './uwu/p4-predation-17.webp',
+            mask: getCircleMaskUrl(42.2, 18.4, 7)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'West side of Ultima\nAvoid boulders in Center',
-            imageUrl: './uwu/p4-predation-17.webp'
+            imageUrl: './uwu/p4-predation-17.webp',
+            mask: getCircleMaskUrl(42.2, 18.4, 7)
           },
           {
             role: 'Ranged',
             party: 1,
             description: 'West side of Ultima\nAvoid boulders in Center',
-            imageUrl: './uwu/p4-predation-17.webp'
+            imageUrl: './uwu/p4-predation-17.webp',
+            mask: getCircleMaskUrl(42.2, 18.4, 7)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'West side of Ultima\nAvoid boulders in Center',
-            imageUrl: './uwu/p4-predation-17.webp'
+            imageUrl: './uwu/p4-predation-17.webp',
+            mask: getCircleMaskUrl(42.2, 18.4, 7)
           }
         ]
       },
@@ -2953,49 +3102,57 @@ const predation: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Hold Aetheroplasm on East side',
-            imageUrl: './uwu/p4-predation-18.webp'
+            imageUrl: './uwu/p4-predation-18.webp',
+            mask: getCircleMaskUrl(59.2, 17.4, 7)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Stay on West side',
-            imageUrl: './uwu/p4-predation-18.webp'
+            imageUrl: './uwu/p4-predation-18.webp',
+            mask: getCircleMaskUrl(42.2, 18.4, 7)
           },
           {
             role: 'Healer',
             party: 1,
             description: 'Heal through Tumults',
-            imageUrl: './uwu/p4-predation-18.webp'
+            imageUrl: './uwu/p4-predation-18.webp',
+            mask: getCircleMaskUrl(42.2, 18.4, 7)
           },
           {
             role: 'Healer',
             party: 2,
             description: 'Heal through Tumults',
-            imageUrl: './uwu/p4-predation-18.webp'
+            imageUrl: './uwu/p4-predation-18.webp',
+            mask: getCircleMaskUrl(42.2, 18.4, 7)
           },
           {
             role: 'Melee',
             party: 1,
             description: 'Stay on West side',
-            imageUrl: './uwu/p4-predation-18.webp'
+            imageUrl: './uwu/p4-predation-18.webp',
+            mask: getCircleMaskUrl(42.2, 18.4, 7)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'Stay on West side',
-            imageUrl: './uwu/p4-predation-18.webp'
+            imageUrl: './uwu/p4-predation-18.webp',
+            mask: getCircleMaskUrl(42.2, 18.4, 7)
           },
           {
             role: 'Ranged',
             party: 1,
             description: 'Stay on West side',
-            imageUrl: './uwu/p4-predation-18.webp'
+            imageUrl: './uwu/p4-predation-18.webp',
+            mask: getCircleMaskUrl(42.2, 18.4, 7)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'Stay on West side',
-            imageUrl: './uwu/p4-predation-18.webp'
+            imageUrl: './uwu/p4-predation-18.webp',
+            mask: getCircleMaskUrl(42.2, 18.4, 7)
           }
         ]
       },
@@ -3008,49 +3165,57 @@ const predation: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Invuln Aetheroplasm, or mit it with party',
-            imageUrl: './uwu/p4-predation-21.webp'
+            imageUrl: './uwu/p4-predation-21.webp',
+            mask: getMultiCircleMaskUrl([66.5, 25.7, 7], [35.2, 26.6, 7])
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Take Homing Laser away from party\nInvuln if MT swapped',
-            imageUrl: './uwu/p4-predation-21.webp'
+            imageUrl: './uwu/p4-predation-21.webp',
+            mask: getMultiCircleMaskUrl([66.5, 25.7, 7], [35.2, 26.6, 7])
           },
           {
             role: 'Healer',
             party: 1,
             description: 'Dodge away from OT',
-            imageUrl: './uwu/p4-predation-21.webp'
+            imageUrl: './uwu/p4-predation-21.webp',
+            mask: getCircleMaskUrl(35, 25.8, 7)
           },
           {
             role: 'Healer',
             party: 2,
             description: 'Dodge away from OT',
-            imageUrl: './uwu/p4-predation-21.webp'
+            imageUrl: './uwu/p4-predation-21.webp',
+            mask: getCircleMaskUrl(35, 25.8, 7)
           },
           {
             role: 'Melee',
             party: 1,
             description: 'Dodge away from OT',
-            imageUrl: './uwu/p4-predation-21.webp'
+            imageUrl: './uwu/p4-predation-21.webp',
+            mask: getCircleMaskUrl(35, 25.8, 7)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'Dodge away from OT',
-            imageUrl: './uwu/p4-predation-21.webp'
+            imageUrl: './uwu/p4-predation-21.webp',
+            mask: getCircleMaskUrl(35, 25.8, 7)
           },
           {
             role: 'Ranged',
             party: 1,
             description: 'Dodge away from OT',
-            imageUrl: './uwu/p4-predation-21.webp'
+            imageUrl: './uwu/p4-predation-21.webp',
+            mask: getCircleMaskUrl(35, 25.8, 7)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'Dodge away from OT',
-            imageUrl: './uwu/p4-predation-21.webp'
+            imageUrl: './uwu/p4-predation-21.webp',
+            mask: getCircleMaskUrl(35, 25.8, 7)
           }
         ]
       },
@@ -3092,49 +3257,57 @@ const annihilation: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Soak 1st orb East',
-            imageUrl: './uwu/p4-annihilation-4.webp'
+            imageUrl: './uwu/p4-annihilation-4.webp',
+            mask: getCircleMaskUrl(54.4, 36, 7)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Soak 1st orb East',
-            imageUrl: './uwu/p4-annihilation-4.webp'
+            imageUrl: './uwu/p4-annihilation-4.webp',
+            mask: getCircleMaskUrl(54.4, 27.3, 7)
           },
           {
             role: 'Healer',
             party: 1,
             description: 'Go West\nIf Searing Wind, go far South next to Garuda',
-            imageUrl: './uwu/p4-annihilation-4.webp'
+            imageUrl: './uwu/p4-annihilation-4.webp',
+            mask: getCircleMaskUrl(29.1, 32.1, 7.5)
           },
           {
             role: 'Healer',
             party: 2,
             description: 'Go West\nIf Searing Wind, go far South next to Garuda',
-            imageUrl: './uwu/p4-annihilation-4.webp'
+            imageUrl: './uwu/p4-annihilation-4.webp',
+            mask: getCircleMaskUrl(29.1, 32.1, 7.5)
           },
           {
             role: 'Melee',
             party: 1,
             description: 'Go North',
-            imageUrl: './uwu/p4-annihilation-4.webp'
+            imageUrl: './uwu/p4-annihilation-4.webp',
+            mask: getCircleMaskUrl(39.2, 19.6, 7.3)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'Go North',
-            imageUrl: './uwu/p4-annihilation-4.webp'
+            imageUrl: './uwu/p4-annihilation-4.webp',
+            mask: getCircleMaskUrl(39.2, 19.6, 7.3)
           },
           {
             role: 'Ranged',
             party: 1,
             description: 'Go North',
-            imageUrl: './uwu/p4-annihilation-4.webp'
+            imageUrl: './uwu/p4-annihilation-4.webp',
+            mask: getCircleMaskUrl(39.2, 19.6, 7.3)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'Take Garuda tether South',
-            imageUrl: './uwu/p4-annihilation-4.webp'
+            imageUrl: './uwu/p4-annihilation-4.webp',
+            mask: getCircleMaskUrl(43.1, 45.1, 7)
           }
         ]
       },
@@ -3146,49 +3319,57 @@ const annihilation: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Soak 2nd orb East',
-            imageUrl: './uwu/p4-annihilation-7.webp'
+            imageUrl: './uwu/p4-annihilation-7.webp',
+            mask: getCircleMaskUrl(57.1, 33.4, 7)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Soak 2nd orb East, then go far North',
-            imageUrl: './uwu/p4-annihilation-7.webp'
+            imageUrl: './uwu/p4-annihilation-7.webp',
+            mask: getCircleMaskUrl(57.1, 33.4, 7)
           },
           {
             role: 'Healer',
             party: 1,
             description: 'Go far North\nIf Searing Wind, stay far South',
-            imageUrl: './uwu/p4-annihilation-7.webp'
+            imageUrl: './uwu/p4-annihilation-7.webp',
+            mask: getMultiCircleMaskUrl([49.4, 96.5, 7], [49.4, 3.8, 7])
           },
           {
             role: 'Healer',
             party: 2,
             description: 'Go far North\nIf Searing Wind, stay far South',
-            imageUrl: './uwu/p4-annihilation-7.webp'
+            imageUrl: './uwu/p4-annihilation-7.webp',
+            mask: getMultiCircleMaskUrl([49.4, 96.5, 7], [49.4, 3.8, 7])
           },
           {
             role: 'Melee',
             party: 1,
             description: 'Go far North',
-            imageUrl: './uwu/p4-annihilation-7.webp'
+            imageUrl: './uwu/p4-annihilation-7.webp',
+            mask: getCircleMaskUrl(49.4, 3.8, 7)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'Go far North',
-            imageUrl: './uwu/p4-annihilation-7.webp'
+            imageUrl: './uwu/p4-annihilation-7.webp',
+            mask: getCircleMaskUrl(49.4, 3.8, 7)
           },
           {
             role: 'Ranged',
             party: 1,
             description: 'Go far North',
-            imageUrl: './uwu/p4-annihilation-7.webp'
+            imageUrl: './uwu/p4-annihilation-7.webp',
+            mask: getCircleMaskUrl(49.4, 3.8, 7)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'Loop around West to get far North',
-            imageUrl: './uwu/p4-annihilation-7.webp'
+            imageUrl: './uwu/p4-annihilation-7.webp',
+            mask: getCircleMaskUrl(49.4, 3.8, 7)
           }
         ]
       },
@@ -3201,51 +3382,59 @@ const annihilation: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Can dodge Left to stay near the orbs',
-            imageUrl: './uwu/p4-annihilation-9.webp'
+            imageUrl: './uwu/p4-annihilation-9.webp',
+            mask: getCircleMaskUrl(58.1, 5, 7)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Dodge Right (facing Ultima) into Landslide',
-            imageUrl: './uwu/p4-annihilation-9.webp'
+            imageUrl: './uwu/p4-annihilation-9.webp',
+            mask: getCircleMaskUrl(41.2, 4.9, 7.7)
           },
           {
             role: 'Healer',
             party: 1,
             description:
               'If Searing Wind, go in front of where Ifrit was\nElse dodge Right into Landslide',
-            imageUrl: './uwu/p4-annihilation-9.webp'
+            imageUrl: './uwu/p4-annihilation-9.webp',
+            mask: getMultiCircleMaskUrl([45, 97, 7], [41.2, 4.9, 7.7])
           },
           {
             role: 'Healer',
             party: 2,
             description:
               'If Searing Wind, go in front of where Ifrit was\nElse dodge Right into Landslide',
-            imageUrl: './uwu/p4-annihilation-9.webp'
+            imageUrl: './uwu/p4-annihilation-9.webp',
+            mask: getMultiCircleMaskUrl([45, 97, 7], [41.2, 4.9, 7.7])
           },
           {
             role: 'Melee',
             party: 1,
             description: 'Dodge Right (facing Ultima) into Landslide',
-            imageUrl: './uwu/p4-annihilation-9.webp'
+            imageUrl: './uwu/p4-annihilation-9.webp',
+            mask: getCircleMaskUrl(41.2, 4.9, 7.7)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'Dodge Right (facing Ultima) into Landslide',
-            imageUrl: './uwu/p4-annihilation-9.webp'
+            imageUrl: './uwu/p4-annihilation-9.webp',
+            mask: getCircleMaskUrl(41.2, 4.9, 7.7)
           },
           {
             role: 'Ranged',
             party: 1,
             description: 'Dodge Right (facing Ultima) into Landslide',
-            imageUrl: './uwu/p4-annihilation-9.webp'
+            imageUrl: './uwu/p4-annihilation-9.webp',
+            mask: getCircleMaskUrl(41.2, 4.9, 7.7)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'Dodge Right (facing Ultima) into Landslide',
-            imageUrl: './uwu/p4-annihilation-9.webp'
+            imageUrl: './uwu/p4-annihilation-9.webp',
+            mask: getCircleMaskUrl(41.2, 4.9, 7.7)
           }
         ]
       },
@@ -3258,51 +3447,59 @@ const annihilation: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Soak 3rd orb, stay for 4th',
-            imageUrl: './uwu/p4-annihilation-12.webp'
+            imageUrl: './uwu/p4-annihilation-12.webp',
+            mask: getCircleMaskUrl(59.4, 31.6, 7)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Stack on edge of Ultima hitbox',
-            imageUrl: './uwu/p4-annihilation-12.webp'
+            imageUrl: './uwu/p4-annihilation-12.webp',
+            mask: getCircleMaskUrl(33.5, 23.1, 8.4)
           },
           {
             role: 'Healer',
             party: 1,
             description:
               'If Searing Wind, intercept Garuda tether and stay South\nElse stack on edge of Ultima hitbox',
-            imageUrl: './uwu/p4-annihilation-12.webp'
+            imageUrl: './uwu/p4-annihilation-12.webp',
+            mask: getMultiCircleMaskUrl([46.9, 84.4, 7], [33.5, 23.1, 8.4])
           },
           {
             role: 'Healer',
             party: 2,
             description:
               'If Searing Wind, intercept Garuda tether and stay South\nElse stack on edge of Ultima hitbox',
-            imageUrl: './uwu/p4-annihilation-12.webp'
+            imageUrl: './uwu/p4-annihilation-12.webp',
+            mask: getMultiCircleMaskUrl([46.9, 84.4, 7], [33.5, 23.1, 8.4])
           },
           {
             role: 'Melee',
             party: 1,
             description: 'Stack on edge of Ultima hitbox',
-            imageUrl: './uwu/p4-annihilation-12.webp'
+            imageUrl: './uwu/p4-annihilation-12.webp',
+            mask: getCircleMaskUrl(33.5, 23.1, 8.4)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'Stack on edge of Ultima hitbox',
-            imageUrl: './uwu/p4-annihilation-12.webp'
+            imageUrl: './uwu/p4-annihilation-12.webp',
+            mask: getCircleMaskUrl(33.5, 23.1, 8.4)
           },
           {
             role: 'Ranged',
             party: 1,
             description: 'Stack on edge of Ultima hitbox',
-            imageUrl: './uwu/p4-annihilation-12.webp'
+            imageUrl: './uwu/p4-annihilation-12.webp',
+            mask: getCircleMaskUrl(33.5, 23.1, 8.4)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'Stack on edge of Ultima hitbox',
-            imageUrl: './uwu/p4-annihilation-12.webp'
+            imageUrl: './uwu/p4-annihilation-12.webp',
+            mask: getCircleMaskUrl(33.5, 23.1, 8.4)
           }
         ]
       },
@@ -3327,49 +3524,57 @@ const annihilation: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Hold Ultima',
-            imageUrl: './uwu/p4-annihilation-16.webp'
+            imageUrl: './uwu/p4-annihilation-16.webp',
+            mask: getCircleMaskUrl(51.6, 33.2, 7)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Mit Homing Lasers away from party',
-            imageUrl: './uwu/p4-annihilation-16.webp'
+            imageUrl: './uwu/p4-annihilation-16.webp',
+            mask: getCircleMaskUrl(67, 44.5, 7)
           },
           {
             role: 'Healer',
             party: 1,
             description: 'If Searing Wind, wait for last hit, then in ASAP\nElse stay in',
-            imageUrl: './uwu/p4-annihilation-16.webp'
+            imageUrl: './uwu/p4-annihilation-16.webp',
+            mask: getMultiCircleMaskUrl([49, 68.9, 7], [36.6, 39.4, 7])
           },
           {
             role: 'Healer',
             party: 2,
             description: 'If Searing Wind, wait for last hit, then in ASAP\nElse stay in',
-            imageUrl: './uwu/p4-annihilation-16.webp'
+            imageUrl: './uwu/p4-annihilation-16.webp',
+            mask: getMultiCircleMaskUrl([49, 68.9, 7], [36.6, 39.4, 7])
           },
           {
             role: 'Melee',
             party: 1,
             description: 'Stay in for Eye of the Storm',
-            imageUrl: './uwu/p4-annihilation-16.webp'
+            imageUrl: './uwu/p4-annihilation-16.webp',
+            mask: getCircleMaskUrl(35.9, 48.5, 9.3)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'Stay in for Eye of the Storm',
-            imageUrl: './uwu/p4-annihilation-16.webp'
+            imageUrl: './uwu/p4-annihilation-16.webp',
+            mask: getCircleMaskUrl(35.9, 48.5, 9.3)
           },
           {
             role: 'Ranged',
             party: 1,
             description: 'Stay in for Eye of the Storm',
-            imageUrl: './uwu/p4-annihilation-16.webp'
+            imageUrl: './uwu/p4-annihilation-16.webp',
+            mask: getCircleMaskUrl(35.9, 48.5, 9.3)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'Stay in for Eye of the Storm',
-            imageUrl: './uwu/p4-annihilation-16.webp'
+            imageUrl: './uwu/p4-annihilation-16.webp',
+            mask: getCircleMaskUrl(35.9, 48.5, 9.3)
           }
         ]
       },
@@ -3388,49 +3593,57 @@ const annihilation: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Mit cleaving TB',
-            imageUrl: './uwu/p4-annihilation-20.webp'
+            imageUrl: './uwu/p4-annihilation-20.webp',
+            mask: getCircleMaskUrl(50.5, 33.6, 7)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Move in, stay out of MT cleave',
-            imageUrl: './uwu/p4-annihilation-20.webp'
+            imageUrl: './uwu/p4-annihilation-20.webp',
+            mask: getCircleMaskUrl(67.6, 49.7, 7)
           },
           {
             role: 'Healer',
             party: 1,
             description: 'Move in, stay out of MT cleave',
-            imageUrl: './uwu/p4-annihilation-20.webp'
+            imageUrl: './uwu/p4-annihilation-20.webp',
+            mask: getCircleMaskUrl(31.6, 49.3, 9.5)
           },
           {
             role: 'Healer',
             party: 2,
             description: 'Move in, stay out of MT cleave',
-            imageUrl: './uwu/p4-annihilation-20.webp'
+            imageUrl: './uwu/p4-annihilation-20.webp',
+            mask: getCircleMaskUrl(31.6, 49.3, 9.5)
           },
           {
             role: 'Melee',
             party: 1,
             description: 'Move in, stay out of MT cleave',
-            imageUrl: './uwu/p4-annihilation-20.webp'
+            imageUrl: './uwu/p4-annihilation-20.webp',
+            mask: getCircleMaskUrl(31.6, 49.3, 9.5)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'Move in, stay out of MT cleave',
-            imageUrl: './uwu/p4-annihilation-20.webp'
+            imageUrl: './uwu/p4-annihilation-20.webp',
+            mask: getCircleMaskUrl(31.6, 49.3, 9.5)
           },
           {
             role: 'Ranged',
             party: 1,
             description: 'Move in, stay out of MT cleave',
-            imageUrl: './uwu/p4-annihilation-20.webp'
+            imageUrl: './uwu/p4-annihilation-20.webp',
+            mask: getCircleMaskUrl(31.6, 49.3, 9.5)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'Move in, stay out of MT cleave',
-            imageUrl: './uwu/p4-annihilation-20.webp'
+            imageUrl: './uwu/p4-annihilation-20.webp',
+            mask: getCircleMaskUrl(31.6, 49.3, 9.5)
           }
         ]
       },
@@ -3443,49 +3656,57 @@ const annihilation: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Can ignore KB if shielded, otherwise take KB or use KB resist',
-            imageUrl: './uwu/p4-annihilation-21.webp'
+            imageUrl: './uwu/p4-annihilation-21.webp',
+            mask: getCircleMaskUrl(50.5, 33.6, 7)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Homing Lasers next, tank swap if needed',
-            imageUrl: './uwu/p4-annihilation-21.webp'
+            imageUrl: './uwu/p4-annihilation-21.webp',
+            mask: getCircleMaskUrl(67.6, 49.7, 7)
           },
           {
             role: 'Healer',
             party: 1,
             description: 'AOE shield to avoid the KB',
-            imageUrl: './uwu/p4-annihilation-21.webp'
+            imageUrl: './uwu/p4-annihilation-21.webp',
+            mask: getCircleMaskUrl(31.6, 49.3, 9.5)
           },
           {
             role: 'Healer',
             party: 2,
             description: 'AOE shield to avoid the KB',
-            imageUrl: './uwu/p4-annihilation-21.webp'
+            imageUrl: './uwu/p4-annihilation-21.webp',
+            mask: getCircleMaskUrl(31.6, 49.3, 9.5)
           },
           {
             role: 'Melee',
             party: 1,
             description: 'Can ignore KB if shielded, otherwise take KB or use KB resist',
-            imageUrl: './uwu/p4-annihilation-21.webp'
+            imageUrl: './uwu/p4-annihilation-21.webp',
+            mask: getCircleMaskUrl(31.6, 49.3, 9.5)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'Can ignore KB if shielded, otherwise take KB or use KB resist',
-            imageUrl: './uwu/p4-annihilation-21.webp'
+            imageUrl: './uwu/p4-annihilation-21.webp',
+            mask: getCircleMaskUrl(31.6, 49.3, 9.5)
           },
           {
             role: 'Ranged',
             party: 1,
             description: 'Can ignore KB if shielded, otherwise take KB or use KB resist',
-            imageUrl: './uwu/p4-annihilation-21.webp'
+            imageUrl: './uwu/p4-annihilation-21.webp',
+            mask: getCircleMaskUrl(31.6, 49.3, 9.5)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'Can ignore KB if shielded, otherwise take KB or use KB resist',
-            imageUrl: './uwu/p4-annihilation-21.webp'
+            imageUrl: './uwu/p4-annihilation-21.webp',
+            mask: getCircleMaskUrl(31.6, 49.3, 9.5)
           }
         ]
       }
@@ -3507,13 +3728,15 @@ const suppression: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Stand SW in front of Titan\nIntercept Mistral Songs',
-            imageUrl: './uwu/p4-suppression-1.webp'
+            imageUrl: './uwu/p4-suppression-1.webp',
+            mask: getCircleMaskUrl(30.5, 61.1, 7)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Stand SW in front of Titan\nIntercept Mistral Songs',
-            imageUrl: './uwu/p4-suppression-1.webp'
+            imageUrl: './uwu/p4-suppression-1.webp',
+            mask: getCircleMaskUrl(39.8, 68, 7)
           },
           {
             role: 'Healer',
@@ -3563,13 +3786,15 @@ const suppression: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Intercept Mistral Songs by Titan',
-            imageUrl: './uwu/p4-suppression-3.webp'
+            imageUrl: './uwu/p4-suppression-3.webp',
+            mask: getCircleMaskUrl(30.5, 61.1, 7)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Intercept Mistral Songs by Titan',
-            imageUrl: './uwu/p4-suppression-3.webp'
+            imageUrl: './uwu/p4-suppression-3.webp',
+            mask: getCircleMaskUrl(39.8, 68, 7)
           },
           {
             role: 'Healer',
@@ -3617,13 +3842,15 @@ const suppression: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Mit and intercept Mistral Songs',
-            imageUrl: './uwu/p4-suppression-5.webp'
+            imageUrl: './uwu/p4-suppression-5.webp',
+            mask: getCircleMaskUrl(30.5, 61.1, 7)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Mit and intercept Mistral Songs',
-            imageUrl: './uwu/p4-suppression-5.webp'
+            imageUrl: './uwu/p4-suppression-5.webp',
+            mask: getCircleMaskUrl(39.8, 68, 7)
           },
           {
             role: 'Healer',
@@ -3678,13 +3905,15 @@ const suppression: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Dodge 4th Eruption, group up Mid',
-            imageUrl: './uwu/p4-suppression-6.webp'
+            imageUrl: './uwu/p4-suppression-6.webp',
+            mask: getCircleMaskUrl(53, 51.4, 8.8)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Dodge 4th Eruption, group up Mid',
-            imageUrl: './uwu/p4-suppression-6.webp'
+            imageUrl: './uwu/p4-suppression-6.webp',
+            mask: getCircleMaskUrl(53, 51.4, 8.8)
           },
           {
             role: 'Healer',
@@ -3854,49 +4083,57 @@ const suppression: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'KB to SW orbs',
-            imageUrl: './uwu/p4-suppression-15.webp'
+            imageUrl: './uwu/p4-suppression-15.webp',
+            mask: getCircleMaskUrl(40, 59.7, 7)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'KB to SW orbs',
-            imageUrl: './uwu/p4-suppression-15.webp'
+            imageUrl: './uwu/p4-suppression-15.webp',
+            mask: getCircleMaskUrl(40, 59.7, 7)
           },
           {
             role: 'Healer',
             party: 1,
             description: 'KB to SE orbs',
-            imageUrl: './uwu/p4-suppression-15.webp'
+            imageUrl: './uwu/p4-suppression-15.webp',
+            mask: getCircleMaskUrl(63.8, 58.4, 7.9)
           },
           {
             role: 'Healer',
             party: 2,
             description: 'KB to SE orbs',
-            imageUrl: './uwu/p4-suppression-15.webp'
+            imageUrl: './uwu/p4-suppression-15.webp',
+            mask: getCircleMaskUrl(63.8, 58.4, 7.9)
           },
           {
             role: 'Melee',
             party: 1,
             description: 'KB to SE orbs',
-            imageUrl: './uwu/p4-suppression-15.webp'
+            imageUrl: './uwu/p4-suppression-15.webp',
+            mask: getCircleMaskUrl(63.8, 58.4, 7.9)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'KB to SE orbs',
-            imageUrl: './uwu/p4-suppression-15.webp'
+            imageUrl: './uwu/p4-suppression-15.webp',
+            mask: getCircleMaskUrl(63.8, 58.4, 7.9)
           },
           {
             role: 'Ranged',
             party: 1,
             description: 'KB to SE orbs',
-            imageUrl: './uwu/p4-suppression-15.webp'
+            imageUrl: './uwu/p4-suppression-15.webp',
+            mask: getCircleMaskUrl(63.8, 58.4, 7.9)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'KB to SE orbs',
-            imageUrl: './uwu/p4-suppression-15.webp'
+            imageUrl: './uwu/p4-suppression-15.webp',
+            mask: getCircleMaskUrl(63.8, 58.4, 7.9)
           }
         ]
       },
@@ -3910,49 +4147,57 @@ const suppression: PhaseStrats[] = [
             role: 'Tank',
             party: 1,
             description: 'Soak SW orb, then NW orb',
-            imageUrl: './uwu/p4-suppression-16.webp'
+            imageUrl: './uwu/p4-suppression-16.webp',
+            mask: getCircleMaskUrl(33.8, 63.6, 7)
           },
           {
             role: 'Tank',
             party: 2,
             description: 'Soak SW orb, then NW orb',
-            imageUrl: './uwu/p4-suppression-16.webp'
+            imageUrl: './uwu/p4-suppression-16.webp',
+            mask: getCircleMaskUrl(30.5, 71.4, 7)
           },
           {
             role: 'Healer',
             party: 1,
             description: 'Soak SE orb, then NE orb\nHeal up between soaks',
-            imageUrl: './uwu/p4-suppression-16.webp'
+            imageUrl: './uwu/p4-suppression-16.webp',
+            mask: getCircleMaskUrl(70, 66.3, 10.2)
           },
           {
             role: 'Healer',
             party: 2,
             description: 'Soak SE orb, then NE orb\nHeal up between soaks',
-            imageUrl: './uwu/p4-suppression-16.webp'
+            imageUrl: './uwu/p4-suppression-16.webp',
+            mask: getCircleMaskUrl(70, 66.3, 10.2)
           },
           {
             role: 'Melee',
             party: 1,
             description: 'Soak SE orb, then NE orb',
-            imageUrl: './uwu/p4-suppression-16.webp'
+            imageUrl: './uwu/p4-suppression-16.webp',
+            mask: getCircleMaskUrl(70, 66.3, 10.2)
           },
           {
             role: 'Melee',
             party: 2,
             description: 'Soak SE orb, then NE orb',
-            imageUrl: './uwu/p4-suppression-16.webp'
+            imageUrl: './uwu/p4-suppression-16.webp',
+            mask: getCircleMaskUrl(70, 66.3, 10.2)
           },
           {
             role: 'Ranged',
             party: 1,
             description: 'Soak SE orb, then NE orb',
-            imageUrl: './uwu/p4-suppression-16.webp'
+            imageUrl: './uwu/p4-suppression-16.webp',
+            mask: getCircleMaskUrl(70, 66.3, 10.2)
           },
           {
             role: 'Ranged',
             party: 2,
             description: 'Soak SE orb, then NE orb',
-            imageUrl: './uwu/p4-suppression-16.webp'
+            imageUrl: './uwu/p4-suppression-16.webp',
+            mask: getCircleMaskUrl(70, 66.3, 10.2)
           }
         ]
       }
