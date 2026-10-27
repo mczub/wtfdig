@@ -1,11 +1,12 @@
 import type { FightConfig, Strat, MechanicStrat } from '$lib/types';
+import { raidplanImage } from '$lib/raidplan/image';
 
 // Toggle-dependent mechs for Mortal Slayer
 const toxicMortalSlayer: MechanicStrat[] = [
   {
     mechanic: 'Conga Prio',
     description: 'Line up H1-M1-R1-R2-M2-H2\nTake balls in pairs in the order they spawned',
-    imageUrl: './m12s/p1-toxic-mortal-conga.webp',
+    imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 1),
     url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#1'
   }
 ];
@@ -15,7 +16,7 @@ const roleMortalSlayer: MechanicStrat[] = [
     mechanic: 'DPS/Support Sides',
     description:
       'Support move to side with 2 purple orbs, DPS on 4 green orbs\nDPS: M1-M2-R1-R2\nSupport: H1-H2, Tanks take purples MT-OT',
-    imageUrl: './m12s/p1-roles-mortal-sides.webp',
+    imageUrl: raidplanImage('KbxeCHoPkzWbt_HB', 2),
     url: 'https://raidplan.io/plan/KbxeCHoPkzWbt_HB#2'
   }
 ];
@@ -30,7 +31,7 @@ const dnReplication1: MechanicStrat[] = [
   {
     mechanic: 'Setup',
     description: 'G1 N, G2 S\nMelees NE/SW, Ranged NW/SE',
-    imageUrl: './m12s/dn-rep1-1.webp',
+    imageUrl: raidplanImage('9ncP6UIDURcWuRuO', 2),
     url: 'https://raidplan.io/plan/9ncP6UIDURcWuRuO#2'
   },
   {
@@ -41,53 +42,53 @@ const dnReplication1: MechanicStrat[] = [
         role: 'Tank',
         party: 1,
         description: 'Go dead center of arena',
-        imageUrl: './m12s/dn-rep1-17.webp'
+        imageUrl: raidplanImage('9ncP6UIDURcWuRuO', 18)
       },
       {
         role: 'Tank',
         party: 2,
         description: 'Go dead center of arena',
-        imageUrl: './m12s/dn-rep1-17.webp'
+        imageUrl: raidplanImage('9ncP6UIDURcWuRuO', 18)
       },
       {
         role: 'Healer',
         party: 1,
         description:
           'Find Fire clone on wall\nGo N/CW and stand on letter marker next to Fire clone with ranged',
-        imageUrl: './m12s/dn-rep1-12.webp'
+        imageUrl: raidplanImage('9ncP6UIDURcWuRuO', 13)
       },
       {
         role: 'Healer',
         party: 2,
         description:
           'Find Fire clone on wall\nGo N/CW and stand on letter marker next to Fire clone with ranged',
-        imageUrl: './m12s/dn-rep1-12.webp'
+        imageUrl: raidplanImage('9ncP6UIDURcWuRuO', 13)
       },
       {
         role: 'Melee',
         party: 1,
         description: 'Go dead center of arena',
-        imageUrl: './m12s/dn-rep1-17.webp'
+        imageUrl: raidplanImage('9ncP6UIDURcWuRuO', 18)
       },
       {
         role: 'Melee',
         party: 2,
         description: 'Go dead center of arena',
-        imageUrl: './m12s/dn-rep1-17.webp'
+        imageUrl: raidplanImage('9ncP6UIDURcWuRuO', 18)
       },
       {
         role: 'Ranged',
         party: 1,
         description:
           'Find Fire clone on wall\nGo N/CW and stand on letter marker next to Fire clone with healer',
-        imageUrl: './m12s/dn-rep1-12.webp'
+        imageUrl: raidplanImage('9ncP6UIDURcWuRuO', 13)
       },
       {
         role: 'Ranged',
         party: 2,
         description:
           'Find Fire clone on wall\nGo N/CW and stand on letter marker next to Fire clone with healer',
-        imageUrl: './m12s/dn-rep1-12.webp'
+        imageUrl: raidplanImage('9ncP6UIDURcWuRuO', 13)
       }
     ]
   },
@@ -100,56 +101,56 @@ const dnReplication1: MechanicStrat[] = [
         party: 1,
         description:
           'Find inner Dark clone\nGo N/CW to number marker next to Dark clone\nStand on corner closest to boss and away from clone',
-        imageUrl: './m12s/dn-rep1-19.webp'
+        imageUrl: raidplanImage('9ncP6UIDURcWuRuO', 20)
       },
       {
         role: 'Tank',
         party: 2,
         description:
           'Find inner Dark clone\nGo N/CW to number marker next to Dark clone\nStand on corner closest to boss and away from clone',
-        imageUrl: './m12s/dn-rep1-19.webp'
+        imageUrl: raidplanImage('9ncP6UIDURcWuRuO', 20)
       },
       {
         role: 'Healer',
         party: 1,
         description:
           'Find Dark clone on wall\nGo N/CW and stand on letter marker next to Dark clone',
-        imageUrl: './m12s/dn-rep1-14.webp'
+        imageUrl: raidplanImage('9ncP6UIDURcWuRuO', 15)
       },
       {
         role: 'Healer',
         party: 2,
         description:
           'Find Dark clone on wall\nGo N/CW and stand on letter marker next to Dark clone',
-        imageUrl: './m12s/dn-rep1-14.webp'
+        imageUrl: raidplanImage('9ncP6UIDURcWuRuO', 15)
       },
       {
         role: 'Melee',
         party: 1,
         description:
           'Find inner Dark clone\nGo NW/CCW to number marker next to Dark clone\nStand on corner closest to boss and away from clone',
-        imageUrl: './m12s/dn-rep1-19.webp'
+        imageUrl: raidplanImage('9ncP6UIDURcWuRuO', 20)
       },
       {
         role: 'Melee',
         party: 2,
         description:
           'Find inner Dark clone\nGo NW/CCW to number marker next to Dark clone\nStand on corner closest to boss and away from clone',
-        imageUrl: './m12s/dn-rep1-19.webp'
+        imageUrl: raidplanImage('9ncP6UIDURcWuRuO', 20)
       },
       {
         role: 'Ranged',
         party: 1,
         description:
           'Find Dark clone on wall\nGo NW/CCW and stand on letter marker next to Dark clone',
-        imageUrl: './m12s/dn-rep1-14.webp'
+        imageUrl: raidplanImage('9ncP6UIDURcWuRuO', 15)
       },
       {
         role: 'Ranged',
         party: 2,
         description:
           'Find Dark clone on wall\nGo NW/CCW and stand on letter marker next to Dark clone',
-        imageUrl: './m12s/dn-rep1-14.webp'
+        imageUrl: raidplanImage('9ncP6UIDURcWuRuO', 15)
       }
     ]
   }
@@ -159,7 +160,7 @@ const cloneRelReplication1: MechanicStrat[] = [
   {
     mechanic: 'Setup',
     description: 'G1 N, G2 S\nMelees NE/SW, Ranged NW/SE',
-    imageUrl: './m12s/dn-rep1-1.webp',
+    imageUrl: raidplanImage('9ncP6UIDURcWuRuO', 2),
     url: 'https://raidplan.io/plan/t19hrfQcixmMdMmr#2'
   },
   {
@@ -170,53 +171,53 @@ const cloneRelReplication1: MechanicStrat[] = [
         role: 'Tank',
         party: 1,
         description: 'Go center of arena, lean slightly towards inner Fire clone',
-        imageUrl: './m12s/clonerel-rep1-18.webp'
+        imageUrl: raidplanImage('t19hrfQcixmMdMmr', 18)
       },
       {
         role: 'Tank',
         party: 2,
         description: 'Go center of arena, lean slightly towards inner Fire clone',
-        imageUrl: './m12s/clonerel-rep1-18.webp'
+        imageUrl: raidplanImage('t19hrfQcixmMdMmr', 18)
       },
       {
         role: 'Healer',
         party: 1,
         description:
           'Find outer Fire clone\nFrom center, go to letter marker left of it and stack with ranged',
-        imageUrl: './m12s/clonerel-rep1-13.webp'
+        imageUrl: raidplanImage('t19hrfQcixmMdMmr', 13)
       },
       {
         role: 'Healer',
         party: 2,
         description:
           'Find outer Fire clone\nFrom center, go to letter marker left of it and stack with ranged',
-        imageUrl: './m12s/clonerel-rep1-13.webp'
+        imageUrl: raidplanImage('t19hrfQcixmMdMmr', 13)
       },
       {
         role: 'Melee',
         party: 1,
         description: 'Go center of arena, lean slightly towards inner Fire clone',
-        imageUrl: './m12s/clonerel-rep1-18.webp'
+        imageUrl: raidplanImage('t19hrfQcixmMdMmr', 18)
       },
       {
         role: 'Melee',
         party: 2,
         description: 'Go center of arena, lean slightly towards inner Fire clone',
-        imageUrl: './m12s/clonerel-rep1-18.webp'
+        imageUrl: raidplanImage('t19hrfQcixmMdMmr', 18)
       },
       {
         role: 'Ranged',
         party: 1,
         description:
           'Find outer Fire clone\nFrom center, go to letter marker left of it and stack with healer',
-        imageUrl: './m12s/clonerel-rep1-13.webp'
+        imageUrl: raidplanImage('t19hrfQcixmMdMmr', 13)
       },
       {
         role: 'Ranged',
         party: 2,
         description:
           'Find outer Fire clone\nFrom center, go to letter marker left of it and stack with healer',
-        imageUrl: './m12s/clonerel-rep1-13.webp'
+        imageUrl: raidplanImage('t19hrfQcixmMdMmr', 13)
       }
     ]
   },
@@ -229,52 +230,52 @@ const cloneRelReplication1: MechanicStrat[] = [
         party: 1,
         description:
           'Find inner Dark clone\nFrom center, go to number marker left of it\nStand on corner closest to boss and away from clone',
-        imageUrl: './m12s/clonerel-rep1-20.webp'
+        imageUrl: raidplanImage('t19hrfQcixmMdMmr', 20)
       },
       {
         role: 'Tank',
         party: 2,
         description:
           'Find inner Dark clone\nFrom center, go to number marker left of it\nStand on corner closest to boss and away from clone',
-        imageUrl: './m12s/clonerel-rep1-20.webp'
+        imageUrl: raidplanImage('t19hrfQcixmMdMmr', 20)
       },
       {
         role: 'Healer',
         party: 1,
         description: 'Find outer Dark clone\nFrom center, go to letter marker left of it',
-        imageUrl: './m12s/clonerel-rep1-15.webp'
+        imageUrl: raidplanImage('t19hrfQcixmMdMmr', 15)
       },
       {
         role: 'Healer',
         party: 2,
         description: 'Find outer Dark clone\nFrom center, go to letter marker left of it',
-        imageUrl: './m12s/clonerel-rep1-15.webp'
+        imageUrl: raidplanImage('t19hrfQcixmMdMmr', 15)
       },
       {
         role: 'Melee',
         party: 1,
         description:
           'Find inner Dark clone\nFrom center, go to number marker right of it\nStand on corner closest to boss and away from clone',
-        imageUrl: './m12s/clonerel-rep1-20.webp'
+        imageUrl: raidplanImage('t19hrfQcixmMdMmr', 20)
       },
       {
         role: 'Melee',
         party: 2,
         description:
           'Find inner Dark clone\nFrom center, go to number marker right of it\nStand on corner closest to boss and away from clone',
-        imageUrl: './m12s/clonerel-rep1-20.webp'
+        imageUrl: raidplanImage('t19hrfQcixmMdMmr', 20)
       },
       {
         role: 'Ranged',
         party: 1,
         description: 'Find outer Dark clone\nFrom center, go to letter marker right of it',
-        imageUrl: './m12s/clonerel-rep1-15.webp'
+        imageUrl: raidplanImage('t19hrfQcixmMdMmr', 15)
       },
       {
         role: 'Ranged',
         party: 2,
         description: 'Find outer Dark clone\nFrom center, go to letter marker right of it',
-        imageUrl: './m12s/clonerel-rep1-15.webp'
+        imageUrl: raidplanImage('t19hrfQcixmMdMmr', 15)
       }
     ]
   }
@@ -285,7 +286,7 @@ const bcReplication1: MechanicStrat[] = [
     mechanic: 'Setup',
     description:
       'Stand on corners of markers\nG1 N, G2 S\nTanks on 4, Healers on 1, Ranged on 3, Melees on 2',
-    imageUrl: './m12s/bc-rep1-1.webp',
+    imageUrl: raidplanImage('jaakesbessc2uv7h', 2),
     url: 'https://raidplan.io/plan/jaakesbessc2uv7h#2'
   },
   {
@@ -296,49 +297,49 @@ const bcReplication1: MechanicStrat[] = [
         role: 'Tank',
         party: 1,
         description: 'Go to inner Fire clone\nBait Fire stack inside of light diamond N or S',
-        imageUrl: './m12s/bc-rep1-8.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 9)
       },
       {
         role: 'Tank',
         party: 2,
         description: 'Go to inner Fire clone\nBait Fire stack inside of light diamond N or S',
-        imageUrl: './m12s/bc-rep1-8.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 9)
       },
       {
         role: 'Healer',
         party: 1,
         description: 'Go to outer Fire clone\nBait Fire stack on wall while dodging proteans',
-        imageUrl: './m12s/bc-rep1-7.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 8)
       },
       {
         role: 'Healer',
         party: 2,
         description: 'Go to outer Fire clone\nBait Fire stack on wall while dodging proteans',
-        imageUrl: './m12s/bc-rep1-7.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 8)
       },
       {
         role: 'Melee',
         party: 1,
         description: 'Go to inner Fire clone\nBait Fire stack inside of light diamond N or S',
-        imageUrl: './m12s/bc-rep1-8.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 9)
       },
       {
         role: 'Melee',
         party: 2,
         description: 'Go to inner Fire clone\nBait Fire stack inside of light diamond N or S',
-        imageUrl: './m12s/bc-rep1-8.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 9)
       },
       {
         role: 'Ranged',
         party: 1,
         description: 'Go to outer Fire clone\nBait Fire stack on wall while dodging proteans',
-        imageUrl: './m12s/bc-rep1-7.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 8)
       },
       {
         role: 'Ranged',
         party: 2,
         description: 'Go to outer Fire clone\nBait Fire stack on wall while dodging proteans',
-        imageUrl: './m12s/bc-rep1-7.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 8)
       }
     ]
   },
@@ -350,49 +351,49 @@ const bcReplication1: MechanicStrat[] = [
         role: 'Tank',
         party: 1,
         description: 'Go to inner Dark clone\nBait Dark spread inside of light diamond N or S',
-        imageUrl: './m12s/bc-rep1-8.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 9)
       },
       {
         role: 'Tank',
         party: 2,
         description: 'Go to inner Dark clone\nBait Dark spread inside of light diamond E or W',
-        imageUrl: './m12s/bc-rep1-8.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 9)
       },
       {
         role: 'Healer',
         party: 1,
         description: 'Go to outer Dark clone\nBait Dark spread while dodging proteans',
-        imageUrl: './m12s/bc-rep1-7.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 8)
       },
       {
         role: 'Healer',
         party: 2,
         description: 'Go to outer Dark clone\nBait Dark spread while dodging proteans',
-        imageUrl: './m12s/bc-rep1-7.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 8)
       },
       {
         role: 'Melee',
         party: 1,
         description: 'Go to inner Dark clone\nBait Dark spread inside of light diamond N or S',
-        imageUrl: './m12s/bc-rep1-8.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 9)
       },
       {
         role: 'Melee',
         party: 2,
         description: 'Go to inner Dark clone\nBait Dark spread inside of light diamond E or W',
-        imageUrl: './m12s/bc-rep1-8.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 9)
       },
       {
         role: 'Ranged',
         party: 1,
         description: 'Go to outer Dark clone\nBait Dark spread while dodging proteans',
-        imageUrl: './m12s/bc-rep1-7.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 8)
       },
       {
         role: 'Ranged',
         party: 2,
         description: 'Go to outer Dark clone\nBait Dark spread while dodging proteans',
-        imageUrl: './m12s/bc-rep1-7.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 8)
       }
     ]
   }
@@ -403,7 +404,7 @@ const caroReplication1: MechanicStrat[] = [
     mechanic: 'Setup',
     description:
       'Ranged and Healers on corners of 1 and 3 markers\nMelees and Tanks max melee on 2 and 4 markers',
-    imageUrl: './m12s/caro-rep1-0.webp',
+    imageUrl: raidplanImage('4P_QGHnBZ-nW8yH4', 1),
     url: 'https://raidplan.io/plan/4P_QGHnBZ-nW8yH4#1'
   },
   {
@@ -415,52 +416,52 @@ const caroReplication1: MechanicStrat[] = [
         party: 1,
         description:
           'Go to inner Fire clone\nBait Fire max melee E/W if horizontal or N/S if vertical',
-        imageUrl: './m12s/caro-rep1-8.webp'
+        imageUrl: raidplanImage('4P_QGHnBZ-nW8yH4', 9)
       },
       {
         role: 'Tank',
         party: 2,
         description:
           'Go to inner Fire clone\nBait Fire max melee E/W if horizontal or N/S if vertical',
-        imageUrl: './m12s/caro-rep1-8.webp'
+        imageUrl: raidplanImage('4P_QGHnBZ-nW8yH4', 9)
       },
       {
         role: 'Healer',
         party: 1,
         description: 'Go to outer Fire clone\nBait Fire stack on wall while dodging proteans',
-        imageUrl: './m12s/caro-rep1-8.webp'
+        imageUrl: raidplanImage('4P_QGHnBZ-nW8yH4', 9)
       },
       {
         role: 'Healer',
         party: 2,
         description: 'Go to outer Fire clone\nBait Fire stack on wall while dodging proteans',
-        imageUrl: './m12s/caro-rep1-8.webp'
+        imageUrl: raidplanImage('4P_QGHnBZ-nW8yH4', 9)
       },
       {
         role: 'Melee',
         party: 1,
         description:
           'Go to inner Fire clone\nBait Fire max melee E/W if horizontal or N/S if vertical',
-        imageUrl: './m12s/caro-rep1-8.webp'
+        imageUrl: raidplanImage('4P_QGHnBZ-nW8yH4', 9)
       },
       {
         role: 'Melee',
         party: 2,
         description:
           'Go to inner Fire clone\nBait Fire max melee E/W if horizontal or N/S if vertical',
-        imageUrl: './m12s/caro-rep1-8.webp'
+        imageUrl: raidplanImage('4P_QGHnBZ-nW8yH4', 9)
       },
       {
         role: 'Ranged',
         party: 1,
         description: 'Go to outer Fire clone\nBait Fire stack on wall while dodging proteans',
-        imageUrl: './m12s/caro-rep1-8.webp'
+        imageUrl: raidplanImage('4P_QGHnBZ-nW8yH4', 9)
       },
       {
         role: 'Ranged',
         party: 2,
         description: 'Go to outer Fire clone\nBait Fire stack on wall while dodging proteans',
-        imageUrl: './m12s/caro-rep1-8.webp'
+        imageUrl: raidplanImage('4P_QGHnBZ-nW8yH4', 9)
       }
     ]
   },
@@ -473,52 +474,52 @@ const caroReplication1: MechanicStrat[] = [
         party: 1,
         description:
           'Go to inner Dark clone\nBait Dark spread under boss (cheat to your side) or max melee E/W (horizontal)/N/S (vertical)',
-        imageUrl: './m12s/caro-rep1-9.webp'
+        imageUrl: raidplanImage('4P_QGHnBZ-nW8yH4', 10)
       },
       {
         role: 'Tank',
         party: 2,
         description:
           'Go to inner Dark clone\nBait Dark spread under boss (cheat to your side) or max melee E/W (horizontal)/N/S (vertical)',
-        imageUrl: './m12s/caro-rep1-9.webp'
+        imageUrl: raidplanImage('4P_QGHnBZ-nW8yH4', 10)
       },
       {
         role: 'Healer',
         party: 1,
         description: 'Go to outer Dark clone\nBait Dark spread while dodging proteans',
-        imageUrl: './m12s/caro-rep1-9.webp'
+        imageUrl: raidplanImage('4P_QGHnBZ-nW8yH4', 10)
       },
       {
         role: 'Healer',
         party: 2,
         description: 'Go to outer Dark clone\nBait Dark spread while dodging proteans',
-        imageUrl: './m12s/caro-rep1-9.webp'
+        imageUrl: raidplanImage('4P_QGHnBZ-nW8yH4', 10)
       },
       {
         role: 'Melee',
         party: 1,
         description:
           'Go to inner Dark clone\nBait Dark spread under boss (cheat to your side) or max melee E/W (horizontal)/N/S (vertical)',
-        imageUrl: './m12s/caro-rep1-9.webp'
+        imageUrl: raidplanImage('4P_QGHnBZ-nW8yH4', 10)
       },
       {
         role: 'Melee',
         party: 2,
         description:
           'Go to inner Dark clone\nBait Dark spread under boss (cheat to your side) or max melee E/W (horizontal)/N/S (vertical)',
-        imageUrl: './m12s/caro-rep1-9.webp'
+        imageUrl: raidplanImage('4P_QGHnBZ-nW8yH4', 10)
       },
       {
         role: 'Ranged',
         party: 1,
         description: 'Go to outer Dark clone\nBait Dark spread while dodging proteans',
-        imageUrl: './m12s/caro-rep1-9.webp'
+        imageUrl: raidplanImage('4P_QGHnBZ-nW8yH4', 10)
       },
       {
         role: 'Ranged',
         party: 2,
         description: 'Go to outer Dark clone\nBait Dark spread while dodging proteans',
-        imageUrl: './m12s/caro-rep1-9.webp'
+        imageUrl: raidplanImage('4P_QGHnBZ-nW8yH4', 10)
       }
     ]
   }
@@ -529,7 +530,7 @@ const staticReplication1: MechanicStrat[] = [
     mechanic: 'Setup',
     description:
       'Ranged and Healers on corners of 1 and 3 markers\nMelees and Tanks max melee on 2 and 4 markers',
-    imageUrl: './m12s/static-rep1-0.webp',
+    imageUrl: raidplanImage('3g95apsey4t987bz', 1),
     url: 'https://raidplan.io/plan/3g95apsey4t987bz#1'
   },
   {
@@ -541,52 +542,52 @@ const staticReplication1: MechanicStrat[] = [
         party: 1,
         description:
           'Stack on Relative North line of center box\nDo not go past the line or you will bait Far Dark',
-        imageUrl: './m12s/static-rep1-3.webp'
+        imageUrl: raidplanImage('3g95apsey4t987bz', 4)
       },
       {
         role: 'Tank',
         party: 2,
         description:
           'Stack on Relative North line of center box\nDo not go past the line or you will bait Far Dark',
-        imageUrl: './m12s/static-rep1-3.webp'
+        imageUrl: raidplanImage('3g95apsey4t987bz', 4)
       },
       {
         role: 'Healer',
         party: 1,
         description: 'Stack center of white box Relative Southwest',
-        imageUrl: './m12s/static-rep1-3.webp'
+        imageUrl: raidplanImage('3g95apsey4t987bz', 4)
       },
       {
         role: 'Healer',
         party: 2,
         description: 'Stack center of white box Relative Southwest',
-        imageUrl: './m12s/static-rep1-3.webp'
+        imageUrl: raidplanImage('3g95apsey4t987bz', 4)
       },
       {
         role: 'Melee',
         party: 1,
         description:
           'Stack on Relative North line of center box\nDo not go past the line or you will bait Far Dark',
-        imageUrl: './m12s/static-rep1-3.webp'
+        imageUrl: raidplanImage('3g95apsey4t987bz', 4)
       },
       {
         role: 'Melee',
         party: 2,
         description:
           'Stack on Relative North line of center box\nDo not go past the line or you will bait Far Dark',
-        imageUrl: './m12s/static-rep1-3.webp'
+        imageUrl: raidplanImage('3g95apsey4t987bz', 4)
       },
       {
         role: 'Ranged',
         party: 1,
         description: 'Stack center of white box Relative Southwest',
-        imageUrl: './m12s/static-rep1-3.webp'
+        imageUrl: raidplanImage('3g95apsey4t987bz', 4)
       },
       {
         role: 'Ranged',
         party: 2,
         description: 'Stack center of white box Relative Southwest',
-        imageUrl: './m12s/static-rep1-3.webp'
+        imageUrl: raidplanImage('3g95apsey4t987bz', 4)
       }
     ]
   },
@@ -599,52 +600,52 @@ const staticReplication1: MechanicStrat[] = [
         party: 1,
         description:
           'Go one box away from the middle Relative South of the white line + Relative West of the boss',
-        imageUrl: './m12s/static-rep1-3.webp'
+        imageUrl: raidplanImage('3g95apsey4t987bz', 4)
       },
       {
         role: 'Tank',
         party: 2,
         description:
           'Go one box away from the middle Relative South of the white line + Relative East of the boss',
-        imageUrl: './m12s/static-rep1-3.webp'
+        imageUrl: raidplanImage('3g95apsey4t987bz', 4)
       },
       {
         role: 'Healer',
         party: 1,
         description: 'Go center of the white box Relative Northwest',
-        imageUrl: './m12s/static-rep1-3.webp'
+        imageUrl: raidplanImage('3g95apsey4t987bz', 4)
       },
       {
         role: 'Healer',
         party: 2,
         description: 'Go center of the white box Relative Northeast',
-        imageUrl: './m12s/static-rep1-3.webp'
+        imageUrl: raidplanImage('3g95apsey4t987bz', 4)
       },
       {
         role: 'Melee',
         party: 1,
         description:
           'Go one box away from the middle Relative South of the white line + Relative West of the boss',
-        imageUrl: './m12s/static-rep1-3.webp'
+        imageUrl: raidplanImage('3g95apsey4t987bz', 4)
       },
       {
         role: 'Melee',
         party: 2,
         description:
           'Go one box away from the middle Relative South of the white line + Relative East of the boss',
-        imageUrl: './m12s/static-rep1-3.webp'
+        imageUrl: raidplanImage('3g95apsey4t987bz', 4)
       },
       {
         role: 'Ranged',
         party: 1,
         description: 'Go center of the white box Relative Northwest',
-        imageUrl: './m12s/static-rep1-3.webp'
+        imageUrl: raidplanImage('3g95apsey4t987bz', 4)
       },
       {
         role: 'Ranged',
         party: 2,
         description: 'Go center of the white box Relative Northeast',
-        imageUrl: './m12s/static-rep1-3.webp'
+        imageUrl: raidplanImage('3g95apsey4t987bz', 4)
       }
     ]
   }
@@ -732,55 +733,55 @@ const cloneZoneReplication2: MechanicStrat[] = [
         toggleKey: 'rep2tether',
         toggleValue: '',
         description: '',
-        imageUrl: './m12s/cz-rep2-2.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 3)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'N',
         description: 'Acting LP2',
-        imageUrl: './m12s/cz-rep2-2.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 3)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NE',
         description: 'Acting LP2',
-        imageUrl: './m12s/cz-rep2-2.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 3)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'E',
         description: 'Acting LP2',
-        imageUrl: './m12s/cz-rep2-2.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 3)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SE',
         description: 'Acting LP2',
-        imageUrl: './m12s/cz-rep2-2.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 3)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'S',
         description: 'Acting LP1',
-        imageUrl: './m12s/cz-rep2-2.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 3)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SW',
         description: 'Acting LP1',
-        imageUrl: './m12s/cz-rep2-2.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 3)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'W',
         description: 'Acting LP1',
-        imageUrl: './m12s/cz-rep2-2.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 3)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NW',
         description: 'Acting LP1',
-        imageUrl: './m12s/cz-rep2-2.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 3)
       }
     ]
   },
@@ -794,55 +795,55 @@ const cloneZoneReplication2: MechanicStrat[] = [
         toggleKey: 'rep2tether',
         toggleValue: '',
         description: '',
-        imageUrl: './m12s/cz-rep2-4.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 5)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'N',
         description: 'Boss tether',
-        imageUrl: './m12s/cz-rep2-4.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 5)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NE',
         description: 'Cleave Tether N/CW',
-        imageUrl: './m12s/cz-rep2-4.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 5)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'E',
         description: 'Stack Tether N/CW',
-        imageUrl: './m12s/cz-rep2-4.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 5)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SE',
         description: 'Defam Tether N/CW',
-        imageUrl: './m12s/cz-rep2-4.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 5)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'S',
         description: 'No Tether',
-        imageUrl: './m12s/cz-rep2-4.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 5)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SW',
         description: 'Defam Tether NW/CCW',
-        imageUrl: './m12s/cz-rep2-4.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 5)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'W',
         description: 'Stack Tether NW/CCW',
-        imageUrl: './m12s/cz-rep2-4.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 5)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NW',
         description: 'Cleave Tether NW/CCW',
-        imageUrl: './m12s/cz-rep2-4.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 5)
       }
     ]
   },
@@ -856,55 +857,55 @@ const cloneZoneReplication2: MechanicStrat[] = [
         toggleKey: 'rep2tether',
         toggleValue: '',
         description: '',
-        imageUrl: './m12s/cz-rep2-5.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 6)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'N',
         description: 'Stand on Diamond under A',
-        imageUrl: './m12s/cz-rep2-5.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 6)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NE',
         description: 'Go inner East on North edge',
-        imageUrl: './m12s/cz-rep2-5.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 6)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'E',
         description: 'Go outer East on North edge',
-        imageUrl: './m12s/cz-rep2-5.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 6)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SE',
         description: 'Take Defam ESE',
-        imageUrl: './m12s/cz-rep2-5.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 6)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'S',
         description: 'Take Defam S',
-        imageUrl: './m12s/cz-rep2-5.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 6)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SW',
         description: 'Take Defam WSW',
-        imageUrl: './m12s/cz-rep2-5.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 6)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'W',
         description: 'Go outer West on North edge',
-        imageUrl: './m12s/cz-rep2-5.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 6)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NW',
         description: 'Go inner West on North edge',
-        imageUrl: './m12s/cz-rep2-5.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 6)
       }
     ]
   },
@@ -917,55 +918,55 @@ const cloneZoneReplication2: MechanicStrat[] = [
         toggleKey: 'rep2tether',
         toggleValue: '',
         description: '',
-        imageUrl: './m12s/cz-rep2-7.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 8)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'N',
         description: 'Join LP2 stack',
-        imageUrl: './m12s/cz-rep2-7.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 8)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NE',
         description: 'Join LP2 stack',
-        imageUrl: './m12s/cz-rep2-7.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 8)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'E',
         description: 'Take LP2 stack',
-        imageUrl: './m12s/cz-rep2-7.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 8)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SE',
         description: 'Join LP2 stack',
-        imageUrl: './m12s/cz-rep2-7.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 8)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'S',
         description: 'Join LP1 stack',
-        imageUrl: './m12s/cz-rep2-7.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 8)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SW',
         description: 'Join LP1 stack',
-        imageUrl: './m12s/cz-rep2-7.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 8)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'W',
         description: 'Take LP1 stack',
-        imageUrl: './m12s/cz-rep2-7.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 8)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NW',
         description: 'Join LP1 stack',
-        imageUrl: './m12s/cz-rep2-7.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 8)
       }
     ]
   },
@@ -978,62 +979,62 @@ const cloneZoneReplication2: MechanicStrat[] = [
         toggleKey: 'rep2tether',
         toggleValue: '',
         description: '',
-        imageUrl: './m12s/cz-rep2-8.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 9)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'N',
         description: 'Stay in LP2 stack',
-        imageUrl: './m12s/cz-rep2-8.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 9)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NE',
         description: 'Point cleave out of arena',
-        imageUrl: './m12s/cz-rep2-8.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 9)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'E',
         description: 'Stay in LP2 stack',
-        imageUrl: './m12s/cz-rep2-8.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 9)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SE',
         description: 'Stay in LP2 stack',
-        imageUrl: './m12s/cz-rep2-8.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 9)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'S',
         description: 'Stay in LP1 stack',
-        imageUrl: './m12s/cz-rep2-8.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 9)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SW',
         description: 'Stay in LP1 stack',
-        imageUrl: './m12s/cz-rep2-8.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 9)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'W',
         description: 'Stay in LP1 stack',
-        imageUrl: './m12s/cz-rep2-8.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 9)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NW',
         description: 'Point cleave out of arena',
-        imageUrl: './m12s/cz-rep2-8.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 9)
       }
     ]
   },
   {
     mechanic: 'Snaking Kick',
     description: 'Dodge behind frontal cleave\nA marker always safe',
-    imageUrl: './m12s/cz-rep2-9.webp',
+    imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 10),
     url: 'https://raidplan.io/plan/SFa6J6wDrU9PlCJ4#10'
   },
   {
@@ -1046,55 +1047,55 @@ const cloneZoneReplication2: MechanicStrat[] = [
         toggleKey: 'rep2tether',
         toggleValue: '',
         description: '',
-        imageUrl: './m12s/cz-rep2-13.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 14)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'N',
         description: 'Take pair stack near 2 marker',
-        imageUrl: './m12s/cz-rep2-13.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 14)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NE',
         description: 'Bait protean inner East',
-        imageUrl: './m12s/cz-rep2-13.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 14)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'E',
         description: 'Bait protean outer East',
-        imageUrl: './m12s/cz-rep2-13.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 14)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SE',
         description: 'Bait pair stack far on diamond around 2 marker',
-        imageUrl: './m12s/cz-rep2-13.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 14)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'S',
         description: 'Take pair stack near 4 marker',
-        imageUrl: './m12s/cz-rep2-13.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 14)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SW',
         description: 'Bait pair stack far on diamond around 4 marker',
-        imageUrl: './m12s/cz-rep2-13.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 14)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'W',
         description: 'Bait protean outer West',
-        imageUrl: './m12s/cz-rep2-13.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 14)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NW',
         description: 'Bait protean inner West',
-        imageUrl: './m12s/cz-rep2-13.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 14)
       }
     ]
   },
@@ -1108,55 +1109,55 @@ const cloneZoneReplication2: MechanicStrat[] = [
         toggleKey: 'rep2tether',
         toggleValue: '',
         description: '',
-        imageUrl: './m12s/cz-rep2-14.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 15)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'N',
         description: 'Take pair stack near 2 marker',
-        imageUrl: './m12s/cz-rep2-14.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 15)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NE',
         description: 'Bait protean inner East',
-        imageUrl: './m12s/cz-rep2-14.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 15)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'E',
         description: 'Bait protean outer East',
-        imageUrl: './m12s/cz-rep2-14.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 15)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SE',
         description: 'Bait pair stack on boss hitbox',
-        imageUrl: './m12s/cz-rep2-14.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 15)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'S',
         description: 'Take pair stack near 4 marker',
-        imageUrl: './m12s/cz-rep2-14.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 15)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SW',
         description: 'Bait pair stack on boss hitbox',
-        imageUrl: './m12s/cz-rep2-14.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 15)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'W',
         description: 'Bait protean outer West',
-        imageUrl: './m12s/cz-rep2-14.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 15)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NW',
         description: 'Bait protean inner West',
-        imageUrl: './m12s/cz-rep2-14.webp'
+        imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 15)
       }
     ]
   },
@@ -1164,19 +1165,19 @@ const cloneZoneReplication2: MechanicStrat[] = [
     mechanic: 'Clone First Defam + Cleave',
     description:
       'Ranged will end up West\nMelees will end up East\nRanged be careful of first Clone defamation',
-    imageUrl: './m12s/cz-rep2-16.webp',
+    imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 17),
     url: 'https://raidplan.io/plan/SFa6J6wDrU9PlCJ4#17'
   },
   {
     mechanic: 'Clone Stacks',
     description: 'Ranged stack West, Melee stack East',
-    imageUrl: './m12s/cz-rep2-17.webp',
+    imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 18),
     url: 'https://raidplan.io/plan/SFa6J6wDrU9PlCJ4#18'
   },
   {
     mechanic: 'Clone Second Defam + Cleave',
     description: 'Melees dodge back NE to avoid second Clone defamation',
-    imageUrl: './m12s/cz-rep2-18.webp',
+    imageUrl: raidplanImage('SFa6J6wDrU9PlCJ4', 19),
     url: 'https://raidplan.io/plan/SFa6J6wDrU9PlCJ4#19'
   }
 ];
@@ -1714,55 +1715,55 @@ const bcReplication2: MechanicStrat[] = [
         toggleKey: 'rep2tether',
         toggleValue: '',
         description: '',
-        imageUrl: './m12s/bc-rep1-16.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 17)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'N',
         description: 'Cleave Tether D/CW',
-        imageUrl: './m12s/bc-rep1-16.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 17)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NE',
         description: 'Defam Tether D/CW',
-        imageUrl: './m12s/bc-rep1-16.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 17)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'E',
         description: 'No Tether',
-        imageUrl: './m12s/bc-rep1-16.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 17)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SE',
         description: 'Defam Tether D/CCW',
-        imageUrl: './m12s/bc-rep1-16.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 17)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'S',
         description: 'Cleave Tether D/CCW',
-        imageUrl: './m12s/bc-rep1-16.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 17)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SW',
         description: 'Stack Tether D/CCW',
-        imageUrl: './m12s/bc-rep1-16.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 17)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'W',
         description: 'Boss Tether',
-        imageUrl: './m12s/bc-rep1-16.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 17)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NW',
         description: 'Stack Tether D/CW',
-        imageUrl: './m12s/bc-rep1-16.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 17)
       }
     ]
   },
@@ -1776,55 +1777,55 @@ const bcReplication2: MechanicStrat[] = [
         toggleKey: 'rep2tether',
         toggleValue: '',
         description: '',
-        imageUrl: './m12s/bc-rep1-18.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 19)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'N',
         description: 'Go outer East on North edge',
-        imageUrl: './m12s/bc-rep1-18.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 19)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NE',
         description: 'Take Defam East (A)',
-        imageUrl: './m12s/bc-rep1-18.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 19)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'E',
         description: 'Take Defam South (B)',
-        imageUrl: './m12s/bc-rep1-18.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 19)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SE',
         description: 'Take Defam West (C)',
-        imageUrl: './m12s/bc-rep1-18.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 19)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'S',
         description: 'Go outer West on North edge',
-        imageUrl: './m12s/bc-rep1-18.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 19)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SW',
         description: 'Go inner West on North edge',
-        imageUrl: './m12s/bc-rep1-18.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 19)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'W',
         description: 'Stand on D',
-        imageUrl: './m12s/bc-rep1-18.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 19)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NW',
         description: 'Go inner East on North edge',
-        imageUrl: './m12s/bc-rep1-18.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 19)
       }
     ]
   },
@@ -1837,55 +1838,55 @@ const bcReplication2: MechanicStrat[] = [
         toggleKey: 'rep2tether',
         toggleValue: '',
         description: '',
-        imageUrl: './m12s/bc-rep1-20-new.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 21)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'N',
         description: 'Join East stack on 4',
-        imageUrl: './m12s/bc-rep1-20-new.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 21)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NE',
         description: 'Join East stack on 4',
-        imageUrl: './m12s/bc-rep1-20-new.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 21)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'E',
         description: 'Join West stack on 3',
-        imageUrl: './m12s/bc-rep1-20-new.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 21)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SE',
         description: 'Join West stack on 3',
-        imageUrl: './m12s/bc-rep1-20-new.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 21)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'S',
         description: 'Join West stack on 3',
-        imageUrl: './m12s/bc-rep1-20-new.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 21)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SW',
         description: 'Take West stack on 3',
-        imageUrl: './m12s/bc-rep1-20-new.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 21)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'W',
         description: 'Join East stack on 4',
-        imageUrl: './m12s/bc-rep1-20-new.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 21)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NW',
         description: 'Take East stack on 4',
-        imageUrl: './m12s/bc-rep1-20-new.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 21)
       }
     ]
   },
@@ -1898,62 +1899,62 @@ const bcReplication2: MechanicStrat[] = [
         toggleKey: 'rep2tether',
         toggleValue: '',
         description: '',
-        imageUrl: './m12s/bc-rep1-20-new.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 21)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'N',
         description: 'Be inside boss ring + look at boss for cleave',
-        imageUrl: './m12s/bc-rep1-20-new.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 21)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NE',
         description: 'Stay on 4',
-        imageUrl: './m12s/bc-rep1-20-new.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 21)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'E',
         description: 'Stay on 4',
-        imageUrl: './m12s/bc-rep1-20-new.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 21)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SE',
         description: 'Stay on 3',
-        imageUrl: './m12s/bc-rep1-20-new.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 21)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'S',
         description: 'Be inside boss ring + look at boss for cleave',
-        imageUrl: './m12s/bc-rep1-20-new.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 21)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SW',
         description: 'Stay on 3',
-        imageUrl: './m12s/bc-rep1-20-new.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 21)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'W',
         description: 'Stay on 3',
-        imageUrl: './m12s/bc-rep1-20-new.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 21)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NW',
         description: 'Stay on 4',
-        imageUrl: './m12s/bc-rep1-20-new.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 21)
       }
     ]
   },
   {
     mechanic: 'Snaking Kick',
     description: 'Dodge behind frontal cleave\nA marker always safe',
-    imageUrl: './m12s/bc-rep1-21.webp',
+    imageUrl: raidplanImage('jaakesbessc2uv7h', 22),
     url: 'https://raidplan.io/plan/jaakesbessc2uv7h#22'
   },
   {
@@ -1966,55 +1967,55 @@ const bcReplication2: MechanicStrat[] = [
         toggleKey: 'rep2tether',
         toggleValue: '',
         description: '',
-        imageUrl: './m12s/bc-rep1-24.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 25)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'N',
         description: 'Stand max melee near 4',
-        imageUrl: './m12s/bc-rep1-24.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 25)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NE',
         description: 'Stand North exactly on boss ring',
-        imageUrl: './m12s/bc-rep1-24.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 25)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'E',
         description: 'Stand North exactly on boss ring',
-        imageUrl: './m12s/bc-rep1-24.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 25)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SE',
         description: 'Stand North exactly on boss ring',
-        imageUrl: './m12s/bc-rep1-24.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 25)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'S',
         description: 'Stand max melee near 3',
-        imageUrl: './m12s/bc-rep1-24.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 25)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'SW',
         description: 'Stand on inner boss ring slightly north of SW',
-        imageUrl: './m12s/bc-rep1-24.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 25)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'W',
         description: 'Stand North exactly on boss ring',
-        imageUrl: './m12s/bc-rep1-24.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 25)
       },
       {
         toggleKey: 'rep2tether',
         toggleValue: 'NW',
         description: 'Stand on inner boss ring slightly north of SE',
-        imageUrl: './m12s/bc-rep1-24.webp'
+        imageUrl: raidplanImage('jaakesbessc2uv7h', 25)
       }
     ]
   },
@@ -2022,13 +2023,13 @@ const bcReplication2: MechanicStrat[] = [
     mechanic: 'Clone First Defam + Stack',
     description:
       'Defams/Boss/Nothing move to 3 clone for stack\nCleave + Stack take proteans North',
-    imageUrl: './m12s/bc-rep1-28.webp',
+    imageUrl: raidplanImage('jaakesbessc2uv7h', 29),
     url: 'https://raidplan.io/plan/jaakesbessc2uv7h#29'
   },
   {
     mechanic: 'Clone Second Defam + Stack',
     description: 'Defams/Boss/Nothing move to 4 clone for second stack',
-    imageUrl: './m12s/bc-rep1-30.webp',
+    imageUrl: raidplanImage('jaakesbessc2uv7h', 31),
     url: 'https://raidplan.io/plan/jaakesbessc2uv7h#31'
   }
 ];
@@ -2131,63 +2132,63 @@ const dnIdyllic: Record<string, MechanicStrat[]> = {
           toggleKey: 'idyllictether',
           toggleValue: '',
           description: '',
-          imageUrl: './m12s/dn-idyllic-3.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 4)
         },
         // Position-specific instructions
         {
           toggleKey: 'idyllictether',
           toggleValue: 'N',
           description: 'Take Stack from boss clone',
-          imageUrl: './m12s/dn-idyllic-3.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 4)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NE',
           description: 'Take Stack from boss clone',
-          imageUrl: './m12s/dn-idyllic-3.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 4)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'E',
           description: 'Take Stack from boss clone',
-          imageUrl: './m12s/dn-idyllic-3.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 4)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SE',
           description: 'Take Stack from boss clone',
-          imageUrl: './m12s/dn-idyllic-3.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 4)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'S',
           description: 'Take Defamation from boss clone',
-          imageUrl: './m12s/dn-idyllic-3.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 4)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SW',
           description: 'Take Defamation from boss clone',
-          imageUrl: './m12s/dn-idyllic-3.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 4)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'W',
           description: 'Take Defamation from boss clone',
-          imageUrl: './m12s/dn-idyllic-3.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 4)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NW',
           description: 'Take Defamation from boss clone',
-          imageUrl: './m12s/dn-idyllic-3.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 4)
         }
       ]
     },
     {
       mechanic: 'Cone Zone',
       description: '📌🍦 REMEMBER: whether North or South is safe from cones (E/W safe)',
-      imageUrl: './m12s/dn-idyllic-4.webp',
+      imageUrl: raidplanImage('zoeminUT6l2gaOWp', 5),
       url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#5'
     },
     {
@@ -2200,70 +2201,70 @@ const dnIdyllic: Record<string, MechanicStrat[]> = {
           toggleKey: 'idyllictether',
           toggleValue: '',
           description: '',
-          imageUrl: './m12s/dn-idyllic-7.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 8)
         },
         // Position-specific instructions
         {
           toggleKey: 'idyllictether',
           toggleValue: 'N',
           description: 'Take Stack from Top Right (Red/A + CW)',
-          imageUrl: './m12s/dn-idyllic-7.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 8)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NE',
           description: 'Take Stack from Bottom Right (Yellow/B + CW)',
-          imageUrl: './m12s/dn-idyllic-7.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 8)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'E',
           description: 'Take Stack from Bottom Left (Blue/C + CW)',
-          imageUrl: './m12s/dn-idyllic-7.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 8)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SE',
           description: 'Take Stack from Top Left (Purple/D + CW)',
-          imageUrl: './m12s/dn-idyllic-7.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 8)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'S',
           description: 'Take Defamation from Top Right (Red/A + CW)',
-          imageUrl: './m12s/dn-idyllic-7.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 8)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SW',
           description: 'Take Defamation from Bottom Right (Yellow/B + CW)',
-          imageUrl: './m12s/dn-idyllic-7.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 8)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'W',
           description: 'Take Defamation from Bottom Left (Blue/C + CW)',
-          imageUrl: './m12s/dn-idyllic-7.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 8)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NW',
           description: 'Take Defamation from Top Left (Purple/D + CW)',
-          imageUrl: './m12s/dn-idyllic-7.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 8)
         }
       ]
     },
     {
       mechanic: 'Boss Clones Spawn + Take Tethers',
       description: '📌🤔 REMEMBER: Whether North clone was Stack or Defamation',
-      imageUrl: './m12s/dn-idyllic-8.webp',
+      imageUrl: raidplanImage('zoeminUT6l2gaOWp', 9),
       url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#9'
     },
     {
       mechanic: 'Cones Resolve',
       description:
         '💡🍦 RECALL: Whether South or North is safe from cones\nGo to Cone safespots (South or North) with True G1 West/G2 East\nMove to platforms right after',
-      imageUrl: './m12s/dn-idyllic-10.webp',
+      imageUrl: raidplanImage('zoeminUT6l2gaOWp', 11),
       url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#11'
     }
   ],
@@ -2277,49 +2278,49 @@ const dnIdyllic: Record<string, MechanicStrat[]> = {
           role: 'Tank',
           party: 1,
           description: 'West platform (D marker)\nFront Left looking at boss',
-          imageUrl: './m12s/dn-idyllic-11.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 12)
         },
         {
           role: 'Tank',
           party: 2,
           description: 'East platform (B marker)\nFront Left looking at boss',
-          imageUrl: './m12s/dn-idyllic-11.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 12)
         },
         {
           role: 'Healer',
           party: 1,
           description: 'West platform (D marker)\nBack Left looking at boss',
-          imageUrl: './m12s/dn-idyllic-11.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 12)
         },
         {
           role: 'Healer',
           party: 2,
           description: 'East platform (B marker)\nBack Left looking at boss',
-          imageUrl: './m12s/dn-idyllic-11.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 12)
         },
         {
           role: 'Melee',
           party: 1,
           description: 'West platform (D marker)\nFront Right looking at boss',
-          imageUrl: './m12s/dn-idyllic-11.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 12)
         },
         {
           role: 'Melee',
           party: 2,
           description: 'East platform (B marker)\nFront Right looking at boss',
-          imageUrl: './m12s/dn-idyllic-11.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 12)
         },
         {
           role: 'Ranged',
           party: 1,
           description: 'West platform (D marker)\nBack Right looking at boss',
-          imageUrl: './m12s/dn-idyllic-11.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 12)
         },
         {
           role: 'Ranged',
           party: 2,
           description: 'East platform (B marker)\nBack Right looking at boss',
-          imageUrl: './m12s/dn-idyllic-11.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 12)
         }
       ]
     },
@@ -2327,14 +2328,14 @@ const dnIdyllic: Record<string, MechanicStrat[]> = {
       mechanic: 'Towers',
       description:
         'Towers can be Earth (twister), Fire (pyretic), Wind (Light-aspected, knockback), Doom (Light-aspected, baited laser)',
-      imageUrl: './m12s/dn-idyllic-12.webp',
+      imageUrl: raidplanImage('zoeminUT6l2gaOWp', 13),
       url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#13'
     },
     {
       mechanic: 'Swaps',
       description:
         'One role gets hit with light spreads, light must swap out of Wind or Doom\nRanged swap with Ranged, Melee swap with Melee\n📌🗼 REMEMBER: your tower post-swap',
-      imageUrl: './m12s/dn-idyllic-13.webp',
+      imageUrl: raidplanImage('zoeminUT6l2gaOWp', 14),
       url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#14'
     }
   ],
@@ -2343,7 +2344,7 @@ const dnIdyllic: Record<string, MechanicStrat[]> = {
       mechanic: 'Recall Clones and Tethers',
       description:
         '💡🤔🧑‍🤝‍🧑 RECALL:\nWhether North clone was Stack or Defamation\nTemporary light parties\nIf you were 1st or 2nd Defamation or a Stack',
-      imageUrl: './m12s/dn-idyllic-15.webp',
+      imageUrl: raidplanImage('zoeminUT6l2gaOWp', 16),
       url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#16'
     },
     {
@@ -2356,56 +2357,56 @@ const dnIdyllic: Record<string, MechanicStrat[]> = {
           toggleKey: 'idyllictether',
           toggleValue: '',
           description: '',
-          imageUrl: './m12s/dn-idyllic-17.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 18)
         },
         // Position-specific instructions
         {
           toggleKey: 'idyllictether',
           toggleValue: 'N',
           description: 'Take Stacks on 1',
-          imageUrl: './m12s/dn-idyllic-17.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 18)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NE',
           description: 'Take Stacks on 1',
-          imageUrl: './m12s/dn-idyllic-17.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 18)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'E',
           description: 'Take Stacks on 3',
-          imageUrl: './m12s/dn-idyllic-17.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 18)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SE',
           description: 'Take Stacks on 3',
-          imageUrl: './m12s/dn-idyllic-17.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 18)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'S',
           description: '1st Defamation on B\nTake Stacks on 1',
-          imageUrl: './m12s/dn-idyllic-17.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 18)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SW',
           description: '2nd Defamation on B\nTake Stacks on 1',
-          imageUrl: './m12s/dn-idyllic-17.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 18)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'W',
           description: '1st Defamation on D\nTake Stacks on 3',
-          imageUrl: './m12s/dn-idyllic-17.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 18)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NW',
           description: '2nd Defamation on D\nTake Stacks on 3',
-          imageUrl: './m12s/dn-idyllic-17.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 18)
         }
       ]
     }
@@ -2415,14 +2416,14 @@ const dnIdyllic: Record<string, MechanicStrat[]> = {
       mechanic: 'Elements',
       description:
         "💡🗼 RECALL: your tower assignments\nWind: Get KB to the other platform\nDoom: Point line away\nFire: Don't move (can still attack)\nEarth: Move out of twister",
-      imageUrl: './m12s/dn-idyllic-24.webp',
+      imageUrl: raidplanImage('zoeminUT6l2gaOWp', 25),
       url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#25'
     },
     {
       mechanic: 'Setup for Cones',
       description:
         'Wind: E/W of boss touching hitbox\nDoom: North edge of platform touching hitbox\nRanged Fire/Earth: South edge of platform\nMelee Fire/Earth: Center north of platform between Doom/Wind',
-      imageUrl: './m12s/dn-idyllic-26.webp',
+      imageUrl: raidplanImage('zoeminUT6l2gaOWp', 27),
       url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#27'
     }
   ],
@@ -2431,14 +2432,14 @@ const dnIdyllic: Record<string, MechanicStrat[]> = {
       mechanic: 'Clone Spawns',
       description:
         '💡🍦 RECALL: whether South or North is safe from cones (E/W safe) from beginning of the mech',
-      imageUrl: './m12s/dn-idyllic-29.webp',
+      imageUrl: raidplanImage('zoeminUT6l2gaOWp', 30),
       url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#30'
     },
     {
       mechanic: 'Black Hole Clone',
       description:
         '📌🍦🕳️ REMEMBER: Whether clone that jumps into the black hole is N/S or E/W safe\n📌🍦🐇 REMEMBER: Which platform the remaining N/S clone jumps to and which direction is safe',
-      imageUrl: './m12s/dn-idyllic-30.webp',
+      imageUrl: raidplanImage('zoeminUT6l2gaOWp', 31),
       url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#31'
     },
     {
@@ -2451,49 +2452,49 @@ const dnIdyllic: Record<string, MechanicStrat[]> = {
           role: 'Tank',
           party: 1,
           description: 'Cardinal: B marker slightly towards NE\nIntercard: SE slightly towards B',
-          imageUrl: './m12s/dn-idyllic-34.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 35)
         },
         {
           role: 'Tank',
           party: 2,
           description: 'Cardinal: B marker slightly towards NE\nIntercard: SE slightly towards B',
-          imageUrl: './m12s/dn-idyllic-34.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 35)
         },
         {
           role: 'Healer',
           party: 1,
           description: 'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
-          imageUrl: './m12s/dn-idyllic-34.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 35)
         },
         {
           role: 'Healer',
           party: 2,
           description: 'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
-          imageUrl: './m12s/dn-idyllic-34.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 35)
         },
         {
           role: 'Melee',
           party: 1,
           description: 'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
-          imageUrl: './m12s/dn-idyllic-34.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 35)
         },
         {
           role: 'Melee',
           party: 2,
           description: 'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
-          imageUrl: './m12s/dn-idyllic-34.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 35)
         },
         {
           role: 'Ranged',
           party: 1,
           description: 'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
-          imageUrl: './m12s/dn-idyllic-34.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 35)
         },
         {
           role: 'Ranged',
           party: 2,
           description: 'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
-          imageUrl: './m12s/dn-idyllic-34.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 35)
         }
       ]
     },
@@ -2501,7 +2502,7 @@ const dnIdyllic: Record<string, MechanicStrat[]> = {
       mechanic: 'Platform + Cone',
       description:
         '💡🍦🐇 RECALL: Which platform the remaining N/S clone jumps to and which direction is safe\nGo to the platform where clone jumped to and dodge cones',
-      imageUrl: './m12s/dn-idyllic-35.webp',
+      imageUrl: raidplanImage('zoeminUT6l2gaOWp', 36),
       url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#36'
     },
     {
@@ -2514,49 +2515,49 @@ const dnIdyllic: Record<string, MechanicStrat[]> = {
           role: 'Tank',
           party: 1,
           description: 'Cardinal: B marker slightly towards NE\nIntercard: SE slightly towards B',
-          imageUrl: './m12s/dn-idyllic-36.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 37)
         },
         {
           role: 'Tank',
           party: 2,
           description: 'Cardinal: B marker slightly towards NE\nIntercard: SE slightly towards B',
-          imageUrl: './m12s/dn-idyllic-36.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 37)
         },
         {
           role: 'Healer',
           party: 1,
           description: 'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
-          imageUrl: './m12s/dn-idyllic-36.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 37)
         },
         {
           role: 'Healer',
           party: 2,
           description: 'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
-          imageUrl: './m12s/dn-idyllic-36.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 37)
         },
         {
           role: 'Melee',
           party: 1,
           description: 'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
-          imageUrl: './m12s/dn-idyllic-36.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 37)
         },
         {
           role: 'Melee',
           party: 2,
           description: 'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
-          imageUrl: './m12s/dn-idyllic-36.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 37)
         },
         {
           role: 'Ranged',
           party: 1,
           description: 'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
-          imageUrl: './m12s/dn-idyllic-36.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 37)
         },
         {
           role: 'Ranged',
           party: 2,
           description: 'Cardinal: A marker slightly towards NE\nIntercard: NE slightly towards B',
-          imageUrl: './m12s/dn-idyllic-36.webp'
+          imageUrl: raidplanImage('zoeminUT6l2gaOWp', 37)
         }
       ]
     },
@@ -2564,7 +2565,7 @@ const dnIdyllic: Record<string, MechanicStrat[]> = {
       mechanic: 'Black Hole Clone Resolves',
       description:
         '💡🍦🕳️ RECALL: Whether clone that jumped into the black hole was N/S or E/W safe\nDodge black hole clone cleaves from North',
-      imageUrl: './m12s/dn-idyllic-37.webp',
+      imageUrl: raidplanImage('zoeminUT6l2gaOWp', 38),
       url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#38'
     }
   ]
@@ -2643,12 +2644,12 @@ const caroIdyllic: Record<string, MechanicStrat[]> = {
       description:
         '📌🐦 REMEMBER: Whether initial clones spawned Cardinal or Intercardinal first\n📌🧑‍🤝‍🧑 REMEMBER: your clone position',
       url: 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc#3',
-      imageUrl: './m12s/caro-id-2.webp'
+      imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 3)
     },
     {
       mechanic: 'Cone Zone',
       description: '📌🍦 REMEMBER: whether North or South is safe from cones (E/W safe)',
-      imageUrl: './m12s/caro-id-4.webp',
+      imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 5),
       url: 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc#5'
     },
     {
@@ -2661,70 +2662,70 @@ const caroIdyllic: Record<string, MechanicStrat[]> = {
           toggleKey: 'idyllictether',
           toggleValue: '',
           description: '',
-          imageUrl: './m12s/caro-id-8.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 9)
         },
         // Position-specific instructions
         {
           toggleKey: 'idyllictether',
           toggleValue: 'N',
           description: 'Take Defamation from boss clone on Red markers (A/1)',
-          imageUrl: './m12s/caro-id-8.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 9)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NE',
           description: 'Take Stack from boss clone on Red markers (A/1)',
-          imageUrl: './m12s/caro-id-8.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 9)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'E',
           description: 'Take Stack from boss clone on Yellow markers (B/2)',
-          imageUrl: './m12s/caro-id-8.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 9)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SE',
           description: 'Take Defamation from boss clone on Yellow markers (B/2)',
-          imageUrl: './m12s/caro-id-8.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 9)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'S',
           description: 'Take Defamation from boss clone on Blue markers (C/3)',
-          imageUrl: './m12s/caro-id-8.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 9)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SW',
           description: 'Take Stack from boss clone on Blue markers (C/3)',
-          imageUrl: './m12s/caro-id-8.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 9)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'W',
           description: 'Take Stack from boss clone on Purple markers (D/4)',
-          imageUrl: './m12s/caro-id-8.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 9)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NW',
           description: 'Take Defamation from boss clone on Purple markers (D/4)',
-          imageUrl: './m12s/caro-id-8.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 9)
         }
       ]
     },
     {
       mechanic: 'Boss Clones Spawn + Take Tethers',
       description: '📌🤔 REMEMBER: Whether North clone was Stack or Defamation',
-      imageUrl: './m12s/caro-id-11.webp',
+      imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 12),
       url: 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc#12'
     },
     {
       mechanic: 'Cones Resolve',
       description:
         '💡🍦 RECALL: Whether South or North is safe from cones\nGo to Cone safespots (South or North) with True G1 West/G2 East\nMove to platforms right after',
-      imageUrl: './m12s/caro-id-12.webp',
+      imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 13),
       url: 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc#13'
     }
   ],
@@ -2739,49 +2740,49 @@ const caroIdyllic: Record<string, MechanicStrat[]> = {
           role: 'Tank',
           party: 1,
           description: 'West platform (D marker)\nFront Left looking at boss',
-          imageUrl: './m12s/caro-id-13.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 14)
         },
         {
           role: 'Tank',
           party: 2,
           description: 'East platform (B marker)\nFront Left looking at boss',
-          imageUrl: './m12s/caro-id-13.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 14)
         },
         {
           role: 'Healer',
           party: 1,
           description: 'West platform (D marker)\nBack Left looking at boss',
-          imageUrl: './m12s/caro-id-13.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 14)
         },
         {
           role: 'Healer',
           party: 2,
           description: 'East platform (B marker)\nBack Left looking at boss',
-          imageUrl: './m12s/caro-id-13.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 14)
         },
         {
           role: 'Melee',
           party: 1,
           description: 'West platform (D marker)\nFront Right looking at boss',
-          imageUrl: './m12s/caro-id-13.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 14)
         },
         {
           role: 'Melee',
           party: 2,
           description: 'East platform (B marker)\nFront Right looking at boss',
-          imageUrl: './m12s/caro-id-13.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 14)
         },
         {
           role: 'Ranged',
           party: 1,
           description: 'West platform (D marker)\nBack Right looking at boss',
-          imageUrl: './m12s/caro-id-13.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 14)
         },
         {
           role: 'Ranged',
           party: 2,
           description: 'East platform (B marker)\nBack Right looking at boss',
-          imageUrl: './m12s/caro-id-13.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 14)
         }
       ]
     },
@@ -2789,14 +2790,14 @@ const caroIdyllic: Record<string, MechanicStrat[]> = {
       mechanic: 'Towers',
       description:
         'Towers can be Earth (twister), Fire (pyretic), Wind (Light-aspected, knockback), Doom (Light-aspected, baited laser)',
-      imageUrl: './m12s/caro-id-15.webp',
+      imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 16),
       url: 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc#16'
     },
     {
       mechanic: 'Swaps',
       description:
         'One role gets hit with light spreads, light must swap out of Wind or Doom\nRanged swap with Ranged, Melee swap with Melee\n📌🗼 REMEMBER: your tower post-swap',
-      imageUrl: './m12s/caro-id-16.webp',
+      imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 17),
       url: 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc#17'
     }
   ],
@@ -2805,7 +2806,7 @@ const caroIdyllic: Record<string, MechanicStrat[]> = {
       mechanic: 'Recall Clones and Tethers',
       description:
         '💡🤔🧑‍🤝‍🧑 RECALL:\nWhether North clone was Stack or Defamation\nTemporary light parties\nIf you were 1st or 2nd Defamation or a Stack',
-      imageUrl: './m12s/caro-id-18.webp',
+      imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 19),
       url: 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc#19'
     },
     {
@@ -2818,56 +2819,56 @@ const caroIdyllic: Record<string, MechanicStrat[]> = {
           toggleKey: 'idyllictether',
           toggleValue: '',
           description: '',
-          imageUrl: './m12s/caro-id-19.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 20)
         },
         // Position-specific instructions
         {
           toggleKey: 'idyllictether',
           toggleValue: 'N',
           description: '1st Defamation on A\nTake Stacks on B',
-          imageUrl: './m12s/caro-id-19.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 20)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NE',
           description: 'Take Stacks on B',
-          imageUrl: './m12s/caro-id-19.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 20)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'E',
           description: 'Take Stacks on B',
-          imageUrl: './m12s/caro-id-19.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 20)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SE',
           description: '2nd Defamation on A\nTake Stacks on B',
-          imageUrl: './m12s/caro-id-19.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 20)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'S',
           description: '1st Defamation on C\nTake Stacks on D',
-          imageUrl: './m12s/caro-id-19.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 20)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SW',
           description: 'Take Stacks on D',
-          imageUrl: './m12s/caro-id-19.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 20)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'W',
           description: 'Take Stacks on D',
-          imageUrl: './m12s/caro-id-19.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 20)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NW',
           description: '2nd Defamation on C\nTake Stacks on D',
-          imageUrl: './m12s/caro-id-19.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 20)
         }
       ]
     }
@@ -2877,14 +2878,14 @@ const caroIdyllic: Record<string, MechanicStrat[]> = {
       mechanic: 'Elements',
       description:
         "💡🗼 RECALL: your tower assignments\nWind: Get KB to the other platform\nDoom: Point line away\nFire: Don't move (can still attack)\nEarth: Move out of twister",
-      imageUrl: './m12s/caro-id-24.webp',
+      imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 25),
       url: 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc#25'
     },
     {
       mechanic: 'Setup for Cones',
       description:
         'Wind: North edge of platform max melee\nDoom: Middle slightly North on hitbox\nEarth: Middle slightly North max melee behind Doom\nFire: South edge of platform max melee',
-      imageUrl: './m12s/caro-id-26.webp',
+      imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 27),
       url: 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc#27'
     }
   ],
@@ -2893,14 +2894,14 @@ const caroIdyllic: Record<string, MechanicStrat[]> = {
       mechanic: 'Clone Spawns',
       description:
         '💡🍦 RECALL: whether South or North is safe from cones (E/W safe) from beginning of the mech',
-      imageUrl: './m12s/caro-id-27.webp',
+      imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 28),
       url: 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc#28'
     },
     {
       mechanic: 'Black Hole Clone',
       description:
         '📌🍦🕳️ REMEMBER: Whether clone that jumps into the black hole is N/S or E/W safe\n📌🍦🐇 REMEMBER: Which platform the remaining N/S clone jumps to and which direction is safe',
-      imageUrl: './m12s/caro-id-28.webp',
+      imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 29),
       url: 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc#29'
     },
     {
@@ -2914,56 +2915,56 @@ const caroIdyllic: Record<string, MechanicStrat[]> = {
           party: 1,
           description:
             'Cardinal: D marker between clone and wall\nIntercard: 3 marker between clone and wall',
-          imageUrl: './m12s/caro-id-30.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 31)
         },
         {
           role: 'Tank',
           party: 2,
           description:
             'Cardinal: B marker between clone and wall\nIntercard: 1 marker between clone and wall',
-          imageUrl: './m12s/caro-id-30.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 31)
         },
         {
           role: 'Healer',
           party: 1,
           description:
             'Cardinal: D marker between clone and wall\nIntercard: 3 marker between clone and wall',
-          imageUrl: './m12s/caro-id-30.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 31)
         },
         {
           role: 'Healer',
           party: 2,
           description:
             'Cardinal: B marker between clone and wall\nIntercard: 1 marker between clone and wall',
-          imageUrl: './m12s/caro-id-30.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 31)
         },
         {
           role: 'Melee',
           party: 1,
           description:
             'Cardinal: D marker between clone and wall\nIntercard: 3 marker between clone and wall',
-          imageUrl: './m12s/caro-id-30.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 31)
         },
         {
           role: 'Melee',
           party: 2,
           description:
             'Cardinal: B marker between clone and wall\nIntercard: 1 marker between clone and wall',
-          imageUrl: './m12s/caro-id-30.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 31)
         },
         {
           role: 'Ranged',
           party: 1,
           description:
             'Cardinal: D marker between clone and wall\nIntercard: 3 marker between clone and wall',
-          imageUrl: './m12s/caro-id-30.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 31)
         },
         {
           role: 'Ranged',
           party: 2,
           description:
             'Cardinal: B marker between clone and wall\nIntercard: 1 marker between clone and wall',
-          imageUrl: './m12s/caro-id-30.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 31)
         }
       ]
     },
@@ -2971,7 +2972,7 @@ const caroIdyllic: Record<string, MechanicStrat[]> = {
       mechanic: 'Platform + Cone',
       description:
         '💡🍦🐇 RECALL: Which platform the remaining N/S clone jumps to and which direction is safe\nGo to the platform where clone jumped to and dodge cones',
-      imageUrl: './m12s/caro-id-32.webp',
+      imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 33),
       url: 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc#33'
     },
     {
@@ -2985,56 +2986,56 @@ const caroIdyllic: Record<string, MechanicStrat[]> = {
           party: 1,
           description:
             'Cardinal: D marker between clone and wall\nIntercard: 3 marker between clone and wall',
-          imageUrl: './m12s/caro-id-33.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 34)
         },
         {
           role: 'Tank',
           party: 2,
           description:
             'Cardinal: B marker between clone and wall\nIntercard: 1 marker between clone and wall',
-          imageUrl: './m12s/caro-id-33.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 34)
         },
         {
           role: 'Healer',
           party: 1,
           description:
             'Cardinal: D marker between clone and wall\nIntercard: 3 marker between clone and wall',
-          imageUrl: './m12s/caro-id-33.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 34)
         },
         {
           role: 'Healer',
           party: 2,
           description:
             'Cardinal: B marker between clone and wall\nIntercard: 1 marker between clone and wall',
-          imageUrl: './m12s/caro-id-33.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 34)
         },
         {
           role: 'Melee',
           party: 1,
           description:
             'Cardinal: D marker between clone and wall\nIntercard: 3 marker between clone and wall',
-          imageUrl: './m12s/caro-id-33.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 34)
         },
         {
           role: 'Melee',
           party: 2,
           description:
             'Cardinal: B marker between clone and wall\nIntercard: 1 marker between clone and wall',
-          imageUrl: './m12s/caro-id-33.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 34)
         },
         {
           role: 'Ranged',
           party: 1,
           description:
             'Cardinal: D marker between clone and wall\nIntercard: 3 marker between clone and wall',
-          imageUrl: './m12s/caro-id-33.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 34)
         },
         {
           role: 'Ranged',
           party: 2,
           description:
             'Cardinal: B marker between clone and wall\nIntercard: 1 marker between clone and wall',
-          imageUrl: './m12s/caro-id-33.webp'
+          imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 34)
         }
       ]
     },
@@ -3042,7 +3043,7 @@ const caroIdyllic: Record<string, MechanicStrat[]> = {
       mechanic: 'Black Hole Clone Resolves',
       description:
         '💡🍦🕳️ RECALL: Whether clone that jumped into the black hole was N/S or E/W safe\nDodge black hole clone cleaves from North',
-      imageUrl: './m12s/caro-id-34.webp',
+      imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 35),
       url: 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc#35'
     }
   ]
@@ -3121,7 +3122,7 @@ const caroIdyllicUptime: Record<string, MechanicStrat[]> = {
       mechanic: 'Recall Clones and Tethers',
       description:
         '💡🤔🧑‍🤝‍🧑 RECALL:\nWhether North clone was Stack or Defamation\nTemporary light parties\nIf you were 1st or 2nd Defamation or a Stack',
-      imageUrl: './m12s/caro-id-18.webp',
+      imageUrl: raidplanImage('9zpa6vu5kxgtuwqc', 19),
       url: 'https://raidplan.io/plan/9zpa6vu5kxgtuwqc#19'
     },
     {
@@ -3268,7 +3269,7 @@ const cozyIdyllic: Record<string, MechanicStrat[]> = {
       mechanic: 'Recall Clones and Tethers',
       description:
         '💡🤔🧑‍🤝‍🧑 RECALL:\nWhether North clone was Stack or Defamation\nTemporary light parties\nIf you were 1st or 2nd Defamation or a Stack',
-      imageUrl: './m12s/cozy-id-10.webp',
+      imageUrl: raidplanImage('txtzacv3uvbjzuku', 11),
       url: 'https://raidplan.io/plan/txtzacv3uvbjzuku#11'
     },
     {
@@ -3282,56 +3283,56 @@ const cozyIdyllic: Record<string, MechanicStrat[]> = {
           toggleKey: 'idyllictether',
           toggleValue: '',
           description: '',
-          imageUrl: './m12s/cozy-id-11.webp'
+          imageUrl: raidplanImage('txtzacv3uvbjzuku', 12)
         },
         // Position-specific instructions
         {
           toggleKey: 'idyllictether',
           toggleValue: 'N',
           description: 'Stay NE to avoid defamations',
-          imageUrl: './m12s/cozy-id-11.webp'
+          imageUrl: raidplanImage('txtzacv3uvbjzuku', 12)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NE',
           description: 'Stay NE to avoid defamations',
-          imageUrl: './m12s/cozy-id-11.webp'
+          imageUrl: raidplanImage('txtzacv3uvbjzuku', 12)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'E',
           description: 'Stay NE to avoid defamations',
-          imageUrl: './m12s/cozy-id-11.webp'
+          imageUrl: raidplanImage('txtzacv3uvbjzuku', 12)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SE',
           description: 'Stay NE to avoid defamations',
-          imageUrl: './m12s/cozy-id-11.webp'
+          imageUrl: raidplanImage('txtzacv3uvbjzuku', 12)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'S',
           description: '1st Defamation South (C)',
-          imageUrl: './m12s/cozy-id-11.webp'
+          imageUrl: raidplanImage('txtzacv3uvbjzuku', 12)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SW',
           description: '2nd Defamation South (C)',
-          imageUrl: './m12s/cozy-id-11.webp'
+          imageUrl: raidplanImage('txtzacv3uvbjzuku', 12)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'W',
           description: '1st Defamation West (D)',
-          imageUrl: './m12s/cozy-id-11.webp'
+          imageUrl: raidplanImage('txtzacv3uvbjzuku', 12)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NW',
           description: '2nd Defamation West (D)',
-          imageUrl: './m12s/cozy-id-11.webp'
+          imageUrl: raidplanImage('txtzacv3uvbjzuku', 12)
         }
       ]
     },
@@ -3346,56 +3347,56 @@ const cozyIdyllic: Record<string, MechanicStrat[]> = {
           toggleKey: 'idyllictether',
           toggleValue: '',
           description: '',
-          imageUrl: './m12s/cozy-id-12.webp'
+          imageUrl: raidplanImage('txtzacv3uvbjzuku', 13)
         },
         // Position-specific instructions
         {
           toggleKey: 'idyllictether',
           toggleValue: 'N',
           description: 'Take Stacks North (1)',
-          imageUrl: './m12s/cozy-id-12.webp'
+          imageUrl: raidplanImage('txtzacv3uvbjzuku', 13)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NE',
           description: 'Take Stacks North (1)',
-          imageUrl: './m12s/cozy-id-12.webp'
+          imageUrl: raidplanImage('txtzacv3uvbjzuku', 13)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'E',
           description: 'Take Stacks East (2)',
-          imageUrl: './m12s/cozy-id-12.webp'
+          imageUrl: raidplanImage('txtzacv3uvbjzuku', 13)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SE',
           description: 'Take Stacks East (2)',
-          imageUrl: './m12s/cozy-id-12.webp'
+          imageUrl: raidplanImage('txtzacv3uvbjzuku', 13)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'S',
           description: 'Take Stacks East (2)',
-          imageUrl: './m12s/cozy-id-12.webp'
+          imageUrl: raidplanImage('txtzacv3uvbjzuku', 13)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SW',
           description: 'Take Stacks East (2)',
-          imageUrl: './m12s/cozy-id-12.webp'
+          imageUrl: raidplanImage('txtzacv3uvbjzuku', 13)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'W',
           description: 'Take Stacks North (1)',
-          imageUrl: './m12s/cozy-id-12.webp'
+          imageUrl: raidplanImage('txtzacv3uvbjzuku', 13)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NW',
           description: 'Take Stacks North (1)',
-          imageUrl: './m12s/cozy-id-12.webp'
+          imageUrl: raidplanImage('txtzacv3uvbjzuku', 13)
         }
       ]
     }
@@ -3479,12 +3480,12 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
       description:
         '📌🐦 REMEMBER: Whether initial clones spawned Cardinal or Intercardinal first\n📌🧑‍🤝‍🧑 REMEMBER: your clone position',
       url: 'https://raidplan.io/plan/hg6FhbjyktWqebyG#2',
-      imageUrl: './m12s/em-id-1.webp'
+      imageUrl: raidplanImage('hg6FhbjyktWqebyG', 2)
     },
     {
       mechanic: 'Cone Zone',
       description: '📌🍦 REMEMBER: whether North or South is safe from cones (E/W safe)',
-      imageUrl: './m12s/dn-idyllic-4.webp',
+      imageUrl: raidplanImage('zoeminUT6l2gaOWp', 5),
       url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#5'
     },
     {
@@ -3498,70 +3499,70 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
           toggleKey: 'idyllictether',
           toggleValue: '',
           description: '',
-          imageUrl: './m12s/em-id-3.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 4)
         },
         // Position-specific instructions
         {
           toggleKey: 'idyllictether',
           toggleValue: 'N',
           description: 'Take Stack boss tether, swap partner is Southwest (4)',
-          imageUrl: './m12s/em-id-3.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 4)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NE',
           description: 'Take Stack boss tether, swap partner is South (C)',
-          imageUrl: './m12s/em-id-3.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 4)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'E',
           description: 'Take Stack boss tether, swap partner is Southeast (3)',
-          imageUrl: './m12s/em-id-3.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 4)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SE',
           description: 'Take Defam boss tether, swap partner is East (B)',
-          imageUrl: './m12s/em-id-3.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 4)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'S',
           description: 'Take Defam boss tether, swap partner is Northeast (2)',
-          imageUrl: './m12s/em-id-3.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 4)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SW',
           description: 'Take Defam boss tether, swap partner is North (A)',
-          imageUrl: './m12s/em-id-3.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 4)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'W',
           description: 'Take Defam boss tether, swap partner is Northwest (1)',
-          imageUrl: './m12s/em-id-3.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 4)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NW',
           description: 'Take Stack boss tether, swap partner is West (D)',
-          imageUrl: './m12s/em-id-3.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 4)
         }
       ]
     },
     {
       mechanic: 'Boss Clones Spawn + Take Tethers',
       description: '📌🤔 REMEMBER: Whether North clone was Stack or Defamation',
-      imageUrl: './m12s/em-id-6.webp',
+      imageUrl: raidplanImage('hg6FhbjyktWqebyG', 7),
       url: 'https://raidplan.io/plan/hg6FhbjyktWqebyG#7'
     },
     {
       mechanic: 'Cones Resolve',
       description:
         '💡🍦 RECALL: Whether South or North is safe from cones\nGo to Cone safespots (South or North) with True G1 West/G2 East\nMove to platforms right after',
-      imageUrl: './m12s/dn-idyllic-10.webp',
+      imageUrl: raidplanImage('zoeminUT6l2gaOWp', 11),
       url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#11'
     }
   ],
@@ -3570,7 +3571,7 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
       mechanic: 'Recall Clones and Tethers',
       description:
         '💡🤔🧑‍🤝‍🧑 RECALL:\nWhether North clone was Stack or Defamation\nTemporary light parties\nIf you were 1st or 2nd Defamation or a Stack',
-      imageUrl: './m12s/em-id-3.webp',
+      imageUrl: raidplanImage('hg6FhbjyktWqebyG', 4),
       url: 'https://raidplan.io/plan/hg6FhbjyktWqebyG#4'
     },
     {
@@ -3584,56 +3585,56 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
           toggleKey: 'idyllictether',
           toggleValue: '',
           description: '',
-          imageUrl: './m12s/em-id-9.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 10)
         },
         // Position-specific instructions
         {
           toggleKey: 'idyllictether',
           toggleValue: 'N',
           description: 'Stay North-ish of 1 to avoid Defamations',
-          imageUrl: './m12s/em-id-9.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 10)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NE',
           description: 'Stay North-ish of 2 to avoid Defamations',
-          imageUrl: './m12s/em-id-9.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 10)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'E',
           description: 'Stay North-ish of 2 to avoid Defamations',
-          imageUrl: './m12s/em-id-9.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 10)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SE',
           description: '2nd Defam Southeast (3)\nStay North-ish of 2 to avoid Defamations',
-          imageUrl: './m12s/em-id-9.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 10)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'S',
           description: '1st Defam Southeast (3)\nStay North-ish of 2 to avoid Defamations',
-          imageUrl: './m12s/em-id-9.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 10)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SW',
           description: '1st Defam Southwest (4)\nStay North-ish of 1 to avoid Defamations',
-          imageUrl: './m12s/em-id-9.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 10)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'W',
           description: '2nd Defam Southwest (4)\nStay North-ish of 1 to avoid Defamations',
-          imageUrl: './m12s/em-id-9.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 10)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NW',
           description: 'Stay North-ish of 1 to avoid Defamations',
-          imageUrl: './m12s/em-id-9.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 10)
         }
       ]
     },
@@ -3648,56 +3649,56 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
           toggleKey: 'idyllictether',
           toggleValue: '',
           description: '',
-          imageUrl: './m12s/em-id-10.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 11)
         },
         // Position-specific instructions
         {
           toggleKey: 'idyllictether',
           toggleValue: 'N',
           description: 'Stack Northwest (1)',
-          imageUrl: './m12s/em-id-10.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 11)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NE',
           description: 'Stack Northeast (2)',
-          imageUrl: './m12s/em-id-10.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 11)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'E',
           description: 'Stack Northeast (2)',
-          imageUrl: './m12s/em-id-10.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 11)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SE',
           description: 'Stack Northeast (2)',
-          imageUrl: './m12s/em-id-10.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 11)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'S',
           description: 'Stack Northeast (2)',
-          imageUrl: './m12s/em-id-10.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 11)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'SW',
           description: 'Stack Northwest (1)',
-          imageUrl: './m12s/em-id-10.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 11)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'W',
           description: 'Stack Northwest (1)',
-          imageUrl: './m12s/em-id-10.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 11)
         },
         {
           toggleKey: 'idyllictether',
           toggleValue: 'NW',
           description: 'Stack Northwest (1)',
-          imageUrl: './m12s/em-id-10.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 11)
         }
       ]
     }
@@ -3707,14 +3708,14 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
       mechanic: 'Elements',
       description:
         "💡🗼 RECALL: your tower assignments\nWind: Get KB to the other platform\nDoom: Point line away\nFire: Don't move (can still attack)\nEarth: Move out of twister",
-      imageUrl: './m12s/dn-idyllic-24.webp',
+      imageUrl: raidplanImage('zoeminUT6l2gaOWp', 25),
       url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#25'
     },
     {
       mechanic: 'Setup for Cones',
       description:
         'Wind: on NE/NW (1/2)\nDoom: on hitbox between 1/D or 2/B\nFire: Slightly outside of Doom\nMEarth: on SE/SW (3/4)',
-      imageUrl: './m12s/em-id-8.webp',
+      imageUrl: raidplanImage('hg6FhbjyktWqebyG', 9),
       url: 'https://raidplan.io/plan/hg6FhbjyktWqebyG#9'
     }
   ],
@@ -3723,14 +3724,14 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
       mechanic: 'Clone Spawns',
       description:
         '💡🍦 RECALL: whether South or North is safe from cones (E/W safe) from beginning of the mech',
-      imageUrl: './m12s/dn-idyllic-29.webp',
+      imageUrl: raidplanImage('zoeminUT6l2gaOWp', 30),
       url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#30'
     },
     {
       mechanic: 'Black Hole Clone',
       description:
         '📌🍦🕳️ REMEMBER: Whether clone that jumps into the black hole is N/S or E/W safe\n📌🍦🐇 REMEMBER: Which platform the remaining N/S clone jumps to and which direction is safe',
-      imageUrl: './m12s/dn-idyllic-30.webp',
+      imageUrl: raidplanImage('zoeminUT6l2gaOWp', 31),
       url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#31'
     },
     {
@@ -3744,56 +3745,56 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
           party: 1,
           description:
             'Cardinal: Outside of North (A) clone\nIntercard: Outside of Northwest (1) clone',
-          imageUrl: './m12s/em-id-11.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 12)
         },
         {
           role: 'Tank',
           party: 2,
           description:
             'Cardinal: Outside of East (B) clone\nIntercard: Outside of Northeast (2) clone',
-          imageUrl: './m12s/em-id-11.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 12)
         },
         {
           role: 'Healer',
           party: 1,
           description:
             'Cardinal: Outside of North (A) clone\nIntercard: Outside of Northwest (1) clone',
-          imageUrl: './m12s/em-id-11.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 12)
         },
         {
           role: 'Healer',
           party: 2,
           description:
             'Cardinal: Outside of East (B) clone\nIntercard: Outside of Northeast (2) clone',
-          imageUrl: './m12s/em-id-11.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 12)
         },
         {
           role: 'Melee',
           party: 1,
           description:
             'Cardinal: Outside of North (A) clone\nIntercard: Outside of Northwest (1) clone',
-          imageUrl: './m12s/em-id-11.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 12)
         },
         {
           role: 'Melee',
           party: 2,
           description:
             'Cardinal: Outside of East (B) clone\nIntercard: Outside of Northeast (2) clone',
-          imageUrl: './m12s/em-id-11.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 12)
         },
         {
           role: 'Ranged',
           party: 1,
           description:
             'Cardinal: Outside of North (A) clone\nIntercard: Outside of Northwest (1) clone',
-          imageUrl: './m12s/em-id-11.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 12)
         },
         {
           role: 'Ranged',
           party: 2,
           description:
             'Cardinal: Outside of East (B) clone\nIntercard: Outside of Northeast (2) clone',
-          imageUrl: './m12s/em-id-11.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 12)
         }
       ]
     },
@@ -3801,7 +3802,7 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
       mechanic: 'Platform + Cone',
       description:
         '💡🍦🐇 RECALL: Which platform the remaining N/S clone jumps to and which direction is safe\nGo to the platform where clone jumped to and dodge cones',
-      imageUrl: './m12s/dn-idyllic-35.webp',
+      imageUrl: raidplanImage('zoeminUT6l2gaOWp', 36),
       url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#36'
     },
     {
@@ -3815,56 +3816,56 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
           party: 1,
           description:
             'Cardinal: Outside of North (A) clone\nIntercard: Outside of Northwest (1) clone',
-          imageUrl: './m12s/em-id-12.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 13)
         },
         {
           role: 'Tank',
           party: 2,
           description:
             'Cardinal: Outside of East (B) clone\nIntercard: Outside of Northeast (2) clone',
-          imageUrl: './m12s/em-id-12.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 13)
         },
         {
           role: 'Healer',
           party: 1,
           description:
             'Cardinal: Outside of North (A) clone\nIntercard: Outside of Northwest (1) clone',
-          imageUrl: './m12s/em-id-12.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 13)
         },
         {
           role: 'Healer',
           party: 2,
           description:
             'Cardinal: Outside of East (B) clone\nIntercard: Outside of Northeast (2) clone',
-          imageUrl: './m12s/em-id-12.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 13)
         },
         {
           role: 'Melee',
           party: 1,
           description:
             'Cardinal: Outside of North (A) clone\nIntercard: Outside of Northwest (1) clone',
-          imageUrl: './m12s/em-id-12.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 13)
         },
         {
           role: 'Melee',
           party: 2,
           description:
             'Cardinal: Outside of East (B) clone\nIntercard: Outside of Northeast (2) clone',
-          imageUrl: './m12s/em-id-12.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 13)
         },
         {
           role: 'Ranged',
           party: 1,
           description:
             'Cardinal: Outside of North (A) clone\nIntercard: Outside of Northwest (1) clone',
-          imageUrl: './m12s/em-id-12.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 13)
         },
         {
           role: 'Ranged',
           party: 2,
           description:
             'Cardinal: Outside of East (B) clone\nIntercard: Outside of Northeast (2) clone',
-          imageUrl: './m12s/em-id-12.webp'
+          imageUrl: raidplanImage('hg6FhbjyktWqebyG', 13)
         }
       ]
     },
@@ -3872,7 +3873,7 @@ const emIdyllic: Record<string, MechanicStrat[]> = {
       mechanic: 'Black Hole Clone Resolves',
       description:
         '💡🍦🕳️ RECALL: Whether clone that jumped into the black hole was N/S or E/W safe\nDodge black hole clone cleaves from North',
-      imageUrl: './m12s/dn-idyllic-37.webp',
+      imageUrl: raidplanImage('zoeminUT6l2gaOWp', 38),
       url: 'https://raidplan.io/plan/zoeminUT6l2gaOWp#38'
     }
   ]
@@ -3954,7 +3955,7 @@ const dnUptimeIdyllic: Record<string, MechanicStrat[]> = {
       mechanic: 'Recall Clones and Tethers',
       description:
         '💡🤔🧑‍🤝‍🧑 RECALL:\nWhether North clone was Stack or Defamation\nTemporary light parties\nIf you were 1st or 2nd Defamation or a Stack',
-      imageUrl: './m12s/uptime-id-15.webp',
+      imageUrl: raidplanImage('PdUdKJ3dCYzmc-p8', 16),
       url: 'https://raidplan.io/plan/PdUdKJ3dCYzmc-p8#16'
     },
     {
@@ -4171,14 +4172,14 @@ const modifiedStrat: Strat = {
           mechanic: 'Debuffs + Starting',
           description:
             'One role gets stack (red or no debuff), one role gets spread (yellow circle debuff)\nLoosely preposition near 1 marker NW for baits\nWatch blob on character model for cleave direction',
-          imageUrl: './m12s/p1-toxic-act1-debuffs.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 6),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#6'
         },
         {
           mechanic: 'Puddles',
           description:
             'Bait 4 puddles from 1 to A then middle\nMove behind dragon head after last bait',
-          imageUrl: './m12s/p1-toxic-act1-puddles.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 7),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#7'
         },
         {
@@ -4199,7 +4200,7 @@ const modifiedStrat: Strat = {
           mechanic: 'Stack + TB',
           description:
             'Party stays for stack, Tanks sprint to opposite side\nSafe to stack tankbusters',
-          imageUrl: './m12s/p1-toxic-act1-tb.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 10),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#10'
         }
       ]
@@ -4211,27 +4212,27 @@ const modifiedStrat: Strat = {
         {
           mechanic: 'Cheatsheet',
           description: '',
-          imageUrl: './m12s/p1-toxic-act2-cheatsheet.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 21),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#21'
         },
         {
           mechanic: 'Debuffs',
           description:
             'Each player gets a number (I, II, III, IV) and an A or B debuff\nEach player needs to break a chain and take a tower\nChains spawn when debuffs expire\nTowers spawn on chains after chains break and blobs after debuffs expire\nBreak chains in I-II-III-IV order\nTake towers in III-IV-I-II order',
-          imageUrl: './m12s/p1-toxic-act2-debuffs.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 11),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#11'
         },
         {
           mechanic: 'Blobs',
           description: '4 blobs spawn in order\nParty gets sucked in and stays stacked',
-          imageUrl: './m12s/p1-toxic-act2-blobs.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 12),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#12'
         },
         {
           mechanic: '1 (I) Debuffs',
           description:
             'Stay middle until debuffs expire\nA: run out of snake to break, then take 3rd blob tower\nB: stay inside to break, then take 3rd chain tower',
-          imageUrl: './m12s/p1-toxic-act2-break1.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 13),
           url: {
             'First break': 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#13',
             'Third towers': 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#18'
@@ -4241,7 +4242,7 @@ const modifiedStrat: Strat = {
           mechanic: '2 (II) Debuffs',
           description:
             'Stay middle until debuffs expire\nA: run out of snake to break, then take 4th blob tower\nB: stay inside to break, then take 4th chain tower',
-          imageUrl: './m12s/p1-toxic-act2-break2.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 15),
           url: {
             'Second break': 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#15',
             'Fourth towers': 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#20'
@@ -4251,7 +4252,7 @@ const modifiedStrat: Strat = {
           mechanic: '3 (III) Debuffs',
           description:
             'Take towers inside snake, get back center, break chains\nA: take 1st blob tower, then run out of snake to break\nB: take 1st chain tower, then stay inside to break',
-          imageUrl: './m12s/p1-toxic-act2-towers1.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 14),
           url: {
             'First towers': 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#14',
             'Third break': 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#17'
@@ -4261,7 +4262,7 @@ const modifiedStrat: Strat = {
           mechanic: '4 (IV) Debuffs',
           description:
             'Take towers inside snake, get back center, break chains\nA: take 2nd blob tower, then run out of snake to break\nB: take 2nd chain tower, then stay inside to break',
-          imageUrl: './m12s/p1-toxic-act2-towers2.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 16),
           url: {
             'Second towers': 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#16',
             'Fourth break': 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#19'
@@ -4278,44 +4279,44 @@ const modifiedStrat: Strat = {
         {
           mechanic: 'Platforms Cheatsheet',
           description: '',
-          imageUrl: './m12s/p1-toxic-act3-cheatsheet.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 28),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#28'
         },
         {
           mechanic: 'Cardinal Platforms',
           description: 'Go to platform depending on your blob direction',
-          imageUrl: './m12s/p1-toxic-act3-card-platforms.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 22),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#22'
         },
         {
           mechanic: 'Cardinal TBs',
           description: 'Bait tankbusters north',
-          imageUrl: './m12s/p1-toxic-act3-card-tb.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 23),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#23'
         },
         {
           mechanic: 'Cardinal AOEs',
           description: '3 eastmost and 3 westmost bait AOEs',
-          imageUrl: './m12s/p1-toxic-act3-card-aoe.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 24),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#24'
         },
         {
           mechanic: 'Intercard Platforms',
           description:
             'Go to platform depending on your blob direction\nRotate CW from your cardinal spot if intercards',
-          imageUrl: './m12s/p1-toxic-act3-inter-platforms.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 25),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#25'
         },
         {
           mechanic: 'Intercard TBs',
           description: 'Bait tankbusters diagonally north',
-          imageUrl: './m12s/p1-toxic-act3-inter-tb.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 26),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#26'
         },
         {
           mechanic: 'Intercard AOEs',
           description: '3 eastmost and 3 westmost bait AOEs',
-          imageUrl: './m12s/p1-toxic-act3-inter-aoe.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 27),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#27'
         }
       ]
@@ -4327,46 +4328,46 @@ const modifiedStrat: Strat = {
         {
           mechanic: 'Cardinal Puddles',
           description: 'Group starts NW and baits 5 AOEs around North edge',
-          imageUrl: './m12s/p1-toxic-cc-card-puddles.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 29),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#29'
         },
         {
           mechanic: 'Cardinal Spreads',
           description:
             'Purple debuffs spread and get cleaved by head\nYellow debuffs spread in safespot',
-          imageUrl: './m12s/p1-toxic-cc-card-spreads.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 30),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#30'
         },
         {
           mechanic: 'Intercard Puddles',
           description: 'Group baits 5 AOEs around NW platform',
-          imageUrl: './m12s/p1-toxic-cc-inter-puddles.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 31),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#31'
         },
         {
           mechanic: 'Intercard Spreads',
           description:
             'Purple debuffs spread and get cleaved by head\nYellow debuffs spread in safespot',
-          imageUrl: './m12s/p1-toxic-cc-inter-spreads.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 32),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#32'
         },
         {
           mechanic: 'Chain Start',
           description: 'Stack middle and wait for chain to snapshot',
-          imageUrl: './m12s/p1-toxic-cc-chain-start.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 33),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#33'
         },
         {
           mechanic: 'Chain Break',
           description:
             'Spread to break chains\nSupports West, DPS East\nFrom N to S MT-OT-H1-H2, M1-M2-R1-R2',
-          imageUrl: './m12s/p1-toxic-cc-chain-break.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 34),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#34'
         },
         {
           mechanic: 'Blob Dodge',
           description: 'Dodge to safe corners\nMelees/tanks can sprint in for uptime',
-          imageUrl: './m12s/p1-toxic-cc-blobs.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 35),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#35'
         }
       ]
@@ -4380,25 +4381,25 @@ const modifiedStrat: Strat = {
           mechanic: 'Start',
           description:
             'One role gets spread, one role gets stack\nBlobs spawn, leaving two safe corners North',
-          imageUrl: './m12s/p1-toxic-slaughter-start.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 36),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#36'
         },
         {
           mechanic: 'Stack/Spread',
           description: 'Spreads in North corner with no blob\nStack in North corner with blob',
-          imageUrl: './m12s/p1-toxic-slaughter-stackspread.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 37),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#37'
         },
         {
           mechanic: 'Dragon Arms',
           description: 'Dragons = half room cleaves',
-          imageUrl: './m12s/p1-toxic-slaughter-dragons.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 38),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#38'
         },
         {
           mechanic: 'Hands',
           description: 'Hands = BIG knockback from corner',
-          imageUrl: './m12s/p1-toxic-slaughter-hands.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 39),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#39'
         }
       ]
@@ -4427,21 +4428,21 @@ const modifiedStrat: Strat = {
           mechanic: 'Alpha Debuffs',
           description:
             'Chill mid while Betas pop objects\nDo both dodges while debuff switches to Beta\nBait Netherwar Near/Far',
-          imageUrl: './m12s/superchain-1.webp',
+          imageUrl: raidplanImage('OnhUS061LkI3xlmg', 2),
           url: 'https://raidplan.io/plan/OnhUS061LkI3xlmg#2'
         },
         {
           mechanic: 'Beta Debuffs',
           description:
             'Go to side with all objects far\nTank N, Others S to pop 2 close objects\nDo both dodges while debuff switches to Alpha\nAvoid Netherwar Near/Far',
-          imageUrl: './m12s/superchain-3.webp',
+          imageUrl: raidplanImage('OnhUS061LkI3xlmg', 4),
           url: 'https://raidplan.io/plan/OnhUS061LkI3xlmg#4'
         },
         {
           mechanic: 'Dodges',
           description:
             'If Purple and Blue were popped, stay on Beta side for N/S dodges\nIf Red and Green were popped, go to other side for N/S dodges',
-          imageUrl: './m12s/superchain-5.webp',
+          imageUrl: raidplanImage('OnhUS061LkI3xlmg', 6),
           url: 'https://raidplan.io/plan/OnhUS061LkI3xlmg#6'
         }
       ]
@@ -4518,14 +4519,14 @@ const caroStrat: Strat = {
           mechanic: 'Debuffs + Starting',
           description:
             'One role gets stack (red or no debuff), one role gets spread (yellow circle debuff)\nLoosely preposition near 1 marker NW for baits\nWatch blob on character model for cleave direction',
-          imageUrl: './m12s/p1-toxic-act1-debuffs.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 6),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#6'
         },
         {
           mechanic: 'Puddles',
           description:
             'Bait 4 puddles from 1 to A then middle\nMove behind dragon head after last bait',
-          imageUrl: './m12s/p1-toxic-act1-puddles.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 7),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#7'
         },
         {
@@ -4546,7 +4547,7 @@ const caroStrat: Strat = {
           mechanic: 'Stack + TB',
           description:
             'Party stays for stack, Tanks sprint to opposite side\nSafe to stack tankbusters',
-          imageUrl: './m12s/p1-toxic-act1-tb.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 10),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#10'
         }
       ]
@@ -4558,27 +4559,27 @@ const caroStrat: Strat = {
         {
           mechanic: 'Cheatsheet',
           description: '',
-          imageUrl: './m12s/p1-toxic-act2-cheatsheet.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 21),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#21'
         },
         {
           mechanic: 'Debuffs',
           description:
             'Each player gets a number (I, II, III, IV) and an A or B debuff\nEach player needs to break a chain and take a tower\nChains spawn when debuffs expire\nTowers spawn on chains after chains break and blobs after debuffs expire\nBreak chains in I-II-III-IV order\nTake towers in III-IV-I-II order',
-          imageUrl: './m12s/p1-toxic-act2-debuffs.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 11),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#11'
         },
         {
           mechanic: 'Blobs',
           description: '4 blobs spawn in order\nParty gets sucked in and stays stacked',
-          imageUrl: './m12s/p1-toxic-act2-blobs.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 12),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#12'
         },
         {
           mechanic: '1 (I) Debuffs',
           description:
             'Stay middle until debuffs expire\nA: run out of snake to break, then take 3rd blob tower\nB: stay inside to break, then take 3rd chain tower',
-          imageUrl: './m12s/p1-toxic-act2-break1.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 13),
           url: {
             'First break': 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#13',
             'Third towers': 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#18'
@@ -4588,7 +4589,7 @@ const caroStrat: Strat = {
           mechanic: '2 (II) Debuffs',
           description:
             'Stay middle until debuffs expire\nA: run out of snake to break, then take 4th blob tower\nB: stay inside to break, then take 4th chain tower',
-          imageUrl: './m12s/p1-toxic-act2-break2.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 15),
           url: {
             'Second break': 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#15',
             'Fourth towers': 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#20'
@@ -4598,7 +4599,7 @@ const caroStrat: Strat = {
           mechanic: '3 (III) Debuffs',
           description:
             'Take towers inside snake, get back center, break chains\nA: take 1st blob tower, then run out of snake to break\nB: take 1st chain tower, then stay inside to break',
-          imageUrl: './m12s/p1-toxic-act2-towers1.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 14),
           url: {
             'First towers': 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#14',
             'Third break': 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#17'
@@ -4608,7 +4609,7 @@ const caroStrat: Strat = {
           mechanic: '4 (IV) Debuffs',
           description:
             'Take towers inside snake, get back center, break chains\nA: take 2nd blob tower, then run out of snake to break\nB: take 2nd chain tower, then stay inside to break',
-          imageUrl: './m12s/p1-toxic-act2-towers2.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 16),
           url: {
             'Second towers': 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#16',
             'Fourth break': 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#19'
@@ -4625,44 +4626,44 @@ const caroStrat: Strat = {
         {
           mechanic: 'Platforms Cheatsheet',
           description: '',
-          imageUrl: './m12s/p1-toxic-act3-cheatsheet.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 28),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#28'
         },
         {
           mechanic: 'Cardinal Platforms',
           description: 'Go to platform depending on your blob direction',
-          imageUrl: './m12s/p1-toxic-act3-card-platforms.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 22),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#22'
         },
         {
           mechanic: 'Cardinal TBs',
           description: 'Bait tankbusters north',
-          imageUrl: './m12s/p1-toxic-act3-card-tb.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 23),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#23'
         },
         {
           mechanic: 'Cardinal AOEs',
           description: '3 eastmost and 3 westmost bait AOEs',
-          imageUrl: './m12s/p1-toxic-act3-card-aoe.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 24),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#24'
         },
         {
           mechanic: 'Intercard Platforms',
           description:
             'Go to platform depending on your blob direction\nRotate CW from your cardinal spot if intercards',
-          imageUrl: './m12s/p1-toxic-act3-inter-platforms.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 25),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#25'
         },
         {
           mechanic: 'Intercard TBs',
           description: 'Bait tankbusters diagonally north',
-          imageUrl: './m12s/p1-toxic-act3-inter-tb.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 26),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#26'
         },
         {
           mechanic: 'Intercard AOEs',
           description: '3 eastmost and 3 westmost bait AOEs',
-          imageUrl: './m12s/p1-toxic-act3-inter-aoe.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 27),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#27'
         }
       ]
@@ -4674,46 +4675,46 @@ const caroStrat: Strat = {
         {
           mechanic: 'Cardinal Puddles',
           description: 'Group starts NW and baits 5 AOEs around North edge',
-          imageUrl: './m12s/p1-toxic-cc-card-puddles.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 29),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#29'
         },
         {
           mechanic: 'Cardinal Spreads',
           description:
             'Purple debuffs spread and get cleaved by head\nYellow debuffs spread in safespot',
-          imageUrl: './m12s/p1-toxic-cc-card-spreads.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 30),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#30'
         },
         {
           mechanic: 'Intercard Puddles',
           description: 'Group baits 5 AOEs around NW platform',
-          imageUrl: './m12s/p1-toxic-cc-inter-puddles.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 31),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#31'
         },
         {
           mechanic: 'Intercard Spreads',
           description:
             'Purple debuffs spread and get cleaved by head\nYellow debuffs spread in safespot',
-          imageUrl: './m12s/p1-toxic-cc-inter-spreads.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 32),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#32'
         },
         {
           mechanic: 'Chain Start',
           description: 'Stack middle and wait for chain to snapshot',
-          imageUrl: './m12s/p1-toxic-cc-chain-start.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 33),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#33'
         },
         {
           mechanic: 'Chain Break',
           description:
             'Spread to break chains\nSupports West, DPS East\nFrom N to S MT-OT-H1-H2, M1-M2-R1-R2',
-          imageUrl: './m12s/p1-toxic-cc-chain-break.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 34),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#34'
         },
         {
           mechanic: 'Blob Dodge',
           description: 'Dodge to safe corners\nMelees/tanks can sprint in for uptime',
-          imageUrl: './m12s/p1-toxic-cc-blobs.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 35),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#35'
         }
       ]
@@ -4727,25 +4728,25 @@ const caroStrat: Strat = {
           mechanic: 'Start',
           description:
             'One role gets spread, one role gets stack\nBlobs spawn, leaving two safe corners North',
-          imageUrl: './m12s/p1-toxic-slaughter-start.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 36),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#36'
         },
         {
           mechanic: 'Stack/Spread',
           description: 'Spreads in North corner with no blob\nStack in North corner with blob',
-          imageUrl: './m12s/p1-toxic-slaughter-stackspread.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 37),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#37'
         },
         {
           mechanic: 'Dragon Arms',
           description: 'Dragons = half room cleaves',
-          imageUrl: './m12s/p1-toxic-slaughter-dragons.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 38),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#38'
         },
         {
           mechanic: 'Hands',
           description: 'Hands = BIG knockback from corner',
-          imageUrl: './m12s/p1-toxic-slaughter-hands.webp',
+          imageUrl: raidplanImage('44JJjqZ6Mcgaxnnn', 39),
           url: 'https://raidplan.io/plan/44JJjqZ6Mcgaxnnn#39'
         }
       ]
@@ -4774,21 +4775,21 @@ const caroStrat: Strat = {
           mechanic: 'Alpha Debuffs',
           description:
             'Chill mid while Betas pop objects\nDo both dodges while debuff switches to Beta\nBait Netherwar Near/Far',
-          imageUrl: './m12s/superchain-1.webp',
+          imageUrl: raidplanImage('OnhUS061LkI3xlmg', 2),
           url: 'https://raidplan.io/plan/OnhUS061LkI3xlmg#2'
         },
         {
           mechanic: 'Beta Debuffs',
           description:
             'Go to side with all objects far\nTank N, Others S to pop 2 close objects\nDo both dodges while debuff switches to Alpha\nAvoid Netherwar Near/Far',
-          imageUrl: './m12s/superchain-3.webp',
+          imageUrl: raidplanImage('OnhUS061LkI3xlmg', 4),
           url: 'https://raidplan.io/plan/OnhUS061LkI3xlmg#4'
         },
         {
           mechanic: 'Dodges',
           description:
             'If Purple and Blue were popped, stay on Beta side for N/S dodges\nIf Red and Green were popped, go to other side for N/S dodges',
-          imageUrl: './m12s/superchain-5.webp',
+          imageUrl: raidplanImage('OnhUS061LkI3xlmg', 6),
           url: 'https://raidplan.io/plan/OnhUS061LkI3xlmg#6'
         }
       ]

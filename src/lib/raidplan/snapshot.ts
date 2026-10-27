@@ -29,34 +29,29 @@ function toDataUrl(url: string): Promise<string> {
   return cached;
 }
 
-const GOOGLE_FONTS: Record<string, string> = {
-  Roboto: 'Roboto:ital,wght@0,400;0,700;1,400',
-  'Roboto Mono': 'Roboto+Mono:wght@400;700',
-  'Playpen Sans': 'Playpen+Sans:wght@400;700'
+/** Google Fonts stylesheets per family. Roboto's matches the board's own <link>, so its files come from cache. */
+export const FONT_CSS: Record<string, string> = {
+  Roboto:
+    'https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap',
+  'Roboto Mono': 'https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap',
+  'Playpen Sans': 'https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@400;700&display=swap'
 };
 
 const fontCssCache = new Map<string, Promise<string>>();
 
 /**
- * @font-face rules for the fonts the board uses, with the font files inlined.
- * Google Fonts' `text=` parameter returns fonts holding only those glyphs, so
- * this stays a few KB per board.
+ * @font-face rules for one family with the font files inlined. Only the latin
+ * subsets are kept: one shared copy serves every board on the page (other
+ * scripts fall back to a system font in the snapshot).
  */
-function fontCss(svg: SVGSVGElement): Promise<string> {
-  const used = Object.keys(GOOGLE_FONTS).filter((family) =>
-    [...svg.querySelectorAll('[font-family]')].some((el) =>
-      new RegExp(`(^|,)\\s*"?${family}"?\\s*(,|$)`).test(el.getAttribute('font-family') ?? '')
-    )
-  );
-  const text = [...new Set(svg.textContent ?? '')].join('');
-  if (!used.length || !text.trim()) return Promise.resolve('');
-  const families = used.map((f) => `family=${GOOGLE_FONTS[f]}`).join('&');
-  const url = `https://fonts.googleapis.com/css2?${families}&text=${encodeURIComponent(text)}`;
+function familyCss(url: string): Promise<string> {
   let cached = fontCssCache.get(url);
   if (!cached) {
     cached = fetch(url)
       .then((r) => r.text())
-      .then(async (css) => {
+      .then(async (full) => {
+        const blocks = full.split(/(?=\/\*)/).filter((b) => /\/\*\s*latin(-ext)?\s*\*\//.test(b));
+        const css = blocks.length ? blocks.join('') : full;
         const urls = [...new Set([...css.matchAll(/url\((https:[^)]+)\)/g)].map((m) => m[1]))];
         const inlined = new Map(
           await Promise.all(urls.map(async (u) => [u, await toDataUrl(u)] as const))
@@ -67,6 +62,17 @@ function fontCss(svg: SVGSVGElement): Promise<string> {
     fontCssCache.set(url, cached);
   }
   return cached;
+}
+
+/** @font-face rules for the fonts the board uses, with the font files inlined. */
+async function fontCss(svg: SVGSVGElement): Promise<string> {
+  const used = Object.keys(FONT_CSS).filter((family) =>
+    [...svg.querySelectorAll('[font-family]')].some((el) =>
+      new RegExp(`(^|,)\\s*"?${family}"?\\s*(,|$)`).test(el.getAttribute('font-family') ?? '')
+    )
+  );
+  if (!used.length || !svg.textContent?.trim()) return '';
+  return (await Promise.all(used.map((f) => familyCss(FONT_CSS[f])))).join('\n');
 }
 
 /** Fetch and inline everything a board's snapshot will need, without rasterizing. */

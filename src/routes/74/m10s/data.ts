@@ -7,41 +7,42 @@ import {
   getRectMaskUrl
 } from '$lib/utils';
 import { m10sPosterLayout } from './posterData';
+import { raidplanImage } from '$lib/raidplan/image';
 
 const toxicFirewatersnaking: MechanicStrat[] = [
   {
     mechanic: 'Debuffs',
     description:
       'Proximity bait debuff\nG1 near Blue, G2 near Red\nCan go on either closest or furthest players\nWatch debuff and swap to boss that matches your color',
-    imageUrl: './m10s/toxic-snaking-debuffs.webp',
+    imageUrl: raidplanImage('syjvfhacdxz7awet', 14),
     url: 'https://raidplan.io/plan/syjvfhacdxz7awet#14'
   },
   {
     mechanic: 'Puddles + Proteans',
     description:
       '🔥 Place puddles on east wall in box shape\n💦 Giga tight spread in NW/SW corner with Tank towards middle',
-    imageUrl: './m10s/toxic-snaking-pp.webp',
+    imageUrl: raidplanImage('syjvfhacdxz7awet', 15),
     url: 'https://raidplan.io/plan/syjvfhacdxz7awet#15'
   },
   {
     mechanic: 'Wide Cleave',
     description:
       'Blue jumps to N or S opposite of big wave and does wide cleave\nTrue North\n💦 West, 1 ball = Stack, 4 balls = spread\n🔥 East (near fire puddles)',
-    imageUrl: './m10s/toxic-snaking-cleave.webp',
+    imageUrl: raidplanImage('syjvfhacdxz7awet', 16),
     url: 'https://raidplan.io/plan/syjvfhacdxz7awet#16'
   },
   {
     mechanic: 'Far Jumps',
     description:
       '🔥 Boss jumps on furthest fire player 4x\nIntercard markers for bait\n1 = Tank, 2 = Healer, 3 = Melee, 4 = Ranged\nMove to middle after bait\nKB + 💦 Stack/Spread after Fire baits',
-    imageUrl: './m10s/toxic-snaking-far.webp',
+    imageUrl: raidplanImage('syjvfhacdxz7awet', 17),
     url: 'https://raidplan.io/plan/syjvfhacdxz7awet#17'
   },
   {
     mechanic: 'Cutback Blaze + TB',
     description:
       'Pull Red Hot mid\n🔥 Stack South to bait Cutback Blaze\nParty stay under boss\n💦 Tank run North to bait TB',
-    imageUrl: './m10s/toxic-snaking-cb.webp',
+    imageUrl: raidplanImage('syjvfhacdxz7awet', 18),
     url: 'https://raidplan.io/plan/syjvfhacdxz7awet#18'
   }
 ];
@@ -51,14 +52,14 @@ const nomnomFirewatersnaking: MechanicStrat[] = [
     mechanic: 'Debuffs',
     description:
       'Proximity bait debuff\nG1 near Blue, G2 near Red\nCan go on either closest or furthest players\nWatch debuff and swap to boss that matches your color',
-    imageUrl: './m10s/nomnom-snaking-debuffs.webp',
+    imageUrl: raidplanImage('Cmo_RpCDbsUSMV5c', 1),
     url: 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#1'
   },
   {
     mechanic: 'Puddles + Proteans',
     description:
       '🔥 Place puddles on east wall in box shape\n💦 Tight protean spread in NW/SW corner, dodge 2nd hit\nDPS towards corner, Tank/Healer towards middle\nMake sure to leave room/dodge middle for 2nd hit to not cleave fires\n‼️ 2/2 proteans require extremely close positioning, consider 1/3 if you are having issues cleaving fires',
-    imageUrl: './m10s/nomnom-snaking-pp.webp',
+    imageUrl: raidplanImage('Cmo_RpCDbsUSMV5c', 2),
     url: {
       'Boss SW': 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#2',
       'Boss NW': 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#3'
@@ -68,35 +69,35 @@ const nomnomFirewatersnaking: MechanicStrat[] = [
     mechanic: 'Wide Cleave',
     description:
       'Blue jumps to N or S opposite of big wave and does wide cleave\nTrue North\n💦 West, 1 ball = Stack, 4 balls = spread\n🔥 East (near fire puddles)',
-    imageUrl: './m10s/nomnom-snaking-cleave.webp',
+    imageUrl: raidplanImage('Cmo_RpCDbsUSMV5c', 5),
     url: 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#5'
   },
   {
     mechanic: 'Far Jumps',
     description:
       '🔥 Boss jumps on furthest fire player 4x\n1st/3rd (T/M) Far 2nd/4th (H/R) Close relative to corner fire puddles\nStay near original puddles if not baiting\nImmediately run mid after bait',
-    imageUrl: './m10s/nomnom-snaking-far.webp',
+    imageUrl: raidplanImage('Cmo_RpCDbsUSMV5c', 6),
     url: 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#6'
   },
   {
     mechanic: 'Sickest Take-off',
     description: '💦 Watch Stack/Spread telegraph\nBlue tank save KBI for buster',
-    imageUrl: './m10s/nomnom-snaking-sickest.webp',
-    url: 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#8'
+    imageUrl: raidplanImage('Cmo_RpCDbsUSMV5c', 7),
+    url: 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#7'
   },
   {
     mechanic: 'Stacks/Spreads',
     description:
       'Position Red near middle and Blue away from Take-off cleave lane\n💦 Resolve Stack/Spread\n🔥 Behind Red to bait pie slice towards safe side',
-    imageUrl: './m10s/nomnom-snaking-stacks.webp',
-    url: 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#9'
+    imageUrl: raidplanImage('Cmo_RpCDbsUSMV5c', 8),
+    url: 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#8'
   },
   {
     mechanic: 'Cutback Blaze + TB',
     description:
       'Move into safespot\n💦 Tank bait TB far from Deep Blue\n🔥 Tank go far to bait the safe slice, aim it at D marker',
-    imageUrl: './m10s/nomnom-snaking-tb.webp',
-    url: 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#10'
+    imageUrl: raidplanImage('Cmo_RpCDbsUSMV5c', 9),
+    url: 'https://raidplan.io/plan/Cmo_RpCDbsUSMV5c#9'
   }
 ];
 
@@ -105,35 +106,35 @@ const oceFirewatersnaking: MechanicStrat[] = [
     mechanic: 'Debuffs',
     description:
       'Proximity bait debuff\nG1 near Blue, G2 near Red\nCan go on either closest or furthest players\nWatch debuff and swap to boss that matches your color',
-    imageUrl: './m10s/oce-13.webp',
+    imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 14),
     url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#14'
   },
   {
     mechanic: 'Puddles + Proteans',
     description:
       '🔥 Place puddles on east wall in box shape\n💦 Giga tight spread in NW/SW corner with Tank towards middle',
-    imageUrl: './m10s/oce-14.webp',
+    imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 15),
     url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#15'
   },
   {
     mechanic: 'Wide Cleave',
     description:
       'Blue jumps to N or S opposite of big wave and does wide cleave\nTrue North\n💦 West, 1 ball = Stack, 4 balls = spread\n🔥 East (near fire puddles)',
-    imageUrl: './m10s/oce-15.webp',
+    imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 16),
     url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#16'
   },
   {
     mechanic: 'Far Jumps',
     description:
       '🔥 Boss jumps on furthest fire player 4x\n1st/3rd (T/M) Far 2nd/4th (H/R) Close relative to corner fire puddles\nStay near original puddles if not baiting\nImmediately run mid after bait',
-    imageUrl: './m10s/oce-16.webp',
+    imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 17),
     url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#17'
   },
   {
     mechanic: 'Cutback Blaze + TB',
     description:
       'Move into safespot\n💦 Tank bait TB far North\n🔥 Stack South to bait Cutback Blaze',
-    imageUrl: './m10s/oce-18.webp',
+    imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 19),
     url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#19'
   }
 ];
@@ -149,20 +150,20 @@ const parallelDeepaerial: MechanicStrat[] = [
     mechanic: '1st Tether',
     description:
       'Healers take ball\n🔥 Fire tether directly to A or C\n💦 Water tether straight north or south\nTether line is wide so be careful',
-    imageUrl: './m10s/parallel-aerial-1.webp',
+    imageUrl: raidplanImage('qWue79_md0YHCrnW', 1),
     url: 'https://raidplan.io/plan/qWue79_md0YHCrnW#1'
   },
   {
     mechanic: '2nd Tether',
     description:
       '🔥 Fire tether directly through the ball\n💦 Water tether back to first corner parallel to fire',
-    imageUrl: './m10s/parallel-aerial-2.webp',
+    imageUrl: raidplanImage('qWue79_md0YHCrnW', 2),
     url: 'https://raidplan.io/plan/qWue79_md0YHCrnW#2'
   },
   {
     mechanic: 'All Other Tethers',
     description: '🔥 Fire tether directly through the ball\n💦 Water tether parallel to fire',
-    imageUrl: './m10s/parallel-aerial-3.webp',
+    imageUrl: raidplanImage('qWue79_md0YHCrnW', 3),
     url: 'https://raidplan.io/plan/qWue79_md0YHCrnW#3'
   }
 ];
@@ -274,7 +275,7 @@ export const toxic: Strat = {
         {
           mechanic: 'Flame Floater',
           description: '1st: CCW corner\n2nd: CCW wall\n3rd: Back in corner\n4th: Back at start',
-          imageUrl: './m10s/toxic-floater.webp',
+          imageUrl: raidplanImage('syjvfhacdxz7awet', 1),
           url: 'https://raidplan.io/plan/syjvfhacdxz7awet#1'
         },
         {
@@ -286,56 +287,56 @@ export const toxic: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Close to boss',
-              imageUrl: './m10s/toxic-inferno.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 2),
               mask: getCircleMaskUrl(44, 73, 6)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Close to boss',
-              imageUrl: './m10s/toxic-inferno.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 2),
               mask: getCircleMaskUrl(33.9, 49.4, 6)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Far from boss',
-              imageUrl: './m10s/toxic-inferno.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 2),
               mask: getCircleMaskUrl(54.4, 77.7, 6)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Far from boss',
-              imageUrl: './m10s/toxic-inferno.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 2),
               mask: getCircleMaskUrl(32, 37.3, 6)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Close to boss',
-              imageUrl: './m10s/toxic-inferno.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 2),
               mask: getCircleMaskUrl(38, 69.5, 6)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Close to boss',
-              imageUrl: './m10s/toxic-inferno.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 2),
               mask: getCircleMaskUrl(36, 59.5, 6)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Far from boss',
-              imageUrl: './m10s/toxic-inferno.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 2),
               mask: getCircleMaskUrl(68.2, 78.4, 6)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Far from boss',
-              imageUrl: './m10s/toxic-inferno.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 2),
               mask: getCircleMaskUrl(61.1, 78.3, 6)
             }
           ]
@@ -344,13 +345,13 @@ export const toxic: Strat = {
           mechanic: 'Cutback Blaze',
           description:
             'Stack between boss and fire\nBait narrow slice behind boss\nSafe slice will bait opposite the furthest valid player',
-          imageUrl: './m10s/toxic-cutback1.webp',
+          imageUrl: raidplanImage('syjvfhacdxz7awet', 3),
           url: 'https://raidplan.io/plan/syjvfhacdxz7awet#3'
         },
         {
           mechanic: 'Pyrotation',
           description: '3 hit party stack\nEach stack leaves a puddle',
-          imageUrl: './m10s/toxic-pyrotation.webp',
+          imageUrl: raidplanImage('syjvfhacdxz7awet', 4),
           url: 'https://raidplan.io/plan/syjvfhacdxz7awet#4'
         }
       ]
@@ -367,56 +368,56 @@ export const toxic: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Left/Relative West',
-              imageUrl: './m10s/toxic-2balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 5),
               mask: getCircleMaskUrl(43.3, 75.9, 8)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Right/Relative East',
-              imageUrl: './m10s/toxic-2balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 5),
               mask: getCircleMaskUrl(41.9, 28.4, 8)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Left/Relative West',
-              imageUrl: './m10s/toxic-2balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 5),
               mask: getCircleMaskUrl(43.3, 75.9, 8)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Right/Relative East',
-              imageUrl: './m10s/toxic-2balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 5),
               mask: getCircleMaskUrl(41.9, 28.4, 8)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Left/Relative West',
-              imageUrl: './m10s/toxic-2balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 5),
               mask: getCircleMaskUrl(43.3, 75.9, 8)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Right/Relative East',
-              imageUrl: './m10s/toxic-2balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 5),
               mask: getCircleMaskUrl(41.9, 28.4, 8)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Left/Relative West',
-              imageUrl: './m10s/toxic-2balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 5),
               mask: getCircleMaskUrl(43.3, 75.9, 8)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Right/Relative East',
-              imageUrl: './m10s/toxic-2balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 5),
               mask: getCircleMaskUrl(41.9, 28.4, 8)
             }
           ]
@@ -430,56 +431,56 @@ export const toxic: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Left/Relative West',
-              imageUrl: './m10s/toxic-8balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 6),
               mask: getCircleMaskUrl(30.3, 68.6, 5)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Right/Relative East',
-              imageUrl: './m10s/toxic-8balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 6),
               mask: getCircleMaskUrl(30.9, 31.9, 5)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Left/Relative West',
-              imageUrl: './m10s/toxic-8balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 6),
               mask: getCircleMaskUrl(45.7, 69.1, 5)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Right/Relative East',
-              imageUrl: './m10s/toxic-8balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 6),
               mask: getCircleMaskUrl(47.1, 30.5, 5)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Left/Relative West',
-              imageUrl: './m10s/toxic-8balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 6),
               mask: getCircleMaskUrl(37.6, 83.1, 5)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Right/Relative East',
-              imageUrl: './m10s/toxic-8balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 6),
               mask: getCircleMaskUrl(37.2, 17.9, 5)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Left/Relative West',
-              imageUrl: './m10s/toxic-8balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 6),
               mask: getCircleMaskUrl(54.7, 83.8, 5)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Right/Relative East',
-              imageUrl: './m10s/toxic-8balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 6),
               mask: getCircleMaskUrl(56.6, 20, 5)
             }
           ]
@@ -498,56 +499,56 @@ export const toxic: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Relative North',
-              imageUrl: './m10s/toxic-protean1.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 7)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Relative South',
-              imageUrl: './m10s/toxic-protean1.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 7)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Relative West',
-              imageUrl: './m10s/toxic-protean1.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 7)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Relative East',
-              imageUrl: './m10s/toxic-protean1.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 7)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Relative Southwest',
-              imageUrl: './m10s/toxic-protean1.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 7)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Relative Southeast',
-              imageUrl: './m10s/toxic-protean1.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 7)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Relative Northwest',
-              imageUrl: './m10s/toxic-protean1.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 7)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Relative Northeast',
-              imageUrl: './m10s/toxic-protean1.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 7)
             }
           ]
         },
         {
           mechanic: '2nd Hit',
           description: 'Double-dip = Dodge into empty slice\nReverse = Stay',
-          imageUrl: './m10s/toxic-protean1.webp',
+          imageUrl: raidplanImage('syjvfhacdxz7awet', 7),
           url: 'https://raidplan.io/plan/syjvfhacdxz7awet#7'
         }
       ]
@@ -555,7 +556,7 @@ export const toxic: Strat = {
     {
       phaseName: 'Deep Impact',
       description: 'Tankbuster baited on furthest player\nDoes a small KB',
-      imageUrl: './m10s/toxic-impact.webp',
+      imageUrl: raidplanImage('syjvfhacdxz7awet', 8),
       url: 'https://raidplan.io/plan/syjvfhacdxz7awet#8'
     },
     {
@@ -570,56 +571,56 @@ export const toxic: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Northwest (Deep Blue)',
-              imageUrl: './m10s/toxic-insane1-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 9),
               mask: getCircleMaskUrl(40, 23.3, 12)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Southeast (Red Hot)',
-              imageUrl: './m10s/toxic-insane1-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 9),
               mask: getCircleMaskUrl(60.2, 75.5, 12)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Northwest (Deep Blue)',
-              imageUrl: './m10s/toxic-insane1-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 9),
               mask: getCircleMaskUrl(40, 23.3, 12)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Southeast (Red Hot)',
-              imageUrl: './m10s/toxic-insane1-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 9),
               mask: getCircleMaskUrl(60.2, 75.5, 12)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Northwest (Deep Blue)',
-              imageUrl: './m10s/toxic-insane1-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 9),
               mask: getCircleMaskUrl(40, 23.3, 12)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Southeast (Red Hot)',
-              imageUrl: './m10s/toxic-insane1-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 9),
               mask: getCircleMaskUrl(60.2, 75.5, 12)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Northwest (Deep Blue)',
-              imageUrl: './m10s/toxic-insane1-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 9),
               mask: getCircleMaskUrl(40, 23.3, 12)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Southeast (Red Hot)',
-              imageUrl: './m10s/toxic-insane1-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 9),
               mask: getCircleMaskUrl(60.2, 75.5, 12)
             }
           ]
@@ -633,25 +634,25 @@ export const toxic: Strat = {
         {
           mechanic: '1st Hit',
           description: 'MTHR clockwise for proteans',
-          imageUrl: './m10s/toxic-insane1-1.webp',
+          imageUrl: raidplanImage('syjvfhacdxz7awet', 10),
           url: 'https://raidplan.io/plan/syjvfhacdxz7awet#10'
         },
         {
           mechanic: '2nd Hit',
           description: 'MTHR clockwise for proteans',
-          imageUrl: './m10s/toxic-insane1-2.webp',
+          imageUrl: raidplanImage('syjvfhacdxz7awet', 11),
           url: 'https://raidplan.io/plan/syjvfhacdxz7awet#11'
         },
         {
           mechanic: '3rd Hit',
           description: 'MTHR clockwise for proteans',
-          imageUrl: './m10s/toxic-insane1-3.webp',
+          imageUrl: raidplanImage('syjvfhacdxz7awet', 12),
           url: 'https://raidplan.io/plan/syjvfhacdxz7awet#12'
         },
         {
           mechanic: '4th Hit',
           description: 'MTHR clockwise for proteans',
-          imageUrl: './m10s/toxic-insane1-4.webp',
+          imageUrl: raidplanImage('syjvfhacdxz7awet', 13),
           url: 'https://raidplan.io/plan/syjvfhacdxz7awet#13'
         }
       ]
@@ -678,56 +679,56 @@ export const toxic: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Northwest corner, south of R1',
-              imageUrl: './m10s/toxic-split-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 20),
               mask: getCircleMaskUrl(29.9, 26, 5)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Northeast corner, south of R2',
-              imageUrl: './m10s/toxic-split-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 20),
               mask: getCircleMaskUrl(70.3, 25.4, 5)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Southwest corner',
-              imageUrl: './m10s/toxic-split-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 20),
               mask: getCircleMaskUrl(29.9, 85.9, 5)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Southeast corner',
-              imageUrl: './m10s/toxic-split-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 20),
               mask: getCircleMaskUrl(70.3, 86.1, 5)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Southwest corner, north of H1',
-              imageUrl: './m10s/toxic-split-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 20),
               mask: getCircleMaskUrl(29.8, 74.8, 5)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Southeast corner, north of H2',
-              imageUrl: './m10s/toxic-split-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 20),
               mask: getCircleMaskUrl(70.3, 74.4, 5)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Northwest corner',
-              imageUrl: './m10s/toxic-split-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 20),
               mask: getCircleMaskUrl(29.9, 14.3, 5)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Northeast corner',
-              imageUrl: './m10s/toxic-split-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 20),
               mask: getCircleMaskUrl(70.4, 14.1, 5)
             }
           ]
@@ -743,7 +744,7 @@ export const toxic: Strat = {
               party: 1,
               description:
                 'North of middle\nIf far, Double-dip = dodge to intercard, Reverse = dodge to cardinal',
-              imageUrl: './m10s/toxic-split-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 21),
               mask: getMultiCircleMaskUrl([44.2, 44.9, 4], [69, 44.1, 4])
             },
             {
@@ -751,21 +752,21 @@ export const toxic: Strat = {
               party: 2,
               description:
                 'North of middle\nIf far, Double-dip = dodge to intercard, Reverse = dodge to cardinal',
-              imageUrl: './m10s/toxic-split-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 21),
               mask: getMultiCircleMaskUrl([44.2, 44.9, 4], [69, 44.1, 4])
             },
             {
               role: 'Healer',
               party: 1,
               description: 'South',
-              imageUrl: './m10s/toxic-split-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 21),
               mask: getMultiCircleMaskUrl([44.9, 87.3, 4], [66.7, 63.9, 4])
             },
             {
               role: 'Healer',
               party: 2,
               description: 'South',
-              imageUrl: './m10s/toxic-split-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 21),
               mask: getMultiCircleMaskUrl([44.9, 87.3, 4], [66.7, 63.9, 4])
             },
             {
@@ -773,7 +774,7 @@ export const toxic: Strat = {
               party: 1,
               description:
                 'South of middle\nIf far, Double-dip = dodge to intercard, Reverse = dodge to cardinal',
-              imageUrl: './m10s/toxic-split-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 21),
               mask: getMultiCircleMaskUrl([44.3, 54.9, 4], [69.2, 56, 4])
             },
             {
@@ -781,21 +782,21 @@ export const toxic: Strat = {
               party: 2,
               description:
                 'South of middle\nIf far, Double-dip = dodge to intercard, Reverse = dodge to cardinal',
-              imageUrl: './m10s/toxic-split-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 21),
               mask: getMultiCircleMaskUrl([44.3, 54.9, 4], [69.2, 56, 4])
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'North',
-              imageUrl: './m10s/toxic-split-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 21),
               mask: getMultiCircleMaskUrl([44.7, 13, 4], [66.7, 35.7, 4])
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'North',
-              imageUrl: './m10s/toxic-split-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 21),
               mask: getMultiCircleMaskUrl([44.7, 13, 4], [66.7, 35.7, 4])
             }
           ]
@@ -809,56 +810,56 @@ export const toxic: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Stack near 1 with R1',
-              imageUrl: './m10s/toxic-split-stacks.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 22),
               mask: getCircleMaskUrl(40, 26.2, 7)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Stack near 2 with R2',
-              imageUrl: './m10s/toxic-split-stacks.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 22),
               mask: getCircleMaskUrl(60.3, 26.7, 7)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Stack near 4 with M1',
-              imageUrl: './m10s/toxic-split-stacks.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 22),
               mask: getCircleMaskUrl(39.7, 75.1, 7)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Stack near 3 with M2',
-              imageUrl: './m10s/toxic-split-stacks.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 22),
               mask: getCircleMaskUrl(60.4, 73.5, 7)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Stack near 4 with H1',
-              imageUrl: './m10s/toxic-split-stacks.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 22),
               mask: getCircleMaskUrl(39.7, 75.1, 7)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Stack near 3 with H2',
-              imageUrl: './m10s/toxic-split-stacks.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 22),
               mask: getCircleMaskUrl(60.4, 73.5, 7)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Stack near 1 with MT',
-              imageUrl: './m10s/toxic-split-stacks.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 22),
               mask: getCircleMaskUrl(40, 26.2, 7)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Stack near 2 with OT',
-              imageUrl: './m10s/toxic-split-stacks.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 22),
               mask: getCircleMaskUrl(60.3, 26.7, 7)
             }
           ]
@@ -878,49 +879,49 @@ export const toxic: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Start at boss OPPOSITE debuff color',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Start at boss OPPOSITE debuff color',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             }
           ]
         },
@@ -933,49 +934,49 @@ export const toxic: Strat = {
               role: 'Tank',
               party: 1,
               description: "Swap if it's tankbuster\nMake sure to insta-swap if it's TB first",
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Tank',
               party: 2,
               description: "Swap if it's tankbuster\nMake sure to insta-swap if it's TB first",
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Just do mechanics and chill',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Just do mechanics and chill',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Swap after Healer cleanses for 2nd cleanse',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Swap after Healer cleanses for 2nd cleanse',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Swap after Melee cleanses for 3rd cleanse',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Swap after Melee cleanses for 3rd cleanse',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             }
           ]
         }
@@ -993,56 +994,56 @@ export const toxic: Strat = {
               role: 'Tank',
               party: 1,
               description: 'North (A marker)',
-              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 24),
               mask: getCircleMaskUrl(49.9, 15.6, 5)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'South (C marker)',
-              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 24),
               mask: getCircleMaskUrl(50, 85, 5)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'West (D marker)',
-              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 24),
               mask: getCircleMaskUrl(31.5, 50.3, 5)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'East (B marker)',
-              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 24),
               mask: getCircleMaskUrl(68.8, 49.8, 5)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Southwest (4 marker)',
-              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 24),
               mask: getCircleMaskUrl(31.5, 82.9, 5)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Southeast (3 marker)',
-              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 24),
               mask: getCircleMaskUrl(68.3, 83.3, 5)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Northwest (1 marker)',
-              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 24),
               mask: getCircleMaskUrl(31.6, 17.3, 5)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Northeast (2 marker)',
-              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 24),
               mask: getCircleMaskUrl(68.6, 16.8, 5)
             }
           ]
@@ -1050,7 +1051,7 @@ export const toxic: Strat = {
         {
           mechanic: 'TB + Party Stacks',
           description: 'Tank bait TB far\nStack under Deep Blue, rotate CW around Red Hot',
-          imageUrl: './m10s/toxic-alley2-tb.webp',
+          imageUrl: raidplanImage('syjvfhacdxz7awet', 25),
           url: 'https://raidplan.io/plan/syjvfhacdxz7awet#25'
         }
       ]
@@ -1074,7 +1075,7 @@ export const hector: Strat = {
         {
           mechanic: 'Flame Floater',
           description: '1st: CCW corner\n2nd: CCW wall\n3rd: Back in corner\n4th: Back at start',
-          imageUrl: './m10s/toxic-floater.webp',
+          imageUrl: raidplanImage('syjvfhacdxz7awet', 1),
           url: 'https://raidplan.io/plan/syjvfhacdxz7awet#1'
         },
         {
@@ -1086,56 +1087,56 @@ export const hector: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Close to boss',
-              imageUrl: './m10s/toxic-inferno.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 2),
               mask: getCircleMaskUrl(44, 73, 6)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Close to boss',
-              imageUrl: './m10s/toxic-inferno.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 2),
               mask: getCircleMaskUrl(33.9, 49.4, 6)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Far from boss',
-              imageUrl: './m10s/toxic-inferno.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 2),
               mask: getCircleMaskUrl(54.4, 77.7, 6)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Far from boss',
-              imageUrl: './m10s/toxic-inferno.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 2),
               mask: getCircleMaskUrl(32, 37.3, 6)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Close to boss',
-              imageUrl: './m10s/toxic-inferno.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 2),
               mask: getCircleMaskUrl(38, 69.5, 6)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Close to boss',
-              imageUrl: './m10s/toxic-inferno.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 2),
               mask: getCircleMaskUrl(36, 59.5, 6)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Far from boss',
-              imageUrl: './m10s/toxic-inferno.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 2),
               mask: getCircleMaskUrl(68.2, 78.4, 6)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Far from boss',
-              imageUrl: './m10s/toxic-inferno.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 2),
               mask: getCircleMaskUrl(61.1, 78.3, 6)
             }
           ]
@@ -1144,13 +1145,13 @@ export const hector: Strat = {
           mechanic: 'Cutback Blaze',
           description:
             'Stack between boss and fire\nBait narrow slice behind boss\nSafe slice will bait opposite the furthest valid player',
-          imageUrl: './m10s/toxic-cutback1.webp',
+          imageUrl: raidplanImage('syjvfhacdxz7awet', 3),
           url: 'https://raidplan.io/plan/syjvfhacdxz7awet#3'
         },
         {
           mechanic: 'Pyrotation',
           description: '3 hit party stack\nEach stack leaves a puddle',
-          imageUrl: './m10s/toxic-pyrotation.webp',
+          imageUrl: raidplanImage('syjvfhacdxz7awet', 4),
           url: 'https://raidplan.io/plan/syjvfhacdxz7awet#4'
         }
       ]
@@ -1167,56 +1168,56 @@ export const hector: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Left/Relative West',
-              imageUrl: './m10s/toxic-2balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 5),
               mask: getCircleMaskUrl(43.3, 75.9, 8)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Right/Relative East',
-              imageUrl: './m10s/toxic-2balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 5),
               mask: getCircleMaskUrl(41.9, 28.4, 8)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Left/Relative West',
-              imageUrl: './m10s/toxic-2balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 5),
               mask: getCircleMaskUrl(43.3, 75.9, 8)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Right/Relative East',
-              imageUrl: './m10s/toxic-2balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 5),
               mask: getCircleMaskUrl(41.9, 28.4, 8)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Left/Relative West',
-              imageUrl: './m10s/toxic-2balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 5),
               mask: getCircleMaskUrl(43.3, 75.9, 8)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Right/Relative East',
-              imageUrl: './m10s/toxic-2balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 5),
               mask: getCircleMaskUrl(41.9, 28.4, 8)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Left/Relative West',
-              imageUrl: './m10s/toxic-2balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 5),
               mask: getCircleMaskUrl(43.3, 75.9, 8)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Right/Relative East',
-              imageUrl: './m10s/toxic-2balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 5),
               mask: getCircleMaskUrl(41.9, 28.4, 8)
             }
           ]
@@ -1230,56 +1231,56 @@ export const hector: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Left/Relative West',
-              imageUrl: './m10s/toxic-8balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 6),
               mask: getCircleMaskUrl(30.3, 68.6, 5)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Right/Relative East',
-              imageUrl: './m10s/toxic-8balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 6),
               mask: getCircleMaskUrl(30.9, 31.9, 5)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Left/Relative West',
-              imageUrl: './m10s/toxic-8balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 6),
               mask: getCircleMaskUrl(45.7, 69.1, 5)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Right/Relative East',
-              imageUrl: './m10s/toxic-8balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 6),
               mask: getCircleMaskUrl(47.1, 30.5, 5)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Left/Relative West',
-              imageUrl: './m10s/toxic-8balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 6),
               mask: getCircleMaskUrl(37.6, 83.1, 5)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Right/Relative East',
-              imageUrl: './m10s/toxic-8balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 6),
               mask: getCircleMaskUrl(37.2, 17.9, 5)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Left/Relative West',
-              imageUrl: './m10s/toxic-8balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 6),
               mask: getCircleMaskUrl(54.7, 83.8, 5)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Right/Relative East',
-              imageUrl: './m10s/toxic-8balls.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 6),
               mask: getCircleMaskUrl(56.6, 20, 5)
             }
           ]
@@ -1298,56 +1299,56 @@ export const hector: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Relative North',
-              imageUrl: './m10s/toxic-protean1.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 7)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Relative South',
-              imageUrl: './m10s/toxic-protean1.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 7)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Relative West',
-              imageUrl: './m10s/toxic-protean1.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 7)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Relative East',
-              imageUrl: './m10s/toxic-protean1.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 7)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Relative Southwest',
-              imageUrl: './m10s/toxic-protean1.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 7)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Relative Southeast',
-              imageUrl: './m10s/toxic-protean1.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 7)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Relative Northwest',
-              imageUrl: './m10s/toxic-protean1.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 7)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Relative Northeast',
-              imageUrl: './m10s/toxic-protean1.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 7)
             }
           ]
         },
         {
           mechanic: '2nd Hit',
           description: 'Double-dip = Dodge into empty slice\nReverse = Stay',
-          imageUrl: './m10s/toxic-protean1.webp',
+          imageUrl: raidplanImage('syjvfhacdxz7awet', 7),
           url: 'https://raidplan.io/plan/syjvfhacdxz7awet#7'
         }
       ]
@@ -1355,7 +1356,7 @@ export const hector: Strat = {
     {
       phaseName: 'Deep Impact',
       description: 'Tankbuster baited on furthest player\nDoes a small KB',
-      imageUrl: './m10s/toxic-impact.webp',
+      imageUrl: raidplanImage('syjvfhacdxz7awet', 8),
       url: 'https://raidplan.io/plan/syjvfhacdxz7awet#8'
     },
     {
@@ -1370,56 +1371,56 @@ export const hector: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Northwest (Deep Blue)',
-              imageUrl: './m10s/toxic-insane1-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 9),
               mask: getCircleMaskUrl(40, 23.3, 12)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Southeast (Red Hot)',
-              imageUrl: './m10s/toxic-insane1-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 9),
               mask: getCircleMaskUrl(60.2, 75.5, 12)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Northwest (Deep Blue)',
-              imageUrl: './m10s/toxic-insane1-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 9),
               mask: getCircleMaskUrl(40, 23.3, 12)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Southeast (Red Hot)',
-              imageUrl: './m10s/toxic-insane1-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 9),
               mask: getCircleMaskUrl(60.2, 75.5, 12)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Northwest (Deep Blue)',
-              imageUrl: './m10s/toxic-insane1-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 9),
               mask: getCircleMaskUrl(40, 23.3, 12)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Southeast (Red Hot)',
-              imageUrl: './m10s/toxic-insane1-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 9),
               mask: getCircleMaskUrl(60.2, 75.5, 12)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Northwest (Deep Blue)',
-              imageUrl: './m10s/toxic-insane1-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 9),
               mask: getCircleMaskUrl(40, 23.3, 12)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Southeast (Red Hot)',
-              imageUrl: './m10s/toxic-insane1-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 9),
               mask: getCircleMaskUrl(60.2, 75.5, 12)
             }
           ]
@@ -1433,25 +1434,25 @@ export const hector: Strat = {
         {
           mechanic: '1st Hit',
           description: 'MTHR clockwise for proteans',
-          imageUrl: './m10s/toxic-insane1-1.webp',
+          imageUrl: raidplanImage('syjvfhacdxz7awet', 10),
           url: 'https://raidplan.io/plan/syjvfhacdxz7awet#10'
         },
         {
           mechanic: '2nd Hit',
           description: 'MTHR clockwise for proteans',
-          imageUrl: './m10s/toxic-insane1-2.webp',
+          imageUrl: raidplanImage('syjvfhacdxz7awet', 11),
           url: 'https://raidplan.io/plan/syjvfhacdxz7awet#11'
         },
         {
           mechanic: '3rd Hit',
           description: 'MTHR clockwise for proteans',
-          imageUrl: './m10s/toxic-insane1-3.webp',
+          imageUrl: raidplanImage('syjvfhacdxz7awet', 12),
           url: 'https://raidplan.io/plan/syjvfhacdxz7awet#12'
         },
         {
           mechanic: '4th Hit',
           description: 'MTHR clockwise for proteans',
-          imageUrl: './m10s/toxic-insane1-4.webp',
+          imageUrl: raidplanImage('syjvfhacdxz7awet', 13),
           url: 'https://raidplan.io/plan/syjvfhacdxz7awet#13'
         }
       ]
@@ -1478,56 +1479,56 @@ export const hector: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Northwest corner, south of R1',
-              imageUrl: './m10s/toxic-split-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 20),
               mask: getCircleMaskUrl(29.9, 26, 5)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Northeast corner, south of R2',
-              imageUrl: './m10s/toxic-split-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 20),
               mask: getCircleMaskUrl(70.3, 25.4, 5)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Southwest corner',
-              imageUrl: './m10s/toxic-split-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 20),
               mask: getCircleMaskUrl(29.9, 85.9, 5)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Southeast corner',
-              imageUrl: './m10s/toxic-split-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 20),
               mask: getCircleMaskUrl(70.3, 86.1, 5)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Southwest corner, north of H1',
-              imageUrl: './m10s/toxic-split-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 20),
               mask: getCircleMaskUrl(29.8, 74.8, 5)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Southeast corner, north of H2',
-              imageUrl: './m10s/toxic-split-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 20),
               mask: getCircleMaskUrl(70.3, 74.4, 5)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Northwest corner',
-              imageUrl: './m10s/toxic-split-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 20),
               mask: getCircleMaskUrl(29.9, 14.3, 5)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Northeast corner',
-              imageUrl: './m10s/toxic-split-start.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 20),
               mask: getCircleMaskUrl(70.4, 14.1, 5)
             }
           ]
@@ -1543,7 +1544,7 @@ export const hector: Strat = {
               party: 1,
               description:
                 'North of middle\nIf far, Double-dip = dodge to intercard, Reverse = dodge to cardinal',
-              imageUrl: './m10s/toxic-split-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 21),
               mask: getMultiCircleMaskUrl([44.2, 44.9, 4], [69, 44.1, 4])
             },
             {
@@ -1551,21 +1552,21 @@ export const hector: Strat = {
               party: 2,
               description:
                 'North of middle\nIf far, Double-dip = dodge to intercard, Reverse = dodge to cardinal',
-              imageUrl: './m10s/toxic-split-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 21),
               mask: getMultiCircleMaskUrl([44.2, 44.9, 4], [69, 44.1, 4])
             },
             {
               role: 'Healer',
               party: 1,
               description: 'South',
-              imageUrl: './m10s/toxic-split-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 21),
               mask: getMultiCircleMaskUrl([44.9, 87.3, 4], [66.7, 63.9, 4])
             },
             {
               role: 'Healer',
               party: 2,
               description: 'South',
-              imageUrl: './m10s/toxic-split-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 21),
               mask: getMultiCircleMaskUrl([44.9, 87.3, 4], [66.7, 63.9, 4])
             },
             {
@@ -1573,7 +1574,7 @@ export const hector: Strat = {
               party: 1,
               description:
                 'South of middle\nIf far, Double-dip = dodge to intercard, Reverse = dodge to cardinal',
-              imageUrl: './m10s/toxic-split-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 21),
               mask: getMultiCircleMaskUrl([44.3, 54.9, 4], [69.2, 56, 4])
             },
             {
@@ -1581,21 +1582,21 @@ export const hector: Strat = {
               party: 2,
               description:
                 'South of middle\nIf far, Double-dip = dodge to intercard, Reverse = dodge to cardinal',
-              imageUrl: './m10s/toxic-split-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 21),
               mask: getMultiCircleMaskUrl([44.3, 54.9, 4], [69.2, 56, 4])
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'North',
-              imageUrl: './m10s/toxic-split-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 21),
               mask: getMultiCircleMaskUrl([44.7, 13, 4], [66.7, 35.7, 4])
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'North',
-              imageUrl: './m10s/toxic-split-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 21),
               mask: getMultiCircleMaskUrl([44.7, 13, 4], [66.7, 35.7, 4])
             }
           ]
@@ -1609,56 +1610,56 @@ export const hector: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Stack near 1 with R1',
-              imageUrl: './m10s/toxic-split-stacks.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 22),
               mask: getCircleMaskUrl(40, 26.2, 7)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Stack near 2 with R2',
-              imageUrl: './m10s/toxic-split-stacks.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 22),
               mask: getCircleMaskUrl(60.3, 26.7, 7)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Stack near 4 with M1',
-              imageUrl: './m10s/toxic-split-stacks.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 22),
               mask: getCircleMaskUrl(39.7, 75.1, 7)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Stack near 3 with M2',
-              imageUrl: './m10s/toxic-split-stacks.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 22),
               mask: getCircleMaskUrl(60.4, 73.5, 7)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Stack near 4 with H1',
-              imageUrl: './m10s/toxic-split-stacks.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 22),
               mask: getCircleMaskUrl(39.7, 75.1, 7)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Stack near 3 with H2',
-              imageUrl: './m10s/toxic-split-stacks.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 22),
               mask: getCircleMaskUrl(60.4, 73.5, 7)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Stack near 1 with MT',
-              imageUrl: './m10s/toxic-split-stacks.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 22),
               mask: getCircleMaskUrl(40, 26.2, 7)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Stack near 2 with OT',
-              imageUrl: './m10s/toxic-split-stacks.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 22),
               mask: getCircleMaskUrl(60.3, 26.7, 7)
             }
           ]
@@ -1678,49 +1679,49 @@ export const hector: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Start at boss OPPOSITE debuff color',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Start at boss OPPOSITE debuff color',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             }
           ]
         },
@@ -1733,49 +1734,49 @@ export const hector: Strat = {
               role: 'Tank',
               party: 1,
               description: "Swap if it's tankbuster\nMake sure to insta-swap if it's TB first",
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Tank',
               party: 2,
               description: "Swap if it's tankbuster\nMake sure to insta-swap if it's TB first",
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Just do mechanics and chill',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Just do mechanics and chill',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Swap after Healer cleanses for 2nd cleanse',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Swap after Healer cleanses for 2nd cleanse',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Swap after Melee cleanses for 3rd cleanse',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Swap after Melee cleanses for 3rd cleanse',
-              imageUrl: './m10s/toxic-insane2-debuffs.webp'
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 23)
             }
           ]
         }
@@ -1793,56 +1794,56 @@ export const hector: Strat = {
               role: 'Tank',
               party: 1,
               description: 'North (A marker)',
-              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 24),
               mask: getCircleMaskUrl(49.9, 15.6, 5)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'South (C marker)',
-              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 24),
               mask: getCircleMaskUrl(50, 85, 5)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'West (D marker)',
-              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 24),
               mask: getCircleMaskUrl(31.5, 50.3, 5)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'East (B marker)',
-              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 24),
               mask: getCircleMaskUrl(68.8, 49.8, 5)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Southwest (4 marker)',
-              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 24),
               mask: getCircleMaskUrl(31.5, 82.9, 5)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Southeast (3 marker)',
-              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 24),
               mask: getCircleMaskUrl(68.3, 83.3, 5)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Northwest (1 marker)',
-              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 24),
               mask: getCircleMaskUrl(31.6, 17.3, 5)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Northeast (2 marker)',
-              imageUrl: './m10s/toxic-alley2-proteans.webp',
+              imageUrl: raidplanImage('syjvfhacdxz7awet', 24),
               mask: getCircleMaskUrl(68.6, 16.8, 5)
             }
           ]
@@ -1850,7 +1851,7 @@ export const hector: Strat = {
         {
           mechanic: 'TB + Party Stacks',
           description: 'Tank bait TB far\nStack under Deep Blue, rotate CW around Red Hot',
-          imageUrl: './m10s/toxic-alley2-tb.webp',
+          imageUrl: raidplanImage('syjvfhacdxz7awet', 25),
           url: 'https://raidplan.io/plan/syjvfhacdxz7awet#25'
         }
       ]
@@ -1875,7 +1876,7 @@ export const oce: Strat = {
           mechanic: 'Flame Floater',
           description:
             '1st: CCW corner\n2nd: Boss Start\n3rd: Next to Wall Fire\n4th: Back to Boss Start Next to Fire',
-          imageUrl: './m10s/oce-0.webp',
+          imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 1),
           url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#1'
         },
         {
@@ -1888,49 +1889,49 @@ export const oce: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Pull CW from where boss finishes to the new corner',
-              imageUrl: './m10s/oce-1.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 2)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Close to boss',
-              imageUrl: './m10s/oce-1.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 2)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Far from boss',
-              imageUrl: './m10s/oce-1.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 2)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Far from boss',
-              imageUrl: './m10s/oce-1.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 2)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Close to boss',
-              imageUrl: './m10s/oce-1.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 2)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Close to boss',
-              imageUrl: './m10s/oce-1.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 2)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Far from boss',
-              imageUrl: './m10s/oce-1.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 2)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Far from boss',
-              imageUrl: './m10s/oce-1.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 2)
             }
           ]
         },
@@ -1938,13 +1939,13 @@ export const oce: Strat = {
           mechanic: 'Cutback Blaze',
           description:
             'Stack between boss and fire\nBait narrow slice behind boss\nSafe slice will bait opposite the furthest valid player',
-          imageUrl: './m10s/oce-2.webp',
+          imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 3),
           url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#3'
         },
         {
           mechanic: 'Pyrotation',
           description: '3 hit party stack\nEach stack leaves a puddle',
-          imageUrl: './m10s/oce-3.webp',
+          imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 4),
           url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#4'
         }
       ]
@@ -1961,56 +1962,56 @@ export const oce: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Left/Relative West',
-              imageUrl: './m10s/oce-4.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 5),
               mask: getCircleMaskUrl(43.3, 75.9, 8)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Right/Relative East',
-              imageUrl: './m10s/oce-4.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 5),
               mask: getCircleMaskUrl(41.9, 28.4, 8)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Left/Relative West',
-              imageUrl: './m10s/oce-4.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 5),
               mask: getCircleMaskUrl(43.3, 75.9, 8)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Right/Relative East',
-              imageUrl: './m10s/oce-4.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 5),
               mask: getCircleMaskUrl(41.9, 28.4, 8)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Left/Relative West',
-              imageUrl: './m10s/oce-4.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 5),
               mask: getCircleMaskUrl(43.3, 75.9, 8)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Right/Relative East',
-              imageUrl: './m10s/oce-4.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 5),
               mask: getCircleMaskUrl(41.9, 28.4, 8)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Left/Relative West',
-              imageUrl: './m10s/oce-4.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 5),
               mask: getCircleMaskUrl(43.3, 75.9, 8)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Right/Relative East',
-              imageUrl: './m10s/oce-4.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 5),
               mask: getCircleMaskUrl(41.9, 28.4, 8)
             }
           ]
@@ -2024,56 +2025,56 @@ export const oce: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Left/Relative West',
-              imageUrl: './m10s/oce-5.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 6),
               mask: getCircleMaskUrl(30.3, 68.6, 5)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Right/Relative East',
-              imageUrl: './m10s/oce-5.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 6),
               mask: getCircleMaskUrl(30.9, 31.9, 5)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Left/Relative West',
-              imageUrl: './m10s/oce-5.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 6),
               mask: getCircleMaskUrl(45.7, 69.1, 5)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Right/Relative East',
-              imageUrl: './m10s/oce-5.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 6),
               mask: getCircleMaskUrl(47.1, 30.5, 5)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Left/Relative West',
-              imageUrl: './m10s/oce-5.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 6),
               mask: getCircleMaskUrl(37.6, 83.1, 5)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Right/Relative East',
-              imageUrl: './m10s/oce-5.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 6),
               mask: getCircleMaskUrl(37.2, 17.9, 5)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Left/Relative West',
-              imageUrl: './m10s/oce-5.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 6),
               mask: getCircleMaskUrl(54.7, 83.8, 5)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Right/Relative East',
-              imageUrl: './m10s/oce-5.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 6),
               mask: getCircleMaskUrl(56.6, 20, 5)
             }
           ]
@@ -2092,56 +2093,56 @@ export const oce: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Relative North',
-              imageUrl: './m10s/oce-6.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 7)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Relative South',
-              imageUrl: './m10s/oce-6.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 7)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Relative West',
-              imageUrl: './m10s/oce-6.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 7)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Relative East',
-              imageUrl: './m10s/oce-6.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 7)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Relative Southwest',
-              imageUrl: './m10s/oce-6.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 7)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Relative Southeast',
-              imageUrl: './m10s/oce-6.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 7)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Relative Northwest',
-              imageUrl: './m10s/oce-6.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 7)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Relative Northeast',
-              imageUrl: './m10s/oce-6.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 7)
             }
           ]
         },
         {
           mechanic: '2nd Hit',
           description: 'Double-dip = Dodge into empty slice\nReverse = Stay',
-          imageUrl: './m10s/oce-6.webp',
+          imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 7),
           url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#7'
         }
       ]
@@ -2149,7 +2150,7 @@ export const oce: Strat = {
     {
       phaseName: 'Deep Impact',
       description: 'Tankbuster baited on furthest player\nDoes a small KB',
-      imageUrl: './m10s/oce-7.webp',
+      imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 8),
       url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#8'
     },
     {
@@ -2164,56 +2165,56 @@ export const oce: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Northwest (Deep Blue)',
-              imageUrl: './m10s/oce-8.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 9),
               mask: getCircleMaskUrl(40, 23.3, 12)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Southeast (Red Hot)',
-              imageUrl: './m10s/oce-8.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 9),
               mask: getCircleMaskUrl(60.2, 75.5, 12)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Northwest (Deep Blue)',
-              imageUrl: './m10s/oce-8.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 9),
               mask: getCircleMaskUrl(40, 23.3, 12)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Southeast (Red Hot)',
-              imageUrl: './m10s/oce-8.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 9),
               mask: getCircleMaskUrl(60.2, 75.5, 12)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Northwest (Deep Blue)',
-              imageUrl: './m10s/oce-8.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 9),
               mask: getCircleMaskUrl(40, 23.3, 12)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Southeast (Red Hot)',
-              imageUrl: './m10s/oce-8.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 9),
               mask: getCircleMaskUrl(60.2, 75.5, 12)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Northwest (Deep Blue)',
-              imageUrl: './m10s/oce-8.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 9),
               mask: getCircleMaskUrl(40, 23.3, 12)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Southeast (Red Hot)',
-              imageUrl: './m10s/oce-8.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 9),
               mask: getCircleMaskUrl(60.2, 75.5, 12)
             }
           ]
@@ -2227,7 +2228,7 @@ export const oce: Strat = {
         {
           mechanic: 'Proteans',
           description: 'MTHR clockwise for proteans',
-          imageUrl: './m10s/oce-9.webp',
+          imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 10),
           url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#10'
         }
       ]
@@ -2254,56 +2255,56 @@ export const oce: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Northwest corner, south of D3',
-              imageUrl: './m10s/oce-25.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 26),
               mask: getCircleMaskUrl(29.9, 26, 5)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Northeast corner, south of D4',
-              imageUrl: './m10s/oce-25.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 26),
               mask: getCircleMaskUrl(70.3, 25.4, 5)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Southwest corner',
-              imageUrl: './m10s/oce-25.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 26),
               mask: getCircleMaskUrl(29.9, 85.9, 5)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Southeast corner',
-              imageUrl: './m10s/oce-25.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 26),
               mask: getCircleMaskUrl(70.3, 86.1, 5)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Southwest corner, north of H1',
-              imageUrl: './m10s/oce-25.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 26),
               mask: getCircleMaskUrl(29.8, 74.8, 5)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Southeast corner, north of H2',
-              imageUrl: './m10s/oce-25.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 26),
               mask: getCircleMaskUrl(70.3, 74.4, 5)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Northwest corner',
-              imageUrl: './m10s/oce-25.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 26),
               mask: getCircleMaskUrl(29.9, 14.3, 5)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Northeast corner',
-              imageUrl: './m10s/oce-25.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 26),
               mask: getCircleMaskUrl(70.4, 14.1, 5)
             }
           ]
@@ -2319,7 +2320,7 @@ export const oce: Strat = {
               party: 1,
               description:
                 'North of middle\nIf far, Double-dip = dodge to intercard, Reverse = dodge to cardinal',
-              imageUrl: './m10s/oce-26.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 27),
               mask: getMultiCircleMaskUrl([44.2, 44.9, 4], [69, 44.1, 4])
             },
             {
@@ -2327,21 +2328,21 @@ export const oce: Strat = {
               party: 2,
               description:
                 'North of middle\nIf far, Double-dip = dodge to intercard, Reverse = dodge to cardinal',
-              imageUrl: './m10s/oce-26.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 27),
               mask: getMultiCircleMaskUrl([44.2, 44.9, 4], [69, 44.1, 4])
             },
             {
               role: 'Healer',
               party: 1,
               description: 'South',
-              imageUrl: './m10s/oce-26.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 27),
               mask: getMultiCircleMaskUrl([44.9, 87.3, 4], [66.7, 63.9, 4])
             },
             {
               role: 'Healer',
               party: 2,
               description: 'South',
-              imageUrl: './m10s/oce-26.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 27),
               mask: getMultiCircleMaskUrl([44.9, 87.3, 4], [66.7, 63.9, 4])
             },
             {
@@ -2349,7 +2350,7 @@ export const oce: Strat = {
               party: 1,
               description:
                 'South of middle\nIf far, Double-dip = dodge to intercard, Reverse = dodge to cardinal',
-              imageUrl: './m10s/oce-26.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 27),
               mask: getMultiCircleMaskUrl([44.3, 54.9, 4], [69.2, 56, 4])
             },
             {
@@ -2357,21 +2358,21 @@ export const oce: Strat = {
               party: 2,
               description:
                 'South of middle\nIf far, Double-dip = dodge to intercard, Reverse = dodge to cardinal',
-              imageUrl: './m10s/oce-26.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 27),
               mask: getMultiCircleMaskUrl([44.3, 54.9, 4], [69.2, 56, 4])
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'North',
-              imageUrl: './m10s/oce-26.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 27),
               mask: getMultiCircleMaskUrl([44.7, 13, 4], [66.7, 35.7, 4])
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'North',
-              imageUrl: './m10s/oce-26.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 27),
               mask: getMultiCircleMaskUrl([44.7, 13, 4], [66.7, 35.7, 4])
             }
           ]
@@ -2385,56 +2386,56 @@ export const oce: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Stack near 1 with D3',
-              imageUrl: './m10s/oce-27.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 28),
               mask: getCircleMaskUrl(40.2, 21.6, 7)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Stack near 2 with D4',
-              imageUrl: './m10s/oce-27.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 28),
               mask: getCircleMaskUrl(60.3, 21.6, 7)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Stack near 4 with M1',
-              imageUrl: './m10s/oce-27.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 28),
               mask: getCircleMaskUrl(40, 79.1, 7)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Stack near 3 with M2',
-              imageUrl: './m10s/oce-27.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 28),
               mask: getCircleMaskUrl(60.4, 79.1, 7)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Stack near 4 with H1',
-              imageUrl: './m10s/oce-27.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 28),
               mask: getCircleMaskUrl(40, 79.1, 7)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Stack near 3 with H2',
-              imageUrl: './m10s/oce-27.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 28),
               mask: getCircleMaskUrl(60.4, 79.1, 7)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Stack near 1 with MT',
-              imageUrl: './m10s/oce-27.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 28),
               mask: getCircleMaskUrl(40.2, 21.6, 7)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Stack near 2 with OT',
-              imageUrl: './m10s/oce-27.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 28),
               mask: getCircleMaskUrl(60.3, 21.6, 7)
             }
           ]
@@ -2453,49 +2454,49 @@ export const oce: Strat = {
               role: 'Tank',
               party: 1,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/oce-28.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 29)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/oce-28.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 29)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/oce-28.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 29)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/oce-28.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 29)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/oce-28.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 29)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/oce-28.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 29)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/oce-28.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 29)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Start at boss matching debuff color',
-              imageUrl: './m10s/oce-28.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 29)
             }
           ]
         },
@@ -2508,49 +2509,49 @@ export const oce: Strat = {
               role: 'Tank',
               party: 1,
               description: "Swap if it's tankbuster\nMake sure to insta-swap if it's TB first",
-              imageUrl: './m10s/oce-28.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 29)
             },
             {
               role: 'Tank',
               party: 2,
               description: "Swap if it's tankbuster\nMake sure to insta-swap if it's TB first",
-              imageUrl: './m10s/oce-28.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 29)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'Swap before first Protean/Stack for 1st cleanse',
-              imageUrl: './m10s/oce-28.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 29)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'Swap before first Protean/Stack for 1st cleanse',
-              imageUrl: './m10s/oce-28.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 29)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Swap before second Protean/Stack for 2nd cleanse',
-              imageUrl: './m10s/oce-28.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 29)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Swap before second Protean/Stack for 2nd cleanse',
-              imageUrl: './m10s/oce-28.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 29)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Swap before third Protean/Stack for 3rd cleanse',
-              imageUrl: './m10s/oce-28.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 29)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Swap before third Protean/Stack for 3rd cleanse',
-              imageUrl: './m10s/oce-28.webp'
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 29)
             }
           ]
         }
@@ -2568,56 +2569,56 @@ export const oce: Strat = {
               role: 'Tank',
               party: 1,
               description: 'North (A marker)',
-              imageUrl: './m10s/oce-29.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 30),
               mask: getCircleMaskUrl(49.9, 15.6, 5)
             },
             {
               role: 'Tank',
               party: 2,
               description: 'South (C marker)',
-              imageUrl: './m10s/oce-29.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 30),
               mask: getCircleMaskUrl(50, 85, 5)
             },
             {
               role: 'Healer',
               party: 1,
               description: 'West (D marker)',
-              imageUrl: './m10s/oce-29.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 30),
               mask: getCircleMaskUrl(31.5, 50.3, 5)
             },
             {
               role: 'Healer',
               party: 2,
               description: 'East (B marker)',
-              imageUrl: './m10s/oce-29.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 30),
               mask: getCircleMaskUrl(68.8, 49.8, 5)
             },
             {
               role: 'Melee',
               party: 1,
               description: 'Southwest (4 marker)',
-              imageUrl: './m10s/oce-29.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 30),
               mask: getCircleMaskUrl(31.5, 82.9, 5)
             },
             {
               role: 'Melee',
               party: 2,
               description: 'Southeast (3 marker)',
-              imageUrl: './m10s/oce-29.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 30),
               mask: getCircleMaskUrl(68.3, 83.3, 5)
             },
             {
               role: 'Ranged',
               party: 1,
               description: 'Northwest (1 marker)',
-              imageUrl: './m10s/oce-29.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 30),
               mask: getCircleMaskUrl(31.6, 17.3, 5)
             },
             {
               role: 'Ranged',
               party: 2,
               description: 'Northeast (2 marker)',
-              imageUrl: './m10s/oce-29.webp',
+              imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 30),
               mask: getCircleMaskUrl(68.6, 16.8, 5)
             }
           ]
@@ -2625,7 +2626,7 @@ export const oce: Strat = {
         {
           mechanic: 'TB + Party Stacks',
           description: 'OT bait TB far\nStack under Deep Blue, rotate CW around Red Hot',
-          imageUrl: './m10s/oce-30.webp',
+          imageUrl: raidplanImage('eAJGfKMLsJAZBeHl', 31),
           url: 'https://raidplan.io/plan/eAJGfKMLsJAZBeHl#31'
         }
       ]

@@ -219,7 +219,7 @@ function abilityTemplate(svg: string): string {
     .replace(
       /<(linearGradient|radialGradient)([^>]*id="RaidPlan_\d+_(\d)"[^>]*)>([\s\S]*?)<\/\1>/g,
       (_m, tag, attrs, colorId, body) =>
-        `<${tag}${attrs}>${hardStops(body).replace(/stop-color="[^"]*"/g, `stop-color="${placeholder(colorId)}"`)}</${tag}>`
+        `<${tag}${attrs}>${body.replace(/stop-color="[^"]*"/g, `stop-color="${placeholder(colorId)}"`)}</${tag}>`
     )
     .replace(/<(\w+)([^>]*\bid="RaidPlan_\d+_(\d)"[^>]*)>/g, (m, tag, attrs, colorId) => {
       if (tag.endsWith('Gradient')) return m;
@@ -238,26 +238,6 @@ function abilityTemplate(svg: string): string {
     .replace(/url\(#/g, 'url(#%P%')
     .replace(/href="#/g, 'href="#%P%');
   return rootPaint ? `<g${rootPaint}>${body}</g>` : body;
-}
-
-/**
- * Recolored gradients come out of raidplan's renderer as hard bands rather
- * than fades (ff-area-prox's tower ring is solid from its first stop outward),
- * so each stop's color starts at the previous stop's offset.
- */
-function hardStops(body: string): string {
-  const stops = [...body.matchAll(/<stop\b[^>]*>/g)].map((m) => m[0]);
-  if (stops.length < 2) return body;
-  const offsetOf = (s: string) => s.match(/offset="([^"]*)"/)?.[1] ?? '0';
-  const withOffset = (s: string, offset: string) =>
-    /offset="/.test(s)
-      ? s.replace(/offset="[^"]*"/, `offset="${offset}"`)
-      : s.replace('<stop', `<stop offset="${offset}"`);
-  const out = [stops[0]];
-  for (let i = 1; i < stops.length; i++) {
-    out.push(withOffset(stops[i], offsetOf(stops[i - 1])), stops[i]);
-  }
-  return body.replace(/(\s*<stop\b[^>]*>)+/, '\n' + out.join('\n'));
 }
 
 function writeAbilities() {

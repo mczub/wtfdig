@@ -34,7 +34,7 @@
     textBlockHeight
   } from './render';
   import type { Placement } from './render';
-  import { svgToImage, warmSnapshotAssets } from './snapshot';
+  import { FONT_CSS, svgToImage, warmSnapshotAssets } from './snapshot';
   import type { RaidplanAttr, RaidplanNode, RaidplanPlan } from './types';
 
   interface Props {
@@ -257,10 +257,7 @@
 </script>
 
 <svelte:head>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap"
-    rel="stylesheet"
-  />
+  <link href={FONT_CSS.Roboto} rel="stylesheet" />
 </svelte:head>
 
 {#snippet label(l: LabelSpec, p: Placement, w: number, h: number)}
