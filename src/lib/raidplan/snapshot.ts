@@ -1,8 +1,8 @@
-// Rasterize a rendered board to PNG, so it can sit under the pointer as a real
+// Rasterize a rendered board to WebP, so it can sit under the pointer as a real
 // <img> (right-click copy/save, drag out). An SVG drawn as an image can't load
 // anything external, so images and fonts are inlined as data URLs first. The
 // fetched assets are cached, so warmSnapshotAssets() can do that work early and
-// the PNG itself is only built when it's about to be used.
+// the image itself is only built when it's about to be used.
 
 const dataUrlCache = new Map<string, Promise<string>>();
 
@@ -80,8 +80,11 @@ export async function warmSnapshotAssets(svg: SVGSVGElement) {
   ]);
 }
 
-export async function svgToPng(svg: SVGSVGElement, width: number, height: number, scale = 1.5) {
-  const clone = svg.cloneNode(true) as SVGSVGElement;
+export async function svgToImage(svg: SVGSVGElement, width: number, height: number, scale = 1.5) {
+  // Clone into an inert document: a clone in the live document, even detached,
+  // starts loading every <image> href (and decoding the data URLs swapped in).
+  const inert = document.implementation.createHTMLDocument('');
+  const clone = inert.importNode(svg, true);
   clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
   clone.setAttribute('width', String(width));
   clone.setAttribute('height', String(height));
@@ -97,29 +100,34 @@ export async function svgToPng(svg: SVGSVGElement, width: number, height: number
   try {
     const css = await fontCss(svg);
     if (css) {
-      const style = document.createElementNS('http://www.w3.org/2000/svg', 'style');
+      const style = inert.createElementNS('http://www.w3.org/2000/svg', 'style');
       style.textContent = css;
       clone.prepend(style);
     }
   } catch {
-    // Without the web font the PNG falls back to Arial; still worth having
+    // Without the web font the image falls back to Arial; still worth having
   }
 
   const svgUrl = URL.createObjectURL(
     new Blob([new XMLSerializer().serializeToString(clone)], { type: 'image/svg+xml' })
   );
+  const img = new Image();
+  const canvas = document.createElement('canvas');
   try {
-    const img = new Image();
     img.src = svgUrl;
     await img.decode();
-    const canvas = document.createElement('canvas');
     canvas.width = Math.round(width * scale);
     canvas.height = Math.round(height * scale);
     canvas.getContext('2d')!.drawImage(img, 0, 0, canvas.width, canvas.height);
+    // WebP is ~10x smaller than PNG for the noisy arena textures. Browsers that
+    // can't encode it (older Safari) hand back a PNG instead.
     return await new Promise<Blob>((resolve, reject) =>
-      canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('toBlob failed'))), 'image/png')
+      canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('toBlob failed'))), 'image/webp', 0.9)
     );
   } finally {
+    // Free the decoded SVG and the canvas backing store now rather than at GC
     URL.revokeObjectURL(svgUrl);
+    img.removeAttribute('src');
+    canvas.width = canvas.height = 0;
   }
 }

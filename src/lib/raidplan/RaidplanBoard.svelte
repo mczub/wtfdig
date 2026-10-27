@@ -4,7 +4,7 @@
   spotlights the matching player markers.
 -->
 <script lang="ts" module>
-  // The one board whose PNG snapshot is currently alive
+  // The one board whose image snapshot is currently alive
   let activeRelease: (() => void) | undefined;
 
   function claimSnapshot(release: () => void) {
@@ -34,7 +34,7 @@
     textBlockHeight
   } from './render';
   import type { Placement } from './render';
-  import { svgToPng, warmSnapshotAssets } from './snapshot';
+  import { svgToImage, warmSnapshotAssets } from './snapshot';
   import type { RaidplanAttr, RaidplanNode, RaidplanPlan } from './types';
 
   interface Props {
@@ -60,7 +60,7 @@
 
   const uid = $props.id();
 
-  // A transparent PNG copy of the board sits on top of the SVG so right-click,
+  // A transparent WebP copy of the board sits on top of the SVG so right-click,
   // long-press and drag behave like they do on a screenshot. Decoded at 1.5x
   // that's ~7MB of pixels, so it's built on demand: when the pointer enters or
   // presses the board (desktop hovers before right-clicking; long-press waits
@@ -68,7 +68,7 @@
   // inlined earlier, when the board nears the viewport, so the build is quick.
   let wrapEl = $state<HTMLDivElement>();
   let svgEl = $state<SVGSVGElement>();
-  let pngUrl = $state<string>();
+  let snapshotUrl = $state<string>();
   let hovered = false;
   let building = false;
   let buildToken = 0;
@@ -76,19 +76,19 @@
   function releaseSnapshot() {
     buildToken++;
     building = false;
-    if (pngUrl) URL.revokeObjectURL(pngUrl);
-    pngUrl = undefined;
+    if (snapshotUrl) URL.revokeObjectURL(snapshotUrl);
+    snapshotUrl = undefined;
     if (activeRelease === releaseSnapshot) activeRelease = undefined;
   }
 
   function ensureSnapshot() {
-    if (pngUrl || building || !svgEl) return;
+    if (snapshotUrl || building || !svgEl) return;
     claimSnapshot(releaseSnapshot);
     const token = ++buildToken;
     building = true;
-    svgToPng(svgEl, CANVAS_W, CANVAS_H)
+    svgToImage(svgEl, CANVAS_W, CANVAS_H)
       .then((blob) => {
-        if (token === buildToken) pngUrl = URL.createObjectURL(blob);
+        if (token === buildToken) snapshotUrl = URL.createObjectURL(blob);
       })
       .catch((e) => console.warn('raidplan board snapshot failed', e))
       .finally(() => {
@@ -658,8 +658,8 @@
       {/each}
     {/if}
   </svg>
-  {#if pngUrl}
+  {#if snapshotUrl}
     <!-- Invisible, but it's what the pointer hits: gives the native image context menu -->
-    <img src={pngUrl} alt="" class="absolute inset-0 w-full h-full object-contain opacity-0" />
+    <img src={snapshotUrl} alt="" class="absolute inset-0 w-full h-full object-contain opacity-0" />
   {/if}
 </div>
