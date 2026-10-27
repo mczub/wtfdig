@@ -26,6 +26,8 @@
   } from '@lucide/svelte/icons';
   import ImagePreview from '../ImagePreview.svelte';
   import SpotlightOverlay from '../SpotlightOverlay.svelte';
+  import RaidplanImage from '../RaidplanImage.svelte';
+  import { RAIDPLAN_ASPECT, isRaidplanImage } from '$lib/raidplan/image';
   import TimelineIcon from '$lib/components/TimelineIcon.svelte';
   import RoleIcon from '$lib/components/RoleIcon.svelte';
   import MechDiffWarning from '$lib/components/MechDiffWarning.svelte';
@@ -602,7 +604,7 @@
     }
     let cancelled = false;
     const probes = urls
-      .filter((u) => !imageAspects.has(u) && !probedUrls.has(u))
+      .filter((u) => !isRaidplanImage(u) && !imageAspects.has(u) && !probedUrls.has(u))
       .map(
         (url) =>
           new Promise<void>((resolve) => {
@@ -639,6 +641,7 @@
 
   function getCardAspect(phase: any, mech?: any): number {
     const url = getCardImageUrl(phase, mech);
+    if (isRaidplanImage(url)) return RAIDPLAN_ASPECT;
     if (url) {
       const a = imageAspects.get(url);
       if (a && a > 0) return a;
@@ -1553,7 +1556,17 @@
                 {@render headerBlock(true)}
               {/if}
               <div class="relative flex-1 min-h-0 overflow-hidden">
-                {#if imgUrl}
+                {#if isRaidplanImage(imgUrl)}
+                  <div class="absolute inset-0">
+                    <RaidplanImage
+                      src={imgUrl}
+                      alt={headerName}
+                      spotlight={spotlight && showSpotlight}
+                      {mask}
+                      fit="contain"
+                    />
+                  </div>
+                {:else if imgUrl}
                   <img
                     class="absolute inset-0 w-full h-full object-contain"
                     src={imgUrl}
@@ -1569,7 +1582,17 @@
                 {@render bottomBlock(true)}
               {/if}
             {:else}
-              {#if imgUrl}
+              {#if isRaidplanImage(imgUrl)}
+                <div class="absolute inset-0">
+                  <RaidplanImage
+                    src={imgUrl}
+                    alt={headerName}
+                    spotlight={spotlight && showSpotlight}
+                    {mask}
+                    fit="contain"
+                  />
+                </div>
+              {:else if imgUrl}
                 <img
                   class="absolute inset-0 w-full h-full object-contain"
                   src={imgUrl}

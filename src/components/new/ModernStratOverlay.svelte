@@ -1,6 +1,8 @@
 <script lang="ts">
   import PipPortal from '$lib/components/PipPortal.svelte';
   import SpotlightOverlay from '../SpotlightOverlay.svelte';
+  import RaidplanImage from '../RaidplanImage.svelte';
+  import { isRaidplanImage } from '$lib/raidplan/image';
   import RoleIcon from '$lib/components/RoleIcon.svelte';
   import { ChevronLeft, ChevronRight, SkipBack } from '@lucide/svelte';
   import type { PhaseStrats, Role } from '$lib/types';
@@ -165,13 +167,25 @@
       <div class="flex flex-col h-screen w-screen bg-surface-950 text-surface-50">
         <div class="flex-1 relative bg-surface-900 overflow-hidden">
           {#if current}
-            <img
-              class="absolute inset-0 w-full h-full object-contain"
-              src={current.imgUrl}
-              alt={current.headerName}
-              onload={onImgLoad}
-            />
-            {#if spotlight && current.mask}
+            {#if isRaidplanImage(current.imgUrl)}
+              <div class="absolute inset-0">
+                <RaidplanImage
+                  src={current.imgUrl}
+                  alt={current.headerName}
+                  {spotlight}
+                  mask={current.mask}
+                  fit="contain"
+                />
+              </div>
+            {:else}
+              <img
+                class="absolute inset-0 w-full h-full object-contain"
+                src={current.imgUrl}
+                alt={current.headerName}
+                onload={onImgLoad}
+              />
+            {/if}
+            {#if spotlight && current.mask && !isRaidplanImage(current.imgUrl)}
               <SpotlightOverlay
                 mask={current.mask}
                 imageWidth={imgDims?.width}

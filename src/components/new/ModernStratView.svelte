@@ -21,6 +21,8 @@
   import { browser } from '$app/environment';
   import ImagePreview from '../ImagePreview.svelte';
   import SpotlightOverlay from '../SpotlightOverlay.svelte';
+  import RaidplanImage from '../RaidplanImage.svelte';
+  import { isRaidplanImage } from '$lib/raidplan/image';
   import TimelineIcon from '$lib/components/TimelineIcon.svelte';
   import RoleIcon from '$lib/components/RoleIcon.svelte';
   import MechDiffWarning from '$lib/components/MechDiffWarning.svelte';
@@ -536,12 +538,23 @@
                       class="block cursor-zoom-in relative group"
                       onclick={() => openImageModal(phase)}
                     >
-                      <img
-                        class="max-h-[500px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
-                        style:mask-image={spotlight && phase.mask}
-                        src={phase.imageUrl}
-                        alt={phase.phaseName}
-                      />
+                      {#if isRaidplanImage(phase.imageUrl)}
+                        <RaidplanImage
+                          src={phase.imageUrl}
+                          alt={phase.phaseName}
+                          {spotlight}
+                          mask={phase.mask}
+                          maxHeight="500px"
+                          class="transition-transform duration-300 group-hover:scale-[1.02]"
+                        />
+                      {:else}
+                        <img
+                          class="max-h-[500px] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                          style:mask-image={spotlight && phase.mask}
+                          src={phase.imageUrl}
+                          alt={phase.phaseName}
+                        />
+                      {/if}
                       <div
                         class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100"
                       >
@@ -683,30 +696,56 @@
                                 {@const mechMask = mech?.strats?.[0]?.imageUrl
                                   ? undefined
                                   : mech?.strats?.[0]?.mask}
-                                <div class="mt-2 overflow-hidden relative w-fit h-fit">
-                                  <img
-                                    class="block rounded-sm max-w-full max-h-[350px] transition-transform duration-300 origin-center"
-                                    style:transform={tf || undefined}
-                                    src={mech.imageUrl}
-                                    alt={mech.mechanic}
-                                  />
-                                  {#if spotlight && mechMask}
-                                    <SpotlightOverlay mask={mechMask} />
-                                  {/if}
-                                </div>
+                                {#if isRaidplanImage(mech.imageUrl)}
+                                  <div class="mt-2 overflow-hidden rounded-sm">
+                                    <RaidplanImage
+                                      src={mech.imageUrl}
+                                      alt={mech.mechanic}
+                                      {spotlight}
+                                      mask={mechMask}
+                                      maxHeight="350px"
+                                      class="transition-transform duration-300 origin-center"
+                                      style={tf ? `transform: ${tf}` : ''}
+                                    />
+                                  </div>
+                                {:else}
+                                  <div class="mt-2 overflow-hidden relative w-fit h-fit">
+                                    <img
+                                      class="block rounded-sm max-w-full max-h-[350px] transition-transform duration-300 origin-center"
+                                      style:transform={tf || undefined}
+                                      src={mech.imageUrl}
+                                      alt={mech.mechanic}
+                                    />
+                                    {#if spotlight && mechMask}
+                                      <SpotlightOverlay mask={mechMask} />
+                                    {/if}
+                                  </div>
+                                {/if}
                               {/if}
 
                               {#if mech?.strats && mech.strats[0]?.imageUrl}
-                                <div class="mt-2 overflow-hidden relative w-fit h-fit">
-                                  <img
-                                    class="block rounded-sm max-w-full max-h-[350px]"
-                                    src={mech.strats[0].imageUrl}
-                                    alt={`${mech.mechanic} strategy`}
-                                  />
-                                  {#if spotlight && mech.strats[0]?.mask}
-                                    <SpotlightOverlay mask={mech.strats[0].mask} />
-                                  {/if}
-                                </div>
+                                {#if isRaidplanImage(mech.strats[0].imageUrl)}
+                                  <div class="mt-2 overflow-hidden rounded-sm">
+                                    <RaidplanImage
+                                      src={mech.strats[0].imageUrl}
+                                      alt={`${mech.mechanic} strategy`}
+                                      {spotlight}
+                                      mask={mech.strats[0].mask}
+                                      maxHeight="350px"
+                                    />
+                                  </div>
+                                {:else}
+                                  <div class="mt-2 overflow-hidden relative w-fit h-fit">
+                                    <img
+                                      class="block rounded-sm max-w-full max-h-[350px]"
+                                      src={mech.strats[0].imageUrl}
+                                      alt={`${mech.mechanic} strategy`}
+                                    />
+                                    {#if spotlight && mech.strats[0]?.mask}
+                                      <SpotlightOverlay mask={mech.strats[0].mask} />
+                                    {/if}
+                                  </div>
+                                {/if}
                               {/if}
                             </div>
                           </button>
@@ -798,16 +837,26 @@
                     <div
                       class="rounded-xl overflow-hidden shadow-lg border border-surface-700/50 bg-black/20 self-start"
                     >
-                      <div class="relative w-fit h-fit">
-                        <img
-                          class="max-h-[500px] block"
+                      {#if isRaidplanImage(phase.imageUrl)}
+                        <RaidplanImage
                           src={phase.imageUrl}
                           alt={phase.phaseName}
+                          {spotlight}
+                          mask={phase.mask}
+                          maxHeight="500px"
                         />
-                        {#if spotlight && phase.mask}
-                          <SpotlightOverlay mask={phase.mask} />
-                        {/if}
-                      </div>
+                      {:else}
+                        <div class="relative w-fit h-fit">
+                          <img
+                            class="max-h-[500px] block"
+                            src={phase.imageUrl}
+                            alt={phase.phaseName}
+                          />
+                          {#if spotlight && phase.mask}
+                            <SpotlightOverlay mask={phase.mask} />
+                          {/if}
+                        </div>
+                      {/if}
                     </div>
                   {/if}
                 </button>

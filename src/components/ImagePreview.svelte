@@ -5,6 +5,8 @@
   import { Modal } from '$lib/components/ui';
   import { X, Play, NotepadText } from '@lucide/svelte/icons';
   import SpotlightOverlay from './SpotlightOverlay.svelte';
+  import RaidplanImage from './RaidplanImage.svelte';
+  import { isRaidplanImage } from '$lib/raidplan/image';
   import RoleIcon from '$lib/components/RoleIcon.svelte';
   import { renderDebuffTokens } from '$lib/debuffs';
 
@@ -101,7 +103,21 @@
             : ''}
         </div>
       </div>
-      {#if getImageModalUrl()}
+      {#if isRaidplanImage(getImageModalUrl())}
+        {@const tf = mech?.alignmentTransforms?.[alignment] ?? mech?.transform}
+        <div class="mt-4 self-center overflow-hidden rounded-md">
+          <RaidplanImage
+            src={getImageModalUrl()}
+            alt={mech?.mechanic || phase?.phaseName || 'Strategy image'}
+            {spotlight}
+            mask={getImageMask()}
+            maxHeight="75vh"
+            maxWidth="90vw"
+            class="origin-center"
+            style={tf ? `transform: ${tf}` : ''}
+          />
+        </div>
+      {:else if getImageModalUrl()}
         <div class="relative mt-4 inline-grid place-items-center self-center overflow-hidden">
           <img
             class="rounded-md object-contain max-w-[90vw] max-h-[75vh] origin-center"

@@ -3,7 +3,7 @@
  *
  * Fast checks (~30s) that run on every PR to catch common data issues:
  * 1. Structural integrity (configs, phases, mechs)
- * 2. Raidplan URL format validation
+ * 2. Raidplan URL format validation, and raidplan image references resolve to imported steps
  * 3. Toggle/role cross-reference consistency
  * 4. Text quality (typos, orphaned HTML)
  * 5. Cross-strat copy-paste detection
@@ -28,6 +28,11 @@ import {
   type DescriptionEntry,
   type UrlEntry
 } from './data-loader';
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { isRaidplanImage, parseRaidplanImage } from '$lib/raidplan/image';
+import { RAIDPLAN_STATIC_DIR, localPaths } from '$lib/raidplan/assets';
+import type { RaidplanPlan } from '$lib/raidplan/types';
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 
@@ -220,6 +225,57 @@ describe('2. Raidplan URL Format', () => {
 
     if (failures.length > 0) {
       throw new Error(`Invalid raidplan URL fragments:\n  ${failures.join('\n  ')}`);
+    }
+  });
+});
+
+// ── 2b. Raidplan Image References ──────────────────────────────────────────
+
+/** Every string anywhere in a strat that's a raidplanImage() reference, with its path. */
+function* walkRaidplanImages(
+  value: unknown,
+  path: string
+): Generator<{ path: string; src: string }> {
+  if (isRaidplanImage(value)) {
+    yield { path, src: value };
+  } else if (Array.isArray(value)) {
+    for (const [i, v] of value.entries()) yield* walkRaidplanImages(v, `${path}[${i}]`);
+  } else if (value && typeof value === 'object') {
+    for (const [k, v] of Object.entries(value)) yield* walkRaidplanImages(v, `${path}.${k}`);
+  }
+}
+
+describe('2b. Raidplan Image References', () => {
+  test('every raidplan image points at an imported plan step', () => {
+    const failures: string[] = [];
+    const steps = new Map<string, number | null>();
+
+    for (const fight of ALL_FIGHTS) {
+      for (const strat of fight.strats) {
+        const root = `${fight.label}/${strat.stratName}`;
+        for (const { path, src } of walkRaidplanImages(strat, root)) {
+          const { code, step } = parseRaidplanImage(src)!;
+          if (!steps.has(code)) {
+            const file = join('static', RAIDPLAN_STATIC_DIR, localPaths.plan(code));
+            const plan = existsSync(file)
+              ? (JSON.parse(readFileSync(file, 'utf8')) as RaidplanPlan)
+              : null;
+            steps.set(code, plan?.steps ?? null);
+          }
+          const count = steps.get(code);
+          if (count === null || count === undefined) {
+            failures.push(
+              `${path}: no snapshot for ${code} (run bun scripts/import-raidplan.ts ${code})`
+            );
+          } else if (step < 0 || step >= count) {
+            failures.push(`${path}: step ${step + 1} out of range, ${code} has ${count} steps`);
+          }
+        }
+      }
+    }
+
+    if (failures.length > 0) {
+      throw new Error(`Bad raidplan image references:\n  ${failures.join('\n  ')}`);
     }
   });
 });

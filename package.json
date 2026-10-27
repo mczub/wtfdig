@@ -37,6 +37,7 @@
     "jsdom": "^29.1.1",
     "prettier": "^3.8.3",
     "prettier-plugin-svelte": "^3.5.1",
+    "sharp": "^0.35.5",
     "svelte": "^5.55.5",
     "svelte-check": "^4.4.7",
     "svelte-preprocess-import-assets": "^1.1.0",
