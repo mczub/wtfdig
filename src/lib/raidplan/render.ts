@@ -40,18 +40,27 @@ export function firstBaseline(fontSize: number) {
   return fontSize * FONT_SIZE_MULT * (1 - FONT_SIZE_FRACTION);
 }
 
-/** Nodes visible on a step, arena first, in the plan's z-order. */
-export function nodesForStep(plan: RaidplanPlan, step: number) {
-  let arena: RaidplanNode | undefined;
-  const nodes: RaidplanNode[] = [];
-  for (const node of plan.nodes) {
-    const m = node.meta;
-    if (m.hidden === 1) continue;
-    if (m.all !== 1 && (m.step ?? 0) !== step) continue;
-    if (node.type === 'arena') arena ??= node;
-    else nodes.push(normalizeNode(node));
+type StepView = { arena: RaidplanNode | undefined; nodes: RaidplanNode[] };
+const stepViews = new WeakMap<RaidplanPlan, Map<number, StepView>>();
+
+/** Nodes visible on a step, arena first, in the plan's z-order. Cached per plan and step. */
+export function nodesForStep(plan: RaidplanPlan, step: number): StepView {
+  let byStep = stepViews.get(plan);
+  if (!byStep) stepViews.set(plan, (byStep = new Map()));
+  let view = byStep.get(step);
+  if (!view) {
+    let arena: RaidplanNode | undefined;
+    const nodes: RaidplanNode[] = [];
+    for (const node of plan.nodes) {
+      const m = node.meta;
+      if (m.hidden === 1) continue;
+      if (m.all !== 1 && (m.step ?? 0) !== step) continue;
+      if (node.type === 'arena') arena ??= node;
+      else nodes.push(normalizeNode(node));
+    }
+    byStep.set(step, (view = { arena, nodes }));
   }
-  return { arena, nodes };
+  return view;
 }
 
 const clampFont = (n: number) => Math.min(128, Math.max(8, Math.round(n)));

@@ -561,6 +561,28 @@
   let gridContainerWidth = $state(0);
   let gridContainerHeight = $state(0);
 
+  // While the sidebar animates, cards are laid out once for the width the grid
+  // will end up at. Re-flowing at every intermediate width makes cards hop
+  // between rows for the whole animation.
+  const SIDEBAR_ANIMATION_MS = 300; // duration-300 on the sidebar
+  const SIDEBAR_WIDTH_REM = 20; // w-80
+  let sidebarTargetWidth = $state<number | null>(null);
+  let sidebarTimer: ReturnType<typeof setTimeout> | undefined;
+  const layoutWidth = $derived(sidebarTargetWidth ?? gridContainerWidth);
+
+  function setSidebarOpen(open: boolean) {
+    if (open === sidebarOpen) return;
+    // On mobile the sidebar overlays the grid instead of resizing it
+    if (!isMobile.current && gridContainerWidth > 0) {
+      const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+      const delta = SIDEBAR_WIDTH_REM * rem * (open ? -1 : 1);
+      sidebarTargetWidth = (sidebarTargetWidth ?? gridContainerWidth) + delta;
+      clearTimeout(sidebarTimer);
+      sidebarTimer = setTimeout(() => (sidebarTargetWidth = null), SIDEBAR_ANIMATION_MS);
+    }
+    sidebarOpen = open;
+  }
+
   // Cached image aspect ratios (width / height), populated via prefetch
   let imageAspects = $state<Map<string, number>>(new Map());
   let initialPrefetchDone = $state(false);
@@ -790,7 +812,7 @@
 
   function buildRows(target: number): RawRow[] {
     const rows: RawRow[] = [];
-    if (cardList.length === 0 || gridContainerWidth <= 0) return rows;
+    if (cardList.length === 0 || layoutWidth <= 0) return rows;
 
     const T = target;
     const H = 2 * target + GAP;
@@ -825,7 +847,7 @@
                   { type: 'large', card: spec }
                 ]
               : [{ type: 'large', card: spec }];
-          const fits = trial.length <= 1 || macroNaturalWidth(trial, T, H) <= gridContainerWidth;
+          const fits = trial.length <= 1 || macroNaturalWidth(trial, T, H) <= layoutWidth;
           if (fits) {
             mode = 'macro';
             items = trial;
@@ -838,7 +860,7 @@
           }
         } else {
           const trial: MacroItem[] = [...items, { type: 'large', card: spec }];
-          if (items.length === 0 || macroNaturalWidth(trial, T, H) <= gridContainerWidth) {
+          if (items.length === 0 || macroNaturalWidth(trial, T, H) <= layoutWidth) {
             items = trial;
           } else {
             flush();
@@ -850,7 +872,7 @@
         // Small card.
         if (mode === 'simple') {
           const trial = [...smalls, spec];
-          if (smalls.length === 0 || simpleNaturalWidth(trial, T) <= gridContainerWidth) {
+          if (smalls.length === 0 || simpleNaturalWidth(trial, T) <= layoutWidth) {
             smalls = trial;
           } else {
             flush();
@@ -866,7 +888,7 @@
           } else {
             trial = [...items, { type: 'smalls', smalls: [spec] }];
           }
-          if (macroNaturalWidth(trial, T, H) <= gridContainerWidth) {
+          if (macroNaturalWidth(trial, T, H) <= layoutWidth) {
             items = trial;
           } else {
             flush();
@@ -887,15 +909,15 @@
   function layoutSimpleRow(smalls: CardSpec[], target: number): LaidOutSimpleRow {
     const aSum = smalls.reduce((s, c) => s + c.aspect, 0);
     const naturalW = aSum * target + Math.max(0, smalls.length - 1) * GAP;
-    const avail = gridContainerWidth - Math.max(0, smalls.length - 1) * GAP;
+    const avail = layoutWidth - Math.max(0, smalls.length - 1) * GAP;
     let h = target;
     // Scale to fit container width when:
     //  - the row has only one card AND the container is narrow (single-column
     //    / mobile / scrolling layouts — always fill the width), or
     //  - the row is at least 80% of the container width — covers the multi-card
     //    case while leaving sparse partial last rows on desktop at target.
-    const isNarrow = gridContainerWidth < NARROW_CONTAINER_BREAKPOINT;
-    if ((smalls.length === 1 && isNarrow) || naturalW >= gridContainerWidth * 0.8) {
+    const isNarrow = layoutWidth < NARROW_CONTAINER_BREAKPOINT;
+    if ((smalls.length === 1 && isNarrow) || naturalW >= layoutWidth * 0.8) {
       h = avail / aSum;
     }
     return {
@@ -912,14 +934,14 @@
     // already at least 80% of the container width.
     let h = 2 * target + GAP;
     let t = target;
-    const isNarrow = gridContainerWidth < NARROW_CONTAINER_BREAKPOINT;
+    const isNarrow = layoutWidth < NARROW_CONTAINER_BREAKPOINT;
     const stretchSingle = items.length === 1 && isNarrow;
     for (let iter = 0; iter < 6; iter++) {
       const natW = macroNaturalWidth(items, t, h);
       if (natW <= 0) break;
-      if (Math.abs(natW - gridContainerWidth) < 0.5) break;
-      if (!stretchSingle && natW < gridContainerWidth * 0.8) break;
-      const scale = gridContainerWidth / natW;
+      if (Math.abs(natW - layoutWidth) < 0.5) break;
+      if (!stretchSingle && natW < layoutWidth * 0.8) break;
+      const scale = layoutWidth / natW;
       h = h * scale;
       t = (h - GAP) / 2;
       if (t < 1) {
@@ -989,7 +1011,7 @@
   // Pick the largest target T where the layout fits in the visible height.
   // Falls back to MIN_ROW_HEIGHT (scrollable) when even that doesn't fit.
   let laidOutRows = $derived.by(() => {
-    if (gridContainerWidth <= 0 || cardList.length === 0) return [] as LaidOutRow[];
+    if (layoutWidth <= 0 || cardList.length === 0) return [] as LaidOutRow[];
 
     const budget = gridContainerHeight;
     if (budget <= 0) return layoutAt(TARGET_ROW_HEIGHT);
@@ -1013,6 +1035,48 @@
       }
     }
     return bestRows;
+  });
+
+  // Absolute position of every card, matching the row/stack layout. Rendering
+  // them as one keyed list means a reflow (e.g. while the sidebar animates)
+  // only moves and resizes cards, rather than destroying and re-creating the
+  // ones that change rows - expensive for raidplan boards, which rebuild their
+  // whole SVG.
+  type PlacedCard = LaidOutCard & { x: number; y: number; id: string };
+  let placedCards = $derived.by(() => {
+    const cards: PlacedCard[] = [];
+    const seen = new Map<string, number>();
+    let y = 0;
+    let x = 0;
+    const place = (card: LaidOutCard, cardY: number) => {
+      // Keys only had to be unique per row before; repeat phase names can collide page-wide
+      const n = seen.get(card.spec.key) ?? 0;
+      seen.set(card.spec.key, n + 1);
+      cards.push({ ...card, x, y: y + cardY, id: n ? `${card.spec.key}#${n}` : card.spec.key });
+      x += card.width + GAP;
+    };
+    for (const row of laidOutRows) {
+      const hasBlocks = row.kind === 'macro' && row.items.some((it) => it.type === 'smalls');
+      x = 0;
+      if (row.kind === 'simple') {
+        for (const card of row.cards) place(card, 0);
+      } else {
+        for (const item of row.items) {
+          if (item.type === 'large') {
+            place(item.card, 0);
+            continue;
+          }
+          const blockX = x;
+          for (const card of item.upper) place(card, 0);
+          x = blockX;
+          const lowerY = item.upper.length > 0 ? item.smallHeight + stackedPad + GAP : 0;
+          for (const card of item.lower) place(card, lowerY);
+          x = blockX + item.blockWidth + GAP;
+        }
+      }
+      y += row.height + (hasBlocks ? 2 * stackedPad : stackedPad) + GAP;
+    }
+    return { cards, height: Math.max(0, y - GAP) };
   });
 </script>
 
@@ -1040,7 +1104,7 @@
       <!-- Sidebar header bar — height matches main header for clean alignment -->
       <button
         class="flex items-center justify-start h-14 px-4 border-b border-surface-700 hover:bg-surface-800 transition-colors shrink-0"
-        onclick={() => (sidebarOpen = false)}
+        onclick={() => setSidebarOpen(false)}
       >
         <ChevronLeft size={24} />
       </button>
@@ -1343,7 +1407,7 @@
             {#if !sidebarOpen}
               <button
                 class="flex items-center justify-center p-1 hover:bg-surface-700 rounded-xs transition-colors shrink-0"
-                onclick={() => (sidebarOpen = true)}
+                onclick={() => setSidebarOpen(true)}
                 aria-label="Open sidebar"
               >
                 <ChevronRight size={24} />
@@ -1613,9 +1677,11 @@
           </button>
         {/snippet}
 
-        <!-- Mechanic Cards Grid (justified gallery with macro rows) -->
+        <!-- Mechanic Cards Grid (justified gallery with macro rows). The scrollbar gutter is
+             reserved so the predicted post-sidebar width is exact, and x is clipped because
+             cards are briefly wider than the grid while the sidebar collapses. -->
         <div
-          class="flex-1 flex flex-col gap-3 overflow-y-auto"
+          class="flex-1 flex flex-col gap-3 overflow-y-auto overflow-x-hidden [scrollbar-gutter:stable]"
           bind:clientWidth={gridContainerWidth}
           bind:clientHeight={gridContainerHeight}
         >
@@ -1628,59 +1694,13 @@
               No mechanics to display
             </div>
           {:else}
-            {#each laidOutRows as row, ri (ri)}
-              {@const hasBlocks =
-                row.kind === 'macro' && row.items.some((it) => it.type === 'smalls')}
-              {@const rowExtra = hasBlocks ? 2 * stackedPad : stackedPad}
-              {#if row.kind === 'simple'}
-                <div
-                  class="flex gap-3 shrink-0 items-start"
-                  style:height="{row.height + rowExtra}px"
-                >
-                  {#each row.cards as card (card.spec.key)}
-                    {@render cardButton(card.spec, card.width, card.height)}
-                  {/each}
+            <div class="relative shrink-0" style:height="{placedCards.height}px">
+              {#each placedCards.cards as card (card.id)}
+                <div class="absolute" style:left="{card.x}px" style:top="{card.y}px">
+                  {@render cardButton(card.spec, card.width, card.height)}
                 </div>
-              {:else}
-                <div
-                  class="flex gap-3 shrink-0 items-start"
-                  style:height="{row.height + rowExtra}px"
-                >
-                  {#each row.items as item, ii (ri + '-' + ii)}
-                    {#if item.type === 'large'}
-                      {@render cardButton(item.card.spec, item.card.width, item.card.height)}
-                    {:else}
-                      <div
-                        class="flex flex-col gap-3 shrink-0"
-                        style:width="{item.blockWidth}px"
-                        style:height="{row.height + rowExtra}px"
-                      >
-                        {#if item.upper.length > 0}
-                          <div
-                            class="flex gap-3 shrink-0 items-start"
-                            style:height="{item.smallHeight + stackedPad}px"
-                          >
-                            {#each item.upper as card (card.spec.key)}
-                              {@render cardButton(card.spec, card.width, card.height)}
-                            {/each}
-                          </div>
-                        {/if}
-                        {#if item.lower.length > 0}
-                          <div
-                            class="flex gap-3 shrink-0 items-start"
-                            style:height="{item.smallHeight + stackedPad}px"
-                          >
-                            {#each item.lower as card (card.spec.key)}
-                              {@render cardButton(card.spec, card.width, card.height)}
-                            {/each}
-                          </div>
-                        {/if}
-                      </div>
-                    {/if}
-                  {/each}
-                </div>
-              {/if}
-            {/each}
+              {/each}
+            </div>
           {/if}
         </div>
       </div>

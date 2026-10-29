@@ -59,7 +59,8 @@
   }: Props = $props();
 
   const ref = $derived(parseRaidplanImage(src));
-  let plan = $state<RaidplanPlan>();
+  // Raw: plans are large read-only JSON, and a deep proxy makes every node read slow
+  let plan = $state.raw<RaidplanPlan>();
   let failed = $state(false);
 
   $effect(() => {

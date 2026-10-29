@@ -33,7 +33,7 @@
     styledLines,
     textBlockHeight
   } from './render';
-  import type { Placement } from './render';
+  import type { Placement, TextRun } from './render';
   import { FONT_CSS, svgToImage, warmSnapshotAssets } from './snapshot';
   import type { RaidplanAttr, RaidplanNode, RaidplanPlan } from './types';
 
@@ -124,6 +124,10 @@
   onDestroy(releaseSnapshot);
   const view = $derived(nodesForStep(plan, step));
   const asset = (rel: string) => `${base}/raidplan/${rel}`;
+  // Raidplan gives unstroked text a 1px drop shadow. It's drawn as an offset
+  // copy rather than an SVG filter: a filter per text element roughly doubles
+  // the GPU cost of redrawing boards, which shows when the cheatsheet resizes.
+  const TEXT_SHADOW = 'rgba(0,0,0,0.3)';
   const visible = (c: string | null | undefined): c is string =>
     !!c && c.trim() !== '' && c.toLowerCase() !== 'transparent';
 
@@ -273,6 +277,16 @@
         fill={l.background}
       />
     {/if}
+    {#if !visible(l.stroke)}
+      <text
+        x={lay.x + 1}
+        y={lay.baseline + 1}
+        text-anchor={lay.anchor}
+        font-family={fontFamily(l.font)}
+        font-size={l.fontSize}
+        fill={TEXT_SHADOW}>{l.text}</text
+      >
+    {/if}
     <text
       x={lay.x}
       y={lay.baseline}
@@ -282,10 +296,21 @@
       fill={l.color}
       stroke={visible(l.stroke) ? l.stroke : undefined}
       stroke-width={visible(l.stroke) ? l.strokeWidth : undefined}
-      paint-order="stroke"
-      filter={visible(l.stroke) ? undefined : `url(#${uid}-shadow)`}>{l.text}</text
+      paint-order="stroke">{l.text}</text
     >
   {/if}
+{/snippet}
+
+{#snippet textLines(lines: TextRun[][], x: number, top: number, fontSize: number, shadow: boolean)}
+  {#each lines as runs, i (i)}
+    <tspan {x} y={top + i * lineAdvance(fontSize) + firstBaseline(fontSize)}
+      >{#each runs as run, j (j)}{#if run.style}<tspan
+            fill={shadow ? undefined : run.style.fill}
+            font-weight={run.style.fontWeight}
+            font-style={run.style.fontStyle}>{run.text}</tspan
+          >{:else}{run.text}{/if}{/each}</tspan
+    >
+  {/each}
 {/snippet}
 
 {#snippet shape(node: RaidplanNode, id: string)}
@@ -437,6 +462,20 @@
     {#if pad}
       <rect x={-w / 2} y={-h / 2} width={w} height={h} fill={a.backgroundColor} />
     {/if}
+    {#if !hasStroke}
+      <text
+        transform="translate(1 1)"
+        font-family={fontFamily(a.font)}
+        font-size={fontSize}
+        font-weight={a.fontWeight}
+        font-style={a.fontStyle}
+        text-anchor={align}
+        fill={TEXT_SHADOW}
+        xml:space="preserve"
+      >
+        {@render textLines(lines, x, top, fontSize, true)}
+      </text>
+    {/if}
     <text
       font-family={fontFamily(a.font)}
       font-size={fontSize}
@@ -448,18 +487,9 @@
       stroke={hasStroke ? a.stroke : undefined}
       stroke-width={hasStroke ? (a.strokeWidth || 1) / Math.abs(p.sx || 1) : undefined}
       paint-order="stroke"
-      filter={hasStroke ? undefined : `url(#${uid}-shadow)`}
       xml:space="preserve"
     >
-      {#each lines as runs, i (i)}
-        <tspan {x} y={top + i * lineAdvance(fontSize) + firstBaseline(fontSize)}
-          >{#each runs as run, j (j)}{#if run.style}<tspan
-                fill={run.style.fill}
-                font-weight={run.style.fontWeight}
-                font-style={run.style.fontStyle}>{run.text}</tspan
-              >{:else}{run.text}{/if}{/each}</tspan
-        >
-      {/each}
+      {@render textLines(lines, x, top, fontSize, false)}
     </text>
   </g>
 {/snippet}
@@ -606,12 +636,6 @@
     aria-label={ariaLabel ?? `${plan.name} - step ${step + 1}`}
     font-family={fontFamily()}
   >
-    <defs>
-      <filter id="{uid}-shadow" x="-10%" y="-10%" width="120%" height="120%">
-        <feDropShadow dx="1" dy="1" stdDeviation="0.5" flood-color="#000" flood-opacity="0.3" />
-      </filter>
-    </defs>
-
     <rect width={CANVAS_W} height={CANVAS_H} fill="#000" />
     {#if view.arena}
       {@render arena(view.arena, `${uid}-arena`)}
