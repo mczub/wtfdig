@@ -77,36 +77,44 @@
     return () => (cancelled = true);
   });
 
-  // Width-fit boards size like an image capped at maxHeight, keeping 16:9. The
-  // width is fixed and max-width does the shrinking, so shrink-to-fit parents
-  // (inline-block, w-fit) see a real intrinsic width instead of a cyclic %.
-  const sizeStyle = $derived(
-    fit === 'width'
-      ? `width: ${maxHeight ? `calc(${maxHeight} * ${RAIDPLAN_ASPECT})` : '100%'}; max-width: ${maxWidth}; aspect-ratio: ${RAIDPLAN_ASPECT};`
-      : ''
+  // Width-fit boards size like an image capped at maxHeight, keeping 16:9. An
+  // empty svg does the sizing: like an <img>, a replaced element reports its
+  // full width to shrink-to-fit parents (inline-block, w-fit) but can still
+  // shrink below it. A sized div can't, and pushes mobile pages wider than the
+  // screen.
+  const sizerStyle = $derived(
+    `width: ${maxHeight ? `calc(${maxHeight} * ${RAIDPLAN_ASPECT})` : '100%'}; max-width: ${maxWidth};`
   );
 </script>
 
 <div
-  class="relative {fit === 'contain' ? 'w-full h-full' : 'max-w-full'} {className}"
-  style="{sizeStyle} {style}"
+  class="relative {fit === 'contain'
+    ? 'w-full h-full'
+    : maxHeight
+      ? 'w-fit max-w-full'
+      : 'w-full'} {className}"
+  {style}
 >
-  {#if plan && ref}
-    <RaidplanBoard
-      {plan}
-      step={ref.step}
-      {fit}
-      label={alt || undefined}
-      class="w-full h-full"
-    />
-  {:else}
-    <div
-      class="w-full h-full flex items-center justify-center text-sm text-surface-400"
-      class:bg-surface-900={fit === 'width'}
-    >
-      {failed ? 'Diagram unavailable' : ''}
-    </div>
+  {#if fit === 'width'}
+    <svg
+      class="block h-auto"
+      style={sizerStyle}
+      viewBox="0 0 {CANVAS_W} {CANVAS_H}"
+      aria-hidden="true"
+    ></svg>
   {/if}
+  <div class={fit === 'width' ? 'absolute inset-0' : 'w-full h-full'}>
+    {#if plan && ref}
+      <RaidplanBoard {plan} step={ref.step} {fit} label={alt || undefined} class="w-full h-full" />
+    {:else}
+      <div
+        class="w-full h-full flex items-center justify-center text-sm text-surface-400"
+        class:bg-surface-900={fit === 'width'}
+      >
+        {failed ? 'Diagram unavailable' : ''}
+      </div>
+    {/if}
+  </div>
   {#if spotlight && mask}
     <!-- In contain mode the board is letterboxed, so the mask needs the canvas size to line up -->
     <SpotlightOverlay
